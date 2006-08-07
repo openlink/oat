@@ -1,0 +1,55 @@
+<h2>ticker.js</h2>
+<p>Ticker - slowly appearing (and disappearing) text.</p>
+<hr/>
+
+<h3>Objects</h3>
+<ul>
+	<li><a href="#ticker">OAT.Ticker(element, text, optObj)</a></li>
+</ul>
+
+<h3>Methods</h3>
+<ul>
+	<li><a href="#start">OAT.Ticker.start()</a></li>
+	<li><a href="#stop">OAT.Ticker.stop()</a></li>
+</ul>
+
+<h3>Constants</h3>
+<ul>
+	<li>OAT.TickerData.ADD_START - add characters to the beginning</li>
+	<li>OAT.TickerData.ADD_END - add characters to end</li>
+</ul><ul>	
+	<li>OAT.TickerData.CLEAR_ALL - remove all characters at once</li>
+	<li>OAT.TickerData.CLEAR_START - remove characters from beginning</li>
+	<li>OAT.TickerData.CLEAR_END - remove characters from end</li>
+</ul><ul>	
+	<li>OAT.TickerData.TIMING_PERCHAR - delay is specified per character</li>
+	<li>OAT.TickerData.TIMING_GLOBAL - delay is specified per string</li>
+</ul><ul>	
+	<li>OAT.TickerData.LOOP_NONE - don't loop</li>
+	<li>OAT.TickerData.LOOP_BACK - draw text, hide it and stop</li>
+	<li>OAT.TickerData.LOOP_FULL - loop</li>
+</ul>
+
+<hr/>
+
+<h3><a name="ticker">OAT.Ticker(element, text, optObj)</a></h3>
+<p>Creates Ticker. It will show <em>text</em> in <em>element</em>. Argument <em>optObj</em> is an object containing the following:</p>
+<ul>
+	<li>loop - a LOOP_ constant</li>
+	<li>add - an ADD_ constant</li>
+	<li>clear - a CLEAR_ constant</li>
+	<li>timing - a TIMING_ constant</li>
+	<li>delay - delay in msec</li>
+	<li>pause - pause (in msec) when all text is drawn</li>
+</ul>
+
+<p class="code">
+var t = new OAT.Ticker(div, "Hello world!", {delay:30,timing:TickerData.TIMING_PERCHAR}); <br/>
+t.start();
+</p>
+
+<h3><a name="start">OAT.Ticker::start()</a></h3>
+<p>Starts ticking.</p>
+
+<h3><a name="stop">OAT.Ticker::stop()</a></h3>
+<p>Stops ticking.</p>

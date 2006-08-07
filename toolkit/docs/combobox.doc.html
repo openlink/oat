@@ -1,0 +1,37 @@
+<h2>combobox.js</h2>
+<p>Creates a combobox, which is an enhanced &lt;select&gt;</p>
+<hr/>
+
+<h3>Objects</h3>
+<ul>
+	<li><a href="#combobox">OAT.Combobox(defaultValue)</a></li>
+</ul>
+
+<h3>Methods</h3>
+<ul>
+	<li><a href="#addoption">OAT.Combobox::addOption(element, textValue)</a></li>
+</ul>
+
+<h3>CSS classes</h3>
+<ul>
+	<li>.combo_box</li>
+	<li>.combo_box_value</li>
+	<li>.combo_box_list</li>
+	<li>.combo_image</li>
+</ul>
+
+<hr/>
+
+<h3><a name="combobox">OAT.Combobox(defaultValue)</a></h3>
+<p>Creates a combobox with a value of <em>defaultValue</em>. Its main div is accessible as <code>OAT.Combobox::div</code>.
+Onchange callback may be set via <code>OAT.Combobox::onchange</code> property.</p>
+
+<h3><a name="addoption">OAT.Combobox::addOption(element, textValue)</a></h3>
+<p>Adds a new option, represented by <em>element</em> with a value of <em>textValue</em>.</p>
+
+<p class="code">
+	var cb = new OAT.Combobox("[choose here]");<br/>
+	document.body.appendChild( cb.div );<br/>
+	cb.addOption(someElement, "option 1");<br/>
+	cb.addOption(someOtherElement, "option 2");
+</p>

@@ -1,0 +1,171 @@
+/*
+ *  $Id$
+ *
+ *  This file is part of the OpenLink Software Ajax Toolkit (OAT) project.
+ *
+ *  Copyright (C) 2006 Ondrej Zara and OpenLink Software
+ *
+ *  See LICENSE file for details.
+ */
+/* ---------------------------------- elementy na panelu ------------------------------- */
+
+/*                      TABLE */
+
+#table_admin {
+	position: absolute;
+	left: 0px;
+	top: 30px;
+	width: 250px;
+	font-size: x-small;
+	_font-size: xx-small;
+}
+
+#table_name {
+	font-size: x-small;
+	_font-size: xx-small;
+	position: absolute;
+	left:52px;
+	top: 25px;
+	width: 180px;
+}
+
+#table_admin_label {
+	text-align: left;
+	font-size: medium;
+	font-weight: bold;
+}
+
+#table_name_label {
+	font-size: small;
+	_font-size: x-small;
+	position: absolute;
+	top: 27px;
+	left: 10px;
+}
+
+/*                      ROW */
+
+#row_admin {
+	position: absolute;
+	left: 255px;
+	top: 30px;
+	width: 300px;
+	font-size: x-small;
+	_font-size: xx-small;
+}
+
+
+#row_name {
+	font-size: x-small;
+	_font-size: xx-small;
+	position: absolute;
+	left:52px;
+	top: 1px;
+	width: 180px;
+}
+
+#row_admin_label {
+	text-align: right;
+	font-size: medium;
+	font-weight: bold;
+	padding-right: 2px;
+}
+
+#row_name_label {
+	font-size: small;
+	_font-size: x-small;
+	position: absolute;
+	top: 4px;
+	left: 10px;
+}
+
+#row_primary {
+	position: absolute;
+	top: 40px;
+	left: 225px;
+}
+
+#row_primary_label {
+	position: absolute;
+	top: 43px;
+	left: 245px;
+}
+
+#row_index {
+	position: absolute;
+	top: 40px;
+	left: 260px;
+}
+
+#row_index_label {
+	position: absolute;
+	top: 43px;
+	left: 280px;
+}
+
+#row_notnull {
+	position: absolute;
+	top: 40px;
+	left: 300px;
+}
+
+#row_notnull_label {
+	position: absolute;
+	top: 43px;
+	left: 320px;
+}
+
+#row_type {
+	font-size: x-small;
+	_font-size: xx-small;
+	position: absolute;
+	top: 20px;
+	left: 52px;
+}
+
+#row_type_label {
+	font-size: small;
+	_font-size: x-small;
+	position: absolute;
+	top: 23px;
+	left: 10px;
+}
+
+#row_default {
+	font-size: x-small;
+	_font-size: xx-small;
+	position: absolute;
+	top: 40px;
+	left: 80px;
+}
+
+#row_default_label {
+	font-size: small;
+	_font-size: x-small;
+	position: absolute;
+	top: 42px;
+	left: 10px;
+}
+
+#row_spec_1 {
+	font-size: small;
+	position: absolute;
+	top: 22px;
+	left: 200px;
+}
+
+#row_spec_2 {
+	font-size: small;
+	position: absolute;
+	top: 22px;
+	left: 258px;
+}
+
+#row_spec {
+	font-size: x-small;
+	_font-size: xx-small;
+	position: absolute;
+	top: 20px;
+	left: 208px;
+	width: 50px;
+}

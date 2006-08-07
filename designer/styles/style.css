@@ -1,0 +1,261 @@
+/*
+ *  $Id$
+ *
+ *  This file is part of the OpenLink Software Ajax Toolkit (OAT) project.
+ *
+ *  Copyright (C) 2006 Ondrej Zara and OpenLink Software
+ *
+ *  See LICENSE file for details.
+ */
+@import url("bar.css");
+@import url("../../styles/grid.css");
+@import url("menu.css");
+@import url("../../styles/webclip.css");
+@import url("../../styles/webdav.css");
+/* ---------------------------------- spolecne deklarace ------------------------------- */
+
+
+.right {
+	text-align: right;
+}
+
+#connection table {
+	font:menu;
+}
+
+#xconnection td {
+	border: none;
+}
+
+
+.ie_height_fix {
+	height: expression(this.ieHeight ? eval(this.ieHeight.offsetHeight) : "0px");
+}
+
+body {
+	font-family: bitstream vera sans mono, monospace, courier new, verdana, sans serif;
+	font-size: small;
+	padding: 0px;
+	margin: 0px;
+	_font-size: x-small;
+	background: url('foo') fixed; /* ie hack */
+}
+
+ul, li {
+	margin: 0px;
+	padding: 0px;
+}
+
+#webclip {
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	z-index: 900;
+}
+
+#ajax_alert {
+	font-weight: bold;
+}
+
+#ajax_progress {
+	background-image:url("../../images/progress.gif");
+	height: 16px;
+	width: 80%;
+}
+
+#root {
+	background-image: url("../images/back.gif");
+}
+
+#bar {
+	z-index: 999;
+	background-color: #ccc;
+	position: fixed;
+	_position: absolute;
+	_top:expression(eval(document.body.scrollTop));
+	_left:expression(eval(document.body.scrollLeft));
+}
+
+#shadow {
+	background-image: url("../images/shadow.png");
+	width: 100%;
+	height: 8px;
+	position: relative;
+	_background-image: none;
+}
+
+#map {
+	z-index: 999;
+	position: fixed;
+	right: 0px;
+	bottom: 0px;
+	_position:absolute;
+    _left:expression(eval(document.body.scrollLeft)+eval(document.body.clientWidth)-map.offsetWidth);
+    _top:expression(eval(document.body.scrollTop)+eval(document.body.clientHeight)-map.offsetHeight);
+	background-color: #fff;
+	border: 1px solid #000;
+}
+
+#map_ {
+	border: 2px solid #f00;
+	width: 0px;
+	height: 0px;
+	font-size: 1px;
+	position: absolute;
+}
+
+/* ---------------------------------- elementy na plose ------------------------------- */
+
+.table {
+	position: absolute;
+	_height: 20px;
+	min-height: 20px;
+	border: 1px solid #000;
+	background-color: #ddd;
+}
+
+.table_selected {
+	border: 2px solid #000;
+}
+
+.table_title {
+	text-align: center;
+	height: 20px;
+}
+
+.rows {
+}
+
+.row {
+	padding-left: 3px;
+	padding-top: 2px;
+/*	height: 20px; */
+	border-top: 1px dotted #888;
+	overflow: hidden;
+}
+
+.row .sipka {
+	display: none;
+	float: left;
+	color: #f00;
+	font-weight: bold;
+}
+
+.row_selected {
+}
+
+.row_selected .sipka {
+	display: inline;
+}
+
+.row_title {
+	text-align: left;
+}
+
+.row .special {
+	float: right;
+	margin-right: 2px;
+}
+
+.mini {
+	border: 1px solid #000;
+	background-color: #eea;
+	position: absolute;
+	font-size: 1px
+}
+
+.shadow_right {
+	background-image: url("../../images/shadow_right.png");
+	width: 8px;
+	height: 100%;
+	position: absolute;
+	right: -9px;
+	top: 1px;
+	_background-image: none;
+}
+
+.shadow_bottom {
+	background-image: url("../../images/shadow_bottom.png");
+	width: 100%;
+	height: 8px;
+	position: absolute;
+	bottom: -9px;
+	left: 1px;
+	_background-image: none;
+}
+
+.shadow_corner {
+	background-image: url("../../images/shadow_corner.png");
+	width: 8px;
+	height: 8px;
+	position: absolute;
+	right: -9px;
+	bottom: -9px;
+	_background-image: none;
+}
+
+.relation div {
+	position: absolute;
+}
+
+.relation div.line {
+	background-color: #000;
+	font-size: 1px;
+	line-height: 0px;
+}
+
+.relation div.card {
+	font: menu;
+}
+
+
+#io {
+	position: absolute;
+	left: 20px;
+	top: 50px;
+	width: 300px;
+	height: 300px;
+	z-index: 100;
+	background-color: #fff;
+	border: 2px solid #000;
+}
+
+#area {
+	position: absolute;
+	left: 20px;
+	top: 8px;
+	width: 260px;
+	height: 260px;
+	margin: auto;
+	font-size: xx-small;
+}
+
+#io #close {
+	position: absolute;
+	left: 200px;
+	top: 270px;
+}
+
+#io #import {
+	display: none;
+	position: absolute;
+	left: 40px;
+	top: 270px;
+}
+
+#xmla {
+	font: menu;
+}
+
+#xmla table, #xmla input, #xmla select {
+	font: menu;
+}
+
+#xmla table td {
+	padding: 3px;
+}
+
+#xmla_grid {
+	height: 200px;
+	overflow: auto;
+}

@@ -1,0 +1,194 @@
+<html>
+<!--
+
+  $Id$
+
+  This file is part of the OpenLink Ajax Toolkit (OAT) project
+
+  Copyright (C) 2006 Ondrej Zara
+  Copyright (C) 2006 OpenLink Software
+
+  This project is free software; you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as published by the
+  Free Software Foundation; only version 2 of the License, dated June 1991
+
+  This project is distributed in the hope that it will be useful, but
+  WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software Foundation,
+  Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+-->
+<head>
+	<title>Form Designer</title>
+	<script type="text/javascript">
+		var toolkitPath = "../toolkit";
+		var featureList = ["formobject","xmla","soap","ajax","drag","resize","dom","window",
+							"ghostdrag","color","combolist","bindings","toolbar","map","ws",
+							"menu","dimmer","dav","sqlquery","xml","webclip","dialog","layers","form"];
+	</script>
+	<script type="text/javascript" src="../toolkit/loader.js"></script>
+	<script type="text/javascript" src="js/formcolumns.js"></script>
+	<script type="text/javascript" src="js/formtoolbox.js"></script>
+	<script type="text/javascript" src="js/formpalette.js"></script>
+	<script type="text/javascript" src="js/formdesigner.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<link rel="stylesheet" href="styles/style.css" type="text/css" />
+</head>
+<body onload="init()">
+
+
+	<ul id="menu">
+		<li>Design
+			<ul>
+				<li id="menu_new">New</li>
+				<li id="menu_saveas">Save As</li>
+				<li id="menu_save">Save</li>
+				<li id="menu_load">Load</li>
+				<hr class="noclose" />
+				<li id="menu_preview">Preview</li>
+				<hr class="noclose" />
+				<li id="menu_clear">Clear</li>
+			</ul>
+		</li>
+		
+		<li>Form
+			<ul>
+				<li id="menu_sub">Add new sub-form</li>
+<!--				<li id="menu_attach">Data bindings</li> -->
+			</ul>
+		</li>
+		
+		<li>Setup
+			<ul>
+				<li id="menu_options">Options</li>
+			</ul>
+		</li>
+		
+		<li>Help
+			<ul>
+				<li id="menu_about">About</li>
+			</ul>
+		</li>
+	</ul>
+	
+	<div id="corner"></div>
+	<div id="webclip"></div>
+
+	<div id="ajax_alert">
+		Ajax call in progress...
+		<div id="ajax_progress"></div>
+	</div>
+	
+	<div style="_height:24px;"></div> <!-- dummy ie fix -->
+	
+	<div id="tbar">
+	</div>
+
+	<div id="form">
+		<div id="formbase"></div>
+	</div>
+	
+	<div id="connection">
+		<table>
+		<tr><td class="right">XML/A Endpoint: </td><td><input type="text" id="endpoint" value="/XMLA" /></td></tr>
+		<tr><td class="right">Connection String: </td><td><select id="dsn"></select></td></td>
+		<tr><td class="right">Username: </td><td><input type="text" id="user" name="user" value="demo" /></td></tr>
+		<tr><td class="right">Password: </td><td><input type="password" id="password" value="demo" /></td></tr>
+		<tr><td class="right">Web Server type: </td><td><select id="login_put_type">
+			<option value="http">HTTP - Basic</option>
+			<option value="dav" selected="selected">HTTP - WebDAV</option>
+		</select></td></tr>
+		</table>
+	</div>
+	
+	<div id="bind">
+		<input type="radio" id="bind_none" name="bind_type" checked="checked" /> 
+		<label for="bind_none"><strong>None</strong></label><br/>
+		<hr/>
+		
+		<input type="radio" id="bind_sql" name="bind_type" /> 
+		<label for="bind_sql"><strong>SQL</strong></label><br/>
+		<div class="bind">
+			<input type="radio" name="bind_sql_r" id="bind_sql_query" /> 
+			<label for="bind_sql_query"><strong>Query</strong></label><br/>
+			<div class="bind">
+				<textarea id="bind_sql_query_text" rows="4" cols="60"></textarea><br/>
+				<input type="button" id="bind_sql_query_btn" value="Edit in QBE" />
+			</div>
+			<hr/>
+			
+			<input type="radio" name="bind_sql_r" id="bind_sql_file" /> 
+			<label for="bind_sql_file"><strong>Saved query</strong></label><br/>
+			<div class="bind">
+				<input type="button" id="bind_sql_file_btn" value="Load from file" />
+				<span id="bind_sql_file_text"></span>
+			</div>
+			<hr/>
+			
+			<input type="radio" name="bind_sql_r" id="bind_sql_table" /> 
+			<label for="bind_sql_table"><strong>Table</strong></label><br/>
+			<div class="bind">
+				<input type="button" id="bind_sql_table_btn" value="Attach to table" />
+				<span id="bind_sql_table_text"></span>
+			</div>
+		</div>
+		<hr/>
+		
+		<input type="radio" id="bind_soap" name="bind_type" /> 
+		<label for="bind_soap"><strong>SOAP Web Service</strong></label><br/>
+		<div class="bind">
+			WSDL location: <input type="text" id="bind_soap_wsdl" /><br/>
+		</div>
+		<hr/>
+
+		<input type="radio" id="bind_rest" name="bind_type" /> 
+		<label for="bind_rest"><strong>REST Web Service</strong></label><br/>
+		<div class="bind">
+			URL: <input type="text" id="bind_rest_url" /><br/>
+			Input parameters (separate by comma): <input type="text" size="40" id="bind_rest_in" /><br/>
+			Output values (separate by comma): <input type="text" size="40" id="bind_rest_out" /><br/>
+			Output values specified as: <select id="bind_rest_xpath">
+				<option value="0">Node names</option>
+				<option value="1">XPath expressions</option>
+			</select><br/>
+			Output type: <select id="bind_rest_type">
+				<option value="0">XML</option>
+				<option value="1">JSON</option>
+			</select>
+		</div>
+
+	</div>
+	
+	<div id="links">
+	</div>
+	
+	<div id="tables">
+		Catalog: <select id="ds_catalogs"></select><br/>
+		Owner: <select id="ds_schemas"></select><br/>
+		Table: <select id="ds_tables" size="6"></select>
+	</div>
+	
+	<div id="services">
+		Pick a service: <select id="services_select"></select>
+	</div>
+
+	<div id="options">
+		XSLT stylesheet path: <input type="text" name="xslt" id="options_xslt" value="" /><br/>
+		<input type="checkbox" id="options_ajax" checked="checked" /> Show pending AJAX calls (FormDesigner)<br/>
+		<input type="checkbox" id="options_showajax" checked="checked" /> Show pending AJAX calls (resulting Form)<br/>
+		<input type="checkbox" id="options_http" checked="checked" /> Show HTTP errors
+		<hr/>
+		Server type:<br/>
+		<input type="radio" id="options_type_http" name="options_type" value="http" checked="checked" />HTTP - Basic<br/>
+		<input type="radio" id="options_type_dav" name="options_type" value="dav" />HTTP - WebDAV<br/>
+<!--		<input type="radio" name="options_type" value="s3" />Amazon S3<br/> -->
+		<hr/>
+		<input type="checkbox" id="options_uid" /> Store credentials in saved files<br/>
+		<input type="checkbox" id="options_nocred" /> Disable login prompt (if credentials are not saved)<br/>
+	</div>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<h2>dock.js</h2>
+<p>Creates a draggable system of docking elements, grouped into columns.</p>
+<hr/>
+
+<h3>Objects</h3>
+<ul>
+	<li><a href="#dock">OAT.Dock(numColumns)</a></li>
+</ul>
+
+<h3>Methods</h3>
+<ul>
+	<li><a href="#addobject">OAT.Dock.addObject(colIndex, grabber, mover)</a></li>
+</ul>
+
+<h3>CSS classes</h3>
+<ul>
+	<li>.dock</li>
+	<li>.dock_blank</li>
+	<li>.dock_column_0</li>
+	<li>...</li>
+	<li>.dock_column_n</li>
+</ul>
+
+
+<hr/>
+
+<h3><a name="dock">OAT.Dock(numColumns)</a></h3>
+<p>Creates a dock with <em>numColumn</em> columns.</p>
+
+<h3><a name="addobject">OAT.Dock.addObject(colIndex, grabber, mover)</a></h3>
+<p>Adds a new object to dock, resp. to its column with index <em>colIndex</em>. This object is represented by 
+node <em>mover</em> and is to be dragged by node <em>grabber</em>. Grabber should be a child of mover.</p>
+
+<p class="code">
+var mover = OAT.Dom.create("div");<br/>
+var grabber = OAT.Dom.create("img");<br/>
+mover.appendChild(grabber);<br/>
+var d = new OAT.Dock(3); <br/>
+d.addObject(0, grabber, mover);
+</p>

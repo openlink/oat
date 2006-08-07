@@ -1,0 +1,34 @@
+#
+#  $Id$
+#
+#  CREDITS
+#
+#  This file is part of the OpenLink Software Ajax Toolkit (OAT) project.
+#
+#
+
+The OpenLink Software Ajax Toolkit (OAT) project wishes to acknowledge
+incorporation of code from the following projects:
+
+* toolkit/crypto.js
+
+    MD5 and SHA routines, along with their supplemental sub-routines are
+    Copyright (C) Paul Johnston 1999 - 2002.
+    Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
+    Distributed under the BSD License	
+
+
+* toolkit/webclip.js and */styles/webclip.css
+
+    Copyright 2006 Microsoft Corporation.  
+    Microsoft's copyrights in this work are licensed under the
+    Creative Commons Attribution-ShareAlike 2.5 License.
+    To view a copy of this license visit:
+        http://creativecommons.org/licenses/by-sa/2.5
+
+
+* toolkit/custom.maps2.48.api.js
+
+  Copyright 2005-2006 Google. 
+  To use maps on your own site, visit:
+	 http://www.google.com/apis/maps/

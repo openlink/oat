@@ -1,0 +1,176 @@
+/*
+ *  $Id$
+ *
+ *  This file is part of the OpenLink Software Ajax Toolkit (OAT) project.
+ *
+ *  Copyright (C) 2006 Ondrej Zara and OpenLink Software
+ *
+ *  See LICENSE file for details.
+ */
+@import url("menu.css");
+@import url("../../styles/webclip.css");
+@import url("../../styles/webdav.css");
+
+.right {
+	text-align: right;
+}
+
+#connection table {
+	font:menu;
+}
+
+#connection td {
+	border: none;
+}
+
+.ie_height_fix {
+	height: expression(this.ieHeight ? eval(this.ieHeight.offsetHeight) : "0px");
+}
+
+body {
+	font-family: verdana;
+	margin: 0px;
+	padding: 0px;
+	font-size: 80%;
+}
+
+#ajax_alert {
+	font-weight: bold;
+}
+
+#ajax_progress {
+	background-image:url("../../images/progress.gif");
+	height: 16px;
+	width: 80%;
+}
+
+#corner {
+	position: absolute;
+	top: 1px;
+	right: 35px;
+	z-index: 900;
+}
+
+#webclip {
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	z-index: 900;
+}
+
+ul, li {
+	margin: 0px;
+	padding: 0px;
+}
+
+thead td {
+	font-weight: bold;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+td {
+	border: 1px solid #000;
+	font: menu;
+	padding: 2px 3px;
+}
+
+input, select {
+	font: menu;
+}
+
+.toolbox td {
+	padding: 1px 1px;
+}
+
+.toolbox .cell_1 {
+	background-color: #ddd;
+}
+
+.toolbox .cell_2 {
+}
+
+.toolbox .cell_single {
+	font-weight: bold;
+	background-color: #ccc;
+}
+
+.combo_list {
+	display: inline;
+}
+
+.combo_list_input {
+	font: menu;
+}
+
+.combo_list_list {
+	border: 1px solid #000;
+	background-color: #fff;
+}
+
+.combo_list_option {
+	font: menu;
+	padding: 1px;
+	width: 100px;
+}
+
+div.combo_list_option:hover {
+	background-color: #dde;
+}
+
+#ds_tables {
+	width: 300px;
+}
+
+#tbar {
+	margin-top: 24px;
+	_margin-top: 0px;
+	height: 26px;
+	background-color: #bbb;
+	border-bottom: 1px solid #000;
+}
+
+.toolbar_icon {
+	float: left;
+	margin: 1px 3px;
+	padding: 1px;
+	border: 1px solid #bbb;
+	cursor: pointer;
+}
+
+div.toolbar_icon:hover {
+	border:1px dotted #555;
+}
+
+.toolbar_icon_down {
+	border:1px solid #555;
+}
+
+#form {
+	position: relative;
+	width: 100%;
+}
+
+#formbase {
+	background-color: #bbb;
+	background-image: url("../images/Form_back.gif");
+	width: 100%;
+	height: 600px;
+	position: relative;
+}
+
+.form {
+	border: 2px dashed #888;
+	background-color: #bbb;
+	z-index: 2;
+}
+
+.form_selected {
+	border: 2px ridge #888;
+}
+
+.bind {
+	padding-left: 2em;
+}

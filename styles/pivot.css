@@ -1,0 +1,47 @@
+/*
+ *  $Id$
+ *
+ *  This file is part of the OpenLink Software Ajax Toolkit (OAT) project.
+ *
+ *  Copyright (C) 2006 Ondrej Zara and OpenLink Software
+ *
+ *  See LICENSE file for details.
+ */
+.pivot_table {
+	border-collapse: collapse;
+	font: menu;
+	margin: 1em;
+}
+
+.pivot_table th, .pivot_table td {
+	border: 2px solid #888;
+	padding: 3px;
+}
+
+.pivot_table th {
+	font-weight: bold;
+}
+
+.pivot_table td {
+	text-align: right;
+}
+
+.pivot_table td:hover {
+	background-color: #fdd;
+}
+
+.pivot_table .odd {
+	background-color: #ffd;
+}
+
+.pivot_table .even {
+	background-color: #fff;
+}
+
+.pivot_table th.h1 {
+	background-color: #aaa;
+}
+
+.pivot_table th.h2 {
+	background-color: #ddf;
+}
