@@ -115,6 +115,17 @@ OAT.Timeline = function(portElm,sliderElm,paramsObj) {
 			d.setMilliseconds(0);
 			return d;
 		}
+		if ((r = str.match(/(....)-(..)-(..)T(..):(..):(..)/))) {
+			var d = new Date();
+			d.setFullYear(r[1]);
+			d.setMonth(parseInt(r[2])-1);
+			d.setDate(r[3]);
+			d.setHours(r[4]);
+			d.setMinutes(r[5]);
+			d.setSeconds(r[6]);
+			d.setMilliseconds(0);
+			return d;
+		}
 		return new Date(str);
 	}
 	
