@@ -27,7 +27,7 @@ var IO = {
 			return;
 		}
 	    if ($("options_type_http").checked) {
-			var name = OAT.Dav_old.getNewFile("/DAV/home/"+OAT.Ajax.user,".xml","xml");
+			var name = OAT.Dav.getNewFile("/DAV/home/"+OAT.Ajax.user,".xml","xml");
 			if (!name) { return; }
 			lastPName = name;
 			if (name.slice(name.length-4).toLowerCase() != ".xml") { name += ".xml"; }
@@ -40,7 +40,7 @@ var IO = {
 				pass:OAT.Xmla.password,
 				pathDefault:"/DAV/home/"+OAT.Xmla.user+"/",
 			  file_ext:'xml',
-				onSaveClick:function() { return xml;}
+				onConfirmClick:function() { return xml;}
 			};
 			OAT.WebDav.open(options);
 		}
@@ -116,7 +116,7 @@ var IO = {
 
 	load_q:function() {
 		if ($("options_type_http").checked) {
-			var name = OAT.Dav_old.getFile("/DAV/home/"+OAT.Ajax.user,".xml");
+			var name = OAT.Dav.getFile("/DAV/home/"+OAT.Ajax.user,".xml");
 			if (!name) { return; }
 			IO.lastQName = name;
 			IO.save_type = "xml";
@@ -128,7 +128,7 @@ var IO = {
 				user:OAT.Xmla.user,
 				pass:OAT.Xmla.password,
 				pathDefault:"/DAV/home/"+OAT.Xmla.user+"/",
-				onOpenClick:function(path,fname,data){
+				onConfirmClick:function(path,fname,data){
 					IO.lastQName = path+fname;
 					IO.save_type = "xml";
 					IO.loadProcess(data);
@@ -141,7 +141,7 @@ var IO = {
 
 	load_p:function() {
 		if ($("options_type_http").checked) {
-			var name = OAT.Dav_old.getFile("/DAV/home/"+OAT.Ajax.user,".xml");
+			var name = OAT.Dav.getFile("/DAV/home/"+OAT.Ajax.user,".xml");
 			if (!name) { return; }
 			IO.lastPName = name;
 			OAT.Ajax.command(OAT.Ajax.GET + OAT.Ajax.AUTH_BASIC,name,function(){return '';},pivot_design_load,OAT.Ajax.TYPE_TEXT);
@@ -152,7 +152,7 @@ var IO = {
 				user:OAT.Xmla.user,
 				pass:OAT.Xmla.password,
 				pathDefault:"/DAV/home/"+OAT.Xmla.user+"/",
-				onOpenClick:function(path,fname,data) {
+				onConfirmClick:function(path,fname,data) {
 					IO.lastPName = path+fname;
 					pivot_design_load(data);
 					return true; /* return false will keep browser open */

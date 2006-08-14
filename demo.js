@@ -438,12 +438,8 @@ function init() {
   var dav_browse = function(){
 		var options = {
         mode:'browser',
-        onResClick:function(param){
-            alert('onResClick:'+param);
-        },
-        onOKClick:function(path,fname){
+        onConfirmClick:function(path,fname){
             document.f1.my_dav_file.value = path + fname;
-
           }
       };
     OAT.WebDav.open(options);
@@ -452,7 +448,7 @@ function init() {
   var dav_open = function(){
     options = {
 			mode:'open_dialog',
-			onOpenClick:function(path,fname,data){
+			onConfirmClick:function(path,fname,data){
             document.f1.my_dav_content.value = data;
             $('my_dav_path').innerHTML = path;
             $('my_dav_filename').innerHTML = fname;
@@ -466,7 +462,7 @@ function init() {
     var options = {
     	mode:'save_dialog',
     	dontDisplayWarning:true,
-    	onSaveClick:function() { return document.f1.my_dav_content.value;},
+    	onConfirmClick:function() { return document.f1.my_dav_content.value;},
     	afterSave:function(path,fname) {
             $('my_dav_path').innerHTML = path;
             $('my_dav_filename').innerHTML = fname;
@@ -478,7 +474,7 @@ function init() {
   var dav_save_as = function(){
     var options = {
     	mode:'save_dialog',
-    	onSaveClick:function() { return document.f1.my_dav_content.value;},
+    	onConfirmClick:function() { return document.f1.my_dav_content.value;},
     	afterSave:function(path,fname) {
             $('my_dav_path').innerHTML = path;
             $('my_dav_filename').innerHTML = fname;

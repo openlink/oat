@@ -1020,7 +1020,7 @@ function IOAdmin_save() {
 
 function IOAdmin_load() {
 	if ($("options_type_http").checked) {
-		var name = OAT.Dav_old.getFile("/DAV/home/"+OAT.Ajax.user,".xml");
+		var name = OAT.Dav.getFile("/DAV/home/"+OAT.Ajax.user,".xml");
 		if (!name) { return; }
 		IO.filename = name;
 		OAT.Ajax.command(OAT.Ajax.GET,name,function(){return '';},import_xml,OAT.Ajax.TYPE_TEXT);
@@ -1031,7 +1031,7 @@ function IOAdmin_load() {
 			user:$v("user"),
 			pass:$v("password"),
 			pathDefault:"/DAV/home/"+$v("user")+"/",
-			onOpenClick:function(path,fname,data){
+			onConfirmClick:function(path,fname,data){
 				IO.filename = path+fname;
 				return import_xml(data);
 			}

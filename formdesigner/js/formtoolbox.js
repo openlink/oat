@@ -13,7 +13,7 @@ function Toolbox(obj) {
 
 	this.selectFile = function(callback,mode) {
 		if ($("options_type_http").checked) {
-			var name = OAT.Dav_old.getNewFile("/DAV/home/"+OAT.Ajax.user,".xml","xml");
+			var name = OAT.Dav.getNewFile("/DAV/home/"+OAT.Ajax.user,".xml","xml");
 			if (!name) { return; }
 			if (name.slice(name.length-4).toLowerCase() != ".xml") { name += ".xml"; }
 			callback(name);
@@ -21,11 +21,11 @@ function Toolbox(obj) {
 		if ($("options_type_dav").checked) {
 			var options = {
 				mode:mode,
-				onOKClick:function(path,fname){
+				onConfirmClick:function(path,fname){
 					var name = path + fname;
 					callback(name);
 				},
-				onOpenClick:function(path,fname,data){
+				onConfirmClick:function(path,fname,data){
 					var name = path + fname;
 					callback(name);
 					return true; /* return false will keep browser open */

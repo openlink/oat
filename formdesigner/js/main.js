@@ -176,7 +176,7 @@ var IO = {
 
 	load:function() {
 		if ($("options_type_http").checked) {
-			var name = OAT.Dav_old.getFile("/DAV/home/"+OAT.Xmla.user,".xml");
+			var name = OAT.Dav.getFile("/DAV/home/"+OAT.Xmla.user,".xml");
 			if (!name) { return; }
 			set_filename(name);
 			$("corner").innerHTML = name;
@@ -189,7 +189,7 @@ var IO = {
 				user:OAT.Xmla.user,
 				pass:OAT.Xmla.password,
 				pathDefault:'/DAV/home/'+OAT.Xmla.user+'/',
-				onOpenClick:function(path,fname,data){
+				onConfirmClick:function(path,fname,data){
 					set_filename(path+fname);
 					fd.loadXML(data);
 					return true; /* return false will keep browser open */
@@ -321,7 +321,7 @@ var DS = { /* datasources / bindings */
 			OAT.Ajax.command(OAT.Ajax.GET + OAT.Ajax.AUTH_BASIC,f,function(){return '';},qRef,OAT.Ajax.TYPE_TEXT);
 		}
 		if ($("options_type_http").checked) {
-			var name = OAT.Dav_old.getFile("/DAV/home/"+OAT.Xmla.user,".xml");
+			var name = OAT.getFile("/DAV/home/"+OAT.Xmla.user,".xml");
 			if (!name) { return; }
 			callback(name);
 		}
@@ -331,7 +331,7 @@ var DS = { /* datasources / bindings */
 				user:OAT.Xmla.user,
 				pass:OAT.Xmla.password,
 				pathDefault:'/DAV/home/'+OAT.Xmla.user+'/',
-				onOpenClick:function(path,fname,data) {
+				onConfirmClick:function(path,fname,data) {
 					callback(path+fname);
 					return true; /* false == keep browser opened */
 				}
@@ -354,7 +354,7 @@ var DS = { /* datasources / bindings */
 		var xslStr = '<?xml-stylesheet type="text/xsl" href="'+$v("options_xslt")+'/formview.xsl"?>';
 		var xml = fd.toXML(xslStr);
 		if ($("options_type_http").checked) {
-			var name = OAT.Dav_old.getNewFile("/DAV/home/"+OAT.Ajax.user,".xml","xml");
+			var name = OAT.Dav.getNewFile("/DAV/home/"+OAT.Ajax.user,".xml","xml");
 			if (!name) { return; }
 			if (name.slice(name.length-4).toLowerCase() != ".xml") { name += ".xml"; }
 			IO.save(xml,name);
@@ -366,7 +366,7 @@ var DS = { /* datasources / bindings */
 				pass:OAT.Xmla.password,
 				pathDefault:'/DAV/home/'+OAT.Xmla.user+'/',
 				file_ext:'xml',
-				onSaveClick:function() { 
++ 				onConfirmClick:function() {
 					set_filename(OAT.WebDav.options.path + OAT.WebDav.options.filename);
 					$("corner").innerHTML = OAT.WebDav.options.filename;
 					return xml;

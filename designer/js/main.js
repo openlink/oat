@@ -351,7 +351,7 @@ function load() {
 		var ext = ($v("options_savetype") == "sql" ? ".sql" : ".xml");
 		
 		if ($("options_type_http").checked) {
-			var name = OAT.Dav_old.getNewFile("/DAV/home/"+OAT.Ajax.user,ext,ext);
+			var name = OAT.Dav.getNewFile("/DAV/home/"+OAT.Ajax.user,ext,ext);
 			if (!name) { return; }
 			if (name.slice(name.length-4).toLowerCase() != ext) { name += ext; }
 			$("save_name").value = name;
@@ -360,7 +360,7 @@ function load() {
 		if ($("options_type_dav").checked) {
 			var options = {
 				mode:'browser',
-				onOKClick:function(path,fname) {
+				onConfirmClick:function(path,fname) {
 					var name = path + fname;
 					$("save_name").value = name;
 				},
