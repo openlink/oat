@@ -1,0 +1,43 @@
+<h2>combobutton.js</h2>
+<p>Creates a combobutton, which is a multi-functional button based on Yrjana's specs.</p>
+<hr/>
+
+<h3>Objects</h3>
+<ul>
+	<li><a href="#combobutton">OAT.Combobutton()</a></li>
+</ul>
+
+<h3>Methods</h3>
+<ul>
+	<li><a href="#addoption">OAT.Combobutton::addOption(imagePath, textValue, callback)</a></li>
+	<li><a href="#removeoption">OAT.Combobutton::removeOption(index)</a></li>
+</ul>
+
+<h3>CSS classes</h3>
+<ul>
+	<li>.combo_button</li>
+	<li>.combo_image</li>
+	<li>.combo_button_text</li>
+	<li>.combo_button_option</li>
+	<li>.combo_button_down</li>
+</ul>
+
+<hr/>
+
+<h3><a name="combobutton">OAT.Combobutton()</a></h3>
+<p>Creates a combobutton. Its main div is accessible as <code>OAT.Combobutton::div</code>.</p>
+
+<h3><a name="addoption">OAT.Combobutton::addOption(imagePath, textValue, callback)</a></h3>
+<p>Adds a new option, described as <em>textValue</em> with image located at <em>imagePath</em>. When this option is clicked, 
+<em>callback</em> is called.</p>
+
+<h3><a name="#removeoption">OAT.Combobutton::removeOption(index)</a></h3>
+<p>Removes <em>index</em>-th option.</p>
+
+<p class="code">
+	var cb = new OAT.Combobutton();<br/>
+	document.body.appendChild( cb.div );<br/>
+	cb.addOption("img1.gif", "option 1", function(){});<br/>
+	cb.addOption("img2.gif", "option 2", function(){});<br/>
+	cb.removeOption(0);
+</p>

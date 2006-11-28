@@ -1,0 +1,56 @@
+<h2>ajax.js</h2>
+<p>Provides basic asynchronous xml call (Ajax) routines.</p>
+<hr/>
+
+<h3>Functions</h3>
+<ul>
+	<li><a href="#command">OAT.Ajax.command(method, target, data_func, return_func, return_type, customHeaders)</a></li>
+	<li><a href="#setstart">OAT.Ajax.setStart(callback)</a></li>
+	<li><a href="#setend">OAT.Ajax.setEnd(callback)</a></li>
+	<li><a href="#setcancel">OAT.Ajax.setCancel(element)</a></li>
+</ul>
+
+<h3>Constants</h3>
+
+<ul>
+	<li>OAT.Ajax.GET</li>
+	<li>OAT.Ajax.POST</li>
+	<li>OAT.Ajax.SOAP</li>
+	<li>OAT.Ajax.PUT</li>
+	<li>OAT.Ajax.AUTH_BASIC</li>
+	<li>OAT.Ajax.AUTH_DIGEST</li>
+	<li>OAT.Ajax.TYPE_TEXT</li>
+	<li>OAT.Ajax.TYPE_XML</li>
+</ul>
+
+<hr/>
+
+<h3><a name="command">OAT.Ajax.command(method, target, data_func, return_func, return_type, customHeaders)</a></h3>
+<p>Sends an HTTP request to a page <em>target</em>. Use predefined constants to specify request type (in argument <em>method</em>):</p>
+<ul>
+	<li>OAT.Ajax.GET - HTTP GET</li>
+	<li>OAT.Ajax.POST - HTTP POST</li>
+	<li>OAT.Ajax.SOAP - HTTP GET with header specifying a SOAP request</li>
+	<li>OAT.Ajax.PUT - HTTP PUT</li>
+	<li>OAT.Ajax.AUTH_BASIC - add this constant to any request type to perform Basic http authentication</li>
+	<li>OAT.Ajax.AUTH_DIGEST - not implemented</li>
+</ul>
+<p>HTTP headers may be specified as properties of <em>customHeaders</em> argument.</p>
+<p>Argument <em>data_func</em> specifies a callback to function which returns data to be sent. When response arrives, 
+<em>return_func</em>(data) will be called. Example:</p>
+<p class="code">
+OAT.Ajax.user = "username";<br/>
+OAT.Ajax.password = "top_secret";<br/>
+var callback = function(data) { alert(data); };<br/>
+OAT.Ajax.command(OAT.Ajax.GET + OAT.Ajax.AUTH_BASIC, "http://www.securesite.com/", function(){}, callback, OAT.Ajax.TYPE_TEXT);
+</p>
+
+<h3><a name="setstart">OAT.Ajax.setStart(callback)</a></h3>
+<p>Specifies a function to be called when the asynchronous request is being called (i.e. some user alert etc.).</p>
+
+<h3><a name="setend">OAT.Ajax.setEnd(callback)</a></h3>
+<p>Specifies a function to be called when the last response is recieved.</p>
+
+<h3><a name="setcancel">OAT.Ajax.setCancel(element)</a></h3>
+<p>Marks <em>element</em> as an interruptor - when user clicks it, all Ajax calls are interrupted. 
+Only one element can be marked this way.</p>

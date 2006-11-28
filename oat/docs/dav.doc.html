@@ -1,0 +1,109 @@
+<h2>dock.js</h2>
+<p>Displays a WebDav Browser window for file/folder picking/opening/saving.</p>
+<hr/>
+
+<h3>Functions</h3>
+<ul>
+  <li><a href="#getFileName">OAT.WebDav.getFileName(user, password, path, onlyExistingFiles, buttonLabel,callback)</a></li>
+  <li><a href="#getFile">OAT.WebDav.getFile(user, password, path, onlyExistingFiles, buttonLabel,callback)</a></li>
+  <li><a href="#saveFile">OAT.WebDav.saveFile(user,password,path, fileContent, displayUI, callback)</a></li>
+</ul>
+
+<hr/>
+
+<h3><a name="init">OAT.WebDav.init(options)</a></h3>
+<p>Set values for main configuration <em>optons</em> .</p>
+
+<h3><a name="open">OAT.WebDav.open(options)</a></h3>
+<p>Set values for current configuration <em>optons</em>(this action).</p>
+Argument <em>options</em> has the following properties:</p>
+
+<ul>
+  <li>container - name of WebDav Browser window (default:my_browser)</li>
+  <li>mode - type of open windows (default:browser)
+    <ul>
+        <li>browser - choose file from file list - return path and file name</li>
+        <li>open_dialog - choose file from file list - return path,file name and file content</li>
+        <li>save_dialog - choose file from file list - send new content of file</li>
+    </ul>
+  </li>
+  <li>toolbar - set which actions to be visible in toolbar
+    <ul>
+      <li>new_folder - option to create new folder (default:true)</li>
+      <li>change_view - option to change list style (default:true)</li>
+    </ul>
+  </li>
+  <li>user - Dav user name (default:'')</li>
+  <li>pass - Dav user password (default:'')</li>
+  <li>pathDefault - Path that must be open as default if browser is open for first time (default:'/')</li>
+  <li>filename - file name</li>
+  <li>file_ext - Default file extension. Will be added if chosen file name doesn't (default:'')</li>
+  <li>width - Width size in pixels of DavBrowser Window (default:750)</li>
+  <li>height - Width size in pixels of DavBrowser Window (default:420)</li>
+  <li>x - X-position in pixels of DavBrowser Window (default:120)</li>
+  <li>y - Y-position in pixels of DavBrowser Window (default:120)</li>
+  <li>imagePath - Path to icons(default:'/DAV/JS/images/')</li>
+  <li>imageExt - File extension for icons (default:'gif')</li>
+  <li>onConfirmClick - callback function which executes after OK Button is clicked. Params are chosen path,filename,content(if available)</li></li>
+  <li>afterSave- callback function which executes after saving of file. Params are chosen path,filename</li></li>
+  <li>dontDisplayWarning - suspend confirm dialog on file replacing (default:false)</li>
+</ul>
+<p class="code">
+	var options = {<br/>
+		imagePath:'../images/',<br/>
+		imageExt:'gif',<br/>
+		pathDefault:'/DAV/home/demo/Public/',<br/>
+	};<br/>
+	OAT.WebDav.init(options);<br/>
+<br/>
+  var dav_browse = function(){<br/>
+    var options = {<br/>
+        mode:'browser',<br/>
+        onOKClick:function(path,fname){<br/>
+            document.f1.my_dav_file.value = path + fname;<br/>
+<br/>
+          }<br/>
+      };<br/>
+    OAT.WebDav.open(options);<br/>
+  }<br/>
+<br/>
+  var dav_open = function(){<br/>
+    options = {<br/>
+        mode:'open_dialog',<br/>
+        onOpenClick:function(path,fname,data){<br/>
+            document.f1.my_dav_content.value = data;<br/>
+            $('my_dav_path').innerHTML = path;<br/>
+            $('my_dav_filename').innerHTML = fname;<br/>
+            return true;<br/>
+          }<br/>
+      };<br/>
+    OAT.WebDav.open(options);<br/>
+  }<br/>
+<br/>
+  var dav_save = function(){<br/>
+    var options = {<br/>
+    	mode:'save_dialog',<br/>
+    	dontDisplayWarning:true,<br/>
+    	onSaveClick:function() { return document.f1.my_dav_content.value;},<br/>
+    	afterSave:function(path,fname) {<br/>
+            $('my_dav_path').innerHTML = path;<br/>
+            $('my_dav_filename').innerHTML = fname;<br/>
+    	}<br/>
+    };<br/>
+    OAT.WebDav.open(options);<br/>
+  }<br/>
+<br/>
+  var dav_save_as = function(){<br/>
+    var options = {<br/>
+    	mode:'save_dialog',<br/>
+    	onSaveClick:function() { return document.f1.my_dav_content.value;},<br/>
+    	afterSave:function(path,fname) {<br/>
+            $('my_dav_path').innerHTML = path;<br/>
+            $('my_dav_filename').innerHTML = fname;<br/>
+        console.log('da');<br/>
+    	}<br/>
+    };<br/>
+    OAT.WebDav.open(options);<br/>
+  }<br/>
+</p>
+

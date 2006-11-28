@@ -1,0 +1,42 @@
+<h2>combolist.js</h2>
+<p>Creates a combolist, which is an editable &lt;select&gt;</p>
+<hr/>
+
+<h3>Objects</h3>
+<ul>
+	<li><a href="#combolist">OAT.Combolist(optList, defaultValue)</a></li>
+</ul>
+
+<h3>Methods</h3>
+<ul>
+	<li><a href="#addoption">OAT.Combolist::addOption(text)</a></li>
+	<li><a href="#clearopts">OAT.Combolist::clearOpts()</a></li>
+</ul>
+
+<h3>CSS classes</h3>
+<ul>
+	<li>.combo_list</li>
+	<li>.combo_list_input</li>
+	<li>.combo_list_option</li>
+	<li>.combo_list_list</li>
+</ul>
+
+<hr/>
+
+<h3><a name="combolist">OAT.Combolist(optList, defaultValue)</a></h3>
+<p>Creates a combolist, containint values from <em>optList</em> array, with a value of <em>defaultValue</em>. 
+Its main div is accessible as <code>OAT.Combolist::div</code>.
+Onchange callback may be set via <code>OAT.Combolist::onchange</code> property.</p>
+
+<h3><a name="addoption">OAT.Combolist::addOption(text)</a></h3>
+<p>Adds a new option with value of <em>text</em>.</p>
+
+<h3><a name="clearopts">OAT.Combolist::clearOpts()</a></h3>
+<p>Clears all options.</p>
+
+<p class="code">
+	var cl = new OAT.Combolist([],"default");<br/>
+	document.body.appendChild( cl.div );<br/>
+	cl.addOption("option 1");<br/>
+	cl.addOption("option 2");<br/>
+</p>

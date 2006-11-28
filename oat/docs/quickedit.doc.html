@@ -1,0 +1,27 @@
+<h2>quickedit.js</h2>
+<p>Provides edit-in-place functionality.</p>
+<hr/>
+
+<h3>Functions</h3>
+<ul>
+	<li><a href="#assign">OAT.QuickEdit.assign(element, type, [options])</a></li>
+</ul>
+
+<h3>Constants</h3>
+<ul>
+	<li>OAT.QuickEdit.STRING</li>
+	<li>OAT.QuickEdit.SELECT</li>
+</ul>
+
+<hr/>
+
+<h3><a name="assign">OAT.uickEdit.assign(element, type, [options])</a></h3>
+<p>Marks <em>element</em> as QuickEdit, i.e. when user clicks it, it transforms into input. 
+Input type is specified via second argument (QuickEdit.STRING => input, QuickEdit.SELECT => select). 
+If QuickEdit.SELECT type is chosen, its options are specified in <em>options</em>. Example:</p>
+
+<p class="code">
+	var text = OAT.Dom.create("span");<br/>
+	text.innerHTML = "hello";<br/>
+	OAT.QuickEdit.assign(text, OAT.QuickEdit.SELECT, ["hello","hi","goodbye"]);
+</p>

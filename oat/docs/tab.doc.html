@@ -1,0 +1,38 @@
+<h2>tab.js</h2>
+<p>Provides tab functionality.</p>
+<hr/>
+
+<h3>Objects</h3>
+<ul>
+	<li><a href="#tab">OAT.Tab(element)</a></li>
+</ul>
+
+<h3>Methods</h3>
+<ul>
+	<li><a href="#go">OAT.Tab.go(index)</a></li>
+	<li><a href="#add">OAT.Tab.add(clicker, window)</a></li>
+</ul>
+
+<h3>CSS classes</h3>
+<ul>
+	<li>.tab</li>
+	<li>.tab_selected</li>
+</ul>
+
+<hr/>
+
+<h3><a name="tab">OAT.Tab(element)</a></h3>
+<p>Creates Tab object. The <em>element</em> specifies a container where the tab contents will be placed.</p>
+
+<h3><a name="add">OAT.Tab.add(clicker, window)</a></h3>
+<p>Adds a new <em>clicker</em> - <em>window</em> pair, i.e., when the user clicks <em>clicker</em>, <em>window</em> will be shown.</p>
+
+<h3><a name="go">OAT.Tab.go(index)</a></h3>
+<p>Switches to tab, according to <em>index</em>.</p>
+
+<p class="code">
+var t = new OAT.Tab("content");<br/>
+t.add("header_1","window_1");<br/>
+t.add("header_2","window_2");<br/>
+t.go(0);
+</p>

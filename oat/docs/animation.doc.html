@@ -1,0 +1,56 @@
+<h2>animation.js</h2>
+<p>Implements basic animation framework, as well as some pre-defined animation effects.</p>
+<hr/>
+
+<h3>Objects</h3>
+<ul>
+	<li><a href="#animation">OAT.Animation(animationStructure, delay)</a></li>
+</ul>
+
+<h3>Methods</h3>
+<ul>
+	<li><a href="#start">OAT.Animation::start()</a></li>
+	<li><a href="#stop">OAT.Animation::stop()</a></li>
+</ul>
+
+<h3>Functions</h3>
+<ul>
+	<li><a href="#generate">OAT.AnimationStructure.generate(element, type, paramsObj)</a></li>
+</ul>
+
+<h3>Constants</h3>
+<ul>
+	<li>OAT.AnimationData.FADEIN</li>
+	<li>OAT.AnimationData.FADEOUT</li>
+	<li>OAT.AnimationData.RESIZE</li>
+	<li>OAT.AnimationData.MOVE</li>
+</ul>
+
+<hr/>
+
+<h3><a name="animation">OAT.Animation(animationStructure, delay)</a></h3>
+<p>Creates animation. Animation effect is specified via <em>animationStructure</em>, executed with delay of <em>delay</em>. 
+User may specify a callback to be executed when animation ends, via <code>endFunction</code> property.</p>
+
+<h3><a name="start">OAT.Animation::start()</a></h3>
+<p>Starts the animation.</p>
+
+<h3><a name="start">OAT.Animation::stop()</a></h3>
+<p>Stops the animation.</p>
+
+<h3><a name="generate">OAT.AnimationStructure.generate(element, type, paramsObj)</a></h3>
+<p>Creates an <code>animationStructure</code>, which describes current animation effect. This animation will be applied to 
+DOM node <em>element</em>, its <em>type</em> is specified as a constant, and further arguments can be set in <em>paramsObj</em>, 
+depending on current type:</p>
+<ul>
+	<li>OAT.AnimationData.FADEIN - paramsObj = {max:"maximum opacity [0,1]", step:"one step [0,1]"}</li>
+	<li>OAT.AnimationData.FADEOUT - paramsObj = {min:"minimum opacity [0,1]", step:"one step [0,1]"}</li>
+	<li>OAT.AnimationData.RESIZE - paramsObj = {w:"final width", h:"final height", dist:"diagonal distance per step"}</li>
+	<li>OAT.AnimationData.MOVE - paramsObj = {x:"final left coordinate", y:"final top coordinate", dist:"diagonal distance per step", tol:"tolerance for end detection"}</li>
+</ul>
+<p class="code">
+var div = Dom.create("div");<br/>
+var as = OAT.AnimationStructure.generate(div, OAT.AnimationData.FADEOUT, {min:0.5, step: 0.02});<br/>
+var a = new OAT.Animation(as, 50);<br/>
+a.start(); // will slowly make &lt;div&gt; element 50% transparent
+</p>

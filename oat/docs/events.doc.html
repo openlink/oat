@@ -1,0 +1,14 @@
+<h2>Event handling basics</h2>
+<p>Event handling is very simple in this toolkit. There are two routines that accomplish this:</p>
+<h3>OAT.Dom.attach()</h3>
+<p>You should supply exactly three arguments to this routine. For instance,</p>
+<p class="code">var div = OAT.Dom.create("div");<br/>OAT.Dom.attach(div, "mouseover", function() { alert('Hi!'); });</p>
+<p>or</p>
+<p class="code">OAT.Dom.attach("some_id", "click", genericFunctionReference);</p>
+<p>First argument specifies an element which should detect the event. Second is the event (without the 'on' prefix). 
+Last argument is a valid function reference, i.e. a name of existing function or Anonymous function.</p>
+<h3>OAT.Dom.detach()</h3>
+<p>We use the same syntax as in <code>OAT.Dom.attach()</code>:</p>
+<p class="code">OAT.Dom.detach(element, "click", functionReference);</p>
+<p>The <code>functionReference</code> argument must exist in the current scope, so it is not possible to remove an event handled
+by anonymous function.</p>

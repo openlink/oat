@@ -1,0 +1,21 @@
+<h2>tree.js</h2>
+<p>Converts &lt;ul&gt; into interactive tree.</p>
+<hr/>
+
+<h3>Functions</h3>
+<ul>
+	<li><a href="#assign">OAT.Tree.assign(div, dir, ext, reformat, classNamePrefix)</a></li>
+</ul>
+
+
+<hr/>
+
+<h3><a name="assign">OAT.Tree.assign(div, dir, ext, reformat, classNamePrefix)</a></h3>
+<p>This converts a list into an interactive tree. <em>Div</em> specifies a container in which your list lives. <em>Dir</em> 
+is a directory containing important images, <em>ext</em> is their extension and <em>reformat</em> is a boolean value, 
+specifying whether do you want to reformat (i.e. collapse all deep levels) the tree. 
+Every level of resulting tree (i.e. every UL and LI) is then assigned a class name in format of 
+<code>classNamePrefix_ul|li_depth</code>.
+Example:</p>
+
+<p class="code">OAT.Tree.assign("myDiv", "images", "png", true, "myTree");</p>

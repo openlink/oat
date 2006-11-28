@@ -1,0 +1,44 @@
+<h2>panelbar.js</h2>
+<p>So-called 'panelbar' widget.</p>
+<hr/>
+
+<h3>Objects</h3>
+<ul>
+	<li><a href="#panelbar">OAT::Panelbar(fadeDelay)</a></li>
+</ul>
+
+<h3>Methods</h3>
+<ul>
+	<li><a href="#addpanel">OAT::Panelbar::addPanel(clicker, element)</a></li>
+	<li><a href="#go">OAT::Panelbar::go(index)</a></li>
+</ul>
+
+<h3>CSS classes</h3>
+<ul>
+	<li>.panelbar</li>
+	<li>.panelbar_option</li>
+	<li>.panelbar_option_selected</li>
+	<li>.panelbar_option_upper</li>
+	<li>.panelbar_option_lower</li>
+	<li>.panelbar_content</li>
+</ul>
+
+<hr/>
+
+<h3><a name="panelbar">OAT::Panelbar(fadeDelay)</a></h3>
+<p>Creates a panelbar. Its div is accessible as <code>panelbar.div</code>. 
+Fading speed can be controlled via <em>fadeDelay</em>.</p>
+
+<h3><a name="addpanel">OAT::Panelbar::addPanel(clicker, element)</a></h3>
+<p>Adds a new panel, contained in <em>element</em>. It will be shown after clicking on <em>clicker</em>.</p>
+
+<h3><a name="go">OAT::Panelbar::go(index)</a></h3>
+<p>Swiches to appropriate panel.</p>
+
+<p class="code">
+var header = OAT.Dom.create("div"); <br/>
+var body = OAT.Dom.create("div"); <br/>
+var panelbar = new OAT.Panelbar(10); <br/>
+panelbar.addPanel(header, body); <br/>
+panelbar.go(0);
+</p>

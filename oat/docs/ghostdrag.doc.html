@@ -1,0 +1,53 @@
+<h2>ghostdrag.js</h2>
+<p>Provides drag'n'drop functionality</p>
+<hr/>
+
+<h3>Objects</h3>
+<ul>
+	<li><a href="#ghostdrag">OAT.GhostDrag()</a></li>
+</ul>
+
+<h3>Methods</h3>
+<ul>
+	<li><a href="#addsource">OAT.GhostDrag::addSource(element, process, callback)</a></li>
+	<li><a href="#delsource">OAT.GhostDrag::delSource(element)</a></li>
+	<li><a href="#clearsources">OAT.GhostDrag::clearSources()</a></li>
+	<li><a href="#addtarget">OAT.GhostDrag::addTarget(element)</a></li>
+	<li><a href="#deltarget">OAT.GhostDrag::delTarget(element)</a></li>
+	<li><a href="#cleartargets">OAT.GhostDrag::clearTargets()</a></li>
+</ul>
+
+<hr/>
+
+<h3><a name="GhostDrag">OAT.GhostDrag()</a></h3>
+<p>Creates a GhostDrag object.</p>
+
+<h3><a name="addsource">OAT.GhostDrag::addSource(element, process, callback)</a></h3>
+<p>Marks <em>element</em> as draggable. When user drags it, a 'ghost' clone is created. Then, the <em>process</em> 
+function is called with this clone as argument. If user drags the clone to one of marked target zones, a <em>callback</em> 
+is performed with three arguments - x, y and target element.</p>
+
+<h3><a name="delsource">OAT.GhostDrag::delSource(element)</a></h3>
+<p>Marks <em>element</em> as not draggable.</p>
+
+<h3><a name="clearsources">OAT.GhostDrag::clearSources()</a></h3>
+<p>Removes all draggable elements from this GhostDrag object.</p>
+
+<h3><a name="addtarget">OAT.GhostDrag::addTarget(element)</a></h3>
+<p>Marks <em>element</em> as a valid ending zone for drag'n'drop.</p>
+
+<h3><a name="deltarget">OAT.GhostDrag::delTarget(element)</a></h3>
+<p>Marks <em>element</em> as not a target zone.</p>
+
+<h3><a name="cleartargets">OAT.GhostDrag::clearTargets()</a></h3>
+<p>Removes all target zones from this GhostDrag object.</p>
+
+<p class="code">
+var product = Dom.create("img");<br/>
+var shopping_cart = Dom.create("div"); <br/>
+var gd = new OAT.GhostDrag(); <br/>
+var dummyReference = function() {}; <br/>
+var successReference = function(x, y, target) { alert("Success!"); } <br/>
+gd.addTarget(shopping_cart); <br/>
+gr.addSource(product, dummyReference, successReference);
+</p>

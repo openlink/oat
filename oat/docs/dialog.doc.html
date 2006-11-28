@@ -1,0 +1,50 @@
+<h2>dialog.js</h2>
+<p>Simple wrapper for yes/no dialog, containing any data.</p>
+<hr/>
+
+<h3>Objects</h3>
+<ul>
+	<li><a href="#dialog">OAT.Dialog(title, contentDiv, optObj)</a></li>
+</ul>
+
+<h3>Methods</h3>
+<ul>
+	<li><a href="#show">OAT.Dialog::show()</a></li>
+	<li><a href="#hide">OAT.Dialog::hide()</a></li>
+</ul>
+
+<h3>Properties</h3>
+<ul>
+	<li><a href="#ok">OAT.Dialog::ok</a></li>
+	<li><a href="#cancel">OAT.Dialog::cancel</a></li>
+</ul>
+<hr/>
+
+<h3><a name="dialog">OAT.Dialog(title, contentDiv, optObj)</a></h3>
+<p>Creates a dialog window with title of <em>title</em>, appends <em>contentDiv</em> into it. Various options specify its appearance and behavior:</p>
+<ul>
+	<li>width - in pixels, 0 = auto</li>
+	<li>height - in pixels, 0 = auto</li>
+	<li>modal - 1/0</li>
+	<li>zIndex - default 1000</li>
+	<li>onshow - callback to be performed when dialog is shown</li>
+	<li>onhide - callback to be performed when dialog is hidden</li>
+	<li>buttons - 1/0, whether to show OK/Cancel buttons</li>
+</ul>
+
+<h3><a name="show">OAT.Dialog::show()</a></h3>
+<p>Shows the dialog.</p>
+
+<h3><a name="hide">OAT.Dialog::hide()</a></h3>
+<p>Hides the dialog.</p>
+
+<h3><a name="ok">OAT.Dialog::ok</a></h3>
+<p>Callback to be performed when user clicks 'OK' button.</p>
+
+<h3><a name="cancel">OAT.Dialog::cancel</a></h3>
+<p>Callback to be performed when user clicks 'Cancel' button.</p>
+
+<p class="code">
+var d = new OAT.Dialog("dialog", div, {modal:1, buttons:1});<br/>
+d.show();
+</p>

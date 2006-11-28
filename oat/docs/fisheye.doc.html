@@ -1,0 +1,36 @@
+<h2>fisheye.js</h2>
+<p>Creates Mac-like dock.</p>
+<hr/>
+
+<h3>Objects</h3>
+<ul>
+	<li><a href="#fisheye">OAT.FishEye(optionsObject)</a></li>
+</ul>
+
+<h3>Methods</h3>
+<ul>
+	<li><a href="#addimage">OAT.FishEye::addImage(url)</a></li>
+</ul>
+
+<h3>CSS classes</h3>
+<ul>
+	<li>.fisheye</li>
+	<li>.calendar_selected</li>
+	<li>.calendar_special</li>
+	<li>.calendar_year</li>
+	<li>.calendar_month</li>
+</ul>
+
+<hr/>
+
+<h3><a name="fisheye">OAT.FishEye(optionsObject)</a></h3>
+<p>The dock will be created using options specified in <em>optionsObject</em>.</p>
+
+<h3><a name="addimage">OAT.FishEye::addImage(url)</a></h3>
+<p>Adds a new image to the dock.</p>
+
+<p class="code">
+var f = new OAT.FishEye({smallSize:48, bigSize:64, limit:200, spacing:5});<br/>
+document.body.appendChild(f.div);<br/>
+f.addImage("image.png");
+</p>
