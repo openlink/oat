@@ -28,10 +28,10 @@ AC_REVISION($Id$)
 ##									##
 ##########################################################################
 AC_INIT([OpenLink Ajax Toolkit],
-        [1.0],
+        [2.0-pre1],
 	[oat.admin@openlinksw.com],
 	[oat])
-AC_CONFIG_SRCDIR([oat/index.html])
+AC_CONFIG_SRCDIR([oat/loader.js])
 AC_CONFIG_AUX_DIR(admin)
 AM_INIT_AUTOMAKE(AC_PACKAGE_TARNAME, AC_PACKAGE_VERSION, tar-ustar)
 AM_MAINTAINER_MODE
@@ -44,10 +44,10 @@ AM_MAINTAINER_MODE
 ##########################################################################
 AC_CONFIG_FILES([
     Makefile 
+    demo/Makefile
     designer/Makefile
     formdesigner/Makefile
     oat/Makefile
     qbe/Makefile
-    toolkit/Makefile
 ])
 AC_OUTPUT
