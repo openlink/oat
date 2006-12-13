@@ -9,6 +9,8 @@
  */
 @import url("menu.css");
 @import url("../styles/webdav.css");
+@import url("../styles/grid.css");
+@import url("timeline.css");
 
 body {
 	font-family: verdana;
@@ -92,7 +94,7 @@ div.panelbar_option:hover {
 }
 
 .panelbar_content {
-	height: 300px;
+	height: 350px;
 	background-color: #eee;
 	overflow: hidden;
 	_width: 250px;
@@ -141,6 +143,13 @@ div.panelbar_option:hover {
 .textY {
 	font-size: 80%;
 }
+
+/* pie chart */
+#pie_content {
+	width: 700px;
+	height: 300px;
+}
+
 /* pivot */
 .pivot_table {
 	border-collapse: collapse;
@@ -182,67 +191,6 @@ div.panelbar_option:hover {
 
 #pivot_page {
 	margin: 2px 0px;
-}
-
-/* ---------------- grid -------------- */
-
-#grid table {
-	border-collapse: collapse;
-	font: menu;
-}
-
-/* ---------------- rows -------------- */
-
-#grid tr {
-	border-left: 1px solid #000;
-	border-right: 1px solid #000;
-}
-
-#grid tr.even {
-	background-color: #f0f0ff;
-}
-
-#grid tr.odd {
-	background-color: #f8f8ff;
-}
-
-#grid tr.hover {
-	background-color: #feb;
-	border: 2px solid #000;
-}
-
-/* ---------------- cols -------------- */
-
-#grid thead td {
-	background-color: #ebeadb;
-	font-weight: bold;
-	background-image: url(images/Grid_header.gif);
-	background-position: 0% 100%;
-	background-repeat: repeat-x;
-	border-left: 1px solid #ccc;
-	border-right: 1px solid #ccc;
-}
-
-#grid thead td.hover {
-	background-image: url(images/Grid_header_hover.gif);
-}
-
-#grid td {
-	border-bottom: 1px solid #888;
-	border-left: 1px solid #888;
-	border-right: 1px solid #888;
-}
-
-#grid td.index {
-	background-color: #aaa;
-}
-
-#grid .header_value {
-	padding: 2px 3px;
-}
-
-#grid .row_value {
-	padding: 2px 3px;
 }
 
 /*--------------- calendar --------------*/
@@ -452,7 +400,7 @@ div.combo_button_option:hover {
 }
 
 /* fisheye */
-#fisheye_content {
+#fisheye_container {
 	position: relative;
 	height: 80px;
 }
@@ -537,4 +485,46 @@ div.combo_button_option:hover {
 	top: 16px;
 	background-image: url("images/slider.gif");
 	cursor: w-resize;
+}
+
+/* rounded corners */
+#round { background-image: url(images/bg.gif); background-color: #fff; padding-bottom: 2em;}
+	
+.round {
+	color: #fff;
+	width: 400px;
+	margin: 1em;
+}
+
+.round_content {
+	padding: 0px 8px;
+}
+
+#round_1 { background-color: #000;}
+#round_2 { background-color: #f00; border: 1px solid #000;}
+#round_3 { background-color: #0f0; }
+#round_4 { background-color: #00f; }
+#round_5 { background-color: #888; }
+
+/* rdf graph */
+#rdf_content {
+	margin-top: 35px;
+	width: 100%;
+	height:500px;
+	background-color: #ffa;
+	position:relative;
+}
+
+/* linechart, sparklines */
+#line_chart {
+	width: 400px;
+	height: 200px;
+	background-color: #ddd; 
+}
+
+#sparkline_1, #sparkline_2, #sparkline_3 {
+	margin: 1em;
+	width: 100px;
+	height: 20px;
+	background-color: #fff; 
 }

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <!--
@@ -27,18 +28,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<script type="text/javascript" >
 		var toolkitPath = "../oat";
-		var featureList=["tab","panelbar","barchart","pivot","grid","calendar","color","tree","json","upload",
-						"validation","dock","ticker","dimmer","crypto","quickedit","combolist","menu","ajax",
-						"combobox","combobutton","fisheye","window","slider","dav","ws","datasource"];
+		var featureList=["tab","panelbar","dimmer","dialog"];
 	</script>
 	<script type="text/javascript" src="../oat/loader.js"></script>
 	<script type="text/javascript" src="demo.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<title>OAT Framework</title>
 </head>
-<body onload="init()">
+<body>
 	<div id="source">
-		<a id="source_permalink" href="">Permalink to this source</a>
+		Click <a id="source_permalink" href="">here</a> for the URI (Permalink) of this source
 		<div id="source_content"></div>
 		<input type="button" id="source_close" value="Close" />
 	</div>
@@ -46,7 +45,7 @@
 
 	<h2>OAT Framework</h2>
 	<p>Click <a id="source_btn" href="#">here</a> to see JS source used for currently selected demonstration.</p>
-	<p><a id="permalink" href="">Permalink to this demo</a></p>
+	<p>Click <a id="permalink" href="">here</a> for the URI (Permalink) of this Demo</p>
 	<div id="panelbar">
 		<div id="pb_1">Introduction</div>
 		<div id="pb_11">
@@ -61,29 +60,23 @@
 		<div id="pb_2">Complete widgets</div>
 		<div id="pb_22">
 			<div id="tab_chart">Bar Chart</div>
+			<div id="tab_pie">Pie Chart</div>
+			<div id="tab_sparklines">Line Chart & Sparklines</div>
 			<div id="tab_grid">Grid</div>
 			<div id="tab_pivot">Pivot table</div>
-			<div id="tab_date">Date picker</div>
-			<div id="tab_color">Color picker</div>
 			<div id="tab_tree">Tree control</div>
 			<div id="tab_dock">Dock</div>
 			<div id="tab_panelbar_content">Panelbar</div>
 			<div id="tab_ticker">Ticker</div>
 			<div id="tab_fisheye">FishEye</div>
-			<div id="tab_window">OS-style Windows</div>
 			<div id="tab_dav">WebDAV Browser</div>
+			<div id="tab_timeline">Timeline</div>
+			<div id="tab_rdf">RDF Graph</div>
 <!--			<div id="tab_menu">Menu</div> -->
 
-<!--
-rotator
- -->
 		</div>
 
 		<div id="pb_3">Supplemental widgets</div>
-		
-<!-- 
-anim
--->		
 		<div id="pb_33">
 			<div id="tab_upload">Variable upload</div>
 			<div id="tab_validation">Input restriction</div>
@@ -93,6 +86,9 @@ anim
 			<div id="tab_combobox">Combo box</div>
 			<div id="tab_combobutton">Combo button</div>
 			<div id="tab_slider">Slider</div>
+			<div id="tab_date">Date picker</div>
+			<div id="tab_color">Color picker</div>
+			<div id="tab_anchor">Enhanced Anchor</div>
 		</div>
 		
 		<div id="pb_4">Libraries</div>
@@ -102,7 +98,8 @@ anim
 			<div id="tab_stats">Statistics</div>
 			<div id="tab_ajax">AJAX</div>
 			<div id="tab_gd"><em>Ghost</em> Drag</div>
-
+			<div id="tab_window">OS-style Windows</div>
+			<div id="tab_round">Rounded corners</div>
 		</div>
 		
 		<div id="pb_5">Ajax DB Connectivity</div>
@@ -150,6 +147,20 @@ June 1991.<br />
 		<h3>Bar Chart - percentage</h3>
 		<div id="chart_2"></div>
 	</div>
+
+	<div id="pie">
+		<h3>Pie Chart (SVG-based)</h3>
+		<div id="pie_content"></div>
+	</div>
+
+	<div id="sparklines">
+		<h3>Line Chart & Sparklines (SVG-based)</h3>
+		<div id="line_chart"></div>
+		<div id="sparkline_1"></div>
+		<div id="sparkline_2"></div>
+		<div id="sparkline_3"></div>
+	</div>
+	
 	<div id="grid">
 		<h3>Grid</h3>
 		<div id="grid_content"></div>
@@ -177,6 +188,14 @@ June 1991.<br />
 	<div id="color">
 		<h3>Color picker</h3>
 		<p>Click rectangle to change its color</p><div id="color_content"></div>
+	</div>
+	<div id="anchor">
+		<h3>Enhanced Anchor</h3>
+		<ul>
+			<li>SQL lookup (hover) - categories &gt; <a id="a_1" href="/XMLA">1</a></li>
+			<li>RSS Timeline (click) - <a id="a_2" href="sparql.xml">here</a></li>
+			<li>SPARQL query (click) - <a id="a_3" href="/sparql/">here</a></li>
+		</ul>
 	</div>
 	<div id="ajax">
 		<h3>AJAX</h3>
@@ -245,6 +264,7 @@ June 1991.<br />
 	<div id="dock">
 		<h3>Dock</h3>
 		<p>Can be used for personalized home page or similar. Drag these boxes around to see what they can do...</p>
+		<div id="dock_content"></div>
 		<div id="dock_1" class="dock_block" style="background-color: #eff">
 			<div id="d1" class="dock_header">Welcome!</div>This is your home page.
 		</div>
@@ -341,7 +361,7 @@ June 1991.<br />
 	<div id="fisheye">
 		<h3>Fish Eye</h3>
 		Pure eye-candy, well known from Apple systems. Also known as 'dock'. Please note that images are not displayed correctly in IE because of its known PNG support issues.<br/><br/><br/>
-		<div id="fisheye_content"></div>
+		<div id="fisheye_container"><div id="fisheye_content"></div></div>
 	</div>
 	<div id="gd">
 		<h3><em>Ghost</em> Drag</h3>
@@ -399,6 +419,54 @@ June 1991.<br />
     <input type="button" value="Save as to DAV"  id="dav_save_as">
   </form>
 	</div>
+	
+	<div id="timeline">
+		<h3>Timeline</h3>
+		<div id="timeline_port"></div>
+		<div id="timeline_slider"></div>
+	</div>
+
+	<div id="round">
+		<h3>Rounded corners</h3>
+		<div id="round_1" class="round"><span class="round_content">simple antialiased</span></div>
+		<div id="round_2" class="round"><span class="round_content">no antialiasing, border</span></div>
+		<div id="round_3" class="round"><span class="round_content">only left top &amp; bottom right</span></div>
+		<div id="round_4" class="round"><span class="round_content">smaller corners</span></div>
+		<div id="round_5" class="round"><span class="round_content">larger corners</span></div>
+	</div>
+	
+	<div id="rdf">
+		<h3>RDF Graph Visualizer (SVG-based)</h3>
+		<table><tr><td>
+			<ul>
+				<li>SVG-based: works in Gecko and Opera 9</li>
+				<li>Hover over elements to see their values</li>
+			</ul>
+		</td><td>
+			<ul>
+				<li>Drag canvas to move whole graph</li>
+				<li>Drag subjects to move them</li>
+				<li>Ctrl-drag subjects to move them and their descendants</li>
+			</ul>
+		</td></tr></table>
+		<div>
+			Load RDF file by URL: <input size="80" type="text" value="rdf/sample1.rdf" id="rdf_url" /> 
+			<input type="button" id="rdf_load" value="Load"/>
+		</div>
+		<div>
+			Pre-set URLs: <select id="rdf_preset"> 
+				<option name="" value="" selected="selected"></option>
+				<option value="rdf/sample1.rdf">sample1.rdf - XML.com feed</option>
+				<option value="rdf/sample2.rdf">sample2.rdf - RDF description</option>
+				<option value="rdf/foaf.xml">foaf.xml - FOAF</option>
+			</select>
+		</div>
+		<div style="position:relative; width: 200px; height: 20px; border-bottom: 2px solid #f00 ">
+			<div style="position:absolute; width:15px; cursor:pointer; height: 20px; background-color: #888;" id="rdf_slider"></div>
+		</div>
+		<div id="rdf_content"></div>
+	</div>
+	
 	<div id="docs">
 		<h3>Documentation</h3>
 		The documentation project aims to describe all crucial objects and methods of OAT. It is available as a simple JS application <a href="../oat/docs/index.html">here</a>.
@@ -407,12 +475,13 @@ June 1991.<br />
 		<h3>Compatibility Matrix</h3>
 		<p>Hover over yellow/red cells for explanation</p>
 		<table class="compatibility">
-			<tr class="head"><td rowspan="3" colspan="2">Compatibility matrix</td><td colspan="5">Browser<br/>(version)</td></tr>
-			<tr class="head"><td>Firefox</td><td>Internet Explorer</td><td>Opera</td><td>WebKit (Safari)</td><td>Camino</td></tr>
-			<tr class="head"><td>(1.5.0.4)</td><td>(6.0)</td><td>(8.5)</td><td>(2.0.3)</td><td>(1.0.1)</td></tr>
+			<tr class="head"><td rowspan="3" colspan="2">Compatibility matrix</td><td colspan="6">Browser<br/>(version)</td></tr>
+			<tr class="head"><td>Firefox</td><td>Internet Explorer</td><td>Internet Explorer</td><td>Opera</td><td>WebKit (Safari)</td><td>Camino</td></tr>
+			<tr class="head"><td>(1.5.0.4)</td><td>(6.0)</td><td>(7.0)</td><td>(9.0)</td><td>(2.0.3)</td><td>(1.0.1)</td></tr>
 			<tr> <!-- Toolkit -->
-				<td class="head" rowspan="5">Toolkit</td>
+				<td class="head" rowspan="6">Toolkit</td>
 				<td class="head">Basic functionality</td>
+				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
@@ -424,19 +493,31 @@ June 1991.<br />
 				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
+				<td class="ok"></td>
 				<td class="part" title="Frequently used 'font:menu' declaration not supported"></td>
 				<td class="ok"></td>
+			</tr>
+			<tr>
+				<td class="head">SVG</td>
+				<td class="ok"></td>
+				<td class="bad" title="SVG not supported by IE"></td>
+				<td class="bad" title="SVG not supported by IE"></td>
+				<td class="ok"></td>
+				<td class="bad" title="SVG not supported in WebKit"></td>
+				<td class="part" title="Buggy SVG implementation"></td>
 			</tr>
 			<tr>
 				<td class="head">Mac windows &amp; shadows</td>
 				<td class="ok"></td>
 				<td class="ok"></td>
-				<td class="part" title="No support for 'height:100%' on side elements"></td>
+				<td class="ok"></td>
+				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
 			</tr>
 			<tr>
 				<td class="head">MS Live WebClip</td>
+				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="bad" title="Not supported by MS"></td>
@@ -447,7 +528,8 @@ June 1991.<br />
 				<td class="head">Saving</td>
 				<td class="ok"></td>
 				<td class="ok"></td>
-				<td class="bad" title="HTTP PUT not supported"></td>
+				<td class="ok"></td>
+				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
 			</tr>
@@ -460,9 +542,11 @@ June 1991.<br />
 				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
+				<td class="ok"></td>
 			</tr>
 			<tr>
 				<td class="head">Pivots</td>
+				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
@@ -478,9 +562,11 @@ June 1991.<br />
 				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
+				<td class="ok"></td>
 			</tr>
 			<tr>
 				<td class="head">Saving as SQL</td>
+				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="bad" title="XSL transformations not supported"></td>
@@ -494,6 +580,7 @@ June 1991.<br />
 				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
+				<td class="ok"></td>
 				<td class="part" title="Form controls cannot be visualy deselected"></td>
 				<td class="ok"></td>
 			</tr>
@@ -501,7 +588,8 @@ June 1991.<br />
 				<td class="head">Form viewing</td>
 				<td class="ok"></td>
 				<td class="ok"></td>
-				<td class="bad" title="XSL transformations not supported"></td>
+				<td class="ok"></td>
+				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
 			</tr>
@@ -509,7 +597,8 @@ June 1991.<br />
 				<td class="head">Image control</td>
 				<td class="ok"></td>
 				<td class="bad" title="data: URLs not supported"></td>
-				<td class="part" title="May work, but formviewing is broken (see above)"></td>
+				<td class="bad" title="data: URLs not supported"></td>
+				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
 			</tr>
@@ -517,7 +606,8 @@ June 1991.<br />
 				<td class="head">Map control</td>
 				<td class="ok"></td>
 				<td class="ok"></td>
-				<td class="part" title="May work, but formviewing is broken (see above)"></td>
+				<td class="ok"></td>
+				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
 			</tr>
@@ -525,7 +615,8 @@ June 1991.<br />
 				<td class="head">Google map provider</td>
 				<td class="ok"></td>
 				<td class="ok"></td>
-				<td class="part" title="May work, but formviewing is broken (see above)"></td>
+				<td class="ok"></td>
+				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
 			</tr>
@@ -533,7 +624,8 @@ June 1991.<br />
 				<td class="head">Yahoo map provider</td>
 				<td class="ok"></td>
 				<td class="ok"></td>
-				<td class="part" title="May work, but formviewing is broken (see above)"></td>
+				<td class="ok"></td>
+				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
 			</tr>
@@ -541,7 +633,8 @@ June 1991.<br />
 				<td class="head">Virtual Earth map provider</td>
 				<td class="ok"></td>
 				<td class="ok"></td>
-				<td class="part" title="May work, but formviewing is broken (see above)"></td>
+				<td class="ok"></td>
+				<td class="ok"></td>
 				<td class="bad" title="Incompatible MSVE API"></td>
 				<td class="ok"></td>
 			</tr>
@@ -549,7 +642,8 @@ June 1991.<br />
 				<td class="head">OpenLayers map provider</td>
 				<td class="ok"></td>
 				<td class="part" title="Lookup windows cannot be displayed"></td>
-				<td class="part" title="May work, but formviewing is broken (see above)"></td>
+				<td class="ok"></td>
+				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
 			</tr>
@@ -567,11 +661,18 @@ June 1991.<br />
 				<td class="ok"></td>
 			</tr>
 			<tr>
+				<td class="head">Smart marker re-positioning</td>
+				<td class="ok"></td>
+				<td class="ok"></td>
+				<td class="bad" title="Unsupported by API"></td>
+				<td class="bad" title="Unsupported by API"></td>
+			</tr>
+			<tr>
 				<td class="head">Map dragging</td>
 				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
-				<td class="bad" title="Broken with currrent API"></td>
+				<td class="ok"></td>
 			</tr>
 			<tr>
 				<td class="head">Lookup pin window</td>
@@ -585,7 +686,7 @@ June 1991.<br />
 				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="bad" title="Incompatible API"></td>
-				<td class="ok"></td>
+				<td class="bad" title="Incompatible API"></td>
 			</tr>
 		</table>
 	</div>
