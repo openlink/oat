@@ -119,7 +119,7 @@ function GLoadMapsScript()
     if (GBrowserIsCompatible())
     {
 //        GScript("http://maps.google.com/mapfiles/maps2.48.api.js");
-//        GScript("/DAV/JS/toolkit/custom.maps2.48.api.js");
+//        GScript("/DAV/JS/oat/custom.maps2.48.api.js");
         
     }
     

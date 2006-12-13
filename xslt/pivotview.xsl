@@ -29,10 +29,10 @@
 	<html>
 		<head>
 			<script type="text/javascript">
-				var toolkitPath = "/DAV/JS/toolkit";
+				var toolkitPath = "/DAV/JS/oat";
 				var featureList=["pivot","xmla","soap","ajax","window","dialog"];
 			</script>	
-			<script type="text/javascript" src="/DAV/JS/toolkit/loader.js"></script>
+			<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>
 			<script type="text/javascript">
 				var pivot = false;
 				var header = [];

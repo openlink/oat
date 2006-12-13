@@ -198,14 +198,14 @@
 			<xsl:call-template name="gems" />
 			<xsl:call-template name="ol" />
 			<script type="text/javascript">
-				var toolkitPath = "/DAV/JS/toolkit";
+				var toolkitPath = "/DAV/JS/oat";
 				var featureList = ["dom","ajax","formobject","soap","xmla","window","crypto","webclip","ws",
 									"sqlquery","grid","pivot","barchart","dialog","datasource","resize","form",
 									"timeline"];
 				<xsl:call-template name="maps" />
 				
 			</script>
-			<script type="text/javascript" src="/DAV/JS/toolkit/loader.js"></script>
+			<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>
 			<script type="text/javascript">
 			<![CDATA[
 				var forms = [];

@@ -10,7 +10,7 @@
 The OpenLink Software Ajax Toolkit (OAT) project wishes to acknowledge
 incorporation of code from the following projects:
 
-* toolkit/crypto.js
+* oat/crypto.js
 
     MD5 and SHA routines, along with their supplemental sub-routines are
     Copyright (C) Paul Johnston 1999 - 2002.
@@ -18,7 +18,7 @@ incorporation of code from the following projects:
     Distributed under the BSD License	
 
 
-* toolkit/webclip.js and */styles/webclip.css
+* oat/webclip.js and */styles/webclip.css
 
     Copyright 2006 Microsoft Corporation.  
     Microsoft's copyrights in this work are licensed under the
@@ -27,7 +27,7 @@ incorporation of code from the following projects:
         http://creativecommons.org/licenses/by-sa/2.5
 
 
-* toolkit/custom.maps2.48.api.js
+* oat/custom.maps2.48.api.js
 
   Copyright 2005-2006 Google. 
   To use maps on your own site, visit:

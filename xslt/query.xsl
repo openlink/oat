@@ -30,10 +30,10 @@
 	<html>
 	<head>
 		<script type="text/javascript">
-			var toolkitPath = "/DAV/JS/toolkit";
+			var toolkitPath = "/DAV/JS/oat";
 			var featureList = ["grid","dom","ajax","xmla","soap","dialog","crypto","datasource","formobject","webclip"];
 		</script>
-		<script type="text/javascript" src="/DAV/JS/toolkit/loader.js"></script>
+		<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>
 		<script type="text/javascript">
 		
 		var user = "<xsl:value-of select="connection/@user" />";
