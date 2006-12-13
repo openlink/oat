@@ -1,0 +1,86 @@
+2006-12-13 09:50  source
+
+	* Updated version to 2.0-rc1
+
+2006-12-13 09:47  source
+
+	* Added information about OpenLayers
+
+2006-12-13 09:44  source
+
+	* Added new features
+	* Fixed browser compliancy
+	* Fixed small bugs
+
+2006-12-13 09:42  source
+
+	* Rewrote Color, Calendar and Tree controls to use OOP interface instead
+	  of static method
+
+2006-12-13 09:36  source
+
+	* Updated Map APIs to newer version from Google, Microsoft and Yahoo
+
+2006-12-13 09:34  source
+
+	* Updated documentation with latest enhancements
+
+2006-12-13 09:30  source
+
+	* Added showcases for new functionality
+	* Changed calling method for Calendar and Color widgets
+	* Fixed small bugs
+
+2006-12-13 09:25  source
+
+	* Use new dependency loader
+
+2006-12-13 09:24  source
+
+	* Added DOM widget
+	* Added small toolkit functions
+	* Fixed dependency list
+	* Rewrote dependency loader
+
+2006-12-13 08:52  source
+
+	* Removed old code
+
+2006-12-13 08:51  source
+
+	* Removed old images
+
+2006-12-13 08:49  source
+
+	* Added new controls and related files
+
+2006-12-13 08:37  source
+
+	* Renamed toolkit to oat
+
+2006-11-28 10:40  source
+
+	* Renamed directories in preparation of new version
+
+2006-11-28 10:32  source
+
+	* Renamed toolkit to oat
+
+2006-11-28 10:27  source
+
+	* Renamed oat to demo
+
+2006-08-14 12:57  source
+
+	* Remove old Dav_old class
+	* Changed some Dav methods to handle methods from Dav_old class.
+	* Changed applications to stop use Dav_old class.
+	* Added new methods (for simplified usage of DavBrowser)
+	          o getFileName()
+	          o getFile()
+	          o saveFile()
+
+2006-08-07 10:41  source
+
+	* Initial release of the OpenLink Ajax Toolkit (OAT)
+
