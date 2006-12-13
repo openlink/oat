@@ -150,7 +150,12 @@ OAT.Dom = {
 	},
 
 	createNS:function(ns,tagName) {	
-		var elm = document.createElementNS(ns,tagName);
+		if (document.createElementNS) {
+			var elm = document.createElementNS(ns,tagName);
+		} else {
+			var elm = document.createElement(tagName);
+			elm.setAttribute("xmlns",ns);
+		}
 		return elm;
 	},
 	
