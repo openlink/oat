@@ -388,6 +388,7 @@ OAT.SVGSparql = function(parentElm,paramsObj) {
 
 	this.mode = OAT.SVGSparqlData.MODE_DRAG;
 	this.projection = OAT.SVGSparqlData.PROJECTION_PLANAR;
+	this.timeStamp = 0;
 	self.nodes = [];
 	self.edges = [];
 	this.x = 0;
@@ -452,7 +453,16 @@ OAT.SVGSparql = function(parentElm,paramsObj) {
 			var dy = event.clientY - self.dragging.y;
 			self.dragging.x = event.clientX;
 			self.dragging.y = event.clientY;
-			if (self.fakeEdge) {
+			if (self.dragging.obj == self) { /* moving the canvas */
+				for (var i=0;i<self.nodes.length;i++) {
+					var n = self.nodes[i];
+					n.x += dx;
+					n.y += dy;
+				}
+				self.redraw();
+				return;
+			}
+			if (self.fakeEdge) { /* drawing an edge */
 				var epos = OAT.Dom.eventPos(event);
 				var pos = OAT.Dom.position(self.parent);
 				var x = epos[0] - pos[0];
@@ -460,11 +470,19 @@ OAT.SVGSparql = function(parentElm,paramsObj) {
 				self.fakeEdge._x2 = x;
 				self.fakeEdge._y2 = y;
 				self.fakeEdge.redraw();
-			} else {
+			} else { /* moving selected nodes */
+				if (self.selectedNodes.find(self.dragging.obj) == -1) {
 				var o = self.dragging.obj;
 				o.x += dx;
 				o.y += dy;
 				o.redraw();
+			}
+				for (var i=0;i<self.selectedNodes.length;i++) {
+					var n = self.selectedNodes[i];
+					n.x += dx;
+					n.y += dy;
+					n.redraw();
+				}
 			}
 		},
 		up:function(event) {
@@ -496,22 +514,6 @@ OAT.SVGSparql = function(parentElm,paramsObj) {
 		} /* self.dragging.up */
 	} /* self.dragging */
 
-	OAT.Drag.create(self.svg,self.svg,{
-		cursor:false,
-		moveFunction:function(dx,dy) {
-			if (self.mode != OAT.SVGSparqlData.MODE_DRAG) { return; }
-			if (self.dragging.obj) { return; }
-			for (var i=0;i<self.nodes.length;i++) {
-				var n = self.nodes[i];
-				n.x += dx;
-				n.y += dy;
-			}
-			for (var i=0;i<self.nodes.length;i++) {
-				self.nodes[i].redraw();
-			}
-		}
-	});
-	
 	/* 
 		firefox trick: firefox sometimes displays 'dragging forbidden' cursor when we try to move nodes.
 		this can be prevented by creating semi-transparent layer
@@ -995,20 +997,27 @@ OAT.SVGSparql = function(parentElm,paramsObj) {
 	}
 	
 	var downRef = function(event) { /* start dragging or moving */
+		self.timeStamp = event.timeStamp;
 		if (self.dragging.obj) { return; }
 		var epos = OAT.Dom.eventPos(event);
 		var pos = OAT.Dom.position(self.parent);
 		var x = epos[0] - pos[0];
 		var y = epos[1] - pos[1];
 		var nodes = self.testNodes(x,y);
-		if (!nodes.length) { return; }
+		if (!nodes.length || event.shiftKey || event.ctrlKey) { 
+			/* start dragging whole canvas */
+			self.dragging.obj = self;
+			self.dragging.x = event.clientX;
+			self.dragging.y = event.clientY;
+			return; 
+		}
 		var node = nodes[0];
-		if (self.mode == OAT.SVGSparqlData.MODE_DRAG) {
+		if (self.mode == OAT.SVGSparqlData.MODE_DRAG) { /* drag one or multiple (selected) nodes */
 			self.dragging.obj = node;
 			self.dragging.x = event.clientX;
 			self.dragging.y = event.clientY;
 		}
-		if (self.mode == OAT.SVGSparqlData.MODE_DRAW) {
+		if (self.mode == OAT.SVGSparqlData.MODE_DRAW) { /* start drawing an edge */
 			self.startDrawing(node,x,y,"");
 		} /* if appropriate mode */
 	}
@@ -1024,6 +1033,7 @@ OAT.SVGSparql = function(parentElm,paramsObj) {
 			self.addNode(ep[0]-coords[0],ep[1]-coords[1],self.options.defaultNodeValue);
 		}
 		if (self.mode == OAT.SVGSparqlData.MODE_DRAG) {
+			if (event.timeStamp - self.timeStamp > 500) { return; } /* ignore click > 500msec */
 			for (var i=0;i<self.nodes.length;i++) if (self.nodes[i].checkBBox(x,y)) { self.toggleNode(self.nodes[i],event); }
 			for (var i=0;i<self.edges.length;i++) if (self.edges[i].checkBBox(x,y)) { self.toggleEdge(self.edges[i],event); }
 		}

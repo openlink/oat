@@ -622,7 +622,7 @@ OAT.Dependencies = {
 	rdf:"xml",
 	anchor:["datasource","formobject","window","datasource","ajax"],
 	openlayers:["map","layers","roundwin"],
-	svgsparql:["svg","ghostdrag","drag"],
+	svgsparql:["svg","ghostdrag"],
 	linechart:"svg",
 	sparkline:"linechart",
 	webclip:"webclipbinding",
