@@ -20,10 +20,7 @@ OAT.SliderData = {
 	initPos:0,
 	DIR_H:1,
 	DIR_V:2,
-	init:function() {
-		OAT.Dom.attach(document,"mousemove",OAT.SliderData.move);
-		OAT.Dom.attach(document,"mouseup",OAT.SliderData.up);
-	},
+
 	move:function(event) {
 		if (!OAT.SliderData.obj) { return; }
 		var o = OAT.SliderData.obj;

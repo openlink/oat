@@ -137,7 +137,7 @@ function pivot_create() {
 }
 
 function pivot_design_load(xmlStr) {
-	var xml = OAT.Xml.getTreeString(xmlStr);
+	var xml = OAT.Xml.createXmlDoc(xmlStr);
 	var root = xml.documentElement;
 	pivot_data.headerRowIndexes = [];
 	var tmp = root.getElementsByTagName("headerRowIndexes")[0];

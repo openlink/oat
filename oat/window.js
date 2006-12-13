@@ -12,16 +12,20 @@
 
 OAT.WindowData = {
 	TYPE_WIN:1,
-	TYPE_MAC:2
+	TYPE_MAC:2,
+	TYPE_ROUND:3,
+	TYPE_AUTO:4
 }
 
 OAT.Window = function(optObj,type) {
 	var self = this;
 
 	/* get window type */
-	var t = (navigator.platform.toString().match(/mac/i) ? 2 : 1);
-	if (OAT.Preferences.windowTypeOverride) { t = OAT.Preferences.windowTypeOverride; }
-	if (type) { t = type; }
+	var t;
+	var autotype = (OAT.Dom.isMac() ? 2 : 1); /* automatic */
+
+	if (type) { t = type; } else { t = autotype; }/* if specified, get specified */
+	if (OAT.Preferences.windowTypeOverride) { t = OAT.Preferences.windowTypeOverride; } /* if override, get overriding type */
 	var obj = false;
 	switch (t) {
 		case OAT.WindowData.TYPE_WIN:
@@ -29,6 +33,9 @@ OAT.Window = function(optObj,type) {
 		break;
 		case OAT.WindowData.TYPE_MAC:
 			var obj = new OAT.MacWin(optObj);
+		break;
+		case OAT.WindowData.TYPE_ROUND:
+			var obj = new OAT.RoundWin(optObj);
 		break;
 	}
 	if (!obj) { return; }

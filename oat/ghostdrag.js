@@ -12,7 +12,7 @@
 	GhostDrag.addSource(elm,process,callback); -- we will callback(target,x,y) when this elm is successfully dragged
 	GhostDrag.delSource(elm);
 	GhostDrag.clearSources();
-	GhostDrag.addTarget(elm);
+	GhostDrag.addTarget(elm, [customTest], [isLast]);
 	GhostDrag.delTarget(elm);
 	GhostDrag.clearTargets();
 */
@@ -20,11 +20,6 @@
 OAT.GhostDragData = {
 	lock:false,
 
-	init:function() { 
-		OAT.Dom.attach(document,"mousemove",OAT.GhostDragData.move);
-		OAT.Dom.attach(document,"mouseup",OAT.GhostDragData.up);
-	},
-	
 	up:function(event) {
 		if (!OAT.GhostDragData.lock) return;
 		var elm = OAT.GhostDragData.lock; /* moving ghost */
@@ -40,14 +35,16 @@ OAT.GhostDragData = {
 		var y = exact[1];
 		var ok = 0;
 		for (var i=0;i<obj.targets.length;i++) {
-			if (!ok && OAT.GhostDragData.pos(obj.targets[i],x,y)) {
+			var t = obj.targets[i];
+			var test = (t[1] ? t[1](x,y) : OAT.GhostDragData.pos(t[0],x,y));
+			if (!ok && test) { /* only the first gets executed! */
 				ok = 1;
-				obj.callback(obj.targets[i],x,y);
+				obj.callback(t[0],x,y);
 			}
 		}
 		if (ok) { 
 			/* mouseup at correct place - remove element */
-			elm.parentNode.removeChild(elm);
+			OAT.Dom.unlink(elm);
 		} else {
 			/* mouseup at wrong place - let's animate it back */
 			obj.onFail();
@@ -56,7 +53,7 @@ OAT.GhostDragData = {
 			var y = coords[1];
 			var struct = OAT.AnimationStructure.generate(elm,OAT.AnimationData.MOVE,{"x":x,"y":y,"dist":10,"tol":10});
 			var anim = new OAT.Animation(struct,10);
-			anim.endFunction = function() { elm.parentNode.removeChild(elm); }
+			anim.endFunction = function() { OAT.Dom.unlink(elm); }
 			anim.start();
 		}
 	}, /* OAT.GhostDragData.up() */
@@ -96,7 +93,7 @@ OAT.GhostDragData = {
 	}, /* OAT.GhostDragData.move(); */
 
 	pos:function(elm,x_,y_) {
-		/* is [x,y] inside elm ? */
+		/* is [x_,y_] inside elm ? */
 		if (!elm) return 0;
 		if (elm.style.display.toLowerCase() == "none") return 0;
 		var coords = OAT.Dom.position(elm);
@@ -119,12 +116,12 @@ OAT.GhostDrag = function() {
 	
 	this.addSource = function(node,process,callback) {
 		var elm = $(node);
-		this.sources.push(elm);
-		this.processes.push(process);
-		this.callbacks.push(callback);
-		var index = this.sources.length-1;
+		self.sources.push(elm);
+		self.processes.push(process);
+		self.callbacks.push(callback);
 		var ref = function(event) {
 			/* mouse pressed on element */
+			var index = self.sources.find(elm);
 			var ok = 0;
 			for (var i=0;i<self.sources.length;i++) {
 				if (self.sources[i] == elm) { ok = 1; }
@@ -147,33 +144,42 @@ OAT.GhostDrag = function() {
 	}
 	
 	this.clearSources = function() {
-		this.sources = [];
-		this.processes = [];
-		this.callbacks = [];
+		self.sources = [];
+		self.processes = [];
+		self.callbacks = [];
 	}
 	
-	this.addTarget = function(node) {
+	this.addTarget = function(node,customTest,isLast) {
 		var elm = $(node);
-		this.targets[this.targets.length] = elm;
+		var newTriple = [elm,customTest,isLast];
+		if (self.targets.length && self.targets[self.targets.length-1][2]) {
+			/* there is last target */
+			self.targets.splice(self.targets.length-1,0,newTriple);
+		} else {
+			self.targets.push(newTriple);
+		}
 	}
 	
 	this.delTarget = function(node) {
 		var elm = $(node);
-		for (var i=0;i<this.targets.length;i++) {
-			if (this.targets[i] == elm) { this.targets[i] = false; }
+		var index = -1;
+		for (var i=0;i<self.targets.length;i++) {
+			if (self.targets[i][0] == elm) { index = i; }
 		}
+		if (index == -1) { return; }
+		self.targets.splice(index,1);
 	}
 
 	this.clearTargets = function() {
-		this.targets = [];
+		self.targets = [];
 	}
 
 	this.startDrag = function(elm,process,callback,x,y) {
-		this.pending = 1;
-		this.originalElement = elm;
-		this.callback = callback;
+		self.pending = 1;
+		self.originalElement = elm;
+		self.callback = callback;
 		var obj = OAT.Dom.create("div",{position:"absolute"});
-		this.process = process;
+		self.process = process;
 		var coords = OAT.Dom.position(elm);
 		obj.style.left = coords[0]+"px";
 		obj.style.top = coords[1]+"px";
@@ -182,7 +188,7 @@ OAT.GhostDrag = function() {
 		obj.appendChild(elm.cloneNode(true));
 		obj.mouse_x = x;
 		obj.mouse_y = y;
-		obj.object = this;
+		obj.object = self;
 		OAT.GhostDragData.lock = obj;
 	}
 }

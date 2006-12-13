@@ -55,13 +55,14 @@
 	<head>
 		<script type="text/javascript">
 			var toolkitPath = "/DAV/JS/oat";
-			var featureList = ["tree","dom"];
+			var featureList = ["tree"];
 		</script>
 		<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>
 		<script type="text/javascript">
 		<![CDATA[
 			function init() {
-				OAT.Tree.assign('tree','/DAV/JS/images','png',1);
+				var t = new OAT.Tree();
+				t.assign('tree',1);
 			}
 		]]>
 		</script>

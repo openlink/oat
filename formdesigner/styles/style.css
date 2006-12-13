@@ -11,15 +11,58 @@
 @import url("../../styles/webclip.css");
 @import url("../../styles/webdav.css");
 
+
+/* tabs */
+
+ul.tab {
+	list-style-type: none;
+	position:relative;
+	left:-2px;
+	_left:-4px;
+}
+
+li.tab {
+	display: block;
+	border: 2px solid #000;
+	padding: 2px 3px;
+	margin-right: 0.5em;
+	cursor: pointer;
+	height:20px;
+	_height:28px;
+	float:left;
+	background-color: #aaa;
+}
+
+li.tab_selected {
+	background-color: #888;
+	border-bottom-color: #888;
+}
+
+li.tab:hover {
+	background-color: #ccc;
+}
+
+li.tab_selected:hover {
+	background-color: #888;
+}
+
+/**/
+
+#bind_sparql_query_container, #bind_sql_query_container {
+	position:relative;
+	width: 500px;
+	height: 60px;
+}
+
 .right {
 	text-align: right;
 }
 
-#connection table {
+#servertype table {
 	font:menu;
 }
 
-#connection td {
+#servertype td {
 	border: none;
 }
 
@@ -134,6 +177,7 @@ div.combo_list_option:hover {
 
 .toolbar_icon {
 	float: left;
+	height: 20px;
 	margin: 1px 3px;
 	padding: 1px;
 	border: 1px solid #bbb;
@@ -173,4 +217,8 @@ div.toolbar_icon:hover {
 
 .bind {
 	padding-left: 2em;
+}
+
+.toolbox li, #bind li {
+	height: 14px;
 }

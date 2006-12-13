@@ -25,6 +25,7 @@ var table_admin, row_admin, io_admin; /* tooly na baru */
 var gd = false;
 var xmla = false;
 var grid = false;
+var layerObj = false;
 /* --------------------------------------------------------------------------- */
 
 function raise_table(table) {
@@ -82,7 +83,7 @@ function add_table(x,y,title) {
 	var table = new Table(x,y,title); /* to je ona */
 	table_array.push(table); /* dame si objekt do pole */
 	root.appendChild(table._div); /* a pridame i do HTML stromu */
-	OAT.Layers.addLayer(table._div);
+	layerObj.addLayer(table._div);
 	table.updateMini();
 	raise_table(table);
 	gd.addTarget(table._div);
@@ -93,7 +94,7 @@ function remove_table(table) {
 	var index = table_array.find(table);
 	while (table.rows.length) { table.removeRow(table.rows[0]);	}
 	gd.delTarget(table._div);
-	OAT.Layers.removeLayer(table._div);
+	layerObj.removeLayer(table._div);
 	table.destroy();
 	table_array.splice(index,1);
 	table_admin.loseTable();
@@ -209,8 +210,10 @@ function create_data_types(arr) {
 	}
 }
 
-function load() {
+function init() {
 	xmla_init();
+	
+	layerObj = new OAT.Layers(100);
 	
 	/* ghostdrag */
 	gd = new OAT.GhostDrag();
@@ -255,14 +258,6 @@ function load() {
 	
 	/* xslt path */
 	$("options_xslt").value = OAT.Preferences.xsltPath;
-	
-	/* ajax */
-	dialogs.ajax = new OAT.Dialog("Please wait","ajax_alert",{width:240,modal:0,zIndex:1001,resize:0});
-	dialogs.ajax.ok = dialogs.ajax.hide;
-	dialogs.ajax.cancel = dialogs.ajax.hide;
-	OAT.Ajax.setCancel(dialogs.ajax.cancelBtn);
-	OAT.Ajax.setStart(function() { if ($("options_ajax").checked) {dialogs.ajax.show();} });
-	OAT.Ajax.setEnd(dialogs.ajax.hide);
 	
 	/* ajax http errors */
 	$("options_http").checked = (OAT.Preferences.httpError == 1 ? true : false);
@@ -411,7 +406,7 @@ function load() {
 	/* DAV Browser init */
 	var options = {
 		imagePath:'../images/',
-		imageExt:'gif'
+		imageExt:'png'
 	};
 	OAT.WebDav.init(options);
 }

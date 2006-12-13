@@ -8,14 +8,13 @@
  *  See LICENSE file for details.
  */
 /*
-	f = new OAT.FishEye(smallSize,bigSize,limit,div);
-	document.body.appendChild(f.div);
+	f = new OAT.FishEye(div,optObj);
 	var i = f.addImage(url);
 	
 	CSS: .fisheye
 */
 
-OAT.FishEye = function(optObj) {
+OAT.FishEye = function(div,optObj) {
 	var options = {
 		smallSize:48,
 		bigSize:64,
@@ -25,8 +24,8 @@ OAT.FishEye = function(optObj) {
 	for (var p in optObj) { options[p] = optObj[p]; }
 	var images = [];
 	var self = this;
-	self.div = OAT.Dom.create("div");
-	self.div.className = "fisheye";
+	self.div = $(div);
+	OAT.Dom.addClass(self.div,"fisheye");
 	
 	self.addImage = function(url) {
 		var i = OAT.Dom.create("img",{position:"absolute"});
@@ -77,12 +76,10 @@ OAT.FishEye = function(optObj) {
 		}
 		self.div.style.width = (total+options.spacing)+"px";
 		
-//		$("debug").innerHTML = dists.join(", ")+"<br/>"+sizes.join(", ");
 	}
 	self.recount = recount;
 	
 	var move = function(event) {
-//		$("debug").innerHTML += OAT.Dom.source(event).tagName+" ";
 		var pos = OAT.Dom.eventPos(event);
 		recount(pos[0]);
 	}

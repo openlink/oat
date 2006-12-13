@@ -129,7 +129,7 @@ function SqlTable(name,data,x,y) {
 	this.obj.move._Drag_movers[0][1].restrictionFunction = function(l,t) {
 		return l < 0 || t < 0;
 	}
-	OAT.Layers.addLayer(this.obj.div);
+	layerObj.addLayer(this.obj.div);
 
 	this.obj.div.className = "table";
 	this.obj.div.style.backgroundColor = "#aaa";
@@ -277,8 +277,8 @@ function Relation_update() {
 		/* korekce kvuli borderu... */
 		start_x++;
 		
-		this.elem_card_left.style.left = (start_x + 2) + "px";
-		this.elem_card_right.style.left = (end_x - 10) + "px";
+		this.elem_card_left.style.left = (start_x + 12) + "px";
+		this.elem_card_right.style.left = (end_x - 20) + "px";
 	} else {
 		var diff_1 = Math.abs(left_2 - left_1); /* rozdil vlevo */
 		var diff_2 = Math.abs(right_2 - right_1); /* rozdil vlevo */
@@ -289,8 +289,8 @@ function Relation_update() {
 			end_x = left_2;
 			end_y = top_table_2 + top_row_2;
 			center_x = start_x - RELATION_OFFSET;
-			this.elem_card_left.style.left = (start_x - 10) + "px";
-			this.elem_card_right.style.left = (end_x - 10) + "px";
+			this.elem_card_left.style.left = (start_x - 20) + "px";
+			this.elem_card_right.style.left = (end_x - 20) + "px";
 		} else {
 			/* "ucho" povede vpravo od obou tabulek */
 			start_x = Math.max(right_1, right_2) - RELATION_THICKNESS;
@@ -306,8 +306,8 @@ function Relation_update() {
 			/* korekce kvuli borderu... */
 			start_x++;
 			end_x++;
-			this.elem_card_left.style.left = (start_x + 2) + "px";
-			this.elem_card_right.style.left = (end_x + 2) + "px";
+			this.elem_card_left.style.left = (start_x + 12) + "px";
+			this.elem_card_right.style.left = (end_x + 12) + "px";
 		}
 	}
 	
@@ -375,7 +375,7 @@ function Relation(row_1, row_2, card_1, card_2) {
 	this.row_2 = row_2; /* druha rodicovska radka */
 	this.parent_1 = row_1.table; /* prvni rodicovska tabulka */
 	this.parent_2 = row_2.table; /* druha rodicovska tabulka */
-	this.div = OAT.Dom.create("div");
+	this.div = OAT.Dom.create("div",{zIndex:200});
 	this.elem_1 = OAT.Dom.create("div");
 	this.elem_2 = OAT.Dom.create("div");
 	this.elem_3 = OAT.Dom.create("div");

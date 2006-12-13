@@ -12,7 +12,7 @@
 	new FormDesigner(parent)
 	FormDesigner.setBase(baseElement)
 	FormDesigner.clear()
-	FormDesigner.addObject(formIndex,type,x,y)
+	FormDesigner.addObject(type,x,y,loading)
 */
 
 
@@ -21,9 +21,11 @@ var FormDesigner = function(parent) {
 	/* basic properties */
 	var self = this;
 	this.base = false; /* root element */
+	this.layers = [];
+	this.layersObj = new OAT.Layers(0);
 	this.capture = false; /* yellow select rectangle */
 
-	this.forms = [];
+	this.datasources = [];
 	this.objects = [];
 	this.gd = new OAT.GhostDrag();
 
@@ -31,20 +33,21 @@ var FormDesigner = function(parent) {
 
 	this.parent = $(parent); /* place for supplementary windows, toolbox etc */
 
+	var l = new OAT.Layers(100);
 	/* columns */
 	this.columns = new Columns(self);
 	this.parent.appendChild(this.columns.win.div);
-	OAT.Layers.addLayer(this.columns.win.div);
+	l.addLayer(this.columns.win.div);
 	
 	/* palette */
 	this.palette = new Palette(self);
 	this.parent.appendChild(this.palette.win.div);
-	OAT.Layers.addLayer(this.palette.win.div);
+	l.addLayer(this.palette.win.div);
 	
 	/* toolbox */
 	this.toolbox = new Toolbox(self);
 	this.parent.appendChild(this.toolbox.win.div);
-	OAT.Layers.addLayer(this.toolbox.win.div);
+	l.addLayer(this.toolbox.win.div);
 	
 	/* --------- available objects ----------- */ 
 	this.palette.addObject("label");
@@ -56,133 +59,116 @@ var FormDesigner = function(parent) {
 	this.palette.addObject("map");
 	this.palette.addObject("grid");
 	this.palette.addObject("barchart");
+	this.palette.addObject("piechart");
+	this.palette.addObject("linechart");
+	this.palette.addObject("sparkline");
 	this.palette.addObject("pivot");
 	this.palette.addObject("image");
 	this.palette.addObject("imagelist");
 	this.palette.addObject("twostate");
 	this.palette.addObject("timeline");
+	this.palette.addObject("graph");
+	this.palette.addObject("cloud");
 	this.palette.addObject("nav");
-	this.palette.addObject("gem");
+	this.palette.addObject("gem1");
+	this.palette.addObject("uinput");
+	this.palette.addObject("tab");
+	this.palette.addObject("container");
 	/* --------------------------------------- */
 
 	/* methods */
 	
+	this.createDSSelect = function(sel_ds,sel_index) {
+		var s = OAT.Dom.create("select");
+		var total = 0;
+		for (var i=0;i<self.datasources.length;i++) {
+			var ds = self.datasources[i];
+			var og = OAT.Dom.create("optgroup");
+			og.label = ds.name;
+			s.appendChild(og);
+			for (var j=0;j<ds.outputFields.length;j++) {
+				var f = ds.outputFields[j];
+				var o = OAT.Dom.create("option");
+				o.innerHTML = (ds.outputLabels[j] ? ds.outputLabels[j] : f);
+				o.value = ds.name;
+				o.masterDS = ds;
+				o.masterField = j;
+				og.appendChild(o);
+				if (sel_ds == ds && sel_index == j) { s.selectedIndex = total; }
+				total++;
+			}
+		}
+		return s;
+	}
+	
+	this.createDSOnlySelect = function(sel_ds) {
+		var s = OAT.Dom.create("select");
+		for (var i=0;i<self.datasources.length;i++) {
+			var ds = self.datasources[i];
+			var o = OAT.Dom.create("option");
+			o.innerHTML = ds.name;
+			o.value = ds;
+			o.ds = ds;
+			s.appendChild(o);
+			if (sel_ds == ds) { s.selectedIndex = i; }
+		}
+		return s;
+	}
+	
 	this.init = function(base) {
 		self.base = $(base);
+		for (var i=0;i<4;i++) { 
+			var l = OAT.Dom.create("div",{position:"absolute",width:"100%",height:"0px",zIndex:i});
+			self.layers.push(l); 
+			self.base.appendChild(l);
+		}
 		OAT.Dom.attach(this.base,"mousedown",self.startCapture);
 		OAT.Dom.attach(this.base,"mouseup",self.stopCapture);
 		OAT.Dom.attach(this.base,"mousemove",self.processCapture);
-		var obj = new OAT.Form(self);
-		obj.name = "Main Form";
-		obj.div = self.base;
 		var pos = OAT.Dom.position(self.base);
 		var dim = OAT.Dom.getWH(self.base);
-		self.addObject(obj,"nav",pos[0],pos[1]+dim[1]-30);
-		self.forms.push(obj);
-		self.formEvents(obj);
-		self.selectForm(obj);
+		self.selectForm();
+		var callback = function(event) {
+			var src = OAT.Dom.source(event);
+			if (src != self.base) { return; } /* only when form is directly clicked */
+			self.selectForm();
+		}
+		OAT.Dom.attach(self.base,"click",callback);
+		self.x = 20;
+		self.y = 0;
 	}
 	
-	this.selectForm = function(form) {
+	this.getCoords = function() {
+		self.y += 30;
+		return [self.x,self.y];
+		}
+
+	this.selectForm = function() {
 		self.deselectAll();
 		self.gd.clearSources();
 		self.gd.clearTargets();
-		self.gd.addTarget(form.div);
-		self.palette.createDrags(form);
-		self.columns.createColumns(form,form.outputFields);
-		self.toolbox.showForm(form);
-		for (var i=1;i<self.forms.length;i++) {
-			self.forms[i].div.className = "form";
-		}
-		if (form.div != self.base) { form.div.className = "form form_selected"; }
+		self.gd.addTarget(self.base);
+		self.palette.createDrags(self.base);
+		self.columns.createColumns();
+		self.toolbox.showForm();
 	}
 	
-	this.formEvents = function(form) { /* manage clicking on form */
-		var div = form.div;
-		var callback = function(event) {
-			var src = OAT.Dom.source(event);
-			if (src != div) { return; } /* only when form is directly clicked */
-			self.selectForm(form);
-		}
-		OAT.Dom.attach(div,"click",callback);
-	}
-	
-	this.addForm = function(optObj) { /* new subform */
-		var div = OAT.Dom.create("div",{position:"absolute",left:"10px",top:"10px",width:"300px",height:"200px"});
-		div.className = "form";
-		self.base.appendChild(div);
-		var obj = new OAT.Form(self); 
-		obj.div = div;
-		if (optObj.addNav) {
-			var pos = OAT.Dom.position(div);
-			var dim = OAT.Dom.getWH(div);
-			self.addObject(obj,"nav",pos[0],pos[1]+dim[1]-30);
-		}
-		OAT.Drag.create(div,div);
-		self.forms.push(obj);
-		self.formEvents(obj);
-		self.selectForm(obj);
-		
-		var resizer = OAT.Dom.create("div",{position:"absolute",width:"10px",height:"10px",bottom:"-5px",right:"-5px"});
-		div.appendChild(resizer);
-		OAT.Resize.create(resizer,div,OAT.Resize.TYPE_XY);
-		
-		return obj;
-	}
-	
-	this.delForm = function(form) {
-		OAT.Dom.unlink(form.div);
-		/* all subforms that use this form... */
-		for (var i=0;i<self.forms.length;i++) {
-			var f = self.forms[i];
-			var indexesToRemove = [];
-			for (var j=0;j<f.masterForms.length;j++) {
-				if (f.masterForms[j] == form) { indexesToRemove.push(j); }
-			}
-			for (var j=indexesToRemove.length-1;j>=0;j--) {
-				f.masterForms.splice(indexesToRemove[j],1);
-				f.masterCols.splice(indexesToRemove[j],1);
-				f.selfCols.splice(indexesToRemove[j],1);
-			}
-		}
-		var index = self.forms.find(form);
-		self.forms.splice(index,1);
-		var tmp = []; /* all objects on this form */
-		for (var i=0;i<self.objects.length;i++) {
-			if (self.objects[i].form == f) { tmp.push(i); }
-		}
-		for (var i=tmp.length;i>0;i--) {
-			self.objects.splice(tmp[i-1],1);
-		}
-		self.toolbox.showForm(self.forms[0]); /* show form */
-
-	}
-	
-	this.clear = function(optObj) { /* remove everything from this design */
-		OAT.Dom.clear(this.base); 
-		while (self.forms.length > 1) {
-			self.forms.splice(1,1);
-		}
+	this.clear = function(ds) { /* remove everything from this design */
+		for (var i=0;i<self.layers.length;i++) { OAT.Dom.clear(self.layers[i]);  }
+		self.layersObj = new OAT.Layers(0);
 		this.gd.clearSources();
 		this.gd.clearTargets();
 		this.objects = []; 
-		var obj = self.forms[0];
-		obj.clear();
-		obj.name = "Main Form";
-
-		if (optObj.addNav) {
-			var pos = OAT.Dom.position(self.base);
-			var dim = OAT.Dom.getWH(self.base);
-			self.addObject(self.forms[0],"nav",pos[0],pos[1]+dim[1]-30);
-		}
-		
-		self.selectForm(self.forms[0]);
+		if (ds) { this.datasources = []; }
+		self.x = 20;
+		self.y = 0;
+		self.selectForm();
 	}
 	
 	this.startCapture = function(event) { /* selecting multiple objects */
 		var src = OAT.Dom.source(event);
 		if (src != self.base) { return; }
-		self.capture = OAT.Dom.create("div",{position:"absolute",border:"2px solid #ff0",width:"0px",height:"0px",zIndex:"3"});
+		self.capture = OAT.Dom.create("div",{position:"absolute",border:"2px solid #ff0",width:"0px",height:"0px",zIndex:10});
 		OAT.Dom.attach(self.capture,"mouseup",self.stopCapture);
 		OAT.Dom.attach(self.capture,"mousemove",self.processCapture);
 		self.base.appendChild(self.capture);
@@ -200,6 +186,8 @@ var FormDesigner = function(parent) {
 		var exact = OAT.Dom.eventPos(event);
 		var end_x = exact[0] - self.capture.parentCoords[0];
 		var end_y = exact[1] - self.capture.parentCoords[1];
+		if (x > end_x) { end_x = x; }
+		if (y > end_y) { end_y = y; }
 		self.capture.style.width = (end_x - x) + "px";
 		self.capture.style.height = (end_y - y) + "px";
 	} /* FormDesigner::processCapture() */
@@ -216,8 +204,8 @@ var FormDesigner = function(parent) {
 		for (var i=0;i<self.objects.length;i++) {
 			/* old problem - are two rectangles overlapping ? */
 			var o = self.objects[i];
-			var x2 = o.elm.offsetLeft + o.form.div.offsetLeft;
-			var y2 = o.elm.offsetTop + o.form.div.offsetTop;
+			var x2 = o.elm.offsetLeft + self.base.offsetLeft;
+			var y2 = o.elm.offsetTop + self.base.offsetTop;
 			var w2 = o.elm.offsetWidth;
 			var h2 = o.elm.offsetHeight;
 			var bad_x = ( (x < x2 && x+w < x2) || (x > x2+w2) );
@@ -230,7 +218,7 @@ var FormDesigner = function(parent) {
 		}
 		self.createDrags();
 		switch (numSelected) {
-			case 0: self.selectForm(self.forms[0]);	break;
+			case 0: self.selectForm();	break;
 			case 1: self.toolbox.showObject(lastObj); break;
 			default: self.toolbox.showMulti(); break;
 		}
@@ -247,10 +235,64 @@ var FormDesigner = function(parent) {
 		}
 		for (var i=0;i<this.selObjs.length;i++) {
 			for (var j=0;j<this.selObjs.length;j++) {
-				OAT.Drag.create(this.selObjs[i].elm,this.selObjs[j].elm);
+				OAT.Drag.create(this.selObjs[i].elm,this.selObjs[j].elm,{endFunction:self.checkTabPlacement});
 			}
 		}
 	} /* FormDesigner::createDrags() */
+	
+	this.alreadyOnTab = function(object,tabsArr,ignoreActive) { /* is object already present on some of _active_ tabs? */
+		for (var i=0;i<tabsArr.length;i++) {
+			var t = tabsArr[i];
+			for (var j=0;j<t.objects.length;j++) {
+				var p = t.objects[j];
+				var index = p.find(object);
+				if (index != -1 && (ignoreActive || t.tab.selectedIndex == j)) { return t; }
+			} /* for all pages */
+		} /* for all tabs */
+		return false;
+	}
+	
+	this.onTab = function(object,tabsArr) { /* is object placed to a position in a tab? */
+		for (var i=0;i<tabsArr.length;i++) {
+			var t = tabsArr[i];
+			var dims = OAT.Dom.getWH(t.elm);
+			var coords = OAT.Dom.position(t.elm);
+			var oc = OAT.Dom.position(object.elm);
+			if (oc[0] > coords[0] && oc[0] < coords[0]+dims[0] &&
+				oc[1] > coords[1] && oc[1] < coords[1]+dims[1]) { return t; }
+		}
+		return false;
+	}
+	
+	this.checkTabPlacement = function() {
+		/* check all elements: place/remove from tab */
+		var tabs = [];
+		for (var i=0;i<self.objects.length;i++) if (self.objects[i].name == "tab") { tabs.push(self.objects[i]); }
+		/* 1. placed on tabs */
+		for (var i=0;i<self.objects.length;i++) if (!self.alreadyOnTab(self.objects[i],tabs,1)) {
+			var t = self.onTab(self.objects[i],tabs);
+			if (t) { 
+				var o = self.objects[i];
+				var coords_t = OAT.Dom.getLT(t.elm);
+				var coords_o = OAT.Dom.getLT(o.elm);
+				var x = coords_o[0] - coords_t[0];
+				var y = coords_o[1] - coords_t[1];
+				t.consume(o,x,y);
+			}
+		}
+		/* 2. placed away */
+		for (var i=0;i<self.objects.length;i++) if (!self.onTab(self.objects[i],tabs)) {
+			var t = self.alreadyOnTab(self.objects[i],tabs,0);
+			if (t) {
+				var o = self.objects[i];
+				var coords_t = OAT.Dom.getLT(t.elm);
+				var coords_o = OAT.Dom.getLT(o.elm);
+				var x = coords_o[0] + coords_t[0];
+				var y = coords_o[1] + coords_t[1];
+				t.remove(o,x,y);
+			}
+		}
+	}
 	
 	this.deselectAll = function() {
 		for (var i=0;i<self.objects.length;i++) { self.objects[i].deselect(); OAT.Drag.removeAll(self.objects[i].elm); }
@@ -270,24 +312,43 @@ var FormDesigner = function(parent) {
 		}
 	}
 	
-	this.addObject = function(form,type,x,y) {
+	this.addObject = function(type,x,y,loading) {
 		/* add object 'type' to form. event at [x, y] */
-		var coords = OAT.Dom.position(form.div);
+		var coords = OAT.Dom.position(self.base);
 		
 		var obj_x = x - coords[0];
 		var obj_y = y - coords[1];
 		
-		var formObj = new OAT.FormObject[type](obj_x,obj_y,1);
-		formObj.form = form;
+		var formObj = new OAT.FormObject[type](obj_x,obj_y,1,loading);
 		self.objects.push(formObj);
-		form.div.appendChild(formObj.elm);
+		/* append to correct layer */
+		var l = false;
+		switch (formObj.name) {
+			case "map": l = self.layers[0]; break;
+			case "timeline": l = self.layers[1];break;
+			case "container": l = self.layers[2]; break;
+			default: l = self.layers[3]; break;
+		}
+		l.appendChild(formObj.elm);
+		self.layersObj.addLayer(formObj.elm,"click");
 		self.deselectAll();
 		
 		self.selectObject(formObj);
 		var cancelRef = function(event) { event.cancelBubble = true; }
 		
-		OAT.Dom.attach(formObj.elm,"click",function(event){self.selectObject(formObj,event);});
+		OAT.Dom.attach(formObj.elm,"click",function(event){
+			var src = OAT.Dom.source(event);
+			/* climb up and find first available control */
+			do {
+				var hope = 0;
+				for (var i=0;i<self.objects.length;i++) if (self.objects[i].elm == src) { hope = self.objects[i]; }
+				src = src.parentNode;
+			} while (!hope);
+			self.selectObject(hope,event);
+		});
 		OAT.Dom.attach(formObj.elm,"mousedown",cancelRef);
+		
+		if (!loading) { self.checkTabPlacement(); }
 		return formObj;
 	}
 
@@ -319,180 +380,122 @@ var FormDesigner = function(parent) {
 		}
 	} /* FormDesigner::alignSelected(type); */
 	
-	this.loadXML = function(data) {
+	this.fromXML = function(data) {
+		self.clear(true);
 		var tmp;
-		var xml = OAT.Xml.getTreeString(data);
-		var root = xml.documentElement;
-		var c = root.getElementsByTagName("connection")[0];
-		OAT.Xmla.dsn = c.getAttribute("dsn");
-		OAT.Xmla.endpoint = c.getAttribute("endpoint");
-		if (c.getAttribute("user")) {
-			OAT.Xmla.user = OAT.Crypto.base64d(c.getAttribute("user"));
-			OAT.Xmla.password = OAT.Crypto.base64d(c.getAttribute("password"));
+		var xmlDoc = OAT.Xml.createXmlDoc(data);
+		var root = xmlDoc.documentElement;
+		/* datasources*/
+		self.clear();
+		var dsnodes = root.getElementsByTagName("ds");
+		for (var i=0;i<dsnodes.length;i++) {
+			var dsnode = dsnodes[i];
+			var ds = new OAT.DataSource(parseInt(dsnode.getAttribute("type")));
+			self.datasources.push(ds);
+			ds.fromXML(dsnode);
+			var cb = (i==0 ? function(){self.selectForm();}:function(){});
+			ds.refresh(cb,false,self.datasources);
 		}
-		
-		var forms = root.getElementsByTagName("form");
-		self.clear({addNav:false});
-		for (var i=0;i<forms.length;i++) {
-			if (i) { var f = self.addForm({addNav:false}); } else { var f = self.forms[0]; }
-			var fb = f.fieldBinding;
-			
-			if (forms[i].getAttribute("hidden")) { f.hidden = 1; } /* hidden? */
-			f.empty = parseInt(forms[i].getAttribute("empty")); /* should be emptied with no data? */
-			f.name = forms[i].getAttribute("name"); /* name */
-			f.pageSize = parseInt(forms[i].getAttribute("pagesize"));
-			f.cursorType = parseInt(forms[i].getAttribute("cursortype"));
-
-			var dso = forms[i].getElementsByTagName("datasource")[0];
-			f.ds.type = parseInt(dso.getAttribute("type"));
-			f.ds.subtype = parseInt(dso.getAttribute("subtype"));
-			f.ds.url = dso.getAttribute("url");
-			f.ds.service = dso.getAttribute("service");
-			f.ds.xpath = parseInt(dso.getAttribute("xpath"));
-			var tmp = dso.getElementsByTagName("query")[0];
-			f.ds.query = OAT.Xml.textValue(tmp);
-
-			var tmp = dso.getElementsByTagName("inputField");
-			f.inputFields = [];
-			for (var j=0;j<tmp.length;j++) {
-				f.inputFields.push(OAT.Xml.textValue(tmp[j]));
-			}
-			var tmp = dso.getElementsByTagName("outputField");
-			f.outputFields = [];
-			for (var j=0;j<tmp.length;j++) {
-				var v = OAT.Xml.textValue(tmp[j]);
-				f.outputFields.push(OAT.Dom.fromSafeXML(v));
-			}
-
-			var tmp = dso.getElementsByTagName("selfField");
-			for (var j=0;j<tmp.length;j++) {
-				fb.selfFields.push(parseInt(OAT.Xml.textValue(tmp[j])));
-			}
-			var tmp = dso.getElementsByTagName("masterForm");
-			for (var j=0;j<tmp.length;j++) {
-				var val = OAT.Xml.textValue(tmp[j]);
-				fb.masterForms.push(val);
-			}
-			var tmp = dso.getElementsByTagName("masterField");
-			for (var j=0;j<tmp.length;j++) {
-				var val = OAT.Xml.textValue(tmp[j]);
-				if (fb.masterForms[j] == "false") {
-					fb.masterFields.push(val == "-1" ? -1 : OAT.Dom.fromSafeXML(val));
-				} else {
-					fb.masterFields.push(parseInt(val));
-				}
-			}
-
-			tmp = forms[i].getElementsByTagName("area")[0];
-			var attrib = tmp.attributes[0];
-			f.div.style.color = tmp.getAttribute("fgcolor");
-			f.div.style.backgroundColor = tmp.getAttribute("bgcolor");
-			f.div.style.fontSize = tmp.getAttribute("size");
-			f.div.style.left = tmp.getAttribute("left")+"px";
-			f.div.style.top = tmp.getAttribute("top")+"px";
-			f.div.style.width = tmp.getAttribute("width")+"px";
-			f.div.style.height = tmp.getAttribute("height")+"px";
-			
-			var objects = forms[i].getElementsByTagName("object");
+		/* area */
+		var tmp = root.getElementsByTagName("area")[0];
+		self.base.style.color = tmp.getAttribute("fgcolor");
+		self.base.style.backgroundColor = tmp.getAttribute("bgcolor");
+		self.base.style.fontSize = tmp.getAttribute("size");
+		self.base.style.left = tmp.getAttribute("left")+"px";
+		self.base.style.top = tmp.getAttribute("top")+"px";
+		self.base.style.width = tmp.getAttribute("width")+"px";
+		self.base.style.height = tmp.getAttribute("height")+"px";
+		/* objects */
+		var objects = root.getElementsByTagName("object");
 			for (var j=0;j<objects.length;j++) {
 				var type = objects[j].getAttribute("type");
-				var obj = self.addObject(f,type,0,0);
+			var obj = self.addObject(type,0,0,1);
 				if (obj.userSet) { obj.setValue(objects[j].getAttribute("value")); }
-				obj.loadXML(objects[j]);
+			obj.fromXML(objects[j],self.datasources);
 			}
-			
-			var cb = (i==0 ? function(){self.selectForm(self.forms[0]);}:function(){});
-			
-			f.refresh(cb,false);
-		} /* for all forms */
-		
 		/* create master links */
-		for (var i=0;i<self.forms.length;i++) {
-			var f = self.forms[i];
-			var fb = f.fieldBinding;
-			for (var j=0;j<fb.masterForms.length;j++) {
-				if (fb.masterForms[j] == "false") { fb.masterForms[j] = false; } else {
-					fb.masterForms[j] = self.forms[parseInt(fb.masterForms[j])];
+		for (var i=0;i<self.datasources.length;i++) {
+			var ds = self.datasources[i];
+			var fb = ds.fieldBinding;
+			for (var j=0;j<fb.masterDSs.length;j++) {
+				switch (parseInt(fb.types[j])) {
+					case 1:
+						fb.masterDSs[j] = self.datasources[parseInt(fb.masterDSs[j])];
+					break;
+					case 3:
+						fb.masterDSs[j] = self.objects[parseInt(fb.masterDSs[j])];
+					break;
+					default: fb.masterDSs[j] = false;
+				} /* switch */
+			} /* all bindings */
+		} /* all datasources */
+		
+		/* create tab dependencies */
+		for (var i=0;i<self.objects.length;i++) if (self.objects[i].name == "tab") {
+			var o = self.objects[i];
+			var max = o.properties[0].value.length;
+			o.countChangeCallback(0,max);
+			o.properties[0].value.length = max;
+			for (var j=0;j<max;j++) { o.changeCallback(j,o.properties[0].value[j]); }
+			for (var j=0;j<o.__tp.length;j++) {
+				o.tab.go(j);
+				var tp = o.__tp[j];
+				for (var k=0;k<tp.length;k++) { 
+					var victim = self.objects[tp[k]];
+					var coords = OAT.Dom.getLT(victim.elm);
+					o.consume(victim,coords[0],coords[1]); 
 				}
 			}
 		}
-		/* create pin links */
-		for (var i=0;i<self.objects.length;i++) if (self.objects[i].name == "map") {
-			var o = self.objects[i];
-			var v = o.properties[4].value;
-			if (v == -1) { o.properties[4].value = false; } else { o.properties[4].value = self.forms[v]; }
+		
+		/* create parent control */
+		for (var i=0;i<self.objects.length;i++) {
+			if (self.objects[i].parentContainer != -1) {
+				self.objects[i].parentContainer = self.objects[self.objects[i].parentContainer];
+			}
+			for (var j=0;j<self.objects[i].properties.length;j++) {
+				var p = self.objects[i].properties[j];
+				if (p.type == "container") { p.value = (parseInt(p.value) == -1 ? false : self.objects[parseInt(p.value)]); }
+			}
 		}
 		
-		self.selectForm(self.forms[0]);
-	} /* FormDesigner::loadXML() */
+		self.selectForm();
+	} /* FormDesigner::fromXML() */
 
 	this.toXML = function(xslStr) {
 		var xml = '<?xml version="1.0" ?>\n';
 		if (xslStr) { xml += xslStr+'\n'; }
-		xml += '<design>\n';
-		xml += '\t<connection dsn="'+OAT.Xmla.dsn+'" endpoint="'+OAT.Xmla.endpoint+'" ';
-		if ($("options_uid").checked) { xml += 'user="'+OAT.Crypto.base64e(OAT.Xmla.user)+'" password="'+OAT.Crypto.base64e(OAT.Xmla.password)+'"'; }
-		xml += ' showajax="'+($("options_showajax").checked ? 1 : 0)+'" ';
-		xml += ' nocred="'+($("options_nocred").checked ? 1 : 0)+'"></connection>\n';
-		for (var i=0;i<self.forms.length;i++) {
-			var f = self.forms[i];
-			var d = f.div;
-			var fb = f.fieldBinding;
-			var tmp = [];
-			for (var j=0;j<fb.masterForms.length;j++) {
-				var index = self.forms.find(fb.masterForms[j]);
-				tmp.push(index != -1 ? index : "false");
-			}
-			xml += '\t<form name="'+f.name+'" empty="'+f.empty+'" ';
-			xml += ' cursortype="'+f.cursorType+'" pagesize="'+f.pageSize+'" ';
-			if (f.hidden == "1") { xml += 'hidden="1" '; }
+		xml += '<form';
+		xml += ' showajax="'+($("options_showajax").checked ? 1 : 0)+'" '; /* display ajax dialogs? */
+		xml += ' nocred="'+($("options_nocred").checked ? 1 : 0)+'" '; /* try to work with blank credentials? */
 			xml += '>\n';
-			xml += '\t\t<datasource type="'+f.ds.type+'" subtype="'+f.ds.subtype+'" url="'+f.ds.url+'" ';
-			xml += 'xpath="'+f.ds.xpath+'" service="'+f.ds.service+'" rootelement="'+f.ds.rootElement+'">\n';
-			xml += '\t\t\t<outputFields>\n';
-			for (var j=0;j<f.outputFields.length;j++) {
-				xml += '\t\t\t\t<outputField>'+OAT.Dom.toSafeXML(f.outputFields[j])+'</outputField>\n';
+		
+		var uid = $("options_uid").checked;
+		for (var i=0;i<self.datasources.length;i++) {
+			xml += self.datasources[i].toXML(uid,self.datasources,self.objects)+'\n'; 
 			}
-			xml += '\t\t\t</outputFields>\n';
-			xml += '\t\t\t<inputFields>\n';
-			for (var j=0;j<f.inputFields.length;j++) {
-				xml += '\t\t\t\t<inputField>'+f.inputFields[j]+'</inputField>\n';
-			}
-			xml += '\t\t\t</inputFields>\n';
-			xml += '\t\t\t<query>'+f.ds.query+'</query>\n';
-			xml += '\t\t\t<selfFields>\n';
-			for (var j=0;j<fb.selfFields.length;j++) {
-				xml += '\t\t\t\t<selfField>'+fb.selfFields[j]+'</selfField>\n';
-			}
-			xml += '\t\t\t</selfFields>\n';
-			xml += '\t\t\t<masterFields>\n';
-			for (var j=0;j<fb.masterFields.length;j++) {
-				xml += '\t\t\t\t<masterField>'+OAT.Dom.toSafeXML(fb.masterFields[j])+'</masterField>\n';
-			}
-			xml += '\t\t\t</masterFields>\n';
-			xml += '\t\t\t<masterForms>\n';
-			for (var j=0;j<tmp.length;j++) {
-				xml += '\t\t\t\t<masterForm>'+tmp[j]+'</masterForm>\n';
-			}
-			xml += '\t\t\t</masterForms>\n';
-			xml += '\t\t</datasource>';
+		var d = self.base;
 			var bg = OAT.Dom.style(d,"backgroundColor");
 			var fg = OAT.Dom.style(d,"color");
 			var size = OAT.Dom.style(d,"fontSize");
 			var coords = OAT.Dom.getLT(d);
 			var dims = OAT.Dom.getWH(d);
-			xml += '\t\t<area bgcolor="'+bg+'" fgcolor="'+fg+'" size="'+size+'" '+
+		xml += '\t<area bgcolor="'+bg+'" fgcolor="'+fg+'" size="'+size+'" '+
 				'left="'+coords[0]+'" top="'+coords[1]+'" width="'+dims[0]+'" height="'+dims[1]+'" />\n';
 			
-			for (var j=0;j<self.objects.length;j++) {
-				if (self.objects[j].form == f) { 
-					xml += '\t\t'+self.objects[j].toXML(self)+'\n'; 
-				}
-			}
-			
-			xml += '\t</form>\n';
+		var tabs = [];
+		for (var i=0;i<self.objects.length;i++) if (self.objects[i].name == "tab") { tabs.push(self.objects[i]); }
+		for (var i=0;i<self.objects.length;i++) {
+			var o = self.objects[i];
+			var t = self.alreadyOnTab(o,tabs,1);
+			if (t) { 
+				for (var j=0;j<t.objects.length;j++) if (t.objects[j].find(o) != -1) { 
+					t.tab.go(j); 
+				} /* activate its tab */
+			} /* if on a tab */
+			xml += o.toXML(self)+'\n'; 
 		}
-		xml += '</design>\n';
+		xml += '</form>\n';
 		
 		return xml;
 	} /* FormDesigner::toXML(); */

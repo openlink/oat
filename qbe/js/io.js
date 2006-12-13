@@ -297,8 +297,39 @@ var IO = {
 			/* name,alias,show,order,conds_1,group,conds_2 */
 		}
 
+		function try_join(j) {
+			var pk = {column:j.row1};
+			var fk = {column:j.row2};
+			var t1 = OAT.SqlQueryData.deQualifyMulti(j.table1).split(".");
+			var t2 = OAT.SqlQueryData.deQualifyMulti(j.table2).split(".");
+			if (t1.length == 1) {
+				pk.catalog = "";
+				pk.schema = "";
+				pk.table = t1[0];
+			} else {
+				pk.catalog = t1[0];
+				pk.schema = t1[1];
+				pk.table = t1[2];
+			}
+			if (t2.length == 1) {
+				fk.catalog = "";
+				fk.schema = "";
+				fk.table = t2[0];
+			} else {
+				fk.catalog = t2[0];
+				fk.schema = t2[1];
+				fk.table = t2[2];
+			}
+			try_relation(pk,"&infin;",fk,"&infin;");
+		}
+		
 		var callback = function() {
-			if (OAT.Ajax.number) { setTimeout(callback, 100); } else { Query.create(OAT.SqlQueryData.TYPE_SQL); }
+			if (OAT.Ajax.number) { setTimeout(callback, 100); } else { 
+				/* manual joins */
+				for (var i=0;i<Query.obj.joins.length;i++) { try_join(Query.obj.joins[i]); }
+				/* re-create query */
+				Query.create(OAT.SqlQueryData.TYPE_SQL); 
+			}
 		}
 		setTimeout(callback,100);
 	}

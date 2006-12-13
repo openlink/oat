@@ -39,7 +39,7 @@ function Toolbox(obj) {
 		}
 	}
 
-	this.win = new OAT.Window({min:0,max:0,close:1,height:0,width:180,x:-15,y:170,title:"Control Properties"});
+	this.win = new OAT.Window({min:0,max:0,close:1,height:0,width:240,x:-15,y:170,title:"Control Properties"});
 	this.win.hide = function() {OAT.Dom.hide(self.win.div);};
 	this.win.show = function() {OAT.Dom.show(self.win.div);};
 	this.win.onclose = function() {
@@ -47,26 +47,43 @@ function Toolbox(obj) {
 		tbar.icons[1].toggle();
 	}
 	this.win.content.className = "toolbox";
-	this.content = OAT.Dom.create("div");
 	this.name = OAT.Dom.create("span");
 	var tmp = OAT.Dom.create("div");
 	tmp.innerHTML = "Selected: ";
 	tmp.appendChild(this.name);
 	this.win.content.appendChild(tmp);
+	var ul = OAT.Dom.create("ul");
+	this.win.content.appendChild(ul);
+	
+	this.content = OAT.Dom.create("div",{marginTop:"20px",border:"2px solid #000"});
 	this.win.content.appendChild(this.content);
 	
-	this.clear = function() {
-		OAT.Dom.clear(self.content); /* clear toolbox */
-		self.win.content.style.height = ""; /* set toolbox to auto-stretch */
-		self.win.div.style.height = "";
-	}
+	this.tab = new OAT.Tab(this.content);
 	
-	this.createTable = function() {
+	this.lis = [];
+	this.tabs = [];
+	this.tables = [];
+	for (var i=0;i<3;i++) {
+		var li = OAT.Dom.create("li");
+		li.innerHTML = ["Generic","Data","Style"][i];
+		this.lis.push(li);
+		ul.appendChild(li);
+		var cont = OAT.Dom.create("div");
+		this.tabs.push(cont);
+		this.tab.add(li,cont);
 		var t = OAT.Dom.create("table");
 		var b = OAT.Dom.create("tbody");
 		t.appendChild(b);
-		self.table = b;
-		self.content.appendChild(t);
+		this.tables.push(b);
+		cont.appendChild(t);
+	}
+	this.tableIndex = 0;
+	
+	this.clear = function() {
+		for (var i=0;i<self.tables.length;i++) { OAT.Dom.clear(self.tables[i]); }
+		self.win.content.style.height = ""; /* set toolbox to auto-stretch */
+		self.win.div.style.height = "";
+		self.tab.go(0);
 	}
 	
 	this.addTable = function(a,b) {
@@ -85,98 +102,18 @@ function Toolbox(obj) {
 			d.setAttribute("colSpan",2);
 			d.colSpan = 2;
 		}
-		self.table.appendChild(r);
+		self.tables[self.tableIndex].appendChild(r);
 	}
 	
-	this.showForm = function(form) {
+	this.showForm = function() {
 		self.clear();
 		self.name.innerHTML = "[form]";
-		self.createTable();
-		var f = form;
-
-		/* name */
-		var text = OAT.Dom.text("Name");
-		var inp = OAT.Dom.create("input"); 
-		inp.setAttribute("type","text");
-		inp.setAttribute("size","14");
-		inp.value = f.name;
-		OAT.Dom.attach(inp,"keyup",function() {f.name = inp.value;} )
-		self.addTable(text,inp);
-		/* hidden */
-		var hid = OAT.Dom.create("input");
-		hid.setAttribute("type","checkbox");
-		hid.checked = (f.hidden == "1" ? true : false);
-		OAT.Bindings.bindBool(hid,f,"hidden");
-		var text = OAT.Dom.text("Hidden");
-		self.addTable(text,hid);
-		/* empty */
-		var empty = OAT.Dom.create("input");
-		empty.setAttribute("type","checkbox");
-		empty.checked = (f.empty == "1" ? true : false);
-		OAT.Bindings.bindBool(empty,f,"empty");
-		var text = OAT.Dom.text("Clear with empty resultset");
-		self.addTable(text,empty);
-		/* cursor type */
-		var cursor = OAT.Dom.create("select");
-		OAT.Dom.option("Snapshot",0,cursor);
-		OAT.Dom.option("Dynaset",1,cursor);
-		cursor.selectedIndex = f.cursorType;
-		OAT.Bindings.bindSelect(cursor,f,"cursorType");
-		var text = OAT.Dom.text("Cursor type");
-		self.addTable(text,cursor);
-		/* page size */
-		var size = OAT.Dom.create("input");
-		size.setAttribute("type","text");
-		size.setAttribute("size","3");
-		size.value = f.pageSize;
-		OAT.Bindings.bindString(size,f,"pageSize");
-		var text = OAT.Dom.text("Page size");
-		self.addTable(text,size);
 		
-		/* datasource */
-		var t = OAT.Dom.text("Data binding");
-		self.addTable(t);
-		var ds = OAT.Dom.create("span");
-		switch (f.ds.type) {
-			case 0: ds.innerHTML = "[none] "; break;
-			case 1: ds.innerHTML = "SQL "; break;
-			case 2: ds.innerHTML = "WSDL "; break;
-		}
-		var ds_btn = OAT.Dom.create("input");
-		ds_btn.setAttribute("type","button");
-		ds_btn.value = "edit";
-		var text = OAT.Dom.text("Type");
-		var ds_div = OAT.Dom.create("div");
-		ds_div.appendChild(ds);
-		ds_div.appendChild(ds_btn);
-		self.addTable(text,ds_div);
-		OAT.Dom.attach(ds_btn,"click",function(){DS.readBinding(f);});
-		
-		/* field bindings */
-		if (f.ds.type != 0) {
-			var cnt_select = OAT.Dom.create("select");
-			for (var j=0;j<=f.inputFields.length;j++) {
-				OAT.Dom.option(j,j,cnt_select);
-				if (j == f.fieldBinding.selfFields.length) { cnt_select.selectedIndex = j; }
-			}
-			var text = OAT.Dom.text("Bound fields");
-			self.addTable(text,cnt_select);
-			/* count change reference */
-			var fieldCountRef = self.fieldCountRef(cnt_select,f);
-			OAT.Dom.attach(cnt_select,"change",fieldCountRef);
-
-			/* actual field bindings */
-			var fb = f.fieldBinding;
-			for (var i=0;i<fb.selfFields.length;i++) {
-				var pair = self.createFieldPair(form,i);
-				self.addTable(pair[0],pair[1]);
-			}
-		}
-		
+		self.tableIndex = 2;
 		/* css props */
 		var t = OAT.Dom.text("Appearance");
 		self.addTable(t);
-		var elm = f.div;
+		var elm = self.obj.base;
 		var text = OAT.Dom.text("BG color");
 		var color = OAT.Dom.style(elm,"backgroundColor");
 		var c1 = OAT.Dom.create("div",{cssFloat:"right",styleFloat:"right",width:"16px",height:"8px",margin:"3px",backgroundColor:color,border:"1px solid #000",cursor:"pointer",overflow:"hidden"});
@@ -195,26 +132,36 @@ function Toolbox(obj) {
 		self.addTable(text,font.div);
 		OAT.Bindings.bindCombo(font,elm.style,"fontSize");
 
-		/* remove */
-		if (form.div != obj.base) {
-			var del = OAT.Dom.create("a",{marginTop:"3px"});
-			del.setAttribute("href","#");
-			del.innerHTML = "remove";
-			OAT.Dom.attach(del,"click",function(){obj.delForm(f);});
-			self.addTable(del);
-		}
-		
 		/* if needed, resize property window */
-		var tableW = OAT.Dom.getWH(self.table)[0];
+		var tableW = OAT.Dom.getWH(self.tables[self.tableIndex])[0];
 		var divW = parseInt(self.win.content.style.width);
 		if (tableW > divW) { self.win.content.style.width = tableW + "px"; }
+	}
+	
+	this.container = function(o,label,targetO,targetP) {
+		var t = OAT.Dom.text(label);
+		var cont_select = OAT.Dom.create("select");
+		var opt = OAT.Dom.option("",false,cont_select);
+		opt.cont = false;
+		for (var i=0;i<self.obj.objects.length;i++) {
+			var cont = self.obj.objects[i];
+			if (cont.name == "container") { 
+				var opt = OAT.Dom.option(cont.properties[0].value,-1,cont_select); 
+				opt.cont = cont;
+			}
+			if (cont == targetO[targetP]) { cont_select.selectedIndex = cont_select.childNodes.length-1; }
+		}
+		OAT.Dom.attach(cont_select,"change",function(){
+			targetO[targetP] = cont_select.childNodes[cont_select.selectedIndex].cont;
+		});
+		self.addTable(t,cont_select);
 	}
 	
 	this.showObject = function(object) {
 		var o = object;
 		self.clear();
 		self.name.innerHTML = OAT.FormObjectNames[o.name];
-		self.createTable();
+		self.tableIndex = 0;
 		var hid = OAT.Dom.create("input");
 		hid.setAttribute("type","checkbox");
 		hid.checked = (o.hidden == "1" ? true : false);
@@ -231,6 +178,18 @@ function Toolbox(obj) {
 			OAT.Dom.attach(inp,"keyup",function() {o.setValue(inp.value);} )
 			self.addTable(text,inp);
 		}
+		/* container */
+		if (o.name != "container") { self.container(o,"Parent container",o,"parentContainer"); }
+		/* empty */
+		if (o.datasources.length) {
+			var t = OAT.Dom.text("When empty data arrives");
+			var emptysel = OAT.Dom.create("select");
+			OAT.Dom.option("Do nothing",0,emptysel);
+			OAT.Dom.option("Clear contents",1,emptysel);
+			emptysel.selectedIndex = o.empty;
+			OAT.Bindings.bindSelect(emptysel,o,"empty");
+			self.addTable(t,emptysel);
+		}
 		if (o.properties.length) {
 			var t = OAT.Dom.text("Properties");
 			self.addTable(t);
@@ -241,11 +200,40 @@ function Toolbox(obj) {
 			var text = OAT.Dom.text(p.name);
 			switch (p.type) {
 				case "string":
+					if (p.variable) {
+						var cnt = OAT.Dom.create("select");
+						for (var j=1;j<11;j++) { OAT.Dom.option(j,j,cnt); }
+						cnt.selectedIndex = p.value.length-1;
+						OAT.Dom.attach(cnt,"change",function(){ 
+							var newc = parseInt($v(cnt));
+							var oldc = p.value.length;
+							if (newc != oldc) { 
+								p.oncountchange(oldc,newc); 
+								self.showObject(o);
+							}
+						});
+						self.addTable(text,cnt);
+						var gen = function(index,input) {
+							return function() { p.onchange(index,$v(input)); }
+						}
+						for (var j=0;j<p.value.length;j++) {
+							/* all values */
+							var input = OAT.Dom.create("input");
+							input.setAttribute("size","14");
+							input.value = p.value[j];
+							OAT.Bindings.bindString(input,p.value,j);
+							var ref = gen(j,input);
+							OAT.Dom.attach(input,"keyup",ref);
+							var text = OAT.Dom.text("#"+(j+1));
+							self.addTable(text,input);
+						}
+					} else {
 					var input = OAT.Dom.create("input");
 					input.setAttribute("size","14");
 					input.value = p.value;
 					OAT.Bindings.bindString(input,p,"value");
 					self.addTable(text,input);
+					}
 				break;
 				case "bool":
 					var input = OAT.Dom.create("input");
@@ -285,14 +273,9 @@ function Toolbox(obj) {
 					self.addTable(text,input);
 				break;
 
-				case "form":
-					var input = OAT.Dom.create("select");
-					OAT.Dom.option("","",input);
-					for (var j=0;j<self.obj.forms.length;j++) {
-						var f = self.obj.forms[j];
-						if (f != o.form) { OAT.Dom.option(f.toString(),f,input); }
-						if (f == p.value) { input.selectedIndex = j; }
-					}
+				case "datasource":
+					if (!p.value && self.obj.datasources.length) { p.value = self.obj.datasources[0]; }
+					var input = self.obj.createDSOnlySelect(p.value);
 					OAT.Bindings.bindSelect(input,p,"value");
 					self.addTable(text,input);
 				break;
@@ -313,47 +296,113 @@ function Toolbox(obj) {
 					OAT.Dom.attach(input2,"click",browseRef);
 					self.addTable(text,input);
 				break;
+				
+				case "container":
+					self.container(o,p.name,p,"value");
+				break;
 			} /* property type switch */
 		} /* for all properties */
+
+		self.tableIndex = 1;
+
 		/* datasources */
 		if (o.datasources.length) {
 			var t = OAT.Dom.text("Datasources");
 			self.addTable(t);
 		}
+		if (o.allowMultipleDatasources) {
+			var text = OAT.Dom.text("Number of used datasources");
+			var dssel = OAT.Dom.create("select");
+			for (var i=1;i<=self.obj.datasources.length;i++) {
+				OAT.Dom.option(i,i,dssel);
+			}
+			if (o.datasources.length <= self.obj.datasources.length) {
+				dssel.selectedIndex = o.datasources.length-1;
+			}
+			self.addTable(text,dssel);
+			OAT.Dom.attach(dssel,"change",function(){
+				var c = $v(dssel);
+				if (c < o.datasources.length) {
+					/* easy - remove redundant datasources */
+					o.datasources.length = c;
+				} else {
+					/* difficult - copy first ds to suit current number */
+					for (var i=o.datasources.length;i<c;i++) {
+						var newds = {ds:false,fieldSets:[]};
+						for (var j=0;j<o.datasources[0].fieldSets.length;j++) {
+							var fs = o.datasources[0].fieldSets[j];
+							newds.fieldSets.push({name:fs.name,names:[],realIndexes:[],variable:fs.variable,columnIndexes:(fs.variable ? [] : [-1])});
+						}
+						o.datasources.push(newds);
+					} /* for all new ds */
+				} /* increase number of ds */
+				/* redraw */
+				self.showObject(o);
+			}); /* reference */
+		}
+		
+		var getDSref = function(select,ds) {
+			return function() {
+				var opt = select.childNodes[select.selectedIndex];
+				ds.ds = opt.ds;
+				/* erase all set fields */
+				for (var i=0;i<ds.fieldSets.length;i++) {
+					var fs = ds.fieldSets[i];
+					fs.names = [];
+					fs.realIndexes = [];
+					fs.columnIndexes = (fs.variable ? [] : [-1]);
+				}
+				/* redraw */
+				self.showObject(o);
+			}
+		}
+		
 		for (var i=0;i<o.datasources.length;i++) {
+			/* one datasource set */
 			var ds = o.datasources[i];
-			var t = OAT.Dom.text(ds.name);
-			var colList = o.form.outputFields;
-			if (ds.variable) {
+			if (!ds.ds && !i && self.obj.datasources.length) { ds.ds = self.obj.datasources[0]; }
+			var text = OAT.Dom.text("Datasource");
+			var s = self.obj.createDSOnlySelect(ds.ds);
+			self.addTable(text,s);
+			var ref = getDSref(s,ds);
+			OAT.Dom.attach(s,"change",ref);
+			
+			var fieldSets = ds.fieldSets;
+			for (var ii=0;ii<fieldSets.length;ii++) {
+				var fs = fieldSets[ii];
+				var t = OAT.Dom.text(fs.name);
+				var colList = (ds.ds ? ds.ds.outputFields : []);
+				if (fs.variable) {
 				/* variable count datasource */
 				var cnt_select = OAT.Dom.create("select");
 				for (var j=0;j<11;j++) {
 					OAT.Dom.option(j,j,cnt_select);
-					if (j == ds.names.length) { cnt_select.selectedIndex = j; }
+						if (j == fs.names.length) { cnt_select.selectedIndex = j; }
 				}
 				self.addTable(t,cnt_select);
 				/* count change reference */
-				var dsCountRef = self.dsCountRef(cnt_select,ds,o);
-				OAT.Dom.attach(cnt_select,"change",dsCountRef);
+					var fsCountRef = self.fsCountRef(cnt_select,fs,o);
+					OAT.Dom.attach(cnt_select,"change",fsCountRef);
 				
 				/* actual values */
-				for (var j=0;j<ds.names.length;j++) {
+					for (var j=0;j<fs.names.length;j++) {
 					var text = OAT.Dom.text("#"+(j+1)+" name");
 					var name = OAT.Dom.create("input");
-					name.setAttribute("type","text");
-					name.setAttribute("size","16");
-					name.value = ds.names[j];
-					OAT.Bindings.bindString(name,ds.names,j);
+						name.type = "text";
+						name.size = "16";
+						name.value = fs.names[j];
+						OAT.Bindings.bindString(name,fs.names,j);
 					self.addTable(text,name);
 					
 					var text = OAT.Dom.text("#"+(j+1)+" value");
 					var select = OAT.Dom.create("select");
 					OAT.Dom.option("","-1",select);
 					for (var k=0;k<colList.length;k++) { 
-						OAT.Dom.option(colList[k],k,select);
-						if (k == ds.columnIndexes[j]) { select.selectedIndex = k+1; }
+							var l = (ds.ds.outputLabels[k] ? ds.ds.outputLabels[k] : colList[k]);
+							OAT.Dom.option(l,k,select);
+							if (k == fs.columnIndexes[j]) { select.selectedIndex = k+1; }
 					}
-					OAT.Bindings.bindSelect(select,ds.columnIndexes,j);
+						OAT.Bindings.bindSelect(select,fs.columnIndexes,j);
 					self.addTable(text,select);
 				}
 			} else {
@@ -361,15 +410,18 @@ function Toolbox(obj) {
 				var select = OAT.Dom.create("select");
 				OAT.Dom.option("","-1",select);
 				for (var j=0;j<colList.length;j++) { 
-					OAT.Dom.option(colList[j],j,select);
-					if (j == ds.columnIndexes[0]) { select.selectedIndex = j+1; }
+						var l = (ds.ds.outputLabels[j] ? ds.ds.outputLabels[j] : colList[j]);
+						OAT.Dom.option(l,j,select);
+						if (j == fs.columnIndexes[0]) { select.selectedIndex = j+1; }
 				}
-				OAT.Bindings.bindSelect(select,ds.columnIndexes,0);
+					OAT.Bindings.bindSelect(select,fs.columnIndexes,0);
 				self.addTable(t,select);
-			}
-		}
+				} /* static fieldset */
+			} /* for all fieldsets */
+		} /* for all datasources */
 		
 		/* css */
+		self.tableIndex = 2;
 		if (o.css.length) {
 			var t = OAT.Dom.text("Appearance");
 			self.addTable(t);
@@ -413,16 +465,30 @@ function Toolbox(obj) {
 		}
 		
 		/* delete */
+		self.tableIndex = 0;
 		var del = OAT.Dom.create("a",{marginTop:"3px"});
 		del.setAttribute("href","#");
 		del.innerHTML = "remove";
 		var delRef = function(event) {
 			o.deselect();
+			obj.layersObj.removeLayer(o.elm);
 			OAT.Dom.unlink(o.elm);
-			var index = -1;
-			for (var i=0;i<obj.objects.length;i++) if (obj.objects[i] == o) { index = i; }
+			var index = obj.objects.find(o);
 			obj.objects.splice(index,1);
-			self.showForm(o.form); /* show form */
+			/* object may be referenced as parent control or user input... */
+			for (var i=0;i<obj.objects.length;i++) {
+				var test = obj.objects[i];
+				if (test.parentControl == o) { test.parentControl = false; }
+			}
+			for (var i=0;i<obj.datasources.length;i++) {
+				var ds = obj.datasources[i];
+				for (var j=0;j<ds.fieldBinding.types.length;j++) {
+					if (ds.fieldBinding.masterDSs[j] == o) { 
+						ds.fieldBinding.types[j] = 2; /* change to 'ask at runtime' */
+					} /* if this control */
+				} /* all bindings */
+			} /* all ds */
+			self.showForm(); /* show form */
 		}
 		OAT.Dom.attach(del,"click",delRef);
 		self.addTable(del);
@@ -431,8 +497,8 @@ function Toolbox(obj) {
 	this.showMulti = function() {
 		self.clear();
 		self.name.innerHTML = "[multiple]";
-		self.createTable();
 		
+		self.tableIndex = 0;
 		var alignTop = OAT.Dom.create("a",{display:"block"});
 		alignTop.setAttribute("href","#");	alignTop.innerHTML = "align to top";
 		self.addTable(alignTop);
@@ -461,7 +527,7 @@ function Toolbox(obj) {
 				for (var j=0;j<obj.objects.length;j++) if (obj.objects[j] == o) { index = j; }
 				obj.objects.splice(index,1);
 			}
-			self.showForm(o.form); /* show form */
+			self.showForm(); /* show form */
 		}
 		OAT.Dom.attach(del,"click",delRef);
 		self.addTable(del);
@@ -469,34 +535,15 @@ function Toolbox(obj) {
 	
 	/************************************************************/
 	
-	this.fieldCountRef = function(cnt_select,form) {
+	this.fsCountRef = function(cnt_select,fs,o) { 
 		return function() {
-			var fb = form.fieldBinding;
-			var oldLen = fb.selfFields.length;
-			var newLen = parseInt(cnt_select.value);
-			fb.selfFields.length = newLen; 
-			fb.masterForms.length = newLen; 
-			fb.masterFields.length = newLen; 
-			for (var j=0;j<newLen;j++) {
+			var oldLen = fs.names.length;
+			fs.names.length = parseInt(cnt_select.value); 
+			fs.columnIndexes.length = parseInt(cnt_select.value); 
+			for (var j=0;j<fs.names.length;j++) {
 				if (j >= oldLen) { 
-					fb.selfFields[j] = 0;
-					fb.masterForms[j] = false;
-					fb.masterFields[j] = "";
-				}
-			}
-			self.showForm(form); 
-		}
-	}
-	
-	this.dsCountRef = function(cnt_select,ds,o) { 
-		return function() {
-			var oldLen = ds.names.length;
-			ds.names.length = parseInt(cnt_select.value); 
-			ds.columnIndexes.length = parseInt(cnt_select.value); 
-			for (var j=0;j<ds.names.length;j++) {
-				if (j >= oldLen) { 
-					ds.names[j] = "";
-					ds.columnIndexes[j] = -1;
+					fs.names[j] = "";
+					fs.columnIndexes[j] = -1;
 				}
 			}
 			self.showObject(o); 
@@ -515,96 +562,5 @@ function Toolbox(obj) {
 		}
 	}
 
-	
-	this.createFieldPair = function(form,index) {
-		/* first part - list of own input fields */
-		var fb = form.fieldBinding;
-		var s = OAT.Dom.create("select");
-		for (var i=0;i<form.inputFields.length;i++) {
-			OAT.Dom.option(form.inputFields[i],i,s);
-			if (fb.selfFields[index] == i) { s.selectedIndex = i; }
-		}
-		OAT.Dom.attach(s,"change",function(){fb.selfFields[index] = parseInt($v(s));});
-		
-		/* second part - list of available other fields, direct input or parametrized values */
-		var div = OAT.Dom.create("div");
-		
-		/* 1.direct value */
-		var d1 = OAT.Dom.create("div");
-		var r1 = OAT.Dom.create("input");
-		r1.type = "radio";
-		r1.name = "radio_"+index;
-		var inp = OAT.Dom.create("input"); 
-		inp.type = "text";
-		inp.size = 40;
-		if (!fb.masterForms[index] && typeof(fb.masterFields[index]) == "string") { 
-			r1.checked = true;
-			inp.value = fb.masterFields[index]; 
-		}
-		OAT.Dom.attach(inp,"keyup",function(){
-			if (!r1.checked) { return; }
-			fb.masterFields[index] = $v(inp);
-		});
-		OAT.Dom.attach(r1,"change",function(){
-			fb.masterForms[index] = false;
-			fb.masterFields[index] = $v(inp);
-		});
-		d1.appendChild(r1);
-		d1.appendChild(inp);
-		
-		/* 2.pick a column */
-		var d2 = OAT.Dom.create("div");
-		var r2 = OAT.Dom.create("input");
-		r2.type = "radio";
-		r2.name = "radio_"+index;
-		if (fb.masterForms[index]) { r2.checked = true; }
-		var sel = OAT.Dom.create("select");
-		var currIndex = -1;
-		for (var i=0;i<self.obj.forms.length;i++) {
-			var f = self.obj.forms[i];
-			if (f != form) {
-				for (var j=0;j<f.outputFields.length;j++) {
-					currIndex++;
-					var name = f.toString()+"."+f.outputFields[j];
-					var o = OAT.Dom.option(name,name,sel);
-					o.masterForm = f;
-					o.masterField = j;
-					if (fb.masterForms[index] == f && fb.masterFields[index] == j) { sel.selectedIndex = currIndex; }
-				}
-			}
-		}
-		var changeRef = function() {
-			if (!r2.checked) { return; }
-			var o = sel.childNodes[sel.selectedIndex];
-			fb.masterForms[index] = o.masterForm;
-			fb.masterFields[index] = o.masterField;
-		}
-		OAT.Dom.attach(r2,"change",changeRef);
-		OAT.Dom.attach(sel,"change",changeRef);
-		d2.appendChild(r2);
-		d2.appendChild(sel);
-		
-		/* 3.parameter */
-		var d3 = OAT.Dom.create("div");
-		var r3 = OAT.Dom.create("input");
-		r3.type = "radio";
-		r3.name = "radio_"+index;
-		var text = OAT.Dom.create("span"); 
-		text.innerHTML = " ask at runtime";
-		if (!fb.masterForms[index] && fb.masterFields[index] == -1) { 
-			r3.checked = true;
-		}
-		OAT.Dom.attach(r3,"change",function(){
-			fb.masterForms[index] = false;
-			fb.masterFields[index] = -1;
-		});
-		d3.appendChild(r3);
-		d3.appendChild(text);
-		
-		div.appendChild(d1);
-		div.appendChild(d2);
-		div.appendChild(d3);
-		return [s,div];
-	}
 	
 } /* Toolbox() */

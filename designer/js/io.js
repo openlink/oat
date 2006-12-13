@@ -12,7 +12,7 @@ var reposition = 0;
 function import_xml(str) {
 	/* load data from saved xml file */
 	var pending_relations = [];
-	var xml = OAT.Xml.getTreeString(str);
+	var xml = OAT.Xml.createXmlDoc(str);
 	var root = xml.documentElement;
 	if (!root) {
 		alert('No data!');

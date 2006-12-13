@@ -1,4 +1,6 @@
-<html>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <!--
 
   $Id$
@@ -26,7 +28,7 @@
 
 	<script type="text/javascript">
 		var toolkitPath = "../oat";
-		var featureList = ["dom","soap","xmla","ajax","dialog","drag","tab",
+		var featureList = ["soap","xmla","ajax","dialog","drag","tab","connection",
 		"tree","ghostdrag","instant","animation","grid","combolist","pivot","layers",
 		"menu","dav","sqlquery","xml","webclip","window","datasource","formobject"];
 	</script>
@@ -39,7 +41,7 @@
 	<title>Query by example tool</title>
 	<link rel="stylesheet" href="styles/style.css" type="text/css" />
 </head>
-<body onload="init()">
+<body>
 
 	<ul id="menu">
 		<li>Design
@@ -83,11 +85,6 @@
 	</ul>
 
 	<div id="webclip"></div>
-
-	<div id="ajax_alert">
-		Ajax call in progress...
-		<div id="ajax_progress"></div>
-	</div>
 
 	<ul id="tabs">
 		<li id="tab_design" class="tab">Design</li>

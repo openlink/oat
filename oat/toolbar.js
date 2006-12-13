@@ -8,8 +8,7 @@
  *  See LICENSE file for details.
  */
 /*
-	t = new OAT.Toolbar();
-	document.body.appendChild(t.div);
+	t = new OAT.Toolbar(div);
 	
 	var i = t.addIcon(twoStates,imagePath,tooltip,callback)  ---  callback(state)
 	var s = t.addSeparator()
@@ -22,11 +21,11 @@
 	CSS: .toolbar .toolbar_icon .toolbar_icon_down .toolbar_separator
 */
 
-OAT.Toolbar = function() {
+OAT.Toolbar = function(div) {
+	var self = this;
 
-	var obj = this;
-	this.div = OAT.Dom.create("div");
-	this.div.className = "toolbar";
+	this.div = $(div);
+	OAT.Dom.addClass(this.div,"toolbar");
 	this.icons = [];
 	this.separators = [];
 	
@@ -40,36 +39,40 @@ OAT.Toolbar = function() {
 		img.setAttribute("src",imagePath);
 		div.appendChild(img);
 		
-		div.toggle = function(event) {
-			div.state++;
-			if (div.state > 1) { div.state = 0; }
-			if (!twoStates) { div.state = 0; }
+		div.toggleState = function(newState) {
+			div.state = newState;
 			div.className = (div.state ? "toolbar_icon toolbar_icon_down" : "toolbar_icon");
 			callback(div.state);
 		}
+		
+		div.toggle = function(event) {
+			var nstate = div.state+1;
+			if (nstate > 1) { nstate = 0; }
+			if (!twoStates) { nstate = 0; }
+			div.toggleState(nstate);
+		}
+		
 		OAT.Dom.attach(div,"click",div.toggle);
-		this.div.appendChild(div);
-		this.icons.push(div);
+		self.div.appendChild(div);
+		self.icons.push(div);
 		return div;
 	}
 	
 	this.addSeparator = function() {
 		var div = OAT.Dom.create("div");
 		div.className = "toolbar_separator";
-		this.div.appendChild(div);
-		this.separators.push(div);
+		self.div.appendChild(div);
+		self.separators.push(div);
 		return div;
 	}
 	
 	this.removeIcon = function(div) {
-		var index = -1;
-		for (var i=0;i<this.icons.length;i++) if (this.icons[i] == div) { index = i; }
-		this.icons.splice(index,1);
+		var index = self.icons.find(div);
+		self.icons.splice(index,1);
 	}
 
 	this.removeSeparator = function(div) {
-		var index = -1;
-		for (var i=0;i<this.separators.length;i++) if (this.separators[i] == div) { index = i; }
+		var index = self.separators.find(div);
 		this.separators.splice(index,1);
 	}
 	

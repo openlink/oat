@@ -25,25 +25,18 @@ function Palette(obj) {
 		self.items.push([div,type]);
 	}
 	
-	this.getAddRef = function(form,index) {
+	this.getAddRef = function(index) {
 		return function(target,x,y) {
 			var type = self.items[index][1];
-			var o = obj.addObject(form,type,x,y);
+			var o = obj.addObject(type,x,y);
 			if (o.userSet) { o.setValue(type); }
-			if (type == "twostate" || type == "grid") {
-				var ds = o.datasources[0];
-				for (var i=0;i<form.outputFields.length;i++) {
-					ds.names.push(form.outputFields[i]);
-					ds.columnIndexes.push(i);
-				}
-			}
 			obj.toolbox.showObject(o);
 		}
 	}
 	
-	this.createDrags = function(form) {
+	this.createDrags = function() {
 		for (var i=0;i<self.items.length;i++) {
-			obj.gd.addSource(self.items[i][0],function(elm){ elm.style.fontWeight="bold";elm.style.zIndex = 3;},self.getAddRef(form,i));
+			obj.gd.addSource(self.items[i][0],function(elm){ elm.style.fontWeight="bold";elm.style.zIndex = 10;},self.getAddRef(i));
 		}
 	} /* Palette::createDrags() */
 }

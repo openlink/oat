@@ -11,7 +11,7 @@ function Columns(obj) {
 	var self = this;
 	this.obj = obj;
 	this.columns = [];
-	this.win = new OAT.Window({min:0,max:0,close:1,height:0,width:180,x:-15,y:350,title:"Form Columns"});
+	this.win = new OAT.Window({min:0,max:0,close:1,height:0,width:180,x:-15,y:350,title:"Available fields"});
 	this.win.hide = function() {OAT.Dom.hide(self.win.div);};
 	this.win.show = function() {OAT.Dom.show(self.win.div);};
 	this.win.onclose = function() {
@@ -30,23 +30,40 @@ function Columns(obj) {
 	}
 	
 	this.deselect = function() {
-		for (var i=0;i<self.win.content.childNodes.length;i++) {
-			self.win.content.childNodes[i].style.backgroundColor = "transparent";
-			self.win.content.childNodes[i].selected = 0;
+		for (var i=0;i<self.columns.length;i++) {
+			self.columns[i].style.backgroundColor = "transparent";
+			self.columns[i].selected = 0;
 		}
 	}
 	
-	this.createColumns = function(form,arr) {
+	this.createColumns = function() {
 		self.clear();
-		for (var i=0;i<arr.length;i++) {
-			self.addColumn(form,arr[i],i);
+		self.DSSelect = OAT.Dom.create("select");
+		for (var i=0;i<self.obj.datasources.length;i++) {
+			var o = OAT.Dom.option(self.obj.datasources[i].name,i,self.DSSelect);
+		}
+		OAT.Dom.attach(self.DSSelect,"change",function() { self.addColumns(self.DSSelect.selectedIndex); });
+		self.win.content.appendChild(self.DSSelect);
+		self.div = OAT.Dom.create("div");
+		self.win.content.appendChild(self.div);
+		if (self.obj.datasources.length) { self.addColumns(0); }
+	}
+	
+	this.addColumns = function(index) {
+		OAT.Dom.clear(self.div);
+		self.columns = [];
+		var cols = self.obj.datasources[index].outputFields;
+		var labels = self.obj.datasources[index].outputLabels;
+		for (var i=0;i<cols.length;i++) {
+			var l = (labels[i] ? labels[i] : cols[i]);
+			self.addColumn(l,i);
 		}
 	}
 	
-	this.addColumn = function(form, name, index) { 
+	this.addColumn = function(name, index) { 
 		var div = OAT.Dom.create("div",{cursor:"pointer"});
 		div.innerHTML = name;
-		self.win.content.appendChild(div);
+		self.div.appendChild(div);
 		self.columns.push(div);
 		div.index = index;
 
@@ -68,7 +85,7 @@ function Columns(obj) {
 		OAT.Dom.attach(div,"click",clickRef);
 
 		var process = function(elm) {
-			elm.style.zIndex = 3;
+			elm.style.zIndex = 10;
 			elm.style.fontWeight="bold";
 			if (div.selected) { elm.firstChild.innerHTML = '[selected column(s)]'; }
 		}
@@ -84,14 +101,15 @@ function Columns(obj) {
 			}
 			var cnt = 0;
 			var newObjs = [];
-			for (var i=0;i<self.win.content.childNodes.length;i++) if (self.win.content.childNodes[i].selected) {
-				var name = self.win.content.childNodes[i].innerHTML;
-				var index = self.win.content.childNodes[i].index;
-				var o1 = obj.addObject(form,"label",x,y+cnt*30);
-				var o2 = obj.addObject(form,"input",x+100,y+cnt*30);
+			for (var i=0;i<self.columns.length;i++) if (self.columns[i].selected) {
+				var name = self.columns[i].innerHTML;
+				var index = self.columns[i].index;
+				var o1 = obj.addObject("label",x,y+cnt*30);
+				var o2 = obj.addObject("input",x+100,y+cnt*30);
 				o1.setValue([name]);
 				o2.setValue(["["+name+"]"]);
-				o2.datasources[0].columnIndexes[0] = index;
+				o2.datasources[0].fieldSets[0].columnIndexes[0] = index;
+				o2.datasources[0].ds = self.obj.datasources[self.DSSelect.selectedIndex];
 				newObjs.push(o1);
 				newObjs.push(o2);
 				cnt++;
@@ -105,9 +123,8 @@ function Columns(obj) {
 		obj.gd.addSource(div,process,addRef);
 		
 		var dblClickRef = function(event) {
-			var coords = form.getCoords();
-			var formCoords = OAT.Dom.position(form.div);
-			addRef(false,coords[0]+formCoords[0],coords[1]+formCoords[1]);
+			var coords = self.obj.getCoords();
+			addRef(false,coords[0],coords[1]);
 		}
 
 		OAT.Dom.attach(div,"dblclick",dblClickRef); /* add to form */

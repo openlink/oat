@@ -31,7 +31,7 @@
 	<head>
 		<script type="text/javascript">
 			var toolkitPath = "/DAV/JS/oat";
-			var featureList = ["grid","dom","ajax","xmla","soap","dialog","crypto","datasource","formobject","webclip"];
+			var featureList = ["grid","ajax","xmla","soap","dialog","crypto","datasource","formobject","webclip"];
 		</script>
 		<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>
 		<script type="text/javascript">
@@ -46,9 +46,15 @@
 				var q = $("query").innerHTML;
 				OAT.Dom.unlink("query");
 
-				var ds = new OAT.DataSource(50);
-				ds.init();
-				ds.setQuery(OAT.Dom.fromSafeXML(q));
+				var conn = new OAT.Connection(OAT.ConnectionData.TYPE_XMLA);
+				conn.options.user = OAT.Crypto.base64d(user);
+				conn.options.password = OAT.Crypto.base64d(password);
+				conn.options.dsn = dsn;
+				conn.options.endpoint = endpoint;
+
+				var ds = new OAT.DataSource(OAT.DataSourceData.TYPE_SQL);
+				ds.connection = conn;
+				ds.options.query = OAT.Dom.fromSafeXML(q);
 				
 				var nav = new OAT.FormObject["nav"](30,0,0);
 				var grid = new OAT.FormObject["grid"](30,0,0);
@@ -74,10 +80,6 @@
 					ds.advanceRecord(value-1); 
 				});
 				
-				OAT.Xmla.user = OAT.Crypto.base64d(user);
-				OAT.Xmla.password = OAT.Crypto.base64d(password);
-				OAT.Xmla.dsn = dsn;
-				OAT.Xmla.endpoint = endpoint;
 				
 				var cont = function() {
 					ds.advanceRecord(0);
@@ -90,8 +92,8 @@
 					var d = new OAT.Dialog("Credentials","credentials",{modal:1,width:300});
 					d.show();
 					var ref = function() {
-						OAT.Xmla.user = $v("cred_user");
-						OAT.Xmla.password = $v("cred_password");
+						conn.options.user = $v("cred_user");
+						conn.options.password = $v("cred_password");
 						d.hide();
 						cont();
 					}

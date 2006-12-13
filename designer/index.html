@@ -1,4 +1,6 @@
-<html>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <!--
 
   $Id$
@@ -28,7 +30,7 @@
 	<link rel="stylesheet" type="text/css" href="styles/style.css" />     
 	<script type="text/javascript">
 		var toolkitPath = "../oat";
-		var featureList = ["dom","ajax","soap","xmla","drag","dialog","instant","menu","dav","sqlquery","xml",
+		var featureList = ["ajax","soap","xmla","drag","dialog","instant","menu","dav","sqlquery","xml",
 		"webclip","ghostdrag","grid","layers"];
 	</script>
 	<script type="text/javascript" src="../oat/loader.js"></script>  <!-- globalni nastaveni -->
@@ -42,7 +44,7 @@
 	
 </head>
 
-<body onload="load()">
+<body onload="init()">
 	<div id="root">
 		<div id="bar"> <!-- navigacni lista nahore -->
 		<ul id="menu">
@@ -94,10 +96,6 @@
 
 		<div id="webclip"></div>
 		
-		<div id="ajax_alert">
-			Ajax call in progress...
-			<div id="ajax_progress"></div>
-		</div>
 		<div id="shadow"> <!-- stin listy na jejim spodku -->
 		</div>
 		<div id="table_admin">

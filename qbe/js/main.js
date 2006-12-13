@@ -19,7 +19,9 @@ var pivot_gd = false;
 var pivot_data = {headerRow:[],dataRows:[],headerRowIndexes:[],headerColIndexes:[],dataColumnIndex:-1,filterIndexes:[],query:""};
 var lastQuery = false;
 var total_catalog_count = 0;
-var datasource = new OAT.DataSource(50);
+var datasource = false; 
+var layerobj =  false;
+var connection = false;
 
 var ORDER = ["NO","ASC","DESC"];
 
@@ -162,6 +164,10 @@ var Connection = {
 		OAT.Xmla.dsn = $v("dsn");
 		OAT.Xmla.user = $v("user");
 		OAT.Xmla.password = $v("password");
+		connection.options.user = OAT.Xmla.user;
+		connection.options.password = OAT.Xmla.password;
+		connection.options.dsn = OAT.Xmla.dsn;
+		connection.options.endpoint = OAT.Xmla.endpoint;
 		var h = $('options_type_http');
 		var d = $('options_type_dav');
 		h.checked = ($v('login_put_type') == "http");
@@ -218,7 +224,7 @@ var Connection = {
 				}
 			}
 		}
-		OAT.Soap.command(OAT.Xmla.endpoint, typeRef, cBack, OAT.Ajax.TYPE_TEXT, OAT.Xmla.discoverHeader);
+		OAT.Soap.command(OAT.Xmla.endpoint, typeRef, cBack, OAT.Ajax.TYPE_XML, OAT.Xmla.discoverHeader);
 	
 		/* discover catalogs */
 		var ref=function(pole) {
@@ -396,7 +402,8 @@ function read_tables(catalog_name,pole) {
 	total_catalog_count--;
 	
 	if (!total_catalog_count) { /* create tree after last catalog arrived */
-		OAT.Tree.assign(dialogs.tablelist.list,"../images","gif",1);
+		var t = new OAT.Tree({imagePath:"../images"});
+		t.assign(dialogs.tablelist.list,1);
 		/* also fix grid in ie here */
 		grid_in.ieFix();
 	}
@@ -406,8 +413,8 @@ function query(q) {
 	/* send query */
 	tab.go(2);
 	lastQuery = q;
-	datasource.init();
-	datasource.setQuery(q);
+	datasource.connection = connection;
+	datasource.options.query = q;
 	var s = ($("options_dolimit").checked ? parseInt($v("options_limit")) : 0);
 	datasource.pageSize = s;
 	datasource.advanceRecord(0);
@@ -596,11 +603,11 @@ var Columns = {
 			
 			var select_operator = OAT.Dom.create("select",{font:"menu"});
 			OAT.Dom.option("=","=",select_operator);
-			OAT.Dom.option("&lt;&gt;","&lt;&gt;",select_operator);
-			OAT.Dom.option("&gt;","&gt;",select_operator);
-			OAT.Dom.option("&gt;=","&gt;=",select_operator);
-			OAT.Dom.option("&lt;","&lt;",select_operator);
-			OAT.Dom.option("&lt;=","&lt;=",select_operator);
+			OAT.Dom.option("&lt;&gt;","<>",select_operator);
+			OAT.Dom.option("&gt;",">",select_operator);
+			OAT.Dom.option("&gt;=",">=",select_operator);
+			OAT.Dom.option("&lt;","<",select_operator);
+			OAT.Dom.option("&lt;=","<=",select_operator);
 			OAT.Dom.option("LIKE","LIKE",select_operator);
 			OAT.Dom.option("NOT LIKE","NOT LIKE",select_operator);
 			var opts = select_operator.getElementsByTagName("option");
@@ -755,17 +762,15 @@ var Columns = {
 }
 
 function init() {
+	/* datasource */
+	datasource = new OAT.DataSource(OAT.DataSourceData.TYPE_SQL);
+	connection = new OAT.Connection(OAT.ConnectionData.TYPE_XMLA);
+	/* layers */
+	layerObj = new OAT.Layers(100);
+
 	/* xslt path */
 	$("options_xslt").value = OAT.Preferences.xsltPath;
 	
-	/* ajax */
-	dialogs.ajax = new OAT.Dialog("Please wait","ajax_alert",{width:240,modal:0,zIndex:1001,resize:0});
-	dialogs.ajax.ok = dialogs.ajax.hide;
-	dialogs.ajax.cancel = dialogs.ajax.hide;
-	OAT.Ajax.setCancel(dialogs.ajax.cancelBtn);
-	OAT.Ajax.setStart(function() { if ($("options_ajax").checked) {dialogs.ajax.show();} });
-	OAT.Ajax.setEnd(dialogs.ajax.hide);
-
 	/* ajax http errors */
 	$("options_http").checked = (OAT.Preferences.httpError == 1 ? true : false);
 	OAT.Ajax.httpError = OAT.Preferences.httpError;
@@ -889,7 +894,11 @@ function init() {
 	datasource.bindRecord(n.bindRecordCallback);
 	datasource.bindRecord(g.bindRecordCallback);
 	datasource.bindPage(g.bindPageCallback);
-	datasource.bindHeader(g.bindHeaderCallback);
+	var ref = function(h) {
+		pivot_data.headerRow = h;
+		g.bindHeaderCallback(h);
+	}
+	datasource.bindHeader(ref);
 	OAT.Dom.attach(n.first,"click",function() { datasource.advanceRecord(0); });
 	OAT.Dom.attach(n.prevp,"click",function() { datasource.advanceRecord(datasource.recordIndex - datasource.pageSize); });
 	OAT.Dom.attach(n.prev,"click",function() { datasource.advanceRecord("-1"); });
@@ -938,8 +947,7 @@ function init() {
 			user:OAT.Xmla.user,
 			pass:OAT.Xmla.password,
 			pathDefault:"/DAV/home/"+OAT.Xmla.user+"/",
-			file_ext:'xml',
-			onConfirmClick:function() { return xml;}
+				file_ext:'xml'
 		};
 		OAT.WebDav.open(options);
 		}
@@ -1007,7 +1015,7 @@ function init() {
 	/* DAV Browser init */
 	var options = {
 		imagePath:'../images/',
-		imageExt:'gif'
+		imageExt:'png'
 	};
 	OAT.WebDav.init(options);
 	
