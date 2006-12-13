@@ -2,9 +2,14 @@
 <p>Displays a calendar for date picking.</p>
 <hr/>
 
-<h3>Functions</h3>
+<h3>Objects</h3>
 <ul>
-	<li><a href="#show">OAT.Calendar.show(x, y, callback, [date])</a></li>
+	<li><a href="#calendar">OAT.Calendar()</a></li>
+</ul>
+
+<h3>Methods</h3>
+<ul>
+	<li><a href="#show">OAT.Calendar::show(x, y, callback, [date])</a></li>
 </ul>
 
 <h3>CSS classes</h3>
@@ -18,7 +23,10 @@
 
 <hr/>
 
-<h3><a name="show">OAT.Calendar.show(x, y, callback, [date])</a></h3>
+<h3><a name="calendar">OAT.Calendar()</a></h3>
+<p>Instantiates the <em>OAT.Calendar</em> object</p>
+
+<h3><a name="show">OAT.Calendar::show(x, y, callback, [date])</a></h3>
 <p>Shows the calendar. It will appear at [<em>x</em>, <em>y</em>]. If <em>date</em> is specified, 
 it will be pre-selected. All dates are in form of [year, month, day], starting from 1. When user selects a date, a 
 <em>callback</em>(date) will be called.</p>
@@ -33,10 +41,11 @@ it will be pre-selected. All dates are in form of [year, month, day], starting f
 </ul>
 
 <p class="code">
-OAT.Calendar.dayNames = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]; <br/>
-OAT.Calendar.monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]; <br/>
-OAT.Calendar.specialDays = [0,0,0,0,0,1,1]; <br/>
-OAT.Calendar.dayZeroIndex = 6; <br/>
-OAT.Calendar.weekStartIndex = 6; <br/>
-OAT.Calendar.show(100, 100, function(){});
+var c = new OAT.Calendar();<br/>
+c.dayNames = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]; <br/>
+c.monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]; <br/>
+c.specialDays = [0,0,0,0,0,1,1]; <br/>
+c.dayZeroIndex = 6; <br/>
+c.weekStartIndex = 6; <br/>
+c.show(100, 100, function(){});
 </p>

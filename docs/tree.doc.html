@@ -2,20 +2,46 @@
 <p>Converts &lt;ul&gt; into interactive tree.</p>
 <hr/>
 
-<h3>Functions</h3>
+<h3>Objects</h3>
 <ul>
-	<li><a href="#assign">OAT.Tree.assign(div, dir, ext, reformat, classNamePrefix)</a></li>
+	<li><a href="#tree">OAT.Tree(optionsObject)</a></li>
+</ul>
+
+<h3>Methods</h3>
+<ul>
+	<li><a href="#assign">OAT.Tree::assign(listElement, collapse)</a></li>
 </ul>
 
 
 <hr/>
 
-<h3><a name="assign">OAT.Tree.assign(div, dir, ext, reformat, classNamePrefix)</a></h3>
-<p>This converts a list into an interactive tree. <em>Div</em> specifies a container in which your list lives. <em>Dir</em> 
-is a directory containing important images, <em>ext</em> is their extension and <em>reformat</em> is a boolean value, 
-specifying whether do you want to reformat (i.e. collapse all deep levels) the tree. 
-Every level of resulting tree (i.e. every UL and LI) is then assigned a class name in format of 
-<code>classNamePrefix_ul|li_depth</code>.
-Example:</p>
+<h3><a name="tree">OAT.Tree(optionsObject)</a></h3>
+<p><em>optionsObject</em> may contain any of the following:</p>
+<ul>
+	<li>imagePath - path where all used images live</li>
+	<li>imagePrefix - prefix to all images</li>
+	<li>ext - image name extension</li>
+	<li>labelOpens - boolean, specifying whether clicking label opens branch</li>
+	<li>onlyOneOpened - boolean, specifying whether only one branch can be opened at a time</li>
+</ul>
 
-<p class="code">OAT.Tree.assign("myDiv", "images", "png", true, "myTree");</p>
+<h3><a name="assign">OAT::Tree::assign(listElement, collapse)</a></h3>
+<p>This converts a list into an interactive tree. <em>listElement</em> specifies an &lt;ul&gt; element in which your list lives. 
+Argument <em>collapse</em> toggles initial collapsing of whole tree.</p>
+<p>Tree data structure can be accessed and modified. See following simple examples for usage:</p>
+
+<p class="code">
+var t1 = new OAT.Tree({imagePath:"images",imagePrefix:"",ext:"gif"}); // will take images from <em>images/Tree_*.gif</em><br/>
+var t2 = new OAT.Tree({imagePath:"images",imagePrefix:"prefix",ext:"png"}); // will take images from <em>images/Tree_prefix_*.png</em><br/>
+t1.assign("myUL1", true); // collapsed<br/> 
+t2.assign("myUL2", false); // expanded<br/>
+<br/>
+var node1 = t1.tree.children[0];<br/>
+var node2 = t2.tree.children[1];<br/>
+<br/>
+node2.appendChild(node1);<br/>
+node1.setLabel("newLabel");<br/>
+node2.expand();<br/>
+node1.createChild("newLabel", true); // second argument means that new child is a node rather than leaf<br/>
+node2.deleteChild(node1);
+</p>
