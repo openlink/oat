@@ -103,7 +103,6 @@ OAT.PieChart = function(div,optObj) {
 		return end_angle;
 	}
 	this.draw = function() {
-		if (OAT.Dom.isIE()) { return; }
 		var w = self.options.width ? self.options.width : "100%";
 		var h = self.options.height ? self.options.height : "100%";
 		var svg = OAT.SVG.canvas(w,h);

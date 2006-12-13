@@ -91,7 +91,6 @@ OAT.LineChart = function(div,optObj) {
 	}
 
 	this.draw = function() {
-		if (OAT.Dom.isIE()) { return; }
 		var dims = OAT.Dom.getWH(self.div);
 		var w = dims[0] - self.options.paddingRight - self.options.paddingLeft;
 		var h = dims[1] - self.options.paddingTop - self.options.paddingBottom;
