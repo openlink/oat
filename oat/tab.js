@@ -78,4 +78,4 @@ OAT.Tab = function(elm) {
 	
 	OAT.Dom.clear(this.element); 
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("tab");

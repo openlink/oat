@@ -220,4 +220,4 @@ OAT.XMLHTTP_supported = function() {
 	var dummy = new OAT.XMLHTTP();
 	return (!dummy.isIframe());
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("ajax");

@@ -57,4 +57,4 @@ OAT.Window = function(optObj,type) {
 	}
 //	OAT.Dom.attach(obj.div,"click",upRef);
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("window");

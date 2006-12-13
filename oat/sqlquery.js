@@ -449,4 +449,4 @@ OAT.SqlQuery = function() {
 		
 	}
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("sqlquery");

@@ -48,4 +48,4 @@ OAT.Layers = {
 	
 }
 OAT.Layers.currentIndex = OAT.Layers.baseOffset;
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("layers");

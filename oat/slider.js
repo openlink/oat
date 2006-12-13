@@ -91,5 +91,6 @@ OAT.Slider = function(something,optObj) {
 	}
 }
 
-OAT.Loader.loadAttacher(OAT.SliderData.init);
-OAT.Loader.pendingCount--;
+OAT.Dom.attach(document,"mousemove",OAT.SliderData.move);
+OAT.Dom.attach(document,"mouseup",OAT.SliderData.up);
+OAT.Loader.featureLoaded("slider");

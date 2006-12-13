@@ -208,4 +208,4 @@ OAT.BarChart = function(div,optObj) {
 	}
 
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("barchart");

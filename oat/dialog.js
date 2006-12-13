@@ -70,4 +70,4 @@ OAT.Dialog = function(title,contentDiv,optObj) {
 	}
 	OAT.Dom.attach(win.div,"keypress",keyPress);
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("dialog");

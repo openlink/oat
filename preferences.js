@@ -16,4 +16,4 @@ OAT.Preferences = {
 	allowDefaultResize:1,
 	allowDefaultDrag:1
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("preferences");

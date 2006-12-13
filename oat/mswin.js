@@ -77,4 +77,4 @@ OAT.MsWin = function(optObj) {
 	this.move.appendChild(this.caption);
 }
 
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("mswin");

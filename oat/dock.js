@@ -146,4 +146,4 @@ OAT.Dock = function(numColumns) {
 	
 	OAT.Dom.attach(document,"mousemove",obj.check);
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("dock");

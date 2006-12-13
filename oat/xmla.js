@@ -437,4 +437,4 @@ OAT.Xmla = {
 		return keys;
 	}
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("xmla");

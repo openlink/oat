@@ -1473,4 +1473,4 @@ OAT.FormObject = {
 	} /* timeline */
 	
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("formobject");

@@ -125,4 +125,4 @@ function GLoadMapsScript()
     
 }
 GLoadMapsScript();
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("gmaps");

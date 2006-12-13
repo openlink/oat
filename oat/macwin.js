@@ -104,4 +104,4 @@ OAT.MacWin = function(optObj) {
 	this.move.appendChild(this.caption);
 }
 
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("macwin");

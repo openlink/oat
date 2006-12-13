@@ -64,4 +64,4 @@ OAT.Panelbar = function(delay) {
 	
 	
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("panelbar");

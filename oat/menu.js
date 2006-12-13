@@ -181,4 +181,4 @@ OAT.Menu = function() {
 		elm.filter = "alpha(opacity=0);";
 	}*/
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("menu");

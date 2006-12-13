@@ -129,4 +129,4 @@ OAT.Xml = {
 		}
 	}
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("xml");

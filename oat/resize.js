@@ -138,5 +138,6 @@ OAT.Resize = {
 	}
 
 }
-OAT.Loader.loadAttacher(OAT.Resize.init);
-OAT.Loader.pendingCount--;
+OAT.Dom.attach(document,"mousemove",OAT.Resize.move);
+OAT.Dom.attach(document,"mouseup",OAT.Resize.up);
+OAT.Loader.featureLoaded("resize");

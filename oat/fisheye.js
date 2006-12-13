@@ -99,4 +99,4 @@ OAT.FishEye = function(optObj) {
 	OAT.Dom.attach(self.div,"mouseout",out);
 	OAT.Dom.attach(self.div,"mousemove",move);
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("fisheye");

@@ -315,4 +315,4 @@ OAT.TlScale = {
 		}
 	}
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("tlscale");

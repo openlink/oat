@@ -48,4 +48,3 @@ function last_include() {
 	}
 }
 setTimeout(last_include,1000);
-OAT.Loader.pendingCount--;

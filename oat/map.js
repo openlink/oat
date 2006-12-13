@@ -444,5 +444,4 @@ OAT.Map = function(something, provider, fix, fixDistance) {
 	}
 
 } /* OAT.Map() */
-
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("map");

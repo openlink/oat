@@ -110,4 +110,4 @@ OAT.Tree = {
 		}
 	}
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("tree");

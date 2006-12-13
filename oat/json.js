@@ -76,4 +76,4 @@ OAT.JSON = {
 		return result;
 	}
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("json");

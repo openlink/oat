@@ -5223,4 +5223,4 @@ VEMap._GetMapFromGUID=function(LA){
     VE_Analytics.LogAPI("VE | APIs","VEMap - GetVersion");return Msn.VE.API.Globals.vecurrentversion;
 }
 ;
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("msapi");

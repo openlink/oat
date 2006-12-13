@@ -54,4 +54,4 @@ OAT.Color = {
 		document.body.appendChild(div);
 	}
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("color");

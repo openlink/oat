@@ -177,4 +177,4 @@ OAT.AnimationStructure = {
 		return [condRef,initRef,stepRef];
 	} /* generate */
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("animation");

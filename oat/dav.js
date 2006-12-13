@@ -903,4 +903,4 @@ OAT.WebDav = {
 //----------------------------------------------------------------------------
 
 
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("dav");

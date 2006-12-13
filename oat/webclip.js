@@ -678,3 +678,4 @@ PresentationFormat = function()
     // URL encoded data.
     this.data;
 }
+OAT.Loader.featureLoaded("webclip");

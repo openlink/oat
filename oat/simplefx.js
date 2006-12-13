@@ -144,4 +144,4 @@ OAT.SimpleFX = {
 		elm.shadows = false;
 	}
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("simplefx");

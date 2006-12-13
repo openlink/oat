@@ -53,4 +53,4 @@ OAT.Bindings = {
 		OAT.Dom.attach(input,"click",callback);
 	}
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("bindings");

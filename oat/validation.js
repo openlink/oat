@@ -145,4 +145,4 @@ OAT.Validation = {
 		OAT.Dom.attach(elm,"keyup",function(event){OAT.Validation.validate(elm,event,type,paramsObj);});
 	}
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("validation");

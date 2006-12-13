@@ -308,4 +308,4 @@ OAT.DataSource = function(pageSize) {
 	}
 	
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("datasource");

@@ -126,5 +126,6 @@ OAT.Drag = {
 		OAT.Dom.attach(parent,"mouseout",hide);
 	}
 }
-OAT.Loader.loadAttacher(OAT.Drag.init);
-OAT.Loader.pendingCount--;
+OAT.Dom.attach(document,"mousemove",OAT.Drag.move);
+OAT.Dom.attach(document,"mouseup",OAT.Drag.up);
+OAT.Loader.featureLoaded("drag");

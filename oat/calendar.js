@@ -218,5 +218,4 @@ OAT.Calendar = {
 		OAT.Drag.create(divMonth,OAT.Calendar.div);
 	}
 }
-OAT.Loader.loadAttacher(OAT.Calendar.init);
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("calendar");

@@ -192,4 +192,4 @@ OAT.WS = {
 	
 }
 
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("ws");

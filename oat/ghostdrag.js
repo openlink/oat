@@ -187,5 +187,6 @@ OAT.GhostDrag = function() {
 	}
 }
 
-OAT.Loader.loadAttacher(OAT.GhostDragData.init);
-OAT.Loader.pendingCount--;
+OAT.Dom.attach(document,"mousemove",OAT.GhostDragData.move);
+OAT.Dom.attach(document,"mouseup",OAT.GhostDragData.up);
+OAT.Loader.featureLoaded("ghostdrag");

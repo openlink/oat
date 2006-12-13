@@ -853,4 +853,4 @@ OAT.Pivot = function(div,chartDiv,filterDiv,headerRow,dataRows,headerRowIndexes,
 	this.init();
 	this.go();
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("pivot");

@@ -333,5 +333,6 @@ OAT.Timeline = function(portElm,sliderElm,paramsObj) {
 	this.slider.onchange = self.scrollTo;
 
 }
-OAT.Loader.loadAttacher(OAT.TimelineData.init);
-OAT.Loader.pendingCount--;
+OAT.Dom.attach(document,"mouseup",OAT.TimelineData.up);
+OAT.Dom.attach(document,"mousemove",OAT.TimelineData.move);
+OAT.Loader.featureLoaded("timeline");

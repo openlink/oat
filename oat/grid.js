@@ -671,5 +671,6 @@ OAT.GridRowCell = function(obj,number,params) {
 	
 } /* GridRowCell */
 
-OAT.Loader.loadAttacher(OAT.GridData.init);
-OAT.Loader.pendingCount--;
+OAT.Dom.attach(document,"mouseup",OAT.GridData.up);
+OAT.Dom.attach(document,"mousemove",OAT.GridData.move);
+OAT.Loader.featureLoaded("grid");

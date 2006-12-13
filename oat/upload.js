@@ -65,4 +65,4 @@ OAT.Upload = function(method,action,target) {
 	
 	this.add();
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("upload");

@@ -976,4 +976,4 @@ db(R,j);R.prototype.Wg=function(){var a=this.k();return new k(a.lng(),a.lat())}
 if(window.GLoad){window.GLoad()};
 
  })()
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("gapi");

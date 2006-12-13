@@ -74,4 +74,4 @@ OAT.Toolbar = function() {
 	}
 	
 }
-OAT.Loader.pendingCount--;
+OAT.Loader.featureLoaded("toolbar");
