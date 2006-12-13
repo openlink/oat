@@ -611,7 +611,7 @@ OAT.SVGSparql = function(parentElm,paramsObj) {
 					if (c > bestDist) {
 						bestDist = c;
 						bestIndex = k;
-						k = shiftMatrix.length; /* end after first better result is found - optimalization! */
+						k = shiftMatrix.length; /* end after first better result is found - optimization! */
 					} /* if better result */
 				} /* for all possible shifts */
 				node.x = oldx + shiftMatrix[bestIndex][0];

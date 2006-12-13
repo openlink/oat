@@ -84,44 +84,44 @@ OAT.Dav = {
 	},
 
   //----------------------------------------------------------------------------
-	list:function(target,responce) {
+	list:function(target,response) {
 		var ref = function() {
 			return OAT.Dav.generate();
 		}
 		customHeaders = {Depth:1};
 		OAT.Ajax.user = OAT.Dav.user;
 		OAT.Ajax.password = OAT.Dav.pass;
-		OAT.Ajax.command(OAT.Ajax.PROPFIND + OAT.Ajax.AUTH_BASIC, target, ref, responce,OAT.Ajax.TYPE_XML, customHeaders);
+		OAT.Ajax.command(OAT.Ajax.PROPFIND + OAT.Ajax.AUTH_BASIC, target, ref, response,OAT.Ajax.TYPE_XML, customHeaders);
 
 	},
 
   //----------------------------------------------------------------------------
-  create_col:function(current_path,col_name,responce){
+  create_col:function(current_path,col_name,response){
     OAT.Ajax.user = OAT.Dav.user;
     OAT.Ajax.password = OAT.Dav.pass;
     // TODO - validation
     var target = current_path+col_name;
-		OAT.Ajax.command(OAT.Ajax.MKCOL + OAT.Ajax.AUTH_BASIC, target, function(){}, responce,OAT.Ajax.TYPE_TEXT);
+		OAT.Ajax.command(OAT.Ajax.MKCOL + OAT.Ajax.AUTH_BASIC, target, function(){}, response,OAT.Ajax.TYPE_TEXT);
   },
 
   //----------------------------------------------------------------------------
-	openFile:function(dir,file,responce){
+	openFile:function(dir,file,response){
 	  var ld = (dir ? dir : ".");
 		var lf = (file ? ld+file : ld);
     var target = lf + '?'+ new Date().getMilliseconds();
     OAT.Ajax.user = OAT.Dav.user;
     OAT.Ajax.password = OAT.Dav.pass;
-		OAT.Ajax.command(OAT.Ajax.GET + OAT.Ajax.AUTH_BASIC, target, function(){return '';}, responce,OAT.Ajax.TYPE_TEXT);
+		OAT.Ajax.command(OAT.Ajax.GET + OAT.Ajax.AUTH_BASIC, target, function(){return '';}, response,OAT.Ajax.TYPE_TEXT);
 	},
 
   //----------------------------------------------------------------------------
-	saveFile:function(dir,file,ref,responce){
+	saveFile:function(dir,file,ref,response){
 	  var ld = (dir ? dir : ".");
 		var lf = (file ? ld+file : ld);
 		var target = lf;
 		OAT.Ajax.user = OAT.Dav.user;
 		OAT.Ajax.password = OAT.Dav.pass;
-		OAT.Ajax.command(OAT.Ajax.PUT + OAT.Ajax.AUTH_BASIC, target, ref, responce,OAT.Ajax.TYPE_TEXT);
+		OAT.Ajax.command(OAT.Ajax.PUT + OAT.Ajax.AUTH_BASIC, target, ref, response,OAT.Ajax.TYPE_TEXT);
 	},
 
   //----------------------------------------------------------------------------
@@ -346,7 +346,7 @@ OAT.WebDav = {
                 data = OAT.Dav.dom2list(data);
 	              var el = data.root;
 	              OAT.WebDav.insert_into_grid(el,OAT.WebDav.grid.rows.length);
-  	            alert('Succesful');
+  	            alert('Successful');
               };
               OAT.Dav.list(li.href,ref);
   	          });
@@ -561,17 +561,17 @@ OAT.WebDav = {
     }else{
       OAT.WebDav.open_levels = new Array();
     }
-    OAT.Dav.list(OAT.WebDav.activeNode.id,OAT.WebDav.responce);
+    OAT.Dav.list(OAT.WebDav.activeNode.id,OAT.WebDav.response);
     return;
   },
 
   //---------------------------------
   get_list:function(){
-    OAT.Dav.list(OAT.WebDav.activeNode.id,OAT.WebDav.responce);
+    OAT.Dav.list(OAT.WebDav.activeNode.id,OAT.WebDav.response);
   },
 
   //---------------------------------
-  responce:function(data){
+  response:function(data){
     $('dav_path').value=OAT.WebDav.activeNode.id.replace(/%20/g,' ');
     if(data.childNodes.length == 2){
 		  data = data.childNodes[1];
@@ -593,7 +593,7 @@ OAT.WebDav = {
     OAT.WebDav.load_resources(data);
     if(OAT.WebDav.open_levels.length > 0){
       OAT.WebDav.activeNode =  $(OAT.WebDav.activeNode.id+OAT.WebDav.open_levels[0].replace(/ /g,'%20')+"/");
-      OAT.Dav.list(OAT.WebDav.activeNode.id,OAT.WebDav.responce);
+      OAT.Dav.list(OAT.WebDav.activeNode.id,OAT.WebDav.response);
       OAT.WebDav.open_levels.shift();
     }else{
     OAT.WebDav.show_resources(data.root.href);

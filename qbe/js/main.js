@@ -326,7 +326,7 @@ function ask_for_keys(table) {
 		for (var i=0;i<pole.length;i++) {
 			try_relation(pole[i][0],"1",pole[i][1],"&infin;");
 		}
-	}	/* recieved fk response */
+	}	/* received fk response */
 	
 	var callback_pk = function(pole) {
 		if (pole.length) {

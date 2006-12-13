@@ -16,7 +16,7 @@
 	-- data --
  	FormObject::getValue() - useful only in design when userSet is true
  	FormObject::setValue() - dtto
-	FormObject::notify() - we will recieve new data soon
+	FormObject::notify() - we will receive new data soon
  	FormObject::init() - initialization, when all data are bound
  	FormObject::clear()
  	FormObject::fromXML()

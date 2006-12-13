@@ -194,7 +194,7 @@ OAT.DataSource = function(type) {
 	}
 	
 	this.fetchRecord = function(index,callback) {  /* retrieve one record from cache */
-		/* never sends queries, since appropriate page has to be recieved first! */
+		/* never sends queries, since appropriate page has to be received first! */
 		if (self.dataRows[index]) { callback(); }
 	}
 	

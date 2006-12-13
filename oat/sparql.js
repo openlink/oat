@@ -171,7 +171,7 @@ OAT.SparqlQuery = function() {
 	this.parseParts = function(str,pobj,prev)
 	{
 	  str = str.trim();
-	  // seperate the parts 
+	  // separate the parts 
 		var parts = self.getParts(str);
 	  // If we have more than one part then this is a group and we process each part separately 
 		if (parts.length > 1)

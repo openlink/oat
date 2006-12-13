@@ -85,7 +85,7 @@ function xmla_ask_for_keys(table) {
 		for (var i=0;i<pole.length;i++) {
 			xmla_try_relation(pole[i][0],pole[i][1]);
 		}
-	} /* recieved fk response */
+	} /* received fk response */
 	
 	var callback_pk = function(pole) {
 		if (pole.length) for (var i=0;i<pole.length;i++) {
@@ -178,7 +178,7 @@ function xmla_catalogs() {
 			e.catalog=catalog;
 			e.schema=schema;
 			select.appendChild(e);
-		} /* for all recieved tables */
+		} /* for all received tables */
 	} /* callback */
 	OAT.Dom.clear("xmla_table");
 	for (var i=0;i<catalogs.length;i++) { OAT.Xmla.tables(catalogs[i],ref); }

@@ -338,7 +338,7 @@ OAT.Dom = {
 	},
 	
 	collide:function(something1,something2) {
-		/* true if they have someting common */
+		/* true if they have something common */
 		var coords_1 = OAT.Dom.position(something1);
 		var coords_2 = OAT.Dom.position(something2);
 		var dims_1 = OAT.Dom.getWH(something1);
@@ -461,7 +461,7 @@ OAT.Dom = {
 	getWH:function(something) {
 		/*
 			This is tricky: we need to measure current element's width & height.
-			If this property was already set (thus available directly throught elm.style),
+			If this property was already set (thus available directly through elm.style),
 			everything is ok.
 			If nothing was set yet:
 				* IE stores this information in offsetWidth and offsetHeight
@@ -714,7 +714,7 @@ OAT.Loader = {
 	dimmer:false,
 	loadedLibs:[], /* libraries ready to be used */
 	loadingLibs:[], /* libraries marked for inclusion */
-	loadOccured:0, /* was window.onload fired? */
+	loadOccurred:0, /* was window.onload fired? */
 	loadCallbacks:[], /* features & callbacks to be executed */
 	
 	loadFeatures:function(features,callback) { /* load all these features and execute callback */
@@ -757,7 +757,7 @@ OAT.Loader = {
 		OAT.Loader.checkLoading();
 	},
 	
-	checkLoading:function() { /* check list of loaded libs agains TODO list with callbacks */
+	checkLoading:function() { /* check list of loaded libs against TODO list with callbacks */
 		var done = []; /* indexes */
 		var toExecute = [];
 		for (var i=0;i<OAT.Loader.loadCallbacks.length;i++) { /* check all lists for completion */
@@ -782,7 +782,7 @@ OAT.Loader = {
 	startInit:function() {
 		/* to be called when all initial libs are loaded. waits until 'onload' occurs and then continues */
 		var ref = function() {
-			if (OAT.Loader.loadOccured) { 
+			if (OAT.Loader.loadOccurred) { 
 				OAT.Dom.attach(window,"unload",OAT.Loader.clearEvents); /* attach leak preventor */
 				if (typeof(window._init) == "function" && typeof(document.body.getAttribute("onload")) == "object") { window._init(); } /* if _init is specified, execute */
 				if (OAT.Declarative) { OAT.Declarative.execute(); } /* declarative markup */
@@ -828,7 +828,7 @@ OAT.Loader = {
 	},
 
 	clearEvents:function() {
-		/* prevent leaks by explicitely detaching all event handlers */
+		/* prevent leaks by explicitly detaching all event handlers */
 		while (OAT.Events.length) {
 			var e = OAT.Events[0];
 			OAT.Dom._detach(e[0],e[1],e[2]);
@@ -841,7 +841,7 @@ OAT.Loader = {
 	global loading works like this: 
 	- monitor onload, just to make sure we don't initialize too early
 	- load initial set of libraries
-	- wait until: 1.all scripts are loaded, 2.onload occured
+	- wait until: 1.all scripts are loaded, 2.onload occurred
 	- then: 1. DOM structure is accessible
 			2. event leak eliminator is attached
 			3. all delayed init methods are called
@@ -851,7 +851,7 @@ OAT.Loader = {
 
 OAT.Loader.dimmerElm = OAT.Dom.create("div",{border:"2px solid #000",padding:"1em",position:"absolute",backgroundColor:"#fff"});
 OAT.Loader.dimmerElm.innerHTML = "OAT Components loading...";
-OAT.Dom.attach(window,"load",function(){OAT.Loader.loadOccured = 1;});
+OAT.Dom.attach(window,"load",function(){OAT.Loader.loadOccurred = 1;});
 var fl = (window.featureList ? window.featureList : []);
 fl.push("preferences");
 OAT.Loader.loadFeatures(fl,OAT.Loader.startInit);

@@ -91,7 +91,7 @@ OAT.WS = {
 			var inmsg = input.getAttribute("message").split(":").pop(); /* last part after colon */
 			var outmsg = output.getAttribute("message").split(":").pop(); /* last part after colon */
 			
-			/* approproate message nodes */
+			/* message nodes */
 			var messages = OAT.Xml.getElementsByLocalName(root,"message");
 			for (var i=0;i<messages.length;i++) { msgnames.push(messages[i].getAttribute("name")); }
 			index = msgnames.find(inmsg);

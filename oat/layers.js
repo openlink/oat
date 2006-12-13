@@ -11,7 +11,7 @@
 
 	var l = new OAT.Layers(baseOffset);
 	l.addLayer(something,activationEvent)
-	l.removeLayer(someting)
+	l.removeLayer(something)
 */
 
 OAT.Layers = function(baseOffset) {
