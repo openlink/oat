@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ocw="http://simile.mit.edu/2004/01/ontologies/ocw#" xmlns:str="http://simile.mit.edu/2004/01/xslt/common" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:lom="http://www.imsproject.org/rdf/imsmd_rootv1p2#" xmlns:lom-life="http://www.imsproject.org/rdf/imsmd_lifecyclev1p2#" xmlns:lom-edu="http://www.imsproject.org/rdf/imsmd_educationalv1p2#" xmlns:lom-tech="http://www.imsproject.org/rdf/imsmd_technicalv1p2#" xmlns:lom-gen="http://www.imsproject.org/rdf/imsmd_generalv1p2#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:person="http://simile.mit.edu/2003/10/ontologies/person#" xmlns:vc="http://www.w3.org/2001/vcard-rdf/3.0#">
+   <rdf:Description rdf:about="http://ocw.mit.edu/OcwWeb/History/21H-433The-Age-of-Reason--Europe-in-the-18th-and-19th-CenturiesSpring2002/CourseHome/index.htm">
+      <rdf:type rdf:resource="http://simile.mit.edu/2004/01/ontologies/ocw#Lecture"/>
+      <rdf:type rdf:resource="http://www.imsproject.org/rdf/imsmd_educationalv1p2#LearningResourceType"/>
+      <dc:source rdf:resource="http://simile.mit.edu/2004/06/collections#ocw"/>
+      <dc:subject>
+         <skos:Concept rdf:about="http://simile.mit.edu/2004/01/ocw/Keyword#age_of_reason">
+            <skos:prefLabel>Age of Reason</skos:prefLabel>
+            <skos:inScheme rdf:resource="http://simile.mit.edu/2004/01/ontologies/ocw#Keyword"/>
+         </skos:Concept>
+      </dc:subject>
+      <dc:subject>
+         <skos:Concept rdf:about="http://simile.mit.edu/2004/01/ocw/Keyword#philosophy">
+            <skos:prefLabel>philosophy</skos:prefLabel>
+            <skos:inScheme rdf:resource="http://simile.mit.edu/2004/01/ontologies/ocw#Keyword"/>
+         </skos:Concept>
+      </dc:subject>
+      <dc:subject>
+         <skos:Concept rdf:about="http://simile.mit.edu/2004/01/ocw/Keyword#cultural_history">
+            <skos:prefLabel>cultural history</skos:prefLabel>
+            <skos:inScheme rdf:resource="http://simile.mit.edu/2004/01/ontologies/ocw#Keyword"/>
+         </skos:Concept>
+      </dc:subject>
+      <dc:subject>
+         <skos:Concept rdf:about="http://simile.mit.edu/2004/01/ocw/Keyword#intellectual_history">
+            <skos:prefLabel>intellectual history</skos:prefLabel>
+            <skos:inScheme rdf:resource="http://simile.mit.edu/2004/01/ontologies/ocw#Keyword"/>
+         </skos:Concept>
+      </dc:subject>
+      <dc:title>The Age of Reason: Europe in the 18th and 19th Centuries</dc:title>
+      <dc:description>A study of the evolution of European society from the end of the seventeenth century to the outbreak of World War I. Its politics, the nature of its social system, the workings of its economy, and its intellectual accomplishments. Particular attention given to the analyses made by critics and thinkers contemporary to the matters treated in the subject.</dc:description>
+      <lom-life:version>Spring 2002</lom-life:version>
+      <lom-life:instructionaldesigner>
+         <rdf:Description rdf:about="http://simile.mit.edu/2004/01/ocw/Contributor#prof._jeffrey_s._ravel">
+            <rdfs:label>Prof. Jeffrey S. Ravel</rdfs:label>
+            <rdf:type rdf:resource="http://www.imsproject.org/rdf/imsmd_rootv1p2#Entity"/>
+            <vc:prefix xmlns:foaf="http://xmlns.com/foaf/0.1/">Professor</vc:prefix>
+            <vc:FN xmlns:foaf="http://xmlns.com/foaf/0.1/">Prof. Jeffrey S. Ravel</vc:FN>
+         </rdf:Description>
+      </lom-life:instructionaldesigner>
+      <rdfs:label>The Age of Reason: Europe in the 18th and 19th Centuries</rdfs:label>
+      <lom-gen:aggregationlevel rdf:resource="http://www.imsproject.org/rdf/imsmd_generalv1p2#Level3"/>
+   </rdf:Description>
+   <rdf:Description rdf:about="http://simile.mit.edu/2004/01/ocw/LearningResource#goya_monsters">
+      <rdf:type rdf:resource="http://simile.mit.edu/2004/01/ontologies/ocw#Syllabus"/>
+      <rdf:type rdf:resource="http://www.imsproject.org/rdf/imsmd_educationalv1p2#LearningResourceType"/>
+      <dc:title>goya monsters</dc:title>
+      <dc:source rdf:resource="http://simile.mit.edu/2004/06/collections#ocw"/>
+      <dc:description>Francisco Jose de Goya y Lucientes, The Sleep of Reason Produces Monsters, 1797-1798 photo, Rick Stafford. Courtesy of the Fogg Art Museum, Harvard University Art Museums, Gift of Philip Hofer © President and Fellows of Harvard College</dc:description>
+      <dc:contributor>
+         <rdf:Description rdf:about="http://simile.mit.edu/2004/01/ocw/Contributor#goya,_francisco,_1746-1828.">
+            <rdfs:label>Goya, Francisco, 1746-1828.</rdfs:label>
+            <rdf:type rdf:resource="http://www.imsproject.org/rdf/imsmd_rootv1p2#Entity"/>
+            <vc:Family xmlns:foaf="http://xmlns.com/foaf/0.1/">Goya</vc:Family>
+            <vc:Given xmlns:foaf="http://xmlns.com/foaf/0.1/">Francisco</vc:Given>
+            <vc:FN xmlns:foaf="http://xmlns.com/foaf/0.1/">FranciscoGoya</vc:FN>
+            <person:birth xmlns:foaf="http://xmlns.com/foaf/0.1/">1746</person:birth>
+            <person:death xmlns:foaf="http://xmlns.com/foaf/0.1/">1828.</person:death>
+         </rdf:Description>
+      </dc:contributor>
+      <dc:contributor>
+         <rdf:Description rdf:about="http://simile.mit.edu/2004/01/ocw/Contributor#prof._jeffrey_s._ravel">
+            <rdfs:label>Prof. Jeffrey S. Ravel</rdfs:label>
+            <rdf:type rdf:resource="http://www.imsproject.org/rdf/imsmd_rootv1p2#Entity"/>
+            <vc:prefix xmlns:foaf="http://xmlns.com/foaf/0.1/">Professor</vc:prefix>
+            <vc:FN xmlns:foaf="http://xmlns.com/foaf/0.1/">Prof. Jeffrey S. Ravel</vc:FN>
+         </rdf:Description>
+      </dc:contributor>
+      <lom-gen:aggregationlevel rdf:resource="http://www.imsproject.org/rdf/imsmd_generalv1p2#Level2"/>
+      <ocw:linkToImage rdf:resource="http://ocw.mit.edu/NR/rdonlyres/A8E865E1-B37E-47AB-84C6-4CF9109483ED/0/goya.jpg"/>
+      <dcterms:isPartOf>
+         <rdf:Description rdf:about="http://ocw.mit.edu/OcwWeb/History/21H-433The-Age-of-Reason--Europe-in-the-18th-and-19th-CenturiesSpring2002/CourseHome/index.htm"/>
+      </dcterms:isPartOf>
+      <dc:subject>
+         <skos:Concept rdf:about="http://simile.mit.edu/2004/01/ocw/Keyword#age_of_reason">
+            <skos:prefLabel>Age of Reason</skos:prefLabel>
+            <skos:inScheme rdf:resource="http://simile.mit.edu/2004/01/ontologies/ocw#Keyword"/>
+         </skos:Concept>
+      </dc:subject>
+      <dc:subject>
+         <skos:Concept rdf:about="http://simile.mit.edu/2004/01/ocw/Keyword#philosophy">
+            <skos:prefLabel>philosophy</skos:prefLabel>
+            <skos:inScheme rdf:resource="http://simile.mit.edu/2004/01/ontologies/ocw#Keyword"/>
+         </skos:Concept>
+      </dc:subject>
+      <dc:subject>
+         <skos:Concept rdf:about="http://simile.mit.edu/2004/01/ocw/Keyword#cultural_history">
+            <skos:prefLabel>cultural history</skos:prefLabel>
+            <skos:inScheme rdf:resource="http://simile.mit.edu/2004/01/ontologies/ocw#Keyword"/>
+         </skos:Concept>
+      </dc:subject>
+      <dc:subject>
+         <skos:Concept rdf:about="http://simile.mit.edu/2004/01/ocw/Keyword#intellectual_history">
+            <skos:prefLabel>intellectual history</skos:prefLabel>
+            <skos:inScheme rdf:resource="http://simile.mit.edu/2004/01/ontologies/ocw#Keyword"/>
+         </skos:Concept>
+      </dc:subject>
+   </rdf:Description>
+   <rdf:Description rdf:about="http://simile.mit.edu/2004/06/collections#ocw">
+      <rdf:type rdf:resource="http://simile.mit.edu/2003/10/ontologies/artstor#Collection"/>
+      <rdfs:label>MIT OpenCourseWare</rdfs:label>
+   </rdf:Description>
+</rdf:RDF>

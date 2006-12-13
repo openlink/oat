@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- generator="My CMS" -->
+<rdf:RDF
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:bio="http://purl.org/vocab/bio/0.1/"
+        xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#"
+        xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+        xmlns:admin="http://webns.net/mvcb/"
+        xmlns:rel="http://purl.org/vocab/relationship/"
+        xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+  <foaf:PersonalProfileDocument rdf:about="">
+    <foaf:maker rdf:nodeID="a"/>
+    <foaf:primaryTopic rdf:nodeID="a"/>
+    <dc:title>Document Title</dc:title>
+    <dc:description>My main FOAF file</dc:description>
+    <admin:generatorAgent rdf:resource="http://www.foo.com"/>
+    <admin:errorReportsTo rdf:resource="mailto:webmaster@foo.com"/>
+  </foaf:PersonalProfileDocument>
+
+  <foaf:Person rdf:nodeID="a">
+    <foaf:name>My Name</foaf:name>
+    <foaf:title>Mr</foaf:title>
+    <foaf:firstName>My</foaf:firstName>
+    <foaf:surname>Name</foaf:surname>
+    <foaf:nick>myname</foaf:nick>
+    <foaf:mbox_sha1sum>e42b34b637b3c06d872e5b8938aad918b3bf345a</foaf:mbox_sha1sum>
+    <foaf:mbox rdf:resource="mailto:me@foobar.com" />
+    <foaf:Organization>FooBar Corp</foaf:Organization>
+
+    <foaf:based_near>
+      <geo:Point geo:lat="51.814" geo:long="-0.017" />
+    </foaf:based_near>
+
+    <vCard:ADR rdf:parseType="Resource">
+      <vCard:Street>1 Any Street</vCard:Street>
+      <vCard:Locality>Any Town</vCard:Locality>
+      <vCard:Region>Any State</vCard:Region>
+      <vCard:Pcode>12345</vCard:Pcode>
+      <vCard:Country>Tuvalu</vCard:Country>
+    </vCard:ADR>
+
+    <foaf:homepage dc:title="My Home Page" rdf:resource="http://www.foo.com/"/>
+    <foaf:weblog dc:title="My Weblog" rdf:resource="http://www.bar.com"/>
+    <foaf:workplaceHomepage dc:title="FooBar Corp" rdf:resource="http://www.foobar.com"/>
+    <foaf:img rdf:resource="http://www.foo.com/images/photo/myphoto.jpg"/>
+    <foaf:thumbnail rdf:resource="http://www.foo.com/images/photo/mysmallphoto.jpg"/>
+    <foaf:phone rdf:resource="tel://+1-123-456-7890"/>
+    <foaf:phone rdf:resource="callto://my.name"/>
+    <foaf:msnChatID>foobar@hotmail.com</foaf:msnChatID>
+    <foaf:jabberID>foobar@jabber.com</foaf:jabberID>
+    <rdfs:seeAlso dc:title="My FOAF file" rdf:resource="http://www.foo.com/foaf.rdf"/>
+    <bio:keywords>some,key,words</bio:keywords>
+    <bio:olb>A wizard, a true star</bio:olb>
+
+    <interest>
+      <rdf:Description rdf:about="http://www.foaf-project.org/">
+        <rdfs:label>FOAF</rdfs:label> 
+      </rdf:Description>
+    </interest>
+
+    <foaf:knows>
+      <foaf:Person rdf:nodeID="b">
+        <foaf:name>My Friend</foaf:name>
+        <foaf:mbox_sha1sum>62a1cca750f0e6066f22f459829eec5f8827bcd0</foaf:mbox_sha1sum>
+        <rdfs:seeAlso dc:title="My Friend's FOAF" rdf:resource="http://www.bar.com/foaf.rdf"/>
+      </foaf:Person>
+    </foaf:knows>
+    <rel:acquaintanceOf rdf:nodeID="b"/>
+
+    <foaf:knows>
+      <foaf:Person rdf:nodeID="c">
+        <foaf:name>My Other Friend</foaf:name>
+        <foaf:weblog dc:title="My Other Friend's Weblog" rdf:resource="http://www.barfoo.com"/>
+        <rdfs:seeAlso dc:title="My Other Friend's FOAF" rdf:resource="http://www.foobar.com/foaf.rdf"/>
+      </foaf:Person>
+    </foaf:knows>
+    <rel:friendOf rdf:nodeID="c"/>
+
+  </foaf:Person>
+</rdf:RDF>

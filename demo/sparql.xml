@@ -1,0 +1,861 @@
+<sparql xmlns="http://www.w3.org/2005/sparql-results#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/sw/DataAccess/rf1/result2.xsd">
+ <head>
+  <variable name="forum_name"/>
+  <variable name="creator"/>
+  <variable name="member"/>
+  <variable name="channel"/>
+  <variable name="item_title"/>
+  <variable name="url"/>
+  <variable name="created"/>
+ </head>
+ <results distinct="false" ordered="true">
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://theruckusroom.typepad.com/my_weblog/atom.xml#TheRuckusRoom</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/995</uri></binding>
+   <binding name="item_title"><literal>Beyond Smoke and Mirrors</literal></binding>
+   <binding name="created"><literal>2006-11-16T06:06:28Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://worcester.typepad.com/pc4media/atom.xml#Peter%2BCaputa</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1068</uri></binding>
+   <binding name="item_title"><literal>Breaking the Silence</literal></binding>
+   <binding name="url"><uri>http://www.whizspark.com/jobs/</uri></binding>
+   <binding name="created"><literal>2006-11-16T04:58:20Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://worcester.typepad.com/pc4media/atom.xml#Peter%2BCaputa</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1068</uri></binding>
+   <binding name="item_title"><literal>Breaking the Silence</literal></binding>
+   <binding name="url"><uri>http://www.whizspark.com/es/ViewEvent.aspx?eid=1925</uri></binding>
+   <binding name="created"><literal>2006-11-16T04:58:20Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1253</uri></binding>
+   <binding name="item_title"><literal>Setting Data | The REST Dialogues</literal></binding>
+   <binding name="url"><uri>http://duncan-cragg.org/blog/post/strest-service-trampled-rest-will-break-web-20/</uri></binding>
+   <binding name="created"><literal>2006-11-16T04:37:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1253</uri></binding>
+   <binding name="item_title"><literal>Setting Data | The REST Dialogues</literal></binding>
+   <binding name="url"><uri>http://duncan-cragg.org/blog/post/getting-data-rest-dialogues/</uri></binding>
+   <binding name="created"><literal>2006-11-16T04:37:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1253</uri></binding>
+   <binding name="item_title"><literal>Setting Data | The REST Dialogues</literal></binding>
+   <binding name="url"><uri>http://www.imc.org/atom-protocol/mail-archive/msg05425.html</uri></binding>
+   <binding name="created"><literal>2006-11-16T04:37:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1253</uri></binding>
+   <binding name="item_title"><literal>Setting Data | The REST Dialogues</literal></binding>
+   <binding name="url"><uri>http://www.tbray.org/ongoing/When/200x/2003/07/03/HTTP-RSS</uri></binding>
+   <binding name="created"><literal>2006-11-16T04:37:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1253</uri></binding>
+   <binding name="item_title"><literal>Setting Data | The REST Dialogues</literal></binding>
+   <binding name="url"><uri>http://www.tbray.org/ongoing/When/200x/2006/03/26/On-REST#p-5</uri></binding>
+   <binding name="created"><literal>2006-11-16T04:37:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1253</uri></binding>
+   <binding name="item_title"><literal>Setting Data | The REST Dialogues</literal></binding>
+   <binding name="url"><uri>http://www.intertwingly.net/wiki/pie/CarrotVsOrangeDiscuss</uri></binding>
+   <binding name="created"><literal>2006-11-16T04:37:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1253</uri></binding>
+   <binding name="item_title"><literal>Setting Data | The REST Dialogues</literal></binding>
+   <binding name="url"><uri>http://www.imc.org/atom-syntax/mail-archive/msg02869.html</uri></binding>
+   <binding name="created"><literal>2006-11-16T04:37:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1253</uri></binding>
+   <binding name="item_title"><literal>Setting Data | The REST Dialogues</literal></binding>
+   <binding name="url"><uri>http://www.crummy.com/writing/REST-Web-Services/</uri></binding>
+   <binding name="created"><literal>2006-11-16T04:37:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/484</uri></binding>
+   <binding name="item_title"><literal>HCLS/ACPPTaskForce/Goal</literal></binding>
+   <binding name="created"><literal>2006-11-16T02:32:05Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/484</uri></binding>
+   <binding name="item_title"><literal>HCLS/ACPPTaskForce</literal></binding>
+   <binding name="created"><literal>2006-11-16T02:16:34Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/893</uri></binding>
+   <binding name="item_title"><literal>Time for (Your Review of) a Vacation</literal></binding>
+   <binding name="url"><uri>http://360.yahoo.com/edit/activities.html</uri></binding>
+   <binding name="created"><literal>2006-11-15T23:23:16Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/893</uri></binding>
+   <binding name="item_title"><literal>Time for (Your Review of) a Vacation</literal></binding>
+   <binding name="url"><uri>http://travel.yahoo.com</uri></binding>
+   <binding name="created"><literal>2006-11-15T23:23:16Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/893</uri></binding>
+   <binding name="item_title"><literal>Time for (Your Review of) a Vacation</literal></binding>
+   <binding name="url"><uri>http://blog.360.yahoo.com/blog/compose.html?bct=On%20my%20first%20family%20vacation....</uri></binding>
+   <binding name="created"><literal>2006-11-15T23:23:16Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/484</uri></binding>
+   <binding name="item_title"><literal>CommercialProducts</literal></binding>
+   <binding name="created"><literal>2006-11-15T18:48:40Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/484</uri></binding>
+   <binding name="item_title"><literal>CategorySweoDoc</literal></binding>
+   <binding name="created"><literal>2006-11-15T18:46:40Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://internetalchemy.org/index.rdf#</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/503</uri></binding>
+   <binding name="item_title"><literal>Data mining lecture notes</literal></binding>
+   <binding name="url"><uri>http://glinden.blogspot.com/</uri></binding>
+   <binding name="created"><literal>2006-11-15T16:40:51Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://internetalchemy.org/index.rdf#</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/503</uri></binding>
+   <binding name="item_title"><literal>Data mining lecture notes</literal></binding>
+   <binding name="url"><uri>http://glinden.blogspot.com/2006/11/excellent-data-mining-lecture-notes.html</uri></binding>
+   <binding name="created"><literal>2006-11-15T16:40:51Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://internetalchemy.org/index.rdf#</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/503</uri></binding>
+   <binding name="item_title"><literal>Data mining lecture notes</literal></binding>
+   <binding name="url"><uri>http://www.stanford.edu/class/cs345a/#handouts</uri></binding>
+   <binding name="created"><literal>2006-11-15T16:40:51Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Watch iPod videos on United soon</literal></binding>
+   <binding name="url"><uri>http://www.redherring.com/Article.aspx?a=19742</uri></binding>
+   <binding name="created"><literal>2006-11-15T14:26:42Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Watch iPod videos on United soon</literal></binding>
+   <binding name="url"><uri>http://www.redherring.com/Article.aspx?a=19742&amp;hed=Apple+iPod+to+Fly+Connected</uri></binding>
+   <binding name="created"><literal>2006-11-15T14:26:42Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>YouTube vs. TechCrunch</literal></binding>
+   <binding name="url"><uri>http://www.iwantmedia.com</uri></binding>
+   <binding name="created"><literal>2006-11-15T14:25:35Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>YouTube vs. TechCrunch</literal></binding>
+   <binding name="url"><uri>http://www.techcrunch.com/2006/11/15/huh-youtube-sends-techcrunch-a-cease-desist/</uri></binding>
+   <binding name="created"><literal>2006-11-15T14:25:35Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>YouTube vs. TechCrunch</literal></binding>
+   <binding name="url"><uri>http://www.ft.com/cms/s/3df876be-7434-11db-8dd7-0000779e2340.html</uri></binding>
+   <binding name="created"><literal>2006-11-15T14:25:35Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://feeds.feedburner.com/AtlassianDeveloperBlog#Jonathan%2BNolen%2C%2BDir.%2Bof%2BDeveloper%2BRelations</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/615</uri></binding>
+   <binding name="item_title"><literal>Resource for theme developers</literal></binding>
+   <binding name="url"><uri>http://confluence.atlassian.com/display/DOC/Creating+a+Theme+Plugin</uri></binding>
+   <binding name="created"><literal>2006-11-15T13:51:01Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.worldchanging.com/index.rdf#</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1133</uri></binding>
+   <binding name="item_title"><literal>LAND, ART: A Cultural Ecology Handbook</literal></binding>
+   <binding name="created"><literal>2006-11-15T13:49:58Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1038</uri></binding>
+   <binding name="item_title"><literal>PC World: Zune won&#39;t replace your iPod</literal></binding>
+   <binding name="created"><literal>2006-11-15T12:50:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.worldchanging.com/index.rdf#</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1133</uri></binding>
+   <binding name="item_title"><literal>New Resource Bank</literal></binding>
+   <binding name="created"><literal>2006-11-15T12:25:24Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/527</uri></binding>
+   <binding name="item_title"><literal>Apple MacBook (Core 2 Duo 2.0GHz)</literal></binding>
+   <binding name="created"><literal>2006-11-15T10:45:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/525</uri></binding>
+   <binding name="item_title"><literal>SanDisk Sansa c240 (1GB)</literal></binding>
+   <binding name="created"><literal>2006-11-15T01:41:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>A Liberal&#39;s Pledge to Disheartened Conservatives</literal></binding>
+   <binding name="url"><uri>http://www.petitiononline.com/mmflint/petition.html</uri></binding>
+   <binding name="created"><literal>2006-11-15T01:27:30Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Cracking down on fake news</literal></binding>
+   <binding name="url"><uri>http://www.freepress.net/fakenews/</uri></binding>
+   <binding name="created"><literal>2006-11-15T01:21:32Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Cracking down on fake news</literal></binding>
+   <binding name="url"><uri>http://action.freepress.net/campaign/fakenews2/i7n5ni549jbwje8?</uri></binding>
+   <binding name="created"><literal>2006-11-15T01:21:32Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Website ad guidelines</literal></binding>
+   <binding name="url"><uri>http://www.dailykos.com/storyonly/2006/11/14/121448/33</uri></binding>
+   <binding name="created"><literal>2006-11-15T00:36:17Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/893</uri></binding>
+   <binding name="item_title"><literal>Your TV Faves</literal></binding>
+   <binding name="url"><uri>http://360.yahoo.com/edit/interests.html</uri></binding>
+   <binding name="created"><literal>2006-11-15T00:34:38Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/893</uri></binding>
+   <binding name="item_title"><literal>Your TV Faves</literal></binding>
+   <binding name="url"><uri>http://tv.yahoo.com/feature/fall06/</uri></binding>
+   <binding name="created"><literal>2006-11-15T00:34:38Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/893</uri></binding>
+   <binding name="item_title"><literal>Your TV Faves</literal></binding>
+   <binding name="url"><uri>http://tv.yahoo.com/tvpdb?d=tvi&amp;cf=0&amp;id=1809429016%20</uri></binding>
+   <binding name="created"><literal>2006-11-15T00:34:38Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/893</uri></binding>
+   <binding name="item_title"><literal>Your TV Faves</literal></binding>
+   <binding name="url"><uri>http://www.nickjr.com/%20</uri></binding>
+   <binding name="created"><literal>2006-11-15T00:34:38Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Website usability</literal></binding>
+   <binding name="url"><uri>http://www.google.com/intl/en/options/</uri></binding>
+   <binding name="created"><literal>2006-11-15T00:19:59Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Website usability</literal></binding>
+   <binding name="url"><uri>http://www.nytimes.com/2006/11/15/business/smallbusiness/15web.html?_r=1&amp;oref=slogin</uri></binding>
+   <binding name="created"><literal>2006-11-15T00:19:59Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Website usability</literal></binding>
+   <binding name="url"><uri>http://webpagesthatsuck.com/</uri></binding>
+   <binding name="created"><literal>2006-11-15T00:19:59Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Video search engines worth a peek  </literal></binding>
+   <binding name="url"><uri>http://alwayson.goingon.com/permalink/post/7216</uri></binding>
+   <binding name="created"><literal>2006-11-14T23:15:51Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/484</uri></binding>
+   <binding name="item_title"><literal>SkosDev/DataZone</literal></binding>
+   <binding name="created"><literal>2006-11-14T22:06:31Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://blog.mindjet.com/feed/#</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/664</uri></binding>
+   <binding name="item_title"><literal>Is our Word 2007 add-in good or bad for Mindjet?</literal></binding>
+   <binding name="created"><literal>2006-11-14T16:52:58Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.worldchanging.com/index.rdf#</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1133</uri></binding>
+   <binding name="item_title"><literal>Paul Braund: The Business of Technology and Development</literal></binding>
+   <binding name="created"><literal>2006-11-14T15:58:08Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/484</uri></binding>
+   <binding name="item_title"><literal>MarkupValidator/XML Limitations</literal></binding>
+   <binding name="created"><literal>2006-11-14T15:42:12Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>A social network for tracking your friends</literal></binding>
+   <binding name="url"><uri>http://www.mercurynews.com/mld/mercurynews/16009289.htm</uri></binding>
+   <binding name="created"><literal>2006-11-14T13:57:03Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Web isn&#39;t teeming with sex</literal></binding>
+   <binding name="url"><uri>http://www.mercurynews.com/mld/mercurynews/business/16007733.htm</uri></binding>
+   <binding name="created"><literal>2006-11-14T13:52:58Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Web isn&#39;t teeming with sex</literal></binding>
+   <binding name="url"><uri>http://www.mercurynews.com/mld/mercurynews/business/16007735.htm</uri></binding>
+   <binding name="created"><literal>2006-11-14T13:52:58Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>A new focus for Valleywag</literal></binding>
+   <binding name="url"><uri>http://www.mercurynews.com/mld/mercurynews/business/16007737.htm</uri></binding>
+   <binding name="created"><literal>2006-11-14T13:46:15Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>A new focus for Valleywag</literal></binding>
+   <binding name="url"><uri>http://valleywag.com/tech/farewell/a-note-from-nick-douglas-214699.php</uri></binding>
+   <binding name="created"><literal>2006-11-14T13:46:15Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Amanda developing a comedy for HBO</literal></binding>
+   <binding name="url"><uri>http://www.hollywoodreporter.com/hr/content_display/television/news/e3ia52li9aIs4M9muyBDqbWpA%3D%3D</uri></binding>
+   <binding name="created"><literal>2006-11-14T13:37:52Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Amanda developing a comedy for HBO</literal></binding>
+   <binding name="url"><uri>http://amandacongdon.com/america/</uri></binding>
+   <binding name="created"><literal>2006-11-14T13:37:52Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Amanda developing a comedy for HBO</literal></binding>
+   <binding name="url"><uri>http://blip.tv/file/get/Unboomed-anAnnouncement839.mov</uri></binding>
+   <binding name="created"><literal>2006-11-14T13:37:52Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Amanda developing a comedy for HBO</literal></binding>
+   <binding name="url"><uri>http://blip.tv/file/get/Unboomed-anAnnouncement245.wmv</uri></binding>
+   <binding name="created"><literal>2006-11-14T13:37:52Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Amanda developing a comedy for HBO</literal></binding>
+   <binding name="url"><uri>http://blip.tv/file/get/Unboomed-anAnnouncement533.m4v</uri></binding>
+   <binding name="created"><literal>2006-11-14T13:37:52Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Amanda developing a comedy for HBO</literal></binding>
+   <binding name="url"><uri>http://blog.guykawasaki.com/2006/11/ten_questions_w.html</uri></binding>
+   <binding name="created"><literal>2006-11-14T13:37:52Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.thelongtail.com/the_long_tail/atom.xml#Chris%2BAnderson</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1100</uri></binding>
+   <binding name="item_title"><literal>More on the Economics of Abundance</literal></binding>
+   <binding name="url"><uri>http://www.broadsoft.com/connections/2006/agenda_tuesday.html</uri></binding>
+   <binding name="created"><literal>2006-11-14T12:55:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.thelongtail.com/the_long_tail/atom.xml#Chris%2BAnderson</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1100</uri></binding>
+   <binding name="item_title"><literal>More on the Economics of Abundance</literal></binding>
+   <binding name="url"><uri>http://www.wwd.com/related/article/101750</uri></binding>
+   <binding name="created"><literal>2006-11-14T12:55:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.thelongtail.com/the_long_tail/atom.xml#Chris%2BAnderson</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1100</uri></binding>
+   <binding name="item_title"><literal>More on the Economics of Abundance</literal></binding>
+   <binding name="url"><uri>http://www.longtail.com/the_long_tail/2006/10/the_economics_o.html</uri></binding>
+   <binding name="created"><literal>2006-11-14T12:55:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.thelongtail.com/the_long_tail/atom.xml#Chris%2BAnderson</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1100</uri></binding>
+   <binding name="item_title"><literal>More on the Economics of Abundance</literal></binding>
+   <binding name="url"><uri>http://techdirt.com/articles/20061025/014811.shtml</uri></binding>
+   <binding name="created"><literal>2006-11-14T12:55:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.thelongtail.com/the_long_tail/atom.xml#Chris%2BAnderson</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1100</uri></binding>
+   <binding name="item_title"><literal>More on the Economics of Abundance</literal></binding>
+   <binding name="url"><uri>http://www.amazon.com/gp/product/0140296476?ie=UTF8&amp;tag=thelongtail-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0140296476</uri></binding>
+   <binding name="created"><literal>2006-11-14T12:55:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.thelongtail.com/the_long_tail/atom.xml#Chris%2BAnderson</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1100</uri></binding>
+   <binding name="item_title"><literal>More on the Economics of Abundance</literal></binding>
+   <binding name="url"><uri>http://www.roughtype.com/archives/2006/11/welcome_back_to_1.php</uri></binding>
+   <binding name="created"><literal>2006-11-14T12:55:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.thelongtail.com/the_long_tail/atom.xml#Chris%2BAnderson</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1100</uri></binding>
+   <binding name="item_title"><literal>More on the Economics of Abundance</literal></binding>
+   <binding name="url"><uri>http://www.wired.com/wired/archive/14.10/cloudware_pr.html</uri></binding>
+   <binding name="created"><literal>2006-11-14T12:55:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.thelongtail.com/the_long_tail/atom.xml#Chris%2BAnderson</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1100</uri></binding>
+   <binding name="item_title"><literal>More on the Economics of Abundance</literal></binding>
+   <binding name="url"><uri>http://business2.blogs.com/business2blog/2006/10/startup_watch_e_1.html</uri></binding>
+   <binding name="created"><literal>2006-11-14T12:55:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.thelongtail.com/the_long_tail/atom.xml#Chris%2BAnderson</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1100</uri></binding>
+   <binding name="item_title"><literal>More on the Economics of Abundance</literal></binding>
+   <binding name="url"><uri>http://gigaom.com/2006/10/16/free-is-freer-via-wifi/</uri></binding>
+   <binding name="created"><literal>2006-11-14T12:55:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.thelongtail.com/the_long_tail/atom.xml#Chris%2BAnderson</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1100</uri></binding>
+   <binding name="item_title"><literal>More on the Economics of Abundance</literal></binding>
+   <binding name="url"><uri>http://www.free.fr</uri></binding>
+   <binding name="created"><literal>2006-11-14T12:55:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.thelongtail.com/the_long_tail/atom.xml#Chris%2BAnderson</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1100</uri></binding>
+   <binding name="item_title"><literal>More on the Economics of Abundance</literal></binding>
+   <binding name="url"><uri>http://asides.gigaom.com/2004/01/15/iliads-broadband-bounty/</uri></binding>
+   <binding name="created"><literal>2006-11-14T12:55:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.thelongtail.com/the_long_tail/atom.xml#Chris%2BAnderson</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1100</uri></binding>
+   <binding name="item_title"><literal>More on the Economics of Abundance</literal></binding>
+   <binding name="url"><uri>http://www.neteco.com/article_20061005085223_.html</uri></binding>
+   <binding name="created"><literal>2006-11-14T12:55:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://feeds.feedburner.com/AtlassianDeveloperBlog#Jonathan%2BNolen%2C%2BDir.%2Bof%2BDeveloper%2BRelations</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/615</uri></binding>
+   <binding name="item_title"><literal>Atlassian User Groups head to Europe</literal></binding>
+   <binding name="url"><uri>http://blogs.atlassian.com/developer/2006/09/atlassian_user_group_roundup.html</uri></binding>
+   <binding name="created"><literal>2006-11-14T12:22:28Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://feeds.feedburner.com/AtlassianDeveloperBlog#Jonathan%2BNolen%2C%2BDir.%2Bof%2BDeveloper%2BRelations</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/615</uri></binding>
+   <binding name="item_title"><literal>Atlassian User Groups head to Europe</literal></binding>
+   <binding name="url"><uri>http://confluence.atlassian.com/display/AUG/Atlassian+User+Group+in+London%2C+UK</uri></binding>
+   <binding name="created"><literal>2006-11-14T12:22:28Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://feeds.feedburner.com/AtlassianDeveloperBlog#Jonathan%2BNolen%2C%2BDir.%2Bof%2BDeveloper%2BRelations</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/615</uri></binding>
+   <binding name="item_title"><literal>Atlassian User Groups head to Europe</literal></binding>
+   <binding name="url"><uri>http://confluence.atlassian.com/display/AUG/Atlassian+User+Group+in+Karlsruhe%2C+Germany</uri></binding>
+   <binding name="created"><literal>2006-11-14T12:22:28Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://feeds.feedburner.com/AtlassianDeveloperBlog#Jonathan%2BNolen%2C%2BDir.%2Bof%2BDeveloper%2BRelations</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/615</uri></binding>
+   <binding name="item_title"><literal>Atlassian User Groups head to Europe</literal></binding>
+   <binding name="url"><uri>http://www.javapolis.com/confluence/display/JP06/Home</uri></binding>
+   <binding name="created"><literal>2006-11-14T12:22:28Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/525</uri></binding>
+   <binding name="item_title"><literal>Microsoft Zune (30GB, brown)</literal></binding>
+   <binding name="created"><literal>2006-11-14T10:38:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/525</uri></binding>
+   <binding name="item_title"><literal>Microsoft Zune (30GB, white)</literal></binding>
+   <binding name="created"><literal>2006-11-14T10:38:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/526</uri></binding>
+   <binding name="item_title"><literal>Maxtor Fusion 500GB Personal Web Server</literal></binding>
+   <binding name="created"><literal>2006-11-14T10:30:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://feeds.feedburner.com/carsonsystems#</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1024</uri></binding>
+   <binding name="item_title"><literal>CFDevCon 2006</literal></binding>
+   <binding name="created"><literal>2006-11-14T09:09:58Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://dallemang.typepad.com/my_weblog/atom.xml#Dean%2BAllemang</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/487</uri></binding>
+   <binding name="item_title"><literal>Semantic Web 3.0</literal></binding>
+   <binding name="url"><uri>http://iswc2006.semanticweb.org/</uri></binding>
+   <binding name="created"><literal>2006-11-14T08:58:46Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://dallemang.typepad.com/my_weblog/atom.xml#Dean%2BAllemang</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/487</uri></binding>
+   <binding name="item_title"><literal>Semantic Web 3.0</literal></binding>
+   <binding name="url"><uri>http://www.nytimes.com/2006/11/12/business/12web.html?ref=business&amp;pagewanted=all</uri></binding>
+   <binding name="created"><literal>2006-11-14T08:58:46Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://dallemang.typepad.com/my_weblog/atom.xml#Dean%2BAllemang</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/487</uri></binding>
+   <binding name="item_title"><literal>Semantic Web 3.0</literal></binding>
+   <binding name="url"><uri>http://scholar.google.com/scholar?q=route+planning&amp;hl=en&amp;lr=&amp;btnG=Search</uri></binding>
+   <binding name="created"><literal>2006-11-14T08:58:46Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/285</uri></binding>
+   <binding name="item_title"><literal>Sun Open Sourcing Java</literal></binding>
+   <binding name="url"><uri>http://www.gnu.org/copyleft/gpl.html</uri></binding>
+   <binding name="created"><literal>2006-11-14T06:44:12Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/285</uri></binding>
+   <binding name="item_title"><literal>Sun Open Sourcing Java</literal></binding>
+   <binding name="url"><uri>http://www.sun.com/software/opensource/java/</uri></binding>
+   <binding name="created"><literal>2006-11-14T06:44:12Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/285</uri></binding>
+   <binding name="item_title"><literal>Sun Open Sourcing Java</literal></binding>
+   <binding name="url"><uri>http://www.gnu.org/software/classpath/license.html</uri></binding>
+   <binding name="created"><literal>2006-11-14T06:44:12Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://sphere.wordpress.com/feed/#</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/596</uri></binding>
+   <binding name="item_title"><literal>Spherementing with PodTech</literal></binding>
+   <binding name="url"><uri>http://www.podtech.net/scobleshow/technology/1197/sphere-ceo-demos-new-blogsearch-bookmarklet</uri></binding>
+   <binding name="created"><literal>2006-11-14T05:36:52Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1253</uri></binding>
+   <binding name="item_title"><literal>Getting Data | The REST Dialogues</literal></binding>
+   <binding name="url"><uri>http://duncan-cragg.org/blog/post/strest-service-trampled-rest-will-break-web-20/</uri></binding>
+   <binding name="created"><literal>2006-11-14T05:05:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/527</uri></binding>
+   <binding name="item_title"><literal>Asus S6F</literal></binding>
+   <binding name="created"><literal>2006-11-14T04:21:00Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://feeds.feedburner.com/odeoblog#Biz</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/647</uri></binding>
+   <binding name="item_title"><literal>Hodgmania on Odeo!</literal></binding>
+   <binding name="url"><uri>http://odeo.com/audio/2605383/view</uri></binding>
+   <binding name="created"><literal>2006-11-14T04:16:22Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://feeds.feedburner.com/bugbash#Hans</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/1074</uri></binding>
+   <binding name="item_title"><literal>How To Improve Morale</literal></binding>
+   <binding name="created"><literal>2006-11-14T03:44:26Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Online video auteurs</literal></binding>
+   <binding name="url"><uri>http://www.nytimes.com/2006/11/12/magazine/12youtube.html?ex=1320987600&amp;en=0f8753cf15069a38&amp;ei=5090&amp;partner=rssuserland&amp;emc=rss</uri></binding>
+   <binding name="created"><literal>2006-11-14T01:34:22Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Online video auteurs</literal></binding>
+   <binding name="url"><uri>http://www.ourmedia.org</uri></binding>
+   <binding name="created"><literal>2006-11-14T01:34:22Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Online video auteurs</literal></binding>
+   <binding name="url"><uri>http://upcoming.org/event/126725/</uri></binding>
+   <binding name="created"><literal>2006-11-14T01:34:22Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>The future of newspapers</literal></binding>
+   <binding name="url"><uri>http://news.independent.co.uk/media/article1963543.ece</uri></binding>
+   <binding name="created"><literal>2006-11-14T01:13:40Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Digerati resisting Old Media deals</literal></binding>
+   <binding name="url"><uri>http://news.yahoo.com/s/adweek/20061111/ad_bpiaw/digeratiproveresistanttolureofoldmediadeals</uri></binding>
+   <binding name="created"><literal>2006-11-14T01:08:11Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Digerati resisting Old Media deals</literal></binding>
+   <binding name="url"><uri>http://www.iwantmedia.com</uri></binding>
+   <binding name="created"><literal>2006-11-14T01:08:11Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>A rave for Groowe</literal></binding>
+   <binding name="url"><uri>http://blog.searchenginewatch.com/blog/061109-160820</uri></binding>
+   <binding name="created"><literal>2006-11-14T01:00:01Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>A rave for Groowe</literal></binding>
+   <binding name="url"><uri>http://groowe.com/</uri></binding>
+   <binding name="created"><literal>2006-11-14T01:00:01Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>State of the blogosphere</literal></binding>
+   <binding name="url"><uri>http://technorati.com/weblog/2006/11/161.html</uri></binding>
+   <binding name="created"><literal>2006-11-14T00:47:42Z</literal></binding>
+  </result>
+  <result>
+   <binding name="forum_name"><literal>MyFeeds</literal></binding>
+   <binding name="creator"><uri>http://www.newmediamusings.com/blog/index.rdf#JD%2BLasica</uri></binding>
+   <binding name="member"><uri>http://myopenlink.net/dataspace/kidehen@openlinksw.com</uri></binding>
+   <binding name="channel"><uri>http://myopenlink.net/dataspace/feed/942</uri></binding>
+   <binding name="item_title"><literal>Installing the Zune ... sucked</literal></binding>
+   <binding name="url"><uri>http://www.engadget.com/2006/11/13/installing-the-zune-sucked/</uri></binding>
+   <binding name="created"><literal>2006-11-14T00:01:40Z</literal></binding>
+  </result>
+ </results>
+</sparql>
