@@ -32,3 +32,10 @@ incorporation of code from the following projects:
   Copyright 2005-2006 Google. 
   To use maps on your own site, visit:
 	 http://www.google.com/apis/maps/
+
+
+* oat/OpenLayers.js
+
+  Copyright 2005-2006 MetaCarta, Inc., released under the BSD License.
+  Please see http://svn.openlayers.org/trunk/openlayers/license.txt
+  for the full text of the license.
