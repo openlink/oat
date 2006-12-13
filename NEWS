@@ -1,2 +1,10 @@
+December 13 2006, V2.0:
+  * Added new functions to toolkit
+  * Added new functionality to existing toolkit
+  * Improved browser support
+  * Improved loading speed
+  * Changed Calendar, Color and Tree from static method to object
+  * Changed directory structure
+
 August 07 2006, V1.0:
   * Initial release
