@@ -5,6 +5,7 @@ December 13 2006, V2.0:
   * Improved loading speed
   * Changed Calendar, Color and Tree from static method to object
   * Changed directory structure
+  * Fixed small bugs
 
 August 07 2006, V1.0:
   * Initial release
