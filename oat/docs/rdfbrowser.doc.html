@@ -1,0 +1,41 @@
+<h2>rdfbrowser.js</h2>
+<p>Taxonomical RDF Browser.</p>
+<hr/>
+
+<h3>Objects</h3>
+<ul>
+	<li><a href="#rdfbrowser">OAT.RDFBrowser(div)</a></li>
+</ul>
+
+<h3>Methods</h3>
+<ul>
+	<li><a href="#attachdata">OAT.RDFBrowser::attachData(tripleArray)</a></li>
+	<li><a href="#addfilter">OAT.RDFBrowser::addFilter(predicate, object)</a></li>
+	<li><a href="#removefilter">OAT.RDFBrowser::removeFilter(predicate, object)</a></li>
+	<li><a href="#draw">OAT.RDFBrowser::draw()</a></li>
+</ul>
+
+<h3>CSS Classes</h3>
+<ul>
+	<li>.rdf_filter</li>
+	<li>.rdf_data</li>
+	<li>.rdf_categores</li>
+	<li>.rdf_item</li>
+</ul>
+
+<hr/>
+
+<h3><a name="rdfbrowser">OAT.RDFBrowser(div)</a></h3>
+<p>Creates a RDF Browser object. Contents will be displayed inside <em>div</em>.</p>
+
+<h3><a name="attachdata">OAT.RDFBrowser::attachData(tripleArray)</a></h3>
+<p>Attaches data to the Browser. <em>tripleArray</em> is an array of RDF triples (3-element arrays).</p>
+
+<h3><a name="addfilter">OAT.RDFBrowser::addFilter(predicate, object)</a></h3>
+<p>Adds a <em>predicate - object</em> filtering. Any number of such filters can be applied.</p>
+
+<h3><a name="removefilter">OAT.RDFBrowser::removeFilter(predicate, object)</a></h3>
+<p>Removes a filter. One must add such filter before removing it.</p>
+
+<h3><a name="draw">OAT.RDFBrowser::draw()</a></h3>
+<p>Draws the Browser.</p>

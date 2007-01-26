@@ -1,0 +1,32 @@
+<h2>rssreader.js</h2>
+<p>RSS Feed reader.</p>
+<hr/>
+
+<h3>Objects</h3>
+<ul>
+	<li><a href="#rssreader">OAT.RSSReader(div, optionsObject)</a></li>
+</ul>
+
+<h3>Methods</h3>
+<ul>
+	<li><a href="#display">OAT.RSSReader::display(xmlText)</a></li>
+</ul>
+
+<h3>CSS Classes</h3>
+<ul>
+	<li>.rss_reader</li>
+	<li>.rss_header</li>
+	<li>.rss_body</li>
+</ul>
+
+<hr/>
+
+<h3><a name="rssreader">OAT.RSSReader(div, optionsObject)</a></h3>
+<p>Creates a RSSReader object. Contents will be displayed inside <em>div</em>. Available options:</p>
+<ul>
+	<li>limit - int, maximum namber of items</li>
+	<li>showTitle - bool, should we display feed title?</li>
+</ul>
+
+<h3><a name="display">OAT.RSSReader::display(xmlText)</a></h3>
+<p>Parses <em>xmlText</em> and displays feed contents. Both RSS and RDF feeds are supported.</p>

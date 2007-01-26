@@ -1,0 +1,88 @@
+<h2>Basic operation</h2>
+<p>This short document describes what you need to do to include OAT's features into your web pages.</p>
+
+<ol>
+	<li>Download a release of OAT from Sourceforge</li>
+	<li>Unpack the archive to some directory</li>
+	<li>There are many files and directories included in the distribution. Most of them are applications / demos, which are usually not needed</li>
+	<li>The only important directory is <em>oat</em>; copy it to your project</li>
+	<li>Now you need to include OAT within you page:
+		<ol>
+			<li>Specify which features do you want to load:
+				<p class="code">&lt;script type="text/javascript"&gt;<br/>
+var featureList = ["grid","pivot",barchart"];<br/>
+&lt;script&gt;</p>
+			</li>
+			<li>Include <em>loader.js</em> file:
+				<p class="code">&lt;script type="text/javascript" src="oat/loader.js"&gt;&lt;script&gt;</p>
+			</li>
+		</ol>
+	</li>
+	<li>OAT will take care of dependencies and include all needed files</li>
+	<li>Don't put anything into <code>&lt;body onload=</code> handler; specify a function called <code>init</code> instead - it 
+	will be called automatically when OAT finishes loading</li>
+</ol>
+
+<h3>Example</h3>
+<p>The following example shows how to use OAT to display a date picker.</p>
+
+<pre class="code">
+&lt;html&gt;
+&lt;head&gt;
+	&lt;script type="text/javascript"&gt;
+		var featureList=["calendar"];
+		function init() {
+			var returnedDate = function(date) { alert("You selected "+date); }
+			var calendar = new OAT.Calendar();
+			
+			var showCallback = function(event) {
+				calendar.show(event.clientX, event.clientY, returnedDate);
+			}
+			
+			OAT.Dom.attach("button","click",showCallback);
+		}
+	&lt;/script&gt;
+	&lt;script type="text/javascript" src="oat/loader.js"&gt;&lt;/script&gt;
+	&lt;style type="text/css"&gt;
+		.calendar {
+			border: 1px solid #000;
+		}
+
+		.calendar_year, .calendar_month {
+			text-align: center;
+			border-bottom: 1px solid #aaa;
+			padding: 2px 0px;
+		}
+
+		.calendar table {
+			margin-top: 2px;
+		}
+
+		.calendar thead {
+			font-weight: bold;
+		}
+
+		.calendar thead td {
+			padding: 0px 2px;
+		}
+
+		.calendar td {
+			font-size: 60%;
+			text-align: center;
+		}
+
+		td.calendar_selected {
+			background-color: #faa;
+		}
+
+		.calendar_special {
+			color: #c55;
+		}
+	&lt;/style&gt;
+	&lt;title&gt;OAT Demo&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;input type="button" id="button" value="Pick" /&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>

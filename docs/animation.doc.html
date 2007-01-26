@@ -4,7 +4,11 @@
 
 <h3>Objects</h3>
 <ul>
-	<li><a href="#animation">OAT.Animation(animationStructure, delay)</a></li>
+	<li><a href="#animation">OAT.Animation(element, optionsObject)</a></li>
+	<li><a href="#animationsize">OAT.AnimationSize(element, optionsObject)</a></li>
+	<li><a href="#animationposition">OAT.AnimationPosition(element, optionsObject)</a></li>
+	<li><a href="#animationopacity">OAT.AnimationOpacity(element, optionsObject)</a></li>
+	<li><a href="#animationcss">OAT.AnimationCSS(element, optionsObject)</a></li>
 </ul>
 
 <h3>Methods</h3>
@@ -13,24 +17,59 @@
 	<li><a href="#stop">OAT.Animation::stop()</a></li>
 </ul>
 
-<h3>Functions</h3>
+<h3>Messages</h3>
 <ul>
-	<li><a href="#generate">OAT.AnimationStructure.generate(element, type, paramsObj)</a></li>
-</ul>
-
-<h3>Constants</h3>
-<ul>
-	<li>OAT.AnimationData.FADEIN</li>
-	<li>OAT.AnimationData.FADEOUT</li>
-	<li>OAT.AnimationData.RESIZE</li>
-	<li>OAT.AnimationData.MOVE</li>
+	<li>OAT.MSG.ANIMATION_STOP</li>
 </ul>
 
 <hr/>
 
-<h3><a name="animation">OAT.Animation(animationStructure, delay)</a></h3>
-<p>Creates animation. Animation effect is specified via <em>animationStructure</em>, executed with delay of <em>delay</em>. 
-User may specify a callback to be executed when animation ends, via <code>endFunction</code> property.</p>
+<h3><a name="animation">OAT.Animation(element, optionsObject)</a></h3>
+<p>Creates animation of <em>element</em>. All parameters are specified in <em>optionsObject</em>; for most use cases, 
+it is more suitable to use some pre-defined Animation* object. Properties of <em>optionsObject</em>:</p>
+<ul>
+	<li>delay - in msec</li>
+	<li>startFunction - to be executed when animation starts</li>
+	<li>conditionFunction - checked every step</li>
+	<li>stepFunction - executed every step</li>
+	<li>stopFunction - executed when conditionFunction returns true (and animation stops)</li>
+</ul>
+
+<h3><a name="animationsize">OAT.AnimationSize(element, optionsObject)</a></h3>
+<p>Animates <em>element</em>'s size. Properties of <em>optionsObject</em>:</p>
+<ul>
+	<li>delay - in msec</li>
+	<li>width - final width; -1 to ignore</li>
+	<li>height - final height; -1 to ignore</li>
+	<li>speed - speed of animation (in pixels)</li>
+</ul>
+
+<h3><a name="animationposition">OAT.AnimationPosition(element, optionsObject)</a></h3>
+<p>Animates <em>element</em>'s position. Properties of <em>optionsObject</em>:</p>
+<ul>
+	<li>delay - in msec</li>
+	<li>left - final left coordinate; -1 to ignore</li>
+	<li>top - final top coordinate; -1 to ignore</li>
+	<li>speed - speed of animation (in pixels)</li>
+</ul>
+
+<h3><a name="animationopacity">OAT.AnimationOpacity(element, optionsObject)</a></h3>
+<p>Animates <em>element</em>'s opacity. Properties of <em>optionsObject</em>:</p>
+<ul>
+	<li>delay - in msec</li>
+	<li>opacity - final opacity in 0..1</li>
+	<li>speed - speed of animation (in opacity steps)</li>
+</ul>
+
+<h3><a name="animationcss">OAT.AnimationCSS(element, optionsObject)</a></h3>
+<p>Animates <em>element</em>'s CSS property. Properties of <em>optionsObject</em>:</p>
+<ul>
+	<li>delay - in msec</li>
+	<li>property - name of CSS property</li>
+	<li>start - initial value</li>
+	<li>step - per-step value</li>
+	<li>stop - final value</li>
+</ul>
 
 <h3><a name="start">OAT.Animation::start()</a></h3>
 <p>Starts the animation.</p>
@@ -38,19 +77,8 @@ User may specify a callback to be executed when animation ends, via <code>endFun
 <h3><a name="start">OAT.Animation::stop()</a></h3>
 <p>Stops the animation.</p>
 
-<h3><a name="generate">OAT.AnimationStructure.generate(element, type, paramsObj)</a></h3>
-<p>Creates an <code>animationStructure</code>, which describes current animation effect. This animation will be applied to 
-DOM node <em>element</em>, its <em>type</em> is specified as a constant, and further arguments can be set in <em>paramsObj</em>, 
-depending on current type:</p>
-<ul>
-	<li>OAT.AnimationData.FADEIN - paramsObj = {max:"maximum opacity [0,1]", step:"one step [0,1]"}</li>
-	<li>OAT.AnimationData.FADEOUT - paramsObj = {min:"minimum opacity [0,1]", step:"one step [0,1]"}</li>
-	<li>OAT.AnimationData.RESIZE - paramsObj = {w:"final width", h:"final height", dist:"diagonal distance per step"}</li>
-	<li>OAT.AnimationData.MOVE - paramsObj = {x:"final left coordinate", y:"final top coordinate", dist:"diagonal distance per step", tol:"tolerance for end detection"}</li>
-</ul>
-<p class="code">
-var div = Dom.create("div");<br/>
-var as = OAT.AnimationStructure.generate(div, OAT.AnimationData.FADEOUT, {min:0.5, step: 0.02});<br/>
-var a = new OAT.Animation(as, 50);<br/>
+<pre class="code">
+var div = Dom.create("div");
+var a = new OAT.AnimationOpacity(div, {opacity:0.5, delay:50, speed: 0.02});
 a.start(); // will slowly make &lt;div&gt; element 50% transparent
-</p>
+</pre>

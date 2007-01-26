@@ -18,10 +18,7 @@
 
 <h3>Properties</h3>
 <ul>
-	<li>OAT.Xmla.endpoint</li>
-	<li>OAT.Xmla.dsn</li>
-	<li>OAT.Xmla.user</li>
-	<li>OAT.Xmla.password</li>
+	<li>OAT.Xmla.connection</li>
 	<li>OAT.Xmla.query</li>
 </ul>
 
@@ -29,7 +26,7 @@
 
 <h3><a name="discover">OAT.Xmla.discover(callback)</a></h3>
 <p>Sends a 'discover datasources' request, processes response, then performs <em>callback</em>. 
-<code>OAT.Xmla.endpoint</code> should be set before calling this function.</p>
+<code>OAT.Xmla.connection</code> should be set before calling this function.</p>
 <p class="code">
 var callback = function(data); {<br/>
  alert(data); // array of DSNs<br/>
@@ -39,7 +36,7 @@ OAT.Xmla.discover(callback);
 
 <h3><a name="dbschema">OAT.Xmla.dbschema(callback)</a></h3>
 <p>Sends a 'dbschema_catalogs' request, processes response, then performs <em>callback</em>.
-<code>OAT.Xmla.endpoint</code> and <code>OAT.Xmla.dsn</code> should be set before calling this function.</p>
+<code>OAT.Xmla.connection</code> should be set before calling this function.</p>
 <p class="code">
 var callback = function(data); {<br/>
  alert(data); // array of catalogs<br/>
@@ -49,7 +46,7 @@ OAT.Xmla.dbschema(callback);
 
 <h3><a name="tables">OAT.Xmla.tables(catalog, callback)</a></h3>
 <p>Sends a 'dbschema_tables' request with <em>catalog</em> restriction, processes response, then performs <em>callback</em>.
-<code>OAT.Xmla.endpoint</code> and <code>OAT.Xmla.dsn</code> should be set before calling this function.</p>
+<code>OAT.Xmla.connection</code> should be set before calling this function.</p>
 <p class="code">
 var callback = function(data); {<br/>
  alert(data[0]); // array of table names<br/>
@@ -60,7 +57,7 @@ OAT.Xmla.tables(callback);
 
 <h3><a name="columns">OAT.Xmla.columns(catalog, schema, table, callback)</a></h3>
 <p>Sends a 'dbschema_columns' request with <em>catalog</em>, <em>schema</em> and <em>table</em> restrictions, processes response, then performs <em>callback</em>.
-<code>OAT.Xmla.endpoint</code> and <code>OAT.Xmla.dsn</code> should be set before calling this function.</p>
+<code>OAT.Xmla.connection</code> should be set before calling this function.</p>
 <p class="code">
 var callback = function(data); {<br/>
  // data is an array of objects <br/>
@@ -71,7 +68,7 @@ OAT.Xmla.columns(callback);
 
 <h3><a name="execute">OAT.Xmla.execute(callback)</a></h3>
 <p>Sends a query for execution. 
-<code>OAT.Xmla.endpoint</code>, <code>OAT.Xmla.dsn</code> and <code>OAT.Xmla.query</code> should be set before calling this function.</p>
+<code>OAT.Xmla.connection</code> should be set before calling this function.</p>
 <p class="code">
 var callback = function(data); {<br/>
  var header = data[0]; <br/>

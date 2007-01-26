@@ -1,0 +1,109 @@
+<h2>datasource.js</h2>
+<p>Data access object.</p>
+<hr/>
+
+<h3>Objects</h3>
+<ul>
+	<li><a href="#datasource">OAT.DataSource(type)</a></li>
+</ul>
+
+<h3>Properties</h3>
+<ul>
+	<li><a href="#connection">OAT.DataSource::connection</a></li>
+	<li><a href="#options">OAT.DataSource::options</a></li>
+	<li><a href="#outputFields">OAT.DataSource::outputFields</a></li>
+</ul>
+
+<h3>Methods</h3>
+<ul>
+	<li><a href="#bindrecord">OAT.DataSource::bindRecord(recordCallback)</a></li>
+	<li><a href="#bindpage">OAT.DataSource::bindPage(pageCallback)</a></li>
+	<li><a href="#bindfile">OAT.DataSource::bindFile(fileCallback)</a></li>
+	<li><a href="#bindempty">OAT.DataSource::bindEmpty(emptyCallback)</a></li>
+	<li><a href="#bindheader">OAT.DataSource::bindHeader(headerCallback)</a></li>
+	<li><a href="#advancerecord">OAT.DataSource::advanceRecord(recordIndex)</a></li>
+</ul>
+
+<h3>Constants</h3>
+<ul>
+	<li>OAT.DataSourceData.TYPE_SQL</li>
+	<li>OAT.DataSourceData.TYPE_SOAP</li>
+	<li>OAT.DataSourceData.TYPE_REST</li>
+	<li>OAT.DataSourceData.TYPE_SPARQL</li>
+	<li>OAT.DataSourceData.TYPE_GDATA</li>
+</ul>
+
+<hr/>
+
+<h3><a name="datasource">OAT.DataSource(type)</a></h3>
+<p>Creates new DataSource object. <em>type</em> is one of type constants.</p>
+
+<h3><a name="connection">OAT.DataSource::connection</a></h3>
+<p>Assigns an OAT.Connection object to this datasource.</p>
+
+<h3><a name="options">OAT.DataSource::options</a></h3>
+<p>Object with various properties, dependant on DataSource Type:</p>
+<ul>
+	<li>TYPE_SQL
+		<ul>
+			<li>query - SQL query</li>
+			<li>limit - cursor limit</li>
+			<li>cursortype - 0/1; 0 - snapshot, 1 - dynaset</li>
+		</ul>
+	</li>
+	<li>TYPE_SOAP
+		<ul>
+			<li>service - name of WSDL service</li>
+			<li>rootelement - name of root input WSDL element</li>
+			<li>inputobj - input WSDL object (see ws.js documentation for details)</li>
+		</ul>
+	</li>
+	<li>TYPE_REST, TYPE_SPARQL, TYPE_GDATA
+		<ul>
+			<li>query - HTTP GET querystring</li>
+			<li>output - 0/1; 0 - xml, 1 = json</li>
+			<li>xpath - bool; are outputFields specified as XPath expressions, or as node names?</li>
+		</ul>
+	</li>
+</ul>
+
+<h3><a name="options">OAT.DataSource::outputFields</a></h3>
+<p>List of wanted fields in fetched data.</p>
+
+<h3><a name="bindrecord">OAT.DataSource::bindRecord(recordCallback)</a></h3>
+<p>Listens for new data records. When new record is available, <em>recordCallback</em> is executed with 2 arguments: record data and record index.</p>
+
+<h3><a name="bindpage">OAT.DataSource::bindPage(pageCallback)</a></h3>
+<p>Listens for new data record pages. When new data page (record set) is available, <em>pageCallback</em> is executed with 2 arguments: page data and page index.</p>
+
+<h3><a name="bindfile">OAT.DataSource::bindFile(fileCallback)</a></h3>
+<p>Listens for new data file. When new data file is available, <em>fileCallback</em> is executed with 1 argument: file contents.</p>
+
+<h3><a name="bindempty">OAT.DataSource::bindEmpty(emptyCallback)</a></h3>
+<p>Listens for empty dataset. When empty dataset arrives, <em>emptyCallback</em> is executed.</p>
+
+<h3><a name="bindheader">OAT.DataSource::bindHeader(headerCallback)</a></h3>
+<p>Listens for data header. When header arrives, <em>headerCallback</em> is executed with 1 argument: data header.</p>
+
+<h3><a name="advancerecord">OAT.DataSource::advanceRecord(recordIndex)</a></h3>
+<p>Advanced through records. <em>recordIndex</em> can be an integer or "-1" or "+1".</p>
+
+<pre class="code">
+var conn = new OAT.Connection(OAT.ConnectionData.TYPE_REST, {url:"myfile.xml"});
+
+var ds = new OAT.DataSource(OAT.DataSourceData.TYPE_REST);
+ds.connection = conn;
+ds.options.output = 0; /* fetch result as XML */
+ds.options.xpath = 1; /* outputFields are specified as XPATH expressions */
+ds.outputFields = ['//result/binding[@name="created"]/node()/text()',
+					'//result/binding[@name="creator"]/node()/text()',
+					'//result/binding[@name="item_title"]/node()/text()',
+					'//result/binding[@name="url"]/node()/text()'];
+
+var recordCallback = function(data, index) {
+	alert('Data at index ' + index + ':\n' + data );
+}
+ds.bindRecord(recordCallback);
+ds.advanceRecord(0);
+</pre>
+

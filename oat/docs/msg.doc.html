@@ -1,0 +1,39 @@
+<h2>Messaging</h2>
+<p>How to send &amp; receive inter-control messages</p>
+<hr/>
+
+<h3>Functions</h3>
+<ul>
+	<li><a href="#send">OAT.MSG.send(sender, message, event)</a></li>
+	<li><a href="#attach">OAT.MSG.attach(sender, message, callback)</a></li>
+	<li><a href="#detach">OAT.MSG.detach(sender, message, callback)</a></li>
+</ul>
+
+<hr/>
+
+<h3><a name="send">OAT.MSG.send(sender, message, event)</a></h3>
+<p>Dispatches a message. The <em>message</em> must be a constant, defined in OAT.MSG. Developers are encouraged to add more message types;
+ example messages: OAT_LOAD, TREE_EXPAND, AJAX_FAILURE. <em>sender</em> should equal to object sending this message. <em>event</em> is an object 
+ carrying data relevant to this message; no particular format is required.</p>
+
+<h3><a name="attach">OAT.MSG.attach(sender, message, callback)</a></h3>
+<p>Subscribes to receiving messages. <em>sender</em> equals to object whose messages we want to receive; value of <code>"*"</code> means ALL senders. 
+<em>message</em> is the message we want to receive; it is possible to use <code>"*"</code> or RegExp matches here. When a message arrives, 
+<em>callback</em> is executed with arguments passed to appropriate OAT.MSG.send function.</p>
+
+<h3><a name="detach">OAT.MSG.detach(sender, message, callback)</a></h3>
+<p>Detaches previously set message receiving handler. All three fields must match.</p>
+
+<pre class="code">
+/* assume that there exists OAT.MSG.CUSTOM_MESSAGE */
+
+function myMessageHander(source, message, event) {
+	alert("Message arrived!"(;
+}
+
+/* subscribe to receiving... */
+OAT.MSG.attach("*","CUSTOM_.*",myMessageHandler);
+
+/* dispatch message */
+OAT.MSG.send(this, OAT.MSG.CUSTOM_MESSAGE, {}); // will invoke myMessageHandler 
+</pre>

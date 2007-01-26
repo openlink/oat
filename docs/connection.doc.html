@@ -1,0 +1,42 @@
+<h2>connection.js</h2>
+<p>Connection object for data access.</p>
+<hr/>
+
+<h3>Objects</h3>
+<ul>
+	<li><a href="#connection">OAT.Connection(type, optionsObject)</a></li>
+</ul>
+
+
+<h3>Constants</h3>
+<ul>
+	<li>OAT.ConnectionData.TYPE_XMLA</li>
+	<li>OAT.ConnectionData.TYPE_REST</li>
+	<li>OAT.ConnectionData.TYPE_WSDL</li>
+</ul>
+
+<hr/>
+
+<h3><a name="connction">OAT.Connection(type, optionsObject)</a></h3>
+<p>Creates a Connection. <em>type</em> is one of mentioned type constants. Available options depend on connection type:</p>
+
+<ul>
+	<li>TYPE_XMLA	
+		<ul>
+			<li>endpoint</li>
+			<li>dsn</li>
+			<li>user</li>
+			<li>password</li>
+		</ul>
+	</li>
+	<li>TYPE_REST
+		<ul>
+			<li>url</li>
+		</ul>
+	</li>
+	<li>TYPE_WSDL
+		<ul>
+			<li>url</li>
+		</ul>
+	</li>
+</ul>

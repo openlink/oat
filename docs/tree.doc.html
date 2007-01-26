@@ -23,6 +23,14 @@
 	<li>ext - image name extension</li>
 	<li>labelOpens - boolean, specifying whether clicking label opens branch</li>
 	<li>onlyOneOpened - boolean, specifying whether only one branch can be opened at a time</li>
+	<li>allowDrag - boolean; can user re-drag Tree nodes?</li>
+	<li>poorMode - boolean; switch to "memory_saving_increased_performance / lower_visual_features" mode?</li>
+	<li>checkboxMode - boolean; use checkbox mode?</li>
+	<li>allowDrag - boolean; can user re-drag Tree nodes?</li>
+	<li>defaultCheck - boolean (only in checkbox mode) ; are checkboxes checked by default ?</li>
+	<li>checkNOI - boolean (only in checkbox mode); if <code>true</code>, then checked nodes are contained in <code>OAT.Tree::checkedNOI</code>. 
+	Otherwise, this array contains unchecked nodes.</li>
+	<li>checkCallback - function (only in checkbox mode); will be executed (with <code>nodeSet</code> argument) when user changes state of a checkbox.</li>
 </ul>
 
 <h3><a name="assign">OAT::Tree::assign(listElement, collapse)</a></h3>

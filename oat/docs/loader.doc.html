@@ -6,9 +6,10 @@
 	<li><a href="#$">$(element)</a></li>
 	<li><a href="#$$">$$(element)</a></li>
 	<li><a href="#$v">$v(element)</a></li>
-	<li><a href="#create">OAT.Dom.create(tagName, [styleObj])</a></li>
+	<li><a href="#create">OAT.Dom.create(tagName, [styleObj], className)</a></li>
 	<li><a href="#text">OAT.Dom.text(text)</a></li>
 	<li><a href="#option">OAT.Dom.option(name, value, [parent])</a></li>
+	<li><a href="#append">OAT.Dom.append([parent1, child1, child2, ...], ...)</a></li>
 	<li><a href="#hide">OAT.Dom.hide(element)</a></li>
 	<li><a href="#show">OAT.Dom.show(element)</a></li>
 	<li><a href="#clear">OAT.Dom.clear(element)</a></li>
@@ -46,11 +47,11 @@ Note that it is perfectly correct to pass an object reference to $-function, alt
 <p>This function is identical to <code>$$()</code>. They are shortcuts for <code>$().value</code>. You should use them
 when getting a value of any form element.</p>
 
-<h3><a name="create">OAT.Dom.create(tagName, [styleObj])</a></h3>
-<p>Used for dynamic creation of HTML nodes. Two parameters are accepted, the first one is mandatory. Example:</p>
+<h3><a name="create">OAT.Dom.create(tagName, [styleObj], className)</a></h3>
+<p>Used for dynamic creation of HTML nodes. Three parameters are accepted, the first one is mandatory. Example:</p>
 <p class="code">
 	var myDiv = OAT.Dom.create("div");
-	var myStyledDiv = OAT.Dom.create("div", {color : "#f00", fontWeight : "bold"});
+	var myStyledDiv = OAT.Dom.create("div", {color : "#f00", fontWeight : "bold"}, "myDiv_class");
 </p>
 <p>The second (optional) argument <em>styleObj</em> is an object comprised of CSS properties. For a full list of valid properties, see 
 	<a href="http://developer.mozilla.org/en/docs/Dom:CSS">Mozilla documentation</a> and <a href="http://msdn.microsoft.com/workshop/author/dhtml/reference/objects/obj_style.asp">MSDN</a>.
@@ -70,6 +71,13 @@ If <em>parent</em> is specified, this function also appends newly created node t
 	OAT.Dom.option("bananas",2,s);
 	OAT.Dom.option("cherries",3,s);
 </p>
+
+<h3><a name="append">OAT.Dom.append([parent1, child1, child2, ...], ...)</a></h3>
+<p>Links any number of DOM nodes. Takes variable amount of arguments, each argument must be an array. For each argument:</p>
+<ul>
+	<li>First value is taken as parent node</li>
+	<li>All other values are appended to parent (in order in which they appear)</li>
+</ul>
 
 <h3><a name="hide">OAT.Dom.hide(element)</a></h3>
 <p>Hides specified <em>element</em> by setting its <code>style.visibility<code> property.</p>

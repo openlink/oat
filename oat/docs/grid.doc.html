@@ -4,7 +4,7 @@
 
 <h3>Objects</h3>
 <ul>
-	<li><a href="#grid">OAT.Grid(element, autoNumber)</a></li>
+	<li><a href="#grid">OAT.Grid(element, autoNumber, allowColumnHiding)</a></li>
 </ul>
 
 <h3>Methods</h3>
@@ -44,9 +44,9 @@
 
 <hr/>
 
-<h3><a name="grid">OAT.Grid(element, autoNumber)</a></h3>
+<h3><a name="grid">OAT.Grid(element, autoNumber, allowColumnHiding)</a></h3>
 <p>Creates a grid as a child of <em>element</em>. If <em>autoNumber</em> is true, than the Grid will automatically add the first, 
-auto-numbered column.</p>
+auto-numbered column. If <em>allowColumnHiding</em> is true, user can toggle column visibility at runtime.</p> 
 
 <h3><a name="createrow">OAT.Grid::createRow(data, [index])</a></h3>
 <p>Adds a row. If <em>index</em> is present, it specifies at which index the new row should be inserted. <em>Data</em> 

@@ -1,0 +1,56 @@
+<h2>ws.js</h2>
+<p>Web Services (WSDL) interface.</p>
+<hr/>
+
+<h3>Functions</h3>
+<ul>
+	<li><a href="#getendpoint">OAT.WS.getEndpoint(wsdlURL, callback)</a></li>
+	<li><a href="#listservices">OAT.WS.listServices(wsdlURL, callback)</a></li>
+	<li><a href="#listparameters">OAT.WS.listParameters(wsdlURL, service, callback)</a></li>
+	<li><a href="#invoke">OAT.WS.invoke(url, callback, service, paramObj)</a></li>
+</ul>
+
+<hr/>
+
+<h3><a name="getendpoint">OAT.WS.getEndpoint(wsdlURL, callback)</a></h3>
+<p>Asynchronously retrieve the endpoint URL for a given <em>wsdlURL</em>. Will <em>callback(url)</em> when retrieved.</p>
+
+<h3><a name="listservices">OAT.WS.listServices(wsdlURL, callback)</a></h3>
+<p>Asynchronously retrieve a list of valid services for a given <em>wsdlURL</em>. Will <em>callback(servicesArray)</em> when retrieved.</p>
+
+<h3><a name="listparameters">OAT.WS.listParameters(wsdlURL, service, callback)</a></h3>
+<p>Asynchronously retrieve input and output values for given <em>wsdlURL</em> and <em>service</em>. Will <em>callback(inputObject, outputObject)</em> when retrieved. </p>
+
+<h3><a name="invoke">OAT.WS.invoke(url, callback, service, paramObj)</a></h3>
+<p>Invokes a web <em>service</em>, located at <em>url</em>. Input values are specified in <em>paramObj</em>; will <em>callback(outputObject)</em> when finished.</p>
+
+<pre class="code">
+/* Sample code for google search */
+var wsdl = "/google/services.wsdl";
+var serviceName = "doGoogleSearch";
+var inputObject = {
+	doGoogleSearch:{
+		key:"IGWnqjhQFHKvB8MdJlVI0GPKDJxZhwBf",
+		q:"my query",
+		start:0,
+		maxResults:10,
+		filter:"",
+		restrict:"",
+		safeSearch:"",
+		lr:"",
+		ie:"",
+		oe:""
+	}
+}
+
+
+function callback(outputObject) {
+	alert('Data arrived!');
+}
+
+function endpointRef(url) {
+	OAT.WS.invoke(url, callback, serviceName, inputObject);
+}
+
+OAT.WS.getEndpoint(wsdl,endpointRef);
+</pre>
