@@ -29,7 +29,6 @@
 	<html>
 		<head>
 			<script type="text/javascript">
-				var toolkitPath = "/DAV/JS/oat";
 				var featureList=["pivot","xmla","soap","ajax","window","dialog"];
 			</script>	
 			<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>
@@ -83,11 +82,13 @@
 						dataColumnIndex = <xsl:value-of select="." />;
 					</xsl:for-each>
 					<xsl:for-each select="//connection">
-						OAT.Xmla.dsn = "<xsl:value-of select="@dsn" />";
-						OAT.Xmla.endpoint = "<xsl:value-of select="@endpoint" />";
-						OAT.Xmla.user = OAT.Crypto.base64d("<xsl:value-of select="@user" />");
-						OAT.Xmla.password = OAT.Crypto.base64d("<xsl:value-of select="@password" />");
-						var nocred = "<xsl:value-of select="@nocred" />";
+						var conn = new OAT.Connection(OAT.ConnectionData.TYPE_XMLA);
+						conn.options.dsn = "<xsl:value-of select="@dsn" />";
+						conn.options.endpoint = "<xsl:value-of select="@endpoint" />";
+						conn.options.user = OAT.Crypto.base64d("<xsl:value-of select="@user" />");
+						conn.options.password = OAT.Crypto.base64d("<xsl:value-of select="@password" />");
+						OAT.Xmla.connection = conn;
+						conn.nocred = parseInt("<xsl:value-of select="@nocred" />");
 					</xsl:for-each>
 				
 					OAT.Xmla.query = $("query").innerHTML;
@@ -102,15 +103,15 @@
 						OAT.Xmla.execute(callback);
 					}
 					
-					if (OAT.Xmla.user || parseInt(nocred)) {
+					if (OAT.Xmla.connection.options.user || OAT.Xmla.connection.nocred) {
 						OAT.Dom.unlink("credentials");
 						cont();
 					} else {
 						var d = new OAT.Dialog("Credentials","credentials",{modal:1,width:300});
 						d.show();
 						var ref = function() {
-							OAT.Xmla.user = $v("cred_user");
-							OAT.Xmla.password = $v("cred_password");
+							OAT.Xmla.connection.options.user = $v("cred_user");
+							OAT.Xmla.connection.options.password = $v("cred_password");
 							d.hide();
 							cont();
 						}
