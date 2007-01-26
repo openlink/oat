@@ -36,9 +36,9 @@ var IO = {
 		if ($("options_type_dav").checked) {
 			var options = {
 				mode:'save_dialog',
-				user:OAT.Xmla.user,
-				pass:OAT.Xmla.password,
-				pathDefault:"/DAV/home/"+OAT.Xmla.user+"/",
+				user:OAT.Xmla.connection.options.user,
+				pass:OAT.Xmla.connection.options.password,
+				pathDefault:"/DAV/home/"+OAT.Xmla.connection.options.user+"/",
 			  file_ext:'xml',
 				onConfirmClick:function() { return xml;}
 			};
@@ -99,9 +99,7 @@ var IO = {
 		if (t == "xml" || t == "manual") {
 			xml += '\n<?xml-stylesheet type="text/xsl" href="'+$v("options_xslt")+'/query.xsl"?>';
 			xml += '\n<root>';
-			xml += '<connection dsn="'+OAT.Xmla.dsn+'" endpoint="'+OAT.Xmla.endpoint+'" ';
-			if ($("options_uid").checked) { xml += 'user="'+OAT.Crypto.base64e(OAT.Xmla.user)+'" password="'+OAT.Crypto.base64e(OAT.Xmla.password)+'"'; }
-			xml += ' nocred="'+($("options_nocred").checked ? 1 : 0)+'"></connection>\n';
+			xml += OAT.Xmla.connection.toXML($("options_uid").checked,$("options_nocred").checked);
 			xml += '\n<query ';
 			if (t == "manual") { xml += 'manual="1"'}
 			xml += '>'+query+'</query>';
@@ -125,9 +123,9 @@ var IO = {
 		if ($("options_type_dav").checked) {
 			var options = {
 				mode:'open_dialog',
-				user:OAT.Xmla.user,
-				pass:OAT.Xmla.password,
-				pathDefault:"/DAV/home/"+OAT.Xmla.user+"/",
+				user:OAT.Xmla.connection.options.user,
+				pass:OAT.Xmla.connection.options.password,
+				pathDefault:"/DAV/home/"+OAT.Xmla.connection.options.user+"/",
 				onConfirmClick:function(path,fname,data){
 					IO.lastQName = path+fname;
 					IO.save_type = "xml";
@@ -149,9 +147,9 @@ var IO = {
 		if ($("options_type_dav").checked) {
 			var options = {
 				mode:'open_dialog',
-				user:OAT.Xmla.user,
-				pass:OAT.Xmla.password,
-				pathDefault:"/DAV/home/"+OAT.Xmla.user+"/",
+				user:OAT.Xmla.connection.options.user,
+				pass:OAT.Xmla.connection.options.password,
+				pathDefault:"/DAV/home/"+OAT.Xmla.connection.options.user+"/",
 				onConfirmClick:function(path,fname,data) {
 					IO.lastPName = path+fname;
 					pivot_design_load(data);
