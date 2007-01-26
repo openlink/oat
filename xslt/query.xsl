@@ -30,7 +30,6 @@
 	<html>
 	<head>
 		<script type="text/javascript">
-			var toolkitPath = "/DAV/JS/oat";
 			var featureList = ["grid","ajax","xmla","soap","dialog","crypto","datasource","formobject","webclip"];
 		</script>
 		<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>

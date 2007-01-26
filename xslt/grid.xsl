@@ -38,7 +38,6 @@
 	<html>
 	<head>
 		<script type="text/javascript">
-			var toolkitPath = "/DAV/JS/pat";
 			var featureList = ["grid"];
 		</script>
 		<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>

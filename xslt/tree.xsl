@@ -54,7 +54,6 @@
 	<html>
 	<head>
 		<script type="text/javascript">
-			var toolkitPath = "/DAV/JS/oat";
 			var featureList = ["tree"];
 		</script>
 		<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>
