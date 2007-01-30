@@ -7,7 +7,7 @@
  *
  *  See LICENSE file for details.
  */
-
+ 
 /*
 	tl = new OAT.Timeline(portDiv, sliderDiv, paramsObj)
 	paramsObj = {
@@ -20,6 +20,8 @@
 	tl.addBand(name,color,label)
 	tl.addEvent(bandName,startTime,endTime,content,color)
 	tl.draw()
+	
+	.timeline .timeline_port .timeline_slider
 */
 
 OAT.TimelineData = {
@@ -100,7 +102,7 @@ OAT.Timeline = function(portElm,sliderElm,paramsObj) {
 	this.port.className = "timeline_port";
 	this.elm.className = "timeline";
 	this.sliderBtn.className = "timeline_slider";
-
+	
 	/* dragging */
 	OAT.Dom.attach(this.port,"mousedown",function(event){ self.mouse_x = event.clientX; OAT.TimelineData.obj = self; });
 	
