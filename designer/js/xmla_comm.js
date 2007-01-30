@@ -222,12 +222,14 @@ function xmla_discover() {
 }
 
 function xmla_settings() {
-	OAT.Xmla.endpoint = $v("xmla_endpoint");
-	OAT.Xmla.dsn = $v("xmla_dsn");
-	OAT.Xmla.user = $v("user");
-	OAT.Xmla.password = $v("password");
-	OAT.Ajax.user = OAT.Xmla.user;
-	OAT.Ajax.password = OAT.Xmla.password;
+	var c = new OAT.Connection(OAT.ConnectionData.TYPE_XMLA);
+	c.options.endpoint = $v("xmla_endpoint");
+	c.options.dsn = $v("xmla_dsn");
+	c.options.user = $v("user");
+	c.options.password = $v("password");
+	OAT.Ajax.user = c.options.user;
+	OAT.Ajax.password = c.options.password;
+	OAT.Xmla.connection = c;
 	var h = $('options_type_http');
 	var d = $('options_type_dav');
 	h.checked = ($v('login_put_type') == "http");
