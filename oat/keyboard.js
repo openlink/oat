@@ -8,6 +8,9 @@
  *  See LICENSE file for details.
  */
 /*
+	OAT.Keyboard.add(key, downCallback, upCallback, group, id, obj)
+	OAT.Keyboard.disable(group)
+	OAT.Keyboard.enable(group)
 */
 
 OAT.Keyboard = {
@@ -102,7 +105,8 @@ OAT.Keyboard = {
 		"m":77 ,"n":78, "o":79, "p":80, "q":81, "r":82,
 		"s":83 ,"t":84, "u":85, "v":86, "w":87, "x":88,
 		"y":89 ,"z":90, "0":48, "1":49, "2":50, "3":51,
-		"4":52, "5":53, "6":54, "7":55, "8":56, "9":57
+		"4":52, "5":53, "6":54, "7":55, "8":56, "9":57,
+		"esc":27,"return":13,"enter":13
 		
 	}
 }
