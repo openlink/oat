@@ -30,9 +30,9 @@ function Toolbox(obj) {
 					callback(name);
 					return true; /* return false will keep browser open */
 				},
-				user:OAT.Xmla.user,
-				pass:OAT.Xmla.password,
-				pathDefault:"/DAV/home/"+OAT.Xmla.user+"/",
+				user:OAT.Xmla.connection.user,
+				pass:OAT.Xmla.connection.password,
+				pathDefault:"/DAV/home/"+OAT.Xmla.connection.user+"/",
 				file_ext:'xml'
 			};
 			OAT.WebDav.open(options);
@@ -108,7 +108,7 @@ function Toolbox(obj) {
 	this.showForm = function() {
 		self.clear();
 		self.name.innerHTML = "[form]";
-		
+
 		self.tableIndex = 2;
 		/* css props */
 		var t = OAT.Dom.text("Appearance");
@@ -195,8 +195,9 @@ function Toolbox(obj) {
 			self.addTable(t);
 		}
 		for (var i = 0;i<o.properties.length;i++) {
-		
 			var p = o.properties[i];
+			self.tableIndex = 0;
+			if ("positionOverride" in p) { self.tableIndex = p.positionOverride; }
 			var text = OAT.Dom.text(p.name);
 			switch (p.type) {
 				case "string":
@@ -228,11 +229,11 @@ function Toolbox(obj) {
 							self.addTable(text,input);
 						}
 					} else {
-					var input = OAT.Dom.create("input");
-					input.setAttribute("size","14");
-					input.value = p.value;
-					OAT.Bindings.bindString(input,p,"value");
-					self.addTable(text,input);
+						var input = OAT.Dom.create("input");
+						input.setAttribute("size","14");
+						input.value = p.value;
+						OAT.Bindings.bindString(input,p,"value");
+						self.addTable(text,input);
 					}
 				break;
 				case "bool":
@@ -373,49 +374,49 @@ function Toolbox(obj) {
 				var t = OAT.Dom.text(fs.name);
 				var colList = (ds.ds ? ds.ds.outputFields : []);
 				if (fs.variable) {
-				/* variable count datasource */
-				var cnt_select = OAT.Dom.create("select");
-				for (var j=0;j<11;j++) {
-					OAT.Dom.option(j,j,cnt_select);
+					/* variable count datasource */
+					var cnt_select = OAT.Dom.create("select");
+					for (var j=0;j<11;j++) {
+						OAT.Dom.option(j,j,cnt_select);
 						if (j == fs.names.length) { cnt_select.selectedIndex = j; }
-				}
-				self.addTable(t,cnt_select);
-				/* count change reference */
+					}
+					self.addTable(t,cnt_select);
+					/* count change reference */
 					var fsCountRef = self.fsCountRef(cnt_select,fs,o);
 					OAT.Dom.attach(cnt_select,"change",fsCountRef);
-				
-				/* actual values */
+					
+					/* actual values */
 					for (var j=0;j<fs.names.length;j++) {
-					var text = OAT.Dom.text("#"+(j+1)+" name");
-					var name = OAT.Dom.create("input");
+						var text = OAT.Dom.text("#"+(j+1)+" name");
+						var name = OAT.Dom.create("input");
 						name.type = "text";
 						name.size = "16";
 						name.value = fs.names[j];
 						OAT.Bindings.bindString(name,fs.names,j);
-					self.addTable(text,name);
-					
-					var text = OAT.Dom.text("#"+(j+1)+" value");
-					var select = OAT.Dom.create("select");
-					OAT.Dom.option("","-1",select);
-					for (var k=0;k<colList.length;k++) { 
+						self.addTable(text,name);
+						
+						var text = OAT.Dom.text("#"+(j+1)+" value");
+						var select = OAT.Dom.create("select");
+						OAT.Dom.option("","-1",select);
+						for (var k=0;k<colList.length;k++) { 
 							var l = (ds.ds.outputLabels[k] ? ds.ds.outputLabels[k] : colList[k]);
 							OAT.Dom.option(l,k,select);
 							if (k == fs.columnIndexes[j]) { select.selectedIndex = k+1; }
-					}
+						}
 						OAT.Bindings.bindSelect(select,fs.columnIndexes,j);
-					self.addTable(text,select);
-				}
-			} else {
-				/* static datasource */
-				var select = OAT.Dom.create("select");
-				OAT.Dom.option("","-1",select);
-				for (var j=0;j<colList.length;j++) { 
+						self.addTable(text,select);
+					}
+				} else {
+					/* static datasource */
+					var select = OAT.Dom.create("select");
+					OAT.Dom.option("","-1",select);
+					for (var j=0;j<colList.length;j++) { 
 						var l = (ds.ds.outputLabels[j] ? ds.ds.outputLabels[j] : colList[j]);
 						OAT.Dom.option(l,j,select);
 						if (j == fs.columnIndexes[0]) { select.selectedIndex = j+1; }
-				}
+					}
 					OAT.Bindings.bindSelect(select,fs.columnIndexes,0);
-				self.addTable(t,select);
+					self.addTable(t,select);
 				} /* static fieldset */
 			} /* for all fieldsets */
 		} /* for all datasources */

@@ -17,7 +17,6 @@
 
 
 var FormDesigner = function(parent) {
-
 	/* basic properties */
 	var self = this;
 	this.base = false; /* root element */
@@ -141,8 +140,8 @@ var FormDesigner = function(parent) {
 	this.getCoords = function() {
 		self.y += 30;
 		return [self.x,self.y];
-		}
-
+	}
+	
 	this.selectForm = function() {
 		self.deselectAll();
 		self.gd.clearSources();
@@ -407,12 +406,12 @@ var FormDesigner = function(parent) {
 		self.base.style.height = tmp.getAttribute("height")+"px";
 		/* objects */
 		var objects = root.getElementsByTagName("object");
-			for (var j=0;j<objects.length;j++) {
-				var type = objects[j].getAttribute("type");
+		for (var j=0;j<objects.length;j++) {
+			var type = objects[j].getAttribute("type");
 			var obj = self.addObject(type,0,0,1);
-				if (obj.userSet) { obj.setValue(objects[j].getAttribute("value")); }
+			if (obj.userSet) { obj.setValue(objects[j].getAttribute("value")); }
 			obj.fromXML(objects[j],self.datasources);
-			}
+		}
 		/* create master links */
 		for (var i=0;i<self.datasources.length;i++) {
 			var ds = self.datasources[i];
@@ -467,21 +466,20 @@ var FormDesigner = function(parent) {
 		if (xslStr) { xml += xslStr+'\n'; }
 		xml += '<form';
 		xml += ' showajax="'+($("options_showajax").checked ? 1 : 0)+'" '; /* display ajax dialogs? */
-		xml += ' nocred="'+($("options_nocred").checked ? 1 : 0)+'" '; /* try to work with blank credentials? */
-			xml += '>\n';
+		xml += '>\n';
 		
 		var uid = $("options_uid").checked;
 		for (var i=0;i<self.datasources.length;i++) {
-			xml += self.datasources[i].toXML(uid,self.datasources,self.objects)+'\n'; 
-			}
+			xml += self.datasources[i].toXML(uid,self.datasources,self.objects,$("options_nocred").checked)+'\n'; 
+		}
 		var d = self.base;
-			var bg = OAT.Dom.style(d,"backgroundColor");
-			var fg = OAT.Dom.style(d,"color");
-			var size = OAT.Dom.style(d,"fontSize");
-			var coords = OAT.Dom.getLT(d);
-			var dims = OAT.Dom.getWH(d);
+		var bg = OAT.Dom.style(d,"backgroundColor");
+		var fg = OAT.Dom.style(d,"color");
+		var size = OAT.Dom.style(d,"fontSize");
+		var coords = OAT.Dom.getLT(d);
+		var dims = OAT.Dom.getWH(d);
 		xml += '\t<area bgcolor="'+bg+'" fgcolor="'+fg+'" size="'+size+'" '+
-				'left="'+coords[0]+'" top="'+coords[1]+'" width="'+dims[0]+'" height="'+dims[1]+'" />\n';
+			'left="'+coords[0]+'" top="'+coords[1]+'" width="'+dims[0]+'" height="'+dims[1]+'" />\n';
 			
 		var tabs = [];
 		for (var i=0;i<self.objects.length;i++) if (self.objects[i].name == "tab") { tabs.push(self.objects[i]); }

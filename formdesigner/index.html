@@ -27,7 +27,6 @@
 <head>
 	<title>Form Designer</title>
 	<script type="text/javascript">
-		var toolkitPath = "../oat";
 		var featureList = ["formobject","xmla","soap","ajax","drag","resize","dom","window",
 							"ghostdrag","color","combolist","bindings","toolbar","map","ws",
 							"menu","dimmer","dav","sqlquery","xml","webclip","dialog","layers",
@@ -115,7 +114,7 @@
 		<br/>
 		<input type="button" id="ds_new" value="Add new datasource" />
 	</div>
-		
+	
 	<div id="dsdepends">
 		<h3>Datasource dependencies</h3>
 		For datasource: <span id="depends_name"></span><br/>
@@ -152,32 +151,33 @@
 					<option value="1">Dynaset</option>
 				</select><br/>
 				Page size: <input type="text" id="bind_sql_limit" size="4" value="30" /><br/>
-			<input type="radio" name="bind_sql_r" id="bind_sql_query" /> 
-			<label for="bind_sql_query"><strong>Query</strong></label><br/>
-			<div class="bind">
+				<input type="radio" name="bind_sql_r" id="bind_sql_query" /> 
+				<label for="bind_sql_query"><strong>Query</strong></label><br/>
+				<div class="bind">
 					<div id="bind_sql_query_container">
 						<textarea id="bind_sql_query_text" style="width:100%; height:100%;"></textarea>
-			</div>
+					</div>
 					<input type="button" id="bind_sql_query_btn" value="Edit in QBE" />
-				<input type="button" id="bind_sql_file_btn" value="Load from file" />
+					<input type="button" id="bind_sql_file_btn" value="Load from file" />
+				</div>
+				<hr/>
+				
+				<input type="radio" name="bind_sql_r" id="bind_sql_table" /> 
+				<label for="bind_sql_table"><strong>Table</strong></label><br/>
+				<div class="bind">
+					<input type="button" id="bind_sql_table_btn" value="Attach to table" />
+					<span id="bind_sql_table_text"></span>
+				</div>
 			</div>
-			<hr/>
-			
-			<input type="radio" name="bind_sql_r" id="bind_sql_table" /> 
-			<label for="bind_sql_table"><strong>Table</strong></label><br/>
-			<div class="bind">
-				<input type="button" id="bind_sql_table_btn" value="Attach to table" />
-				<span id="bind_sql_table_text"></span>
-			</div>
-		</div>
 			<div id="bind_sparql">
 				Endpoint URL: <input type="text" id="bind_sparql_url" size="80" /><br/>
 				Query: <br/>
 				<div id="bind_sparql_query_container">
 					<textarea id="bind_sparql_query" style="width:100%; height:100%;"></textarea>
-		</div>
-		<hr/>
+				</div>
+				<hr/>
 				<strong>Saved query</strong><br/>
+				<input type="button" id="bind_sparql_query_btn" value="Edit in iSPARQL" />
 				<input type="button" id="bind_sparql_file_btn" value="Load from file" />
 			</div>
 			<div id="bind_gdata">
@@ -192,22 +192,22 @@
 				<option value="1">SOAP</option>
 			</select>
 			<div id="bind_rest">
-			URL: <input type="text" id="bind_rest_url" /><br/>
-			Input parameters (separate by comma): <input type="text" size="40" id="bind_rest_in" /><br/>
-			Output values (separate by comma): <input type="text" size="40" id="bind_rest_out" /><br/>
-			Output values specified as: <select id="bind_rest_xpath">
-				<option value="0">Node names</option>
-				<option value="1">XPath expressions</option>
-			</select><br/>
-			Output type: <select id="bind_rest_type">
-				<option value="0">XML</option>
-				<option value="1">JSON</option>
-			</select>
-		</div>
+				URL: <input type="text" id="bind_rest_url" /><br/>
+				Input parameters (separate by comma): <input type="text" size="40" id="bind_rest_in" /><br/>
+				Output values (separate by comma): <input type="text" size="40" id="bind_rest_out" /><br/>
+				Output values specified as: <select id="bind_rest_xpath">
+					<option value="0">Node names</option>
+					<option value="1">XPath expressions</option>
+				</select><br/>
+				Output type: <select id="bind_rest_type">
+					<option value="0">XML</option>
+					<option value="1">JSON</option>
+				</select>
+			</div>
 			<div id="bind_soap">
 				WSDL location: <input type="text" id="bind_soap_wsdl" /><br/>
-	</div>
-	</div>
+			</div>
+		</div>
 	</div>
 	
 	<div id="links"></div>

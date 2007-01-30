@@ -25,12 +25,15 @@ function set_filename(name) {
 var Connection = {
 	get_settings:function() {
 		/* read relevant settings from inputboxes */
-		OAT.Xmla.endpoint = $v("bind_sql_endpoint");
-		OAT.Xmla.dsn = $v("bind_sql_dsn");
-		OAT.Xmla.user = $v("bind_sql_user");
-		OAT.Xmla.password = $v("bind_sql_password");
-		OAT.Ajax.user = OAT.Xmla.user;
-		OAT.Ajax.password = OAT.Xmla.password;
+		var conn = fd.datasources[DS.selectedDSindex].connection;
+		if (!conn) { conn = new OAT.Connection(OAT.ConnectionData.TYPE_XMLA); }
+		OAT.Xmla.connection = conn;
+		conn.options.endpoint = $v("bind_sql_endpoint");
+		conn.options.dsn = $v("bind_sql_dsn");
+		conn.options.user = $v("bind_sql_user");
+		conn.options.password = $v("bind_sql_password");
+		OAT.Ajax.user = conn.options.user;
+		OAT.Ajax.password = conn.options.password;
 	},
 
 	discover_dsn:function() {
@@ -266,7 +269,7 @@ var DS = { /* datasources / bindings */
 			
 			$("dslist_tbody").appendChild(tr);
 		}
-	
+		
 		for (var i=0;i<fd.datasources.length;i++) {
 			create_row(i);
 		}
@@ -289,8 +292,8 @@ var DS = { /* datasources / bindings */
 					case 1: ntype = OAT.DataSourceData.TYPE_SOAP; break;
 				} /* switch */
 			break;
-				}
-				
+		}
+
 		/* trick - if no type is selected, scan for a filled field: user may have forgotten to use appropriate radio button */
 		if (ntype == 0) {
 			if ($v("bind_rest_url") != "") { ntype = OAT.DataSourceData.TYPE_REST; }
@@ -306,6 +309,7 @@ var DS = { /* datasources / bindings */
 			ds2.name = ds.name;
 			fd.datasources[DS.selectedDSindex] = ds2;
 			ds = ds2;
+			if (ntype == OAT.DataSourceData.TYPE_SQL) { ds.connection = OAT.Xmla.connection; }
 		}
 
 		switch (ds.type) {
@@ -314,16 +318,12 @@ var DS = { /* datasources / bindings */
 				ds.options.limit = parseInt($v("bind_sql_limit"));
 				ds.pageSize = ds.options.limit
 				var opts = ds.connection.options;
-				opts.user = $v("bind_sql_user");
-				opts.password = $v("bind_sql_password");
-				opts.endpoint = $v("bind_sql_endpoint");
-				opts.dsn = $v("bind_sql_dsn");
 				
 				if ($("bind_sql_query").checked) {
 					ds.options.table = "";
 					ds.options.query = $v("bind_sql_query_text");
 				}
-
+				
 				if ($("bind_sql_table").checked) {
 					ds.options.table = $("bind_sql_table_text").innerHTML;
 				}
@@ -372,7 +372,7 @@ var DS = { /* datasources / bindings */
 
 		$("bind_rest_in").value = "";
 		$("bind_rest_out").value = "";
-
+		
 		/* read actual values from datasource */
 		switch (ds.type) {
 			case OAT.DataSourceData.TYPE_NONE: ds_tab.go(0); break;
@@ -391,7 +391,7 @@ var DS = { /* datasources / bindings */
 				OAT.Dom.option(opts.dsn,opts.dsn,dsn);
 				if (ds.options.table) {
 					/* table */
-						$("bind_sql_table").checked = true;
+					$("bind_sql_table").checked = true;
 					$("bind_sql_table_text").innerHTML = ds.options.table;
 				} else {
 					/* query */
@@ -619,10 +619,10 @@ var DS = { /* datasources / bindings */
 			var qRef = function(data) {
 				switch (type) {
 					case OAT.DataSourceData.TYPE_SQL: /* sql */
-				var queryObj = new OAT.SqlQuery();
-				queryObj.fromString(data);
-				var q = queryObj.toString(OAT.SqlQueryData.TYPE_SQL);
-				$("bind_sql_query_text").value = q;
+						var queryObj = new OAT.SqlQuery();
+						queryObj.fromString(data);
+						var q = queryObj.toString(OAT.SqlQueryData.TYPE_SQL);
+						$("bind_sql_query_text").value = q;
 						$("bind_sql_query").checked = true;
 					break;
 					case OAT.DataSourceData.TYPE_SPARQL: /* sparql */
@@ -784,7 +784,7 @@ function init() {
 	dialogs.services = new OAT.Dialog("Available services","services",{width:400,modal:0});
 //	OAT.Dom.unlink(dialogs.services.cancelBtn);
 	dialogs.services.hide();
-
+	
 	/* table selection */
 	OAT.Dom.attach("ds_catalogs","change",Filter.apply);
 	OAT.Dom.attach("ds_schemas","change",Filter.apply);
@@ -851,21 +851,37 @@ function init() {
 
 	/* binding buttons */
 	OAT.Dom.attach("bind_sql_query_btn","click",function() {
+		var conn = fd.datasources[DS.selectedDSindex].connection;
+		if (!conn) { conn = OAT.Xmla.connection; }
 		var obj = {};
-		obj.user = OAT.Xmla.user;
-		obj.password = OAT.Xmla.password;
-		obj.dsn = OAT.Xmla.dsn;
-		obj.endpoint = OAT.Xmla.endpoint;
+		obj.user = conn.options.user;
+		obj.password = conn.options.password;
+		obj.dsn = conn.options.dsn;
+		obj.endpoint = conn.options.endpoint;
 		obj.type = (servertype == 1 ? "dav" : "http");
 		obj.query = $v("bind_sql_query_text");
 		obj.callback = function(q) { 
-			$("bind_sql").checked = true;
 			$("bind_sql_query").checked = true;
 			$("bind_sql_query_text").value = q;
 		}
 		var w = window.open("../qbe/index.html");
 		w.__inherited = obj;
 	});
+
+	OAT.Dom.attach("bind_sparql_query_btn","click",function() {
+		var obj = {};
+		obj.username = http_cred.user;
+		obj.password = http_cred.password;
+		obj.login_put_type = (servertype == 1 ? "dav" : "http");
+		obj.endpoint = $v("bind_sparql_url");
+		obj.query = $v("bind_sparql_query");
+		obj.callback = function(q) { 
+			$("bind_sparql_query").value = q;
+		}
+		var w = window.open("/isparql/");
+		w.__inherited = obj;
+	});
+
 	OAT.Dom.attach("bind_sql_table_btn","click",dialogs.tables.show);
 	OAT.Dom.attach("bind_sql_file_btn","click",function(){DS.load(OAT.DataSourceData.TYPE_SQL);});
 	OAT.Dom.attach("bind_sparql_file_btn","click",function(){DS.load(OAT.DataSourceData.TYPE_SPARQL);});
