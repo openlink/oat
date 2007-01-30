@@ -129,7 +129,7 @@ OAT.Drag = {
 			var b = newy + dims[1];
 			return (newx < 20 || newy < 20 || r > parDims[0] || b > parDims[1]);
 		}
-	
+		
 		OAT.Drag.create(drag,drag);
 		OAT.Drag.create(drag,elm,{restrictionFunction:restrictionFunction});
 		

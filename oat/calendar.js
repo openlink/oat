@@ -40,11 +40,11 @@ OAT.Calendar = function() {
 		self.date[0]--;
 		self.setYear();
 	}
-
+	
 	this.yearF = function() {
 		self.date[0]++;
 		self.setYear();
-		}
+	}
 
 	this.monthB = function() {
 		self.date[1]--;
@@ -156,7 +156,7 @@ OAT.Calendar = function() {
 			self.setYear();
 			self.setMonth();
 		}
-		}
+	}
 	
 	this.draw = function() {
 		self.div = OAT.Dom.create("div",{display:"none",position:"absolute"});

@@ -23,7 +23,7 @@
 
 OAT.Toolbar = function(div) {
 	var self = this;
-
+	
 	this.div = $(div);
 	OAT.Dom.addClass(this.div,"toolbar");
 	this.icons = [];
