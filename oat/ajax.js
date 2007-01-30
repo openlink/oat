@@ -44,7 +44,7 @@ OAT.Ajax = {
 	password:"",
 	imagePath:"/DAV/JS/images",
 	requests:[],
-
+	
 	startNotify:function() {
 		if (OAT.Ajax.startRef) { OAT.Ajax.startRef(); return; }
 		if (OAT.Loader.loadedLibs.find("dialog") != -1) {
@@ -137,7 +137,6 @@ OAT.Ajax = {
 		/* xmlhttp.obj.overrideMimeType("text/xml"); */
 		xmlhttp.send(method & OAT.Ajax.GET ? null : data);
 
-//		debug.push("SENDING\n\n"+data+"\n\nto: "+target);
 	},
 
 	setStart:function(callback) {
@@ -181,7 +180,7 @@ OAT.XMLHTTP = function() {
 		if (this.iframe) {
 			this.ifr.src = this.temp_src;
 		} else {
-  			this.obj.send(data);
+  			this.obj.send(data); 
 		}
 	}
 	this.setResponse = function(callback) {
