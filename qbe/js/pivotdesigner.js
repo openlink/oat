@@ -128,11 +128,11 @@ function pivot_create() {
 		return;
 	}
 	dialogs.pivot_design.hide();
-	OAT.Ajax.startRef();
+	if (OAT.Ajax.startRef) { OAT.Ajax.startRef(); }
 	pivot = new OAT.Pivot("pivot_content","pivot_chart","pivot_page",pivot_data.headerRow,pivot_data.dataRows,
 						pivot_data.headerRowIndexes,pivot_data.headerColIndexes,
 						pivot_data.filterIndexes,pivot_data.dataColumnIndex);
-	OAT.Ajax.endRef();
+	if (OAT.Ajax.endRef) {OAT.Ajax.endRef(); }
 	tab.go(3);
 }
 
