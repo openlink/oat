@@ -44,10 +44,14 @@ AM_MAINTAINER_MODE
 ##########################################################################
 AC_CONFIG_FILES([
     Makefile 
+    demo/Makefile
     designer/Makefile
     formdesigner/Makefile
-    demo/Makefile
-    qbe/Makefile
+    images/Makefile
     oat/Makefile
+    oat/docs/Makefile
+    qbe/Makefile
+    styles/Makefile
+    xslt/Makefile
 ])
 AC_OUTPUT

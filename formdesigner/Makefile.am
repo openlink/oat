@@ -19,7 +19,7 @@
 #
 
 EXTRA_DIST = \
-	*.html \
-	images/*.gif \
-	js/*.js \
-	styles/*.css
+	$(srcdir)/*.html \
+	$(srcdir)/images/*.gif \
+	$(srcdir)/js/*.js \
+	$(srcdir)/styles/*.css
