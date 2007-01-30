@@ -10,7 +10,8 @@
 
 /*
 	t = new OAT.Tree(options);
-	t.assign(listElm);
+	t.assign(listElm,collapse);
+	t.delete();
 	
 	var node = t.tree.children[index]
 	
@@ -20,13 +21,14 @@
 	node.collapse()
 	node.getLabel()
 	node.setLabel(newLabel)
+	node.setImage(newImage)
 	node.appendChild(oldNode, [index])
 	node.deleteChild(oldNode)
 	node.createChild(label, isNode, [index])
 	
 */
 
-OAT.TreeNode = function(li,ul,parent,root,options) {
+OAT.TreeNode = function(li,ul,parent,root) {
 	/* this.parent.ul == li.parentNode */
 	var self = this;
 	this.ul = ul;
@@ -37,15 +39,18 @@ OAT.TreeNode = function(li,ul,parent,root,options) {
 	this.depth = -1;
 	this.state = 1; /* 0 - collapsed, 1 - expanded */
 	this.selected = 0;
+	this.customImage = false;
 	this.label = false;
 	
 	if (ul) { ul.style.listStyleType = "none"; }
 
 	this.signIcon = false;
 	this.treeIcon = false;
-	this.options = options;
+	this.options = root.options;
 	this.gdElm = OAT.Dom.create("span");
 	self.gdElm.obj = self;
+	
+	this.hasEvents = false;
 	
 	/* create SPAN as label */
 	if (!self.li) {
@@ -68,6 +73,71 @@ OAT.TreeNode = function(li,ul,parent,root,options) {
 		}
 		self.label.parentNode.replaceChild(self.gdElm,self.label);
 		self.gdElm.appendChild(self.label);
+	}
+	
+	if (self.options.checkboxMode && self.li) {
+		self.checkbox = OAT.Dom.create("input");
+		self.checkbox.type = "checkbox";
+		if (self.options.defaultCheck) { 
+			self.checkbox.checked = true; 
+			self.checkbox.__checked = "1";
+		}
+		if (self.checkbox.checked == self.options.checkNOI) {
+			self.root.checkedNOI.push(self);
+		}
+		self.li.insertBefore(self.checkbox,self.gdElm);
+	}
+	
+
+	/* custom image? */
+	if (self.li) {
+		for (var i=0;i<self.li.attributes.length;i++) {
+			var a = self.li.attributes[i];
+			if (a.nodeName == "oat:treeimage") { self.customImage = a.nodeValue; }
+		}
+	}
+	
+	this.toggleCheck = function(event) {
+		/* 1. toggle checkbox for all descendant nodes, 2. actualize checked list, 3. callback */
+		if (self.checkbox.checked) {
+			self.checkbox.__checked = "1";
+			self.checkUp(true);
+		} else {
+			self.checkbox.__checked = "0";
+		}
+		if (self.ul) { 
+			var func = (self.checkbox.checked ? "checkAll" : "uncheckAll");
+			self.walk(func);
+		}
+		
+		self.root.checkedNOI = [];
+		self.root.walk("updateNOI");
+		
+		self.options.checkCallback(self.root.checkedNOI);
+	}
+	
+	this.updateNOI = function() {
+		var ch = (self.checkbox.__checked == "1" || self.checkbox.checked);
+		if (ch == self.options.checkNOI) { self.root.checkedNOI.push(self); }
+	}
+	
+	this.checkAll = function() {
+		self.checkbox.checked = true;
+		self.checkbox.__checked = "1";
+	}
+	
+	this.uncheckAll = function() {
+		self.checkbox.checked = false;
+		self.checkbox.__checked = "0";
+	}
+	
+	this.checkUp = function(firstLevel) {
+		if (self.checkbox.checked && !firstLevel) { return; }
+		if (!firstLevel) {
+			self.checkbox.checked = true;
+			self.checkbox.__checked = "1";
+		}
+		if (self.parent && self.parent.li) { self.parent.checkUp(false); }
 	}
 	
 	this.toggleState = function(event) {
@@ -111,12 +181,47 @@ OAT.TreeNode = function(li,ul,parent,root,options) {
 	
 	this.removeEvents = function() {
 		if (!self.li) { return; }
-		OAT.Dom.detach(self.label,"click",self.toggleSelect);
-		OAT.Dom.detach(self.label,"dblclick",self.toggleState);
-		OAT.Dom.detach(self.treeIcon,"click",self.toggleSelect);
-		OAT.Dom.detach(self.treeIcon,"dblclick",self.toggleState);
-		OAT.Dom.detach(self.signIcon,"click",self.toggleState);
-		if (options.allowDrag) {
+		if (!self.hasEvents) { return; }
+		
+		switch (self.options.onClick) {
+			case "select":
+				if (!self.options.poorMode) {
+					OAT.Dom.detach(self.label,"click",self.toggleSelect);
+					OAT.Dom.detach(self.treeIcon,"click",self.toggleSelect);
+				}
+			break;
+			
+			case "toggle":
+				if (self.ul) {
+					OAT.Dom.detach(self.label,"click",self.toggleState);
+					OAT.Dom.detach(self.treeIcon,"click",self.toggleState);
+				}
+			break;
+		}
+		
+		switch (self.options.onClick) {
+			case "select":
+				if (!self.options.poorMode) {
+					OAT.Dom.detach(self.label,"dblclick",self.toggleSelect);
+					OAT.Dom.detach(self.treeIcon,"dblclick",self.toggleSelect);
+				}
+			break;
+			
+			case "toggle":
+				if (self.ul) {
+					OAT.Dom.detach(self.label,"dblclick",self.toggleState);
+					OAT.Dom.detach(self.treeIcon,"dblclick",self.toggleState);
+				}
+			break;
+		}
+		
+		if (self.options.poorMode) { return; }
+
+		if (self.ul) { OAT.Dom.detach(self.signIcon,"click",self.toggleState); } /* +- sign */
+		
+		if (self.options.checkboxMode) { OAT.Dom.detach(self.checkbox,"change",self.toggleCheck); }
+		
+		if (self.options.allowDrag) {
 			self.root.gd.delTarget(self.gdElm);
 			self.root.gd.delSource(self.gdElm);
 		}
@@ -129,20 +234,49 @@ OAT.TreeNode = function(li,ul,parent,root,options) {
 	}
 	
 	this.addEvents = function() {
+		self.hasEvents = true;
 		if (!self.li) { return; }
-		/* if clicking label results in toggling... */
-		if (self.options.labelOpens) {
-			OAT.Dom.attach(self.label,"click",self.toggleSelect);
-			if (self.ul) {
-				OAT.Dom.attach(self.label,"dblclick",self.toggleState);
-			}
+		
+		switch (self.options.onClick) {
+			case "select":
+				if (!self.options.poorMode) {
+					OAT.Dom.attach(self.label,"click",self.toggleSelect);
+					OAT.Dom.attach(self.treeIcon,"click",self.toggleSelect);
+				}
+			break;
+			
+			case "toggle":
+				if (self.ul) {
+					OAT.Dom.attach(self.label,"click",self.toggleState);
+					OAT.Dom.attach(self.treeIcon,"click",self.toggleState);
+				}
+			break;
 		}
 		
-		OAT.Dom.attach(self.treeIcon,"click",self.toggleSelect);
-		if (self.ul) {
-			OAT.Dom.attach(self.signIcon,"click",self.toggleState);
-			OAT.Dom.attach(self.treeIcon,"dblclick",self.toggleState);
+		switch (self.options.onDblClick) {
+			case "select":
+				if (!self.options.poorMode) {
+					OAT.Dom.attach(self.label,"dblclick",self.toggleSelect);
+					OAT.Dom.attach(self.treeIcon,"dblclick",self.toggleSelect);
+				}
+			break;
+			
+			case "toggle":
+				if (self.ul) {
+					OAT.Dom.attach(self.label,"dblclick",self.toggleState);
+					OAT.Dom.attach(self.treeIcon,"dblclick",self.toggleState);
+				}
+			break;
 		}
+
+		if (self.options.poorMode) { return; }
+
+		if (self.ul) { OAT.Dom.attach(self.signIcon,"click",self.toggleState); } /* +- sign */
+		
+		/* if checkbox mode is used */
+		if (self.options.checkboxMode) { OAT.Dom.attach(self.checkbox,"change",self.toggleCheck); }
+		
+		if (!self.options.allowDrag) { return; }
 		
 		var procRef = function(elm) {}
 		var backRef = function(target,x,y) { /* ghostdrag ended; some re-structuring? */
@@ -171,7 +305,7 @@ OAT.TreeNode = function(li,ul,parent,root,options) {
 				t.expand();
 			}
 		}
-		if (options.allowDrag) {
+		if (self.options.allowDrag) {
 			self.root.gd.addTarget(self.gdElm,self.checkGD);
 			self.root.gd.addSource(self.gdElm,procRef,backRef);
 		}
@@ -180,6 +314,7 @@ OAT.TreeNode = function(li,ul,parent,root,options) {
 	
 	this.removeDecorations = function() {
 		if (!self.li) { return; }
+		if (self.options.poorMode) { return; }
 		OAT.Dom.removeClass(self.li,"tree_li_"+self.depth);
 		OAT.Dom.removeClass(self.li.parentNode,"tree_ul_"+self.depth);
 		if (self.signIcon) {
@@ -194,11 +329,15 @@ OAT.TreeNode = function(li,ul,parent,root,options) {
 	
 	this.addDecorations = function() {
 		if (!self.li) { return; }
-		var sign = OAT.Dom.create("div",{"width":"16px","height":"16px","cssFloat":"left","styleFloat":"left"});
+		if (self.options.poorMode) { return; }
+		
+//		var sign = OAT.Dom.create("div",{"width":"16px","height":"16px","cssFloat":"left","styleFloat":"left"});
+		var sign = OAT.Dom.create("img",{"width":"16px","height":"16px"});
 		sign.style.backgroundRepeat = "no-repeat";
-				var tree = OAT.Dom.create("div",{"width":"16px","height":"16px","cssFloat":"left","styleFloat":"left"});
-				tree.style.marginRight = "2px";
-				tree.style.backgroundRepeat = "no-repeat";
+//		var tree = OAT.Dom.create("div",{"width":"16px","height":"16px","cssFloat":"left","styleFloat":"left"});
+		var tree = OAT.Dom.create("img",{"width":"16px","height":"16px"});
+		tree.style.marginRight = "2px";
+		tree.style.backgroundRepeat = "no-repeat";
 
 		var l = self.li;
 		if (l.childNodes.length) {
@@ -206,12 +345,25 @@ OAT.TreeNode = function(li,ul,parent,root,options) {
 		} else {
 			l.appendChild(sign);
 		}
-		self.gdElm.insertBefore(tree,self.gdElm.firstChild);
+		
+		if (self.options.checkboxMode) {
+			tree = false;
+		} else {	
+			self.gdElm.insertBefore(tree,self.gdElm.firstChild);
+		}
 		self.signIcon = sign;
 		self.treeIcon = tree;
+		
+		if (self.parent.children[self.parent.children.length-1] == self) { OAT.Dom.addClass(self.li,"tree_li_last"); }
+	}
+	
+	this.setImage = function(newImage) {
+		self.customImage = newImage;
+		self.updateStyle();
 	}
 	
 	this.expand = function() {
+		OAT.MSG.send(self.root,OAT.MSG.TREE_EXPAND,self);
 		if (self.options.onlyOneOpened) {
 			/* close all opened siblings */
 			for (var i=0;i<self.parent.children.length;i++) {
@@ -224,6 +376,7 @@ OAT.TreeNode = function(li,ul,parent,root,options) {
 	}
 	
 	this.collapse = function() {
+		OAT.MSG.send(self.root,OAT.MSG.TREE_COLLAPSE,self);
 		/* check children for selection. if at lease one descendant is selected, select this node */
 		var list = self.testForSelected();
 		var willSelect = (list.length > 1 || (list.length == 1 && list[0] != self));
@@ -272,8 +425,14 @@ OAT.TreeNode = function(li,ul,parent,root,options) {
 			if (self.treeIcon) { self.treeIcon.style.cursor = ""; }
 			if (self.signIcon) { self.signIcon.style.cursor = ""; }
 		}
+		
+		if (self.customImage) {
+			treeName = self.customImage;
+		}
+		
 		self.applyImage(self.treeIcon,treeName);
 		self.applyImage(self.signIcon,signName);
+		
 	}
 	
 	this.walk = function(methodName,depth) {
@@ -283,14 +442,16 @@ OAT.TreeNode = function(li,ul,parent,root,options) {
 		}
 	}
 	
-	this.applyImage = function(div,name) {
-		if (!div) { return; }
+	this.applyImage = function(img,name) {
+		if (!img) { return; }
 		var o = self.options;
 		var path = o.imagePath + "/" + "Tree_" + (o.imagePrefix=="" ? "" : o.imagePrefix+"_") + name + "." + o.ext;
+		var pathB = o.imagePath + "/Blank.gif";
 		if (OAT.Dom.isIE() && o.ext.toLowerCase() == "png") {
-			div.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+path+"', sizingMethod='crop')";
+			img.src = pathB;
+			img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+path+"', sizingMethod='crop')";
 		} else {
-			div.style.backgroundImage = "url("+path+")";
+			img.src = path;
 		}
 	}
 	
@@ -310,9 +471,9 @@ OAT.TreeNode = function(li,ul,parent,root,options) {
 		if (self.children.length && idx < self.children.length) {
 			var afterSibling = self.children[idx];
 			self.ul.insertBefore(oldNode.li,afterSibling.li);
-				} else {
+		} else {
 			self.ul.appendChild(oldNode.li);
-				}
+		}
 
 		/* 2. JS structure */
 		self.children.splice(idx,0,oldNode);
@@ -326,7 +487,7 @@ OAT.TreeNode = function(li,ul,parent,root,options) {
 		oldNode.sync(self.depth+1);
 		if (!ignoreOldParent) { oldParent.sync(oldParent.depth); }
 		self.sync(self.depth);
-		}
+	}
 	
 	this.deleteChild = function(oldNode) {
 		var index = self.children.find(oldNode);
@@ -342,16 +503,15 @@ OAT.TreeNode = function(li,ul,parent,root,options) {
 			var ul = OAT.Dom.create("ul");
 			li.appendChild(ul);
 		}
-		var child = new OAT.TreeNode(li,ul,self,self.root,options);
+		var child = new OAT.TreeNode(li,ul,self,self.root);
 		child.setLabel(label);
 		self.appendChild(child,index,true);
+		return child;
 	}
 	
 	this.setLabel = function(newLabel) { self.label.innerHTML = newLabel; }
-	
 	this.getLabel = function() { return self.label.innerHTML; }
 
-	
 	return self;
 }
 
@@ -361,12 +521,21 @@ OAT.Tree = function(optObj) {
 		imagePath:"/DAV/JS/images",
 		imagePrefix:"",
 		ext:"png",
-		labelOpens:1,
 		onlyOneOpened:0,
-		allowDrag:false
+		allowDrag:false,
+		onClick:"select", /* select|toggle|false */
+		onDblClick:"toggle", /* select|toggle|false */
+		
+		poorMode:false, /* performance increase */
+		
+		checkboxMode:false, /* checkboxes instead of filders */
+		defaultCheck:true, /* checkboxes checked by default? */
+		checkNOI:true, /* Nodes Of Interest: true == checked, false == unchecked */
+		checkCallback:function(){} 
 	}
 	this.tree = false; /* data structure */
 	this.selectedNodes = [];
+	this.checkedNOI = [];
 	
 	this.gd = new OAT.GhostDrag();
 	
@@ -383,7 +552,7 @@ OAT.Tree = function(optObj) {
 		ul.style.listStyleType = "none";
 		
 		/* get a mirror of existing structure */
-		self.tree = new OAT.TreeNode(false,ul,false,self,self.options);
+		self.tree = new OAT.TreeNode(false,ul,false,self);
 		var list = ul.childNodes;
 		for (var i=0;i<list.length;i++) {
 			if (list[i].tagName && list[i].tagName.toLowerCase() == "li") { 
@@ -404,7 +573,7 @@ OAT.Tree = function(optObj) {
 			if (!candidate && c.tagName && c.tagName.toLowerCase() == "ul") { candidate = c; }
 		}
 
-		var obj = new OAT.TreeNode(node,candidate,parent,self,self.options);
+		var obj = new OAT.TreeNode(node,candidate,parent,self);
 		if (!candidate) { return obj; }
 		
 		var list = candidate.childNodes;
@@ -415,6 +584,11 @@ OAT.Tree = function(optObj) {
 			}
 		}
 		return obj;
+	}
+	
+	this.clear = function() {
+		self.walk("removeEvents");
+		if (self.tree.ul) { OAT.Dom.unlink(self.tree.ul); }
 	}
 
 }
