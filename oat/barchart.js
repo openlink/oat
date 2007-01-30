@@ -20,7 +20,6 @@
 
 OAT.BarChart = function(div,optObj) {
 	var self = this;
-	
 	this.options = {
 		percentage:false, /* percentage plot? */
 		spacing:25, /* between columns */
@@ -46,6 +45,10 @@ OAT.BarChart = function(div,optObj) {
 	this.textY = [];
 	this.div = $(div);
 	
+	if (OAT.Dom.style(self.div,"position") != "absolute") {
+		self.div.style.position = "relative";
+	}
+
 	this.getFreeH = function() {
 		var tmp = OAT.Dom.getWH(self.div);
 		return tmp[1] - self.options.paddingTop - self.options.paddingBottom;
