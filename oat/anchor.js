@@ -11,8 +11,12 @@
 	OAT.Anchor.assign(elm,paramsObj);
 */
 
+OAT.AnchorData = {
+	active:false
+}
+
 OAT.Anchor = {
-	callForData:function(win,options,anchor) {
+	callForData:function(win,options,anchor,pos) {
 		var ds = options.datasource;
 		ds.connection = options.connection;
 		
@@ -35,13 +39,26 @@ OAT.Anchor = {
 				ds.bindPage(g.bindPageCallback);
 				ds.bindHeader(g.bindHeaderCallback);
 			break;
+			case "form":
+				var f = false;
+				var resizeRef = function() {
+					win.resizeTo(f.totalWidth+5,f.totalHeight+5);
+					win.anchorTo(pos[0],pos[1]);
+				}
+				var f = new OAT.Form(win.content,{onDone:resizeRef});
+				var ref = function(xmlText) {
+					var xmlDoc = OAT.Xml.createXmlDoc(xmlText);
+					f.createFromXML(xmlDoc);
+				}
+				ds.bindFile(ref);
+			break;
 			case "timeline":
 				var tl = new OAT.FormObject["timeline"](0,20,0); /* x,y,designMode */
 				win.content.appendChild(tl.elm);
 				tl.elm.style.position = "relative";
 				var dims = OAT.Dom.getWH(win.content);
 				tl.elm.style.width = (dims[0]-3)+"px";
-				tl.elm.style.height = (dims[1]-20)+"px";
+				tl.elm.style.height = (dims[1]-25)+"px";
 				tl.init();
 				/* canonic binding to output fields */
 				for (var i=0;i<tl.datasources[0].fieldSets.length;i++) {
@@ -84,7 +101,7 @@ OAT.Anchor = {
 		};
 		for (var p in paramsObj) { options[p] = paramsObj[p]; }
 
-		var win = new OAT.Window({close:1,resize:1,width:options.width,height:options.height,title:"Loading..."},OAT.WindowData.TYPE_ROUND);
+		var win = new OAT.Window({close:1,resize:1,width:options.width,height:options.height,title:"Loading..."},OAT.WindowData.TYPE_RECT);
 		win.close = function() { OAT.Dom.unlink(win.div); }
 		win.onclose = win.close;
 
@@ -100,26 +117,21 @@ OAT.Anchor = {
 		var endClose = function() {
 			closeFlag = 0;
 		}
-		var moveRef = function(event) {
-			endClose();
-			var pos = OAT.Dom.eventPos(event);
-			var dims = OAT.Dom.getWH(win.div);
-			var x = Math.round(pos[0] - dims[0]/2);
-			var y = pos[1] + 20;
-			if (x < 0) { x = 10; }
-			win.div.style.left = x+"px";
-			win.div.style.top = y+"px";
-		}
+
 		var displayRef = function(event) {
+			if (OAT.AnchorData.active) { OAT.AnchorData.active.close(); }
+			OAT.AnchorData.active = win;
 			endClose();
 			document.body.appendChild(win.div);
-			moveRef(event);
-			if (!options.status) { OAT.Anchor.callForData(win,options,elm); }
+			var pos = OAT.Dom.eventPos(event);
+			win.anchorTo(pos[0],pos[1]);
+			if (!options.status) { OAT.Anchor.callForData(win,options,elm,pos); }
 		}
 		var closeRef = function() {
 			if (closeFlag) {
 				win.close();
 				endClose();
+				OAT.AnchorData.active = false;
 			}
 		}
 		
