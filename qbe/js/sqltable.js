@@ -319,8 +319,8 @@ function Relation_update() {
 	this.elem_1.style.left = Math.min(start_x, center_x) + "px";
 	this.elem_1.style.top = start_y + "px"
 	this.elem_1.style.width = Math.abs(center_x - start_x) + "px";
-	this.elem_2.style.left = center_x;
-	this.elem_2.style.top = Math.min(start_y, end_y);
+	this.elem_2.style.left = center_x + "px";
+	this.elem_2.style.top = Math.min(start_y, end_y) + "px";
 	this.elem_2.style.height = Math.abs(end_y - start_y) + RELATION_THICKNESS + "px";
 	this.elem_3.style.left = Math.min(center_x, end_x) + "px";
 	this.elem_3.style.top = end_y + "px"
