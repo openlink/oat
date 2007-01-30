@@ -21,7 +21,7 @@
 	so.where = {}; // Look at the OAT.SparqlQueryData* for description.
 	so.limit = 10
 	so.offset = 5
-	so.order = [{"desc": false,"variable":'?a'},{"desc": true,"variable":'?b'}]
+	so.orders = [{"desc": false,"variable":'?a'},{"desc": true,"variable":'?b'}]
 */
 
 //OAT.SparqlQueryDataBasic = function(pobj,obj) {
@@ -102,11 +102,11 @@ OAT.SparqlQuery = function() {
 	}
 	
 	this.splitPiece = function(string) {
-		var word = string.match(/^(\w+) (.*)/);
+		var word = string.match(/^(\w+)\s(.*)/);
 		switch (word[1].toUpperCase()) {
 			case "SELECT":
 				var main = word[2];
-  				var tmp = main.match(/(distinct)? *(.*)/i);
+  				var tmp = main.match(/(distinct)?\s*(.*)/i);
   				var part = tmp[2];
   				if (tmp[1]) self.distinct = true;
   				if (tmp[2].trim() != '*')
@@ -148,7 +148,7 @@ OAT.SparqlQuery = function() {
 			break;
 			case "FROM":
 				var main = word[2];
-				var tmp = main.match(/(named)? *(.*)/i);
+				var tmp = main.match(/(named)?\s*(.*)/i);
 				if (tmp[1])
 				  self.from_named.push(self.expandPrefix(tmp[2]));
 				else
@@ -171,13 +171,14 @@ OAT.SparqlQuery = function() {
 	this.parseParts = function(str,pobj,prev)
 	{
 	  str = str.trim();
+
 	  // separate the parts 
 		var parts = self.getParts(str);
 	  // If we have more than one part then this is a group and we process each part separately 
 		if (parts.length > 1)
 		{
 	    var obj = new OAT.SparqlQueryDataGroup(pobj,self);
-	    var prev = false;
+	    prev = false;
 		  for (var i = 0; i < parts.length; i++)
 		  {
 		    var part = self.parseParts(parts[i],obj,prev);
@@ -191,21 +192,21 @@ OAT.SparqlQuery = function() {
 	  // We don't have parts, so we try to determine the type of this section
 		  var tmp = '';
 	    // Is it union?  {  } union {  } we need another function for this - breakUnions
-		  if (tmp = self.breakUnions(str))
+		  if ((tmp = self.breakUnions(str)))
 		  {
 	      var obj = new OAT.SparqlQueryDataUnion(pobj,self);
   		  for (var t = 0; t < tmp.length; t++)
   		    obj.children.push(self.parseParts(tmp[t],obj));
 	    }
 	    // Is it graph?   graph ?g {  }
-		  else if (tmp = str.match(/graph *([^ ]*) *{+(.*)}+\W*$/i))
+		  else if ((tmp = str.match(/graph\s*([^ ]*)\s*{+(.*)}+\W*$/i)))
 		  {
 	      var obj = new OAT.SparqlQueryDataGraph(pobj,self);
 	      obj.name = self.expandPrefix(tmp[1]);
 	      obj.content = self.parseParts(tmp[2],obj)
 	    }
 	    // Is it optional?   optional {  }
-		  else if (tmp = str.match(/optional *{+(.*)}+\W*$/i))
+		  else if ((tmp = str.match(/optional\s*{+(.*)}+\W*$/i)))
 		  {
 	      var obj = new OAT.SparqlQueryDataOptional(pobj,self);
 	      obj.content = self.parseParts(tmp[1],obj)
@@ -215,16 +216,16 @@ OAT.SparqlQuery = function() {
 		  {
 		    str = str.trim();
 		    var tmp;
-		    if (tmp = str.match(/^{(.*)}$/))
+		    if ((tmp = str.match(/^{(.*)}$/)))
 		      str = tmp[1].trim();
 	      var obj = new OAT.SparqlQueryDataPattern(pobj,self);
 		    //Get the separator
-	      if (tmp = str.match(/([\.,;])$/))
+	      if ((tmp = str.match(/([\.,;])$/)))
 	      {
 	        obj.separator = tmp[1];
 	        str = str.match(/(.*)[\.,;]$/)[1].trim();
 	      }
-	      if (tmp = str.match(/^(.*)filter\W+(regex)?\W*\((.*)\)\W*$/i))
+	      if ((tmp = str.match(/^(.*)filter\W+(regex)?\W*\((.*)\)\W*$/i)))
 	      {
 	        var RegEx = false;
 	        if (tmp[2] != undefined)
@@ -257,21 +258,21 @@ OAT.SparqlQuery = function() {
 	      var o = ptrparts[0];
 	      // object 
 	      // do we have a type?
-	      if (tmp = o.match(/^"(.*)"\^\^(.*)$/))
+	      if ((tmp = o.match(/^"(.*)"\^\^(.*)$/)))
 	      {
 	        obj.o = tmp[1];
 	        obj.otype = self.expandPrefix(tmp[2]);
 	      // or we are one of the xsd equivelents
-	      } else if (tmp = o.match(/^"(.*)"$/)) {
+	      } else if ((tmp = o.match(/^"(.*)"$/))) {
 	        obj.o = tmp[1];
 	        obj.otype = self.expandPrefix('xsd:string');
-	      } else if (tmp = o.match(/^([0-9]*)$/)) {
+	      } else if ((tmp = o.match(/^([0-9]*)$/))) {
 	        obj.o = tmp[1];
 	        obj.otype = self.expandPrefix('xsd:integer');
-	      } else if (tmp = o.match(/^([0-9]*\.[0-9]*)$/)) {
+	      } else if ((tmp = o.match(/^([0-9]*\.[0-9]*)$/))) {
 	        obj.o = tmp[1];
 	        obj.otype = self.expandPrefix('xsd:decimal');
-	      } else if (tmp = o.match(/^([0-9]*\.[0-9e]*)$/)) {
+	      } else if ((tmp = o.match(/^([0-9]*\.[0-9e]*)$/))) {
 	        obj.o = tmp[1];
 	        obj.otype = self.expandPrefix('xsd:double');
 	      } else if (o == 'true' || o == 'false') {
@@ -294,7 +295,7 @@ OAT.SparqlQuery = function() {
 
 	  for(var i = 0;i<str.length;i++)
 	  {
-	    if (str[i] == ' ')
+	    if (str.charAt(i) == ' ')
 	    {
 	      // If cnt is 0 then this is one part 
 	      if (cnt == 0)
@@ -302,7 +303,7 @@ OAT.SparqlQuery = function() {
 	        // if find a space time to break
           var tmp = str.substring(bgn,i + 1).trim();
           ret.unshift(tmp);
-          i = i + str.substring(i).match(/^ */)[0].length;
+          i = i + str.substring(i).match(/^\s*/)[0].length;
           bgn = i;
 	      }
 	    }
@@ -350,6 +351,8 @@ OAT.SparqlQuery = function() {
 	          isUnion = true;
 	          // We get the string before now remove the brackets and set it as part
 	          var tmp = str.substring(bgn,i + 1);
+	          // Clear the brackets
+	          tmp = tmp.trim().match(/^{(.*)}$/)[1];
 	          ret.push(tmp);
 	          // Let see where to continue from
 	          i = i + str.substring(i + 1).match(/^\W*union/i)[0].length + 1;
@@ -374,7 +377,12 @@ OAT.SparqlQuery = function() {
 	  if (!isUnion) return false;
 	  // if we are an union and there is still something left we consider it a part 
 	  if (bgn < str.length)
-      ret.push(str.substring(bgn));
+	  {
+	    var tmp = str.substring(bgn);
+      // Clear the brackets
+      tmp = tmp.trim().match(/^{(.*)}$/)[1];
+      ret.push(tmp);
+    }
 	  return ret;
 	}
 
@@ -390,7 +398,7 @@ OAT.SparqlQuery = function() {
 	      cnt++;
 	    else if (str[i] == '>')
 	      cnt--;
-	    if (str[i] == '{' || str[i] == '(')
+	    else if (str[i] == '{' || str[i] == '(')
 	      cnt++;
 	    else if (str[i] == '}' || str[i] == ')')
 	    {
@@ -399,12 +407,12 @@ OAT.SparqlQuery = function() {
 	      if (cnt == 0)
 	      {
 	        // if we have an union after it we leave it as one part and continue
-	        if(str.substring(i + 1).match(/^ *union/i))
+	        if(str.substring(i + 1).match(/^\s*union/i))
 	          ;
 	        else 
 	        {
 	          // We get the ending strings add the part to array and start looking for another 
-	          var tmp = str.substring(i + 1).match(/^([ \.;,]*)/i);
+	          var tmp = str.substring(i + 1).match(/^([\s\.;,]*)/i);
 	          i = i + tmp[1].length;
 	          ret.push(str.substring(bgn,i + 1));
 	          bgn = i + 1;
@@ -431,10 +439,10 @@ OAT.SparqlQuery = function() {
         //if . then we must check that this is not some number
         if (!(str[i] == '.' && str.substring(i + 1).match(/^[0-9]/)))
         {
-          var tmp = str.substring(i).match(/^([ \.;,]*)/i);
+          var tmp = str.substring(i + 1).match(/^([\s\.;,]*)/i);
           i = i + tmp[1].length;
-          ret.push(str.substring(bgn,i));
-          bgn = i;
+          ret.push(str.substring(bgn,i + 1));
+          bgn = i + 1;
         } 
       }
 	  }
@@ -447,7 +455,7 @@ OAT.SparqlQuery = function() {
   this.putPrefix = function(str) 
   {
     var tmp = '';
-    if (tmp = str.match(/^<(.*)>$/))
+    if ((tmp = str.match(/^<(.*)>$/)))
     {
       for(var i = 0;i < self.prefixes.length; i++)
       {
@@ -467,7 +475,7 @@ OAT.SparqlQuery = function() {
 	    return str;
 	  else if (str == 'a')
 	    return '<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>';
-	  else if(tmp = str.match(/<(.*)>/))
+	  else if((tmp = str.match(/<(.*)>/)))
 	    return str;
 	  else 
 	  {
@@ -507,18 +515,18 @@ OAT.SparqlQuery = function() {
 	  var bgn = 0;
 	  var part = '';
 	  var inquot = false;
-
 	  var re = new RegExp("(^" + keywords.join(")|(^") + ")","i");
 	  for(var i = 0;i<str.length;i++)
 	  {
-	    if (str[i] == '{' && !inquot)
+		var ch = str.charAt(i);
+	    if (ch == '{' && !inquot)
 	    {
 	      cnt++;
-	      part += str[i];
-	    } else if (str[i] == '}' && !inquot) {
+	      part += ch;
+	    } else if (ch == '}' && !inquot) {
 	      cnt--;
-	      part += str[i];
-	    } else if ((str[i] == '\n' || str[i] == '\r') && !inquot)
+	      part += ch;
+	    } else if ((ch == '\n' || ch == '\r') && !inquot)
 	      ;
 	    else if (str.substring(i).search(re) != -1)
 	    {
@@ -527,12 +535,12 @@ OAT.SparqlQuery = function() {
 	      {
 	        // if find a match time to break
           ret.push(part);
-          part = str[i];
+          part = ch;
           bgn = i;
 	      }
 	    }
-      // We care for quots
-	    else if (str[i] == '"' && ((i > 1 && str[i - 1] != "\\") || i == 0))
+      // We care for quotes
+	    else if (ch == '"' && ((i > 1 && str.charAt(i - 1) != "\\") || i == 0))
 	    {
 	      if (!inquot)
 	      {
@@ -542,10 +550,10 @@ OAT.SparqlQuery = function() {
 	        cnt--; 
 	        inquot = false;
 	      }
-	      part += str[i];
+	      part += ch;
 	    }
 	    else 
-	      part += str[i];
+	      part += ch;
 	  }
 	  // if there is still something left we consider it a part 
 	  if (bgn < str.length)
@@ -583,7 +591,7 @@ OAT.SparqlQuery = function() {
 	  
 	  if (self.orders.length > 0)
 	  {
-  	  fullquery += '\nORDER BY ';
+  	  fullquery += '\nORDER BY';
   	  for(var i = 0;i<self.orders.length ;i++)
   	  {
   	    var order = '?' + self.orders[i].variable;
@@ -610,7 +618,7 @@ OAT.SparqlQuery = function() {
     
     switch (obj.type) {
   	  case 'group':
-  	    if (obj.parent.type != 'graph')
+  	    if (obj.parent.type != 'graph' && obj.parent.type != 'optional')
   	      ret += indent.repeat(depth);
   	    ret += '{\n';
   		  for (var i = 0; i < obj.children.length; i++)
@@ -644,18 +652,26 @@ OAT.SparqlQuery = function() {
 		      ret += '{\n';
 		    ret += self.genWhere(obj.content,depth + 1);
 		    if (obj.content.type != 'group')
+		    {
 		      ret += indent.repeat(depth) + '}';
-		    ret += '\n';
+		      ret += '\n';
+		    }
       break;
     // Is it optional?   optional {  }
   	  case 'optional':
-		    ret += indent.repeat(depth) + 'OPTIONAL {';
-        if (obj.content.type != 'pattern')
+		    ret += indent.repeat(depth) + 'OPTIONAL';
+		    if (obj.content.type != 'group')
+		      ret += ' {';
+        if (obj.content.type != 'pattern' && obj.content.type != 'group')
           ret += '\n';
 		    ret += self.genWhere(obj.content,depth + 1);
         if (obj.content.type != 'pattern')
   		    ret += indent.repeat(depth)
-		    ret += '}\n';
+		    if (obj.content.type != 'group')
+		    {
+		      ret += '}';
+		      ret += '\n';
+		    }
       break;
     // So we must be pattern
       case "pattern":
