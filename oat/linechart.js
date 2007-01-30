@@ -12,8 +12,7 @@
 	l.attachData(dataArray)
 	l.attachTextX(textArray)
 	l.attachTextY(textArray)
-	bc.draw()
-	o.draw()
+	l.draw()
 */
 
 OAT.LineChartMarker = {
