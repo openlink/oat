@@ -12,11 +12,7 @@ OAT.DSTransport = {};
 
 OAT.DSTransport.SQL = {
 	fetch:function(conn,options,index,callback) {
-		var co = conn.options;
-		OAT.Xmla.user = co.user;
-		OAT.Xmla.password = co.password;
-		OAT.Xmla.dsn = co.dsn;
-		OAT.Xmla.endpoint = co.endpoint;
+		OAT.Xmla.connection = conn;
 		OAT.Xmla.query = options.query;
 		OAT.Xmla.execute(callback,{limit:options.limit,offset:index});
 	},
