@@ -11,7 +11,7 @@
 	var d = new OAT.DataSource(type);
 	d.connection = ...
 	d.options.xxx = yyy
-
+	
 	d.reset();
 	
 	d.bindRecord(simpleCallback);
@@ -20,10 +20,9 @@
 	d.bindEmpty(emptyCallback);
 	d.bindHeader(headerCallback);
 	
-	d.advancePage(something);   something: "-1","+1",number
-	d.advanceRecord(something);   something: "-1","+1",number
+	d.advanceRecord(something, ignoreDups);   something: "-1","+1",number
 */
-
+ 
 OAT.DataSourceData = {
 	TYPE_NONE:0,
 	TYPE_SQL:1,
@@ -100,7 +99,7 @@ OAT.DataSource = function(type) {
 								 "//atom:feed/atom:entry/atom:published","//atom:feed/atom:entry/atom:link","//atom:feed/atom:entry/atom:content"];
 		break;
 	}
-	
+
 	this.bindEmpty = function(callback) {
 		var index = self.boundEmpties.length;
 		self.boundEmpties.push(callback);
@@ -157,7 +156,7 @@ OAT.DataSource = function(type) {
 		self.pageIndex = -1;
 		self.dataRows = [];
 	}
-	
+		
 	this.checkAvailability = function(index,strict) { /* test data for presence */
 		/* we want PAGE starting at 'index'. is it possible? */
 		/*
@@ -175,7 +174,7 @@ OAT.DataSource = function(type) {
 		if (count == self.pageSize) { return true; }
 		return (strict ? false : true);
 	}
-	
+
 	/* add data to cache */
 	this.processData = function(data,index) {
 		self.header = data[0];
@@ -224,11 +223,11 @@ OAT.DataSource = function(type) {
 		}
 		return newIndex;
 	}
-	
-	this.advanceRecord = function(something) { 	/* go to record # */
+
+	this.advanceRecord = function(something,ignoreDups) { 	/* go to record # */
 		/* get the record number we want */
 		var newIndex = self.getNewIndex(something,self.recordIndex,1); /* this is new requested index */
-		if (newIndex == -1 || newIndex == self.recordIndex) { return false; } /* do nothing if is not correct */
+		if (newIndex == -1 || (newIndex == self.recordIndex && !ignoreDups)) { return false; } /* do nothing if is not correct */
 		var newPageIndex = (self.pageSize ? Math.floor(newIndex / self.pageSize) : 0) * self.pageSize;
 		/* sometimes we also have to change page */
 		var callback = function() {
@@ -329,10 +328,7 @@ OAT.DataSource = function(type) {
 						self.inputFields = [];
 						self.outputFields = [];
 						self.outputLabels = [];
-						OAT.Xmla.endpoint = self.connection.options.endpoint;
-						OAT.Xmla.dsn = self.connection.options.dsn;
-						OAT.Xmla.user = self.connection.options.user;
-						OAT.Xmla.password = self.connection.options.password;
+						OAT.Xmla.connection = self.connection;
 						OAT.Xmla.columns(catalog,schema,table,columnRef);
 					} else { callback(); }
 				} else { /* query */
@@ -391,6 +387,8 @@ OAT.DataSource = function(type) {
 				if (do_links) {
 					self.inputFields = $v("bind_rest_in").split(",");
 					self.outputFields = $v("bind_rest_out").split(",");
+					if (self.inputFields.length == 1 && self.inputFields[0] == "") { self.inputFields = []; }
+					if (self.outputFields.length == 1 && self.outputFields[0] == "") { self.outputFields = []; }
 					self.outputLabels = [];
 					for (var i=0;i<self.inputFields.length;i++) {
 						self.inputFields[i] = self.inputFields[i].trim();
@@ -406,7 +404,7 @@ OAT.DataSource = function(type) {
 			case OAT.DataSourceData.TYPE_SPARQL: /* sparql */
 				var sq = new OAT.SparqlQuery();
 				sq.fromString(self.options.query);
-				if (self.options.query == "") { sq.fromURL(self.connection.options.url); }
+				if (self.options.query == "") { sq.fromString(self.connection.options.url); }
 				for (var i=0;i<sq.variables.length;i++) {
 					self.outputLabels.push(sq.variables[i]);
 					self.outputFields.push('//result/binding[@name="'+sq.variables[i]+'"]/node()/text()');
@@ -483,7 +481,7 @@ OAT.DataSource = function(type) {
 		OAT.Xmla.foreignKeys(catalog,schema,table,fkRef);
 	}
 	
-	this.toXML = function(uid,datasources,objects) {
+	this.toXML = function(uid,datasources,objects,nocred) {
 		var xml = '';
 		var fb = self.fieldBinding;
 		var tmp = [];
@@ -500,7 +498,7 @@ OAT.DataSource = function(type) {
 			tmp.push(value);
 		}
 		xml += '\t<ds name="'+self.name+'" type="'+self.type+'" pagesize="'+self.pageSize+'">\n';
-		xml += '\t\t'+self.connection.toXML(uid)+'\n';
+		xml += '\t\t'+self.connection.toXML(uid,nocred)+'\n';
 		xml += '\t\t<options';
 		for (var p in self.options) {
 			if (p != "query") { xml += ' '+p+'="'+self.options[p]+'"'; }
@@ -564,7 +562,10 @@ OAT.DataSource = function(type) {
 		} else {
 			/* standard mode */
 			var opts = node.getElementsByTagName("options")[0];
-			for (var p in self.options) { self.options[p] = opts.getAttribute(p); }
+			for (var p in self.options) { 
+				self.options[p] = opts.getAttribute(p); 
+				if (p == "table" && self.options[p] == "false") { self.options[p] = false; }
+			}
 		}
 		if ("query" in self.options) {
 			var qnode = node.getElementsByTagName("query")[0];
@@ -605,7 +606,7 @@ OAT.DataSource = function(type) {
 		var tmp = node.getElementsByTagName("type");
 		for (var j=0;j<tmp.length;j++) {
 			var val = OAT.Xml.textValue(tmp[j]);
-			fb.types.push(val);
+			fb.types.push(parseInt(val));
 		}
 		var tmp = node.getElementsByTagName("masterField");
 		for (var j=0;j<tmp.length;j++) {
@@ -614,7 +615,7 @@ OAT.DataSource = function(type) {
 				fb.masterFields.push(fb.types[j] == 1 ? parseInt(val) : OAT.Dom.fromSafeXML(val));
 			} else {
 				fb.masterFields.push("");
-}
+			}
 		} /* for all masterFields */
 	} /* fromXML() */
 } /* DataSource() */
