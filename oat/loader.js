@@ -11,11 +11,21 @@
 	OAT.Loader.preInit(callback) - do something when everything is loaded
 	OAT.Loader.loadFeatures(features,callback) - do something when features are loaded
 	OAT.Loader.loadedLibs = ["ajax","window",...]
+	
+	Contains: 
+	* OAT
+	* OAT.Events
+	* OAT.Dom
+	* OAT.Loader
+	* OAT.Files
+	* OAT.Dependencies
+	* OAT.MSG
+	* OAT.Debug
+	
 */
 
 /* global namespace */
 window.OAT = {};
-window.debug = [];
 window.OAT.Events = [];
 
 /* several helpful prototypes */
@@ -78,8 +88,9 @@ Date.prototype.toHumanString = function() {
 	$$(something)
 	$v(something)
 	
-	OAT.Dom.create(tagName,styleObj)
+	OAT.Dom.create(tagName,styleObj,className)
 	OAT.Dom.text(text)
+	OAT.Dom.append([parent1,child1,child2],[parent2,child3,child4],...)
 	OAT.Dom.option(name,value,parent)
 	OAT.Dom.hide(elm)
 	OAT.Dom.show(elm)
@@ -94,6 +105,7 @@ Date.prototype.toHumanString = function() {
 	OAT.Dom.hex2dec(hex_str)
 	OAT.Dom.dec2hex(dec_num)
 	OAT.Dom.color(str)
+	OAT.Dom.applyStyle(elm,obj)
 	OAT.Dom.isClass(something,className)
 	OAT.Dom.addClass(something,className)
 	OAT.Dom.removeClass(something,className)
@@ -108,8 +120,11 @@ Date.prototype.toHumanString = function() {
 	OAT.Dom.moveBy(element,dx,dy)
 	OAT.Dom.resizeBy(element,dx,dy)
 	OAT.Dom.getScroll()
+	OAT.Dom.getViewport()
+	OAT.Dom.getFreeSpace()
 	OAT.Dom.decodeImage(data)
-	OAT.Dom.safeXML(str)
+	OAT.Dom.toSafeXML(str)
+	OAT.Dom.fromSafeXML(str)
 */
 
 function $(something) {
@@ -141,11 +156,12 @@ function $v(something) {
 }
 
 OAT.Dom = {
-	create:function(tagName,styleObj) {	
+	create:function(tagName,styleObj,className) {	
 		var elm = document.createElement(tagName);
 		if (styleObj) {
 			for (prop in styleObj) { elm.style[prop] = styleObj[prop]; }
 		}
+		if (className) { elm.className = className; }
 		return elm;
 	},
 
@@ -162,6 +178,18 @@ OAT.Dom = {
 	text:function(text) {
 		var elm = document.createTextNode(text);
 		return elm;
+	},
+	
+	append:function() {
+		for (var i=0;i<arguments.length;i++) {
+			var arr = arguments[i];
+			if (!(arr instanceof Array)) { continue; }
+			if (arr.length < 2) { continue; }
+			var parent = $(arr[0]);
+			for (var j=1;j<arr.length;j++) {
+				parent.appendChild($(arr[j]));
+			}
+		}
 	},
 	
 	option:function(name,value,parent) {
@@ -183,8 +211,10 @@ OAT.Dom = {
 		}
 		var elm = $(element);
 		/* ie input hack */
-		var inputs = elm.getElementsByTagName("input");
-		if (elm.tagName.toLowerCase() == "input") { inputs[inputs.length] = elm; }
+		var inputs_ = elm.getElementsByTagName("input");
+		var inputs = [];
+		for (var i=0;i<inputs_.length;i++) { inputs.push(inputs_[i]); }
+		if (elm.tagName.toLowerCase() == "input") { inputs.push(elm); }
 		for (var i=0;i<inputs.length;i++) {
 			var inp = inputs[i];
 			if (inp.type == "radio" || inp.type == "checkbox") {
@@ -207,12 +237,15 @@ OAT.Dom = {
 		var elm = $(element);
 		elm.style.display = "";
 		/* ie input hack */
-		var inputs = elm.getElementsByTagName("input");
-		if (elm.tagName.toLowerCase() == "input") { inputs[inputs.length] = elm; }
+		var inputs_ = elm.getElementsByTagName("input");
+		var inputs = [];
+		for (var i=0;i<inputs_.length;i++) { inputs.push(inputs_[i]); }
+		if (elm.tagName.toLowerCase() == "input") { inputs.push(elm); }
 		for (var i=0;i<inputs.length;i++) {
 			var inp = inputs[i];
 			if (inp.type == "radio" || inp.type == "checkbox") {
-				inp.checked = (inp.__checked == "1" ? true : false);
+				if (inp["__checked"] && inp.__checked === "1") { inp.checked = true; }
+				if (inp["__checked"] && inp.__checked === "0") { inp.checked = false; }
 				inp.__checked = false;
 			}
 		} 
@@ -309,6 +342,12 @@ OAT.Dom = {
 		}
 	},
 	
+	applyStyle:function(something,obj) {
+		var elm = $(something);
+		if (!elm) {return;}
+		for (var p in obj) { elm.style[p] = obj[p]; }
+	},
+	
 	isClass:function(something,className) {
 		var elm = $(something);
 		if (!elm) { return false; }
@@ -376,7 +415,7 @@ OAT.Dom = {
 		} else {
 			/* ??? */
 			element["on"+event] = false;
-}
+		}
 	},
 	
 	attach:function(elm,event,callback) {
@@ -384,13 +423,32 @@ OAT.Dom = {
 		OAT.Events.push([element,event,callback]);
 		OAT.Dom._attach(element,event,callback);
 	},
-
+	
 	detach:function(elm,event,callback) {
 		var element = $(elm);
-		var a = [element,event,callback];
-		var index = OAT.Events.find(a);
+		var index = -1;
+		for (var i=0;i<OAT.Events.length;i++) {
+			var rec = OAT.Events[i];
+			if (rec[0] == element && rec[1] == event && rec[2] == callback) { index = i; }
+		}
 		if (index != -1) { OAT.Events.splice(index,1); }
 		OAT.Dom._detach(element,event,callback);
+	},
+
+	detachAll:function(elm) {
+		var element = $(elm);
+		var indexArr = [];
+		for (var i=0;i<OAT.Events.length;i++) {
+			var rec = OAT.Events[i];
+			if (rec[0] == element) { indexArr.push(i); }
+		}
+		for (var i=indexArr.length-1;i>=0;i--) {
+			var index = indexArr[i];
+			var event = OAT.Events[index][1];
+			var callback = OAT.Events[index][2];
+			OAT.Dom._detach(element,event,callback);
+			OAT.Events.splice(index,1); 
+		}
 	},
 
 	source:function(event) {
@@ -404,9 +462,18 @@ OAT.Dom = {
 			var sl = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft;
 			var st = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop;
 			return [event.clientX+sl,event.clientY+st];
-}
+		}
 	},
+	
+	getViewport:function() {
+		if (OAT.Dom.isOpera() || (OAT.Dom.isIE() && !OAT.Dom.isIE7())) {
+			return [document.body.clientWidth,document.body.clientHeight];
+		} else {
+			return [document.documentElement.clientWidth,document.documentElement.clientHeight];
+		}
 
+	},
+	
 	style:function(elm,property) {
 		var element = $(elm);
 		if (document.defaultView && document.defaultView.getComputedStyle) {
@@ -415,7 +482,7 @@ OAT.Dom = {
 			return cs[property];
 		} else {
 			return element.currentStyle[property];
-}
+		} 
 	},
 	
 	position:function(something) {
@@ -428,7 +495,7 @@ OAT.Dom = {
 		var x = elm.offsetLeft - elm.scrollLeft + parent_coords[0];
 		var y = elm.offsetTop - elm.scrollTop + parent_coords[1];
 		*/
-
+		
 		/*
 			this is interesting: Opera with no scrolling reports scrollLeft/Top equal to offsetLeft/Top for <input> elements
 		*/
@@ -437,8 +504,8 @@ OAT.Dom = {
 		if (elm.tagName.toLowerCase() != "input" || !OAT.Dom.isOpera()) {
 			x -= elm.scrollLeft;
 			y -= elm.scrollTop;
-}
-
+		}
+		
 		if (OAT.Dom.isWebKit() && parent == document.body && OAT.Dom.style(elm,"position") == "absolute") { return [x,y]; }
 		
 		x += parent_coords[0];
@@ -483,8 +550,8 @@ OAT.Dom = {
 				curr_w = (temp_w == "auto" ? elm.offsetWidth : parseInt(temp_w));
 				if (elm.tagName.toLowerCase() == "input") { curr_w = curr_w + 5; }
 			} else { curr_w = elm.offsetWidth; }
-}
-
+		}
+		
 		if (elm.style.height && !elm.style.height.match(/%/)) {	
 			curr_h = parseInt(elm.style.height); 
 		} else {
@@ -578,6 +645,21 @@ OAT.Dom = {
 		}
 		return [l,t];
 	},
+
+	getFreeSpace:function(x,y) {
+		var scroll = OAT.Dom.getScroll();
+		var port = OAT.Dom.getViewport();
+		var spaceLeft = x - scroll[0];
+		var spaceRight = port[0] - x + scroll[0];
+		var spaceTop = y - scroll[1];
+		var spaceBottom = port[1] - y + scroll[1];
+		
+		var left = (spaceLeft > spaceRight);
+		var top = (spaceTop > spaceBottom);
+		
+		return [left,top];
+		
+	},
 	
 	toSafeXML:function(str) {
 		if (typeof(str) != "string") { return str; }
@@ -588,134 +670,16 @@ OAT.Dom = {
 		return str.replace(/&amp;/g,"&").replace(/&gt;/g,">").replace(/&lt;/g,"<");
 	}
 }
-
-/* dependency tree */
-OAT.Dependencies = {
-	ajax:"crypto",
-	soap:"ajax",
-	window:["mswin","macwin","roundwin"],
-	xmla:["soap","xml","connection"],
-	roundwin:["drag","resize","simplefx"],
-	mswin:["drag","resize"],
-	macwin:["drag","resize","simplefx"],
-	ghostdrag:"animation",
-	quickedit:"instant",
-	grid:"instant",
-	combolist:"instant",
-	formobject:["drag","resize","datasource","tab"],
-	color:"drag",
-	combobutton:"instant",
-	pivot:["ghostdrag","statistics","instant","barchart"],
-	combobox:"instant",
-	menu:"animation",
-	panelbar:"animation",
-	dock:["animation","ghostdrag"],
-	calendar:"drag",
-	graph:"canvas",
-	dav:["grid","tree","toolbar"],
-	dialog:["window","dimmer"],
-	datasource:["jsobj","json","xml","connection","dstransport"],
-	gmaps:["gapi","map"],
-	ymaps:["map"],
-	simplefx:"animation",
-	msapi:["map","layers"],
-	ws:["xml","soap","ajax","schema","connection"],
-	schema:["xml"],
-	timeline:["slider","tlscale","resize"],
-	piechart:"svg",
-	graphsvg:"svg",
-	rdf:"xml",
-	anchor:["datasource","formobject","window","datasource","ajax"],
-	openlayers:["map","layers","roundwin"],
-	svgsparql:["svg","ghostdrag"],
-	linechart:"svg",
-	sparkline:"linechart",
-	webclip:"webclipbinding",
-	declarative:"json",
-	tree:"ghostdrag"
-}
-
-OAT.Files = {
-	drag:"drag.js",
-	resize:"resize.js",
-	ajax:"ajax.js",
-	soap:"soap.js",
-	xmla:"xmla.js",
-	tab:"tab.js",
-	window:"window.js",
-	mswin:"mswin.js",
-	macwin:"macwin.js",
-	roundwin:"roundwin.js",
-	tree:"tree.js",
-	ghostdrag:"ghostdrag.js",
-	instant:"instant.js",
-	animation:"animation.js",
-	quickedit:"quickedit.js",
-	bezier:"bezier.js",
-	canvas:"canvas.js",
-	grid:"grid.js",
-	xml:"xml.js",
-	combolist:"combolist.js",
-	formobject:"formobject.js",
-	color:"color.js",
-	combobutton:"combobutton.js",
-	pivot:"pivot.js",
-	statistics:"statistics.js",
-	upload:"upload.js",
-	validation:"validation.js",
-	combobox:"combobox.js",
-	toolbar:"toolbar.js",
-	menu:"menu.js",
-	panelbar:"panelbar.js",
-	dock:"dock.js",
-	ticker:"ticker.js",
-	rotator:"rotator.js",
-	calendar:"calendar.js",
-	crypto:"crypto.js",
-	json:"json.js",
-	dimmer:"dimmer.js",
-	graph:"graph.js",
-	dav:"dav.js",
-	sqlquery:"sqlquery.js",
-	preferences:"preferences.js",
-	barchart:"barchart.js",
-	webclip:"webclip.js",
-	webclipbinding:"webclipbinding.js",
-	bindings:"bindings.js",
-	fisheye:"fisheye.js",
-	dialog:"dialog.js",
-	datasource:"datasource.js",
+OAT.Files = { /* only those whose names differ */
 	gmaps:"customGoogleLoader.js",
 	ymaps:"customYahooLoader.js",
-	msapi:"msapi.js",
 	openlayers:"OpenLayers.js",
-	simplefx:"simplefx.js",
-	gapi:"gmapapi.js",
-	layers:"layers.js",
-	map:"map.js",
-	slider:"slider.js",
-	ws:"ws.js",
-	dstransport:"dstransport.js",
-	schema:"schema.js",
-	timeline:"timeline.js",
-	tlscale:"tlscale.js",
-	jsobj:"jsobj.js",
-	sparql:"sparql.js",
-	svg:"svg.js",
-	piechart:"piechart.js",
-	graphsvg:"graphsvg.js",
-	rdf:"rdf.js",
-	profiler:"profiler.js",
-	declarative:"declarative.js",
-	anchor:"anchor.js",
-	connection:"connection.js",
-	svgsparql:"svgsparql.js",
-	linechart:"linechart.js",
-	sparkline:"sparkline.js",
-	keyboard:"keyboard.js"
+	gapi:"gmapapi.js"
 }
 
 OAT.Loader = {
+	toolkitPath:false,
+	openAjax:false,
 	dimmer:false,
 	loadedLibs:[], /* libraries ready to be used */
 	loadingLibs:[], /* libraries marked for inclusion */
@@ -745,11 +709,15 @@ OAT.Loader = {
 		for (var i=0;i<cpy.length;i++) { 
 			var name = cpy[i];
 			var index = OAT.Loader.loadingLibs.find(name);
-			if (index == -1) { OAT.Loader.include(OAT.Files[name]); } /* include only if not in loadingLibs list */
+			if (index == -1) { 
+				var fileName = name+".js";
+				if (name in OAT.Files) { fileName = OAT.Files[name]; }
+				OAT.Loader.include(fileName); 
+			} /* include only if not in loadingLibs list */
 		}
 		OAT.Loader.checkLoading();
 	},
-
+	
 	featureLoaded:function(name) { /* called by libraries when they are loaded */
 		OAT.Loader.loadedLibs.push(name); /* add to list of loaded */
 		var index = OAT.Loader.loadingLibs.find(name); 
@@ -758,7 +726,7 @@ OAT.Loader = {
 			var list = OAT.Loader.loadCallbacks[i][0];
 			var index = list.find(name);
 			if (index != -1) { list.splice(index,1); }
-				}
+		}
 		OAT.Loader.checkLoading();
 	},
 	
@@ -780,7 +748,7 @@ OAT.Loader = {
 		if (!OAT.Loader.loadCallbacks.length && OAT.Loader.dimmer) { 
 			OAT.Loader.dimmer = 0; 
 			if (OAT.Loader.dimmerElm == OAT.Dimmer.elm) { OAT.Dimmer.hide(); }
-			}
+		}
 		for (var i=0;i<toExecute.length;i++) { toExecute[i](); }
 	},
 	
@@ -788,9 +756,9 @@ OAT.Loader = {
 		/* to be called when all initial libs are loaded. waits until 'onload' occurs and then continues */
 		var ref = function() {
 			if (OAT.Loader.loadOccurred) { 
-				OAT.Dom.attach(window,"unload",OAT.Loader.clearEvents); /* attach leak preventor */
 				if (typeof(window._init) == "function" && typeof(document.body.getAttribute("onload")) == "object") { window._init(); } /* if _init is specified, execute */
 				if (OAT.Declarative) { OAT.Declarative.execute(); } /* declarative markup */
+				OAT.MSG.send(OAT,OAT.MSG.OAT_LOAD,{});
 				if (typeof(window.init) == "function" && typeof(document.body.getAttribute("onload")) == "object") { window.init(); } /* pass control to userspace */
 				
 			} else { setTimeout(ref,200); }
@@ -799,11 +767,7 @@ OAT.Loader = {
 	},
 
 	include:function(file) {
-		var path = "";
-		if (window.toolkitPath) {
-			path = toolkitPath;
-			if (path.charAt(path.length-1) != "/") { path += "/"; }
-		}
+		var path = OAT.Loader.toolkitPath;
 		var value = (typeof(file) == "object" ? file : [file]);
 		for (var i=0;i<value.length;i++) {
 			var name = path+value[i];
@@ -831,15 +795,146 @@ OAT.Loader = {
 		}
 		return result;
 	},
-
-	clearEvents:function() {
-		/* prevent leaks by explicitly detaching all event handlers */
-		while (OAT.Events.length) {
-			var e = OAT.Events[0];
-			OAT.Dom._detach(e[0],e[1],e[2]);
-			OAT.Events.splice(0,1);
+	
+	findPath:function() { /* scan for loader.js and OpenAjax.js */
+		var head = document.getElementsByTagName("head")[0];
+		var children = head.childNodes;
+		for (var i=0;i<children.length;i++) {
+			var s = children[i];
+			if (s.nodeType != 1 || s.tagName.toLowerCase() != "script") { continue; }
+			var re = false;
+			if ((re = s.src.match(/^(.*)loader\.js$/))) { OAT.Loader.toolkitPath = re[1]; }
+			if ((re = s.src.match(/^(.*)OpenAjax.js$/))) { OAT.Loader.openAjax = true; }
 		}
+	},
+
+	startOpenAjax:function() {
+		OpenAjax.registerLibrary("oat", "http://www.openlinksw.com/oat", "1.0");
+		OpenAjax.registerGlobals("oat", ["OAT","featureList"]);
+		OpenAjax.addOnLoad(function(){OAT.Loader.loadOccurred = 1;}, null, "library");
+	},
+	
+	start:function() {
+		OAT.Loader.findPath();
+		OAT.Loader.dimmerElm = OAT.Dom.create("div",{border:"2px solid #000",padding:"1em",position:"absolute",backgroundColor:"#fff"});
+		OAT.Loader.dimmerElm.innerHTML = "OAT Components loading...";
+		if (OAT.Loader.openAjax) { OAT.Loader.startOpenAjax(); } else {
+			OAT.Dom.attach(window,"load",function(){OAT.Loader.loadOccurred = 1;});
+		}
+		var fl = (window.featureList ? window.featureList : []);
+		fl.push("preferences");
+		OAT.Loader.loadFeatures(fl,OAT.Loader.startInit);
 	}
+}
+
+/* messages */
+OAT.MSG = {
+	OAT_DEBUG:0,
+	OAT_LOAD:1,
+	ANIMATION_STOP:2,
+	TREE_EXPAND:3,
+	TREE_COLLAPSE:4,
+	
+	registry:[],
+	attach:function(sender,msg,callback) {
+		if (!sender) { return; }
+		OAT.MSG.registry.push([sender,msg,callback]);
+	},
+	detach:function(sender,msg,callback) {
+		if (!sender) { return; }
+		var index = -1;
+		for (var i=0;i<OAT.MSG.registry.length;i++) {
+			var rec = OAT.MSG.registry[i];
+			if (rec[0] == sender && rec[1] == msg && rec[2] == callback) { index = i; }
+		}
+		if (index != -1) { OAT.MSG.registry.splice(index,1); }
+	},
+	send:function(sender,msg,event) {
+		for (var i=0;i<OAT.MSG.registry.length;i++) {
+			var record = OAT.MSG.registry[i];
+			var senderOK = (sender == record[0] || record[0] == "*");
+			if (!senderOK) { continue; }
+			var msgOK = (msg == record[1] || record[1] == "*");
+			if (!msgOK && record[1].toString().match(/\*/)) { /* try regexp match */
+				var re = new RegExp(record[1]);
+				var str = "";
+				for (var p in OAT.MSG) {
+					var v = OAT.MSG[p];
+					if (v == msg) { str = p; }
+				}
+				if (str.match(re)) { msgOK = true; }
+			} /* regexp */
+			if (msgOK) { record[2](sender,msg,event); }
+		} /* for all listeners */
+	} /* send message */
+}
+
+OAT.Debug = {
+	data:[],
+	attach:function(sender,msg) {
+		OAT.MSG.attach(sender,msg,OAT.Debug.listen);
+	},
+	listen:function(sender,msg,event) {
+		var name = "n/a";
+		for (var p in OAT.MSG) {
+			var v = OAT.MSG[p];
+			if (typeof(v) == "number" && v == msg) { name = p; }
+		}
+		OAT.Debug.data.push([sender,name,event]);
+	}
+}
+//OAT.Debug.attach("*","*");
+OAT.Debug.attach("*",OAT.MSG.OAT_DEBUG);
+
+/* dependency tree */
+OAT.Dependencies = {
+	ajax:"crypto",
+	soap:"ajax",
+	window:["mswin","macwin","roundwin","rectwin"],
+	xmla:["soap","xml","connection"],
+	roundwin:["drag","resize","simplefx"],
+	rectwin:["drag","resize"],
+	mswin:["drag","resize"],
+	macwin:["drag","resize","simplefx"],
+	ghostdrag:"animation",
+	quickedit:"instant",
+	grid:"instant",
+	combolist:"instant",
+	formobject:["drag","resize","datasource","tab"],
+	color:"drag",
+	combobutton:"instant",
+	pivot:["ghostdrag","statistics","instant","barchart"],
+	combobox:"instant",
+	menu:"animation",
+	panelbar:"animation",
+	dock:["animation","ghostdrag"],
+	calendar:"drag",
+	graph:"canvas",
+	dav:["grid","tree","toolbar","ajax","xml"],
+	dialog:["window","dimmer"],
+	datasource:["jsobj","json","xml","connection","dstransport"],
+	gmaps:["gapi","map"],
+	ymaps:["map"],
+	simplefx:"animation",
+	msapi:["map","layers"],
+	ws:["xml","soap","ajax","schema","connection"],
+	schema:["xml"],
+	timeline:["slider","tlscale","resize"],
+	piechart:"svg",
+	graphsvg:["svg","graphsidebar","rdf"],
+	rdf:"xml",
+	anchor:["datasource","formobject","window","datasource","ajax"],
+	openlayers:["map","layers","roundwin"],
+	svgsparql:["svg","ghostdrag","geometry"],
+	linechart:"svg",
+	sparkline:"linechart",
+	webclip:"webclipbinding",
+	declarative:"json",
+	tree:"ghostdrag",
+	rdfbrowser:["rdf","tree"],
+	graphsidebar:"tree",
+	form:["ajax","dialog","datasource","formobject"],
+	rssreader:"xml"
 }
 
 /* 
@@ -853,10 +948,4 @@ OAT.Loader = {
 			4. (if present) declarative scanner is executed
 			5. userspace init() is called (if present)
 */
-
-OAT.Loader.dimmerElm = OAT.Dom.create("div",{border:"2px solid #000",padding:"1em",position:"absolute",backgroundColor:"#fff"});
-OAT.Loader.dimmerElm.innerHTML = "OAT Components loading...";
-OAT.Dom.attach(window,"load",function(){OAT.Loader.loadOccurred = 1;});
-var fl = (window.featureList ? window.featureList : []);
-fl.push("preferences");
-OAT.Loader.loadFeatures(fl,OAT.Loader.startInit);
+OAT.Loader.start();
