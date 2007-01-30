@@ -1,0 +1,106 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="/DAV/JS/xslt/formview.xsl"?>
+<form showajax="1"  nocred="0" >
+	<ds name="sql categories" type="1" pagesize="30">
+		<connection type="1" endpoint="/XMLA" dsn="DSN=Local_Instance" user="ZGVtbw==" password="ZGVtbw=="/>
+		<options table="Demo.demo.Categories" limit="30" cursortype="0"/>
+		<query><![CDATA[]]></query>
+		<outputFields>
+			<outputField>CategoryID</outputField>
+			<outputField>CategoryName</outputField>
+			<outputField>Description</outputField>
+			<outputField>Picture</outputField>
+		</outputFields>
+		<inputFields>
+			<inputField>CategoryID</inputField>
+			<inputField>CategoryName</inputField>
+			<inputField>Description</inputField>
+			<inputField>Picture</inputField>
+		</inputFields>
+		<selfFields>
+		</selfFields>
+		<masterFields>
+		</masterFields>
+		<masterDSs>
+		</masterDSs>
+		<types>
+		</types>
+	</ds>
+
+	<area bgcolor="rgb(187, 187, 187)" fgcolor="rgb(0, 0, 0)" size="12.7333px" left="0" top="0" width="1286" height="600" />
+	<object type="label" parent="-1" empty="1" value="CategoryID">
+		<style left="10" top="13" z-index="1" width="74" height="16" >
+			<css  color="rgb(0, 0, 0)"  backgroundColor="transparent"  fontSize="12.7333px" ></css>
+		</style>
+		<properties>
+		</properties>
+		<datasources>
+			<datasource index="0">
+				<fieldset name="Value" variable="0">
+					<columnIndex>-1</columnIndex>
+				</fieldset>
+			</datasource>
+		</datasources>
+	</object>
+
+	<object type="input" parent="-1" empty="1" value="[CategoryID]">
+		<style left="110" top="13" z-index="2" width="121" height="19" >
+			<css  color="rgb(0, 0, 0)"  backgroundColor="rgb(255, 255, 255)"  fontSize="11px" ></css>
+		</style>
+		<properties>
+		</properties>
+		<datasources>
+			<datasource index="0">
+				<fieldset name="Value" variable="0">
+					<columnIndex>0</columnIndex>
+				</fieldset>
+			</datasource>
+		</datasources>
+	</object>
+
+	<object type="label" parent="-1" empty="1" value="CategoryName">
+		<style left="10" top="51" z-index="3" width="96" height="16" >
+			<css  color="rgb(0, 0, 0)"  backgroundColor="transparent"  fontSize="12.7333px" ></css>
+		</style>
+		<properties>
+		</properties>
+		<datasources>
+			<datasource index="0">
+				<fieldset name="Value" variable="0">
+					<columnIndex>-1</columnIndex>
+				</fieldset>
+			</datasource>
+		</datasources>
+	</object>
+
+	<object type="input" parent="-1" empty="1" value="[CategoryName]">
+		<style left="110" top="51" z-index="4" width="121" height="19" >
+			<css  color="rgb(0, 0, 0)"  backgroundColor="rgb(255, 255, 255)"  fontSize="11px" ></css>
+		</style>
+		<properties>
+		</properties>
+		<datasources>
+			<datasource index="0">
+				<fieldset name="Value" variable="0">
+					<columnIndex>1</columnIndex>
+				</fieldset>
+			</datasource>
+		</datasources>
+	</object>
+
+	<object type="nav" parent="-1" empty="1" value="false">
+		<style left="13" top="90" z-index="5">
+			<css ></css>
+		</style>
+		<properties>
+			<property>
+				<name>Datasource</name>
+				<value>0</value>
+				<type>datasource</type>
+			</property>
+		</properties>
+		<datasources>
+		</datasources>
+	</object>
+
+</form>

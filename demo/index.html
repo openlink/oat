@@ -27,7 +27,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<script type="text/javascript" >
-		var toolkitPath = "../oat";
 		var featureList=["tab","panelbar","dimmer","dialog"];
 	</script>
 	<script type="text/javascript" src="../oat/loader.js"></script>
@@ -39,7 +38,6 @@
 	<div id="source">
 		Click <a id="source_permalink" href="">here</a> for the URI (Permalink) of this source
 		<div id="source_content"></div>
-		<input type="button" id="source_close" value="Close" />
 	</div>
 
 
@@ -89,6 +87,7 @@
 			<div id="tab_date">Date picker</div>
 			<div id="tab_color">Color picker</div>
 			<div id="tab_anchor">Enhanced Anchor</div>
+			<div id="tab_rss">RSS Reader</div>
 		</div>
 		
 		<div id="pb_4">Libraries</div>
@@ -195,6 +194,7 @@ June 1991.<br />
 			<li>SQL lookup (hover) - categories &gt; <a id="a_1" href="/XMLA">1</a></li>
 			<li>RSS Timeline (click) - <a id="a_2" href="sparql.xml">here</a></li>
 			<li>SPARQL query (click) - <a id="a_3" href="/sparql/">here</a></li>
+			<li>In-page form with SQL data (click) - <a id="a_4" href="form.xml">here</a></li>
 		</ul>
 	</div>
 	<div id="ajax">
@@ -265,20 +265,14 @@ June 1991.<br />
 		<h3>Dock</h3>
 		<p>Can be used for personalized home page or similar. Drag these boxes around to see what they can do...</p>
 		<div id="dock_content"></div>
-		<div id="dock_1" class="dock_block" style="background-color: #eff">
-			<div id="d1" class="dock_header">Welcome!</div>This is your home page.
-		</div>
-		<div id="dock_2" class="dock_block" style="background-color: #ffd">
-			<div id="d2" class="dock_header">News?</div>Everyone wants to have some cool boxes for syndicating news via RSS/ATOM today...
-		</div>
-		<div id="dock_3" class="dock_block" style="background-color: #fef">
-			<div id="d3" class="dock_header">Weather forecast</div>Is another possibility for filling these draggable things up.
-		</div>
-		<div id="dock_4" class="dock_block" style="background-color: #eef">
-			<div id="d4" class="dock_header">Google</div><input type="text" size="10" id="dock_q" name="q" value="Type here..." /><br/>
+		<div id="dock_1">This is your home page.</div>
+		<div id="dock_2">Everyone wants to have some cool boxes for syndicating news via RSS/ATOM today...</div>
+		<div id="dock_3">Is another possibility for filling these draggable things up.</div>
+		<div id="dock_4">
+			<input type="text" size="10" id="dock_q" name="q" value="Type here..." /><br/>
 			<input type="button" id="dock_search" value="Search!" />
 			<div id="dock_results">
-			[first three results will be displayed here]
+				[first three results will be displayed here]
 			</div>
 		</div>
 	</div>	
@@ -435,6 +429,14 @@ June 1991.<br />
 		<div id="round_5" class="round"><span class="round_content">larger corners</span></div>
 	</div>
 	
+	<div id="rss">
+		<h3>RSS Reader</h3>
+		<p>Can display <a href="feed_rss.xml">RSS feeds</a>...</p>
+		<div id="rss_content_rss"></div>
+		<p>...as well as <a href="feed_rdf.xml">RDF feeds</a>.</p>
+		<div id="rss_content_rdf"></div>
+	</div>
+
 	<div id="rdf">
 		<h3>RDF Graph Visualizer (SVG-based)</h3>
 		<table><tr><td>

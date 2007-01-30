@@ -20,10 +20,11 @@ for (var k=0;k<Quarters.length;k++)
 for (var l=0;l<Colors.length;l++) {
 	var value = Math.round(Math.random()*100);
 	data.push([Companies[i],Years[j],Quarters[k],Colors[l],value]);
-	}
+}
 
 var DEMO = {};
-	
+window.cal = false;
+
 DEMO.about = {
 	panel:0,
 	tab:0,
@@ -54,26 +55,26 @@ DEMO.chart = {
 	div:"chart",
 	needs:["barchart"],
 	cb:function() {
-	var chart_1 = new OAT.BarChart("chart_1",{});
-	var chart_2 = new OAT.BarChart("chart_2",{percentage:true});
-	var data = [];
-	var textX = [];
-	var textY = ["Red","Green","Blue"];
-	for (var i=0;i<10;i++) {
-		textX.push(i+1);
-		var p = [];
-		for (var j=0;j<3;j++) { p.push(Math.random()); }
-		data.push(p);
-	}
-	
-	chart_1.attachTextX(textX);
-	chart_1.attachTextY(textY);
-	chart_1.attachData(data);
-	chart_1.draw();
-	chart_2.attachTextX(textX);
-	chart_2.attachTextY(textY);
-	chart_2.attachData(data);
-	chart_2.draw();
+		var chart_1 = new OAT.BarChart("chart_1",{});
+		var chart_2 = new OAT.BarChart("chart_2",{percentage:true});
+		var data = [];
+		var textX = [];
+		var textY = ["Red","Green","Blue"];
+		for (var i=0;i<10;i++) {
+			textX.push(i+1);
+			var p = [];
+			for (var j=0;j<3;j++) { p.push(Math.random()); }
+			data.push(p);
+		}
+
+		chart_1.attachTextX(textX);
+		chart_1.attachTextY(textY);
+		chart_1.attachData(data);
+		chart_1.draw();
+		chart_2.attachTextX(textX);
+		chart_2.attachTextY(textY);
+		chart_2.attachData(data);
+		chart_2.draw();
 	}
 }
 
@@ -84,11 +85,11 @@ DEMO.grid = {
 	needs:["grid"],
 	cb:function() {
 		var grid = new OAT.Grid("grid_content",0,1);
-	grid.createHeader(header);
-	for (var i=0;i<data.length;i++) { grid.createRow(data[i]); }
+		grid.createHeader(header);
+		for (var i=0;i<data.length;i++) { grid.createRow(data[i]); }
 	}
 }
-	
+
 DEMO.pivot = {
 	panel:1,
 	tab:5,
@@ -96,21 +97,21 @@ DEMO.pivot = {
 	needs:["pivot","statistics"],
 	cb:function() {
 		var pivot = new OAT.Pivot("pivot_content","pivot_chart","pivot_page",header,data,[0,1],[2,3],[],4,{showChart:1});
-	var aggRef = function() {
-		pivot.options.agg = parseInt($v("pivot_agg"));
-		pivot.go();
-	}
-	/* create agg function list */
-	OAT.Dom.clear("pivot_agg");
-	for (var i=0;i<OAT.Statistics.list.length;i++) {
-		var item = OAT.Statistics.list[i];
-		OAT.Dom.option(item.shortDesc,i,"pivot_agg");
-		if (pivot.options.agg == i) { $("pivot_agg").selectedIndex = i; }
-	}
-	OAT.Dom.attach("pivot_agg","change",aggRef);
+		var aggRef = function() {
+			pivot.options.agg = parseInt($v("pivot_agg"));
+			pivot.go();
+		}
+		/* create agg function list */
+		OAT.Dom.clear("pivot_agg");
+		for (var i=0;i<OAT.Statistics.list.length;i++) {
+			var item = OAT.Statistics.list[i];
+			OAT.Dom.option(item.shortDesc,i,"pivot_agg");
+			if (pivot.options.agg == i) { $("pivot_agg").selectedIndex = i; }
+		}
+		OAT.Dom.attach("pivot_agg","change",aggRef);
 	}
 }
-	
+
 DEMO.date = {
 	panel:1,
 	tab:6,
@@ -118,17 +119,18 @@ DEMO.date = {
 	needs:["calendar"],
 	cb:function() {
 		var c = new OAT.Calendar();
-	var openRef = function(event) {
-		var callback = function(date) {
-			$("calendar_value").innerHTML = date[0]+"/"+date[1]+"/"+date[2];
-		}
-		var coords = OAT.Dom.position("calendar_value");
+		window.cal = c;
+		var openRef = function(event) {
+			var callback = function(date) {
+				$("calendar_value").innerHTML = date[0]+"/"+date[1]+"/"+date[2];
+			}
+			var coords = OAT.Dom.position("calendar_value");
 			c.show(coords[0],coords[1]+30,callback);
-	}
-	OAT.Dom.attach("calendar_btn","click",openRef);
+		}
+		OAT.Dom.attach("calendar_btn","click",openRef);
 	}
 }
-	
+
 DEMO.color = {
 	panel:1,
 	tab:7,
@@ -136,124 +138,128 @@ DEMO.color = {
 	needs:["color"],
 	cb:function() {
 		var c = new OAT.Color();
-	var colorRef = function(event) {
-		var callback = function(color) { $("color_content").style.backgroundColor = color;}
-		var coords = OAT.Dom.position("color_content");
+		var colorRef = function(event) {
+			var callback = function(color) { $("color_content").style.backgroundColor = color;}
+			var coords = OAT.Dom.position("color_content");
 			c.pick(coords[0],coords[1],callback);
-	}
-	OAT.Dom.attach("color_content","click",colorRef);
+		}
+		OAT.Dom.attach("color_content","click",colorRef);
 	}
 }
-	
+
 DEMO.tree = {
 	panel:1,
 	tab:8,
 	div:"tree",
 	needs:["tree"],
 	cb:function() {
-		var t = new OAT.Tree({imagePath:"images",allowDrag:1});
+		var t = new OAT.Tree({imagePath:"images",allowDrag:1,onClick:"select",onDblClick:"toggle"});
 		t.assign("tree_content",0);
 	}
 }
-	
+
 DEMO.json = {
 	panel:3,
 	tab:9,
 	div:"json",
 	needs:["json"],
 	cb:function() {
-	var jsonRef = function(event) {
-		var data = OAT.JSON.stringify(OAT.JSON,-1);
-		data = data.replace(/\n/g,"<br/>");
-		data = data.replace(/ /g,"&nbsp;");
-		$("json_content").innerHTML = data;
-	}
-	OAT.Dom.attach("json_btn","click",jsonRef);
+		var jsonRef = function(event) {
+			var data = OAT.JSON.stringify(OAT.JSON,-1);
+			data = data.replace(/\n/g,"<br/>");
+			data = data.replace(/ /g,"&nbsp;");
+			$("json_content").innerHTML = data;
+		}
+		OAT.Dom.attach("json_btn","click",jsonRef);
 	}
 }
-	
+
 DEMO.upload = {
 	panel:2,
 	tab:10,
 	div:"upload",
 	needs:["upload"],
 	cb:function() {
-	var ifr = OAT.Dom.create("iframe",{display:"none"});
-	ifr.name="ifr";
-	document.body.appendChild(ifr);
-	var u = new OAT.Upload("GET","","ifr");
-	$("upload_content").appendChild(u.div);
-	u.submitBtn.value = "Upload files";
-	u.form.setAttribute("onsubmit","return false;");
-	OAT.Dom.attach(u.submitBtn,"click",function(){alert("In real application, clicking this button would upload files to server.");});
+		var ifr = OAT.Dom.create("iframe",{display:"none"});
+		ifr.name="ifr";
+		document.body.appendChild(ifr);
+		var u = new OAT.Upload("GET","","ifr","file");
+		$("upload_content").appendChild(u.div);
+		u.submitBtn.value = "Upload files";
+		u.form.setAttribute("onsubmit","return false;");
+		OAT.Dom.attach(u.submitBtn,"click",function(){alert("In real application, clicking this button would upload files to server.");});
 	}
 }
-	
+
 DEMO.validation = {
 	panel:2,
 	tab:11,
 	div:"validation",
 	needs:["validation"],
 	cb:function() {
-	OAT.Validation.create("validation_numbers",OAT.Validation.TYPE_REGEXP,{regexp:/[0-9]/, min:10, max:10});
-	OAT.Validation.create("validation_chars",OAT.Validation.TYPE_REGEXP,{regexp:/[a-z]/i, min:3, max:12});
-	OAT.Validation.create("validation_date",OAT.Validation.TYPE_DATE,{});
+		OAT.Validation.create("validation_numbers",OAT.Validation.TYPE_REGEXP,{regexp:/[0-9]/, min:10, max:10});
+		OAT.Validation.create("validation_chars",OAT.Validation.TYPE_REGEXP,{regexp:/[a-z]/i, min:3, max:12});
+		OAT.Validation.create("validation_date",OAT.Validation.TYPE_DATE,{});
 	}
 }
-	
+
 DEMO.dock = {
 	panel:1,
 	tab:12,
 	div:"dock",
 	needs:["dock","ws","datasource"],
 	cb:function() {
-		var d = new OAT.Dock("dock_content",3); 
-	d.addObject(0,"d1","dock_1");
-	d.addObject(1,"d2","dock_2");
-	d.addObject(2,"d3","dock_3");
-	d.addObject(0,"d4","dock_4");
-	/* google search */
-		var ds = new OAT.DataSource(OAT.DataSourceData.TYPE_SOAP)
-	var wsdl = "/google/services.wsdl";
-		ds.connection = new OAT.Connection(OAT.ConnectionData.TYPE_WSDL,{url:wsdl});
-	var searchRecieveRef = function(data,index) {
-		var cnt = Math.min(data.length,3);
-		OAT.Dom.clear("dock_results");
-		for (var i=0;i<cnt;i++) {
-			var num = OAT.Dom.create("span");
-			num.innerHTML = (i+1)+". ";
-			$("dock_results").appendChild(num);
-			var val = data[i];
-			var a = OAT.Dom.create("a");
-			a.href = val[0];
-			a.innerHTML = val[1];
-			$("dock_results").appendChild(a);
-			var br = OAT.Dom.create("br");
-			$("dock_results").appendChild(br);
+		var d = new OAT.Dock("dock_content",3);
+		var colors = ["#99c","#cc9","#c8c","#9c9"];
+		var columns = [0,1,2,0];
+		var titles = ["Welcome!","News?","Weather forecast","Google"];
+
+		for (var i=0;i<colors.length;i++) {
+			d.addObject(columns[i],"dock_"+(i+1),{color:colors[i],title:titles[i],titleColor:"#000"});
 		}
-	}
-	ds.bindPage(searchRecieveRef);
-	var searchRef = function() {
-		var obj = {
-			doGoogleSearch:{
-				key:"IGWnqjhQFHKvB8MdJlVI0GPKDJxZhwBf",
-				q:$v("dock_q"),
-				start:0,
-				maxResults:10,
-				filter:"",
-				restrict:"",
-				safeSearch:"",
-				lr:"",
-				ie:"",
-				oe:""
+		
+		/* google search */
+		var ds = new OAT.DataSource(OAT.DataSourceData.TYPE_SOAP)
+		var wsdl = "/google/services.wsdl";
+		ds.connection = new OAT.Connection(OAT.ConnectionData.TYPE_WSDL,{url:wsdl});
+		var searchRecieveRef = function(data,index) {
+			var cnt = Math.min(data.length,3);
+			OAT.Dom.clear("dock_results");
+			for (var i=0;i<cnt;i++) {
+				var num = OAT.Dom.create("span");
+				num.innerHTML = (i+1)+". ";
+				$("dock_results").appendChild(num);
+				var val = data[i];
+				var a = OAT.Dom.create("a");
+				a.href = val[0];
+				a.innerHTML = val[1];
+				$("dock_results").appendChild(a);
+				var br = OAT.Dom.create("br");
+				$("dock_results").appendChild(br);
 			}
 		}
+		ds.bindPage(searchRecieveRef);
+		var searchRef = function() {
+			var obj = {
+				doGoogleSearch:{
+					key:"IGWnqjhQFHKvB8MdJlVI0GPKDJxZhwBf",
+					q:$v("dock_q"),
+					start:0,
+					maxResults:10,
+					filter:"",
+					restrict:"",
+					safeSearch:"",
+					lr:"",
+					ie:"",
+					oe:""
+				}
+			}
 			ds.options.service = "doGoogleSearch";
 			ds.options.inputObj = obj;
 			ds.outputFields = ["URL","title"];
-		ds.advanceRecord(0);
-	}
-	OAT.Dom.attach("dock_search","click",searchRef);
+			ds.advanceRecord(0);
+		}
+		OAT.Dom.attach("dock_search","click",searchRef);
 	}
 }
 
@@ -271,140 +277,140 @@ DEMO.ticker = {
 	div:"ticker",
 	needs:["ticker"],
 	cb:function() {
-	var getStartRef = function(i) { return function() { tickerArr[i].start(); }	}
-	var getStopRef = function(i) { return function() { tickerArr[i].stop(); }	}
-	var textArr = [
-		"The United States of America is a federal republic situated primarily in North America. It is bordered on the north by Canada and to the south by Mexico. It comprises 50 states and one federal district, and has several territories with differing degrees of affiliation. It is also referred to, with varying formality, as the U.S., the U.S.A., the U.S. of A., the States, the United States, America, or (poetically) Columbia.",
-		"The United Kingdom of Great Britain and Northern Ireland (usually shortened to the United Kingdom, or the UK) occupies part of the British Isles in northwestern Europe, with most of its territory and population on the island of Great Britain. It shares a land border with the Republic of Ireland on the island of Ireland and is otherwise surrounded by the North Sea, the English Channel, the Celtic Sea, the Irish Sea, and the Atlantic Ocean.",
-		"The Czech Republic, is a landlocked country in Central Europe. The country has borders with Poland to the north, Germany to the northwest and west, Austria to the south, and Slovakia to the east. Historic Prague, a major tourist attraction, is its capital and largest city.",
-		'Republic of Zimbabwe (formerly Rhodesia) is a landlocked country located in the southern part of the continent of Africa, between the Zambezi and Limpopo rivers. It is bordered by South Africa to the south, Botswana to the west, Zambia to the north, and Mozambique to the east. The name Zimbabwe is derived from "dzimba dzamabwe" meaning "stone buildings" in the Shona language.'
-	];
-	var tickerArr = [];
-	for (var i=0;i<4;i++) {
-		var opts = {
-			loop:OAT.TickerData.LOOP_FULL,
-			timing:OAT.TickerData.TIMING_PERCHAR,
-			defDelay:20,
-			clear:OAT.TickerData.CLEAR_END
+		var getStartRef = function(i) { return function() { tickerArr[i].start(); }	}
+		var getStopRef = function(i) { return function() { tickerArr[i].stop(); }	}
+		var textArr = [
+			"The United States of America is a federal republic situated primarily in North America. It is bordered on the north by Canada and to the south by Mexico. It comprises 50 states and one federal district, and has several territories with differing degrees of affiliation. It is also referred to, with varying formality, as the U.S., the U.S.A., the U.S. of A., the States, the United States, America, or (poetically) Columbia.",
+			"The United Kingdom of Great Britain and Northern Ireland (usually shortened to the United Kingdom, or the UK) occupies part of the British Isles in northwestern Europe, with most of its territory and population on the island of Great Britain. It shares a land border with the Republic of Ireland on the island of Ireland and is otherwise surrounded by the North Sea, the English Channel, the Celtic Sea, the Irish Sea, and the Atlantic Ocean.",
+			"The Czech Republic, is a landlocked country in Central Europe. The country has borders with Poland to the north, Germany to the northwest and west, Austria to the south, and Slovakia to the east. Historic Prague, a major tourist attraction, is its capital and largest city.",
+			'Republic of Zimbabwe (formerly Rhodesia) is a landlocked country located in the southern part of the continent of Africa, between the Zambezi and Limpopo rivers. It is bordered by South Africa to the south, Botswana to the west, Zambia to the north, and Mozambique to the east. The name Zimbabwe is derived from "dzimba dzamabwe" meaning "stone buildings" in the Shona language.'
+		];
+		var tickerArr = [];
+		for (var i=0;i<4;i++) {
+			var opts = {
+				loop:OAT.TickerData.LOOP_FULL,
+				timing:OAT.TickerData.TIMING_PERCHAR,
+				defDelay:20,
+				clear:OAT.TickerData.CLEAR_END
+			}
+			tickerArr.push(new OAT.Ticker("ticker_content",textArr[i],opts));
+			var startRef = getStartRef(i);
+			var stopRef = getStopRef(i);
+			OAT.Dom.attach("ticker_"+i,"mouseover",startRef);
+			OAT.Dom.attach("ticker_"+i,"mouseout",stopRef);
 		}
-		tickerArr.push(new OAT.Ticker("ticker_content",textArr[i],opts));
-		var startRef = getStartRef(i);
-		var stopRef = getStopRef(i);
-		OAT.Dom.attach("ticker_"+i,"mouseover",startRef);
-		OAT.Dom.attach("ticker_"+i,"mouseout",stopRef);
-	}
 	}
 }
-	
+
 DEMO.dimmer = {
 	panel:2,
 	tab:15,
 	div:"dimmer",
 	needs:["dimmer"],
 	cb:function() {
-	OAT.Dom.hide("dimmer_content");
-	OAT.Dom.attach("dimmer_btn","click",function(){OAT.Dimmer.show("dimmer_content",{});OAT.Dom.center("dimmer_content",1,1);});
-	OAT.Dom.attach("dimmer_close","click",function(){OAT.Dimmer.hide();});
+		OAT.Dom.hide("dimmer_content");
+		OAT.Dom.attach("dimmer_btn","click",function(){OAT.Dimmer.show("dimmer_content",{});OAT.Dom.center("dimmer_content",1,1);});
+		OAT.Dom.attach("dimmer_close","click",function(){OAT.Dimmer.hide();});
 	}
 }
-	
+
 DEMO.crypto = {
 	panel:3,
 	tab:16,
 	div:"crypto",
 	needs:["crypto"],
 	cb:function() {
-	var cryptoRef = function() {
-		var text = $v("crypto_input");
-		$("crypto_base64").innerHTML = OAT.Crypto.base64e(text);
-		$("crypto_md5").innerHTML = OAT.Crypto.md5(text);
-		$("crypto_sha").innerHTML = OAT.Crypto.sha(text);
-		
-	}
-	OAT.Dom.attach("crypto_input","keyup",cryptoRef);
+		var cryptoRef = function() {
+			var text = $v("crypto_input");
+			$("crypto_base64").innerHTML = OAT.Crypto.base64e(text);
+			$("crypto_md5").innerHTML = OAT.Crypto.md5(text);
+			$("crypto_sha").innerHTML = OAT.Crypto.sha(text);
+
+		}
+		OAT.Dom.attach("crypto_input","keyup",cryptoRef);
 	}
 }
-	
+
 DEMO.stats = {
 	panel:3,
 	tab:17,
 	div:"stats",
 	needs:["statistics"],
 	cb:function() {
-	var statsRef = function() {
-		OAT.Dom.clear("stats_content");
-		var value = parseInt($v("stats_count"));
-		var count = (isNaN(value) ? 20 : value);
-		value = parseInt($v("stats_maximum"));
-		var max = (isNaN(value) ? 10 : value);
-		var data = [];
-		for (var i=0;i<count;i++) { data.push(Math.round(Math.random()*(max-1))+1); }
-		$("stats_data").innerHTML = data.join(", ");
-		/* dynamically walk through all available stats functions */
-		for (var i=0;i<OAT.Statistics.list.length;i++) {
-			var item = OAT.Statistics.list[i];
-			var div = OAT.Dom.create("div");
-			var val = OAT.Statistics[item.func](data);
-			div.innerHTML = item.longDesc+": "+val;
-			$("stats_content").appendChild(div);
+		var statsRef = function() {
+			OAT.Dom.clear("stats_content");
+			var value = parseInt($v("stats_count"));
+			var count = (isNaN(value) ? 20 : value);
+			value = parseInt($v("stats_maximum"));
+			var max = (isNaN(value) ? 10 : value);
+			var data = [];
+			for (var i=0;i<count;i++) { data.push(Math.round(Math.random()*(max-1))+1); }
+			$("stats_data").innerHTML = data.join(", ");
+			/* dynamically walk through all available stats functions */
+			for (var i=0;i<OAT.Statistics.list.length;i++) {
+				var item = OAT.Statistics.list[i];
+				var div = OAT.Dom.create("div");
+				var val = OAT.Statistics[item.func](data);
+				div.innerHTML = item.longDesc+": "+val;
+				$("stats_content").appendChild(div);
+			}
 		}
-	}
-	OAT.Dom.attach("stats_btn","click",statsRef); 
-	statsRef();
+		OAT.Dom.attach("stats_btn","click",statsRef);
+		statsRef();
 	}
 }
-	
+
 DEMO.quickedit = {
 	panel:2,
 	tab:18,
 	div:"quickedit",
 	needs:["quickedit"],
 	cb:function() {
-	OAT.QuickEdit.assign("qe_1",OAT.QuickEdit.SELECT,["sir","madam"]);
-	OAT.QuickEdit.assign("qe_2",OAT.QuickEdit.STRING,[]);
-	OAT.QuickEdit.assign("qe_3",OAT.QuickEdit.SELECT,["information","money","monkey"]);
-	OAT.QuickEdit.assign("qe_4",OAT.QuickEdit.STRING,[]);
-	OAT.QuickEdit.assign("qe_5",OAT.QuickEdit.STRING,[]);
+		OAT.QuickEdit.assign("qe_1",OAT.QuickEdit.SELECT,["sir","madam"]);
+		OAT.QuickEdit.assign("qe_2",OAT.QuickEdit.STRING,[]);
+		OAT.QuickEdit.assign("qe_3",OAT.QuickEdit.SELECT,["information","money","monkey"]);
+		OAT.QuickEdit.assign("qe_4",OAT.QuickEdit.STRING,[]);
+		OAT.QuickEdit.assign("qe_5",OAT.QuickEdit.STRING,[]);
 	}
 }
-	
+
 DEMO.combolist = {
 	panel:2,
 	tab:19,
 	div:"combolist",
 	needs:["combolist"],
 	cb:function() {
-	var cl = new OAT.Combolist(["red","green","blue","your own?"],"pick your color");
-	$("combolist_content").appendChild(cl.div)
+		var cl = new OAT.Combolist(["red","green","blue","your own?"],"pick your color");
+		$("combolist_content").appendChild(cl.div)
 	}
-	}
-	
+}
+
 DEMO.combobox = {
 	panel:2,
 	tab:20,
 	div:"combobox",
 	needs:["combobox"],
 	cb:function() {
-	var cbx = new OAT.ComboBox("Your browser");
-	cbx.addOption("opt_1","Firefox");
-	cbx.addOption("opt_2","MSIE");
-	cbx.addOption("opt_3","Opera");
-	cbx.addOption("opt_4","Netscape");
-	$("combobox_content").appendChild(cbx.div);
+		var cbx = new OAT.ComboBox("Your browser");
+		cbx.addOption("opt_1","Firefox");
+		cbx.addOption("opt_2","MSIE");
+		cbx.addOption("opt_3","Opera");
+		cbx.addOption("opt_4","Netscape");
+		$("combobox_content").appendChild(cbx.div);
 	}
 }
-	
+
 DEMO.combobutton = {
 	panel:2,
 	tab:21,
 	div:"combobutton",
 	needs:["combobutton"],
 	cb:function() {
-	var cb = new OAT.ComboButton();
-	cb.addOption("images/cb_1.gif","Down",function(){alert("Down clicked");})
-	cb.addOption("images/cb_2.gif","Up",function(){alert("Up clicked");})
-	cb.addOption("images/cb_3.gif","Stop",function(){alert("Stop clicked");})
-	$("combobutton_content").appendChild(cb.div);
+		var cb = new OAT.ComboButton();
+		cb.addOption("images/cb_1.gif","Down",function(){alert("Down clicked");})
+		cb.addOption("images/cb_2.gif","Up",function(){alert("Up clicked");})
+		cb.addOption("images/cb_3.gif","Stop",function(){alert("Stop clicked");})
+		$("combobutton_content").appendChild(cb.div);
 	}
 }
 
@@ -428,7 +434,7 @@ DEMO.ajax = {
 		OAT.Dom.attach("ajax_input","keyup",ajaxRef);
 	}
 }
-	
+
 DEMO.fisheye = {
 	panel:1,
 	tab:23,
@@ -436,52 +442,52 @@ DEMO.fisheye = {
 	needs:["fisheye"],
 	cb:function() {
 		var fe = new OAT.FishEye("fisheye_content",{bigSize:70,limit:100});
-	fe.addImage("images/fe_img1.png");
-	fe.addImage("images/fe_img2.png");
-	fe.addImage("images/fe_img3.png");
-	fe.addImage("images/fe_img4.png");
-	fe.addImage("images/fe_img5.png");
-	fe.addImage("images/fe_img6.png");
-	fe.addImage("images/fe_img7.png");
-	fe.addImage("images/fe_img8.png");
-	fe.addImage("images/fe_img9.png");
-	fe.addImage("images/fe_img10.png");
+		fe.addImage("images/fe_img1.png");
+		fe.addImage("images/fe_img2.png");
+		fe.addImage("images/fe_img3.png");
+		fe.addImage("images/fe_img4.png");
+		fe.addImage("images/fe_img5.png");
+		fe.addImage("images/fe_img6.png");
+		fe.addImage("images/fe_img7.png");
+		fe.addImage("images/fe_img8.png");
+		fe.addImage("images/fe_img9.png");
+		fe.addImage("images/fe_img10.png");
 	}
 }
-	
+
 DEMO.ghostdrag = {
 	panel:3,
 	tab:24,
 	div:"gd",
 	needs:["ghostdrag"],
 	cb:function() {
-	var gd = new OAT.GhostDrag();
-	gd.addTarget("gd_cart");
-	var ids = ["banana","cherry","strawberry","lemon"];
-	var names = ["Bananas","Cherries","Strawberries","Lemons"];
-	var contents = [0,0,0,0];
-	function gdRefresh() {
-		OAT.Dom.clear("gd_cart");
-		for (var i=0;i<names.length;i++) {
-			if (contents[i]) {
-				$("gd_cart").innerHTML += names[i]+": "+contents[i]+"<br/>";
+		var gd = new OAT.GhostDrag();
+		gd.addTarget("gd_cart");
+		var ids = ["banana","cherry","strawberry","lemon"];
+		var names = ["Bananas","Cherries","Strawberries","Lemons"];
+		var contents = [0,0,0,0];
+		function gdRefresh() {
+			OAT.Dom.clear("gd_cart");
+			for (var i=0;i<names.length;i++) {
+				if (contents[i]) {
+					$("gd_cart").innerHTML += names[i]+": "+contents[i]+"<br/>";
+				}
 			}
 		}
-	}
-	var getGDref = function(index) {
-		return function(target,x,y) {
-			contents[index]++;
-			gdRefresh();
+		var getGDref = function(index) {
+			return function(target,x,y) {
+				contents[index]++;
+				gdRefresh();
+			}
 		}
-	}
-	for (var i=0;i<ids.length;i++) {
-		var elm = $("cart_"+ids[i]);
-		gd.addSource(elm,function(){},getGDref(i));
-	}
-	OAT.Dom.attach("gd_clear","click",function(){contents=[0,0,0,0];gdRefresh();});
+		for (var i=0;i<ids.length;i++) {
+			var elm = $("cart_"+ids[i]);
+			gd.addSource(elm,function(){},getGDref(i));
+		}
+		OAT.Dom.attach("gd_clear","click",function(){contents=[0,0,0,0];gdRefresh();});
 	}
 }
-	
+
 DEMO.window = {
 	panel:3,
 	tab:25,
@@ -489,15 +495,15 @@ DEMO.window = {
 	needs:["window"],
 	cb:function() {
 		window.win = new OAT.Window({close:1,min:0,max:0,width:300,height:0,title:"Demo window",imagePath:"images/"},OAT.WindowData.TYPE_AUTO);
-	win.content.appendChild($("window_content"));
-	win.div.style.zIndex = 1000;
-	document.body.appendChild(win.div);
-	OAT.Dom.hide(win.div);
-	win.onclose = function() { OAT.Dom.hide(win.div); OAT.Dom.show("window_launch"); }
-	OAT.Dom.attach("window_launch","click",function(){ OAT.Dom.show(win.div); OAT.Dom.center(win.div,1,1); OAT.Dom.hide("window_launch");});
+		window.win.content.appendChild($("window_content"));
+		window.win.div.style.zIndex = 1000;
+		document.body.appendChild(window.win.div);
+		OAT.Dom.hide(window.win.div);
+		window.win.onclose = function() { OAT.Dom.hide(window.win.div); OAT.Dom.show("window_launch"); }
+		OAT.Dom.attach("window_launch","click",function(){ OAT.Dom.show(window.win.div); OAT.Dom.center(win.div,1,1); OAT.Dom.hide("window_launch");});
 	}
 }
-	
+
 DEMO.docs = {
 	panel:1,
 	tab:26,
@@ -520,82 +526,84 @@ DEMO.slider = {
 	div:"slider",
 	needs:["slider"],
 	cb:function() {
-	var slider = new OAT.Slider("slider_btn",{minPos:16,maxPos:272});
-	slider.onchange = function(value) { $("slider_value").innerHTML = value; }
-	slider.init();
+		var slider = new OAT.Slider("slider_btn",{minPos:16,maxPos:272});
+		slider.onchange = function(value) { $("slider_value").innerHTML = value; }
+		slider.init();
 	}
 }
-	
+
 DEMO.dav = {
 	panel:2,
 	tab:29,
 	div:"dav",
 	needs:["dav"],
 	cb:function() {
-  var dav_browse = function(){
+		var dav_browse = function() {
+			var options = {
+				mode:'browser',
+				onConfirmClick:function(path,fname) {
+					document.f1.my_dav_file.value = path + fname;
+				}
+			};
+			OAT.WebDav.open(options);
+		}
+
+		var dav_open = function() {
+			options = {
+				mode:'open_dialog',
+				onConfirmClick:function(path,fname,data) {
+					document.f1.my_dav_content.value = data;
+					$('my_dav_path').innerHTML = path;
+					$('my_dav_filename').innerHTML = fname;
+					return true;
+				},
+				filetypes:Array({ext:'*',label:'All files'},{ext:'txt',label:'Text File'},{ext:'xml',label:'XML File'})
+			};
+			OAT.WebDav.open(options);
+		}
+
+	  var dav_save = function(){
+	    var options = {
+	    	mode:'save_dialog',
+	    	dontDisplayWarning:true,
+	    	onConfirmClick:function(filetype) { return document.f1.my_dav_content.value;},
+	    	afterSave:function(path,fname) {
+	            $('my_dav_path').innerHTML = path;
+	            $('my_dav_filename').innerHTML = fname;
+	    	},
+	    	filetypes:Array({ext:'txt',label:'Text File'},{ext:'xml',label:'XML File'})
+	    };
+	    OAT.WebDav.open(options);
+	  }
+
+	  var dav_save_as = function(){
+	    var options = {
+	    	mode:'save_dialog',
+	    	onConfirmClick:function() { return document.f1.my_dav_content.value;},
+	    	afterSave:function(path,fname) {
+	            $('my_dav_path').innerHTML = path;
+	            $('my_dav_filename').innerHTML = fname;
+	        console.log('da');
+	    	}
+	    };
+	    OAT.WebDav.open(options);
+
+	  }
+
+		OAT.Dom.attach("dav_browse","click",dav_browse);
+		OAT.Dom.attach("dav_open","click",dav_open);
+		OAT.Dom.attach("dav_save","click",dav_save);
+		OAT.Dom.attach("dav_save_as","click",dav_save_as);
+
 		var options = {
-        mode:'browser',
-        onConfirmClick:function(path,fname){
-            document.f1.my_dav_file.value = path + fname;
-          }
-      };
-    OAT.WebDav.open(options);
-  }
-
-  var dav_open = function(){
-    options = {
-			mode:'open_dialog',
-			onConfirmClick:function(path,fname,data){
-            document.f1.my_dav_content.value = data;
-            $('my_dav_path').innerHTML = path;
-            $('my_dav_filename').innerHTML = fname;
-				return true;
-			}
-		};
-		OAT.WebDav.open(options);
-	}
-
-  var dav_save = function(){
-    var options = {
-    	mode:'save_dialog',
-    	dontDisplayWarning:true,
-    	onConfirmClick:function() { return document.f1.my_dav_content.value;},
-    	afterSave:function(path,fname) {
-            $('my_dav_path').innerHTML = path;
-            $('my_dav_filename').innerHTML = fname;
-    	}
-    };
-    OAT.WebDav.open(options);
-  }
-
-  var dav_save_as = function(){
-    var options = {
-    	mode:'save_dialog',
-    	onConfirmClick:function() { return document.f1.my_dav_content.value;},
-    	afterSave:function(path,fname) {
-            $('my_dav_path').innerHTML = path;
-            $('my_dav_filename').innerHTML = fname;
-        console.log('da');
-    	}
-    };
-    OAT.WebDav.open(options);
-
-  }
-
-	OAT.Dom.attach("dav_browse","click",dav_browse);
-	OAT.Dom.attach("dav_open","click",dav_open);
-	OAT.Dom.attach("dav_save","click",dav_save);
-	OAT.Dom.attach("dav_save_as","click",dav_save_as);
-
-	var options = {
-		imagePath:'../images/',
+			imagePath:'../images/',
 			imageExt:'png',
 			pathDefault:'/DAV/home/demo/Public/'
-	};
-	OAT.WebDav.init(options);
+		};
+		OAT.WebDav.init(options);
 	}
 }
-	
+
 DEMO.mashups = {
 	panel:4,
 	tab:30,
@@ -640,7 +648,7 @@ DEMO.timeline = {
 			var events = OAT.Xml.xpath(xmlDoc,"//event",{});
 			for (var i=0;i<events.length;i++)  {
 				var e = events[i];
-				
+
 				var a = OAT.Dom.create("div",{left:"-7px"});
 				var ball = OAT.Dom.create("div",{width:"16px",height:"16px",cssFloat:"left",styleFloat:"left"});
 				ball.style.backgroundImage = "url(/DAV/JS/images/Timeline_circle.png)";
@@ -651,7 +659,7 @@ DEMO.timeline = {
 				a.appendChild(t);
 				var start = e.getAttribute("start");
 				var end = e.getAttribute("end");
-				
+
 				tl.addEvent("JFK",start,end,a,"#ddd");
 			}
 			tl.draw();
@@ -671,8 +679,8 @@ DEMO.round = {
 		OAT.SimpleFX.roundDiv('round_1');
 		OAT.SimpleFX.roundDiv('round_2',{antialias:0});
 		OAT.SimpleFX.roundDiv('round_3',{corners:[1,0,1,0]});
-		OAT.SimpleFX.roundDiv('round_4',{size:5}); 
-		OAT.SimpleFX.roundDiv('round_5',{size:12});  
+		OAT.SimpleFX.roundDiv('round_4',{size:5});
+		OAT.SimpleFX.roundDiv('round_5',{size:12});
 	}
 }
 
@@ -688,7 +696,7 @@ DEMO.rdf = {
 			if (window.rdf_graph) { window.rdf_graph.svg.setAttribute("transform","scale("+z+")"); }
 		}
 
-		
+
 		function rdf_load() {
 			var p = "";
 			var url = p + $v("rdf_url");
@@ -699,7 +707,7 @@ DEMO.rdf = {
 			}
 			OAT.Ajax.command(OAT.Ajax.GET,url,function(){return "";},returnRef,OAT.Ajax.TYPE_XML);
 		}
-		
+
 		function rdf_preset() {
 			if ($v("rdf_preset")) { $("rdf_url").value = $v("rdf_preset"); }
 		}
@@ -723,8 +731,8 @@ DEMO.pie = {
 		for (var i=0;i<7;i++) {
 			data.push(Math.round(10+Math.random()*100));
 		}
-		piechart.attachData(data)
-		piechart.attachText(data)
+		piechart.attachData(data);
+		piechart.attachText(data);
 		piechart.draw();
 	}
 }
@@ -743,16 +751,16 @@ DEMO.sparklines = {
 		lc.draw();
 		var d2 = [];
 		var d3 = [];
-		for (var i=0;i<60;i++) { 
+		for (var i=0;i<60;i++) {
 			var n = i / 35 * 2 * Math.PI;
 			var v = Math.sin(n);
-			d2.push(v); 
-			d3.push(Math.random()); 
+			d2.push(v);
+			d3.push(Math.random());
 		}
 		var d4 = [-207.802,-185.367,-212.308,-221.215,-149.728,-155.152,-152.456,-221.195,-269.328,
 		-290.376,-255.087,-203.250,-163.972,-107.473,-21.958,69.213,125.563,236.445,127.299,-157.802,-304.15].reverse();
-		
-		
+
+
 		var s1 = new OAT.Sparkline("sparkline_1",{});
 		var s2 = new OAT.Sparkline("sparkline_2",{});
 		var s3 = new OAT.Sparkline("sparkline_3",{});
@@ -770,8 +778,10 @@ DEMO.anchor = {
 	panel:1,
 	tab:39,
 	div:"anchor",
-	needs:["anchor","timeline","ajax","grid","xmla","sparql"],
+	needs:["anchor","timeline","ajax","grid","xmla","sparql","form"],
 	cb:function(){
+		var ds_form = new OAT.DataSource(OAT.DataSourceData.TYPE_REST);
+
 		var ds_sql = new OAT.DataSource(OAT.DataSourceData.TYPE_SQL);
 		ds_sql.options.query = "SELECT CategoryID, CategoryName FROM Demo.demo.Categories WHERE CategoryID > $link_name";
 
@@ -805,20 +815,36 @@ DEMO.anchor = {
 							'//result/binding[@name="forum_name"]/node()/text()',
 							'//result/binding[@name="item_title"]/node()/text()',
 							'//result/binding[@name="post"]/node()/text()'];
-		
+
 		var c2 = new OAT.Connection(OAT.ConnectionData.TYPE_REST);
 		var c1 = new OAT.Connection(OAT.ConnectionData.TYPE_XMLA,{user:"demo",password:"demo"});
-		
+
 		OAT.Anchor.assign("a_1",{activation:"hover",width:"300",datasource:ds_sql,result_control:"grid",connection:c1});
 		OAT.Anchor.assign("a_2",{activation:"click",width:"600",height:"400",datasource:ds_xml,result_control:"timeline",connection:c2});
 		OAT.Anchor.assign("a_3",{activation:"click",width:"600",height:"400",datasource:ds_sp,result_control:"timeline",connection:c2});
+		OAT.Anchor.assign("a_4",{activation:"click",width:"100",height:"50",datasource:ds_form,result_control:"form",connection:c2});
 	}
 }
-	
+
+DEMO.rss = {
+	panel:1,
+	tab:40,
+	div:"rss",
+	needs:["rssreader","ajax"],
+	cb:function() {
+		var rss1 = new OAT.RSSReader("rss_content_rss");
+		var rss2 = new OAT.RSSReader("rss_content_rdf");
+		var ref1 = function(xmlText) { rss1.display(xmlText); }
+		var ref2 = function(xmlText) { rss2.display(xmlText); }
+		OAT.Ajax.command(OAT.Ajax.GET,"feed_rss.xml",function(){return "";},ref1,OAT.Ajax.TYPE_TEXT,{});
+		OAT.Ajax.command(OAT.Ajax.GET,"feed_rdf.xml",function(){return "";},ref2,OAT.Ajax.TYPE_TEXT,{});
+	}
+}
 
 
 function init() {
 	function view_source() {
+		OAT.Dimmer.hide();
 		var id = tab.values[tab.selectedIndex].id;
 		var name = false;
 		for (var p in DEMO) if (DEMO[p].div == id) { name = p; }
@@ -829,26 +855,30 @@ function init() {
 		var ent = scr.replace(/&/g,"&amp;"); /* entities */
 		var ent = ent.replace(/</g,"&lt;"); /* entities */
 		var ent = ent.replace(/>/g,"&gt;"); /* entities */
-		var nl = ent.replace(/\n/g,"<br/>"); /* newlines */
-		var t = nl.replace(/\t/g,"&nbsp;&nbsp;&nbsp;&nbsp;"); /* tabs */
-		var tr = t.match(/^(<br\/>)*(.*)/); /* trim */
-		var txt = tr[2].replace(/(["'])(.*?)\1/g,"<span style='color: #888;'>$1$2$1</span>"); /* text */
+		var t = ent.replace(/\t/g,"&nbsp;&nbsp;&nbsp;&nbsp;"); /* tabs */
+		var t = t.replace(/    /g,"&nbsp;&nbsp;&nbsp;&nbsp;"); /* gecko tabs */
+		var nl = t.replace(/\n/g,"<br/>"); /* newlines */
+		var nl = nl.replace(/\\n/g,"<br/>"); /* newlines */
+		var nl = nl.replace(/<br\/>&nbsp;&nbsp;&nbsp;&nbsp;/g,"<br/>"); /* initial tabs */
+		var tr = nl.match(/^(<br\/>)*(.*)/); /* trim */
+		var txt = tr[2].replace(/([^\\])"(.*?)([^\\])"/g,"$1<span style=\"color: #888;\">\"$2$3\"</span>"); /* text */
+		var txt = txt.replace(/([^\\])'(.*?)([^\\])'/g,"$1<span style=\"color: #888;\">'$2$3'</span>"); /* text */
 		var b = txt.replace(/([\(\)\[\]])/g,"<span style='color: #a00'>$1</span>"); /* braces */
 		var c = b.replace(/([{}])/g,"<span style='color: #00a'>$1</span>"); /* curly */
-		var f = c.replace(/(for|var|function|return|new)/g,"<span style='color: #0a0'>$1</span>"); /* curly */
+		var f = c.replace(/(for|var|function|return|new)([ \(])/g,"<span style='color: #0a0'>$1$2</span>"); 
+		source.show();
 		$("source_content").innerHTML = f;
-		OAT.Dimmer.hide();
-		OAT.Dimmer.show("source");
-		OAT.Dom.center("source",1,1);
-		}
+	}
 
 	/* source */
-	OAT.Dom.hide("source");
+	var source = new OAT.Dialog("Source","source",{modal:1,width:700,height:400});
+	OAT.Dom.unlink(source.cancelBtn);
+	source.hide();
+	source.ok = source.hide;
 	OAT.Dom.attach("source_btn","click",view_source);
-	OAT.Dom.attach("source_close","click",OAT.Dimmer.hide);
-	
+
 	/* tabs */
-	var tab = new OAT.Tab("content"); 
+	var tab = new OAT.Tab("content");
 	for (var p in DEMO) {
 		var name = DEMO[p].div;
 		tab.add("tab_"+name,name);
@@ -861,7 +891,7 @@ function init() {
 	pb.addPanel("pb_3","pb_33");
 	pb.addPanel("pb_4","pb_44");
 	pb.addPanel("pb_5","pb_55");
-	
+
 	for (var p in DEMO) { DEMO[p].drawn = false; }
 	tab.goCallback = function(oldIndex,newIndex) {
 		var oldName, newName;
@@ -870,18 +900,18 @@ function init() {
 			if (v.tab == oldIndex) { oldName = p; }
 			if (v.tab == newIndex) { newName = p; }
 		}
-		/* 
-			when changing demos: 
+		/*
+			when changing demos:
 			* maybe close some windows
-			* actualize permalink 
+			* actualize permalink
 			* include dependencies
 			* do it
 		*/
 		if (oldName == "window" && newName != "window") { win.onclose(); }
 		if (oldName == "color" && newName != "color") { if (OAT.Color.div) { OAT.Dom.hide(OAT.Color.div);}  }
-		if (oldName == "date" && newName != "date") { OAT.Dom.hide(OAT.Calendar.div); }
+		if (oldName == "date" && newName != "date") { if (window.cal)  { OAT.Dom.hide(window.cal.div); } }
 		$("permalink").href = "index.html?"+newName;
-		
+
 		var obj = DEMO[newName];
 		if (!obj.drawn) {
 			if (obj.cb) {
@@ -891,9 +921,9 @@ function init() {
 	}
 	pb.go(0);
 	tab.go(0);
-	
+
 	/* initial demo switch */
-	var test = window.location.toString().match(/\?(.+)$/);
+	var test = window.location.toString().match(/\?(.+?)#?$/);
 	if (test) {
 		var part = test[1].split(":");
 		var name = part[0];

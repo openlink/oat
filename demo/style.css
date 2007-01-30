@@ -28,22 +28,10 @@ h3 {
 	margin-top: 0px;
 }
 
-/* source */
-#source {
-	position: absolute;
-	width: 600px;
-	border: 2px solid #000;
-	padding: 1em;
-	background-color: #fff;
-}
-
 #source_content {
-	height: 200px;
-	overflow: auto;
-	font-family: bitstream vera sans mono, courier, arial;
-	font-size: 80%;
-	margin-bottom: 0.5em;
+	font-family: "bitstream vera sans mono", dejavu, courier, arial;
 	background-color: #dde;
+	padding: 1em;
 }
 
 /* ----------- tabs ----------- */
@@ -244,26 +232,28 @@ td.calendar_selected {
 }
 
 /* tree */
-ul#tree_content, #tree_content ul, #tree_content li {
-	margin-left: 0px;
-	padding-left: 0.5em;
+#tree_content li {
+	margin-left: 1em;
+	padding-left: 0em;
 }
 
+#tree_content ul {
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
+
+.tree_li_selected {
+	background-color: #aaf;
+}
+
+.tree_ul_selected {
+	background-color: #fff !important;
+}
 
 /* dock */
 .dock {
 	height: 1000px;
-}
-
-.dock_block {
-	border: 1px solid #000;
-	margin-bottom: 3px;
-	padding: 3px;
-}
-
-.dock_header {
-	font-weight: bold;
-	border-bottom: 1px dotted #000;
 }
 
 .dock_column_0 {
@@ -513,6 +503,23 @@ div.combo_button_option:hover {
 	height:500px;
 	background-color: #ffa;
 	position:relative;
+}
+
+.rdf_sidebar ul, .rdf_sidebar li {
+	margin: 0px;
+	padding: 0px;
+}
+
+.rdf_sidebar li {
+	margin-left: 0.5em;
+}
+
+.rdf_sidebar {
+	font-size: 80%;
+	border: 1px solid #000;
+	background-color: #fff;
+	width: 250px;
+	padding: 3px;
 }
 
 /* linechart, sparklines */
