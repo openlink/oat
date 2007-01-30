@@ -51,9 +51,9 @@ OAT.GhostDragData = {
 			var coords = OAT.Dom.position(obj.originalElement);
 			var x = coords[0];
 			var y = coords[1];
-			var struct = OAT.AnimationStructure.generate(elm,OAT.AnimationData.MOVE,{"x":x,"y":y,"dist":10,"tol":10});
-			var anim = new OAT.Animation(struct,10);
-			anim.endFunction = function() { OAT.Dom.unlink(elm); }
+			var sf = function() { OAT.Dom.unlink(elm); }
+			var anim = new OAT.AnimationPosition(elm,{speed:10,delay:10,left:x,top:y});
+			OAT.MSG.attach(anim.animation,OAT.MSG.ANIMATION_STOP,sf);
 			anim.start();
 		}
 	}, /* OAT.GhostDragData.up() */
