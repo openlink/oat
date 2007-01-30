@@ -20,7 +20,7 @@ var pivot_data = {headerRow:[],dataRows:[],headerRowIndexes:[],headerColIndexes:
 var lastQuery = false;
 var total_catalog_count = 0;
 var datasource = false; 
-var layerobj =  false;
+var layerObj = false;
 var connection = false;
 
 var ORDER = ["NO","ASC","DESC"];
@@ -160,14 +160,10 @@ var Query = {
 var Connection = {
 	get_settings:function() {
 		/* read relevant settings from inputboxes */
-		OAT.Xmla.endpoint = $v("endpoint");
-		OAT.Xmla.dsn = $v("dsn");
-		OAT.Xmla.user = $v("user");
-		OAT.Xmla.password = $v("password");
-		connection.options.user = OAT.Xmla.user;
-		connection.options.password = OAT.Xmla.password;
-		connection.options.dsn = OAT.Xmla.dsn;
-		connection.options.endpoint = OAT.Xmla.endpoint;
+		connection.options.user = $v("user");
+		connection.options.password = $v("password");
+		connection.options.dsn = $v("dsn");
+		connection.options.endpoint = $v("endpoint");
 		var h = $('options_type_http');
 		var d = $('options_type_dav');
 		h.checked = ($v('login_put_type') == "http");
@@ -179,8 +175,8 @@ var Connection = {
 	discover_dsn:function() {
 		/* discover datasources */
 		Connection.get_settings();	
-		OAT.Ajax.user = OAT.Xmla.user;
-		OAT.Ajax.password = OAT.Xmla.password;
+		OAT.Ajax.user = connection.options.user;
+		OAT.Ajax.password = connection.options.password;
 		var ref=function(pole) {
 			if (pole.length) { dialogs.connection.okBtn.removeAttribute("disabled"); }
 			var select = $("dsn");
@@ -194,8 +190,8 @@ var Connection = {
 	
 	use_dsn:function(read_settings,whatToDo) {
 		if (read_settings) { Connection.get_settings(); }
-		OAT.Ajax.user = OAT.Xmla.user;
-		OAT.Ajax.password = OAT.Xmla.password;
+		OAT.Ajax.user = connection.options.user;
+		OAT.Ajax.password = connection.options.password;
 
 		/* if not virtuoso, hide its save formats */
 		var typeRef = function() {
@@ -211,7 +207,7 @@ var Connection = {
 			var index = result[0].find("ProviderName");
 			var _index = result[0].find("DataSourceInfo");
 			for (var i=0;i<result[1].length;i++) {
-				if (result[1][i][_index] == OAT.Xmla.dsn && !result[1][i][index].match(/virtuoso/i)) {
+				if (result[1][i][_index] == connection.options.dsn && !result[1][i][index].match(/virtuoso/i)) {
 					/* delete! */
 					var opts = $("options_savetype").getElementsByTagName("option");
 					var indexes = [];
@@ -224,7 +220,7 @@ var Connection = {
 				}
 			}
 		}
-		OAT.Soap.command(OAT.Xmla.endpoint, typeRef, cBack, OAT.Ajax.TYPE_XML, OAT.Xmla.discoverHeader);
+		OAT.Soap.command(connection.options.endpoint, typeRef, cBack, OAT.Ajax.TYPE_XML, OAT.Xmla.discoverHeader);
 	
 		/* discover catalogs */
 		var ref=function(pole) {
@@ -417,6 +413,7 @@ function query(q) {
 	datasource.options.query = q;
 	var s = ($("options_dolimit").checked ? parseInt($v("options_limit")) : 0);
 	datasource.pageSize = s;
+	datasource.reset();
 	datasource.advanceRecord(0);
 }
 
@@ -453,7 +450,7 @@ var Filter = {
 			var visibleCount = 0;
 			for (var j=0;j<tables.length;j++) {
 				var li = tables[j];
-				var span = li.getElementsByTagName("span")[0];
+				var span = li.getElementsByTagName("span")[1];
 				if (value == "" || value == span.schema) {
 					/* show */
 					OAT.Dom.show(li);
@@ -765,6 +762,7 @@ function init() {
 	/* datasource */
 	datasource = new OAT.DataSource(OAT.DataSourceData.TYPE_SQL);
 	connection = new OAT.Connection(OAT.ConnectionData.TYPE_XMLA);
+	OAT.Xmla.connection = connection;
 	/* layers */
 	layerObj = new OAT.Layers(100);
 
@@ -870,6 +868,10 @@ function init() {
 	var execRef = function(){ 
 		/* post-process by adding TOP (when selected), but only when SQL Passthrough is not active */
 		var q = $v("q");
+		if (q == "") {
+			Query.create(OAT.SqlQueryData.TYPE_SQL);
+			q = $v("q");
+		}
 		if (!($("passthrough").checked) && !OAT.Preferences.useCursors) {
 			q = q.replace(/[\n\r]/g," ");
 			if ($("options_dolimit").checked && !(q.match(/^ *select +top/i))) {
@@ -893,12 +895,16 @@ function init() {
 	n.init();
 	datasource.bindRecord(n.bindRecordCallback);
 	datasource.bindRecord(g.bindRecordCallback);
-	datasource.bindPage(g.bindPageCallback);
-	var ref = function(h) {
+	var ref2 = function(data,index) {
+		pivot_data.dataRows = data;
+		g.bindPageCallback(data,index);
+	}
+	var ref1 = function(h) {
 		pivot_data.headerRow = h;
 		g.bindHeaderCallback(h);
 	}
-	datasource.bindHeader(ref);
+	datasource.bindHeader(ref1);
+	datasource.bindPage(ref2);
 	OAT.Dom.attach(n.first,"click",function() { datasource.advanceRecord(0); });
 	OAT.Dom.attach(n.prevp,"click",function() { datasource.advanceRecord(datasource.recordIndex - datasource.pageSize); });
 	OAT.Dom.attach(n.prev,"click",function() { datasource.advanceRecord("-1"); });
@@ -944,12 +950,12 @@ function init() {
 					var name = path + fname;
 					$("save_name").value = name;
 				},
-			user:OAT.Xmla.user,
-			pass:OAT.Xmla.password,
-			pathDefault:"/DAV/home/"+OAT.Xmla.user+"/",
+				user:connection.options.user,
+				pass:connection.options.password,
+				pathDefault:"/DAV/home/"+connection.options.user+"/",
 				file_ext:'xml'
-		};
-		OAT.WebDav.open(options);
+			};
+			OAT.WebDav.open(options);
 		}
 	}
 	OAT.Dom.attach("btn_browse","click",fileRef);
@@ -1020,10 +1026,10 @@ function init() {
 	OAT.WebDav.init(options);
 	
 	if (window.__inherited) {
-		OAT.Xmla.user = window.__inherited.user;
-		OAT.Xmla.password = window.__inherited.password;
-		OAT.Xmla.endpoint = window.__inherited.endpoint;
-		OAT.Xmla.dsn = window.__inherited.dsn;
+		connection.options.user = window.__inherited.user;
+		connection.options.dsn = window.__inherited.dsn;
+		connection.options.endpoint = window.__inherited.endpoint;
+		connection.options.password = window.__inherited.password;
 		var h = $('options_type_http');
 		var d = $('options_type_dav');
 		h.checked = (window.__inherited.type == "http");
