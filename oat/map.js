@@ -10,7 +10,7 @@
 	m.addMarker(group,lat,lon,file,w,h,callback)
 	m.removeMarker(marker)
 	m.removeMarkers()
-	m.openWindow(marker,something)
+	m.openWindow(marker,something,event)
 	m.closeWindow()
 	m.optimalPosition(pointArr)
 */
@@ -46,13 +46,11 @@ OAT.Map = function(something, provider, fix, fixDistance) {
 		case OAT.MapData.TYPE_MS: 
 			self.elm.id = 'our_mapping_element';
 			self.obj = new VEMap('our_mapping_element');
-		try {
-			self.obj.LoadMap();
-		} 
-		catch (e) { debug.push(e); }
-				// map.LoadMap(new VELatLong(47.6, -122.33), 10 ,'h' ,false);
+			try {
+				self.obj.LoadMap();
+			} 
+			catch (e) {  }
 			self.layerObj = new OAT.Layers(100);
-			
 		break;
 		case OAT.MapData.TYPE_OL: 
 		    self.obj = new OpenLayers.Map(self.elm);
@@ -63,13 +61,13 @@ OAT.Map = function(something, provider, fix, fixDistance) {
 				"http://openlayers.org/world/index.php",{g:"satellite",map:"world"});
 		    self.obj.addLayer(wms);
 			
-		    self.markersLayer = new OpenLayers.Layer.Markers("Marker Pins");
+			self.markersLayer = new OpenLayers.Layer.Markers("Marker Pins");
 		    self.obj.addLayer(self.markersLayer);		
 			
 			self.obj.zoomToMaxExtent();
 			self.layerObj = new OAT.Layers(100);
 
-		break;
+			break;
 	}
 	
 	if (fix != OAT.MapData.FIX_NONE) { /* marker fix */
@@ -246,7 +244,7 @@ OAT.Map = function(something, provider, fix, fixDistance) {
 			case OAT.MapData.TYPE_Y: return 17-self.obj.getZoomLevel(); break;
 			case OAT.MapData.TYPE_MS: return self.obj.GetZoomLevel()-1; break;
 			case OAT.MapData.TYPE_OL: return self.obj.getZoom(); break;
-		}	
+		}
 		return false;
 	}
 	
@@ -259,13 +257,13 @@ OAT.Map = function(something, provider, fix, fixDistance) {
 				icon.shadow = "";
 				var marker = new GMarker(new GLatLng(lat,lon),icon);
 				self.obj.addOverlay(marker);
-				if (clickCallback) { GEvent.addListener(marker,'click',function(){clickCallback(marker);}); }
+				if (clickCallback) { GEvent.addListener(marker,'click',function(event){clickCallback(marker,event);}); }
 			break;
 			case OAT.MapData.TYPE_Y: 
 				var icon = new YImage(file,new YSize(w,h));
 				var marker = new YMarker(new YGeoPoint(lat,lon),icon);
 				self.obj.addOverlay(marker);
-				if (clickCallback) { YEvent.Capture(marker,EventsList.MouseClick,function(){clickCallback(marker);}); }
+				if (clickCallback) { YEvent.Capture(marker,EventsList.MouseClick,function(event){clickCallback(marker,event);}); }
 			break;
 			case OAT.MapData.TYPE_MS:
 				self.id++;
@@ -280,7 +278,7 @@ OAT.Map = function(something, provider, fix, fixDistance) {
 					}
 				}
 				self.layerObj.addLayer(id,"mouseover");
-				if (clickCallback) { OAT.Dom.attach($(id).firstChild,"click",function(){clickCallback(marker);}); }
+				if (clickCallback) { OAT.Dom.attach($(id).firstChild,"click",function(event){clickCallback(marker,event);}); }
 			break;
 			case OAT.MapData.TYPE_OL: 
 			    var marker = new OpenLayers.Marker(
@@ -296,7 +294,7 @@ OAT.Map = function(something, provider, fix, fixDistance) {
 				self.layerObj.addLayer(marker.icon.imageDiv,"mouseover");
 				if (clickCallback) { 
 					marker.icon.imageDiv.style.cursor = "pointer";
-					OAT.Dom.attach(marker.icon.imageDiv,"click",function(){if (!marker.__win){clickCallback(marker);}}); 
+					OAT.Dom.attach(marker.icon.imageDiv,"click",function(event){if (!marker.__win){clickCallback(marker,event);}}); 
 				}
 			break;
 		}	
@@ -404,7 +402,7 @@ OAT.Map = function(something, provider, fix, fixDistance) {
 		self.fixMarkers();
 	}
 	
-	this.openWindow = function(marker,something) {
+	this.openWindow = function(marker,something,event) {
 		var elm = $(something);
 		switch (self.provider) {
 			case OAT.MapData.TYPE_G:
@@ -422,7 +420,7 @@ OAT.Map = function(something, provider, fix, fixDistance) {
 			
 			case OAT.MapData.TYPE_MS:
 				for (var i=0;i<self.markerArr.length;i++) { self.markerArr[i].closeInfoWindow(); }
-				var win = new OAT.Window({move:0,close:1,resize:1,width:300,title:"Lookup window"},OAT.WindowData.TYPE_ROUND);
+				var win = new OAT.Window({move:0,close:1,resize:1,width:300,title:"Lookup window"},OAT.WindowData.TYPE_RECT);
 
 				OAT.Dom.attach(win.div,"mousedown",function(event){event.cancelBubble = true;});
 				OAT.Dom.attach(win.div,"dblclick",function(event){event.cancelBubble = true;});
@@ -438,11 +436,14 @@ OAT.Map = function(something, provider, fix, fixDistance) {
 				win.onclose = marker.closeInfoWindow;
 				
 				$(marker.__id).appendChild(marker.__win.div);
+				var pos = OAT.Dom.eventPos(event);
+				win.anchorTo(pos[0],pos[1]);
+				
 			break;
 
 			case OAT.MapData.TYPE_OL:
 				for (var i=0;i<self.markerArr.length;i++) { self.markerArr[i].closeInfoWindow(); }
-				var win = new OAT.Window({move:0,close:1,resize:1,width:300,title:"Lookup window"},OAT.WindowData.TYPE_ROUND);
+				var win = new OAT.Window({move:0,close:1,resize:1,width:300,title:"Lookup window"},OAT.WindowData.TYPE_RECT);
 				
 				OAT.Dom.attach(win.div,"dblclick",function(event){event.cancelBubble = true;});
 				OAT.Dom.attach(win.div,"mousewheel",function(event){event.cancelBubble = true;});
@@ -457,6 +458,8 @@ OAT.Map = function(something, provider, fix, fixDistance) {
 				win.content.style.width = dims[0]+"px";
 				win.content.style.height = dims[1]+"px";
 				win.onclose = marker.closeInfoWindow;
+				
+				win.anchorTo(0,0);
 			break;
 		}	
 	}
