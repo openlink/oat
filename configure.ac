@@ -28,7 +28,7 @@ AC_REVISION($Id$)
 ##									##
 ##########################################################################
 AC_INIT([OpenLink Ajax Toolkit],
-        [2.1-rc1],
+        [2.1],
 	[oat.admin@openlinksw.com],
 	[oat])
 AC_CONFIG_SRCDIR([oat/loader.js])
