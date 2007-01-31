@@ -10,7 +10,7 @@ Introduction
 The OpenLink AJAX Toolkit (OAT) is a JavaScript-based toolkit for
 browser-independent Rich Internet Application development. It includes
 a rich collection of UI Widgets/Controls, Event Management System,
-and a truly platform independent Data Access Layer called AJAX Database
+and a truly platform-independent Data Access Layer called AJAX Database
 Connectivity.
 
 Using this toolkit is as simple as including two .js files in the <head>
