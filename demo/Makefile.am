@@ -22,8 +22,11 @@ EXTRA_DIST = \
 	$(srcdir)/*.css \
 	$(srcdir)/*.html \
 	$(srcdir)/*.js \
-	$(srcdir)/ajax.php \
+	$(srcdir)/*.php \
+	$(srcdir)/*.xml \
 	$(srcdir)/hover.htc \
 	$(srcdir)/images/*.gif \
 	$(srcdir)/images/*.jpg \
-	$(srcdir)/images/*.png
+	$(srcdir)/images/*.png \
+	$(srcdir)/rdf/*.rdf \
+	$(srcdir)/rdf/*.xml

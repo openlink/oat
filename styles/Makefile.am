@@ -19,4 +19,5 @@
 #
 
 EXTRA_DIST = \
-	$(srcdir)/*.css
+	$(srcdir)/*.css \
+	$(srcdir)/hover.htc
