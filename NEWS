@@ -1,3 +1,17 @@
+January 31 2007, V2.1:
+  * Added RDF browser widget
+  * Added RDF Graph sidebar
+  * Added RSS reader
+  * Added Geometry API
+  * Enhanced SVGSparql functionality
+  * Enhanced Tree, Animation, Dom, Dock, Anchor
+  * Improved browser support
+  * Improved RDF triple parsing speed
+  * Integrated iSPARQL in Formdesigner
+  * Changed OAT.Xmla from static method to object
+  * Updated documentation
+  * Fixed small bugs
+
 December 13 2006, V2.0:
   * Added new functions to toolkit
   * Added new functionality to existing toolkit
