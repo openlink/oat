@@ -50,6 +50,7 @@ function Columns(obj) {
 	}
 	
 	this.addColumns = function(index) {
+		self.obj.gd2.clearSources();
 		OAT.Dom.clear(self.div);
 		self.columns = [];
 		var cols = self.obj.datasources[index].outputFields;
@@ -120,7 +121,7 @@ function Columns(obj) {
 			obj.toolbox.showMulti();
 			if (hack) { div.selected = 0; }
 		}
-		obj.gd.addSource(div,process,addRef);
+		obj.gd2.addSource(div,process,addRef);
 		
 		var dblClickRef = function(event) {
 			var coords = self.obj.getCoords();

@@ -17,26 +17,32 @@ function Palette(obj) {
 		tbar.icons[0].toggle();
 	}
 	this.items = [];
+	var ul = OAT.Dom.create("ul");
+	self.win.content.appendChild(ul);
 	
-	this.addObject = function(type) { 
-		var div = OAT.Dom.create("div",{cursor:"pointer"});
-		div.innerHTML = OAT.FormObjectNames[type];
-		self.win.content.appendChild(div);
-		self.items.push([div,type]);
+	this.tree = new OAT.Tree({onClick:"toggle",onDblClick:"toggle"});
+	self.tree.assign(ul,true);
+
+	this.addObject = function(type,parent) { 
+		var pnode = false;
+		for (var i=0;i<self.tree.tree.children.length;i++) {
+			var n = self.tree.tree.children[i];
+			if (n.getLabel() == parent) { pnode = n; }
+		}
+		if (!pnode) { 
+			pnode = self.tree.tree.createChild(parent,true); 
+			pnode.collapse();
+		}
+		var node = pnode.createChild(OAT.FormObjectNames[type]);
+		node.gdElm.style.cursor = "pointer";
+		obj.gd1.addSource(node.gdElm,function(elm){ elm.style.fontWeight="bold";elm.style.zIndex = 10;},self.getAddRef(type));
 	}
 	
-	this.getAddRef = function(index) {
+	this.getAddRef = function(type) {
 		return function(target,x,y) {
-			var type = self.items[index][1];
 			var o = obj.addObject(type,x,y);
 			if (o.userSet) { o.setValue(type); }
 			obj.toolbox.showObject(o);
 		}
 	}
-	
-	this.createDrags = function() {
-		for (var i=0;i<self.items.length;i++) {
-			obj.gd.addSource(self.items[i][0],function(elm){ elm.style.fontWeight="bold";elm.style.zIndex = 10;},self.getAddRef(i));
-		}
-	} /* Palette::createDrags() */
 }

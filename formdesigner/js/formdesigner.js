@@ -26,7 +26,8 @@ var FormDesigner = function(parent) {
 
 	this.datasources = [];
 	this.objects = [];
-	this.gd = new OAT.GhostDrag();
+	this.gd1 = new OAT.GhostDrag();
+	this.gd2 = new OAT.GhostDrag();
 
 	this.selObjs = []; /* selected objects */
 
@@ -49,30 +50,31 @@ var FormDesigner = function(parent) {
 	l.addLayer(this.toolbox.win.div);
 	
 	/* --------- available objects ----------- */ 
-	this.palette.addObject("label");
-	this.palette.addObject("input");
-	this.palette.addObject("textarea");
-	this.palette.addObject("checkbox");
-	this.palette.addObject("line");
-	this.palette.addObject("url");
-	this.palette.addObject("map");
-	this.palette.addObject("grid");
-	this.palette.addObject("barchart");
-	this.palette.addObject("piechart");
-	this.palette.addObject("linechart");
-	this.palette.addObject("sparkline");
-	this.palette.addObject("pivot");
-	this.palette.addObject("image");
-	this.palette.addObject("imagelist");
-	this.palette.addObject("twostate");
-	this.palette.addObject("timeline");
-	this.palette.addObject("graph");
-	this.palette.addObject("cloud");
-	this.palette.addObject("nav");
-	this.palette.addObject("gem1");
-	this.palette.addObject("uinput");
-	this.palette.addObject("tab");
-	this.palette.addObject("container");
+	this.palette.addObject("label","Basic controls");
+	this.palette.addObject("input","Basic controls");
+	this.palette.addObject("textarea","Basic controls");
+	this.palette.addObject("checkbox","Basic controls");
+	this.palette.addObject("line","Basic controls");
+	this.palette.addObject("url","Basic controls");
+	this.palette.addObject("map","Advanced controls");
+	this.palette.addObject("grid","Advanced controls");
+	this.palette.addObject("barchart","Basic controls");
+	this.palette.addObject("piechart","Basic controls");
+	this.palette.addObject("linechart","Basic controls");
+	this.palette.addObject("sparkline","Basic controls");
+	this.palette.addObject("pivot","Advanced controls");
+	this.palette.addObject("flash","Basic controls");
+	this.palette.addObject("image","Basic controls");
+	this.palette.addObject("imagelist","Advanced controls");
+	this.palette.addObject("twostate","Advanced controls");
+	this.palette.addObject("timeline","Advanced controls");
+	this.palette.addObject("graph","RDF controls");
+	this.palette.addObject("cloud","Advanced controls");
+	this.palette.addObject("nav","Navigation controls");
+	this.palette.addObject("gem1","Basic controls");
+	this.palette.addObject("uinput","Basic controls");
+	this.palette.addObject("tab","Advanced controls");
+	this.palette.addObject("container","Advanced controls");
 	/* --------------------------------------- */
 
 	/* methods */
@@ -116,6 +118,8 @@ var FormDesigner = function(parent) {
 	
 	this.init = function(base) {
 		self.base = $(base);
+		self.gd1.addTarget(self.base);
+		self.gd2.addTarget(self.base);
 		for (var i=0;i<4;i++) { 
 			var l = OAT.Dom.create("div",{position:"absolute",width:"100%",height:"0px",zIndex:i});
 			self.layers.push(l); 
@@ -144,20 +148,15 @@ var FormDesigner = function(parent) {
 	
 	this.selectForm = function() {
 		self.deselectAll();
-		self.gd.clearSources();
-		self.gd.clearTargets();
-		self.gd.addTarget(self.base);
-		self.palette.createDrags(self.base);
 		self.columns.createColumns();
 		self.toolbox.showForm();
 	}
 	
 	this.clear = function(ds) { /* remove everything from this design */
+		self.deselectAll();
 		for (var i=0;i<self.layers.length;i++) { OAT.Dom.clear(self.layers[i]);  }
 		self.layersObj = new OAT.Layers(0);
-		this.gd.clearSources();
-		this.gd.clearTargets();
-		this.objects = []; 
+		self.objects = []; 
 		if (ds) { this.datasources = []; }
 		self.x = 20;
 		self.y = 0;
@@ -174,21 +173,29 @@ var FormDesigner = function(parent) {
 		var coords = OAT.Dom.position(self.base);
 		self.capture.parentCoords = coords;
 		var exact = OAT.Dom.eventPos(event);
-		self.capture.style.left = (exact[0] - coords[0]) + "px";
-		self.capture.style.top = (exact[1] - coords[1]) + "px";
+		var x = exact[0] - coords[0];
+		var y = exact[1] - coords[1];
+		self.capture.style.left = x + "px";
+		self.capture.style.top = y + "px";
+		self.capture.origX = x;
+		self.capture.origY = y;
 	} /* FormDesigner::startCapture() */
 	
 	this.processCapture = function(event) {
 		if (!self.capture) { return; }
-		var x = parseInt(self.capture.style.left);
-		var y = parseInt(self.capture.style.top);
 		var exact = OAT.Dom.eventPos(event);
 		var end_x = exact[0] - self.capture.parentCoords[0];
 		var end_y = exact[1] - self.capture.parentCoords[1];
-		if (x > end_x) { end_x = x; }
-		if (y > end_y) { end_y = y; }
-		self.capture.style.width = (end_x - x) + "px";
-		self.capture.style.height = (end_y - y) + "px";
+		var dx = end_x - self.capture.origX;
+		var dy = end_y - self.capture.origY;
+		if (dx < 0) { 
+			self.capture.style.left = end_x + "px";
+		}
+		if (dy < 0) { 
+			self.capture.style.top = end_y + "px";
+		}
+		self.capture.style.width = Math.abs(dx) + "px";
+		self.capture.style.height = Math.abs(dy) + "px";
 	} /* FormDesigner::processCapture() */
 	
 	this.stopCapture = function(event) {
@@ -203,13 +210,16 @@ var FormDesigner = function(parent) {
 		for (var i=0;i<self.objects.length;i++) {
 			/* old problem - are two rectangles overlapping ? */
 			var o = self.objects[i];
-			var x2 = o.elm.offsetLeft + self.base.offsetLeft;
+			var c = OAT.Dom.collide(self.capture,o.elm);
+
+/*			var x2 = o.elm.offsetLeft + self.base.offsetLeft;
 			var y2 = o.elm.offsetTop + self.base.offsetTop;
 			var w2 = o.elm.offsetWidth;
 			var h2 = o.elm.offsetHeight;
 			var bad_x = ( (x < x2 && x+w < x2) || (x > x2+w2) );
 			var bad_y = ( (y < y2 && y+h < y2) || (y > y2+h2) );
-			if (!bad_x && !bad_y) { 
+			if (!bad_x && !bad_y) {  */
+			if (c) {
 				o.select();
 				lastObj = o;
 				numSelected++;

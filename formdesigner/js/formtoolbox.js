@@ -13,7 +13,7 @@ function Toolbox(obj) {
 
 	this.selectFile = function(callback,mode) {
 		if ($("options_type_http").checked) {
-			var name = OAT.Dav.getNewFile("/DAV/home/"+OAT.Ajax.user,".xml","xml");
+			var name = OAT.Dav.getNewFile("/DAV/home/"+http_cred.user,".xml","xml");
 			if (!name) { return; }
 			if (name.slice(name.length-4).toLowerCase() != ".xml") { name += ".xml"; }
 			callback(name);
@@ -30,9 +30,9 @@ function Toolbox(obj) {
 					callback(name);
 					return true; /* return false will keep browser open */
 				},
-				user:OAT.Xmla.connection.user,
-				pass:OAT.Xmla.connection.password,
-				pathDefault:"/DAV/home/"+OAT.Xmla.connection.user+"/",
+				user:http_cred.user,
+				pass:http_cred.password,
+				pathDefault:"/DAV/home/"+http_cred.user+"/",
 				file_ext:'xml'
 			};
 			OAT.WebDav.open(options);
@@ -157,7 +157,7 @@ function Toolbox(obj) {
 		self.addTable(t,cont_select);
 	}
 	
-	this.showObject = function(object) {
+	this.showObject = function(object,tabIndex) {
 		var o = object;
 		self.clear();
 		self.name.innerHTML = OAT.FormObjectNames[o.name];
@@ -338,7 +338,7 @@ function Toolbox(obj) {
 					} /* for all new ds */
 				} /* increase number of ds */
 				/* redraw */
-				self.showObject(o);
+				self.showObject(o,2);
 			}); /* reference */
 		}
 		
@@ -354,7 +354,7 @@ function Toolbox(obj) {
 					fs.columnIndexes = (fs.variable ? [] : [-1]);
 				}
 				/* redraw */
-				self.showObject(o);
+				self.showObject(o,2);
 			}
 		}
 		
@@ -413,10 +413,10 @@ function Toolbox(obj) {
 					for (var j=0;j<colList.length;j++) { 
 						var l = (ds.ds.outputLabels[j] ? ds.ds.outputLabels[j] : colList[j]);
 						OAT.Dom.option(l,j,select);
-						if (j == fs.columnIndexes[0]) { select.selectedIndex = j+1; }
+						if (fs.columnIndexes.length && j == fs.columnIndexes[0]) { select.selectedIndex = j+1; }
 					}
 					OAT.Bindings.bindSelect(select,fs.columnIndexes,0);
-					self.addTable(t,select);
+					if (fs.columnIndexes.length) { self.addTable(t,select); }
 				} /* static fieldset */
 			} /* for all fieldsets */
 		} /* for all datasources */
@@ -493,6 +493,9 @@ function Toolbox(obj) {
 		}
 		OAT.Dom.attach(del,"click",delRef);
 		self.addTable(del);
+		
+		/* if specified, switch to tab index */
+		if (tabIndex) { self.tab.go(tabIndex-1); }
 	}
 	
 	this.showMulti = function() {
@@ -547,7 +550,7 @@ function Toolbox(obj) {
 					fs.columnIndexes[j] = -1;
 				}
 			}
-			self.showObject(o); 
+			self.showObject(o,2); 
 		}
 	}
 	

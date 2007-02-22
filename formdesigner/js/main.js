@@ -32,8 +32,8 @@ var Connection = {
 		conn.options.dsn = $v("bind_sql_dsn");
 		conn.options.user = $v("bind_sql_user");
 		conn.options.password = $v("bind_sql_password");
-		OAT.Ajax.user = conn.options.user;
-		OAT.Ajax.password = conn.options.password;
+		http_cred.user = conn.options.user;
+		http_cred.password = conn.options.password;
 	},
 
 	discover_dsn:function() {
@@ -169,10 +169,14 @@ var IO = {
 	filename:"",
 
 	save:function(xml,name) {
-		var send_ref = function() { return xml; }
 		var recv_ref = function(data) { alert('Saved.'); }
 		set_filename(name);
-		OAT.Ajax.command(OAT.Ajax.PUT + OAT.Ajax.AUTH_BASIC,name,send_ref,recv_ref,OAT.Ajax.TYPE_TEXT);
+		var o = {
+			auth:OAT.AJAX.AUTH_BASIC,
+			user:http_cred.user,
+			password:http_cred.password
+		}
+		OAT.AJAX.PUT(name,xml,recv_ref,o);
 	},
 
 	load:function() {
@@ -182,7 +186,12 @@ var IO = {
 			set_filename(name);
 			$("corner").innerHTML = name;
 			var callback = function(data) { fd.fromXML(xmlDoc); }
-			OAT.Ajax.command(OAT.Ajax.GET + OAT.Ajax.AUTH_BASIC,name,function(){return '';},callback,OAT.Ajax.TYPE_TEXT);
+			var o = {
+				auth:OAT.AJAX.AUTH_BASIC,
+				user:http_cred.user,
+				password:http_cred.password
+			}
+			OAT.AJAX.GET(name,false,callback,o);
 		}
 		if (servertype == 1) {
 			var options = {
@@ -630,7 +639,12 @@ var DS = { /* datasources / bindings */
 					break;
 				}
 			}
-			OAT.Ajax.command(OAT.Ajax.GET + OAT.Ajax.AUTH_BASIC,f,function(){return '';},qRef,OAT.Ajax.TYPE_TEXT);
+			var o = {
+				auth:OAT.AJAX.AUTH_BASIC,
+				user:http_cred.user,
+				password:http_cred.password
+			}
+			OAT.AJAX.GET(f,false,qRef,o);
 		}
 		if (servertype == 0) {
 			var name = OAT.getFile("/DAV/home/"+http_cred.user,".xml");
@@ -657,13 +671,13 @@ var DS = { /* datasources / bindings */
 			DS.save_as();
 			return;
 		}
-		var xslStr = '<?xml-stylesheet type="text/xsl" href="'+$v("options_xslt")+'/formview.xsl"?>';
+		var xslStr = '<?xml-stylesheet type="text/xsl" href="'+$v("options_xslt")+'formview.xsl"?>';
 		var xml = fd.toXML(xslStr);
 		IO.save(xml,IO.filename);
 	},
 	
 	save_as:function() {
-		var xslStr = '<?xml-stylesheet type="text/xsl" href="'+$v("options_xslt")+'/formview.xsl"?>';
+		var xslStr = '<?xml-stylesheet type="text/xsl" href="'+$v("options_xslt")+'formview.xsl"?>';
 		var xml = fd.toXML(xslStr);
 		if (servertype == 0) {
 			var name = OAT.Dav.getNewFile("/DAV/home/"+http_cred.user,".xml","xml");
@@ -697,8 +711,8 @@ function init() {
 
 	/* ajax http errors */
 	$("options_http").checked = (OAT.Preferences.httpError == 1 ? true : false);
-	OAT.Ajax.httpError = OAT.Preferences.httpError;
-	OAT.Dom.attach("options_http","change",function(){OAT.Ajax.httpError = ($("options_http").checked ? 1 : 0);});
+	OAT.AJAX.httpError = OAT.Preferences.httpError;
+	OAT.Dom.attach("options_http","change",function(){OAT.AJAX.httpError = ($("options_http").checked ? 1 : 0);});
 
 	/* servertype */
 	dialogs.servertype = new OAT.Dialog("Server type","servertype",{width:400,modal:1,buttons:1});
