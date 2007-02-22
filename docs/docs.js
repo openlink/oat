@@ -11,13 +11,14 @@ var TOC = [];
 TOC.push(["Basic operation","basic.doc.html"]);
 TOC.push(["Event handling basics","events.doc.html"]);
 TOC.push(["Messaging","msg.doc.html"]);
-TOC.push(["ajax.js","ajax.doc.html"]);
+TOC.push(["ajax2.js","ajax2.doc.html"]);
+TOC.push(["ajax.js - OLD!","ajax.doc.html"]);
 TOC.push(["anchor.js","anchor.doc.html"]);
 TOC.push(["animation.js","animation.doc.html"]);
 TOC.push(["barchart.js","barchart.doc.html"]);
 TOC.push(["bezier.js","bezier.doc.html"]);
 TOC.push(["calendar.js","calendar.doc.html"]);
-TOC.push(["canvas.js","canvas.doc.html"]);
+// TOC.push(["canvas.js","canvas.doc.html"]);
 TOC.push(["color.js","color.doc.html"]);
 TOC.push(["connection.js","connection.doc.html"]);
 TOC.push(["combobox.js","combobox.doc.html"]);
@@ -31,7 +32,7 @@ TOC.push(["dock.js","dock.doc.html"]);
 TOC.push(["drag.js","drag.doc.html"]);
 TOC.push(["fisheye.js","fisheye.doc.html"]);
 TOC.push(["ghostdrag.js","ghostdrag.doc.html"]);
-TOC.push(["graph.js","graph.doc.html"]);
+// TOC.push(["graph.js","graph.doc.html"]);
 TOC.push(["graphsvg.js","graphsvg.doc.html"]);
 TOC.push(["grid.js","grid.doc.html"]);
 TOC.push(["instant.js","instant.doc.html"]);
@@ -75,7 +76,7 @@ function add_data(data) {
 }
 
 function call_for(file) {
-	OAT.Ajax.command(OAT.Ajax.GET,file,function(){},add_data,OAT.Ajax.TYPE_TEXT);
+	OAT.AJAX.GET(file,false,add_data);
 }
 
 function create_ref(elm,file) {

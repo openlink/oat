@@ -1,3 +1,100 @@
 <h2>map.js</h2>
-<p>Unified mapping API atop various mapping engines. This is an incomplete library, thus without documentation.</p>
+<p>Abstract mappig atop various mapping providers.</p>
 <hr/>
+
+<h3>Objects</h3>
+<ul>
+	<li><a href="#map">OAT.Map(something, provider, optionsObject)</a></li>
+</ul>
+
+<h3>Methods</h3>
+<ul>
+	<li><a href="#addtypecontrol">OAT.Map::addTypeControl()</a></li>
+	<li><a href="#addmapcontrol">OAT.Map::addMapControl()</a></li>
+	<li><a href="#setmaptype">OAT.Map::setMapType(type)</a></li>
+	<li><a href="#centerandzoom">OAT.Map::centerAndZoom(lat, lon, zoom)</a></li>
+	<li><a href="#setzoom">OAT.Map::setZoom(zoom)</a></li>
+	<li><a href="#getzoom">OAT.Map::getZoom()</a></li>
+	<li><a href="#addmarker">OAT.Map::addMarker(group, lat, lon, file, w, h, callback)</a></li>
+	<li><a href="#removemarker">OAT.Map::removeMarker(marker)</a></li>
+	<li><a href="#removemarkers">OAT.Map::removeMarkers(group)</a></li>
+	<li><a href="#openwindow">OAT.Map::openWindow(marker, something)</a></li>
+	<li><a href="#closewindow">OAT.Map::closeWindow()</a></li>
+	<li><a href="#optimalposition">OAT.Map::optimalPosition(pointArray)</a></li>
+</ul>
+
+<h3>Constants</h3>
+<ul>
+	<li>OAT.MapData.TYPE_G</li>
+	<li>OAT.MapData.TYPE_Y</li>
+	<li>OAT.MapData.TYPE_MS</li>
+	<li>OAT.MapData.TYPE_OL</li>
+	<li>OAT.MapData.MAP_MAP</li>
+	<li>OAT.MapData.MAP_ORTO</li>
+	<li>OAT.MapData.MAP_HYB</li>
+	<li>OAT.MapData.FIX_NONE</li>
+	<li>OAT.MapData.FIX_ROUND1</li>
+	<li>OAT.MapData.FIX_ROUND2</li>
+	<li>OAT.MapData.FIX_STACK</li>
+</ul>
+
+<hr/>
+
+<h3><a name="map">OAT.Map(something, provider, optionsObject)</a></h3>
+<p>Creates a map as a child of <em>something</em>. <em>provider</em> is one of TYPE_ constants. <em>optionsObject</em> may contain:</p> 
+<ul>
+	<li>fix - one of FIX_ constants, used when markers are too close to each other</li>
+	<li>fixDistance - distance for shifting markers</li>
+	<li>fixEpsilon - euclidean distance limit of markers to be taken as identical (in degrees)</li>
+</ul>
+
+<h3><a name="addtypecontrol">OAT.Map::addTypeControl()</a></h3>
+<p>Adds a 'map type' control to the map.</p>
+
+<h3><a name="addmapcontrol">OAT.Map::addMapControl()</a></h3>
+<p>Adds a 'map navigation' control to the map.</p>
+
+<h3><a name="setmaptype">OAT.Map::setMapType(type)</a></h3>
+<p>Sets map type to one of MAP_ constants.</p>
+
+<h3><a name="centerandzoom">OAT.Map::centerAndZoom(lat, lon, zoom)</a></h3>
+<p>Pans the map to given <em>lat</em> and <em>lon</em> coordinates and zooms. <em>zoom</em> ranges from 0 (far) to 16 (close).</p>
+
+<h3><a name="setzoom">OAT.Map::setZoom(zoom)</a></h3>
+<p>Changes current zoom level.</p>
+
+<h3><a name="getzoom">OAT.Map::getZoom()</a></h3>
+<p>Returns current zoom level.</p>
+
+<h3><a name="addmarker">OAT.Map::addMarker(group, lat, lon, file, w, h, callback)</a></h3>
+<p>Adds a marker to the map. Marker belongs to marker group <em>group</em> (any internal value) and is located at coordinates specified in 
+<em>lat</em> and <em>lon</em>. <em>file</em> specifes an image file name (<em>w</em> and <em>h</em> are its dimensions), <code>false</code> when default image should be used. 
+Finally, <em>callback</em> is a function to be executed when user clicks marker.</p>
+
+<h3><a name="removemarker">OAT.Map::removeMarker(marker)</a></h3>
+<p>Removes existing marker.</p>
+
+<h3><a name="removemarkers">OAT.Map::removeMarkers(group)</a></h3>
+<p>Removes all markers which belong to <em>group</em>.</p>
+
+<h3><a name="openwindow">OAT.Map::openWindow(marker, something)</a></h3>
+<p>Opens window, anchored to <em>marker</em>. <em>something</em> is a DOM node to be appended into window.</p>
+
+<h3><a name="closewindow">OAT.Map::closeWindow()</a></h3>
+<p>Closes opened window.</p>
+
+<h3><a name="optimalposition">OAT.Map::optimalPosition(pointArray)</a></h3>
+<p>Zooms map so all points specified in <em>pointArray</em> (array of 2-element arrays) can be visible simultaneously.</p>
+
+<pre class="code">
+var obj = {
+	fix:OAT.MapData.FIX_ROUND1,
+	fixDistance:20,
+	fixEpsilon:0.5
+}
+var map = new OAT.Map("myDiv",OAT.MapData.TYPE_G,obj);
+map.centerAndZoom(0,0,8); /* africa, middle zoom */
+map.addTypeControl();
+map.addMapControl();
+map.setMapType(OAT.MapData.MAP_ORTO); /* aerial */
+</pre>

@@ -88,6 +88,7 @@
 <h3><a name="advancerecord">OAT.DataSource::advanceRecord(recordIndex)</a></h3>
 <p>Advanced through records. <em>recordIndex</em> can be an integer or "-1" or "+1".</p>
 
+<h3>REST sample</h3>
 <pre class="code">
 var conn = new OAT.Connection(OAT.ConnectionData.TYPE_REST, {url:"myfile.xml"});
 
@@ -99,6 +100,59 @@ ds.outputFields = ['//result/binding[@name="created"]/node()/text()',
 					'//result/binding[@name="creator"]/node()/text()',
 					'//result/binding[@name="item_title"]/node()/text()',
 					'//result/binding[@name="url"]/node()/text()'];
+
+var recordCallback = function(data, index) {
+	alert('Data at index ' + index + ':\n' + data );
+}
+ds.bindRecord(recordCallback);
+ds.advanceRecord(0);
+</pre>
+
+<h3>SQL sample</h3>
+<pre class="code">
+var conn = new OAT.Connection(OAT.ConnectionData.TYPE_XMLA, {dsn:"DSN=Local_Instance",endpoint:"/XMLA"});
+
+var ds = new OAT.DataSource(OAT.DataSourceData.TYPE_SQL);
+ds.connection = conn;
+ds.options.query = "SELECT OrderID, CustomerID, EmployeeID FROM Demo.demo.Orders";
+
+var recordCallback = function(data, index) {
+	alert('Data at index ' + index + ':\n' + data );
+}
+ds.bindRecord(recordCallback);
+ds.advanceRecord(0);
+</pre>
+
+<h3>SPARQL sample</h3>
+<pre class="code">
+var conn = new OAT.Connection(OAT.ConnectionData.TYPE_REST, {url:"myfile.xml"});
+
+var ds = new OAT.DataSource(OAT.DataSourceData.TYPE_SPARQL);
+ds.options.query = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"+
+					"PREFIX sioc: <http://rdfs.org/sioc/ns#>\n"+
+					"PREFIX dct: <http://purl.org/dc/elements/1.1/>\n"+
+					"PREFIX dcc: <http://purl.org/dc/terms/>\n"+
+					"SELECT distinct ?forum_name, ?creator, ?channel, ?item_title, ?post, ?created "+
+					"FROM <http://demo.openlinksw.com/dataspace> "+
+					"WHERE { "+
+						"?forum a sioc:Forum; "+
+						'sioc:type "feeds"; '+
+						'sioc:id ?forum_name; '+
+						'sioc:parent_of ?channel . '+
+						'?channel sioc:container_of ?post . '+
+						'?post dct:title ?item_title . '+
+						'OPTIONAL{ ?post sioc:has_creator ?creator }. '+
+						'OPTIONAL{ ?post dcc:created ?created } '+
+					'}\n' + "ORDER BY DESC (?created)";
+					
+ds.outputFields = ['//result/binding[@name="created"]/node()/text()',
+					'//result/binding[@name="forum_name"]/node()/text()',
+					'//result/binding[@name="item_title"]/node()/text()',
+					'//result/binding[@name="post"]/node()/text()'];
+
+ds.connection = conn;
+ds.options.output = 0; /* fetch result as XML */
+ds.options.xpath = 1; /* outputFields are specified as XPATH expressions */
 
 var recordCallback = function(data, index) {
 	alert('Data at index ' + index + ':\n' + data );
