@@ -20,7 +20,7 @@ OAT.RoundWin = function(optObj) {
 	OAT.WindowParent(this,optObj);
 	
 	OAT.Dom.applyStyle(this.div,{border:"1px solid rgb(160,160,164)",font:"menu",backgroundColor:"#fff"});
-	OAT.Dom.applyStyle(this.content,{top:"8px",marginBottom:"4px",padding:"2px",position:"relative"}); 
+	OAT.Dom.applyStyle(this.content,{top:"8px",marginBottom:"14px",padding:"2px",position:"relative"}); 
 
 	document.body.appendChild(this.div);
 	OAT.SimpleFX.roundDiv(this.div,{antialias:0,size:15});
