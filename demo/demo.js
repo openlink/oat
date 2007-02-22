@@ -257,6 +257,7 @@ DEMO.dock = {
 			ds.options.service = "doGoogleSearch";
 			ds.options.inputObj = obj;
 			ds.outputFields = ["URL","title"];
+			ds.reset();
 			ds.advanceRecord(0);
 		}
 		OAT.Dom.attach("dock_search","click",searchRef);
@@ -380,7 +381,7 @@ DEMO.combolist = {
 	div:"combolist",
 	needs:["combolist"],
 	cb:function() {
-		var cl = new OAT.Combolist(["red","green","blue","your own?"],"pick your color");
+		var cl = new OAT.Combolist(["red","green","blue","your own?"],"pick your color",{imagePath:"images/"});
 		$("combolist_content").appendChild(cl.div)
 	}
 }
@@ -418,10 +419,10 @@ DEMO.ajax = {
 	panel:3,
 	tab:22,
 	div:"ajax",
-	needs:["ajax"],
+	needs:["ajax2"],
 	cb:function() {
-		OAT.Ajax.setStart(function(){$("ajax_input").style.backgroundImage = "url(images/progress.gif)";})
-		OAT.Ajax.setEnd(function(){$("ajax_input").style.backgroundImage = "none";})
+		OAT.AJAX.startRef = function(){$("ajax_input").style.backgroundImage = "url(images/progress.gif)";}
+		OAT.AJAX.endRef = function(){$("ajax_input").style.backgroundImage = "none";}
 		var ajaxBack = function(data) {
 			var approx = (data == "0" ? "" : "approximately ");
 			$("ajax_output").innerHTML = "Google found "+approx+data+" results matching your query";
@@ -429,7 +430,7 @@ DEMO.ajax = {
 		var ajaxRef = function(event) {
 			var value = $v("ajax_input");
 			if (value.length < 5) { return; }
-			OAT.Ajax.command(OAT.Ajax.GET,"ajax.php?q="+value,function(){return "";},ajaxBack,OAT.Ajax.TYPE_TEXT,{});
+			OAT.AJAX.GET("ajax.php?q="+value,false,ajaxBack);
 		}
 		OAT.Dom.attach("ajax_input","keyup",ajaxRef);
 	}
@@ -640,7 +641,7 @@ DEMO.timeline = {
 	panel:1,
 	tab:34,
 	div:"timeline",
-	needs:["timeline","ajax","xml"],
+	needs:["timeline","ajax2","xml"],
 	cb:function() {
 		var tl = new OAT.Timeline("timeline_port","timeline_slider",{});
 		tl.addBand("JFK","rgb(255,204,153)");
@@ -665,7 +666,7 @@ DEMO.timeline = {
 			tl.draw();
 			tl.slider.slideTo(0,1);
 		}
-		OAT.Ajax.command(OAT.Ajax.GET,"jfk.xml",function(){return Math.random();},callback,OAT.Ajax.TYPE_XML,{});
+		OAT.AJAX.GET("jfk.xml",false,callback,{type:OAT.AJAX.TYPE_XML});
 		OAT.Dom.attach(window,"resize",tl.sync);
 	}
 }
@@ -688,7 +689,7 @@ DEMO.rdf = {
 	panel:1,
 	tab:36,
 	div:"rdf",
-	needs:["rdf","graphsvg","ajax","slider"],
+	needs:["rdf","graphsvg","ajax2","slider"],
 	cb:function() {
 		function rdf_zoom(val) {
 			var z = Math.pow(2,val/100);
@@ -705,7 +706,7 @@ DEMO.rdf = {
 				var x = OAT.GraphSVGData.fromTriples(triples);
 				window.rdf_graph = new OAT.GraphSVG("rdf_content",x[0],x[1],{vertexSize:[4,8]});
 			}
-			OAT.Ajax.command(OAT.Ajax.GET,url,function(){return "";},returnRef,OAT.Ajax.TYPE_XML);
+			OAT.AJAX.GET(url,false,returnRef,{type:OAT.AJAX.TYPE_XML});
 		}
 
 		function rdf_preset() {
@@ -778,7 +779,7 @@ DEMO.anchor = {
 	panel:1,
 	tab:39,
 	div:"anchor",
-	needs:["anchor","timeline","ajax","grid","xmla","sparql","form"],
+	needs:["anchor","datasource","timeline","ajax2","grid","xmla","sparql","form"],
 	cb:function(){
 		var ds_form = new OAT.DataSource(OAT.DataSourceData.TYPE_REST);
 
@@ -830,14 +831,14 @@ DEMO.rss = {
 	panel:1,
 	tab:40,
 	div:"rss",
-	needs:["rssreader","ajax"],
+	needs:["rssreader","ajax2"],
 	cb:function() {
 		var rss1 = new OAT.RSSReader("rss_content_rss");
 		var rss2 = new OAT.RSSReader("rss_content_rdf");
 		var ref1 = function(xmlText) { rss1.display(xmlText); }
 		var ref2 = function(xmlText) { rss2.display(xmlText); }
-		OAT.Ajax.command(OAT.Ajax.GET,"feed_rss.xml",function(){return "";},ref1,OAT.Ajax.TYPE_TEXT,{});
-		OAT.Ajax.command(OAT.Ajax.GET,"feed_rdf.xml",function(){return "";},ref2,OAT.Ajax.TYPE_TEXT,{});
+		OAT.AJAX.GET("feed_rss.xml",false,ref1);
+		OAT.AJAX.GET("feed_rdf.xml",false,ref2);
 	}
 }
 
