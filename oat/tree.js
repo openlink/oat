@@ -445,8 +445,8 @@ OAT.TreeNode = function(li,ul,parent,root) {
 	this.applyImage = function(img,name) {
 		if (!img) { return; }
 		var o = self.options;
-		var path = o.imagePath + "/" + "Tree_" + (o.imagePrefix=="" ? "" : o.imagePrefix+"_") + name + "." + o.ext;
-		var pathB = o.imagePath + "/Blank.gif";
+		var path = o.imagePath + "Tree_" + (o.imagePrefix=="" ? "" : o.imagePrefix+"_") + name + "." + o.ext;
+		var pathB = o.imagePath + "Blank.gif";
 		if (OAT.Dom.isIE() && o.ext.toLowerCase() == "png") {
 			img.src = pathB;
 			img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+path+"', sizingMethod='crop')";
@@ -518,7 +518,7 @@ OAT.TreeNode = function(li,ul,parent,root) {
 OAT.Tree = function(optObj) {
 	var self = this;
 	this.options = {
-		imagePath:"/DAV/JS/images",
+		imagePath:OAT.Preferences.imagePath,
 		imagePrefix:"",
 		ext:"png",
 		onlyOneOpened:0,
