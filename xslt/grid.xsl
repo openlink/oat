@@ -47,7 +47,7 @@
 			function init() {
 				OAT.GridData.init();
 				var grid = new OAT.Grid("grid",1);
-				grid.imagesPath = "/DAV/JS/images";
+				grid.imagePath = OAT.Preferences.imagePath;
 				grid.fromTable("table");	
 			}
 			]]>

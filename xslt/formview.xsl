@@ -69,7 +69,7 @@
 					}
 					
 					if (nocred) { options.noCred = 1; }
-					if (!showajax) { OAT.Ajax.setStart(function(){}); }
+					if (!showajax) { OAT.AJAX.startRef = function(){}; }
 					
 					loadingDiv = OAT.Dom.create("div");
 					loadingDiv.innerHTML = "Loading...";

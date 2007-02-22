@@ -29,7 +29,7 @@
 	<html>
 		<head>
 			<script type="text/javascript">
-				var featureList=["pivot","xmla","soap","ajax","window","dialog"];
+				var featureList=["pivot","xmla","soap","ajax2","window","dialog"];
 			</script>	
 			<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>
 			<script type="text/javascript">
@@ -53,10 +53,12 @@
 				function init() {
 					var ajax = new OAT.Dialog("Please wait","ajax_alert",{width:240,modal:0,zIndex:1001,resize:0});
 					ajax.ok = ajax.hide;
-					ajax.cancel = ajax.hide;
-					OAT.Ajax.setCancel(ajax.cancelBtn);
-					OAT.Ajax.setStart(ajax.show);
-					OAT.Ajax.setEnd(ajax.hide);
+					ajax.cancel = function() {
+						ajax.hide();
+						OAT.AJAX.cancelAll();
+					}
+					OAT.AJAX.startRef = ajax.show;
+					OAT.AJAX.endRef = ajax.hide;
 				<![CDATA[
 					/* create agg function list */
 					OAT.Dom.clear("pivot_agg");
