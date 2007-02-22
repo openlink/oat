@@ -991,8 +991,7 @@ function apply_xslt(data, xslt, callback) {
 		result = result.documentElement.getElementsByTagName("body")[0].innerHTML;
 		callback(result);
 	}
-	function send() {return ""; }
-	OAT.Ajax.command(OAT.Ajax.GET,xslt,send,ref,OAT.Ajax.TYPE_TEXT,{});
+	OAT.AJAX.GET(xslt,false,ref);
 }
 
 function IOAdmin_save() {
@@ -1001,17 +1000,21 @@ function IOAdmin_save() {
 		return;
 	}
 	
-	var send_ref = function() { return xml; }
 	var recv_ref = function(data) { alert('Saved.'); }
 	var callback = function() {
-		OAT.Ajax.command(OAT.Ajax.PUT + OAT.Ajax.AUTH_BASIC,IO.filename,send_ref,recv_ref,OAT.Ajax.TYPE_TEXT);
+		var o = {
+			auth:OAT.AJAX.AUTH_BASIC,
+			user:http_cred.user,
+			password:http_cred.password
+		}
+		OAT.AJAX.PUT(IO.filename,xml,recv_ref,o);
 	}
 
 	if (IO.savetype=="sql") {
 		var xml = export_xml("",false);
 		apply_xslt(xml,"zsql2sql.xsl",callback);
 	} else {
-		var xslStr = '<?xml-stylesheet type="text/xsl" href="'+$v("options_xslt")+'/designview.xsl"?>';
+		var xslStr = '<?xml-stylesheet type="text/xsl" href="'+$v("options_xslt")+'designview.xsl"?>';
 		var xml = export_xml(xslStr,false,true);
 		callback();
 	}
@@ -1020,10 +1023,10 @@ function IOAdmin_save() {
 
 function IOAdmin_load() {
 	if ($("options_type_http").checked) {
-		var name = OAT.Dav.getFile("/DAV/home/"+OAT.Ajax.user,".xml");
+		var name = OAT.Dav.getFile("/DAV/home/"+http_cred.user,".xml");
 		if (!name) { return; }
 		IO.filename = name;
-		OAT.Ajax.command(OAT.Ajax.GET,name,function(){return '';},import_xml,OAT.Ajax.TYPE_TEXT);
+		OAT.AJAX.GET(name,false,import_xml);
 	}
 	if ($("options_type_dav").checked) {
 		var options = {

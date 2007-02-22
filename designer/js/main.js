@@ -26,6 +26,10 @@ var gd = false;
 var xmla = false;
 var grid = false;
 var layerObj = false;
+var http_cred = {
+	user:"demo",
+	password:"demo"
+};
 /* --------------------------------------------------------------------------- */
 
 function raise_table(table) {
@@ -261,8 +265,8 @@ function init() {
 	
 	/* ajax http errors */
 	$("options_http").checked = (OAT.Preferences.httpError == 1 ? true : false);
-	OAT.Ajax.httpError = OAT.Preferences.httpError;
-	OAT.Dom.attach("options_http","change",function(){OAT.Ajax.httpError = ($("options_http").checked ? 1 : 0);});
+	OAT.AJAX.httpError = OAT.Preferences.httpError;
+	OAT.Dom.attach("options_http","change",function(){OAT.AJAX.httpError = ($("options_http").checked ? 1 : 0);});
 
 	/* options */
 	dialogs.options = new OAT.Dialog("Options","options",{width:400,modal:1});
@@ -346,7 +350,7 @@ function init() {
 		var ext = ($v("options_savetype") == "sql" ? ".sql" : ".xml");
 		
 		if ($("options_type_http").checked) {
-			var name = OAT.Dav.getNewFile("/DAV/home/"+OAT.Ajax.user,ext,ext);
+			var name = OAT.Dav.getNewFile("/DAV/home/"+http_cred.user,ext,ext);
 			if (!name) { return; }
 			if (name.slice(name.length-4).toLowerCase() != ext) { name += ext; }
 			$("save_name").value = name;
@@ -373,7 +377,7 @@ function init() {
 	var name = document.location.toString().match(/\?load=(.+)/);
 	if (name) {
 		var file = decodeURIComponent(name[1]);
-		OAT.Ajax.command(OAT.Ajax.GET,file,function(){return '';},import_xml,OAT.Ajax.TYPE_TEXT);
+		OAT.AJAX.GET(file,false,import_xml);
 	}
 	
 	/* datatype grid */
@@ -389,7 +393,7 @@ function init() {
 		headers.push(o); 
 	}
 	grid = new OAT.Grid("xmla_grid");
-	grid.imagesPath = "../images";
+	grid.imagePath = "../images/";
 	self.grid.createHeader(headers);
 	
 	/* data types */

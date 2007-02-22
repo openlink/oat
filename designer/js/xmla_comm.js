@@ -227,8 +227,8 @@ function xmla_settings() {
 	c.options.dsn = $v("xmla_dsn");
 	c.options.user = $v("user");
 	c.options.password = $v("password");
-	OAT.Ajax.user = c.options.user;
-	OAT.Ajax.password = c.options.password;
+	http_cred.user = c.options.user;
+	http_cred.password = c.options.password;
 	OAT.Xmla.connection = c;
 	var h = $('options_type_http');
 	var d = $('options_type_dav');

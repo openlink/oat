@@ -12,14 +12,18 @@ var IO = {
 	lastPName:"",
 
 	save:function(xml,name) {
-		var send_ref = function() { return xml; }
 		var recv_ref = function(data) { alert('Saved.'); }
-		OAT.Ajax.command(OAT.Ajax.PUT + OAT.Ajax.AUTH_BASIC,name,send_ref,recv_ref,OAT.Ajax.TYPE_TEXT,{});
+		var o = {
+			auth:OAT.AJAX.AUTH_BASIC,
+			user:http_cred.user,
+			password:http_cred.password
+		}
+		OAT.AJAX.PUT(name,xml,recv_ref,o);
 	},
 
 	save_p:function(pivot,showDialog) {
 		if (!pivot) { return; }
-		var xslStr = '<?xml-stylesheet type="text/xsl" href="'+$v("options_xslt")+'/pivotview.xsl"?>';
+		var xslStr = '<?xml-stylesheet type="text/xsl" href="'+$v("options_xslt")+'pivotview.xsl"?>';
 		var xml = pivot.toXML(xslStr,$("options_uid").checked,$("options_uid").checked,$v("q"));
 		
 		if (IO.lastPName && !showDialog) { /* if file name is known, then just save */
@@ -27,7 +31,7 @@ var IO = {
 			return;
 		}
 	    if ($("options_type_http").checked) {
-			var name = OAT.Dav.getNewFile("/DAV/home/"+OAT.Ajax.user,".xml","xml");
+			var name = OAT.Dav.getNewFile("/DAV/home/"+http_cred.user,".xml","xml");
 			if (!name) { return; }
 			lastPName = name;
 			if (name.slice(name.length-4).toLowerCase() != ".xml") { name += ".xml"; }
@@ -63,33 +67,33 @@ var IO = {
 		switch (t) {
 			case "xml_raw":
 				type = "query";
-				xsl = $v("options_xslt")+"/grid.xsl";
+				xsl = $v("options_xslt")+"grid.xsl";
 				query = Query.glue(OAT.SqlQueryData.TYPE_FORXML_RAW);
 			break;
 			case "xml_auto":
 				type = "query";
-				xsl = $v("options_xslt")+"/tree.xsl";
+				xsl = $v("options_xslt")+"tree.xsl";
 				query = Query.glue(OAT.SqlQueryData.TYPE_FORXML_AUTO);
 			break;
 			case "sqlx_a":
 				type = "sqlx";
-				xsl = $v("options_xslt")+"/grid.xsl";
+				xsl = $v("options_xslt")+"grid.xsl";
 				query = Query.glue(OAT.SqlQueryData.TYPE_SQLX_ATTRIBUTES);
 			break;
 			case "sqlx_e":
 				type = "sqlx";
-				xsl = $v("options_xslt")+"/tree.xsl";
+				xsl = $v("options_xslt")+"tree.xsl";
 				query = Query.glue(OAT.SqlQueryData.TYPE_SQLX_ELEMENTS);
 			break;
 			case "xml":
 				type = "sql";
 				query = Query.glue(OAT.SqlQueryData.TYPE_SQL);
-				xsl = $v("options_xslt")+"/query.xsl";
+				xsl = $v("options_xslt")+"query.xsl";
 			break;
 			case "manual":
 				type = "sql";
 				query = q;
-				xsl = $v("options_xslt")+"/query.xsl";
+				xsl = $v("options_xslt")+"query.xsl";
 			break;
 		}
 
@@ -97,7 +101,7 @@ var IO = {
 		query = OAT.Dom.toSafeXML(query);
 		var xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
 		if (t == "xml" || t == "manual") {
-			xml += '\n<?xml-stylesheet type="text/xsl" href="'+$v("options_xslt")+'/query.xsl"?>';
+			xml += '\n<?xml-stylesheet type="text/xsl" href="'+$v("options_xslt")+'query.xsl"?>';
 			xml += '\n<root>';
 			xml += OAT.Xmla.connection.toXML($("options_uid").checked,$("options_nocred").checked);
 			xml += '\n<query ';
@@ -114,11 +118,16 @@ var IO = {
 
 	load_q:function() {
 		if ($("options_type_http").checked) {
-			var name = OAT.Dav.getFile("/DAV/home/"+OAT.Ajax.user,".xml");
+			var name = OAT.Dav.getFile("/DAV/home/"+http_cred.user,".xml");
 			if (!name) { return; }
 			IO.lastQName = name;
 			IO.save_type = "xml";
-			OAT.Ajax.command(OAT.Ajax.GET + OAT.Ajax.AUTH_BASIC,name,function(){return '';},IO.loadProcess,OAT.Ajax.TYPE_TEXT);
+			var o = {
+				auth:OAT.AJAX.AUTH_BASIC,
+				user:http_cred.user,
+				password:http_cred.password
+			}
+			OAT.AJAX.GET(name,false,IO.loadProcess,o);
 		}
 		if ($("options_type_dav").checked) {
 			var options = {
@@ -139,10 +148,15 @@ var IO = {
 
 	load_p:function() {
 		if ($("options_type_http").checked) {
-			var name = OAT.Dav.getFile("/DAV/home/"+OAT.Ajax.user,".xml");
+			var name = OAT.Dav.getFile("/DAV/home/"+http_cred.user,".xml");
 			if (!name) { return; }
 			IO.lastPName = name;
-			OAT.Ajax.command(OAT.Ajax.GET + OAT.Ajax.AUTH_BASIC,name,function(){return '';},pivot_design_load,OAT.Ajax.TYPE_TEXT);
+			var o = {
+				auth:OAT.AJAX.AUTH_BASIC,
+				user:http_cred.user,
+				password:http_cred.password
+			}
+			OAT.AJAX.GET(name,false,pivot_design_load,o);
 		}
 		if ($("options_type_dav").checked) {
 			var options = {
@@ -322,7 +336,7 @@ var IO = {
 		}
 		
 		var callback = function() {
-			if (OAT.Ajax.number) { setTimeout(callback, 100); } else { 
+			if (OAT.AJAX.requests.length) { setTimeout(callback, 100); } else { 
 				/* manual joins */
 				for (var i=0;i<Query.obj.joins.length;i++) { try_join(Query.obj.joins[i]); }
 				/* re-create query */

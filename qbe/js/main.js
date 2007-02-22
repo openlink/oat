@@ -22,6 +22,10 @@ var total_catalog_count = 0;
 var datasource = false; 
 var layerObj = false;
 var connection = false;
+var http_cred = {
+	user:"demo",
+	password:"demo"
+};
 
 var ORDER = ["NO","ASC","DESC"];
 
@@ -175,8 +179,8 @@ var Connection = {
 	discover_dsn:function() {
 		/* discover datasources */
 		Connection.get_settings();	
-		OAT.Ajax.user = connection.options.user;
-		OAT.Ajax.password = connection.options.password;
+		http_cred.user = connection.options.user;
+		http_cred.password = connection.options.password;
 		var ref=function(pole) {
 			if (pole.length) { dialogs.connection.okBtn.removeAttribute("disabled"); }
 			var select = $("dsn");
@@ -190,18 +194,10 @@ var Connection = {
 	
 	use_dsn:function(read_settings,whatToDo) {
 		if (read_settings) { Connection.get_settings(); }
-		OAT.Ajax.user = connection.options.user;
-		OAT.Ajax.password = connection.options.password;
+		http_cred.user = connection.options.user;
+		http_cred.password = connection.options.password;
 
 		/* if not virtuoso, hide its save formats */
-		var typeRef = function() {
-			var data = '<Discover  env:encodingStyle="http://www.w3.org/2003/05/soap-encoding"'+
-				' xmlns="urn:schemas-microsoft-com:xml-analysis" >'+
-				'<RequestType>DISCOVER_DATASOURCES</RequestType>'+
-				'<Restrictions xsi:nil="1" ></Restrictions>'+
-				'<Properties></Properties></Discover>';
-			return data;
-		}
 		var cBack = function(data) {
 			var result = OAT.Xmla.parseResponse(data);
 			var index = result[0].find("ProviderName");
@@ -220,7 +216,13 @@ var Connection = {
 				}
 			}
 		}
-		OAT.Soap.command(connection.options.endpoint, typeRef, cBack, OAT.Ajax.TYPE_XML, OAT.Xmla.discoverHeader);
+		var data = '<Discover  env:encodingStyle="http://www.w3.org/2003/05/soap-encoding"'+
+			' xmlns="urn:schemas-microsoft-com:xml-analysis" >'+
+			'<RequestType>DISCOVER_DATASOURCES</RequestType>'+
+			'<Restrictions xsi:nil="1" ></Restrictions>'+
+			'<Properties></Properties></Discover>';
+		var o = {headers:OAT.Xmla.discoverHeader,type:OAT.AJAX.TYPE_XML}
+		OAT.Soap.command(connection.options.endpoint, data, cBack, o);
 	
 		/* discover catalogs */
 		var ref=function(pole) {
@@ -771,8 +773,8 @@ function init() {
 	
 	/* ajax http errors */
 	$("options_http").checked = (OAT.Preferences.httpError == 1 ? true : false);
-	OAT.Ajax.httpError = OAT.Preferences.httpError;
-	OAT.Dom.attach("options_http","change",function(){OAT.Ajax.httpError = ($("options_http").checked ? 1 : 0);});
+	OAT.AJAX.httpError = OAT.Preferences.httpError;
+	OAT.Dom.attach("options_http","change",function(){OAT.AJAX.httpError = ($("options_http").checked ? 1 : 0);});
 	
 	/* connection */
 	dialogs.connection = new OAT.Dialog("XMLA Data Provider Connection Setup","connection",{width:500,modal:1,buttons:1});
@@ -938,7 +940,7 @@ function init() {
 	/* file name for saving */
 	var fileRef = function() {
 		if ($("options_type_http").checked) {
-			var name = OAT.Dav.getNewFile("/DAV/home/"+OAT.Ajax.user,".xml","xml");
+			var name = OAT.Dav.getNewFile("/DAV/home/"+http_cred.user,".xml","xml");
 			if (!name) { return; }
 			if (name.slice(name.length-4).toLowerCase() != ".xml") { name += ".xml"; }
 			$("save_name").value = name;
