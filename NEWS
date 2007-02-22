@@ -1,3 +1,14 @@
+February 22 2007, V2.2:
+  * Added new OAT.AJAX interface for simpler and faster access to frequent
+    Ajax calls
+  * Flash control in Formdesigner
+  * Better RDF parsing compatibility
+  * Overall enhancements in RDF Browser: sorting, grouping, rdf drilldown
+  * RDF Browser URL navigation
+  * Treeview in Formdesigner's palette
+  * Updated documentation
+  * Fixed small bugs
+
 January 31 2007, V2.1:
   * Added RDF browser widget
   * Added RDF Graph sidebar
