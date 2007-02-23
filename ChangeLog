@@ -1,3 +1,346 @@
+2007-02-23 12:34  source
+
+	* Changed version to 2.2 for final release
+
+2007-02-23 12:34  source
+
+	* Added group types
+	* Added group visibility
+
+2007-02-23 12:34  source
+
+	* Fixed RDF browser indicator
+
+2007-02-23 12:33  source
+
+	* Fixed grid sroting with 0 rows
+
+2007-02-23 12:33  source
+
+	* Fixed callback
+
+2007-02-23 12:32  source
+
+	* Fixed undeclared variable
+
+2007-02-22 13:25  source
+
+	* Updated version to 2.2-rc1
+
+2007-02-22 13:24  source
+
+	* Added RDF Browser navigation
+	* Added trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Fixed Combolist fixes
+	* Fixed window overriding
+
+2007-02-22 13:24  source
+
+	* Added Tabbed RDF Browser
+
+2007-02-22 13:24  source
+
+	* Fixed svgsparql edge select & signal issue
+	* Fixed visibility for svgsparql edges
+	* Fixed imagePath in RDF Graph
+	* Added Lasso in svgsparql
+	* Fixed svgsparql reposition
+	* Fixed svgsparql group redraw
+	* Fixed highlights & group selects
+
+2007-02-22 13:24  source
+
+	* Added support for CONSTRUCT statements
+	* Added support for multiple from
+	* Fixed parsing whitespace after keyword
+
+2007-02-22 13:24  source
+
+	* Added OAT.AJAX
+	* Window changes
+
+2007-02-22 13:24  source
+
+	* Added RDF Browser navigation
+	* Added Trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Fixed Combolist
+
+2007-02-22 13:24  source
+
+	* Window style changes
+
+2007-02-22 13:24  source
+
+	* Added RDF Browser navigation
+	* Added trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Fixed Combolist
+
+2007-02-22 13:24  source
+
+	* Fixed RectWin
+	* RDF Browser dereferencing draft
+	* Window style changes
+
+2007-02-22 13:24  source
+
+	* Fixed JSON
+	* Fixed RDF parsing
+	* Fixed RectWin
+	* More RDF Browser features
+	* RDF Browser dereferencing draft
+	* Sorting in RDF Browser
+
+2007-02-22 13:23  source
+
+	* Added global OAT.Preferences.imagePath
+	* Added RDF Browser navigation
+	* Added Tabbed RDF Browser
+	* Added Trailing slash for xsltPath
+	* Fixed Combolist
+	* Fixed JSON
+	* Fixed RDF parsing
+	* Fixed RectWin
+	* More RDF Browser features
+	* RDF Browser dereferencing draft
+	* Sorting in RDF Browser
+
+2007-02-22 13:23  source
+
+	* Added OAT.AJAX
+	* Added RDF Browser navigation
+	* Added trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Fixed Combolist
+	* Window changes
+	* Changed map lookup window displaying algorithm
+	* DS_* messages in datasource.js
+	* date update in preferences
+	* Fixed JSON
+	* Fixed RDF parsing
+	* Sorting in RDF Browser
+	* Flash control in Formdesigner
+	* Datasource not in properties (nav, graph)
+
+2007-02-22 13:23  source
+
+	* Window style changes
+	* Fix for hidden up arrow
+
+2007-02-22 13:23  source
+
+	* Massive graphing update
+
+2007-02-22 13:23  source
+
+	* Changed map lookup window displaying algorithm
+	* DS_* messages in datasource.js
+	* Massive graphing update
+	* Documentation update
+
+2007-02-22 13:23  source
+
+	* Added OAT.AJAX
+	* Added global OAT.Preferences.imagePath
+	* Added RDF Browser navigation
+	* Added Trailing slash for xsltPath
+	* Changed map lookup window displaying algorithm
+	* Fixed Combolist
+	* Dimmer IE better functionality
+	* DS_* messages in datasource.js
+	* More RDF Browser features
+	* RDF Browser dereferencing draft
+	* RectWin fixes
+	* Tabbed RDF Browser
+	* Window changes
+
+2007-02-22 13:23  source
+
+	* Fixed JSON
+	* Fixed RDF parsing
+	* Sorting in RDF Browser
+
+2007-02-22 13:23  source
+
+	* Added RDF Browser navigation
+	* Added global OAT.Preferences.imagePath
+	* Added trailing slash for xsltPath
+	* Combolist fixes
+
+2007-02-22 13:23  source
+
+	* Added RDF Browser navigation
+	* Added trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Combolist fixes
+	* Fixed visibility for svgsparql edges
+	* Fixed imagePath in RDF Graph
+	* Flash control in Formdesigner
+	* Datasource not in properties (nav, graph)
+
+2007-02-22 13:23  source
+
+	* Fixed visibility for svgsparql edges
+	* Fixed imagePath in RDF Graph
+
+2007-02-22 13:23  source
+
+	* More RDF Browser features
+
+2007-02-22 13:23  source
+
+	* Added OAT.AJAX
+	* Tree in Formdesigner (palette)
+	* Window changes
+
+2007-02-22 13:23  source
+
+	* Added OAT.AJAX
+	* Added RDF Browser navigation
+	* Added trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Combolist fixes
+	* Window changes
+	* Changed map lookup window displaying algorithm
+	* DS_* messages in datasource.js
+	* Fixed Hidden container
+	* Massive graphing update
+	* Flash control in Formdesigner
+	* Datasource not in properties (nav, graph)
+
+2007-02-22 13:23  source
+
+	* Added OAT.AJAX
+	* Window changes
+	* Flash control in Formdesigner
+	* Datasource not in properties (nav, graph)
+
+2007-02-22 13:23  source
+
+	* Added OAT.AJAX
+	* Fixed DSTransport cursor type
+	* Window changes
+
+2007-02-22 13:23  source
+
+	* Added OAT.AJAX
+	* Added RDF Browser navigation
+	* Added trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Combolist fixes
+	* Window changes
+
+2007-02-22 13:23  source
+
+	* Dimmer IE better functionality
+
+2007-02-22 13:23  source
+
+	* Added global OAT.Preferences.imagePath
+	* Added imagePath for dialog
+	* Added RDF Browser navigation
+	* Added trailing slash for xsltPath
+	* Combolist fixes
+
+2007-02-22 13:23  source
+
+	* Added Tabbed RDF Browser
+	* Fixed RectWin
+	* RDF Browser dereferencing draft
+
+2007-02-22 13:23  source
+
+	* Added OAT.AJAX
+	* Added global OAT.Preferences.imagePath
+	* Added RDF Browser navigation
+	* Added trailing slash for xsltPath
+	* Combolist fixes
+	* Fixed setting the imagePath for the grid
+	* Window changes
+
+2007-02-22 13:23  source
+
+	* Added OAT.AJAX
+	* Changed map lookup window displaying algorithm
+	* Datasource not in properties (nav, graph)
+	* DS_* messages in datasource.js
+	* Flash control in Formdesigner
+	* Window changes
+
+2007-02-22 13:23  source
+
+	* Google maps API update fix
+
+2007-02-22 13:23  source
+
+	* Added RDF Browser navigation
+	* Added trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Combolist fixes
+
+2007-02-22 13:23  source
+
+	* Added Tabbed RDF Browser
+	* Anchor default href
+	* Anchor improvements
+
+2007-02-22 13:23  source
+
+	* Added headers to errorRef as 3-rd parameter
+	* Added method PROPPATCH
+	* Added to send imagesPath option to dialog
+	* Auto fixing imagepath for dialog
+
+2007-02-22 13:17  source
+
+	* Added new OAT.AJAX API
+
+2007-02-22 12:55  source
+
+	* Updated documentation
+
+2007-02-22 12:55  source
+
+	* Added new OAT.AJAX
+	* Added OAT.AJAX docs
+	* Fixed RDF Browser navigation
+	* Trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Fixed Combolist
+
+2007-02-22 12:54  source
+
+	* Added new OAT.AJAX
+	* Fixed RDF Browser navigation
+	* Trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Fixed Combolist
+	* Tabbed RDF Browser
+	* Massive graphing update
+
+2007-02-22 12:51  source
+
+	* Fixed broken images
+
+2007-02-22 12:50  source
+
+	* Added new OAT.AJAX
+	* Fixed window
+	* Fixed RDF Browser navigation
+	* Trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Fixed Combolist
+
+2007-02-22 12:49  source
+
+	* Added new OAT.AJAX
+	* Fixed RDF Browser navigation
+	* Trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Fixed Combolist
+
 2007-01-31 10:12  source
 
 	* Updated version to 2.1 for final release
