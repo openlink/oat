@@ -140,7 +140,6 @@ OAT.RDFBrowser = function(div,optObj) {
 	this.goHistory = function(index) {
 		self.urlIndex = index;
 		self.nav.url.value = self.urlHistory[self.urlIndex];
-		if (self.options.indicator) { OAT.Dom.show(self.options.indicator); }
 		OAT.Dereference.go(self.urlHistory[self.urlIndex],self.attachXmlDoc,{type:OAT.AJAX.TYPE_XML});
 	}
 	
@@ -150,6 +149,7 @@ OAT.RDFBrowser = function(div,optObj) {
 	}
 	
 	this.attachXmlDoc = function(xmlDoc) {
+		if (self.options.indicator) { OAT.Dom.show(self.options.indicator); }
 		var triples = OAT.RDF.toTriples(xmlDoc);
 		if (!triples.length) { alert("Document contains 0 triples!"); }
 		self.attachData(triples);
