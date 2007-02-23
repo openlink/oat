@@ -30,11 +30,11 @@
 	
 	node|edge|group.setLabel(index,value)
 	node|edge|group.getLabel(index)
-	node|edge.setType(type)
-	node|edge.getType()
+	node|edge|group.setType(type)
+	node|edge|group.getType()
 	node|edge|group.signalStart|signalStop()
-	node|edge.setVisible(bool)
-	node|edge.getVisible()
+	node|edge|group.setVisible(bool)
+	node|edge|group.getVisible()
 	node.setGroup(group|false)
 	
 	group.setParent(newParentGroup)
@@ -51,7 +51,11 @@ OAT.SVGSparqlData = {
 	EDGE_SOLID:0,
 	EDGE_DASHED:1,
 	PROJECTION_PLANAR:0,
-	PROJECTION_SPHERICAL:1
+	PROJECTION_SPHERICAL:1,
+  GROUP_GRAPH:0,
+  GROUP_OPTIONAL:1,
+  GROUP_UNION:2,
+  GROUP_CONSTRUCT:3
 }
 
 OAT.SVGSparqlGroup = function(svgsparql,label) {
@@ -63,10 +67,26 @@ OAT.SVGSparqlGroup = function(svgsparql,label) {
 	this.signal = false;
 	this.svg = OAT.SVG.element("path",{fill:svgsparql.options.groupOptions.color});
 	this.label = OAT.SVG.element("text",svgsparql.options.fontOptions);
+	this.visible = true; /* not overall visibility, but rather SPARQL query inclusion */
+	this.type = OAT.SVGSparqlData.GROUP_GRAPH;
+
+	this.setType = function(newType) {
+		self.type = parseInt(newType);
+	}
+
+	this.getType = function() {
+		return self.type;
+	}
 	
 	this.setFill = function(newColor) {
 		self.svg.setAttribute("fill",newColor);
 	}
+
+	this.setVisible = function(value) {
+		self.visible = value;
+	}
+
+	this.getVisible = function() { return self.visible; }
 
 	this.setParent = function(newParent) {
 		var oldParent = self.parent;
@@ -261,7 +281,9 @@ OAT.SVGSparqlGroup = function(svgsparql,label) {
 	this.toXML = function() {
 		var xml = "";
 		var pi = self.svgsparql.groups.find(self.parent);
-		xml += '\t\t<group parent="'+pi+'" >';
+		xml += '\t\t<group parent="'+pi+'" type="'+self.getType()+'"';
+		xml += ' visible="'+(self.visible ? "1" : "0")+'"';
+		xml += '>';
 		xml += OAT.Dom.toSafeXML(self.getLabel());
 		xml += '</group>\n';
 		return xml;
@@ -269,7 +291,10 @@ OAT.SVGSparqlGroup = function(svgsparql,label) {
 	
 	this.fromXML = function(xmlNode) {
 		var val = OAT.Xml.textValue(xmlNode);
+		var t = parseInt(xmlNode.getAttribute("type"));
+		self.setType(t);
 		var arr = OAT.Dom.fromSafeXML(val);
+		self.setVisible(xmlNode.getAttribute("visible") == "1");
 		self.setLabel(arr);
 	}
 	
@@ -423,7 +448,9 @@ OAT.SVGSparqlNode = function(x,y,value,svgsparql) {
 	
 	this.toXML = function() {
 		var xml = "";
-		xml += '\t\t<node x="'+self.x+'" y="'+self.y+'" type="'+self.getType()+'" group="'+self.svgsparql.groups.find(self.group)+'">';
+		xml += '\t\t<node x="'+self.x+'" y="'+self.y+'" type="'+self.getType()+'" group="'+self.svgsparql.groups.find(self.group)+'" ';
+		xml += 'visible="'+(self.visible ? "1" : "0")+'"';
+		xml += '>';
 		xml += OAT.Dom.toSafeXML(self.getLabel(1));
 		xml += ",";
 		xml += OAT.Dom.toSafeXML(self.getLabel(2));
@@ -442,6 +469,7 @@ OAT.SVGSparqlNode = function(x,y,value,svgsparql) {
 		self.setType(t);
 		var g = parseInt(xmlNode.getAttribute("group"));
 		if (g != -1 && !isNaN(g)) { self.setGroup(self.svgsparql.groups[g]); }
+		self.setVisible(xmlNode.getAttribute("visible") == "1");
 	}
 }
 
@@ -649,6 +677,7 @@ OAT.SVGSparqlEdge = function(node1,node2,value,svgsparql,radius) {
 			var index2 = self.svgsparql.groups.find(self.node2);
 			xml += ' group2="'+index2+'" ';
 		}
+		xml += 'visible="'+(self.visible ? "1" : "0")+'"';
 		xml += '>';
 		xml += OAT.Dom.toSafeXML(self.getLabel(1));
 		xml += ",";
@@ -664,7 +693,7 @@ OAT.SVGSparqlEdge = function(node1,node2,value,svgsparql,radius) {
 		self.setLabel(2,arr[1]);
 		var t = parseInt(xmlNode.getAttribute("type"));
 		self.setType(t);
-		self.redraw();
+		self.setVisible(xmlNode.getAttribute("visible") == "1");
 	}
 	
 }
