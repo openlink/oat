@@ -57,12 +57,12 @@ OAT.Tab = function(elm) {
 	
 	this.go = function(index) {
 		this.clear();
-		this.selectedIndex = index;
 		if (index == -1) { return; }
 		this.element.appendChild(this.values[index]);
 		OAT.Dom.show(this.values[index]);
 		OAT.Dom.addClass(this.keys[index],"tab_selected");
 		this.goCallback(this.selectedIndex,index);
+		this.selectedIndex = index;
 	};
 	
 	this.remove = function(element) {
