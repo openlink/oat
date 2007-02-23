@@ -49,8 +49,8 @@ OAT.Dimmer = {
 		with (OAT.Dimmer.root.style) {
 			backgroundColor = options.color;
 			opacity = options.opacity;
-			filter = "alpha(opacity="+Math.round(100*options.opacity)+")";
 		}
+		OAT.Dimmer.root.style.filter = "alpha(opacity="+Math.round(100*options.opacity)+")";
 		document.body.appendChild(OAT.Dimmer.root);
 		document.body.appendChild(elm);
 		OAT.Dom.show(elm);
