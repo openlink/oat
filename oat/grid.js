@@ -362,6 +362,9 @@ OAT.Grid = function(something,autoNumber,allowHiding) {
 			return (a > b ? c1 : c2);
 		}
 		var cmp;
+		
+		if (!self.rows.length) { return; } /* no work to be done */
+		
 		var testValue = this.rows[0].cells[index].value.innerHTML;
 		switch (coltype) {
 			case OAT.GridData.TYPE_STRING: cmp = strCmp; break;
