@@ -1,3 +1,133 @@
+2007-03-20 15:28  source
+
+	* Updated to version 2.3 for final release
+
+2007-03-20 11:39  source
+
+	* Updated version to 2.3-pre1
+
+2007-03-20 11:39  source
+
+	* Fix for IE radio buttons
+	* Enhanced pivot
+	* Fix for DAV related bug
+	* Fix for WebKit clientXY change
+
+2007-03-20 11:37  source
+
+	* Added new tabs for RDF browser
+	* Enhanced mapping in rdftabs
+	* Fixed aestetics in RDF browser
+	* Fixed DAV in RDF browser
+	* Fixed type category always visible in RDF browser
+	* Fixed <script> issue in RDF browser
+	* Fixed image deferencable in RDF browser
+	* Fixed RDF browser accumulation
+	* Fixed RDF browser URI filters
+	* Fixed RDF browser <a++> also in custom contents
+
+2007-03-20 11:34  source
+
+	* Fix for RDF browser tabs
+	* Fix for image deferencable in RDF browser
+
+2007-03-20 11:33  source
+
+	* Fix for pivot
+
+2007-03-20 11:33  source
+
+	* Fix for RDF browser tabs
+
+2007-03-20 11:32  source
+
+	* Fix for map layers
+	* Google maps API update
+
+2007-03-20 11:31  source
+
+	* Fixed typo
+
+2007-03-20 11:30  source
+
+	* Updated version string
+
+2007-03-20 11:30  source
+
+	* Fix for rdf browser
+
+2007-03-20 11:30  source
+
+	* Fix for rdf browser tabs
+
+2007-03-20 11:29  source
+
+	* Fix for invalid dates for timeline
+	* Small bugfixes
+
+2007-03-20 11:28  source
+
+	* Fix for tabs in RDF browser
+
+2007-03-20 11:26  source
+
+	* Fix for QBE location of tree images
+
+2007-03-20 11:25  source
+
+	* Enhanced Pivot & timeline styles
+
+2007-03-20 11:23  source
+
+	* Enhanced Pivot demo
+
+2007-03-20 11:22  source
+
+	* Use Open instead of Load
+
+2007-03-20 11:21  source
+
+	* Fix for basic HTTP auth
+
+2007-03-20 11:18  source
+
+	* Added exception handler
+	* Added DESCRIBE support
+
+2007-03-20 11:18  source
+
+	* Fix for ghostdrag in IE
+
+2007-03-20 11:17  source
+
+	* Added SaveContentType property
+	* Fix for names with spaces
+	* Fix for displaying human readable filesizes
+	* Fix for error handling
+
+2007-03-20 11:15  source
+
+	* Fixed initial date in calendar
+
+2007-03-20 11:15  source
+
+	* Added pivot empty columns/rows hiding
+	* Added pivot totals charts
+	* Fixed problem with IE radio
+	* Fixed totals aggregate & demo
+
+2007-03-20 11:09  source
+
+	* More files to ignore
+
+2007-03-20 10:59  source
+
+	* Added RDF Browser tabs
+
+2007-03-20 10:59  source
+
+	* Removed deprecated files
+
 2007-02-23 12:34  source
 
 	* Changed version to 2.2 for final release
