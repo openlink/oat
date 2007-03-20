@@ -26,8 +26,16 @@
 	text-align: right;
 }
 
-.pivot_table td:hover {
+.pivot_table td.gtotal {
+	background-color: #fcc;
+}
+
+.pivot_table td.total {
 	background-color: #fdd;
+}
+
+.pivot_table td.subtotal {
+	background-color: #fee;
 }
 
 .pivot_table .odd {
@@ -44,4 +52,14 @@
 
 .pivot_table th.h2 {
 	background-color: #ddf;
+}
+
+.pivot_table td:hover {
+	background-color: #ddd;
+}
+
+.pivot_chart, .pivot_row_chart, .pivot_col_chart {
+	height: 200px;
+	margin-bottom: 1.5em;
+	margin-top: 0.5em;
 }
