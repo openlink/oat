@@ -185,7 +185,7 @@ var IO = {
 			if (!name) { return; }
 			set_filename(name);
 			$("corner").innerHTML = name;
-			var callback = function(data) { fd.fromXML(xmlDoc); }
+			var callback = function(xmlDoc) { fd.fromXML(xmlDoc); }
 			var o = {
 				auth:OAT.AJAX.AUTH_BASIC,
 				user:http_cred.user,
