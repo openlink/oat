@@ -400,7 +400,7 @@ function read_tables(catalog_name,pole) {
 	total_catalog_count--;
 	
 	if (!total_catalog_count) { /* create tree after last catalog arrived */
-		var t = new OAT.Tree({imagePath:"../images"});
+		var t = new OAT.Tree({imagePath:"../images/"});
 		t.assign(dialogs.tablelist.list,1);
 		/* also fix grid in ie here */
 		grid_in.ieFix();
