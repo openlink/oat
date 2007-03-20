@@ -167,17 +167,19 @@ June 1991.<br />
 	<div id="pivot">
 		<h3>Interactive Pivot table</h3>
 		<ul>
-			<li>Use the select-box above the table to select a desired aggregate function</li>
-			<li>Use the link below the table to toggle a Pivot chart</li>
-			<li>Click the main heading (left top corner) to change numerical type</li>
-			<li>Click any aggregate heading to change the order and filter values</li>
+			<li>Use select-boxes above the table to select a desired aggregate function</li>
+			<li>Use buttons below the table to toggle charts</li>
+			<li>Click the main heading (left top corner) to change numerical type and </li>
+			<li>Click any aggregate heading to change the order, filter values and toggle subtotals</li>
 			<li>Drag any aggregate heading to any place that becomes red</li>
 		</ul>
 		Aggregate function:
-		<select id="pivot_agg"></select>
+		<select id="pivot_agg"></select><br/>
+		Subtotals aggregate function:
+		<select id="pivot_agg_totals"></select><br/>
 		<div id="pivot_page"></div>
 		<div id="pivot_content"></div>
-		<div id="pivot_chart" class="chart"></div>
+		<div id="pivot_chart"></div>
 	</div>
 	<div id="date">
 		<h3>Date picker</h3>

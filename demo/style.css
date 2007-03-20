@@ -10,7 +10,8 @@
 @import url("menu.css");
 @import url("../styles/webdav.css");
 @import url("../styles/grid.css");
-@import url("timeline.css");
+@import url("../styles/pivot.css");
+@import url("../styles/timeline.css");
 
 body {
 	font-family: verdana;
@@ -138,47 +139,8 @@ div.panelbar_option:hover {
 	height: 300px;
 }
 
-/* pivot */
-.pivot_table {
-	border-collapse: collapse;
-	font: menu;
-}
-
-.pivot_table th, .pivot_table td {
-	border: 2px solid #888;
-	padding: 3px;
-}
-
-.pivot_table th {
-	font-weight: bold;
-}
-
-.pivot_table td {
-	text-align: right;
-}
-
-.pivot_table td:hover {
-	background-color: #fdd;
-}
-
-.pivot_table .odd {
-	background-color: #ffd;
-}
-
-.pivot_table .even {
-	background-color: #fff;
-}
-
-.pivot_table th.h1 {
+#pivot_chart {
 	background-color: #aaa;
-}
-
-.pivot_table th.h2 {
-	background-color: #ddf;
-}
-
-#pivot_page {
-	margin: 2px 0px;
 }
 
 /*--------------- calendar --------------*/

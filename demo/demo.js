@@ -101,14 +101,22 @@ DEMO.pivot = {
 			pivot.options.agg = parseInt($v("pivot_agg"));
 			pivot.go();
 		}
+		var aggRefTotals = function() {
+			pivot.options.aggTotals = parseInt($v("pivot_agg_totals"));
+			pivot.go();
+		}
 		/* create agg function list */
 		OAT.Dom.clear("pivot_agg");
+		OAT.Dom.clear("pivot_agg_totals");
 		for (var i=0;i<OAT.Statistics.list.length;i++) {
 			var item = OAT.Statistics.list[i];
 			OAT.Dom.option(item.shortDesc,i,"pivot_agg");
+			OAT.Dom.option(item.shortDesc,i,"pivot_agg_totals");
 			if (pivot.options.agg == i) { $("pivot_agg").selectedIndex = i; }
+			if (pivot.options.aggTotals == i) { $("pivot_agg_totals").selectedIndex = i; }
 		}
 		OAT.Dom.attach("pivot_agg","change",aggRef);
+		OAT.Dom.attach("pivot_agg_totals","change",aggRefTotals);
 	}
 }
 
@@ -153,7 +161,7 @@ DEMO.tree = {
 	div:"tree",
 	needs:["tree"],
 	cb:function() {
-		var t = new OAT.Tree({imagePath:"images",allowDrag:1,onClick:"select",onDblClick:"toggle"});
+		var t = new OAT.Tree({imagePath:"images/",allowDrag:1,onClick:"select",onDblClick:"toggle"});
 		t.assign("tree_content",0);
 	}
 }
