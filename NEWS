@@ -1,3 +1,12 @@
+March 20 2007, V2.3:
+  * Added RDF Browser tabs
+  * Added RDF Browser timeline and map
+  * Added Pivot table hiding empty rows/cols
+  * Added Pivot table totals and subtotals
+  * Added Pivot totals charts
+  * Added DESCRIBE and exception handling support to sparql
+  * Fixed small bugs
+
 February 23 2007, V2.2:
   * Added new OAT.AJAX interface for simpler and faster access to frequent
     Ajax calls
