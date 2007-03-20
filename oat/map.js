@@ -1,4 +1,13 @@
 /*
+ *  $Id$
+ *
+ *  This file is part of the OpenLink Software Ajax Toolkit (OAT) project.
+ *
+ *  Copyright (C) 2006 Ondrej Zara and OpenLink Software
+ *
+ *  See LICENSE file for details.
+ */
+/*
 	Abstract API atop various mapping engines
 	var m = new OAT.Map(something, provider, optionsObject)
 	m.addTypeControl()
@@ -205,7 +214,7 @@ OAT.Map = function(something, provider, optionsObject) {
 			}
 		} /* for all groups */
 
-		if (self.provider == OAT.MapData.TYPE_G) { self.obj.layers[2].redraw(); }
+		if (self.provider == OAT.MapData.TYPE_OL) { self.obj.layers[2].redraw(); }
 	}
 	
 	this.addTypeControl = function() {
