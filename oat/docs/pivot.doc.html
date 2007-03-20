@@ -7,6 +7,14 @@
 	<li><a href="#pivot">OAT.Pivot(div, chartDiv, filterDiv, headerRow, dataRows, headerRowIndexes, headerColIndexes, filterIndexes, dataColumnIndex, optObj)</a></li>
 </ul>
 	
+<h3>Constants</h3>
+<ul>
+	<li>OAT.PivotData.TYPE_BASIC</li>
+	<li>OAT.PivotData.TYPE_PERCENT</li>
+	<li>OAT.PivotData.TYPE_SCI</li>
+	<li>OAT.PivotData.TYPE_SPACE</li>
+	<li>OAT.PivotData.TYPE_CUSTOM</li>
+</ul>
 
 <h3>CSS classes</h3>
 <ul>
@@ -15,6 +23,12 @@
 	<li>.h2</li>
 	<li>.odd</li>
 	<li>.even</li>
+	<li>.subtotal</li>
+	<li>.total</li>
+	<li>.gtotal</li>
+	<li>.pivot_chart</li>
+	<li>.pivot_row_chart</li>
+	<li>.pivot_col_chart</li>
 </ul>
 
 <hr/>
@@ -36,7 +50,15 @@
 			<li>headingBefore - should we create headings before data?</li>
 			<li>headingAfter - should we create headings after data?</li>
 			<li>agg - constant, specifying appropriate aggregating function index</li>
+			<li>aggTotals - constant, specifying appropriate aggregating function index for sub-totals and totals</li>
 			<li>showChart - show chart?</li>
+			<li>showRowChart - show row totals chart?</li>
+			<li>showColChart - show column totals chart?</li>
+			<li>type - one of TYPE_ constants for number formatting</li>
+			<li>customType - formatting function for TYPE_CUSTOM</li>
+			<li>showEmpty - show columns & rows with null values?</li>
+			<li>subtotals - show subtotals?</li>
+			<li>totals - show totals?</li>
 		</ul>
 	</li>
 </ul>
