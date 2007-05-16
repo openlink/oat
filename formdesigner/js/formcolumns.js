@@ -11,7 +11,9 @@ function Columns(obj) {
 	var self = this;
 	this.obj = obj;
 	this.columns = [];
+	this.elm = OAT.Dom.create("div",{padding:"3px"});
 	this.win = new OAT.Window({min:0,max:0,close:1,height:0,width:180,x:-15,y:350,title:"Available fields"});
+	this.win.content.appendChild(this.elm);
 	this.win.hide = function() {OAT.Dom.hide(self.win.div);};
 	this.win.show = function() {OAT.Dom.show(self.win.div);};
 	this.win.onclose = function() {
@@ -20,7 +22,7 @@ function Columns(obj) {
 	}
 
 	this.clear = function() {
-		OAT.Dom.clear(self.win.content);
+		OAT.Dom.clear(self.elm);
 		self.columns = [];
 	}
 	
@@ -43,9 +45,9 @@ function Columns(obj) {
 			var o = OAT.Dom.option(self.obj.datasources[i].name,i,self.DSSelect);
 		}
 		OAT.Dom.attach(self.DSSelect,"change",function() { self.addColumns(self.DSSelect.selectedIndex); });
-		self.win.content.appendChild(self.DSSelect);
+		self.elm.appendChild(self.DSSelect);
 		self.div = OAT.Dom.create("div");
-		self.win.content.appendChild(self.div);
+		self.elm.appendChild(self.div);
 		if (self.obj.datasources.length) { self.addColumns(0); }
 	}
 	

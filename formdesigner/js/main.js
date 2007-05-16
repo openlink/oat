@@ -198,6 +198,7 @@ var IO = {
 				mode:'open_dialog',
 				user:http_cred.user,
 				pass:http_cred.password,
+				filetypes:[{ext:"xml",label:"Form Design"}],
 				pathDefault:'/DAV/home/'+http_cred.user+'/',
 				onConfirmClick:function(path,fname,data){
 					set_filename(path+fname);
@@ -221,7 +222,6 @@ var DS = { /* datasources / bindings */
 	
 	showList:function() {
 		/* draw table of current datasources */
-		dialogs.dslist.show();
 		OAT.Dom.clear("dslist_tbody");
 		
 		function create_row(index) {
@@ -282,6 +282,7 @@ var DS = { /* datasources / bindings */
 		for (var i=0;i<fd.datasources.length;i++) {
 			create_row(i);
 		}
+		dialogs.dslist.show();
 	},
 
 	applyBinding:function() {
@@ -359,7 +360,6 @@ var DS = { /* datasources / bindings */
 	readBinding:function(index) {
 		DS.selectedDSindex = index;
 		var ds = fd.datasources[index];
-		dialogs.bind.show();
 		/* clear old values */
 		OAT.Dom.show("bind_sql","bind_sparql","bind_gdata","bind_rest","bind_soap");
 
@@ -447,6 +447,7 @@ var DS = { /* datasources / bindings */
 			$("bind_ws_type").selectedIndex = 0;
 			OAT.Dom.show("bind_rest");
 		}
+		dialogs.bind.show();
 	},
 	
 	showDependencies:function(dsIndex) {
@@ -691,7 +692,7 @@ var DS = { /* datasources / bindings */
 				user:http_cred.user,
 				pass:http_cred.password,
 				pathDefault:'/DAV/home/'+http_cred.user+'/',
-				file_ext:'xml',
+				filetypes:[{ext:"xml",label:"Form Design"}],
  				onConfirmClick:function() { 
 					return xml;
 				},

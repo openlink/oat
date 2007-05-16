@@ -40,23 +40,24 @@ function Toolbox(obj) {
 	}
 
 	this.win = new OAT.Window({min:0,max:0,close:1,height:0,width:240,x:-15,y:170,title:"Control Properties"});
+	var d = OAT.Dom.create("div",{padding:"3px"},"toolbox");
 	this.win.hide = function() {OAT.Dom.hide(self.win.div);};
 	this.win.show = function() {OAT.Dom.show(self.win.div);};
 	this.win.onclose = function() {
 		self.win.hide();
 		tbar.icons[1].toggle();
 	}
-	this.win.content.className = "toolbox";
+	this.win.content.appendChild(d);
 	this.name = OAT.Dom.create("span");
 	var tmp = OAT.Dom.create("div");
 	tmp.innerHTML = "Selected: ";
 	tmp.appendChild(this.name);
-	this.win.content.appendChild(tmp);
+	d.appendChild(tmp);
 	var ul = OAT.Dom.create("ul");
-	this.win.content.appendChild(ul);
+	d.appendChild(ul);
 	
 	this.content = OAT.Dom.create("div",{marginTop:"20px",border:"2px solid #000"});
-	this.win.content.appendChild(this.content);
+	d.appendChild(this.content);
 	
 	this.tab = new OAT.Tab(this.content);
 	
@@ -81,8 +82,7 @@ function Toolbox(obj) {
 	
 	this.clear = function() {
 		for (var i=0;i<self.tables.length;i++) { OAT.Dom.clear(self.tables[i]); }
-		self.win.content.style.height = ""; /* set toolbox to auto-stretch */
-		self.win.div.style.height = "";
+//		self.win.accomodate();
 		self.tab.go(0);
 	}
 	

@@ -15,7 +15,6 @@
 	FormDesigner.addObject(type,x,y,loading)
 */
 
-
 var FormDesigner = function(parent) {
 	/* basic properties */
 	var self = this;
@@ -75,8 +74,8 @@ var FormDesigner = function(parent) {
 	this.palette.addObject("uinput","Basic controls");
 	this.palette.addObject("tab","Advanced controls");
 	this.palette.addObject("container","Advanced controls");
+	this.palette.win.accomodate(false,true);
 	/* --------------------------------------- */
-
 	/* methods */
 	
 	this.createDSSelect = function(sel_ds,sel_index) {
@@ -198,6 +197,17 @@ var FormDesigner = function(parent) {
 		self.capture.style.height = Math.abs(dy) + "px";
 	} /* FormDesigner::processCapture() */
 	
+	this.collide = function(something1,something2) {
+		/* true if they have something common */
+		var coords_1 = OAT.Dom.position(something1);
+		var coords_2 = OAT.Dom.position(something2);
+		var dims_1 = OAT.Dom.getWH(something1);
+		var dims_2 = OAT.Dom.getWH(something2);
+		var bad_x = ( (coords_1[0] < coords_2[0] && coords_1[0]+dims_1[0] < coords_2[0]) || (coords_1[0] > coords_2[0] + dims_2[0]) );
+		var bad_y = ( (coords_1[1] < coords_2[1] && coords_1[1]+dims_1[1] < coords_2[1]) || (coords_1[1] > coords_2[1] + dims_2[1]) );
+		return !(bad_x || bad_y);
+	}
+	
 	this.stopCapture = function(event) {
 		if (!self.capture) { return; }
 		var x = parseInt(self.capture.style.left);
@@ -210,15 +220,7 @@ var FormDesigner = function(parent) {
 		for (var i=0;i<self.objects.length;i++) {
 			/* old problem - are two rectangles overlapping ? */
 			var o = self.objects[i];
-			var c = OAT.Dom.collide(self.capture,o.elm);
-
-/*			var x2 = o.elm.offsetLeft + self.base.offsetLeft;
-			var y2 = o.elm.offsetTop + self.base.offsetTop;
-			var w2 = o.elm.offsetWidth;
-			var h2 = o.elm.offsetHeight;
-			var bad_x = ( (x < x2 && x+w < x2) || (x > x2+w2) );
-			var bad_y = ( (y < y2 && y+h < y2) || (y > y2+h2) );
-			if (!bad_x && !bad_y) {  */
+			var c = self.collide(self.capture,o.elm);
 			if (c) {
 				o.select();
 				lastObj = o;

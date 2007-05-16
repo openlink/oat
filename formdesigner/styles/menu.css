@@ -23,9 +23,9 @@
 #menu li {
 	cursor: pointer;
 	behavior: url("../styles/hover.htc");
-	display: inline;
+	display: block;
+	float: left;
 	position: relative;
-	top: 5px;
 	padding: 5px 8px;
 }
 
@@ -47,6 +47,7 @@
 
 #menu ul li {
 	display: block;
+	float: none;
 	padding: 4px 6px;
 	top: 0px;
 }

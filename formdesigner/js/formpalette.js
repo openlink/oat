@@ -9,7 +9,7 @@
  */
 function Palette(obj) {
 	var self = this;
-	this.win = new OAT.Window({min:0,max:0,close:1,width:160,height:0,x:-15,y:20,title:"Controls Palette"});
+	this.win = new OAT.Window({min:0,max:0,close:1,width:180,height:0,x:-15,y:20,title:"Controls Palette"});
 	this.win.hide = function() {OAT.Dom.hide(self.win.div);};
 	this.win.show = function() {OAT.Dom.show(self.win.div);};
 	this.win.onclose = function() {
@@ -34,8 +34,8 @@ function Palette(obj) {
 			pnode.collapse();
 		}
 		var node = pnode.createChild(OAT.FormObjectNames[type]);
-		node.gdElm.style.cursor = "pointer";
-		obj.gd1.addSource(node.gdElm,function(elm){ elm.style.fontWeight="bold";elm.style.zIndex = 10;},self.getAddRef(type));
+		node._gdElm.style.cursor = "pointer";
+		obj.gd1.addSource(node._gdElm,function(elm){ elm.style.fontWeight="bold";},self.getAddRef(type));
 	}
 	
 	this.getAddRef = function(type) {
