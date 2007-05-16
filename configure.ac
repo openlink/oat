@@ -50,6 +50,7 @@ AC_CONFIG_FILES([
     images/Makefile
     oat/Makefile
     oat/docs/Makefile
+    rdfbrowser/Makefile
     qbe/Makefile
     styles/Makefile
     xslt/Makefile

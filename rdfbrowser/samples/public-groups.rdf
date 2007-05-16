@@ -1,0 +1,2284 @@
+
+<!-- Processed by Id: cwm.py,v 1.155 2004/06/30 20:04:57 timbl Exp -->
+<!--     using base file:/home2/WWW/2000/04/mem-news/-->
+
+
+<rdf:RDF xmlns="http://www.w3.org/2001/04/roadmap/org#"
+    xmlns:contact="http://www.w3.org/2000/10/swap/pim/contact#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:k="http://opencyc.sourceforge.net/daml/cyc.daml#"
+    xmlns:org="http://www.w3.org/2001/04/roadmap/org#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+    <rdf:Description rdf:about="http://www.w3.org/data#W3C">
+        <includes rdf:nodeID="b1"/>
+        <includes rdf:nodeID="b2"/>
+        <includes rdf:nodeID="b3"/>
+        <includes rdf:nodeID="b4"/>
+        <includes rdf:nodeID="b5"/>
+        <includes rdf:nodeID="b6"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-appformats@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-appformats/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-exi@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-exi/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-grddl-wg@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-grddl-wg/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-mwts@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-mwts/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-rdf-dawg@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-rdf-dawg/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-rif-wg@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-rif-wg/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-semweb-lifesci@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-semweb-lifesci/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-swd-wg@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-swd-wg/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-sweo-ig@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-sweo-ig/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-sws-ig@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-sws-ig/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-tt@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-tt/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-wai-ert@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-wai-ert/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-wai-rd@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-wai-rd/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-webapi@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-webapi/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-webcgm-wg@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-webcgm-wg"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-ws-addressing@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-ws-addressing/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-ws-chor@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-ws-chor/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-ws-policy@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-ws-policy/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-ws-semann@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-ws-semann/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-wsc-wg@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-wsc-wg/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-xg-cwl@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-xg-cwl/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-xg-emotion@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-xg-emotion/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-xg-geo@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-xg-geo/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-xg-mmsem@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-xg-mmsem/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-xg-wcl@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-xg-wcl/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-xml-core-wg@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-xml-core-wg/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-xml-processing-model-wg@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-xml-processing-model-wg/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:public-xsd-databinding@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/public-xsd-databinding/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:semantic-web@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/semantic-web/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:uri@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/uri/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:w3c-wai-au@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/w3c-wai-au/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:w3c-wai-eo@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/w3c-wai-eo/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:w3c-wai-gl@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/w3c-wai-gl/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:w3c-wai-ig@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/w3c-wai-ig/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:w3c-wai-ua@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/w3c-wai-ua/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:www-international@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/www-international/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:www-math@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/www-math/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:www-multimodal@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/www-multimodal/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:www-qa@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/www-qa/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:www-smil@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/www-smil/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:www-tag@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/www-tag/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:www-ws-cg@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/www-ws-cg/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:www-ws-desc@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/www-ws-desc/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="mailto:xml-dist-app@w3.org">
+        <contact:archive rdf:resource="http://lists.w3.org/Archives/Public/xml-dist-app/"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b1">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Domain"/>
+        <contact:homePage rdf:resource="http://www.w3.org/Architecture/"/>
+        <includes rdf:nodeID="b7"/>
+        <includes rdf:nodeID="b8"/>
+        <includes rdf:nodeID="b9"/>
+        <includes rdf:nodeID="b10"/>
+        <includes rdf:nodeID="b11"/>
+        <lead rdf:nodeID="b12"/>
+        <name>Architecture Domain</name>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b2">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Domain"/>
+        <contact:homePage rdf:resource="http://www.w3.org/Interaction/"/>
+        <includes rdf:nodeID="b74"/>
+        <includes rdf:nodeID="b75"/>
+        <includes rdf:nodeID="b76"/>
+        <includes rdf:nodeID="b77"/>
+        <includes rdf:nodeID="b78"/>
+        <includes rdf:nodeID="b79"/>
+        <includes rdf:nodeID="b80"/>
+        <lead rdf:nodeID="b81"/>
+        <name>Interaction Domain</name>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b3">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Domain"/>
+        <contact:homePage rdf:resource="http://www.w3.org/TandS/"/>
+        <includes rdf:nodeID="b112"/>
+        <includes rdf:nodeID="b113"/>
+        <includes rdf:nodeID="b114"/>
+        <includes rdf:nodeID="b115"/>
+        <lead rdf:nodeID="b116"/>
+        <name>Technology and Society Domain</name>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b4">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Domain"/>
+        <contact:homePage rdf:resource="http://www.w3.org/UbiWeb/"/>
+        <includes rdf:nodeID="b145"/>
+        <includes rdf:nodeID="b146"/>
+        <includes rdf:nodeID="b147"/>
+        <includes rdf:nodeID="b148"/>
+        <lead rdf:nodeID="b149"/>
+        <name>Ubiquitous Web Domain</name>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b5">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Domain"/>
+        <contact:homePage rdf:resource="http://www.w3.org/WAI/"/>
+        <includes rdf:nodeID="b170"/>
+        <includes rdf:nodeID="b171"/>
+        <lead rdf:nodeID="b172"/>
+        <name>Web Accessibility Initiative</name>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b6">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Domain"/>
+        <includes rdf:nodeID="b192"/>
+        <includes rdf:nodeID="b193"/>
+        <includes rdf:nodeID="b194"/>
+        <includes rdf:nodeID="b195"/>
+        <name>Quality Assurance, Incubator, TAG, AB</name>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b7">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2005-10-31</k:endingDate>
+        <k:startingDate>1997-02-21</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/DOM/"/>
+        <includes rdf:nodeID="b13"/>
+        <lead rdf:nodeID="b12"/>
+        <name>Document Object Model Activity</name>
+        <statement rdf:resource="http://www.w3.org/DOM/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b8">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2009-01-31</k:endingDate>
+        <k:startingDate>1996-08-07</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/XML/"/>
+        <includes rdf:nodeID="b15"/>
+        <includes rdf:nodeID="b16"/>
+        <includes rdf:nodeID="b17"/>
+        <includes rdf:nodeID="b18"/>
+        <includes rdf:nodeID="b19"/>
+        <includes rdf:nodeID="b20"/>
+        <includes rdf:nodeID="b21"/>
+        <includes rdf:nodeID="b22"/>
+        <includes rdf:nodeID="b23"/>
+        <lead rdf:nodeID="b24"/>
+        <name>Extensible Markup Language (XML) Activity</name>
+        <statement rdf:resource="http://www.w3.org/XML/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b9">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2007-02-28</k:endingDate>
+        <k:startingDate>1998-02</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/International/"/>
+        <includes rdf:nodeID="b38"/>
+        <includes rdf:nodeID="b39"/>
+        <includes rdf:nodeID="b40"/>
+        <includes rdf:nodeID="b41"/>
+        <lead rdf:nodeID="b42"/>
+        <name>Internationalization Activity</name>
+        <statement rdf:resource="http://www.w3.org/International/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b10">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2007-02-28</k:endingDate>
+        <k:startingDate>2000-10</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/Addressing/"/>
+        <includes rdf:nodeID="b47"/>
+        <lead rdf:nodeID="b48"/>
+        <name>URI Activity</name>
+        <statement rdf:resource="http://www.w3.org/Addressing/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b11">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2008-02-29</k:endingDate>
+        <k:startingDate>2000-09</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2002/ws/"/>
+        <includes rdf:nodeID="b49"/>
+        <includes rdf:nodeID="b50"/>
+        <includes rdf:nodeID="b51"/>
+        <includes rdf:nodeID="b52"/>
+        <includes rdf:nodeID="b53"/>
+        <includes rdf:nodeID="b54"/>
+        <includes rdf:nodeID="b55"/>
+        <includes rdf:nodeID="b56"/>
+        <includes rdf:nodeID="b57"/>
+        <lead rdf:nodeID="b58"/>
+        <name>Web Services Activity</name>
+        <statement rdf:resource="http://www.w3.org/2002/ws/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b12">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Philippe Le Hégaret</contact:fullName>
+        <contact:sortName>Le Hégaret</contact:sortName>
+        <foaf:mbox_sha1sum>f7e5033747803ffb22cecb41714ea676b3dbad00</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b13">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#InterestGroup"/>
+        <k:endingDate>2007-12-31</k:endingDate>
+        <k:startingDate>1997-02-21</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/DOM/Group/IG"/>
+        <chair rdf:nodeID="b14"/>
+        <charter rdf:resource="http://www.w3.org/2003/08/dom-ig-charter.html"/>
+        <name>DOM Interest Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b12"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b14">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Ray Whitmer</contact:fullName>
+        <contact:sortName>Whitmer</contact:sortName>
+        <foaf:mbox_sha1sum>9dc4d8613923abcee95a8782750449c30f2d5f8f</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b15">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-12-31</k:endingDate>
+        <k:startingDate>2005-11-18</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/XML/Group/EXI"/>
+        <contact:mailbox rdf:resource="mailto:public-exi@w3.org"/>
+        <chair rdf:nodeID="b25"/>
+        <chair rdf:nodeID="b26"/>
+        <charter rdf:resource="http://www.w3.org/2005/09/exi-charter-final.html"/>
+        <name>Efficient XML Interchange Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b27"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b16">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#CoordinationGroup"/>
+        <k:endingDate>2008-06-30</k:endingDate>
+        <k:startingDate>1998-10</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/XML/Group/"/>
+        <chair rdf:nodeID="b28"/>
+        <charter rdf:resource="http://www.w3.org/2006/06/XML/cg.html"/>
+        <name>XML Coordination Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b24"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b17">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2008-06-30</k:endingDate>
+        <k:startingDate>1996-08-07 (as SGML WG)</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/XML/Group/Core"/>
+        <contact:mailbox rdf:resource="mailto:public-xml-core-wg@w3.org"/>
+        <chair rdf:nodeID="b29"/>
+        <chair rdf:nodeID="b30"/>
+        <charter rdf:resource="http://www.w3.org/2006/06/XML/core.html"/>
+        <name>XML Core Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b12"/>
+        <teamContact rdf:nodeID="b31"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b18">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#InterestGroup"/>
+        <k:endingDate>2008-06-30</k:endingDate>
+        <k:startingDate>1998-10</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/XML/Group/Plenary"/>
+        <chair rdf:nodeID="b28"/>
+        <charter rdf:resource="http://www.w3.org/2006/06/XML/plenary.html"/>
+        <name>XML Plenary Interest Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b24"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b19">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-10-31</k:endingDate>
+        <k:startingDate>2005-10-27</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/XML/Processing/"/>
+        <contact:mailbox rdf:resource="mailto:public-xml-processing-model-wg@w3.org"/>
+        <chair rdf:nodeID="b32"/>
+        <charter rdf:resource="http://www.w3.org/2005/10/xml-processing-model-wg-charter.html"/>
+        <name>XML Processing Model Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b31"/>
+        <teamContact rdf:nodeID="b33"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b20">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2009-01-31</k:endingDate>
+        <k:startingDate>1999-09</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/XML/Group/Query"/>
+        <chair rdf:nodeID="b34"/>
+        <chair rdf:nodeID="b35"/>
+        <charter rdf:resource="http://www.w3.org/2006/06/XML/query.html"/>
+        <name>XML Query Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b24"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b21">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#InterestGroup"/>
+        <k:endingDate>2007-12-27</k:endingDate>
+        <k:startingDate>1999-07</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2003/09/xmlap/xml-schema-ig-charter.html"/>
+        <chair rdf:nodeID="b28"/>
+        <charter rdf:resource="http://www.w3.org/2006/06/XML/schema-ig.html"/>
+        <name>XML Schema Interest Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b28"/>
+        <teamContact rdf:nodeID="b31"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b22">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-12-31</k:endingDate>
+        <k:startingDate>1998-10</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/XML/Group/Schemas"/>
+        <chair rdf:nodeID="b36"/>
+        <charter rdf:resource="http://www.w3.org/2006/06/XML/schema-wg.html"/>
+        <name>XML Schema Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b28"/>
+        <teamContact rdf:nodeID="b31"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b23">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2009-01-31</k:endingDate>
+        <k:startingDate>1998-01-27</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/Style/XSL/Group/"/>
+        <chair rdf:nodeID="b37"/>
+        <charter rdf:resource="http://www.w3.org/2006/06/XML/xsl.html"/>
+        <name>XSL Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b24"/>
+        <teamContact rdf:nodeID="b28"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b24">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Liam Quin</contact:fullName>
+        <contact:sortName>Quin</contact:sortName>
+        <foaf:mbox_sha1sum>37a5e11986bf26b1f73922f96a9452d9679e7b4e</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b25">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Daniel Vogelheim</contact:fullName>
+        <contact:sortName>Vogelheim</contact:sortName>
+        <foaf:mbox_sha1sum>97fc643194cc406b543c1d36dc4868ba2b472ea8</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b26">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Greg White</contact:fullName>
+        <contact:sortName>White</contact:sortName>
+        <foaf:mbox_sha1sum>6147932a3dc9b7af6f9dd40b51614ffa75b40642</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b27">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Carine Bournez</contact:fullName>
+        <contact:sortName>Bournez</contact:sortName>
+        <foaf:mbox_sha1sum>ffa25b62f84640003e7776eaeae757aa6081a755</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b28">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Michael Sperberg-McQueen</contact:fullName>
+        <contact:homePage rdf:resource="http://www.w3.org/People/cmsmcq/"/>
+        <contact:sortName>Sperberg-McQueen</contact:sortName>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b29">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Paul Grosso</contact:fullName>
+        <contact:sortName>Grosso</contact:sortName>
+        <foaf:mbox_sha1sum>691332fb85427925c1bdc6957fd6dd0e787fbb36</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b30">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Norman Walsh</contact:fullName>
+        <contact:sortName>Walsh</contact:sortName>
+        <foaf:mbox_sha1sum>5ddcd862514c327945dca20446e11cb54ceec68b</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b31">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Henry Thompson</contact:fullName>
+        <contact:sortName>Thompson</contact:sortName>
+        <foaf:mbox_sha1sum>a666cda7c0f0fc83a48a36a63ccff14558753a6e</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b32">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Norman Walsh</contact:fullName>
+        <contact:sortName>Walsh</contact:sortName>
+        <foaf:mbox_sha1sum>7ec7a096305d5cbfca3fb6b92b8ecf06b1cf7a06</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b33">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Michael Sperberg-McQueen</contact:fullName>
+        <contact:sortName>Sperberg-McQueen</contact:sortName>
+        <foaf:mbox_sha1sum>9be48bab56137e392aac3775e702e34dcc4fccfd</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b34">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Andrew Eisenberg</contact:fullName>
+        <contact:sortName>Eisenberg</contact:sortName>
+        <foaf:mbox_sha1sum>bfae5fddc465e5f2830f6a7365f591c1db560232</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b35">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Jim Melton</contact:fullName>
+        <contact:sortName>Melton</contact:sortName>
+        <foaf:mbox_sha1sum>58ad09c381cb2d3c7fd186bf79dc961d9975e300</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b36">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>David Ezell</contact:fullName>
+        <contact:sortName>Ezell</contact:sortName>
+        <foaf:mbox_sha1sum>c7c135240f1119c9949baae34517d5da38c0b844</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b37">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Sharon Adler</contact:fullName>
+        <contact:sortName>Adler</contact:sortName>
+        <foaf:mbox_sha1sum>3deec4ca74f4cf8853fa51a21be575378bd47045</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b38">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-02-28</k:endingDate>
+        <k:startingDate>1998-02</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/International/core/"/>
+        <chair rdf:nodeID="b43"/>
+        <charter rdf:resource="http://www.w3.org/2004/11/i18n-recharter/core-charter.html"/>
+        <name>Internationalization Core Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b44"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b39">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-02-28</k:endingDate>
+        <k:startingDate>2005-01-07</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/International/geo/"/>
+        <chair rdf:nodeID="b42"/>
+        <charter rdf:resource="http://www.w3.org/2004/11/i18n-recharter/geo-charter.html"/>
+        <name>Internationalization Guidelines, Education &#38; Outreach (GEO) Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b42"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b40">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#InterestGroup"/>
+        <k:endingDate>2007-02-28</k:endingDate>
+        <k:startingDate>1998-02</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2004/11/i18n-recharter/ig-charter"/>
+        <contact:mailbox rdf:resource="mailto:www-international@w3.org"/>
+        <chair rdf:nodeID="b45"/>
+        <charter rdf:resource="http://www.w3.org/2004/11/i18n-recharter/ig-charter"/>
+        <name>Internationalization (I18n) Interest Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b42"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b41">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-02-28</k:endingDate>
+        <k:startingDate>2005-01-07</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/International/its/"/>
+        <chair rdf:nodeID="b46"/>
+        <charter rdf:resource="http://www.w3.org/2004/11/i18n-recharter/its-charter.html"/>
+        <name>Internationalization Tag Set (ITS) Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b44"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b42">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Richard Ishida</contact:fullName>
+        <contact:sortName>Ishida</contact:sortName>
+        <foaf:mbox_sha1sum>ca5e03c5454b67193497db2ea92295f536064582</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b43">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>François Yergeau</contact:fullName>
+        <contact:sortName>Yergeau</contact:sortName>
+        <foaf:mbox_sha1sum>20d1f2aae06ab5ff0cc89f70acfbc337a65be6e7</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b44">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Felix Sasaki</contact:fullName>
+        <contact:sortName>Sasaki</contact:sortName>
+        <foaf:mbox_sha1sum>18619aebbcaa18a57ae3c1b7526f0b9200daf8ce</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b45">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Martin Dürst</contact:fullName>
+        <contact:sortName>Dürst</contact:sortName>
+        <foaf:mbox_sha1sum>442c2d17e4722a5bddf2ce477a655f11435db7ab</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b46">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Yves Savourel</contact:fullName>
+        <contact:sortName>Savourel</contact:sortName>
+        <foaf:mbox_sha1sum>b9af3e4b47305ee5c7b4a3b91766e8fcebf9d77a</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b47">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#InterestGroup"/>
+        <k:endingDate>2007-02-28</k:endingDate>
+        <k:startingDate>2005-02-16</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2001/12/URI/"/>
+        <contact:mailbox rdf:resource="mailto:uri@w3.org"/>
+        <chair rdf:nodeID="b30"/>
+        <chair rdf:nodeID="b48"/>
+        <charter rdf:resource="http://www.w3.org/2004/07/uri-ig-charter.html"/>
+        <name>URI Interest Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b48"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b48">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Dan Connolly</contact:fullName>
+        <contact:homePage rdf:resource="http://www.w3.org/People/Connolly/"/>
+        <contact:sortName>Connolly</contact:sortName>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b49">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-06-30</k:endingDate>
+        <k:startingDate>2006-03-21</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2002/ws/sawsdl/"/>
+        <contact:mailbox rdf:resource="mailto:public-ws-semann@w3.org"/>
+        <chair rdf:nodeID="b59"/>
+        <charter rdf:resource="http://www.w3.org/2005/10/sa-ws-charter.html"/>
+        <name>Semantic Annotations for Web Services Description Language Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b60"/>
+        <teamContact rdf:nodeID="b61"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b50">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#InterestGroup"/>
+        <k:endingDate>2008-02-29</k:endingDate>
+        <k:startingDate>2003-10-23</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2002/ws/swsig/"/>
+        <contact:mailbox rdf:resource="mailto:public-sws-ig@w3.org"/>
+        <chair rdf:nodeID="b62"/>
+        <charter rdf:resource="http://www.w3.org/2005/09/sws-ig-charter"/>
+        <name>Semantic Web Services Interest Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b63"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b51">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-06-30</k:endingDate>
+        <k:startingDate>2004-10-06</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2002/ws/addr/"/>
+        <contact:mailbox rdf:resource="mailto:public-ws-addressing@w3.org"/>
+        <chair rdf:nodeID="b64"/>
+        <charter rdf:resource="http://www.w3.org/2006/02/ws-addr-charter.html"/>
+        <name>Web Services Addressing Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b65"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b52">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#CoordinationGroup"/>
+        <k:endingDate>2007-09-30</k:endingDate>
+        <k:startingDate>2002-01-25</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2002/ws/cg/"/>
+        <contact:mailbox rdf:resource="mailto:www-ws-cg@w3.org"/>
+        <chair rdf:nodeID="b12"/>
+        <charter rdf:resource="http://www.w3.org/2006/02/ws-cg-charter.html"/>
+        <name>Web Services Coordination Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b58"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b53">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-03-31</k:endingDate>
+        <k:startingDate>2003-01-14</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2002/ws/chor/"/>
+        <contact:mailbox rdf:resource="mailto:public-ws-chor@w3.org"/>
+        <chair rdf:nodeID="b66"/>
+        <chair rdf:nodeID="b67"/>
+        <charter rdf:resource="http://www.w3.org/2003/01/wscwg-charter.html"/>
+        <name>Web Services Choreography Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#CPPplus"/>
+        <teamContact rdf:nodeID="b68"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b54">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-06-30</k:endingDate>
+        <k:startingDate>2002-01-25</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2002/ws/desc/"/>
+        <contact:mailbox rdf:resource="mailto:www-ws-desc@w3.org"/>
+        <chair rdf:nodeID="b69"/>
+        <chair rdf:nodeID="b70"/>
+        <charter rdf:resource="http://www.w3.org/2006/02/ws-desc-charter"/>
+        <name>Web Services Description Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#CPPplus"/>
+        <teamContact rdf:nodeID="b65"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b55">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-12-31</k:endingDate>
+        <k:startingDate>2006-06-01</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2002/ws/policy/"/>
+        <contact:mailbox rdf:resource="mailto:public-ws-policy@w3.org"/>
+        <chair rdf:nodeID="b71"/>
+        <chair rdf:nodeID="b72"/>
+        <charter rdf:resource="http://www.w3.org/2006/04/ws-policy-charter.html"/>
+        <name>Web Services Policy Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b12"/>
+        <teamContact rdf:nodeID="b44"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b56">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-09-30</k:endingDate>
+        <k:startingDate>2005-10-28</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2002/ws/databinding/"/>
+        <contact:mailbox rdf:resource="mailto:public-xsd-databinding@w3.org"/>
+        <chair rdf:nodeID="b73"/>
+        <charter rdf:resource="http://www.w3.org/2005/10/ws-databinding-charter.html"/>
+        <name>XML Schema Patterns for Databinding Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b68"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b57">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-03-31</k:endingDate>
+        <k:startingDate>2000-09</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2000/xp/Group/"/>
+        <contact:mailbox rdf:resource="mailto:xml-dist-app@w3.org"/>
+        <chair rdf:nodeID="b72"/>
+        <charter rdf:resource="http://www.w3.org/2005/07/XML-Protocol-Charter"/>
+        <name>XML Protocol Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b68"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b58">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Yves Lafon</contact:fullName>
+        <contact:sortName>Lafon</contact:sortName>
+        <foaf:mbox_sha1sum>dc78438fdc2eaad39f0500db20e452636b96129d</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b59">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Jacek Kopecky</contact:fullName>
+        <contact:sortName>Kopecky</contact:sortName>
+        <foaf:mbox_sha1sum>9e6fb9385b7954740f6a6343cead29d6b375f93b</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b60">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Carine Bournez</contact:fullName>
+        <contact:sortName>Bournez</contact:sortName>
+        <foaf:mbox_sha1sum>5a9fc346b34eacf16ab262495c3920d3a3fdc359</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b61">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Eric Prud'hommeaux</contact:fullName>
+        <contact:sortName>Prud'hommeaux</contact:sortName>
+        <foaf:mbox_sha1sum>e2d67791b2a0ce3441c0c770f94daa130b4e6d95</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b62">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Bijan Parsia</contact:fullName>
+        <contact:sortName>Parsia</contact:sortName>
+        <foaf:mbox_sha1sum>c9ef3edda6fd12cc1e9113217a75e5074e2ee80e</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b63">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Carine Bournez</contact:fullName>
+        <contact:homePage rdf:resource="mailto:carine@w3.org"/>
+        <contact:sortName>Bournez</contact:sortName>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b64">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Bob Freund</contact:fullName>
+        <contact:sortName>Freund</contact:sortName>
+        <foaf:mbox_sha1sum>3e2fc1d2a97b6e1be1b8f09a32f0788ab7a4cbe7</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b65">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Philippe Le Hégaret</contact:fullName>
+        <contact:sortName>Le Hégaret</contact:sortName>
+        <foaf:mbox_sha1sum>f0e56c319c4dcb67d9ae63239e8a58bc8e69bd14</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b66">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Martin Chapman</contact:fullName>
+        <contact:sortName>Chapman</contact:sortName>
+        <foaf:mbox_sha1sum>e385dfa9115636aaaa99a0f0a5b82dc6df9e2eab</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b67">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Steve Ross-Talbot</contact:fullName>
+        <contact:sortName>Ross-Talbot</contact:sortName>
+        <foaf:mbox_sha1sum>81c4b40ddac8611bfc31da43dfbf4201c1cc1217</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b68">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Yves Lafon</contact:fullName>
+        <contact:homePage rdf:resource="http://www.w3.org/People/Lafon/"/>
+        <contact:sortName>Lafon</contact:sortName>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b69">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Jonathan Marsh</contact:fullName>
+        <contact:sortName>Marsh</contact:sortName>
+        <foaf:mbox_sha1sum>c5a9a7074e19a8625e2952fb6b94e8f3522dfd6f</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b70">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Tony Rogers</contact:fullName>
+        <contact:sortName>Rogers</contact:sortName>
+        <foaf:mbox_sha1sum>1506625e84d0fc9ff94a1d03847af2558361e559</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b71">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Paul Cotton</contact:fullName>
+        <contact:sortName>Cotton</contact:sortName>
+        <foaf:mbox_sha1sum>7aa27a852a500af84d2d292286253cac9374ae79</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b72">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Chris Ferris</contact:fullName>
+        <contact:sortName>Ferris</contact:sortName>
+        <foaf:mbox_sha1sum>31a03df9a75740ef6d95309e7557198b96e6ac65</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b73">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Paul Downey</contact:fullName>
+        <contact:sortName>Downey</contact:sortName>
+        <foaf:mbox_sha1sum>82b16fa9c47d5a7bcabb805836b4ed14d8317130</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b74">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2006-09-30</k:endingDate>
+        <k:startingDate>(1995)</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/Graphics/"/>
+        <includes rdf:nodeID="b82"/>
+        <includes rdf:nodeID="b83"/>
+        <lead rdf:nodeID="b81"/>
+        <name>Graphics Activity</name>
+        <statement rdf:resource="http://www.w3.org/Graphics/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b75">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2004-12-31</k:endingDate>
+        <k:startingDate>1995-12</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/MarkUp/"/>
+        <includes rdf:nodeID="b88"/>
+        <includes rdf:nodeID="b89"/>
+        <lead rdf:nodeID="b90"/>
+        <name>HTML Activity</name>
+        <statement rdf:resource="http://www.w3.org/MarkUp/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b76">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2005-12-31</k:endingDate>
+        <k:startingDate>1996-09-17</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/Math/"/>
+        <includes rdf:nodeID="b92"/>
+        <lead rdf:nodeID="b93"/>
+        <name>Math Activity</name>
+        <statement rdf:resource="http://www.w3.org/Math/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b77">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2007-11-15</k:endingDate>
+        <k:startingDate>2005-11-15</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2006/rwc/"/>
+        <includes rdf:nodeID="b96"/>
+        <includes rdf:nodeID="b97"/>
+        <includes rdf:nodeID="b98"/>
+        <lead rdf:nodeID="b85"/>
+        <name>Rich Web Client Activity</name>
+        <statement rdf:resource="http://www.w3.org/2006/rwc/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b78">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2005-03-31</k:endingDate>
+        <k:startingDate>1995-10</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/Style/"/>
+        <includes rdf:nodeID="b104"/>
+        <lead rdf:nodeID="b93"/>
+        <name>Style Activity</name>
+        <statement rdf:resource="http://www.w3.org/Style/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b79">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2006-05-31</k:endingDate>
+        <k:startingDate>1997-03</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/AudioVideo/"/>
+        <includes rdf:nodeID="b105"/>
+        <includes rdf:nodeID="b106"/>
+        <lead rdf:nodeID="b87"/>
+        <name>Synchronized Multimedia Activity</name>
+        <statement rdf:resource="http://www.w3.org/AudioVideo/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b80">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2004-12-31</k:endingDate>
+        <k:startingDate>2003-01-27</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/MarkUp/Forms/"/>
+        <includes rdf:nodeID="b110"/>
+        <lead rdf:nodeID="b90"/>
+        <name>XForms Activity</name>
+        <statement rdf:resource="http://www.w3.org/2002/Forms/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b81">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Chris Lilley</contact:fullName>
+        <contact:sortName>Lilley</contact:sortName>
+        <foaf:mbox_sha1sum>b5c70ff90ab8f78066ec3f9837e70bcc8dcd15c8</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b82">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-10-01</k:endingDate>
+        <k:startingDate>1998-07</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/Graphics/SVG/Group/"/>
+        <chair rdf:nodeID="b81"/>
+        <chair rdf:nodeID="b84"/>
+        <charter rdf:resource="http://www.w3.org/2004/10/svg-charter.html"/>
+        <name>SVG Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b85"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b83">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-05-31</k:endingDate>
+        <k:startingDate>2006-05-18</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/Graphics/WebCGM/WG/"/>
+        <contact:mailbox rdf:resource="mailto:public-webcgm-wg@w3.org"/>
+        <chair rdf:nodeID="b86"/>
+        <charter rdf:resource="http://www.w3.org/2006/03/webcgm-charter.html"/>
+        <name>WebCGM Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b87"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b84">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Nandini Ramani</contact:fullName>
+        <contact:sortName>Ramani</contact:sortName>
+        <foaf:mbox_sha1sum>65b726ef609b83995e1a13c9c3fadbde6e487d35</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b85">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Dean Jackson</contact:fullName>
+        <contact:sortName>Jackson</contact:sortName>
+        <foaf:mbox_sha1sum>6de4ff27ef927b9ba21ccc88257e41a2d7e7d293</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b86">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Lofton Henderson</contact:fullName>
+        <contact:sortName>Henderson</contact:sortName>
+        <foaf:mbox_sha1sum>678ef7432c08de7d8c020e5c4c07c5f3787d7d75</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b87">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Thierry Michel</contact:fullName>
+        <contact:sortName>Michel</contact:sortName>
+        <foaf:mbox_sha1sum>a5cd88acc25ecc4bebc97800b812999703c13c1e</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b88">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-04-30</k:endingDate>
+        <k:startingDate>1998-08</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/MarkUp/Group/"/>
+        <chair rdf:nodeID="b90"/>
+        <charter rdf:resource="http://www.w3.org/2002/05/html/charter.html"/>
+        <name>HTML Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#CPPplus"/>
+        <teamContact rdf:nodeID="b90"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b89">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#CoordinationGroup"/>
+        <k:endingDate>2007-04-30</k:endingDate>
+        <k:startingDate>1997-04</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/MarkUp/CoordGroup/"/>
+        <chair rdf:nodeID="b81"/>
+        <chair rdf:nodeID="b91"/>
+        <charter rdf:resource="http://www.w3.org/2002/12/HCGcharter.html"/>
+        <name>Hypertext Coordination Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b81"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b90">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Steven Pemberton</contact:fullName>
+        <contact:sortName>Pemberton</contact:sortName>
+        <foaf:mbox_sha1sum>de7dc84bb10d1d752b2672d6eb19592c146ea6d2</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b91">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Deborah Dahl</contact:fullName>
+        <contact:sortName>Dahl</contact:sortName>
+        <foaf:mbox_sha1sum>a95678f981aa7c3a6f643b47e91b58dcd9a7e7f9</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b92">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2008-02-29</k:endingDate>
+        <k:startingDate>2006-06-28</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/Math/Group/"/>
+        <contact:mailbox rdf:resource="mailto:www-math@w3.org"/>
+        <chair rdf:nodeID="b94"/>
+        <chair rdf:nodeID="b95"/>
+        <charter rdf:resource="http://www.w3.org/Math/Group/Documents/Charter2006.html"/>
+        <name>Math Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b93"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b93">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Bert Bos</contact:fullName>
+        <contact:homePage rdf:resource="http://www.w3.org/People/Bos/"/>
+        <contact:sortName>Bos</contact:sortName>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b94">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Patrick Ion</contact:fullName>
+        <contact:sortName>Ion</contact:sortName>
+        <foaf:mbox_sha1sum>edeb3bc90c5a2a16533a60ad451d2cd07cc76ad6</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b95">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Robert Miner</contact:fullName>
+        <contact:sortName>Miner</contact:sortName>
+        <foaf:mbox_sha1sum>792f22b38cb676e77a2fc40708416ebf2409b4df</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b96">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-11-15</k:endingDate>
+        <k:startingDate>2004-10-04</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2004/CDF/Group/"/>
+        <chair rdf:nodeID="b99"/>
+        <charter rdf:resource="http://www.w3.org/2004/CDF/admin/charter.html"/>
+        <name>Compound Document Formats Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b81"/>
+        <teamContact rdf:nodeID="b100"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b97">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-11-15</k:endingDate>
+        <k:startingDate>2005-11-15</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2006/webapi/"/>
+        <contact:mailbox rdf:resource="mailto:public-webapi@w3.org"/>
+        <chair rdf:nodeID="b101"/>
+        <chair rdf:nodeID="b102"/>
+        <charter rdf:resource="http://www.w3.org/2006/webapi/admin/charter"/>
+        <name>Web APIs Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b85"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b98">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-11-15</k:endingDate>
+        <k:startingDate>2005-11-15</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2006/appformats/"/>
+        <contact:mailbox rdf:resource="mailto:public-appformats@w3.org"/>
+        <chair rdf:nodeID="b103"/>
+        <charter rdf:resource="http://www.w3.org/2006/appformats/admin/charter"/>
+        <name>Web Application Formats Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b85"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b99">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Kevin Kelly</contact:fullName>
+        <contact:sortName>Kelly</contact:sortName>
+        <foaf:mbox_sha1sum>3e420961bcd84a2e843d26b905e5199e6bd9e695</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b100">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Masayasu Ishikawa</contact:fullName>
+        <contact:homePage rdf:resource="http://www.w3.org/People/mimasa/"/>
+        <contact:sortName>Ishikawa</contact:sortName>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b101">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Robin Berjon</contact:fullName>
+        <contact:sortName>Berjon</contact:sortName>
+        <foaf:mbox_sha1sum>c77b04531cc63dd8a41b45e320c224e4ede8d6f8</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b102">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Charles McCathieNevile</contact:fullName>
+        <contact:sortName>McCathieNevile</contact:sortName>
+        <foaf:mbox_sha1sum>7c373b50b2b3cb71cf73946aefdcd64f03c30772</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b103">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Art Barstow</contact:fullName>
+        <contact:sortName>Barstow</contact:sortName>
+        <foaf:mbox_sha1sum>d1e68fa17bb8e436a834aae73602e144b202c629</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b104">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2008-07-01</k:endingDate>
+        <k:startingDate>1997-02</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/Style/Group/"/>
+        <chair rdf:nodeID="b93"/>
+        <charter rdf:resource="http://www.w3.org/Style/2004/css-charter-long"/>
+        <name>Cascading Style Sheets (CSS) Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b93"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b105">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2008-07-01</k:endingDate>
+        <k:startingDate>1999-03-01</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/AudioVideo/Group/"/>
+        <contact:mailbox rdf:resource="mailto:www-smil@w3.org"/>
+        <chair rdf:nodeID="b107"/>
+        <chair rdf:nodeID="b108"/>
+        <charter rdf:resource="http://www.w3.org/AudioVideo/2004/symm-wg-charter20040903.html"/>
+        <name>SYMM Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b87"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b106">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-04-30</k:endingDate>
+        <k:startingDate>2003-01-17</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/AudioVideo/TT/Group/"/>
+        <contact:mailbox rdf:resource="mailto:public-tt@w3.org"/>
+        <chair rdf:nodeID="b109"/>
+        <charter rdf:resource="http://www.w3.org/AudioVideo/TT/ttcharter20020901.html"/>
+        <name>Timed Text Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#CPPplus"/>
+        <teamContact rdf:nodeID="b87"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b107">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Dick Bulterman</contact:fullName>
+        <contact:sortName>Bulterman</contact:sortName>
+        <foaf:mbox_sha1sum>15cb0ecf24bf5003e295cb452bdda06100f5d57b</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b108">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Daniel Zucker</contact:fullName>
+        <contact:sortName>Zucker</contact:sortName>
+        <foaf:mbox_sha1sum>ddd194cf3a15e7a3654039266ee8f140b9327438</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b109">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Glenn Adams</contact:fullName>
+        <contact:sortName>Adams</contact:sortName>
+        <foaf:mbox_sha1sum>6885bb6209dcf89b5804073d199eb9732fecf185</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b110">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-04-30</k:endingDate>
+        <k:startingDate>2000-06-23</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/MarkUp/Forms/Group/"/>
+        <chair rdf:nodeID="b90"/>
+        <chair rdf:nodeID="b111"/>
+        <charter rdf:resource="http://www.w3.org/MarkUp/Forms/2003/xforms-wg-charter.html"/>
+        <name>XForms Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#CPPplus"/>
+        <teamContact rdf:nodeID="b90"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b111">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>John Boyer</contact:fullName>
+        <contact:sortName>Boyer</contact:sortName>
+        <foaf:mbox_sha1sum>0b03c80e9f92be2fbe2bcdb85e47df79e9ede9ee</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b112">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2007-12-01</k:endingDate>
+        <k:startingDate>1999-09-01</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2004/pp/"/>
+        <includes rdf:nodeID="b117"/>
+        <lead rdf:nodeID="b116"/>
+        <name>Patent Policy Activity</name>
+        <statement rdf:resource="http://www.w3.org/2004/pp/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b113">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2004-06-30</k:endingDate>
+        <k:startingDate>1997-06-26</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/Privacy/"/>
+        <lead rdf:nodeID="b119"/>
+        <name>Privacy Activity</name>
+        <statement rdf:resource="http://www.w3.org/Privacy/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b114">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2008-06-30</k:endingDate>
+        <k:startingDate>2006-10-12</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/Security/"/>
+        <includes rdf:nodeID="b120"/>
+        <lead rdf:nodeID="b121"/>
+        <name>Security Activity</name>
+        <statement rdf:resource="http://www.w3.org/Security/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b115">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2008-04-30</k:endingDate>
+        <k:startingDate>2001-02-09</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2001/sw/"/>
+        <includes rdf:nodeID="b123"/>
+        <includes rdf:nodeID="b124"/>
+        <includes rdf:nodeID="b125"/>
+        <includes rdf:nodeID="b126"/>
+        <includes rdf:nodeID="b127"/>
+        <includes rdf:nodeID="b128"/>
+        <includes rdf:nodeID="b129"/>
+        <includes rdf:nodeID="b130"/>
+        <lead rdf:nodeID="b131"/>
+        <name>Semantic Web Activity</name>
+        <statement rdf:resource="http://www.w3.org/2001/sw/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b116">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Daniel J. Weitzner</contact:fullName>
+        <contact:sortName>J. Weitzner</contact:sortName>
+        <foaf:mbox_sha1sum>032c319f439f63efba54f4fa51bfb3a3fafedfbe</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b117">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#InterestGroup"/>
+        <k:endingDate>2007-12-01</k:endingDate>
+        <k:startingDate>2004-12-17</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2004/pp/psig/"/>
+        <chair rdf:nodeID="b116"/>
+        <chair rdf:nodeID="b118"/>
+        <charter rdf:resource="http://www.w3.org/2004/07/psig-charter.html"/>
+        <name>Patents and Standards Interest Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PPnone"/>
+        <teamContact rdf:nodeID="b119"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b118">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Don Deutsch</contact:fullName>
+        <contact:sortName>Deutsch</contact:sortName>
+        <foaf:mbox_sha1sum>e50aaede313343e5ab33179e3f5d7d7c2dbf95d4</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b119">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Rigo Wenning</contact:fullName>
+        <contact:sortName>Wenning</contact:sortName>
+        <foaf:mbox_sha1sum>bc47a262232bab68eb8496d9a01506c4c1c7bc39</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b120">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2008-06-30</k:endingDate>
+        <k:startingDate>2006-10-12</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2006/WSC/"/>
+        <contact:mailbox rdf:resource="mailto:public-wsc-wg@w3.org"/>
+        <chair rdf:nodeID="b122"/>
+        <charter rdf:resource="http://www.w3.org/2005/Security/wsc-charter"/>
+        <name>Web Security Context Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b121"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b121">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Thomas Roessler</contact:fullName>
+        <contact:sortName>Roessler</contact:sortName>
+        <foaf:mbox_sha1sum>6ae83a26182a5884898e304a434861d4bd150919</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b122">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Mary Ellen Zurko</contact:fullName>
+        <contact:sortName>Zurko</contact:sortName>
+        <foaf:mbox_sha1sum>5e34e1b3ca9bae943a91297ff2e638c397e54cda</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b123">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2008-01-31</k:endingDate>
+        <k:startingDate>2006-07-14</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2001/sw/grddl-wg/"/>
+        <contact:mailbox rdf:resource="mailto:public-grddl-wg@w3.org"/>
+        <chair rdf:nodeID="b132"/>
+        <charter rdf:resource="http://www.w3.org/2006/07/grddl-charter"/>
+        <name>GRDDL Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b133"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b124">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-05-31</k:endingDate>
+        <k:startingDate>2004-02-25</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2001/sw/DataAccess/"/>
+        <contact:mailbox rdf:resource="mailto:public-rdf-dawg@w3.org"/>
+        <chair rdf:nodeID="b134"/>
+        <charter rdf:resource="http://www.w3.org/2003/12/swa/dawg-charter.html"/>
+        <name>RDF Data Access Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b61"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b125">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-11-30</k:endingDate>
+        <k:startingDate>2005-11-07</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2005/rules/wg/"/>
+        <contact:mailbox rdf:resource="mailto:public-rif-wg@w3.org"/>
+        <chair rdf:nodeID="b135"/>
+        <chair rdf:nodeID="b136"/>
+        <charter rdf:resource="http://www.w3.org/2005/rules/wg/charter"/>
+        <name>Rule Interchange Format Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b137"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b126">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#CoordinationGroup"/>
+        <k:endingDate>2008-04-30</k:endingDate>
+        <k:startingDate>2001-02-09</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2001/sw/CG/"/>
+        <chair rdf:nodeID="b131"/>
+        <charter rdf:resource="http://www.w3.org/2006/07/swcg-charter"/>
+        <name>Semantic Web Coordination Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b131"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b127">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2008-04-30</k:endingDate>
+        <k:startingDate>2006-07-14</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2006/07/SWD/"/>
+        <contact:mailbox rdf:resource="mailto:public-swd-wg@w3.org"/>
+        <chair rdf:nodeID="b138"/>
+        <chair rdf:nodeID="b139"/>
+        <charter rdf:resource="http://www.w3.org/2006/07/swdwg-charter"/>
+        <name>Semantic Web Deployment (SWD) Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b140"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b128">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#InterestGroup"/>
+        <k:endingDate>2008-01-31</k:endingDate>
+        <k:startingDate>2006-09-12</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2001/sw/sweo/"/>
+        <contact:mailbox rdf:resource="mailto:public-sweo-ig@w3.org"/>
+        <chair rdf:nodeID="b141"/>
+        <charter rdf:resource="http://www.w3.org/2006/07/sweoig-charter.html"/>
+        <name>Semantic Web Education and Outreach (SWEO) Interest Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b131"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b129">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#InterestGroup"/>
+        <k:endingDate>2007-09-01</k:endingDate>
+        <k:startingDate>2005-11-21</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2001/sw/hcls/"/>
+        <contact:mailbox rdf:resource="mailto:public-semweb-lifesci@w3.org"/>
+        <chair rdf:nodeID="b142"/>
+        <chair rdf:nodeID="b143"/>
+        <charter rdf:resource="http://www.w3.org/2001/sw/hcls/charter"/>
+        <name>Semantic Web Health Care and Life Sciences Interest Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b61"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b130">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#InterestGroup"/>
+        <k:endingDate>2008-04-30</k:endingDate>
+        <k:startingDate>1999-08-09</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2001/sw/interest/"/>
+        <contact:mailbox rdf:resource="mailto:semantic-web@w3.org"/>
+        <chair rdf:nodeID="b144"/>
+        <charter rdf:resource="http://www.w3.org/2006/07/swig-charter"/>
+        <name>Semantic Web Interest Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b131"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b131">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Ivan Herman</contact:fullName>
+        <contact:sortName>Herman</contact:sortName>
+        <foaf:mbox_sha1sum>5ac8032d5f6012aa1775ea2f63e1676bafd5e80b</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b132">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Harry Halpin</contact:fullName>
+        <contact:sortName>Halpin</contact:sortName>
+        <foaf:mbox_sha1sum>53744018fa399c214613bae3c685eb8b8f9e58da</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b133">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Dan Connolly</contact:fullName>
+        <contact:sortName>Connolly</contact:sortName>
+        <foaf:mbox_sha1sum>94b6eb0c835f928c5ed565dc3ed1a355ac1b41e5</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b134">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Lee Feigenbaum</contact:fullName>
+        <contact:sortName>Feigenbaum</contact:sortName>
+        <foaf:mbox_sha1sum>5cd322484f9edbbd5e3cb31337f93ecd0865f5e8</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b135">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Christian de Sainte Marie</contact:fullName>
+        <contact:sortName>de Sainte Marie</contact:sortName>
+        <foaf:mbox_sha1sum>c4f3ef040d8343c47886296909f0459787d89eef</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b136">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Chris Welty</contact:fullName>
+        <contact:sortName>Welty</contact:sortName>
+        <foaf:mbox_sha1sum>5e6cb54adec7abaae748c7f4f6a5823f67026b2c</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b137">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Sandro Hawke</contact:fullName>
+        <contact:sortName>Hawke</contact:sortName>
+        <foaf:mbox_sha1sum>2c098f780abf7f05166243a541edeb966dfbd596</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b138">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Thomas Baker</contact:fullName>
+        <contact:sortName>Baker</contact:sortName>
+        <foaf:mbox_sha1sum>beb5c110b9d9f5e8036cc8446554bbdff87c801c</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b139">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Guus Schreiber</contact:fullName>
+        <contact:sortName>Schreiber</contact:sortName>
+        <foaf:mbox_sha1sum>ddaa983ca5d101642d761f81ec885e9c2bd0a093</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b140">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Ralph Swick</contact:fullName>
+        <contact:sortName>Swick</contact:sortName>
+        <foaf:mbox_sha1sum>7bcd7c01107279388a475875374988e51fb0ca6d</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b141">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Susie Stephens</contact:fullName>
+        <contact:sortName>Stephens</contact:sortName>
+        <foaf:mbox_sha1sum>f77c749a3c8db3ca5d3375135a322ac3dd3997c6</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b142">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Tonya Hongsermeier</contact:fullName>
+        <contact:sortName>Hongsermeier</contact:sortName>
+        <foaf:mbox_sha1sum>b5e386ee64cacaaa1c051f41a00bb539d206dbee</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b143">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Eric Neumann</contact:fullName>
+        <contact:sortName>Neumann</contact:sortName>
+        <foaf:mbox_sha1sum>fc367f348a834999e5197f2da2d830c69ae1cbfc</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b144">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Dan Brickley</contact:fullName>
+        <contact:sortName>Brickley</contact:sortName>
+        <foaf:mbox_sha1sum>748934f32135cfcf6f8c06e253c53442721e15e7</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b145">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2006-10-31</k:endingDate>
+        <k:startingDate>2001-01-30</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2001/di/"/>
+        <includes rdf:nodeID="b150"/>
+        <lead rdf:nodeID="b151"/>
+        <name>Device Independence Activity</name>
+        <statement rdf:resource="http://www.w3.org/2001/di/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b146">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2008-05-31</k:endingDate>
+        <k:startingDate>2005-05-10</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/Mobile/"/>
+        <includes rdf:nodeID="b154"/>
+        <includes rdf:nodeID="b155"/>
+        <includes rdf:nodeID="b156"/>
+        <lead rdf:nodeID="b149"/>
+        <name>Mobile Web Initiative Activity</name>
+        <statement rdf:resource="http://www.w3.org/2005/MWI/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b147">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2007-03-31</k:endingDate>
+        <k:startingDate>2002-02-14</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2002/mmi/"/>
+        <includes rdf:nodeID="b163"/>
+        <lead rdf:nodeID="b164"/>
+        <name>Multimodal Interaction Activity</name>
+        <statement rdf:resource="http://www.w3.org/2002/mmi/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b148">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2007-03-31</k:endingDate>
+        <k:startingDate>1999-03-26</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/Voice/"/>
+        <includes rdf:nodeID="b167"/>
+        <lead rdf:nodeID="b151"/>
+        <name>Voice Browser Activity</name>
+        <statement rdf:resource="http://www.w3.org/Voice/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b149">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Philipp Hoschka</contact:fullName>
+        <contact:sortName>Hoschka</contact:sortName>
+        <foaf:mbox_sha1sum>b8d0f514694045e0812e8928347b8bf55757629a</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b150">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2008-05-31</k:endingDate>
+        <k:startingDate>2001-01-30</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2001/di/Group/"/>
+        <chair rdf:nodeID="b152"/>
+        <charter rdf:resource="http://www.w3.org/2006/09/mwi-ddwg2-charter"/>
+        <name>Device Independence Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b151"/>
+        <teamContact rdf:nodeID="b153"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b151">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Max Froumentin</contact:fullName>
+        <contact:sortName>Froumentin</contact:sortName>
+        <foaf:mbox_sha1sum>eda070d04d7495fa13e43cf964526d62b60a0566</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b152">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Rhys Lewis</contact:fullName>
+        <contact:sortName>Lewis</contact:sortName>
+        <foaf:mbox_sha1sum>000e625744bf1953ddee4215ff9cdd6a00da1a32</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b153">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Stéphane Boyera</contact:fullName>
+        <contact:sortName>Boyera</contact:sortName>
+        <foaf:mbox_sha1sum>bb64569680619d11f9ed32904883882f2102cab3</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b154">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-06-30</k:endingDate>
+        <k:startingDate>2005-05-10</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2005/MWI/BPWG/Group/"/>
+        <chair rdf:nodeID="b157"/>
+        <charter rdf:resource="http://www.w3.org/2005/01/BPWGCharter/"/>
+        <name>Mobile Web Best Practice Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b85"/>
+        <teamContact rdf:nodeID="b158"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b155">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2008-05-31</k:endingDate>
+        <k:startingDate>2005-05-10</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2005/MWI/DDWG/Group/"/>
+        <chair rdf:nodeID="b159"/>
+        <charter rdf:resource="http://www.w3.org/2006/09/mwi-ddwg2-charter"/>
+        <name>Mobile Web Initiative Device Description Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b160"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b156">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-12-31</k:endingDate>
+        <k:startingDate>2006-12-05</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2005/MWI/Tests/"/>
+        <contact:mailbox rdf:resource="mailto:public-mwts@w3.org"/>
+        <chair rdf:nodeID="b161"/>
+        <chair rdf:nodeID="b162"/>
+        <charter rdf:resource="http://www.w3.org/2006/02/mwi-test-charter.html"/>
+        <name>Mobile Web Initiative Test Suites Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b162"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b157">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Daniel Appelquist</contact:fullName>
+        <contact:sortName>Appelquist</contact:sortName>
+        <foaf:mbox_sha1sum>8c2b15b5268a336cea28a0a43aca0982b07e23c2</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b158">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Michael Smith</contact:fullName>
+        <contact:sortName>Smith</contact:sortName>
+        <foaf:mbox_sha1sum>dc36d658320e227bd3f7af16d23c7db63da5ba3c</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b159">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Rotan Hanrahan</contact:fullName>
+        <contact:sortName>Hanrahan</contact:sortName>
+        <foaf:mbox_sha1sum>0ff4742a7e268939540d5a27bb04a1dc958010f8</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b160">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Cédric Kiss</contact:fullName>
+        <contact:sortName>Kiss</contact:sortName>
+        <foaf:mbox_sha1sum>107be41f072c3e01fc1a5d2cf6c2df90b3bcd4ee</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b161">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Carmelo Montanez</contact:fullName>
+        <contact:homePage rdf:resource="mailto:carmelo@nist.gov"/>
+        <contact:sortName>Montanez</contact:sortName>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b162">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Dominique Hazaël-Massieux</contact:fullName>
+        <contact:homePage rdf:resource="http://www.w3.org/People/Dom/"/>
+        <contact:sortName>Hazaël-Massieux</contact:sortName>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b163">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-03-31</k:endingDate>
+        <k:startingDate>2002-02-25</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2002/mmi/Group/"/>
+        <contact:mailbox rdf:resource="mailto:www-multimodal@w3.org"/>
+        <chair rdf:nodeID="b91"/>
+        <charter rdf:resource="http://www.w3.org/2004/03/mmi-charter.html"/>
+        <name>Multimodal Interaction Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b165"/>
+        <teamContact rdf:nodeID="b166"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b164">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Kazuyuki Ashimura</contact:fullName>
+        <contact:sortName>Ashimura</contact:sortName>
+        <foaf:mbox_sha1sum>7b425e549b80b1a7dbb18fd9bc477dfa339b6669</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b165">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Kazuyuki Ashimura</contact:fullName>
+        <contact:sortName>Ashimura</contact:sortName>
+        <foaf:mbox_sha1sum>735674f3cb1fff6116917d151ad9860d1e02b1e4</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b166">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Dave Raggett</contact:fullName>
+        <contact:homePage rdf:resource="http://www.w3.org/People/Raggett/"/>
+        <contact:sortName>Raggett</contact:sortName>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b167">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-03-31</k:endingDate>
+        <k:startingDate>1999-03-26</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/Voice/Group/"/>
+        <chair rdf:nodeID="b168"/>
+        <chair rdf:nodeID="b169"/>
+        <charter rdf:resource="http://www.w3.org/2004/11/voice-charter.html"/>
+        <name>Voice Browser Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b151"/>
+        <teamContact rdf:nodeID="b164"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b168">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Jim Larson</contact:fullName>
+        <contact:sortName>Larson</contact:sortName>
+        <foaf:mbox_sha1sum>0bf28e46863ef625e58a290ce40c82e8dd1a367e</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b169">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Scott McGlashan</contact:fullName>
+        <contact:sortName>McGlashan</contact:sortName>
+        <foaf:mbox_sha1sum>c3851afde7fe79789ecc743db476b3f74e352833</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b170">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2007-12-31</k:endingDate>
+        <k:startingDate>1997-10-22</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/WAI/IPO/"/>
+        <includes rdf:nodeID="b173"/>
+        <includes rdf:nodeID="b174"/>
+        <includes rdf:nodeID="b175"/>
+        <includes rdf:nodeID="b176"/>
+        <lead rdf:nodeID="b172"/>
+        <name>WAI International Program Office Activity</name>
+        <statement rdf:resource="http://www.w3.org/WAI/IPO/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b171">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2007-12-31</k:endingDate>
+        <k:startingDate>1998-01</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/WAI/Technical/"/>
+        <includes rdf:nodeID="b179"/>
+        <includes rdf:nodeID="b180"/>
+        <includes rdf:nodeID="b181"/>
+        <includes rdf:nodeID="b182"/>
+        <includes rdf:nodeID="b183"/>
+        <lead rdf:nodeID="b172"/>
+        <name>WAI Technical Activity</name>
+        <statement rdf:resource="http://www.w3.org/WAI/Technical/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b172">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Judy Brewer</contact:fullName>
+        <contact:sortName>Brewer</contact:sortName>
+        <foaf:mbox_sha1sum>e898966e43725797613dd8b3489a527b643c5976</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b173">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-12-31</k:endingDate>
+        <k:startingDate>1998-03-10</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/WAI/EO/"/>
+        <contact:mailbox rdf:resource="mailto:w3c-wai-eo@w3.org"/>
+        <chair rdf:nodeID="b172"/>
+        <charter rdf:resource="http://www.w3.org/WAI/EO/charter4.html"/>
+        <name>Education and Outreach Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b177"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b174">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#InterestGroup"/>
+        <k:endingDate>2007-04-30</k:endingDate>
+        <k:startingDate>2000-11-01</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/WAI/RD/"/>
+        <contact:mailbox rdf:resource="mailto:public-wai-rd@w3.org"/>
+        <chair rdf:nodeID="b178"/>
+        <charter rdf:resource="http://www.w3.org/WAI/RD/charter2.html"/>
+        <name>Research and Development Interest Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b172"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b175">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#CoordinationGroup"/>
+        <k:endingDate>2007-12-31</k:endingDate>
+        <k:startingDate>2000-09</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/WAI/CG/Group/"/>
+        <chair rdf:nodeID="b172"/>
+        <charter rdf:resource="http://www.w3.org/WAI/CG/charter3.html"/>
+        <name>WAI Coordination Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b172"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b176">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#InterestGroup"/>
+        <k:endingDate>2007-12-31</k:endingDate>
+        <k:startingDate>1998-10</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/WAI/IG/"/>
+        <contact:mailbox rdf:resource="mailto:w3c-wai-ig@w3.org"/>
+        <chair rdf:nodeID="b172"/>
+        <charter rdf:resource="http://www.w3.org/WAI/IG/charter3.html"/>
+        <name>WAI Interest Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b172"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b177">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Shawn Henry</contact:fullName>
+        <contact:sortName>Henry</contact:sortName>
+        <foaf:mbox_sha1sum>f3f63720da696646033fba6c85b0a1219321a020</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b178">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Markku Hakkinen</contact:fullName>
+        <contact:sortName>Hakkinen</contact:sortName>
+        <foaf:mbox_sha1sum>6165fbd56386fb189c8514cf06929264d8f18a91</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b179">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-04-30</k:endingDate>
+        <k:startingDate>1997-12</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/WAI/AU/"/>
+        <contact:mailbox rdf:resource="mailto:w3c-wai-au@w3.org"/>
+        <chair rdf:nodeID="b184"/>
+        <charter rdf:resource="http://www.w3.org/WAI/AU/charter5-20040116.html"/>
+        <name>Authoring Tool Accessibility Guidelines Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b185"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b180">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-04-30</k:endingDate>
+        <k:startingDate>2000-11-01</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/WAI/ER/"/>
+        <contact:mailbox rdf:resource="mailto:public-wai-ert@w3.org"/>
+        <chair rdf:nodeID="b186"/>
+        <charter rdf:resource="http://www.w3.org/WAI/ER/charter3.html"/>
+        <name>Evaluation and Repair Tools Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b186"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b181">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-12-31</k:endingDate>
+        <k:startingDate>1997-12</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/WAI/PF/Group/"/>
+        <chair rdf:nodeID="b187"/>
+        <charter rdf:resource="http://www.w3.org/WAI/PF/charter200409.html"/>
+        <name>Protocols and Formats Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b188"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b182">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-04-30</k:endingDate>
+        <k:startingDate>1997-12</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/WAI/UA/"/>
+        <contact:mailbox rdf:resource="mailto:w3c-wai-ua@w3.org"/>
+        <chair rdf:nodeID="b189"/>
+        <charter rdf:resource="http://www.w3.org/WAI/UA/charter-20041107.html"/>
+        <name>User Agent Accessibility Guidelines Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b185"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b183">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:endingDate>2007-04-30</k:endingDate>
+        <k:startingDate>1997-10</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/WAI/GL/"/>
+        <contact:mailbox rdf:resource="mailto:w3c-wai-gl@w3.org"/>
+        <chair rdf:nodeID="b190"/>
+        <chair rdf:nodeID="b191"/>
+        <charter rdf:resource="http://www.w3.org/2004/04/wcag-charter.html"/>
+        <name>Web Content Accessibility Guidelines Working Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+        <teamContact rdf:nodeID="b188"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b184">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Jutta Treviranus</contact:fullName>
+        <contact:sortName>Treviranus</contact:sortName>
+        <foaf:mbox_sha1sum>77691020bdba11238bc9436f108cadf54238c3e1</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b185">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Jan Richards</contact:fullName>
+        <contact:sortName>Richards</contact:sortName>
+        <foaf:mbox_sha1sum>8f002d8f5526169b4e489907b9a6e45ef090cedb</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b186">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Shadi Abou-Zahra</contact:fullName>
+        <contact:sortName>Abou-Zahra</contact:sortName>
+        <foaf:mbox_sha1sum>3c723f3b2cdff5d9ca36f2738b72521e52b91ceb</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b187">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Alfred Gilman</contact:fullName>
+        <contact:sortName>Gilman</contact:sortName>
+        <foaf:mbox_sha1sum>15f532acab7207feb3371301956a7dafda4207c6</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b188">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Michael Cooper</contact:fullName>
+        <contact:sortName>Cooper</contact:sortName>
+        <foaf:mbox_sha1sum>fdb2697d9129d05c4dc200098d2a530646c7060c</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b189">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Jim Allan</contact:fullName>
+        <contact:sortName>Allan</contact:sortName>
+        <foaf:mbox_sha1sum>9512af880a20a75ba97c1a6b8e45e5cb8d7d3d65</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b190">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Loretta Guarino Reid</contact:fullName>
+        <contact:sortName>Guarino Reid</contact:sortName>
+        <foaf:mbox_sha1sum>7b4f986b009670ba48b033c9968acc1fef27c671</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b191">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Gregg Vanderheiden</contact:fullName>
+        <contact:sortName>Vanderheiden</contact:sortName>
+        <foaf:mbox_sha1sum>a685d675c3c79fd71130961d337769af0fd4ef51</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b192">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2007-09-30</k:endingDate>
+        <k:startingDate>2001-08-16</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/QA/"/>
+        <includes rdf:nodeID="b196"/>
+        <lead rdf:nodeID="b197"/>
+        <name>Quality Assurance Activity</name>
+        <statement rdf:resource="http://www.w3.org/QA/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b193">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:endingDate>2008-02-07</k:endingDate>
+        <k:startingDate>2006-02-08</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2005/Incubator/"/>
+        <includes rdf:nodeID="b199"/>
+        <includes rdf:nodeID="b200"/>
+        <includes rdf:nodeID="b201"/>
+        <includes rdf:nodeID="b202"/>
+        <includes rdf:nodeID="b203"/>
+        <lead rdf:nodeID="b204"/>
+        <name>Incubator Activity</name>
+        <statement rdf:resource="http://www.w3.org/2005/Incubator/Activity.html"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b194">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:startingDate>2001-12-11</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2001/tag/"/>
+        <includes rdf:nodeID="b211"/>
+        <lead rdf:nodeID="b212"/>
+        <name>Technical Architecture Group</name>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b195">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Activity"/>
+        <k:startingDate>1998-02-27</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/Member/Board/"/>
+        <includes rdf:nodeID="b213"/>
+        <lead rdf:nodeID="b204"/>
+        <name>Advisory Board</name>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b196">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#InterestGroup"/>
+        <k:endingDate>2007-09-30</k:endingDate>
+        <k:startingDate>2001-08-16</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/QA/IG/"/>
+        <contact:mailbox rdf:resource="mailto:www-qa@w3.org"/>
+        <chair rdf:nodeID="b197"/>
+        <chair rdf:nodeID="b198"/>
+        <charter rdf:resource="http://www.w3.org/2005/10/qa-ig-charter"/>
+        <name>QA Interest Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+        <teamContact rdf:nodeID="b197"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b197">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Karl Dubost</contact:fullName>
+        <contact:sortName>Dubost</contact:sortName>
+        <foaf:mbox_sha1sum>77cdce78ed09f14d7bb47b8dbc3a400f48f65c65</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b198">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Patrick Curran</contact:fullName>
+        <contact:sortName>Curran</contact:sortName>
+        <foaf:mbox_sha1sum>ec6f0807a4ffdbab6ad2a6e9ac0a9b1c72f044df</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b199">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#IncubatorGroup"/>
+        <k:endingDate>2007-02-07</k:endingDate>
+        <k:startingDate>2006-02-08</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2005/Incubator/wcl/"/>
+        <contact:mailbox rdf:resource="mailto:public-xg-wcl@w3.org"/>
+        <chair rdf:nodeID="b205"/>
+        <charter rdf:resource="http://www.w3.org/2005/Incubator/wcl/wcl-charter-20060208"/>
+        <name>Content Label Incubator Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b200">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#IncubatorGroup"/>
+        <k:endingDate>2007-10-15</k:endingDate>
+        <k:startingDate>2006-11-06</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2005/Incubator/cwl/"/>
+        <contact:mailbox rdf:resource="mailto:public-xg-cwl@w3.org"/>
+        <chair rdf:nodeID="b206"/>
+        <charter rdf:resource="http://www.w3.org/2005/Incubator/cwl/charter"/>
+        <name>Common Web Language Incubator Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b201">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#IncubatorGroup"/>
+        <k:endingDate>2007-07-10</k:endingDate>
+        <k:startingDate>2006-07-19</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2005/Incubator/emotion/"/>
+        <contact:mailbox rdf:resource="mailto:public-xg-emotion@w3.org"/>
+        <chair rdf:nodeID="b207"/>
+        <charter rdf:resource="http://www.w3.org/2005/Incubator/emotion/charter"/>
+        <name>Emotion Incubator Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b202">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#IncubatorGroup"/>
+        <k:endingDate>2007-06-23</k:endingDate>
+        <k:startingDate>2006-07-05</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2005/Incubator/geo/"/>
+        <contact:mailbox rdf:resource="mailto:public-xg-geo@w3.org"/>
+        <chair rdf:nodeID="b208"/>
+        <charter rdf:resource="http://www.w3.org/2005/Incubator/geo/charter"/>
+        <name>Geospatial Incubator Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b203">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#IncubatorGroup"/>
+        <k:endingDate>2007-05-01</k:endingDate>
+        <k:startingDate>2006-04-25</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2005/Incubator/mmsem/"/>
+        <contact:mailbox rdf:resource="mailto:public-xg-mmsem@w3.org"/>
+        <chair rdf:nodeID="b209"/>
+        <chair rdf:nodeID="b210"/>
+        <charter rdf:resource="http://www.w3.org/2005/Incubator/mmsem/charter"/>
+        <name>Multimedia Semantics Incubator Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#disclosure"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b204">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Steve Bratt</contact:fullName>
+        <contact:sortName>Bratt</contact:sortName>
+        <foaf:mbox_sha1sum>f4a31a6fd8ef87f6d6620224542982cd6cf58dee</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b205">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Phil Archer</contact:fullName>
+        <contact:sortName>Archer</contact:sortName>
+        <foaf:mbox_sha1sum>2bfd5c4829c7532ce6fa80d8e90ba13b978de41a</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b206">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Hiroshi Uchida</contact:fullName>
+        <contact:sortName>Uchida</contact:sortName>
+        <foaf:mbox_sha1sum>14c22a4b7268c69c2f8a83c0f71d6c1893ca9f3e</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b207">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Marc Schröder</contact:fullName>
+        <contact:sortName>Schröder</contact:sortName>
+        <foaf:mbox_sha1sum>e146bfd4a7ac4aee3d897b10a27c6c9e59b000db</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b208">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Joshua Lieberman</contact:fullName>
+        <contact:sortName>Lieberman</contact:sortName>
+        <foaf:mbox_sha1sum>7496033cfd4ba3747fdec41ca9a489e30e4da269</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b209">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Jeff Pan</contact:fullName>
+        <contact:sortName>Pan</contact:sortName>
+        <foaf:mbox_sha1sum>24b23425121f196eb8f9826538eac262f57cf66d</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b210">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Raphaël Troncy</contact:fullName>
+        <contact:sortName>Troncy</contact:sortName>
+        <foaf:mbox_sha1sum>c9a868f278f25222e8a17de74eb1711051e82486</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b211">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:startingDate>2001-10-01</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/2001/tag/"/>
+        <contact:mailbox rdf:resource="mailto:www-tag@w3.org"/>
+        <chair rdf:nodeID="b212"/>
+        <charter rdf:resource="http://www.w3.org/Consortium/Process/organization.html#TAG"/>
+        <name>Technical Architecture Group</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#PP"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b212">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Tim Berners-Lee</contact:fullName>
+        <contact:homePage rdf:resource="http://www.w3.org/People/Berners-Lee/"/>
+        <contact:sortName>Berners-Lee</contact:sortName>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b213">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#WorkingGroup"/>
+        <k:startingDate>1998-02-27</k:startingDate>
+        <contact:homePage rdf:resource="http://www.w3.org/Member/Board/"/>
+        <chair rdf:nodeID="b214"/>
+        <charter rdf:resource="http://www.w3.org/Consortium/Process/organization.html#AB"/>
+        <name>Advisory Board</name>
+        <patentRules rdf:resource="http://www.w3.org/Member/Mail/#preCPP"/>
+        <teamContact rdf:nodeID="b215"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b214">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Steve Zilles</contact:fullName>
+        <contact:sortName>Zilles</contact:sortName>
+        <foaf:mbox_sha1sum>e996836b7c5713922c730df751d6faa76cf0182d</foaf:mbox_sha1sum>
+    </rdf:Description>
+
+    <rdf:Description rdf:nodeID="b215">
+        <rdf:type rdf:resource="http://www.w3.org/2001/04/roadmap/org#Individual"/>
+        <contact:fullName>Ian Jacobs</contact:fullName>
+        <contact:homePage rdf:resource="http://www.w3.org/People/Jacobs/"/>
+        <contact:sortName>Jacobs</contact:sortName>
+    </rdf:Description>
+</rdf:RDF>
