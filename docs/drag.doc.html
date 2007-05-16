@@ -24,6 +24,10 @@ Additional options can be specified using <em>optObj</em> object:</p>
 <ul>
 	<li>type - one of the constants, specifies direction in which the dragging will be possible</li>
 	<li>restrictionFunction - callback which specifies movement restriction</li>
+	<li>endFunction - callback to be executed when dragging ends</li>
+	<li>magnetsH - array of elements to horizontaly snap to</li>
+	<li>magnetsV - array of elements to vertically snap to</li>
+	<li>cursor - bool, adjust automatically css cursor?</li>
 </ul>
 <p class="code">
 var header = Dom.create("div"); <br/>

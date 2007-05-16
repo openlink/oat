@@ -4,7 +4,7 @@
 
 <h3>Objects</h3>
 <ul>
-	<li><a href="#timeline">OAT.Timeline(portDiv, sliderDiv, optObj)</a></li>
+	<li><a href="#timeline">OAT.Timeline(contentDiv, optObj)</a></li>
 </ul>
 
 <h3>Methods</h3>
@@ -23,13 +23,13 @@
 
 <hr/>
 
-<h3><a name="timeline">OAT.Timeline(portDiv, sliderDiv, optObj)</a></h3>
-<p>Creates a Timeline inside <em>portDiv</em>. The <em>sliderDiv</em> will host Timeline's Slider. <em>optObj</em> may contain these options:</p>
+<h3><a name="timeline">OAT.Timeline(contentDiv, optObj)</a></h3>
+<p>Creates a Timeline inside <em>contentDiv</em>. <em>optObj</em> may contain these options:</p>
 <ul>
-	<li>portWidth - int</li>
 	<li>lineHeight - int, height of one record </li>
 	<li>bandHeight - int, height of one band's header</li>
-	<li>bandColor - string, color of bottom band with timestamps</li>
+	<li>sliderHeight - int, height of slider</li>
+	<li>autoHeight - bool, should height be automatically adjusted?</li>
 </ul>
 
 <h3><a name="addband">OAT.Timeline::addBand(name, color, label)</a></h3>

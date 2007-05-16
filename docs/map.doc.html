@@ -21,6 +21,7 @@
 	<li><a href="#openwindow">OAT.Map::openWindow(marker, something)</a></li>
 	<li><a href="#closewindow">OAT.Map::closeWindow()</a></li>
 	<li><a href="#optimalposition">OAT.Map::optimalPosition(pointArray)</a></li>
+	<li><a href="#geocode">OAT.Map::geoCode(address, callback)</a></li>
 </ul>
 
 <h3>Constants</h3>
@@ -85,6 +86,10 @@ Finally, <em>callback</em> is a function to be executed when user clicks marker.
 
 <h3><a name="optimalposition">OAT.Map::optimalPosition(pointArray)</a></h3>
 <p>Zooms map so all points specified in <em>pointArray</em> (array of 2-element arrays) can be visible simultaneously.</p>
+
+<h3><a name="geocode">OAT.Map::geoCode(address, callback)</a></h3>
+<p>Performs a geocoding lookup of <em>address</em>. When result is returned, <em>callback</em> is executed. 
+Its only argument is <code>false</code> when no result was found, or an array of <code>[lat,long]</code>.
 
 <pre class="code">
 var obj = {

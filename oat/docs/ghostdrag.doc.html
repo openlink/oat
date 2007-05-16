@@ -47,7 +47,7 @@ var product = Dom.create("img");<br/>
 var shopping_cart = Dom.create("div"); <br/>
 var gd = new OAT.GhostDrag(); <br/>
 var dummyReference = function() {}; <br/>
-var successReference = function(x, y, target) { alert("Success!"); } <br/>
+var successReference = function(target, x, y) { alert("Success!"); } <br/>
 gd.addTarget(shopping_cart); <br/>
 gr.addSource(product, dummyReference, successReference);
 </p>

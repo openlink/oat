@@ -14,7 +14,7 @@ var featureList = ["grid","pivot",barchart"];<br/>
 &lt;script&gt;</p>
 			</li>
 			<li>Include <em>loader.js</em> file:
-				<p class="code">&lt;script type="text/javascript" src="oat/loader.js"&gt;&lt;script&gt;</p>
+				<p class="code">&lt;script type="text/javascript" src="oat/loader.js"&gt;&lt;/script&gt;</p>
 			</li>
 		</ol>
 	</li>
@@ -39,7 +39,7 @@ var featureList = ["grid","pivot",barchart"];<br/>
 				calendar.show(event.clientX, event.clientY, returnedDate);
 			}
 			
-			OAT.Dom.attach("button","click",showCallback);
+			OAT.Event.attach("button","click",showCallback);
 		}
 	&lt;/script&gt;
 	&lt;script type="text/javascript" src="oat/loader.js"&gt;&lt;/script&gt;

@@ -12,6 +12,11 @@
 	<li><a href="#addobject">OAT.Dock.addObject(colIndex, content, options)</a></li>
 </ul>
 
+<h3>Messages</h3>
+<ul>
+	<li>OAT.MSG.DOCK_DRAG</li>
+</ul>
+
 <h3>CSS classes</h3>
 <ul>
 	<li>.dock</li>
@@ -23,7 +28,6 @@
 	<li>.dock_header</li>
 	<li>.dock_content</li>
 </ul>
-
 
 <hr/>
 
@@ -43,6 +47,6 @@
 <p class="code">
 var content = OAT.Dom.create("div");<br/>
 content.innerHTML = "lorem ipsum :)"<br/>
-var d = new OAT.Dock(3); <br/>
+var d = new OAT.Dock("parentDiv", 3); <br/>
 d.addObject(0, content, {title:"Sample window"});
 </p>

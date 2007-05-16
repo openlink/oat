@@ -9,7 +9,7 @@
 
 <h3>Methods</h3>
 <ul>
-	<li><a href="#addoption">OAT.Combolist::addOption(text)</a></li>
+	<li><a href="#addoption">OAT.Combolist::addOption(label, value)</a></li>
 	<li><a href="#clearopts">OAT.Combolist::clearOpts()</a></li>
 </ul>
 
@@ -32,8 +32,8 @@ Onchange callback may be set via <code>OAT.Combolist::onchange</code> property. 
 	<li>imagePath</li>
 </ul>
 
-<h3><a name="addoption">OAT.Combolist::addOption(text)</a></h3>
-<p>Adds a new option with value of <em>text</em>.</p>
+<h3><a name="addoption">OAT.Combolist::addOption(label, value)</a></h3>
+<p>Adds a new option labeled <em>label</em> with value of <em>value</em>. If <em>value</em> is not specified, <em>label<em> is used instead.</p>
 
 <h3><a name="clearopts">OAT.Combolist::clearOpts()</a></h3>
 <p>Clears all options.</p>
@@ -42,5 +42,5 @@ Onchange callback may be set via <code>OAT.Combolist::onchange</code> property. 
 	var cl = new OAT.Combolist([],"default",{name:"myName"});<br/>
 	document.body.appendChild( cl.div );<br/>
 	cl.addOption("option 1");<br/>
-	cl.addOption("option 2");<br/>
+	cl.addOption("option 2","value 2");<br/>
 </p>

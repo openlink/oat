@@ -54,10 +54,13 @@ When response arrives, <em>callback(response)</em> will be executed. You may spe
 	<li>type - response format, one of TYPE_ constants</li>
 	<li>auth - authorization type, one of AUTH_ constants</li>
 	<li>async - bool</li>
+	<li>noSecurityCookie - bool, forbids sending a security cookie & corresponding GET parameter</li>
 	<li>user, password - credentials for http authorization</li>
 	<li>headers - JS object containing additional headers to be sent</li>
 	<li>onerror - callback to be executed when error occurs</li>
 </ul>
+<p style="color:#f00">To prevent JavaScript hijacking attacks, 
+web application authors are encouraged to use some of the countermeasures described in 'security' part of the documentation.</p>
 
 <pre class="code">
 var options = {
@@ -67,7 +70,7 @@ var options = {
 	onerror:function(request) { alert(request.getStatus()); }
 }
 var callback = function(data) { alert(data); };
-OAT.AJAX.command("/myfile.xml", false, callback, options);
+OAT.AJAX.GET("/myfile.xml", false, callback, options);
 </pre>
 
 <h3><a name="cancelall">OAT.AJAX.cancelAll()</a></h3>

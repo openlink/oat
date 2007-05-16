@@ -9,8 +9,10 @@
  */
 var TOC = [];
 TOC.push(["Basic operation","basic.doc.html"]);
+TOC.push(["Obsolete calls","obsolete.doc.html"]);
 TOC.push(["Event handling basics","events.doc.html"]);
 TOC.push(["Messaging","msg.doc.html"]);
+TOC.push(["Security","security.doc.html"]);
 TOC.push(["ajax2.js","ajax2.doc.html"]);
 TOC.push(["ajax.js - OLD!","ajax.doc.html"]);
 TOC.push(["anchor.js","anchor.doc.html"]);
@@ -26,6 +28,7 @@ TOC.push(["combobutton.js","combobutton.doc.html"]);
 TOC.push(["combolist.js","combolist.doc.html"]);
 TOC.push(["crypto.js","crypto.doc.html"]);
 TOC.push(["datasource.js","datasource.doc.html"]);
+TOC.push(["dav.js","dav.doc.html"]);
 TOC.push(["dialog.js","dialog.doc.html"]);
 TOC.push(["dimmer.js","dimmer.doc.html"]);
 TOC.push(["dock.js","dock.doc.html"]);

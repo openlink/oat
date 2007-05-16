@@ -4,9 +4,8 @@
 
 <h3>Functions</h3>
 <ul>
- 	var xml = OAT.Xml.transformXSLT(xmlDoc,xslDoc)
 	<li><a href="#createxmldoc">OAT.Xml.createXmlDoc(string)</a></li>
-	<li><a href="#transformxslt">OAT.Xml.transformXSLT(xmlDoc, xslDoc)</a></li>
+	<li><a href="#transformxslt">OAT.Xml.transformXSLT(xmlDoc, xslDoc, paramsArray)</a></li>
 	<li><a href="#textvalue">OAT.Xml.textValue(node)</a></li>
 	<li><a href="#localname">OAT.Xml.localName(node)</a></li>
 	<li><a href="#childelements">OAT.Xml.childElements(node)</a></li>
@@ -21,9 +20,18 @@
 <h3><a name="createxmldoc">OAT.Xml.createXmlDoc(string)</a></h3>
 <p>Parses a <em>string</em> of XML data and returns a <em>document</em> object.</p>
 
-<h3><a name="transformxslt">OAT.Xml.transformXSLT(xmlDoc, xslDoc)</a></h3>
+<h3><a name="transformxslt">OAT.Xml.transformXSLT(xmlDoc, xslDoc, paramsArray)</a></h3>
 <p>Applies a XSLT template. <em>xslDoc</em> is a template to be applied to <em>xmlDoc</em>. Both arguments need to be valid
- xml documents (not strings).</p>
+ xml documents (not strings). The third (optional) argument is an array of XSLT parameters. Each parameter is a triple (array), 
+which consists of Namespace, Name and Value.</p>
+<pre class="code">
+var xmlDoc, xslDoc; // somehow will these with data
+var params = [
+	["myNS","myparam1","myvalue1"],
+	["myNS","myparam2","myvalue2"]
+]
+var result = OAT.Xml.transformXSLT(xmlDoc, xslDoc, params);
+</pre>
  
 <h3><a name="textvalue">OAT.Xml.textValue(node)</a></h3>
 <p>Returns a text value of <em>node</em>. So, for this markup:</p>

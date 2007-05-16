@@ -5,30 +5,60 @@
 <ul>
 	<li><a href="#$">$(element)</a></li>
 	<li><a href="#$v">$v(element)</a></li>
-	<li><a href="#create">OAT.Dom.create(tagName, [styleObj], className)</a></li>
+	
+	<li><a href="#create">OAT.Dom.create(tagName, [styleObj], [className])</a></li>
 	<li><a href="#text">OAT.Dom.text(text)</a></li>
+	<li><a href="#button">OAT.Dom.button(label)</a></li>
+	<li><a href="#radio">OAT.Dom.radio(name)</a></li>
+	<li><a href="#image">OAT.Dom.image(src, srcBlank, width, height)</a></li>
 	<li><a href="#option">OAT.Dom.option(name, value, [parent])</a></li>
+	
 	<li><a href="#append">OAT.Dom.append([parent1, child1, child2, ...], ...)</a></li>
 	<li><a href="#hide">OAT.Dom.hide(element)</a></li>
 	<li><a href="#show">OAT.Dom.show(element)</a></li>
 	<li><a href="#clear">OAT.Dom.clear(element)</a></li>
 	<li><a href="#unlink">OAT.Dom.unlink(element)</a></li>
+	<li><a href="#center">OAT.Dom.center(element, x, y, [reference])</a></li>
 	<li><a href="#ischild">OAT.Dom.isChild(child, parent)</a></li>
-	<li><a href="#hex2dec">OAT.Dom.hex2dec(hex_str)</a></li>
-	<li><a href="#color">OAT.Dom.color(str)</a></li>
+	
 	<li><a href="#isclass">OAT.Dom.isClass(element, className)</a></li>
-	<li><a href="#collide">OAT.Dom.collide(element_1, element_2)</a></li>
-	<li><a href="#attach">OAT.Dom.attach(element, event, callback)</a></li>
-	<li><a href="#detach">OAT.Dom.detach(element, event, callback)</a></li>
-	<li><a href="#source">OAT.Dom.source(event)</a></li>
-	<li><a href="#style">OAT.Dom.style(element, property)</a></li>
+	<li><a href="#addclass">OAT.Dom.addClass(element, className)</a></li>
+	<li><a href="#removeclass">OAT.Dom.removeClass(element, className)</a></li>
+	<li><a href="#getviewport">OAT.Dom.getViewport()</a></li>
+	<li><a href="#getscroll">OAT.Dom.getScroll()</a></li>
 	<li><a href="#position">OAT.Dom.position(element)</a></li>
 	<li><a href="#getlt">OAT.Dom.getLT(element)</a></li>
 	<li><a href="#getwh">OAT.Dom.getWH(element)</a></li>
 	<li><a href="#moveby">OAT.Dom.moveBy(element, dx, dy)</a></li>
 	<li><a href="#resizeby">OAT.Dom.resizeBy(element, dx, dy)</a></li>
-	
+	<li><a href="#removeselection">OAT.Dom.removeSelection()</a></li>
+	<li><a href="#uriparams">OAT.Dom.uriParams()</a></li>
+<hr/>
+	<li><a href="#attach">OAT.Event.attach(element, event, callback)</a></li>
+	<li><a href="#detach">OAT.Event.detach(element, event, callback)</a></li>
+	<li><a href="#source">OAT.Event.source(event)</a></li>
+	<li><a href="#eposition">OAT.Event.position(event)</a></li>
+	<li><a href="#prevent">OAT.Event.prevent(event)</a></li>
+<hr/>
+	<li><a href="#get">OAT.Style.get(element, property)</a></li>
+	<li><a href="#apply">OAT.Style.apply(element, styleObj)</a></li>
+	<li><a href="#opacity">OAT.Style.opacity(element, opacity)</a></li>
+	<li><a href="#background">OAT.Style.background(element, url)</a></li>
+
 </ul>
+	
+<h3>Properties</h3>
+<ul>
+	<li><a href="#isie">OAT.Browser.isIE</a></li>
+	<li><a href="#isie6">OAT.Browser.isIE6</a></li>
+	<li><a href="#isie7">OAT.Browser.isIE7</a></li>
+	<li><a href="#isgecko">OAT.Browser.isGecko</a></li>
+	<li><a href="#isopera">OAT.Browser.isOpera</a></li>
+	<li><a href="#iswebkit">OAT.Browser.isWebKit</a></li>
+	<li><a href="#iskonqueror">OAT.Browser.isKonqueror</a></li>
+	<li><a href="#ismac">OAT.Browser.isMac</a></li>
+</ul>
+
 <hr/>
 
 <h3><a name="$">$(element)</a></h3>
@@ -43,7 +73,7 @@ Note that it is perfectly correct to pass an object reference to $-function, alt
 <p>This function is identical to <code>$$()</code>. They are shortcuts for <code>$().value</code>. You should use them
 when getting a value of any form element.</p>
 
-<h3><a name="create">OAT.Dom.create(tagName, [styleObj], className)</a></h3>
+<h3><a name="create">OAT.Dom.create(tagName, [styleObj], [className])</a></h3>
 <p>Used for dynamic creation of HTML nodes. Three parameters are accepted, the first one is mandatory. Example:</p>
 <p class="code">
 	var myDiv = OAT.Dom.create("div");
@@ -57,6 +87,16 @@ when getting a value of any form element.</p>
 
 <h3><a name="text">OAT.Dom.text(text)</a></h3>
 <p>Creates and returns DOM text node with value of argument <em>text</em>.</p>
+
+<h3><a name="button">OAT.Dom.button(label)</a></h3>
+<p>Creates and returns DOM button with specified <em>label</em>..</p>
+
+<h3><a name="radio">OAT.Dom.radio(name)</a></h3>
+<p>Creates and returns DOM radio input with specified <em>name</em>.</p>
+
+<h3><a name="image">OAT.Dom.image(src, srcBlank, width, height)</a></h3>
+<p>Creates and returns DOM image node. <em>src</em> is image's URL; when PNG is used, 
+specify <em>srcBlank</em> (url of transparent image) for Internet Explorer's workaround.</p>
 
 <h3><a name="option">OAT.Dom.option(name, value, [parent])</a></h3>
 <p>Creates and returns DOM &lt;option&gt; node with name of <em>name</em> and value of <em>value</em>. 
@@ -76,33 +116,26 @@ If <em>parent</em> is specified, this function also appends newly created node t
 </ul>
 
 <h3><a name="hide">OAT.Dom.hide(element)</a></h3>
-<p>Hides specified <em>element</em> by setting its <code>style.visibility<code> property.</p>
+<p>Hides specified <em>element</em> by setting its <code>style.visibility</code> property.</p>
 
 <h3><a name="show">OAT.Dom.show(element)</a></h3>
-<p>Unhides previously hidden <em>element</em> by setting its <code>style.visibility<code> to default value.</p>
+<p>Unhides previously hidden <em>element</em> by setting its <code>style.visibility</code> to default value.</p>
 
 <h3><a name="clear">OAT.Dom.clear(element)</a></h3>
 <p>This function clears all child nodes from an element. May be called with either object reference as an argument, or a id-string. So, for instance:</p>
 <p class="code">OAT.Dom.clear("my_select_element");</p>
 <p>removes all options from existing &lt;select&gt; element with id "my_select_element".</p>
 
-
 <h3><a name="unlink">OAT.Dom.unlink(element)</a></h3>
 <p>Unlinks <em>element</em> from DOM tree. Notice that the element is not destroyed as long as it can be referenced.</p>
 
+<h3><a name="center">OAT.Dom.center(element, x, y, [reference])</a></h3>
+<p>Centers <em>element</em> relative to its parent node. If <em>reference</em> is specified, 
+this node is used instead of parent node. <em>x</em> and <em>y</em> are bools, specifying whether horizontal and/or vertical 
+centering should be done.</p>
+
 <h3><a name="ischild">OAT.Dom.isChild(child, parent)</a></h3>
 <p>Tests whether a <em>child</em> is a subnode of node <em>parent</em>. The depth is not important here.</p>
-
-
-<h3><a name="hex2dec">OAT.Dom.hex2dec(hex_str)</a></h3>
-<p>Converts a hexadecimal string <em>hex_str</em> to a decimal number. Example:</p>
-<p class="code">alert( OAT.Dom.hex2dec("fab") ); // 4011 </p>
-
-<h3><a name="color">OAT.Dom.color(str)</a></h3>
-<p>Returns an array of three elements, representing the red, green, and blue portions of the color specified in <em>str</em>. 
-Input should be a valid css color specification, i.e. <code>#02bacf</code>, <code>#ba7</code> or <code>rgb(150,5,102)</code>. Example:</p>
-<p class="code">var colors = OAT.Dom.color("#abc");<br/>
-alert("Green part: "+colors[1]);</p>
 
 <h3><a name="isclass">OAT.Dom.isClass(element, className)</a></h3>
 HTML elements may be of multiple classes, this function 
@@ -113,39 +146,17 @@ returns <code>true</code> when at least one of <em>element</em>'s classes is <em
 	alert( OAT.Dom.isClass(div,"fox"); ); // true
 </p>
 
-<h3><a name="collide">OAT.Dom.collide(element_1, element_2)</a></h3>
-<p>Tests whether two elements overlap. HTML elements have a rectangular shape, so this function basically tests whether 
-intersection of <em>element_1</em> and <em>element_2</em> is nonempty.</p>
+<h3><a name="addclass">OAT.Dom.addClass(element, className)</a></h3>
+Adds class <em>className</em> to <em>element</em>.
 
-<h3><a name="attach">OAT.Dom.attach(element, event, callback)</a></h3>
-<p>Attaches function specified with <em>callback</em> to <em>event</em> detected on <em>element</em>. 
-The <em>event</em> is specified without the "on" prefix. Function reference <em>callback</em> will be called with 
-one argument, the event object reference. Example:</p>
-<p class="code">OAT.Dom.attach("myDiv", "click", function() { alert("!"); });</p>
+<h3><a name="removeclass">OAT.Dom.removeClass(element, className)</a></h3>
+Removes class <em>className</em> from <em>element</em>.
 
-<h3><a name="detach">OAT.Dom.detach(element, event, callback)</a></h3>
-<p>Removes attached <em>callback</em> from <em>element</em> fired with <em>event</em>. Note that only non-anonymous functions
- can be detached.</p>
+<h3><a name="getviewport">OAT.Dom.getViewport()</a></h3>
+Returns size (2-item array) of current viewport.
 
-<h3><a name="source">OAT.Dom.source(event)</a></h3>
-<p>Converts <em>event</em> to reference to element which fired it. This can be useful when multiple elements 
-fire the same callback and one needs to know which element fired it. Example:</p>
-<pre><p class="code">var callback = function(event) {
-	var id = OAT.Dom.source(event).id;
-	alert("Event fired by " + id);
-}
-var div = OAT.Dom.create("div");
-div.id = "myDiv";
-OAT.Dom.attach(div, "click", callback);
-</p></pre>
-
-<h3><a name="style">OAT.Dom.style(element, property)</a></h3>
-<p>Returns a style <em>property</em> of <em>element</em>. This is different from accessing the <code>element.style.property</code> value,
-as this function returns the computed style (i.e., set by stylesheets, etc.) instead of a dynamically created one. Example:</p>
-<p class="code">
-	var family = OAT.Dom.style("elementId", "fontFamily");<br/>
-	alert(family); // returns actual font-family for this element, wherever it is set
-</p>
+<h3><a name="getscroll">OAT.Dom.getScroll()</a></h3>
+Returns amount of scroll (2-item array) of current viewport.
 
 <h3><a name="position">OAT.Dom.position(element)</a></h3>
 <p>Returns x and y coordinates of <em>element</em>'s top left corner, relative to page's top left corner. 
@@ -168,3 +179,92 @@ in form of array with two elements.</p>
 
 <h3><a name="resizeby">OAT.Dom.resizeBy(element, dx, dy)</a></h3>
 <p>Resizes <em>element</em> by <em>dx</em> pixels horizontally and <em>dy</em> pixels vertically.</p>
+
+<h3><a name="removeselection">OAT.Dom.removeSelection()</a></h3>
+<p>Unselects everything selected.</p>
+
+<h3><a name="uriparams">OAT.Dom.uriParams()</a></h3>
+<p>Returns an object of current URI parameters. So, for <code>/?a=b&amp;c[]=d&amp;c[]=e</code>, this returns:</p>
+<pre class="code">
+{
+	a:"b",
+	c:["d","e"]
+}
+</pre>
+
+<hr/>
+
+
+<h3><a name="attach">OAT.Event.attach(element, event, callback)</a></h3>
+<p>Attaches function specified with <em>callback</em> to <em>event</em> detected on <em>element</em>. 
+The <em>event</em> is specified without the "on" prefix. Function reference <em>callback</em> will be called with 
+one argument, the event object reference. Example:</p>
+<p class="code">OAT.Event.attach("myDiv", "click", function() { alert("!"); });</p>
+
+<h3><a name="detach">OAT.Event.detach(element, event, callback)</a></h3>
+<p>Removes attached <em>callback</em> from <em>element</em> fired with <em>event</em>. Note that only non-anonymous functions
+ can be detached.</p>
+
+<h3><a name="source">OAT.Event.source(event)</a></h3>
+<p>Converts <em>event</em> to reference to element which fired it. This can be useful when multiple elements 
+fire the same callback and one needs to know which element fired it. Example:</p>
+<pre><p class="code">var callback = function(event) {
+	var id = OAT.Event.source(event).id;
+	alert("Event fired by " + id);
+}
+var div = OAT.Dom.create("div");
+div.id = "myDiv";
+OAT.Dom.attach(div, "click", callback);
+</p></pre>
+
+<h3><a name="eposition">OAT.Event.position(event)</a></h3>
+<p>Returns coordinates of <em>event</em>, relative to top left corner of page.</p>
+
+<h3><a name="prevent">OAT.Event.prevent(event)</a></h3>
+<p>Prevents default action if <em>event</em> (form submit, context menu, image-to-new-tab drag, ...).</p>
+
+<hr/>
+
+<h3><a name="get">OAT.Style.get(element, property)</a></h3>
+<p>Returns a style <em>property</em> of <em>element</em>. This is different from accessing the <code>element.style.property</code> value,
+as this function returns the computed style (i.e., set by stylesheets, etc.) instead of a dynamically created one. Example:</p>
+<p class="code">
+	var family = OAT.Style.get("elementId", "fontFamily");<br/>
+	alert(family); // returns actual font-family for this element, wherever it is set
+</p>
+
+<h3><a name="apply">OAT.Style.apply(element, styleObj)</a></h3>
+<p>Applies <em>styleObj</em> to <em>element</em>. <em>styleObj</em> follows the same conventions defined in OAT.Dom.create().</p>
+
+<h3><a name="opacity">OAT.Style.opacity(element, opacity)</a></h3>
+<p>Sets <em>element</em>'s opacity to <em>opacity</em>. Acceptable range: 0 (transparent) - 1 (opaque).
+
+<h3><a name="background">OAT.Style.background(element, url)</a></h3>
+<p>Sets <em>element</em>'s background image to the one specified in <em>url</em>.</p>
+
+<hr/> 
+
+<h3><a name="isie">OAT.Browser.isIE</a></h3>
+<p>Returns <code>true</code> if used browser is Internet Explorer.</p>
+
+<h3><a name="isie6">OAT.Browser.isIE6</a></h3>
+<p>Returns <code>true</code> if used browser is Internet Explorer 6.</p>
+
+<h3><a name="isie7">OAT.Browser.isIE7</a></h3>
+<p>Returns <code>true</code> if used browser is Internet Explorer 7.</p>
+
+<h3><a name="isgecko">OAT.Browser.isGecko</a></h3>
+<p>Returns <code>true</code> if used browser is Gecko-based (Firefox, Mozilla).</p>
+
+<h3><a name="isopera">OAT.Browser.isOpera</a></h3>
+<p>Returns <code>true</code> if used browser is Opera.</p>
+
+<h3><a name="iswebkit">OAT.Browser.isWebKit</a></h3>
+<p>Returns <code>true</code> if used browser is Apple WebKit.</p>
+
+<h3><a name="iskonqueror">OAT.Browser.isKonqueror</a></h3>
+<p>Returns <code>true</code> if used browser is KDE Konqueror.</p>
+
+<h3><a name="ismac">OAT.Browser.isMac</a></h3>
+<p>Returns <code>true</code> if used operating system is MacOS.</p>
+

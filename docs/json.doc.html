@@ -12,11 +12,14 @@
 
 <h3><a name="parse">OAT.JSON.parse(string)</a></h3>
 <p>Parses JSON <em>string</em>.</p>
+<p style="color:#f00">To prevent JavaScript hijacking attacks, 
+web application authors are encouraged to use some of the countermeasures described in 'security' part of the documentation.</p>
 
 <h3><a name="stringify">OAT.JSON.stringify(variable, [maxDepth])</a></h3>
 <p>Returns JSON representation of <em>variable</em>. The <em>maxDepth</em> argument specifies maximum depth for recursive structures; 
 -1 signifies no depth limit.</p>
 <p>Cyclic structures are detected and safely interrupted, but could not be further restored.</p>
+
 
 <p class="code">
 	var a = {x:"y", number:123}; <br/>

@@ -9,7 +9,7 @@
 
 <h3>Methods</h3>
 <ul>
-	<li><a href="#go">OAT.Tab.go(index)</a></li>
+	<li><a href="#go">OAT.Tab.go(index,optionsObject)</a></li>
 	<li><a href="#add">OAT.Tab.add(clicker, window)</a></li>
 	<li><a href="#remove">OAT.Tab.remove(clicker)</a></li>
 </ul>
@@ -22,8 +22,17 @@
 
 <hr/>
 
-<h3><a name="tab">OAT.Tab(element)</a></h3>
-<p>Creates Tab object. The <em>element</em> specifies a container where the tab contents will be placed.</p>
+<h3><a name="tab">OAT.Tab(element,optionsObject)</a></h3>
+<p>Creates Tab object. The <em>element</em> specifies a container where the tab contents will be placed. <em>optionsObject</em> may contain:</p>
+<ul>
+	<li>goCallback - function to be called when tab switching occurs. Two parameters will be supplied: old index and new index.</li>
+	<li>onUnDock - function to be called when tab undocks. One parameters will be supplied: tab's index.</li>
+	<li>onDock - function to be called when tab docks. One parameters will be supplied: tab's index.</li>
+	<li>dockMode - true; whether tabs can be undocked into standalone windows. You need to include the 'windows' library.</li>
+	<li>dockElement - DOM node (or ID) specifying parent node for tabs; only needed when <code>dockMode == true</code></li>
+	<li>dockWindowWidth - Sets the width of the dock window</code></li>
+	<li>dockWindowHeight - Sets the height of the dock window</code></li>
+</ul>
 
 <h3><a name="add">OAT.Tab.add(clicker, window)</a></h3>
 <p>Adds a new <em>clicker</em> - <em>window</em> pair, i.e., when the user clicks <em>clicker</em>, <em>window</em> will be shown.</p>

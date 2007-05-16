@@ -1,0 +1,29 @@
+<h2>Ajax Security mechanisms</h2>
+<p>Under some circumstances (GET requests for JSON-serialized data), it is possible for a malicious site to hijack personal data. 
+More about this can be found in <a href="http://www.fortifysoftware.com/servlet/downloads/public/JavaScript_Hijacking.pdf">this document</a>.
+OAT provides support for preventing these attacks. To make your web application invulnerable to such attacks, use the following:</p>
+
+<ol>
+	<li><strong>Shared secret cookie verification</strong> - for every GET request generated, OAT sets a cookie named 
+	<code>oatSecurityCookie</code> to a random value. The same value is appended to a query string. Server endpoint is encouraged to 
+	compare these two values and verify that they don't differ. This guarantees that the request was made from the correct page.
+	<br/><br/>
+	</li>
+	
+	<li><strong>JS Traps in returned JSON</strong> - to prevent JSON code execution, OAT filters out the following text parts from 
+	JSON data:
+		<ul>
+			<li>The <code>while(1);</code> construct, located at the beginning of JSON text,</li>
+			<li>Comments at the beginning and end of the text.</li>
+		</ul>
+		<br/>
+		JSON data providers are encouraged to use one or both of these methods to prevent data execution. Such JSON response may the look like this:
+<pre class="code">
+while(1);/*{[
+	{"name":"safe value 1"},
+	{"name":"safe value 2"},
+	...
+]}*/
+</pre>
+	</li>
+</ol>
