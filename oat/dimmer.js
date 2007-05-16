@@ -42,15 +42,13 @@ OAT.Dimmer = {
 		elm.oldZindex = elm.style.zIndex;
 		elm.style.zIndex = 1000;
 		OAT.Dimmer.root = OAT.Dom.create("div",{position:"fixed",left:"0px",top:"0px",width:"100%",height:"100%",zIndex:999});
-		if (OAT.Dom.isIE6()) { 
+		if (OAT.Browser.isIE6) { 
 			OAT.Dimmer.root.style.position = "absolute"; 
 			OAT.Dimmer.update();
 		} 
-		with (OAT.Dimmer.root.style) {
-			backgroundColor = options.color;
-			opacity = options.opacity;
-		}
-		OAT.Dimmer.root.style.filter = "alpha(opacity="+Math.round(100*options.opacity)+")";
+
+		OAT.Dimmer.root.style.backgroundColor = options.color;
+		OAT.Style.opacity(OAT.Dimmer.root,options.opacity);
 		document.body.appendChild(OAT.Dimmer.root);
 		document.body.appendChild(elm);
 		OAT.Dom.show(elm);
@@ -67,7 +65,7 @@ OAT.Dimmer = {
 		OAT.Dimmer.elm = false;
 	} /* hide */
 }
-if (OAT.Dom.isIE6()) { 
+if (OAT.Browser.isIE6) { 
 	OAT.Dom.attach(window,'resize',OAT.Dimmer.update); 
 	OAT.Dom.attach(window,'scroll',OAT.Dimmer.update); 
 }
