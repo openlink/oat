@@ -8,19 +8,6 @@
  *  See LICENSE file for details.
  */
 
-#timeline_port {
-	position: relative;
-	width: 90%;
-	height: 200px;
-}
-
-#timeline_slider {
-	width: 90%;
-	height: 20px;
-	margin-top: 5px;
-	position: relative;
-}
-
 .timeline {
 	background-color: #cdf;
 	font: menu;
@@ -37,4 +24,18 @@
 	top: 0px;
 	background-image: url("/DAV/JS/images/Slider.gif");
 	cursor: w-resize;
+}
+
+.timeline_bar {
+	border-left: 1px solid #bce;
+}
+
+.timeline_date {
+	color: #888;
+}
+
+.timeline_band {
+	opacity: 0.7;
+	filter: alpha(opacity=70);
+	border-bottom: 1px solid #000;
 }
