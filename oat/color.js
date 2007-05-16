@@ -17,7 +17,7 @@ OAT.Color = function() {
 	this.callback = function(){};
 	
 	this.div = OAT.Dom.create("div",{position:"absolute",backgroundColor:"#fff",border:"2px solid #000",padding:"2px",width:"168px",zIndex:200});
-	this.div.style.width = (OAT.Dom.isIE() ? "170px" : "162px");
+	this.div.style.width = (OAT.Browser.isIE ? "170px" : "162px");
 	OAT.Drag.create(this.div,this.div);
 	var close = OAT.Dom.create("div",{cssFloat:"right",styleFloat:"right",fontWeight:"bold",cursor:"pointer"});
 	var help = OAT.Dom.create("div",{borderBottom:"1px solid #000"});
@@ -34,10 +34,15 @@ OAT.Color = function() {
 		OAT.Dom.attach(elm,"mouseover",overRef);
 		OAT.Dom.attach(elm,"click",clickRef);
 	}
+	
+	function dec2hex(dec) {
+		return dec.toString(16);
+	}
+	
 	for (var i=0;i<6;i++)
 		for (var j=0;j<3;j++)
 			for (var k=0;k<6;k++) {
-				var color = "#"+OAT.Dom.dec2hex(3*j)+OAT.Dom.dec2hex(3*k)+OAT.Dom.dec2hex(3*i);
+				var color = "#"+dec2hex(3*j)+dec2hex(3*k)+dec2hex(3*i);
 				var elm = OAT.Dom.create("div",{cssFloat:"left",styleFloat:"left",width:"9px",height:"9px",backgroundColor:color,cursor:"crosshair",overflow:"hidden"});
 				self.div.appendChild(elm);
 				prepare(elm,color);
@@ -45,7 +50,7 @@ OAT.Color = function() {
 	for (var i=0;i<6;i++)
 		for (var j=3;j<6;j++)
 			for (var k=0;k<6;k++) {
-				var color = "#"+OAT.Dom.dec2hex(3*j)+OAT.Dom.dec2hex(3*k)+OAT.Dom.dec2hex(3*i);
+				var color = "#"+dec2hex(3*j)+dec2hex(3*k)+dec2hex(3*i);
 				var elm = OAT.Dom.create("div",{cssFloat:"left",styleFloat:"left",width:"9px",height:"9px",backgroundColor:color,cursor:"crosshair",overflow:"hidden"});
 				self.div.appendChild(elm);
 				prepare(elm,color);
