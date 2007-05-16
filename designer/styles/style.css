@@ -23,15 +23,6 @@
 	font:menu;
 }
 
-#xconnection td {
-	border: none;
-}
-
-
-.ie_height_fix {
-	height: expression(this.ieHeight ? eval(this.ieHeight.offsetHeight) : "0px");
-}
-
 body {
 	font-family: bitstream vera sans mono, monospace, courier new, verdana, sans serif;
 	font-size: small;
@@ -55,12 +46,6 @@ ul, li {
 
 #ajax_alert {
 	font-weight: bold;
-}
-
-#ajax_progress {
-	background-image:url("../../images/progress.gif");
-	height: 16px;
-	width: 80%;
 }
 
 #root {

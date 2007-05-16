@@ -50,7 +50,7 @@ function raise_table(table) {
 
 function update_map() {
 	var map_ = $("map_");
-	if (OAT.Dom.isIE()) {
+	if (OAT.Browser.isIE) {
 		var win_x = document.body.clientWidth;
 		var win_y = document.body.clientHeight;
 		var scroll_x = document.body.scrollLeft;

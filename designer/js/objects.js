@@ -1001,13 +1001,13 @@ function IOAdmin_save() {
 	}
 	
 	var recv_ref = function(data) { alert('Saved.'); }
-	var callback = function() {
+	var callback = function(result) {
 		var o = {
 			auth:OAT.AJAX.AUTH_BASIC,
 			user:http_cred.user,
 			password:http_cred.password
 		}
-		OAT.AJAX.PUT(IO.filename,xml,recv_ref,o);
+		OAT.AJAX.PUT(IO.filename,result,recv_ref,o);
 	}
 
 	if (IO.savetype=="sql") {
