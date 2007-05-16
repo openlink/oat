@@ -75,7 +75,7 @@
 					loadingDiv.innerHTML = "Loading...";
 					document.body.appendChild(loadingDiv);
 					var f = new OAT.Form(document.body,options);
-					f.createFromURL(window.location);
+					f.createFromURL(window.location.toString());
 				}
 			]]>
 			</script>
