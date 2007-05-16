@@ -45,8 +45,10 @@ OAT.GhostDragData = {
 		if (ok) { 
 			/* mouseup at correct place - remove element */
 			OAT.Dom.unlink(elm);
+			OAT.MSG.send(obj,OAT.MSG.GD_END,elm);
 		} else {
 			/* mouseup at wrong place - let's animate it back */
+			OAT.MSG.send(obj,OAT.MSG.GD_ABORT,elm);
 			obj.onFail();
 			var coords = OAT.Dom.position(obj.originalElement);
 			var x = coords[0];
@@ -60,9 +62,11 @@ OAT.GhostDragData = {
 
 	move:function(event) {
 		if (!OAT.GhostDragData.lock) return;
+		OAT.Dom.prevent(event);
 		var elm = OAT.GhostDragData.lock;
 		var obj = elm.object;
 		if (obj.pending) {
+			OAT.MSG.send(obj,OAT.MSG.GD_START,elm);
 			/* create the duplicate */
 			document.body.appendChild(elm);
 			elm.style.zIndex = 2000;
@@ -112,8 +116,9 @@ OAT.GhostDrag = function() {
 		self.sources.push(elm);
 		self.processes.push(process);
 		self.callbacks.push(callback);
+		var cica = true;
 		var ref = function(event) {
-			/* mouse pressed on element */
+			OAT.Dom.prevent(event);
 			var index = self.sources.find(elm);
 			if (index == -1) return;
 			var x = event.clientX;
@@ -173,8 +178,7 @@ OAT.GhostDrag = function() {
 		var coords = OAT.Dom.position(elm);
 		obj.style.left = coords[0]+"px";
 		obj.style.top = coords[1]+"px";
-		obj.style.opacity = 0.5;
-		obj.style.filter = "alpha(opacity=50)";
+		OAT.Style.opacity(obj,0.5);
 		obj.appendChild(elm.cloneNode(true));
 		obj.mouse_x = x;
 		obj.mouse_y = y;
