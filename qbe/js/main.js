@@ -368,12 +368,6 @@ function read_tables(catalog_name,pole) {
 		elm.style.padding = "2px";
 		elm.style.backgroundColor = "#888";
 		elm.style.border = "1px dotted #000";
-		/* remove div tags */
-		var divs=[];
-		do {
-			divs = elm.getElementsByTagName("div");
-			if (divs.length > 0) { divs[0].parentNode.removeChild(divs[0]); }
-		} while (divs.length > 0);
 	}
 
 	for (var i=0;i<pole[0].length;i++) {
@@ -396,7 +390,6 @@ function read_tables(catalog_name,pole) {
 	}
 	
 	dialogs.tablelist.list.appendChild(item);
-	
 	total_catalog_count--;
 	
 	if (!total_catalog_count) { /* create tree after last catalog arrived */
@@ -786,14 +779,6 @@ function init() {
 	dialogs.connection.cancel = dialogs.connection.hide;
 	dialogs.connection.okBtn.setAttribute("disabled","disabled");
 
-	/* tabs */
-	tab = new OAT.Tab("content");
-	tab.add("tab_design","design"); 
-	tab.add("tab_query","query"); 
-	tab.add("tab_results","results"); 
-	tab.add("tab_pivot","pivot"); 
-	tab.go(0);
-
 	/* columns grid */
 	Columns.init(1,1);
 
@@ -962,6 +947,13 @@ function init() {
 	}
 	OAT.Dom.attach("btn_browse","click",fileRef);
 	
+	/* tabs */
+	tab = new OAT.Tab("content");
+	tab.add("tab_design","design"); 
+	tab.add("tab_query","query"); 
+	tab.add("tab_results","results"); 
+	tab.add("tab_pivot","pivot"); 
+	tab.go(0);
 	var tabChangeRef = function(oldIndex,newIndex) {
 		if (oldIndex == 0 && newIndex == 1) {
 			Query.create(OAT.SqlQueryData.TYPE_SQL); 
@@ -972,7 +964,7 @@ function init() {
 			OAT.Dom.hide("webclip");
 		}
 	}
-	tab.goCallback = tabChangeRef;
+	tab.options.goCallback = tabChangeRef;
 	OAT.Dom.hide("webclip");
 
 	/* MS Live clipboard */

@@ -133,7 +133,7 @@ function SqlTable(name,data,x,y) {
 
 	this.obj.div.className = "table";
 	this.obj.div.style.backgroundColor = "#aaa";
-	this.obj.content.style.overflow = "auto";
+	this.obj.content.style.backgroundColor = "#aaa";
 	this.name = name;
 	this.rows = [];
 	

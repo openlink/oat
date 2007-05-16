@@ -23,10 +23,6 @@
 	font:menu;
 }
 
-.ie_height_fix {
-	height: expression(this.ieHeight ? eval(this.ieHeight.offsetHeight) : "0px");
-}
-
 body {
 	font-family: verdana;
 	font-size: 80%;
@@ -90,12 +86,6 @@ li.tab:hover {
 
 #ajax_alert {
 	font-weight: bold;
-}
-
-#ajax_progress {
-	background-image:url("../../images/progress.gif");
-	height: 16px;
-	width: 80%;
 }
 
 #content {
@@ -172,6 +162,7 @@ li.tab:hover {
 .row {
 	color :#000;
 	border-bottom: 1px dotted #000;
+	padding-left: 3px;
 }
 
 .row_selected {
