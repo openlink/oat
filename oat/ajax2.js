@@ -15,7 +15,8 @@
 		user:"",
 		password:"",
 		type:OAT.AJAX.TYPE_TEXT,
-		async:true
+		async:true,
+		noSecurityCookie:false
 	}
 	
 	OAT.AJAX.startRef = function..
@@ -52,8 +53,13 @@ OAT.AJAX = {
 		var options = OAT.AJAX.options(optObj);
 		var xhr = OAT.AJAX.init(url,callback,options);
 		var url_ = url;
-		if (data) {
-			url_ += (/\?/.test(url_) ? "&"+data : "?"+data);
+		/* create security cookie */
+		url_ += (url.match(/\?/) ? "&" : "?");
+		if (data) { url_ += data; }
+		if (!options.noSecurityCookie) {
+			url_ += "&";
+			var secure = OAT.AJAX.createCookie(); /* array of name & value */
+			url_ += secure[0]+"="+secure[1];
 		}
 		xhr.open("GET",url_,options.async);
 		OAT.AJAX.send(xhr,null);
@@ -109,6 +115,7 @@ OAT.AJAX = {
 			user:"",
 			password:"",
 			type:OAT.AJAX.TYPE_TEXT,
+			noSecurityCookie:false,
 			async:true,
 			onerror:false
 		};
@@ -126,14 +133,26 @@ OAT.AJAX = {
 	},
 	
 	send:function(xhr,data) {
-		if (xhr.options.auth == OAT.AJAX.AUTH_BASIC) {
-			xhr.setRequestHeader('Authorization','Basic '+OAT.Crypto.base64e(xhr.options.user+":"+xhr.options.password)); 
+		function go() {
+			xhr.send(data);
+			try {
+				if (OAT.Browser.isGecko && !xhr.options.async && xhr.obj.onreadystatechange == null) {
+					OAT.AJAX.response(xhr);
+				}	
+			} catch (e) {}
 		}
+		for (var p in xhr.options.headers) { xhr.setRequestHeader(p,xhr.options.headers[p]); }
+
 		if (xhr.options.auth == OAT.AJAX.AUTH_DIGEST) {
 			alert("Digest auth not supported yet!");
 		}
-		for (var p in xhr.options.headers) { xhr.setRequestHeader(p,xhr.options.headers[p]); }
-		xhr.send(data);
+		if (xhr.options.auth == OAT.AJAX.AUTH_BASIC) {
+			var cb = function() {
+				xhr.setRequestHeader('Authorization','Basic '+OAT.Crypto.base64e(xhr.options.user+":"+xhr.options.password)); 
+				go();
+			}
+			OAT.Loader.loadFeatures("crypto",cb);
+		} /* if auth needed */ else go();
 	},
 	
 	response:function(xhr) {
@@ -149,11 +168,12 @@ OAT.AJAX = {
 				if (xhr.options.type == OAT.AJAX.TYPE_TEXT) {
 					xhr.callback(xhr.getResponseText(),headers);
 				} else {
-					if (OAT.Dom.isIE() || OAT.Dom.isWebKit()) {
+					if (OAT.Browser.isIE || OAT.Browser.isWebKit) {
 						xmlStr = xhr.getResponseText(); 
 						var xmlDoc = OAT.Xml.createXmlDoc(xmlStr);
 					} else { 
-						var xmlDoc = xhr.getResponseXML(); 
+						var xmlDoc = xhr.getResponseXML();
+						if (!xmlDoc) { xmlDoc = OAT.Xml.createXmlDoc(xhr.getResponseText()); }
 					}
 					xhr.callback(xmlDoc,headers);
 				}
@@ -179,14 +199,11 @@ OAT.AJAX = {
 				/* create an AJAX window */
 				var imagePath = OAT.AJAX.imagePath;
 				if (imagePath.charAt(imagePath.length - 1) == "/") imagePath = imagePath.substring(0,imagePath.length - 1);
-				var div = OAT.Dom.create("div");
-				div.innerHTML = "Ajax call in progress...";
-				var dimg = OAT.Dom.create("div");
+				var div = OAT.Dom.create("div",{textAlign:"center"});
 				var img = OAT.Dom.create("img");
-				img.setAttribute("src",OAT.AJAX.imagePath+"/progress.gif");
-				dimg.appendChild(img);
-				div.appendChild(dimg);
-				OAT.AJAX.dialog = new OAT.Dialog("Please wait",div,{width:280,modal:0,zIndex:1001,resize:0,imagePath:OAT.AJAX.imagePath + "/"});
+				img.src = OAT.AJAX.imagePath+"/Ajax_throbber.gif";
+				OAT.Dom.append([div,img,OAT.Dom.create("br"),OAT.Dom.text("Ajax call in progress...")]);
+				OAT.AJAX.dialog = new OAT.Dialog("Please wait",div,{width:240,height:0,modal:0,zIndex:1001,resize:0,imagePath:OAT.AJAX.imagePath + "/"});
 				OAT.AJAX.dialog.ok = OAT.AJAX.dialog.hide;
 				OAT.AJAX.dialog.cancel = function() {
 					OAT.AJAX.dialog.hide();
@@ -194,7 +211,6 @@ OAT.AJAX = {
 				}	
 			}
 			OAT.AJAX.dialog.show();
-
 		}
 	},
 	
@@ -203,6 +219,16 @@ OAT.AJAX = {
 		if (OAT.Loader.loadedLibs.find("dialog") != -1 && OAT.AJAX.dialog) {
 			OAT.AJAX.dialog.hide();
 		}
+	},
+	
+	createCookie:function() {
+		var code = Math.random().toString().split(".").pop();
+		var date = new Date();
+		var name = "oatSecurityCookie";
+		date.setTime(date.getTime()+(60*1000)); /* 1 minute validity */
+		var expires = "; expires="+date.toGMTString();
+		document.cookie = name+"="+code+expires+"; path=/";		
+		return [name,code];
 	},
 
 	XMLHTTP:function(options,callback) {
