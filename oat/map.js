@@ -22,6 +22,8 @@
 	m.openWindow(marker,something)
 	m.closeWindow()
 	m.optimalPosition(pointArr)
+	m.geoCode(addressString,callback)
+	
 */
 
 OAT.MapData = {
@@ -45,9 +47,7 @@ OAT.Map = function(something, provider, optionsObject) {
 		fixDistance:20,
 		fixEpsilon:0.5
 	}
-	
 	for (var p in optionsObject) { self.options[p] = optionsObject[p]; }
-	
 	this.id = 0; /* ms map pins need id */
 	this.provider = provider;
 	this.obj = false;
@@ -56,8 +56,26 @@ OAT.Map = function(something, provider, optionsObject) {
 	this.layerObj = false;
 	
 	switch (self.provider) { /* create main object */
-		case OAT.MapData.TYPE_G: self.obj = new GMap2(self.elm); break;
-		case OAT.MapData.TYPE_Y: self.obj = new YMap(self.elm); break;
+		case OAT.MapData.TYPE_G: 
+			self.obj = new GMap2(self.elm); 
+			self.geoCoder = new GClientGeocoder();
+		break;
+		case OAT.MapData.TYPE_Y: 
+			self.obj = new YMap(self.elm); 
+			self.geoCodeBuffer = [];
+			YEvent.Capture(self.obj,EventsList.onEndGeoCode,function(result){
+				var index = -1;
+				for (var i=0;i<self.geoCodeBuffer.length;i++) {
+					var item = self.geoCodeBuffer[i];
+					if (item[0] == result.Address) { index = i; }
+				}
+				if (index == -1) { return; }
+				var cb = self.geoCodeBuffer[index][1];
+				self.geoCodeBuffer.splice(index,1);
+				if (!result.success) { cb(false); }
+				cb([result.GeoPoint.Lat,result.GeoPoint.Lon]);
+			});
+		break;
 		case OAT.MapData.TYPE_MS: 
 			self.elm.id = 'our_mapping_element';
 			self.obj = new VEMap('our_mapping_element');
@@ -104,12 +122,40 @@ OAT.Map = function(something, provider, optionsObject) {
 	
 	/* --- methods --- */
 	
+	this.geoCode = function(addr,callback) {
+		
+		var cb = function(results) {
+			if (!results) { callback(false); return; }
+			switch (self.provider) {
+				case OAT.MapData.TYPE_G: 
+					callback([results.lat(),results.lng()]);
+				break;
+			} /* switch */
+		} /* geocoding results */
+		
+		switch (self.provider) {
+			case OAT.MapData.TYPE_G: 
+				self.geoCoder.getLatLng(addr,cb);
+			break;
+			case OAT.MapData.TYPE_Y: 
+				self.geoCodeBuffer.push([addr,callback]);
+				self.obj.geoCodeAddress(addr);
+			break;
+			case OAT.MapData.TYPE_MS: 
+				callback(false); /* no GC support */
+			break;
+			case OAT.MapData.TYPE_OL: 
+				callback(false); /* no GC support */
+			break;
+		}
+	}
+	
 	this.newGeoPosition = function(markerGroup,index) {
 		/* new position for marker with respect to first marker of his group */
 		var marker = markerGroup[index];
 		var dx = 0; /* pixel change */
 		var dy = 0;
-		var dist = self.options.fixDistance;;
+		var dist = self.options.fixDistance;
 		switch (self.options.fix) {
 			case OAT.MapData.FIX_ROUND1:
 				if (index) {
@@ -205,7 +251,6 @@ OAT.Map = function(something, provider, optionsObject) {
 				groups.push([m]);
 			}
 		}
-		
 		/* create better positions */
 		for (var i=0;i<groups.length;i++) {
 			var g = groups[i];
@@ -275,7 +320,7 @@ OAT.Map = function(something, provider, optionsObject) {
 			case OAT.MapData.TYPE_G: self.obj.setZoom(zoom); break;
 			case OAT.MapData.TYPE_Y: self.obj.setZoomLevel(17-zoom); break;
 			case OAT.MapData.TYPE_MS: self.obj.SetZoomLevel(zoom+1); break;
-			case OAT.MapData.TYPE_OL: self.obj.zoomTo(5); break;
+			case OAT.MapData.TYPE_OL: self.obj.zoomTo(zoom); break;
 		}	
 	}
 	
@@ -290,7 +335,6 @@ OAT.Map = function(something, provider, optionsObject) {
 	}
 	
 	this.addMarker = function(group,lat,lon,file,w,h,clickCallback) {
-//		if (lat != 38 || lon != -97) { return; }
 		switch (self.provider) {
 			case OAT.MapData.TYPE_G: 
 				var icon = new GIcon(G_DEFAULT_ICON,file);
