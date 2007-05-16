@@ -1146,6 +1146,7 @@ OAT.Pivot = function(div,chartDiv,filterDiv,headerRow,dataRows,headerRowIndexes,
 	}
 	
 	this.getLabels = function(arr,direction,glue) {
+		if (!arr) { return []; }
 		var result = [];
 		for (var i=0;i<arr.length;i++) {
 			var item = arr[i];
