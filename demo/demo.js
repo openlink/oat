@@ -161,7 +161,7 @@ DEMO.tree = {
 	div:"tree",
 	needs:["tree"],
 	cb:function() {
-		var t = new OAT.Tree({imagePath:"images/",allowDrag:1,onClick:"select",onDblClick:"toggle"});
+		var t = new OAT.Tree({allowDrag:1,onClick:"select",onDblClick:"toggle"});
 		t.assign("tree_content",0);
 	}
 }
@@ -389,7 +389,8 @@ DEMO.combolist = {
 	div:"combolist",
 	needs:["combolist"],
 	cb:function() {
-		var cl = new OAT.Combolist(["red","green","blue","your own?"],"pick your color",{imagePath:"images/"});
+		var cl = new OAT.Combolist(["red","green","blue"],"pick your color");
+		cl.addOption("your own?","custom");
 		$("combolist_content").appendChild(cl.div)
 	}
 }
@@ -503,7 +504,7 @@ DEMO.window = {
 	div:"window",
 	needs:["window"],
 	cb:function() {
-		window.win = new OAT.Window({close:1,min:0,max:0,width:300,height:0,title:"Demo window",imagePath:"images/"},OAT.WindowData.TYPE_AUTO);
+		window.win = new OAT.Window({close:1,min:0,max:0,width:300,height:0,title:"Demo window"},OAT.WindowData.TYPE_AUTO);
 		window.win.content.appendChild($("window_content"));
 		window.win.div.style.zIndex = 1000;
 		document.body.appendChild(window.win.div);
@@ -547,69 +548,24 @@ DEMO.dav = {
 	div:"dav",
 	needs:["dav"],
 	cb:function() {
-		var dav_browse = function() {
-			var options = {
-				mode:'browser',
-				onConfirmClick:function(path,fname) {
-					document.f1.my_dav_file.value = path + fname;
-				}
-			};
-			OAT.WebDav.open(options);
+		var opts = {
+			user:"demo",
+			pass:"demo",
+			path:"/DAV/home/demo/",
+			callback:function(path,file,content) {
+				$("dav_file_name").innerHTML = path+file;
+				$("dav_file_content").value = content;
+			},
+			extensionFilters: [
+				["all","*","All files"],
+				["xml","xml","XML files"],
+				["txt","txt","Text documents"],
+			]
 		}
-
-		var dav_open = function() {
-			options = {
-				mode:'open_dialog',
-				onConfirmClick:function(path,fname,data) {
-					document.f1.my_dav_content.value = data;
-					$('my_dav_path').innerHTML = path;
-					$('my_dav_filename').innerHTML = fname;
-					return true;
-				},
-				filetypes:Array({ext:'*',label:'All files'},{ext:'txt',label:'Text File'},{ext:'xml',label:'XML File'})
-			};
-			OAT.WebDav.open(options);
-		}
-
-	  var dav_save = function(){
-	    var options = {
-	    	mode:'save_dialog',
-	    	dontDisplayWarning:true,
-	    	onConfirmClick:function(filetype) { return document.f1.my_dav_content.value;},
-	    	afterSave:function(path,fname) {
-	            $('my_dav_path').innerHTML = path;
-	            $('my_dav_filename').innerHTML = fname;
-	    	},
-	    	filetypes:Array({ext:'txt',label:'Text File'},{ext:'xml',label:'XML File'})
-	    };
-	    OAT.WebDav.open(options);
-	  }
-
-	  var dav_save_as = function(){
-	    var options = {
-	    	mode:'save_dialog',
-	    	onConfirmClick:function() { return document.f1.my_dav_content.value;},
-	    	afterSave:function(path,fname) {
-	            $('my_dav_path').innerHTML = path;
-	            $('my_dav_filename').innerHTML = fname;
-	        console.log('da');
-	    	}
-	    };
-	    OAT.WebDav.open(options);
-
-	  }
-
-		OAT.Dom.attach("dav_browse","click",dav_browse);
-		OAT.Dom.attach("dav_open","click",dav_open);
-		OAT.Dom.attach("dav_save","click",dav_save);
-		OAT.Dom.attach("dav_save_as","click",dav_save_as);
-
-		var options = {
-			imagePath:'../images/',
-			imageExt:'png',
-			pathDefault:'/DAV/home/demo/Public/'
-		};
-		OAT.WebDav.init(options);
+		OAT.Dom.attach("dav_btn","click",function(){
+			OAT.WebDav.openDialog(opts);
+		});
+		OAT.WebDav.init(opts);
 	}
 }
 
@@ -651,7 +607,7 @@ DEMO.timeline = {
 	div:"timeline",
 	needs:["timeline","ajax2","xml"],
 	cb:function() {
-		var tl = new OAT.Timeline("timeline_port","timeline_slider",{});
+		var tl = new OAT.Timeline("timeline_content",{});
 		tl.addBand("JFK","rgb(255,204,153)");
 		var callback = function(xmlDoc) {
 			var events = OAT.Xml.xpath(xmlDoc,"//event",{});
@@ -804,22 +760,23 @@ DEMO.anchor = {
 
 		var ds_sp = new OAT.DataSource(OAT.DataSourceData.TYPE_SPARQL);
 		ds_sp.options.query = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"+
-					"PREFIX sioc:   <http://rdfs.org/sioc/ns#>\n"+
-					"PREFIX dct: <http://purl.org/dc/elements/1.1/>\n"+
-					"PREFIX dcc: <http://purl.org/dc/terms/>\n"+
-					"SELECT distinct ?forum_name, ?creator, ?channel, ?item_title, ?post, ?created "+
-					"FROM <http://demo.openlinksw.com/dataspace> "+
-					"WHERE { "+
-						"?forum a sioc:Forum; "+
-						'sioc:type "feeds"; '+
-						'sioc:id ?forum_name; '+
-						'sioc:parent_of ?channel . '+
-						'?channel sioc:container_of ?post . '+
-						'?post dct:title ?item_title . '+
-						'OPTIONAL{ ?post sioc:has_creator ?creator }. '+
-						'OPTIONAL{ ?post dcc:created ?created } '+
-					'}\n'+
-					"ORDER BY DESC (?created)";
+			"PREFIX sioc:   <http://rdfs.org/sioc/ns#>\n"+
+			"PREFIX dct: <http://purl.org/dc/elements/1.1/>\n"+
+			"PREFIX dcc: <http://purl.org/dc/terms/>\n"+
+			"PREFIX sioct: <http://rdfs.org/sioc/types#>"+
+			"SELECT distinct ?forum_name, ?creator, ?channel, ?item_title, ?post, ?created "+
+			"FROM <http://demo.openlinksw.com/dataspace> "+
+			"WHERE { "+
+				'?forum a sioct:SubscriptionList;'+
+				'sioc:id ?forum_name.'+
+				'?forum sioc:parent_of ?channel.'+
+				'?channel sioc:container_of ?post.'+
+				'optional{?post sioc:has_creator ?creator}.'+
+				'optional{?post dct:title ?item_title }.'+
+				'optional{ ?post sioc:links_to ?url }.'+
+				'optional{ ?post dcc:created ?created }'+
+			'}\n'+
+			"ORDER BY DESC (?created)";
 		ds_sp.outputFields = ['//result/binding[@name="created"]/node()/text()',
 							'//result/binding[@name="forum_name"]/node()/text()',
 							'//result/binding[@name="item_title"]/node()/text()',
@@ -850,11 +807,52 @@ DEMO.rss = {
 	}
 }
 
+DEMO.qbe = {
+	panel:5,
+	tab:41,
+	div:"app_qbe",
+	needs:[],
+	cb:false
+}
+
+DEMO.designer = {
+	panel:5,
+	tab:42,
+	div:"app_designer",
+	needs:[],
+	cb:false
+}
+DEMO.formdesigner = {
+	panel:5,
+	tab:43,
+	div:"app_formdesigner",
+	needs:[],
+	cb:false
+}
+DEMO.isparql = {
+	panel:5,
+	tab:44,
+	div:"app_isparql",
+	needs:[],
+	cb:false
+}
+DEMO.rdfbrowser = {
+	panel:5,
+	tab:45,
+	div:"app_rdfbrowser",
+	needs:[],
+	cb:false
+}
 
 function init() {
+	OAT.Dom.unlink("throbber");
+	var c = $("throbber_content");
+	while (c.firstChild) { document.body.appendChild(c.firstChild); }
+	OAT.Dom.unlink(c);
+
 	function view_source() {
 		OAT.Dimmer.hide();
-		var id = tab.values[tab.selectedIndex].id;
+		var id = tab.tabs[tab.selectedIndex].value.id;
 		var name = false;
 		for (var p in DEMO) if (DEMO[p].div == id) { name = p; }
 		if (!name || !DEMO[name].cb) { alert("Source code for this particular demonstration is not available.\nPlease select another and try again..."); return; }
@@ -900,9 +898,10 @@ function init() {
 	pb.addPanel("pb_3","pb_33");
 	pb.addPanel("pb_4","pb_44");
 	pb.addPanel("pb_5","pb_55");
+	pb.addPanel("pb_6","pb_66");
 
 	for (var p in DEMO) { DEMO[p].drawn = false; }
-	tab.goCallback = function(oldIndex,newIndex) {
+	tab.options.goCallback = function(oldIndex,newIndex) {
 		var oldName, newName;
 		for (var p in DEMO) {
 			var v = DEMO[p];

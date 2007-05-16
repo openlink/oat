@@ -35,6 +35,8 @@
 	<title>OAT Framework</title>
 </head>
 <body>
+	<div id="throbber"><img src="/DAV/JS/images/throbber.gif" /></div>
+	<div id="throbber_content">
 	<div id="source">
 		Click <a id="source_permalink" href="">here</a> for the URI (Permalink) of this source
 		<div id="source_content"></div>
@@ -108,6 +110,15 @@
 			<div id="tab_out_cursors">Scrollable cursors</div>
 			<div id="tab_out_data">Data modelling</div>
 		</div>
+
+		<div id="pb_6">Standalone applications</div>
+		<div id="pb_66">
+			<div id="tab_app_qbe">SQL QBE</div>
+			<div id="tab_app_designer">DB Designer</div>
+			<div id="tab_app_formdesigner">Forms Designer</div>
+			<div id="tab_app_isparql">iSPARQL</div>
+			<div id="tab_app_rdfbrowser">RDF Browser</div>
+		</div>
 		
 	</div>
 	
@@ -123,7 +134,7 @@
 		<p>Using this toolkit is as simple as including two .js files in the &lt;head&gt; portion of an HTML document, and specifying 
 		a list of features you want to use. The framework will build the dependency tree and dynamically include all needed (and no other!) 
 		files.</p>
-		<p>OAT works in Gecko browsers (Firefox, Mozilla/SeaMonkey), IE6, Opera and Apple WebKit.</p>
+		<p>OAT works in Gecko browsers (Firefox, Mozilla/SeaMonkey), IE6/7, Opera and Apple WebKit.</p>
 		<p>This particular demonstration page is XHTML/1.0 Strict valid.</p>
 	</div>
 	<div id="license">
@@ -398,28 +409,16 @@ June 1991.<br />
 	</div>
 	<div id="dav">
 		<h3>WebDAV Browser</h3>
-		Click on buttons to see WebDAV Browser in actions.<br/>
-		<p>Use 'demo' when asked for credentials.</p>
-
-  <form name="f1">
-    <h3>Choose file path:</h3>
-    <input type="text" size="80" name="my_dav_file">
-    <input type="button" value="Browse DAV" id="dav_browse">
-    <hr>
-    <h3>Open/Save file</h3>
-    <b>File name: </b><span id="my_dav_path"></span><span id="my_dav_filename">Unknown</span><br/>
-    <textarea name="my_dav_content" cols="60" rows="10" style="clear:left"></textarea>
-    <br>
-    <input type="button" value="Open from DAV" id="dav_open">
-    <input type="button" value="Save to DAV"  id="dav_save">
-    <input type="button" value="Save as to DAV"  id="dav_save_as">
-  </form>
+		<p>This interface presents WebDAV Browser in 'Open File' mode. User can navigate through directory structure, create directories and filter files based on their type.</p>
+		<table><tbody>
+			<tr><td>File name: </td><td><span id="dav_file_name">[not yet selected]</span> <input type="button" value="Browse" id="dav_btn" /></td>
+			<tr><td>File content: </td><td><textarea rows="20" cols="60" id="dav_file_content"></textarea></td>
+		</tbody></table>
 	</div>
 	
 	<div id="timeline">
 		<h3>Timeline</h3>
-		<div id="timeline_port"></div>
-		<div id="timeline_slider"></div>
+		<div id="timeline_content"></div>
 	</div>
 
 	<div id="round">
@@ -481,7 +480,7 @@ June 1991.<br />
 		<table class="compatibility">
 			<tr class="head"><td rowspan="3" colspan="2">Compatibility matrix</td><td colspan="6">Browser<br/>(version)</td></tr>
 			<tr class="head"><td>Firefox</td><td>Internet Explorer</td><td>Internet Explorer</td><td>Opera</td><td>WebKit (Safari)</td><td>Camino</td></tr>
-			<tr class="head"><td>(1.5.0.4)</td><td>(6.0)</td><td>(7.0)</td><td>(9.0)</td><td>(2.0.3)</td><td>(1.0.1)</td></tr>
+			<tr class="head"><td>(2.0.0.3)</td><td>(6.0)</td><td>(7.0)</td><td>(9.20)</td><td>(2.0.4)</td><td>(1.0.1)</td></tr>
 			<tr> <!-- Toolkit -->
 				<td class="head" rowspan="6">Toolkit</td>
 				<td class="head">Basic functionality</td>
@@ -533,7 +532,7 @@ June 1991.<br />
 				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
-				<td class="ok"></td>
+				<td class="part" title="Doesn't support WebDAV"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
 			</tr>
@@ -573,7 +572,7 @@ June 1991.<br />
 				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
-				<td class="bad" title="XSL transformations not supported"></td>
+				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
 			</tr>
@@ -645,12 +644,33 @@ June 1991.<br />
 			<tr>
 				<td class="head">OpenLayers map provider</td>
 				<td class="ok"></td>
-				<td class="part" title="Lookup windows cannot be displayed"></td>
+				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
 			</tr>
+			
+			<tr> <!-- RDFB -->
+				<td class="head" rowspan="2">RDF Browser</td>
+				<td class="head">Basic functionality</td>
+				<td class="ok"></td>
+				<td class="ok"></td>
+				<td class="ok"></td>
+				<td class="ok"></td>
+				<td class="ok"></td>
+				<td class="ok"></td>
+			</tr>
+			<tr>
+				<td class="head">SVG Visualization</td>
+				<td class="ok"></td>
+				<td class="bad" title="No SVG support"></td>
+				<td class="bad" title="No SVG support"></td>
+				<td class="ok"></td>
+				<td class="bad" title="SVG not supported in WebKit"></td>
+				<td class="part" title="Buggy SVG implementation"></td>
+			</tr>
+			
 		</table>
 		<p> </p>
 		<h3>Mapping features</h3>
@@ -683,13 +703,13 @@ June 1991.<br />
 				<td class="ok"></td>
 				<td class="ok"></td>
 				<td class="ok"></td>
-				<td class="part" title="No window in IE"></td>
+				<td class="ok"></td>
 			</tr>
 			<tr>
 				<td class="head">Advanced lookup window actions<br/>(e.g. dragging inside window)</td>
 				<td class="ok"></td>
 				<td class="ok"></td>
-				<td class="bad" title="Incompatible API"></td>
+				<td class="ok"></td>
 				<td class="bad" title="Incompatible API"></td>
 			</tr>
 		</table>
@@ -749,62 +769,35 @@ June 1991.<br />
 		</ul>
 	</div>
 	
-<!--	
-	<div id="menu">
-		<h3>Menu</h3>
-		<ul class="first" id="menu_content">
-			<li>
-				<u>F</u>ile
-				<ul class="second">
-					<li>New</li>
-					<li>Open</li>
-					<hr class="noclose"/>
-					<li>Recent
-						<ul class="third">
-							<li>one</li>
-							<li>two</li>
-							<li>three</li>
-						</ul>
-					</li>
-					<hr class="noclose"/>
-					<li>Close</li>
-				</ul>
-			</li>
-			<li>
-				<u>E</u>dit
-				<ul class="second">
-					<li>Copy</li>
-					<li>Cut</li>
-					<li>Paste</li>
-					<hr class="noclose" />
-					<li>Insert
-						<ul class="third">
-							<li>Page</li>
-							<li>Image</li>
-							<li>Table</li>
-							<li>Link</li>
-						</ul>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<u>H</u>elp
-				<ul class="second">
-					<li>About</li>
-					<li>Help</li>
-					<li>Release notes</li>
-					<hr class="noclose" />
-					<li>Search
-						<ul class="third">
-							<li>Google</li>
-							<li>Yahoo</li>
-							<li>MSN</li>
-						</ul>
-					</li>
-				</ul>
-			</li>
-		</ul>
+	<div id="app_qbe">
+		<h3>SQL QBE</h3>
+		<p>Query by example for XML/A connectivity to SQL databases. Draw and execute your queries!</p>
+		<a href="../qbe/index.html">link</a>
 	</div>
-	-->
+	
+	<div id="app_designer">
+		<h3>DB Designer</h3>
+		<p>Visual database schema designer. Ability to import existing design via XML/A calls.</p>
+		<a href="../designer/index.html">link</a>
+	</div>
+
+	<div id="app_formdesigner">
+		<h3>Forms Designer</h3>
+		<p>Draw data presentation forms, add widgets and controls to them. Bind to virtually any data sources (SQL, REST, WSDL, SPARQL...).</p>
+		<a href="../formdesigner/index.html">link</a>
+	</div>
+
+	<div id="app_isparql">
+		<h3>iSPARQL</h3>
+		<p>Visual (SVG-based) SPARQL query generator and results browser.</p>
+		<a href="/isparql/">link</a>
+	</div>
+
+	<div id="app_rdfbrowser">
+		<h3>RDF Browser</h3>
+		<p>Explore the world of RDF! Take advantage of Virtuso's RDF sponging feature, view and traverse RDF graphs, visualize in many ways.</p>
+		<a href="../rdfbrowser/index.html">link</a>
+	</div>
+	</div>
 </body>
 </html>

@@ -13,6 +13,14 @@
 @import url("../styles/pivot.css");
 @import url("../styles/timeline.css");
 
+#throbber_content {
+	visibility: hidden;
+}
+
+#throbber {
+	text-align: center;
+}
+
 body {
 	font-family: verdana;
 	font-size: 90%;
@@ -33,6 +41,10 @@ h3 {
 	font-family: "bitstream vera sans mono", dejavu, courier, arial;
 	background-color: #dde;
 	padding: 1em;
+}
+
+#timeline_content {
+	width: 100%;
 }
 
 /* ----------- tabs ----------- */
@@ -435,7 +447,7 @@ div.combo_button_option:hover {
 	width: 11px;
 	height: 21px;
 	top: 16px;
-	background-image: url("images/slider.gif");
+	background-image: url("/DAV/JS/images/Slider.gif");
 	cursor: w-resize;
 }
 
