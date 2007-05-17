@@ -46,7 +46,7 @@ OAT.Xml = {
 	},
 	
 	localName:function(elem) {
-		if (OAT.Dom.isIE()) {
+		if (OAT.Browser.isIE) {
 			return elem.baseName;
 		} else {
 			return elem.localName;
@@ -77,14 +77,61 @@ OAT.Xml = {
 		return false;
 	},
 	
-	transformXSLT:function(xmlDoc,xslDoc) {
+	newXmlDoc:function() {
+		if (document.implementation && document.implementation.createDocument) {				
+			var xml = document.implementation.createDocument("","",null);
+			return xml;
+		} else if (window.ActiveXObject) {
+			var xml = new ActiveXObject("Microsoft.XMLDOM")
+			return xml;
+		} else {
+			alert("Ooops - no XML parser available");
+			return false;
+		}
+		return false;
+	},
+	
+	serializeXmlDoc:function(xmlDoc) {
+		if (document.implementation && document.implementation.createDocument) {				
+			var ser = new XMLSerializer();
+			var s = ser.serializeToString(xmlDoc);
+//			s = '<?xml version="1.0" ?>\n'+s;
+			return s;
+		} else if (window.ActiveXObject) {
+			var s = xmlDoc.xml;
+//			s = '<?xml version="1.0" ?>\n'+s;
+			return s;
+		} else {
+			alert("Ooops - no XML parser available");
+			return false;
+		}
+		return false;
+	},
+	
+	transformXSLT:function(xmlDoc,xslDoc,paramsArray) {
 		if (document.implementation && document.implementation.createDocument) {				
 			var xslProc = new XSLTProcessor();
+			if (paramsArray) for (var i=0;i<paramsArray.length;i++) {
+				var param = paramsArray[i];
+				xslProc.setParameter(param[0],param[1],param[2]);
+			}
 			xslProc.importStylesheet(xslDoc);
 			var result = xslProc.transformToDocument(xmlDoc);
 			return result;
 		} else if (window.ActiveXObject) {
-			var result = xmlDoc.transformNode(xslDoc);
+			/* new solution with parameters */
+			var freeXslDoc = new ActiveXObject("MSXML2.FreeThreadedDOMDocument");
+			freeXslDoc.load(xslDoc);
+			var template = new ActiveXObject("MSXML2.XSLTemplate");
+			template.stylesheet = freeXslDoc;
+			var proc = template.createProcessor();
+			proc.input = xmlDoc;
+			if (paramsArray) for (var i=0;i<paramsArray.length;i++) {
+				var param = paramsArray[i];
+				proc.addParameter(param[1],param[2]);
+			}
+			proc.transform();
+			var result = proc.output;
 			var rDoc = OAT.Xml.createXmlDoc(result);
 			return rDoc;
 		} else {
