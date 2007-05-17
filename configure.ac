@@ -48,10 +48,11 @@ AC_CONFIG_FILES([
     designer/Makefile
     formdesigner/Makefile
     images/Makefile
-    oat/Makefile
     oat/docs/Makefile
-    rdfbrowser/Makefile
+    oat/Makefile
+    openajax/Makefile
     qbe/Makefile
+    rdfbrowser/Makefile
     styles/Makefile
     xslt/Makefile
 ])
