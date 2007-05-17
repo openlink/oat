@@ -31,8 +31,9 @@
 OAT.TreeNode = function(li,ul,parent,root) {
 	/* this.parent.ul == li.parentNode */
 	var self = this;
-	this.ul = ul;
-	this.li = li;
+	this.options = root.options;
+	this.ul = ul; /* our child */
+	this.li = li; /* our element */
 	this.parent = parent;
 	this.root = root;
 	this.children = [];
@@ -40,43 +41,55 @@ OAT.TreeNode = function(li,ul,parent,root) {
 	this.state = 1; /* 0 - collapsed, 1 - expanded */
 	this.selected = 0;
 	this.customImage = false;
-	this.label = false;
-	
+	this._div = OAT.Dom.create("div"); /* our content */
+	this._sign = false; /* +- image */
+	this._icon = false; /* icon/checkbox */
+	this._label = OAT.Dom.create("span"); /* label */
+	this._gdElm = OAT.Dom.create("span"); /* icon+label */
 	if (ul) { ul.style.listStyleType = "none"; }
-
-	this.signIcon = false;
-	this.treeIcon = false;
-	this.options = root.options;
-	this.gdElm = OAT.Dom.create("span");
-	self.gdElm.obj = self;
-	
+	self._div.obj = self; 
 	this.hasEvents = false;
+	this.gdMode = 0;
 	
-	/* create SPAN as label */
-	if (!self.li) {
-		self.label = false;
-	} else {
-		self.label = self.li.firstChild;
-		if (!self.label) { /* if no child nodes, create empty span */
-			var span = OAT.Dom.create("span");
-			self.li.appendChild(span);
-			self.label = span;
-		} else if (self.label.nodeType == 3) { /* if text node, encapsulate within a span */
-			var span = OAT.Dom.create("span");
-			self.label.parentNode.replaceChild(span,self.label);
-			span.appendChild(self.label);
-			self.label = span;
-		} else if (self.label == self.ul) { /* if firstChild == ul, insert a span */
-			var span = OAT.Dom.create("span");
-			self.li.insertBefore(span,self.ul);
-			self.label = span;
+	/* create structure:
+		<li>
+			<div>
+				<span>indent...</span>
+				<img sign> (optional)
+				<gdElm>
+					<img icon> (optional)
+					label...
+				</gdElm>
+			</div>
+			<ul>...
+		</li>
+	*/
+	if (self.li) {
+		self.li.style.margin = "0px";
+		self.li.style.padding = "0px";
+		self.li.style.paddingLeft = "32px";
+		self.li.style.textIndent = "-32px";
+		var n = self.li.firstChild;
+		while (n && n != self.ul) {
+			var nn = n.nextSibling;
+			self._label.appendChild(n);
+			n = nn;
 		}
-		self.label.parentNode.replaceChild(self.gdElm,self.label);
-		self.gdElm.appendChild(self.label);
+		OAT.Dom.clear(self.li);
+		OAT.Dom.append([self._gdElm,self._label],[self._div,self._gdElm],[self.li,self._div]);
+		if (self.ul) { 
+			self.li.appendChild(self.ul); 
+		}
 	}
 	
-	if (self.options.checkboxMode && self.li) {
-		self.checkbox = OAT.Dom.create("input");
+	if (self.ul) { /* margin & padding */
+		self.ul.style.margin = "0px";
+		self.ul.style.padding = "0px";
+		if (self.parent) { self.ul.style.marginLeft = "-16px"; }
+	}
+	
+	if (self.options.checkboxMode && self.li) { /* checkboxes */
+		self.checkbox = OAT.Dom.create("input",{verticalAlign:"middle"});
 		self.checkbox.type = "checkbox";
 		if (self.options.defaultCheck) { 
 			self.checkbox.checked = true; 
@@ -85,12 +98,10 @@ OAT.TreeNode = function(li,ul,parent,root) {
 		if (self.checkbox.checked == self.options.checkNOI) {
 			self.root.checkedNOI.push(self);
 		}
-		self.li.insertBefore(self.checkbox,self.gdElm);
+		self._gdElm.insertBefore(self.checkbox,self._label); /* instead of icon */
 	}
-	
 
-	/* custom image? */
-	if (self.li) {
+	if (self.li) { /* custom image */
 		for (var i=0;i<self.li.attributes.length;i++) {
 			var a = self.li.attributes[i];
 			if (a.nodeName == "oat:treeimage") { self.customImage = a.nodeValue; }
@@ -181,20 +192,20 @@ OAT.TreeNode = function(li,ul,parent,root) {
 	
 	this.removeEvents = function() {
 		if (!self.li) { return; }
-		if (!self.hasEvents) { return; }
+		if (!self.hasEvents) { return; } /* nothing to remove */
 		
 		switch (self.options.onClick) {
 			case "select":
 				if (!self.options.poorMode) {
-					OAT.Dom.detach(self.label,"click",self.toggleSelect);
-					OAT.Dom.detach(self.treeIcon,"click",self.toggleSelect);
+					OAT.Dom.detach(self._label,"click",self.toggleSelect);
+					OAT.Dom.detach(self._icon,"click",self.toggleSelect);
 				}
 			break;
 			
 			case "toggle":
 				if (self.ul) {
-					OAT.Dom.detach(self.label,"click",self.toggleState);
-					OAT.Dom.detach(self.treeIcon,"click",self.toggleState);
+					OAT.Dom.detach(self._label,"click",self.toggleState);
+					OAT.Dom.detach(self._icon,"click",self.toggleState);
 				}
 			break;
 		}
@@ -202,35 +213,29 @@ OAT.TreeNode = function(li,ul,parent,root) {
 		switch (self.options.onClick) {
 			case "select":
 				if (!self.options.poorMode) {
-					OAT.Dom.detach(self.label,"dblclick",self.toggleSelect);
-					OAT.Dom.detach(self.treeIcon,"dblclick",self.toggleSelect);
+					OAT.Dom.detach(self._label,"dblclick",self.toggleSelect);
+					OAT.Dom.detach(self._icon,"dblclick",self.toggleSelect);
 				}
 			break;
 			
 			case "toggle":
 				if (self.ul) {
-					OAT.Dom.detach(self.label,"dblclick",self.toggleState);
-					OAT.Dom.detach(self.treeIcon,"dblclick",self.toggleState);
+					OAT.Dom.detach(self._label,"dblclick",self.toggleState);
+					OAT.Dom.detach(self._icon,"dblclick",self.toggleState);
 				}
 			break;
 		}
 		
 		if (self.options.poorMode) { return; }
 
-		if (self.ul) { OAT.Dom.detach(self.signIcon,"click",self.toggleState); } /* +- sign */
+		if (self.ul) { OAT.Dom.detach(self._sign,"click",self.toggleState); } /* +- sign */
 		
 		if (self.options.checkboxMode) { OAT.Dom.detach(self.checkbox,"change",self.toggleCheck); }
 		
 		if (self.options.allowDrag) {
-			self.root.gd.delTarget(self.gdElm);
-			self.root.gd.delSource(self.gdElm);
+			self.root.gd.delTarget(self._gdElm);
+			self.root.gd.delSource(self._gdElm);
 		}
-	}
-	
-	this.checkGD = function(x,y) {
-		var pos = OAT.Dom.position(self.gdElm);
-		var dims = OAT.Dom.getWH(self.gdElm);
-		return (y >= pos[1] && y <= pos[1]+dims[1]);
 	}
 	
 	this.addEvents = function() {
@@ -240,15 +245,15 @@ OAT.TreeNode = function(li,ul,parent,root) {
 		switch (self.options.onClick) {
 			case "select":
 				if (!self.options.poorMode) {
-					OAT.Dom.attach(self.label,"click",self.toggleSelect);
-					OAT.Dom.attach(self.treeIcon,"click",self.toggleSelect);
+					OAT.Dom.attach(self._label,"click",self.toggleSelect);
+					OAT.Dom.attach(self._icon,"click",self.toggleSelect);
 				}
 			break;
 			
 			case "toggle":
 				if (self.ul) {
-					OAT.Dom.attach(self.label,"click",self.toggleState);
-					OAT.Dom.attach(self.treeIcon,"click",self.toggleState);
+					OAT.Dom.attach(self._label,"click",self.toggleState);
+					OAT.Dom.attach(self._icon,"click",self.toggleState);
 				}
 			break;
 		}
@@ -256,22 +261,22 @@ OAT.TreeNode = function(li,ul,parent,root) {
 		switch (self.options.onDblClick) {
 			case "select":
 				if (!self.options.poorMode) {
-					OAT.Dom.attach(self.label,"dblclick",self.toggleSelect);
-					OAT.Dom.attach(self.treeIcon,"dblclick",self.toggleSelect);
+					OAT.Dom.attach(self._label,"dblclick",self.toggleSelect);
+					OAT.Dom.attach(self._icon,"dblclick",self.toggleSelect);
 				}
 			break;
 			
 			case "toggle":
 				if (self.ul) {
-					OAT.Dom.attach(self.label,"dblclick",self.toggleState);
-					OAT.Dom.attach(self.treeIcon,"dblclick",self.toggleState);
+					OAT.Dom.attach(self._label,"dblclick",self.toggleState);
+					OAT.Dom.attach(self._icon,"dblclick",self.toggleState);
 				}
 			break;
 		}
 
 		if (self.options.poorMode) { return; }
 
-		if (self.ul) { OAT.Dom.attach(self.signIcon,"click",self.toggleState); } /* +- sign */
+		if (self.ul) { OAT.Dom.attach(self._sign,"click",self.toggleState); } /* +- sign */
 		
 		/* if checkbox mode is used */
 		if (self.options.checkboxMode) { OAT.Dom.attach(self.checkbox,"change",self.toggleCheck); }
@@ -280,10 +285,10 @@ OAT.TreeNode = function(li,ul,parent,root) {
 		
 		var procRef = function(elm) {}
 		var backRef = function(target,x,y) { /* ghostdrag ended; some re-structuring? */
-			var t = target.obj;
+			var node = target.obj;
 			/* ignore self2self drag, ancestor cannot be dragged to its children */
 			var ancestTest = true;
-			var curr = t;
+			var curr = node
 			while (curr) {
 				if (curr == self) { ancestTest = false; }
 				curr = curr.parent;
@@ -291,68 +296,67 @@ OAT.TreeNode = function(li,ul,parent,root) {
 			if (!ancestTest) { return; }
 
 			/* analyze X coordinate: when above icon, then append, else reposition */
-			var pos = OAT.Dom.position(t.treeIcon);
-			var dims = OAT.Dom.getWH(t.treeIcon);
-			if (x < pos[0] || x > pos[0]+dims[0] || !t.ul) {
-				/* reposition */
-				var index = t.parent.children.find(t);
-				var myindex = self.parent.children.find(self);
-				if (t.parent == self.parent && myindex+1 == index) { index++; } /* when moving last-1 to last */
-				t.parent.appendChild(self,index);
+			var mode = node.gdMode;
+
+			function isLast(n) {
+				return (n.parent.children.find(n) == n.parent.children.length-1);
+			}
+			
+			if (mode == 1) {
+				/* check appending after last node */
+				while (node.parent && node.parent.parent && isLast(node)) { node = node.parent; }
+			
+				/* reposition after target */
+				var index = node.parent.children.find(node)+1;
+				node.parent.appendChild(self,index);
 			} else {
 				/* append */
-				t.appendChild(self);
-				t.expand();
+				node.appendChild(self);
+				node.expand();
 			}
 		}
 		if (self.options.allowDrag) {
-			self.root.gd.addTarget(self.gdElm,self.checkGD);
-			self.root.gd.addSource(self.gdElm,procRef,backRef);
+			self.root.gd.addTarget(self._div);
+			self.root.gd.addSource(self._gdElm,procRef,backRef);
 		}
 	}
-	
 	
 	this.removeDecorations = function() {
 		if (!self.li) { return; }
 		if (self.options.poorMode) { return; }
 		OAT.Dom.removeClass(self.li,"tree_li_"+self.depth);
 		OAT.Dom.removeClass(self.li.parentNode,"tree_ul_"+self.depth);
-		if (self.signIcon) {
-			OAT.Dom.unlink(self.signIcon);
-			self.signIcon = false;
+		if (self._sign) {
+			OAT.Dom.unlink(self._sign);
+			self._sign = false;
 		}
-		if (self.treeIcon) {
-			OAT.Dom.unlink(self.treeIcon);
-			self.treeIcon = false;
+		if (self._icon) {
+			OAT.Dom.unlink(self._icon);
+			self._icon = false;
 		}
 	}
 	
 	this.addDecorations = function() {
 		if (!self.li) { return; }
+		
+		OAT.Dom.addClass(self.li,"tree_li_"+self.depth);
+		OAT.Dom.addClass(self.li.parentNode,"tree_ul_"+self.depth);
+
 		if (self.options.poorMode) { return; }
 		
-//		var sign = OAT.Dom.create("div",{"width":"16px","height":"16px","cssFloat":"left","styleFloat":"left"});
-		var sign = OAT.Dom.create("img",{"width":"16px","height":"16px"});
-		sign.style.backgroundRepeat = "no-repeat";
-//		var tree = OAT.Dom.create("div",{"width":"16px","height":"16px","cssFloat":"left","styleFloat":"left"});
-		var tree = OAT.Dom.create("img",{"width":"16px","height":"16px"});
-		tree.style.marginRight = "2px";
-		tree.style.backgroundRepeat = "no-repeat";
+		var sign = OAT.Dom.create("img",{width:self.options.size+"px",height:self.options.size+"px",verticalAlign:"middle"});
+		var icon = OAT.Dom.create("img",{width:self.options.size+"px",height:self.options.size+"px",verticalAlign:"middle"});
+		icon.style.marginRight = "2px";
 
-		var l = self.li;
-		if (l.childNodes.length) {
-			l.insertBefore(sign,l.childNodes[0]);
-		} else {
-			l.appendChild(sign);
-		}
+		self._div.insertBefore(sign,self._gdElm);
 		
 		if (self.options.checkboxMode) {
-			tree = false;
+			icon = false;
 		} else {	
-			self.gdElm.insertBefore(tree,self.gdElm.firstChild);
+			self._gdElm.insertBefore(icon,self._label);
 		}
-		self.signIcon = sign;
-		self.treeIcon = tree;
+		self._sign = sign;
+		self._icon = icon;
 		
 		if (self.parent.children[self.parent.children.length-1] == self) { OAT.Dom.addClass(self.li,"tree_li_last"); }
 	}
@@ -362,8 +366,8 @@ OAT.TreeNode = function(li,ul,parent,root) {
 		self.updateStyle();
 	}
 	
-	this.expand = function() {
-		OAT.MSG.send(self.root,OAT.MSG.TREE_EXPAND,self);
+	this.expand = function(silent) {
+		if (!silent) { OAT.MSG.send(self.root,OAT.MSG.TREE_EXPAND,self); }
 		if (self.options.onlyOneOpened) {
 			/* close all opened siblings */
 			for (var i=0;i<self.parent.children.length;i++) {
@@ -378,10 +382,12 @@ OAT.TreeNode = function(li,ul,parent,root) {
 	this.collapse = function() {
 		OAT.MSG.send(self.root,OAT.MSG.TREE_COLLAPSE,self);
 		/* check children for selection. if at lease one descendant is selected, select this node */
-		var list = self.testForSelected();
-		var willSelect = (list.length > 1 || (list.length == 1 && list[0] != self));
-		for (var i=0;i<list.length;i++) if (list[i] != self) { list[i].deselect(); }
-		if (!self.selected && willSelect) { self.select(); }
+		if (self.options.ascendSelection) {
+			var list = self.testForSelected();
+			var willSelect = (list.length > 1 || (list.length == 1 && list[0] != self));
+			for (var i=0;i<list.length;i++) if (list[i] != self) { list[i].deselect(); }
+			if (!self.selected && willSelect) { self.select(); }
+		}
 		self.state = 0;
 		self.updateStyle();
 	}
@@ -395,12 +401,12 @@ OAT.TreeNode = function(li,ul,parent,root) {
 		return selected;
 	}
 	
-	this.updateStyle = function() {
-		var treeName = "leaf";
+	this.updateStyle = function() { /* adjust icon contents as needed */
+		var iconName = "leaf";
 		var signName = "blank";
 		if (self.ul) { /* unless specified otherwise, all non-leaf nodes are expanded */
-			if (self.treeIcon) { self.treeIcon.style.cursor = "pointer"; }
-			if (self.signIcon) { self.signIcon.style.cursor = "pointer"; }
+			if (self._icon) { self._icon.style.cursor = "pointer"; }
+			if (self._sign) { self._sign.style.cursor = "pointer"; }
 			if (self.state) {
 				signName = "minus";
 				OAT.Dom.show(self.ul);
@@ -417,21 +423,27 @@ OAT.TreeNode = function(li,ul,parent,root) {
 				OAT.Dom.addClass(self.ul,"tree_ul_collapsed");
 			}
 			if (self.selected) {
-				treeName = "node-expanded";
+				iconName = "node-expanded";
 			} else {
-				treeName = "node-collapsed";
+				iconName = "node-collapsed";
 			}
 		} else {
-			if (self.treeIcon) { self.treeIcon.style.cursor = ""; }
-			if (self.signIcon) { self.signIcon.style.cursor = ""; }
+			if (self._icon) { self._icon.style.cursor = ""; }
+			if (self._sign) { self._sign.style.cursor = ""; }
 		}
 		
 		if (self.customImage) {
-			treeName = self.customImage;
+			iconName = self.customImage;
 		}
 		
-		self.applyImage(self.treeIcon,treeName);
-		self.applyImage(self.signIcon,signName);
+		self.applyImage(self._icon,iconName);
+		self.applyImage(self._sign,signName);
+		if (self.options.useDots && self.li) { 
+			var dots = (self.parent.children[self.parent.children.length-1] == self ? "dots-part" : "dots-full");
+			self.applyBackground(self.li,dots);
+			self.li.style.backgroundRepeat = (dots == "dots-full" ? "repeat-y" : "no-repeat");
+			self.applyBackground(self._sign,"dots-horiz"); 
+		}
 		
 	}
 	
@@ -442,17 +454,19 @@ OAT.TreeNode = function(li,ul,parent,root) {
 		}
 	}
 	
+	this.applyBackground = function(img,name) {
+		if (!img) { return; }
+		var o = self.options;
+		var path = o.imagePath + "Tree_" + (o.imagePrefix=="" ? "" : o.imagePrefix+"_") + name + ".gif";
+		img.style.backgroundImage = 'url("'+path+'")';
+	}
+	
 	this.applyImage = function(img,name) {
 		if (!img) { return; }
 		var o = self.options;
 		var path = o.imagePath + "Tree_" + (o.imagePrefix=="" ? "" : o.imagePrefix+"_") + name + "." + o.ext;
 		var pathB = o.imagePath + "Blank.gif";
-		if (OAT.Dom.isIE() && o.ext.toLowerCase() == "png") {
-			img.src = pathB;
-			img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+path+"', sizingMethod='crop')";
-		} else {
-			img.src = path;
-		}
+		OAT.Dom.imageSrc(img,path,pathB);
 	}
 	
 	this.appendChild = function(oldNode,index,ignoreOldParent) {
@@ -462,7 +476,7 @@ OAT.TreeNode = function(li,ul,parent,root) {
 		if (!ignoreOldParent) { var oldIdx = oldParent.children.find(oldNode); }
 		/* basic check */
 		if (!self.ul) {
-			self.ul = OAT.Dom.create("ul");
+			self.ul = OAT.Dom.create("ul",{margin:"0px",padding:"0px"});
 			self.li.appendChild(self.ul);
 			self.ul.style.listStyleType = "none";
 		}
@@ -484,9 +498,7 @@ OAT.TreeNode = function(li,ul,parent,root) {
 		oldNode.parent = self;
 		
 		/* remaining bits */
-		oldNode.sync(self.depth+1);
-		if (!ignoreOldParent) { oldParent.sync(oldParent.depth); }
-		self.sync(self.depth);
+		self.root.walk("sync");
 	}
 	
 	this.deleteChild = function(oldNode) {
@@ -509,9 +521,54 @@ OAT.TreeNode = function(li,ul,parent,root) {
 		return child;
 	}
 	
-	this.setLabel = function(newLabel) { self.label.innerHTML = newLabel; }
-	this.getLabel = function() { return self.label.innerHTML; }
+	this.setLabel = function(newLabel) { self._label.innerHTML = newLabel; }
+	this.getLabel = function() { return self._label.innerHTML; }
 
+	this.removeSignal = function() {
+		self.gdMode = 0;
+		self._label.style.fontWeight = "normal";
+		self._div.style.borderBottom = "none";
+	}
+	
+	this.checkSignal = function() {
+		var e = self.root.gdEvent;
+		var pos = OAT.Dom.position(self._div);
+		var dims = OAT.Dom.getWH(self._div);
+		var epos = OAT.Dom.eventPos(e);
+		
+		var hit = 0;
+		
+		if (epos[0] > pos[0] && epos[0] < pos[0]+dims[0] &&
+			epos[1] > pos[1] && epos[1] < pos[1]+dims[1]) {
+			hit = 1;
+		}
+		
+		if (!hit) {
+			if (self.gdMode) { self.removeSignal(); }
+			return;
+		}
+
+		/* check for gdElm over */
+		var pos = OAT.Dom.position(self._gdElm);
+		var dims = OAT.Dom.getWH(self._gdElm);
+		if (epos[0] > pos[0] && epos[0] < pos[0]+dims[0] &&
+			epos[1] > pos[1] && epos[1] < pos[1]+dims[1]) {
+			hit = 2;
+		}
+		
+		
+		if (hit == 2 && self.ul) {
+			self._label.style.fontWeight = "bold";
+			self._div.style.borderBottom = "none";
+			self.gdMode = 2;
+		} else {
+			self._label.style.fontWeight = "normal";
+			self._div.style.borderBottom = "1px dotted #888";
+			self.gdMode = 1;
+		}
+		
+	}
+	
 	return self;
 }
 
@@ -522,7 +579,10 @@ OAT.Tree = function(optObj) {
 		imagePrefix:"",
 		ext:"png",
 		onlyOneOpened:0,
+		size:16,
 		allowDrag:false,
+		ascendSelection:true,
+		useDots:true,
 		onClick:"select", /* select|toggle|false */
 		onDblClick:"toggle", /* select|toggle|false */
 		
@@ -541,6 +601,23 @@ OAT.Tree = function(optObj) {
 	
 	for (var p in optObj) { self.options[p] = optObj[p]; }
 	
+	this.dragging = false;
+	
+	this.gdStart = function() {
+		self.dragging = true;
+	}
+	
+	this.gdEnd = function() {
+		self.dragging = false;
+		self.walk("removeSignal");
+	}
+	
+	this.gdMove = function(event) {
+		if (!self.dragging) { return; }
+		self.gdEvent = event;
+		self.walk("checkSignal")
+	}
+	
 	this.walk = function(methodName) { 
 		for (var i=0;i<self.tree.children.length;i++) { 
 			self.tree.children[i].walk(methodName,1); 
@@ -550,6 +627,13 @@ OAT.Tree = function(optObj) {
 	this.assign = function(listElm,collapse) {
 		var ul = $(listElm);
 		ul.style.listStyleType = "none";
+		
+		if (self.options.allowDrag) { 
+			OAT.MSG.attach(self.gd,OAT.MSG.GD_START,self.gdStart);
+			OAT.MSG.attach(self.gd,OAT.MSG.GD_END,self.gdEnd);
+			OAT.MSG.attach(self.gd,OAT.MSG.GD_ABORT,self.gdEnd);
+			OAT.Dom.attach(document,"mousemove",self.gdMove);
+		}
 		
 		/* get a mirror of existing structure */
 		self.tree = new OAT.TreeNode(false,ul,false,self);
