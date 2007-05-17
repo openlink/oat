@@ -46,6 +46,7 @@ AC_CONFIG_FILES([
     Makefile 
     demo/Makefile
     designer/Makefile
+    exhibit-sparql/Makefile
     formdesigner/Makefile
     images/Makefile
     oat/docs/Makefile
