@@ -37,6 +37,7 @@
 	<li><a href="#attach">OAT.Event.attach(element, event, callback)</a></li>
 	<li><a href="#detach">OAT.Event.detach(element, event, callback)</a></li>
 	<li><a href="#source">OAT.Event.source(event)</a></li>
+	<li><a href="#cancel">OAT.Event.cancel(event)</a></li>
 	<li><a href="#eposition">OAT.Event.position(event)</a></li>
 	<li><a href="#prevent">OAT.Event.prevent(event)</a></li>
 <hr/>
@@ -216,6 +217,9 @@ var div = OAT.Dom.create("div");
 div.id = "myDiv";
 OAT.Dom.attach(div, "click", callback);
 </p></pre>
+
+<h3><a name="cancel">OAT.Event.cancel(event)</a></h3>
+<p>Cancels bubbling of <em>event</em>.</p>
 
 <h3><a name="eposition">OAT.Event.position(event)</a></h3>
 <p>Returns coordinates of <em>event</em>, relative to top left corner of page.</p>

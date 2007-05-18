@@ -701,6 +701,10 @@ OAT.Event = { /* Event helper */
 	source:function(event) {
 		return (event.target ? event.target : event.srcElement);
 	},
+	cancel:function(event) {
+		event.cancelBubble = true;
+		if (event.stopPropagation) { event.stopPropagation(); }
+	},
 	position:function(event) {
 		var scroll = OAT.Dom.getScroll();
 		return [event.clientX+scroll[0],event.clientY+scroll[1]];
