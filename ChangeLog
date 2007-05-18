@@ -1,3 +1,307 @@
+2007-05-18 12:03  source
+
+	* Fixed copyright assignments
+
+2007-05-18 11:55  source
+
+	* No svg sidebar in rdfb
+
+2007-05-18 11:54  source
+
+	* Updated build date
+
+2007-05-18 11:54  source
+
+	* Increased SVG graph performance
+
+2007-05-18 11:54  source
+
+	* Removed SVG sidebar in rdfb
+
+2007-05-18 11:53  source
+
+	* Fixed order of extensions in DAV browser
+
+2007-05-18 11:52  source
+
+	* Added OAT.Event.cancel
+
+2007-05-17 12:24  source
+
+	* Added maintainer options
+
+2007-05-17 10:44  source
+
+	* Updated version to 2.4-rc1
+
+2007-05-17 10:44  source
+
+	* Added SPARQL exhibit
+
+2007-05-17 10:42  source
+
+	* Added openajax
+
+2007-05-17 10:35  source
+
+	* Added handling of malformed URLs
+
+2007-05-17 10:34  source
+
+	* Added new OAT.Style API
+	* Added new OAT.Event API
+	* Added new OAT.Browser API
+	* Fixed browser compatibility
+	* Moved parts of loader to bootstrap to speed up loading
+	* Added smart loading of crypto and window libraries
+	* Added OAT.Dom.uriParams
+	* Rewrote windowing subsystem
+
+2007-05-17 10:31  source
+
+	* Updated version date
+
+2007-05-17 10:31  source
+
+	* Fixed Foreign Keys shcema restrictions
+
+2007-05-17 10:30  source
+
+	* Fixed xslt parameters
+	* Fixed ajax2 type_xml with bad content-type
+	* Added xml methods for serialization and new document creation
+
+2007-05-17 10:29  source
+
+	* Rewrote windowing subsystem
+	* Added magnet snapping
+	* Fixed window accomodation
+
+2007-05-17 10:28  source
+
+	* Added alternative tree node consumption algorithm
+	* Added depth classes for tree
+	* Use new OAT.Style and OAT.Event
+	* Added tree reposition indicators
+	* Added dots in tree
+
+2007-05-17 10:25  source
+
+	* Updated timeline API
+	* Fixed bug with empty timeline
+	* Fixed timeline aesthetics
+	* Fixed browser compatibility
+
+2007-05-17 10:24  source
+
+	* Updated timeline API
+	* Fixed bug with empty timeline
+	* Fixed timeline aesthetics
+	* Fixed browser compatibility
+	* Fixed extremely narrow timelines
+	* Added multiple bands in timeline
+	* Added multiple pin colors in timeline
+
+2007-05-17 10:22  source
+
+	* Added closable undocked windows
+	* Added depth classess for tree
+	* Use new OAT.Style and OAT.Event api
+	* Added new properties
+	* Added code to hide tabs instead of unlinking
+	* Added dock mode for tab
+
+2007-05-17 10:19  source
+
+	* Fixed browser compatibility
+
+2007-05-17 10:18  source
+
+	* Fixed parsing bug with space in quotes
+	* Changed [pos] to charAt(pos) for IE compatibility
+	* Added fix for makign full IRI shorter with prefixes
+	* Added exception handler
+
+2007-05-17 10:17  source
+
+	* Use new OAT.Style
+	* Fixed browser compatibility
+	* Rewrote windowing subsystem
+
+2007-05-17 10:16  source
+
+	* Rewrote windowing subsystem
+	* Fixed window accomodation
+	* Fixed browser compatibility
+
+2007-05-17 10:15  source
+
+	* Use OAT.Style
+	* Fixed browser compatibility checks
+
+2007-05-16 20:29  source
+
+	* Added navigation tab
+	* Added tab descriptions
+	* Restructured internal api and data structures
+	* Added support for dateTime resource
+	* Fixed loading
+	* Added images tab
+	* Added shortcut images
+	* Added options for <a>++
+	* Added session save w/ bookmarks
+	* Added default graph
+	* Added bookmarks in permalink
+	* Updated dav support
+	* Added multiple banks in timeline
+	* Added multiple pin colors in map
+	* Fixed wqx handling
+	* Fixed svgraph <a>++
+	* Added RQ loading
+	* Fixed cross browser support
+
+2007-05-16 20:23  source
+
+	* Fixed label bug in chart
+
+2007-05-16 20:22  source
+
+	* Use new OAT.Style
+
+2007-05-16 20:21  source
+
+	* Rewrote windowing subsystem
+
+2007-05-16 20:20  source
+
+	* Fixed IE yahoo mapping
+	* Added GeoCoding
+
+2007-05-16 15:40  source
+
+	* Rewrote windowing subsystem
+	* Fixed window accomodation
+	* Fixed tree
+
+2007-05-16 15:39  source
+
+	* Fixed Ajax Get/JSON security
+
+2007-05-16 15:37  source
+
+	* Fixed browser compatibility checks
+
+2007-05-16 15:37  source
+
+	* Use new OAT.Style api
+	* Use new OAT.Event api
+	* Fixed tree icon drag
+
+2007-05-16 15:35  source
+
+	* Use new OAT.timeline api
+	* Rewrote windowing system
+	* Fixed bug in toXML
+
+2007-05-16 15:33  source
+
+	* Added magnet snapping
+
+2007-05-16 15:32  source
+
+	* Added new DOCK_DRAG message
+
+2007-05-16 15:32  source
+
+	* Use new OAT.Style api
+	* Fixed opacity for IE6 to all IE version
+	* Fixed browser compatibility checks
+
+2007-05-16 15:30  source
+
+	* Added option to control window close button
+
+2007-05-16 15:29  source
+
+	* Fixed check for http prefix
+
+2007-05-16 15:27  source
+
+	* Rewrote DAV browser
+
+2007-05-16 15:26  source
+
+	* Fixed Yahoo mapping
+
+2007-05-16 15:25  source
+
+	* Rewrote combo* widgets using new api calls
+
+2007-05-16 15:23  source
+
+	* Fixed browser compatibility check
+	* Fixed color encoding
+
+2007-05-16 15:22  source
+
+	* Fixed calendar initalization and (re)drawing
+
+2007-05-16 15:20  source
+
+	* Use new OAT.Dom function for positioning
+
+2007-05-16 15:12  source
+
+	* Use new OAT.Style api
+	* Fixed browser compatibility checks
+
+2007-05-16 15:11  source
+
+	* Fixed updating height in DOM tree
+
+2007-05-16 15:08  source
+
+	* Added throbber to ajax dialog
+	* Added Ajax Get/JSON security
+	* Added noSecurityCookie parameter
+	* Fixed browser compatibility checks
+	* Fixed Firefox problem with synchronous calls
+
+2007-05-16 14:39  source
+
+	* Updated documentation
+
+2007-05-16 14:36  source
+
+	* Fixed load path
+
+2007-05-16 14:34  source
+
+	* Small visual fixes
+	* Fixed browser compatibility
+
+2007-05-16 14:26  source
+
+	* Fixed loading
+	* Small visual fixes
+	* Fixed browser compatibility checks
+
+2007-05-16 14:23  source
+
+	* Added new demos
+	* Updated compatibility matrix
+	* Updated smarter loading
+	* Fixed small bugs in existing demos
+
+2007-05-16 14:13  source
+
+	* Added new RDF Browser application
+
+2007-05-16 14:03  source
+
+	* Added new images
+	* Removed deprecated images
+
 2007-03-20 15:28  source
 
 	* Updated to version 2.3 for final release
@@ -532,6 +836,11 @@
 	* Fixed FormObject fromXML
 	* Fixed Formdesigner
 	* Added Properties of RDF Graph in Formdesigner
+
+2007-01-30 16:48  source
+
+	* OAT.Xmla now uses connection object
+	* Fixed OAT.Connection.toXML
 
 2007-01-30 16:48  source
 
