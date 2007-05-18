@@ -5,8 +5,7 @@ AC_REVISION($Id$)
 #
 #  This file is part of the OpenLink Ajax Toolkit (OAT) project
 #
-#  Copyright (C) 2006 by Ondrej Zara
-#  Copyright (C) 2006 by OpenLink Software
+#  Copyright (C) 2005-2007 OpenLink Software
 #
 #  This project is free software; you can redistribute it and/or modify it
 #  under the terms of the GNU General Public License as published by the
@@ -28,7 +27,7 @@ AC_REVISION($Id$)
 ##									##
 ##########################################################################
 AC_INIT([OpenLink Ajax Toolkit],
-        [2.4-rc1],
+        [2.4-rc2],
 	[oat.admin@openlinksw.com],
 	[oat])
 AC_CONFIG_SRCDIR([oat/loader.js])
