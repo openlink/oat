@@ -658,7 +658,10 @@ DEMO.rdf = {
 		function rdf_zoom(val) {
 			var z = Math.pow(2,val/100);
 			var dims = OAT.Dom.getWH("rdf_content");
-			if (window.rdf_graph) { window.rdf_graph.svg.setAttribute("transform","scale("+z+")"); }
+			if (window.rdf_graph) { 
+				window.rdf_graph.transform.scale = z;
+				window.rdf_graph.applyTransform();
+			}
 		}
 
 
