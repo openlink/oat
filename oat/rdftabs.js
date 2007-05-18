@@ -597,7 +597,7 @@ OAT.RDFTabs.svg = function(parent,optObj) {
 			triples.push(triple);
 		}
 		var x = OAT.GraphSVGData.fromTriples(triples);
-		self.graphsvg = new OAT.GraphSVG(self.svgDiv,x[0],x[1],{vertexSize:[4,8]});
+		self.graphsvg = new OAT.GraphSVG(self.svgDiv,x[0],x[1],{vertexSize:[4,8],sidebar:false});
 		
 		for (var i=0;i<self.graphsvg.data.length;i++) {
 			var node = self.graphsvg.data[i];
