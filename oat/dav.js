@@ -676,7 +676,7 @@ OAT.WebDav = {
 		}
 		if (!allContained) { /* add *.* filter */
 			var f = ["*","*","All files"];
-			this.options.extensionFilters.unshift(f);
+			this.options.extensionFilters.push(f);
 		}
 		
 		if (!this.options.isDav) { /* siiiimple mode */
