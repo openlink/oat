@@ -1,3 +1,18 @@
+May 21 2007, V2.4:
+
+  * Enhanced RDF browser with image tab, navigation tab, search,
+    complete permalinks and geocoding.
+  * Enhanced DAV browser with permissions, owner and group
+  * Added support for GET/JSON security
+  * Added new API OAT.Event, OAT.Browser and OAT.Style
+  * Added rich XML library with XSLT parameters and XML serialization
+  * Increased SVG performance
+  * Increased performance loading windowing subsystem
+  * Added tab undocking
+  * Added dragging indicators for Tree
+  * Added dots in OAT.Tree
+  * Rewrote combo widgets
+
 March 20 2007, V2.3:
   * Added RDF Browser tabs
   * Added RDF Browser timeline and map
