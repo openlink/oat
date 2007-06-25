@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl"?>
+<rdf:RDF xml:lang="en" xmlns="http://usefulinc.com/ns/doap#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:asfext="http://projects.apache.org/ns/asfext#" xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+  <Project rdf:about="http://oat.openlinksw.com/">
+    <created>2007-06-04</created>
+    <license rdf:resource="http://usefulinc.com/doap/licenses/gpl"/>
+    <name>OAT</name>
+    <homepage rdf:resource="http://oat.openlinksw.com/"/>
+    <shortdesc>OAT (OpenLink AJAX Toolkit) is a JavaScript-based toolkit for browser-independent Rich Internet Application development.
+</shortdesc>
+    <description>
+OAT (OpenLink AJAX Toolkit) is a JavaScript-based toolkit for
+browser-independent Rich Internet Application development. It includes a
+rich collection of UI Widgets/Controls (for Maps, Timelines, Grids, Dialogs
+etc.), Event-Management System, and a truly platform-independent
+Data-Access Layer called `AJAX Database Connectivity' supporting generic
+query services such as XMLA, GData, SPARQL, OpenSearch and other
+service-specific Web Services.
+</description>
+    <mailing-list rdf:resource="http://sourceforge.net/mail/?group_id=168143"/>
+    <download-page rdf:resource="http://sourceforge.net/project/showfiles.php?group_id=168143"/>
+    <programming-language>JavaScript</programming-language>
+    <release>
+      <Version>
+        <name>OAT</name>
+        <created>2007-05-22</created>
+        <revision>2.4</revision>
+      </Version>
+    </release>
+    <maintainer>
+      <foaf:Person>
+        <foaf:name>OAT Maintainer</foaf:name>
+          <foaf:mbox rdf:resource="mailto:oat.admin@openlinksw.com"/>
+      </foaf:Person>
+    </maintainer>
+  </Project>
+</rdf:RDF>
