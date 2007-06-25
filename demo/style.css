@@ -51,7 +51,6 @@ h3 {
 .tab {
 	cursor: pointer;
 	padding: 4px 1em;
-	width: 100%;
 	behavior: url("hover.htc");
 }
 
@@ -508,4 +507,20 @@ div.combo_button_option:hover {
 	width: 100px;
 	height: 20px;
 	background-color: #fff; 
+}
+
+/* tag cloud */
+#tagcloud div {
+	float: left;
+	width: 30%;
+	border: 1px dotted #888;
+	margin: 2%;
+	padding: 1em;
+	text-align: justify;
+	font-size: 140%;
+	color: #555;
+}
+
+#tagcloud a {
+	text-decoration: none;
 }

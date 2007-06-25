@@ -847,6 +847,35 @@ DEMO.rdfbrowser = {
 	cb:false
 }
 
+DEMO.tagcloud = {
+	panel:2,
+	tab:46,
+	div:"tagcloud",
+	needs:["tagcloud"],
+	cb:function() {
+		var data = [
+			["OAT",13],["Internet",8],["Visualization",3],["Frequency",12],["Hello world!",6],
+			["OpenLink",10],["Tag Cloud",5],["Web 2.0",8],["SPARQL",7],["Testing message",4]
+		];
+		var tc1 = new OAT.TagCloud("tc_1",{});
+		var tc2 = new OAT.TagCloud("tc_2",{separator:", ",colorMapping:OAT.TagCloudData.COLOR_CYCLE});
+		var tc3 = new OAT.TagCloud("tc_3",{colorMapping:OAT.TagCloudData.COLOR_RANDOM,sizes:["100%"]});
+		var tmp = OAT.Dom.create("span");
+		tmp.innerHTML = " &bull; ";
+		var tc4 = new OAT.TagCloud("tc_4",{sizes:["100%"],separator:tmp.innerHTML});
+		for (var i=0;i<data.length;i++) {
+			tc1.addItem(data[i][0],"",data[i][1]);
+			tc2.addItem(data[i][0],"",data[i][1]);
+			tc3.addItem(data[i][0],"",data[i][1]);
+			tc4.addItem(data[i][0],"",data[i][1]);
+		}
+		tc1.draw();
+		tc2.draw();
+		tc3.draw();
+		tc4.draw();
+	}
+}
+
 function init() {
 	OAT.Dom.unlink("throbber");
 	var c = $("throbber_content");
