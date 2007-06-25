@@ -1,0 +1,1039 @@
+@prefix : <http://www.w3.org/2004/09/fresnel#> .
+@prefix ba: <http://simile.mit.edu/2006/02/barton-display#> .
+@prefix dsp: <http://simile.mit.edu/2006/02/dspace-display#> .
+@prefix facets: <http://simile.mit.edu/2006/01/ontologies/fresnel-facets#> .
+@prefix gr: <http://simile.mit.edu/2006/02/libraries-display-group#> .
+@prefix lom: <http://www.imsproject.org/rdf/imsmd_rootv1p2#> .
+@prefix lom-life: <http://www.imsproject.org/rdf/imsmd_lifecyclev1p2#> .
+@prefix mods: <http://simile.mit.edu/2006/01/ontologies/mods3#> .
+@prefix oc: <http://simile.mit.edu/2006/02/ocw-display#> .
+@prefix ocw: <http://simile.mit.edu/2006/01/ontologies/ocw#> .
+@prefix ow: <http://www.ontoweb.org/ontology/1#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix role: <http://simile.mit.edu/2006/01/roles#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+
+gr:group     rdf:type :Group;
+     :labelStyle "this-label";
+     :propertyStyle "this-property";
+     :resourceStyle "this-resource";
+     :stylesheetLink "styles/fresnel/libraries.css";
+     :valueStyle "this-value" .
+
+# ------------------------------------ Barton --------------------------------------
+
+<http://simile.mit.edu/2006/02/barton-display>     
+     dc:creator "Ryan Lee <ryanlee@w3.org>";
+     dc:date "2006-02-22"^^xsd:date;
+     dc:format "RDF";
+     dc:identifier <http://simile.mit.edu/2006/02/barton-display>;
+     rdfs:comment "Fresnel config for Barton MODS records."^^xsd:string .
+
+
+ba:authorityFacets     
+    rdf:type facets:FacetSet;
+    facets:facets  (
+        mods:authority  
+    );
+    facets:types  (
+        mods:Classification 
+        mods:Genre 
+        mods:Form 
+        mods:Audience 
+        mods:Language  
+    ) .
+    
+ba:dateFacets     
+    rdf:type facets:FacetSet;
+    facets:facets  (
+        mods:encoding  
+    );
+    facets:types  (
+        mods:Date  
+    ) .
+
+ba:normalFacets     
+    rdf:type facets:FacetSet;
+    facets:facets  (
+        rdf:type  
+    );
+    facets:types facets:allTypes .
+
+ba:publisherFacets     
+    rdf:type facets:FacetSet;
+    facets:facets  (
+        mods:location  
+    );
+    facets:types  (
+        mods:Publisher  
+    ) .
+
+ba:recordFacets     
+    rdf:type facets:FacetSet;
+    facets:facets  (
+        mods:origin  
+    );
+    facets:types  (
+        mods:Record  
+    ) .
+
+ba:textFacets     
+    rdf:type facets:FacetSet;
+    facets:facets  (
+        mods:subject 
+        role:creator 
+        mods:publisher 
+        mods:genre  
+    );
+    facets:types  (
+        mods:Text 
+        mods:Cartographic 
+        mods:Manuscript 
+        mods:MovingImage 
+        mods:SoundRecordingMusical 
+        mods:SoundRecordingNonMusical 
+        mods:NotatedMusic 
+        mods:SoftwareAndMultimedia  
+    ) .
+
+    
+ba:authorityLabelLens     
+    rdf:type :Lens;
+    :classLensDomain 
+        mods:Audience,
+        mods:Classification,
+        mods:Era,
+        mods:Form,
+        mods:Genre,
+        mods:Language;
+    :group gr:group;
+    :purpose :labelLens;
+    :showProperties  (
+        mods:value  
+    ) .
+
+ba:authorityLens     
+    rdf:type :Lens;
+    :classLensDomain 
+        mods:Audience,
+        mods:Classification,
+        mods:Form,
+        mods:Genre,
+        mods:Language;
+    :group gr:group;
+    :purpose :defaultLens;
+    :showProperties  (
+        rdf:type 
+        mods:value 
+        mods:authority  
+    ) .
+
+ba:authoritySublens     
+    rdf:type :Lens;
+    :classLensDomain 
+        mods:Audience,
+        mods:Classification,
+        mods:Form,
+        mods:Genre,
+        mods:Language;
+    :group gr:group .
+
+ba:dateLabelLens     
+    rdf:type :Lens;
+    :classLensDomain mods:Date;
+    :group gr:group;
+    :purpose :labelLens;
+    :showProperties  (
+        mods:value 
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:encoding;
+            :use ba:dateLabelFormat 
+        ] 
+    ) .
+
+ba:dateLens     
+    rdf:type :Lens;
+    :classLensDomain mods:Date;
+    :group gr:group;
+    :purpose :defaultLens;
+    :showProperties  (
+        mods:value 
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:encoding;
+            :use ba:dateDefaultFormat 
+        ] 
+    ) .
+
+ba:dateSublens     
+    rdf:type :Lens;
+    :classLensDomain mods:Date;
+    :group gr:group .
+
+ba:descriptionLabelLens     
+    rdf:type :Lens;
+    :classLensDomain mods:Description;
+    :group gr:group;
+    :purpose :labelLens;
+    :showProperties  (
+        mods:extent 
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:form;
+            :sublens ba:authorityLabelLens;
+            :use ba:formFormat 
+        ] 
+    ) .
+
+ba:descriptionLens     
+    rdf:type :Lens;
+    :classLensDomain mods:Description;
+    :group gr:group;
+    :purpose :defaultLens;
+    :showProperties  (
+        mods:extent 
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:form;
+            :sublens ba:authoritySublens;
+            :use ba:formDefaultFormat 
+        ] 
+    ) .
+
+ba:descriptionSublens     
+    rdf:type :Lens;
+    :classLensDomain mods:Description;
+    :group gr:group .
+
+ba:entityLabelLens     
+    rdf:type :Lens;
+    :classLensDomain 
+        mods:Conference,
+        mods:Corporation;
+    :group gr:group;
+    :purpose :labelLens;
+    :showProperties  (
+        mods:fullName  
+    ) .
+
+ba:entityLens     
+    rdf:type :Lens;
+    :classLensDomain 
+        mods:Conference,
+        mods:Corporation;
+    :group gr:group;
+    :purpose :defaultLens;
+    :showProperties  (
+        mods:fullName 
+        [	
+            rdf:type :PropertyDescription ;
+            :property role:creator;
+            :sublens ba:textLens 
+        ]
+        role:subjectOf  
+    ) .
+
+ba:entitySublens     
+    rdf:type :Lens;
+    :classLensDomain 
+        mods:Conference,
+        mods:Corporation;
+    :group gr:group;
+    :showProperties  (
+        [	
+            rdf:type :PropertyDescription ;
+            :property role:creator;
+            :sublens ba:textLabelLens 
+        ]
+        role:subjectOf  
+    ) .
+
+ba:eraLens     
+    rdf:type :Lens;
+    :classLensDomain mods:Era;
+    :group gr:group;
+    :purpose :defaultLens;
+    :showProperties  (
+        mods:value  
+    ) .
+
+ba:eraSublens     
+    rdf:type :Lens;
+    :classLensDomain mods:Era;
+    :group gr:group .
+
+ba:itemLabelLens     
+    rdf:type :Lens;
+    :classLensDomain mods:Item;
+    :group gr:group;
+    :purpose :labelLens;
+    :showProperties  (
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:title;
+            :sublens ba:titleLabelLens 
+        ] 
+    ) .
+
+ba:itemLens     
+    rdf:type :Lens;
+    :classLensDomain mods:Item;
+    :group gr:group;
+    :purpose :defaultLens;
+    :showProperties  (
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:title;
+            :sublens ba:titleLens 
+        ]
+        mods:name  
+    ) .
+
+ba:itemSublens     
+    rdf:type :Lens;
+    :classLensDomain mods:Item;
+    :group gr:group .
+
+ba:personLabelLens     
+    rdf:type :Lens;
+    :classLensDomain mods:Person;
+    :group gr:group;
+    :purpose :labelLens;
+    :showProperties  (
+        mods:fullName  
+    ) .
+
+ba:personLens     
+    rdf:type :Lens;
+    :classLensDomain mods:Person;
+    :group gr:group;
+    :purpose :defaultLens;
+    :showProperties  (
+        mods:address 
+        mods:fullName 
+        mods:dates  
+    ) .
+
+ba:personSublens     
+    rdf:type :Lens;
+    :classLensDomain mods:Person;
+    :group gr:group .
+    
+ba:placeLabelLens     
+    rdf:type :Lens;
+    :classLensDomain mods:Place;
+    :group gr:group;
+    :purpose :labelLens;
+    :showProperties  (
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:name;
+            :use ba:placeLabelFormat 
+        ]
+        mods:code  
+    ) .
+
+ba:placeLens     
+    rdf:type :Lens;
+    :classLensDomain mods:Place;
+    :group gr:group;
+    :purpose :defaultLens;
+    :showProperties  (
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:name;
+            :use ba:placeDefaultFormat 
+        ]
+        mods:code  
+    ) .
+
+ba:placeSublens     
+    rdf:type :Lens;
+    :classLensDomain mods:Place;
+    :group gr:group .
+        
+ba:publisherLabelLens     
+    rdf:type :Lens;
+    :classLensDomain mods:Publisher;
+    :group gr:group;
+    :purpose :labelLens;
+    :showProperties  (
+        mods:value  
+    ) .
+
+ba:publisherLens     
+    rdf:type :Lens;
+    :classLensDomain mods:Publisher;
+    :group gr:group;
+    :purpose :defaultLens;
+    :showProperties  (
+        mods:value 
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:location;
+            :sublens ba:placeSublens;
+            :use ba:placeDefaultFormat ] 
+        ) .
+        
+ba:publisherSublens     
+    rdf:type :Lens;
+    :classLensDomain mods:Publisher;
+    :group gr:group .
+    
+ba:recordLabelLens     
+    rdf:type :Lens;
+    :classLensDomain mods:Record;
+    :group gr:group;
+    :purpose :labelLens;
+    :showProperties  (
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:records;
+            :sublens ba:textLabelLens 
+        ] 
+    ) .
+
+ba:recordLens     
+    rdf:type :Lens;
+    :classLensDomain mods:Record;
+    :group gr:group;
+    :purpose :defaultLens;
+    :showProperties  (
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:records;
+            :sublens ba:textLens 
+        ]
+        mods:origin 
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:created;
+            :sublens ba:dateSublens 
+        ]
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:changed;
+            :sublens ba:dateSublens 
+        ] 
+    ) .
+        
+ba:textLabelLens     
+    rdf:type :Lens;
+    :classLensDomain 
+        mods:Cartographic,
+        mods:Manuscript,
+        mods:MovingImage,
+        mods:NotatedMusic,
+        mods:SoftwareAndMultimedia,
+        mods:SoundRecordingMusical,
+        mods:SoundRecordingNonMusical,
+        mods:Text;
+    :group gr:group;
+    :purpose :labelLens;
+    :showProperties  (
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:title;
+            :sublens ba:titleLabelLens 
+        ]
+        [	
+            rdf:type :PropertyDescription ;
+            :property owl:sameAs;
+            :sublens ba:textSameAsLabelLens 
+        ] 
+    ) .
+
+ba:textLens     
+    rdf:type :Lens;
+    :classLensDomain 
+        mods:Cartographic,
+        mods:Manuscript,
+        mods:MovingImage,
+        mods:NotatedMusic,
+        mods:SoftwareAndMultimedia,
+        mods:SoundRecordingMusical,
+        mods:SoundRecordingNonMusical,
+        mods:Text;
+    :group gr:group;
+    :purpose :defaultLens;
+    :showProperties  (
+        [	
+            rdf:type :PropertyDescription ;
+            :property owl:sameAs;
+            :sublens ba:textLens 
+        ]
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:genre;
+            :sublens ba:authoritySublens 
+        ]
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:classification;
+            :sublens ba:authoritySublens 
+        ]
+        [	
+            rdf:type :PropertyDescription ;
+            :property role:creator;
+            :sublens 
+                ba:entitySublens,
+                ba:personSublens 
+        ]
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:publisher;
+            :sublens ba:publisherSublens 
+        ]
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:physicalDescription;
+            :sublens ba:descriptionSublens 
+        ]
+        mods:note 
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:subject;
+            :sublens 
+                ba:eraSublens,
+                ba:placeSublens,
+                ba:topicSublens 
+        ]
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:series;
+            :sublens ba:itemSublens 
+        ] 
+    ) .
+
+ba:textSameAsLabelLens     
+    rdf:type :Lens;
+    :classLensDomain 
+        mods:Cartographic,
+        mods:Manuscript,
+        mods:MovingImage,
+        mods:NotatedMusic,
+        mods:SoftwareAndMultimedia,
+        mods:SoundRecordingMusical,
+        mods:SoundRecordingNonMusical,
+        mods:Text;
+    :group gr:group;
+    :purpose :labelLens;
+    :showProperties  (
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:title;
+            :sublens ba:titleLabelLens 
+        ] 
+    ) .
+    
+ba:titleLabelLens     
+    rdf:type :Lens;
+    :classLensDomain 
+        mods:AbbreviatedTitle,
+        mods:AlternativeTitle,
+        mods:Title,
+        mods:UniformTitle;
+    :group gr:group;
+    :purpose :labelLens;
+    :showProperties  (
+        mods:nonSort 
+        mods:value 
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:sub;
+            :use ba:titleFormat 
+        ] 
+    ) .
+
+ba:titleLens     
+    rdf:type :Lens;
+    :classLensDomain 
+        mods:AbbreviatedTitle,
+        mods:AlternativeTitle,
+        mods:Title,
+        mods:UniformTitle;
+    :group gr:group;
+    :purpose :defaultLens;
+    :showProperties  (
+        mods:nonSort 
+        mods:value 
+        [	
+            rdf:type :PropertyDescription ;
+            :property mods:sub;
+            :use ba:titleDefaultFormat 
+        ] 
+    ) .
+
+ba:topicLabelLens     
+    rdf:type :Lens;
+    :classLensDomain mods:Topic;
+    :group gr:group;
+    :purpose :labelLens;
+    :showProperties  (
+        mods:name  
+    ) .
+
+ba:topicLens     
+    rdf:type :Lens;
+    :classLensDomain mods:Topic;
+    :group gr:group;
+    :purpose :defaultLens;
+    :showProperties  (
+        mods:name  
+    ) .
+
+ba:topicSublens     
+    rdf:type :Lens;
+    :classLensDomain mods:Topic;
+    :group gr:group .
+
+
+ba:bartonResourceFormat     
+    rdf:type :Format;
+    :classFormatDomain 
+        mods:AbbreviatedTitle,
+        mods:AlternativeTitle,
+        mods:Audience,
+        mods:Cartographic,
+        mods:Classification,
+        mods:Conference,
+        mods:Corporation,
+        mods:Date,
+        mods:Era,
+        mods:Form,
+        mods:Genre,
+        mods:Item,
+        mods:Language,
+        mods:Manuscript,
+        mods:MovingImage,
+        mods:NotatedMusic,
+        mods:Person,
+        mods:Place,
+        mods:Publisher,
+        mods:Record,
+        mods:SoftwareAndMultimedia,
+        mods:SoundRecordingMusical,
+        mods:SoundRecordingNonMusical,
+        mods:Text,
+        mods:Title,
+        mods:Topic,
+        mods:UniformTitle;
+    :group gr:group;
+    :resourceStyle "barton-resource" .
+
+ba:classificationFormat     
+    rdf:type :Format;
+    :group gr:group;
+    :label :none;
+    :propertyFormatDomain mods:classification;
+    :propertyStyle "barton-classification" .
+
+ba:creatorFormat     
+    rdf:type :Format;
+    :group gr:group;
+    :propertyFormatDomain role:creator;
+    :propertyStyle "barton-creator";
+    :valueFormat  [ 
+        rdf:type :FormatDescription ;
+        :contentAfter " & ";
+        :contentLast " " 
+    ] .
+
+ba:dateDefaultFormat     
+    rdf:type :Format;
+    :propertyFormatDomain mods:encoding .
+
+ba:dateLabelFormat     
+    rdf:type :Format;
+    :propertyFormatDomain mods:encoding;
+    :valueFormat  [ 
+        rdf:type :FormatDescription ;
+        :contentAfter ")";
+        :contentBefore " (" 
+    ] .
+
+ba:descriptionFormat     
+    rdf:type :Format;
+    :group gr:group;
+    :propertyFormatDomain mods:physicalDescription;
+    :propertyStyle "barton-description" .
+
+ba:formDefaultFormat     
+    rdf:type :Format;
+    :propertyFormatDomain mods:form .
+
+ba:formFormat     
+    rdf:type :Format;
+    :propertyFormatDomain mods:form;
+    :valueFormat  [ 
+        rdf:type :FormatDescription ;
+        :contentAfter " ] ";
+        :contentBefore " [ " 
+    ] .
+
+ba:genreFormat     
+    rdf:type :Format;
+    :group gr:group;
+    :label :none;
+    :propertyFormatDomain mods:genre;
+    :propertyStyle "barton-genre" .
+
+ba:placeDefaultFormat     
+    rdf:type :Format;
+    :propertyFormatDomain mods:location .
+
+ba:placeFormat     
+    rdf:type :Format;
+    :propertyFormatDomain mods:location;
+    :valueFormat  [ 
+        rdf:type :FormatDescription ;
+        :contentAfter ", ";
+        :contentLast " " 
+    ] .
+
+ba:placeLabelFormat     
+    rdf:type :Format;
+    :propertyFormatDomain mods:location;
+    :valueFormat  [ 
+        rdf:type :FormatDescription ;
+        :contentAfter " | ";
+        :contentLast " " 
+    ] .
+
+ba:publisherFormat     
+    rdf:type :Format;
+    :group gr:group;
+    :propertyFormatDomain mods:publisher;
+    :propertyStyle "barton-publisher" .
+
+ba:publisherPlaceFormat     
+    rdf:type :Format;
+    :propertyFormatDomain mods:location;
+    :valueFormat  [ 
+        rdf:type :FormatDescription ;
+        :contentLast " : " 
+    ] .
+
+ba:sameFormat     
+    rdf:type :Format;
+    :group gr:group;
+    :propertyFormatDomain owl:sameAs;
+    :propertyStyle "owl-same" .
+
+ba:subjectListFormat     
+    rdf:type :Format;
+    :group gr:group;
+    :propertyFormatDomain 
+        mods:series,
+        mods:subject;
+    :propertyStyle "barton-subject";
+    :valueFormat  [ 
+        rdf:type :FormatDescription ;
+        :contentAfter " ; ";
+        :contentLast " " 
+    ] .
+
+ba:titleDefaultFormat     
+    rdf:type :Format;
+    :propertyFormatDomain mods:sub .
+
+ba:titleFormat     
+    rdf:type :Format;
+    :propertyFormatDomain mods:sub;
+    :valueFormat  [ 
+        rdf:type :FormatDescription ;
+        :contentBefore ": " 
+    ] .
+    
+        
+# ----------------------------------------------- DSpace -----------------------------------
+        
+<http://simile.mit.edu/2006/02/dspace-display>     
+    dc:creator "Ryan Lee <ryanlee@w3.org>";
+    dc:date "2006-02-22"^^xsd:date;
+    dc:format "RDF";
+    dc:identifier <http://simile.mit.edu/2006/02/dspace-display>;
+    rdfs:comment "Fresnel config for DSpace records."^^xsd:string .
+
+dsp:publicationFacets     
+    rdf:type facets:FacetSet;
+    facets:facets  (
+        dc:type 
+        dc:publisher 
+        dc:contributor 
+        dc:subject  
+    );
+    facets:types  (
+        ow:Publication  
+    ) .
+
+dsp:publicationLabelLens     
+    rdf:type :Lens;
+    :classLensDomain ow:Publication;
+    :group gr:group;
+    :purpose :labelLens;
+    :showProperties  (
+        dc:title  
+    ) .
+
+dsp:publicationLens     
+    rdf:type :Lens;
+    :classLensDomain ow:Publication;
+    :group gr:group;
+    :purpose :defaultLens;
+    :showProperties  (
+        dc:description 
+        dc:identifier 
+        dc:creator 
+        dc:contributor 
+        dc:date 
+        dc:subject 
+        dc:type 
+        dc:publisher 
+        dc:rights  
+    ) .
+            
+dsp:creatorFormat     
+    rdf:type :Format;
+    :group gr:group;
+    :propertyFormat  [ 
+        rdf:type :FormatDescription ;
+        :contentNoValue "[none]" 
+    ];
+    :propertyFormatDomain dc:creator;
+    :propertyStyle "dspace-creator" .
+
+dsp:descriptionFormat     
+    rdf:type :Format;
+    :group gr:group;
+    :propertyFormatDomain dc:description;
+    :propertyStyle "dspace-description" .
+
+dsp:dspaceResources     
+    rdf:type :Format;
+    :classFormatDomain ow:Publication;
+    :group gr:group;
+    :resourceStyle "dspace-resource" .
+
+dsp:identifierFormat     
+    rdf:type :Format;
+    :group gr:group;
+    :label "Resource";
+    :propertyFormatDomain dc:identifier;
+    :propertyStyle "dspace-identifier";
+    :value :externalLink .
+
+dsp:rightsFormat     
+    rdf:type :Format;
+    :group gr:group;
+    :propertyFormatDomain dc:rights;
+    :propertyStyle "dspace-rights" .
+
+dsp:typeFormat     
+    rdf:type :Format;
+    :group gr:group;
+    :propertyFormatDomain rdf:type;
+    :propertyStyle "dspace-rdftype" .
+
+# ---------------------------------------------- OCW --------------------------------------
+
+<http://simile.mit.edu/2006/02/ocw-display>     
+    dc:creator "Ryan Lee <ryanlee@w3.org>";
+    dc:date "2006-02-22"^^xsd:date;
+    dc:format "RDF";
+    dc:identifier <http://simile.mit.edu/2006/02/ocw-display>;
+    rdfs:comment "Fresnel config for OCW records."^^xsd:string .
+    
+oc:courseFacets     
+    rdf:type facets:FacetSet;
+    facets:facets  (
+        lom-life:instructionaldesigner 
+        dc:contributor 
+        dc:subject 
+        ocw:level  
+    );
+    facets:types  (
+        ocw:Course  
+    );
+    rdfs:label "Facets for OCW courses"@en .
+    
+oc:conceptLabelLens     
+    rdf:type :Lens;
+    rdfs:label "SKOS Concept Label Lens"@en;
+    :classLensDomain skos:Concept;
+    :group gr:group;
+    :purpose :labelLens;
+    :showProperties  (
+        rdfs:label  
+    ) .
+
+oc:conceptLens     
+    rdf:type :Lens;
+    rdfs:label "SKOS Concept Default Lens"@en;
+    :classLensDomain skos:Concept;
+    :group gr:group;
+    :purpose :defaultLens;
+    :showProperties  (
+        rdfs:label  
+    ) .
+
+oc:conceptSubLens     
+    rdf:type :Lens;
+    rdfs:label "SKOS Concept Sublens"@en;
+    :classLensDomain skos:Concept;
+    :group gr:group .
+    
+oc:courseLabelLens     
+    rdf:type :Lens;
+    rdfs:label "OCW Course Label Lens"@en;
+    :classLensDomain ocw:Course;
+    :group gr:group;
+    :purpose :labelLens;
+    :showProperties  (
+        dc:title 
+        [	
+            rdf:type :PropertyDescription ;
+            :property lom-life:version;
+            :use oc:titleFormat
+        ] 
+    ) .
+
+oc:courseLens     
+    rdf:type :Lens;
+    rdfs:label "OCW Course Lens"@en;
+    :classLensDomain ocw:Course;
+    :group gr:group;
+    :purpose :defaultLens;
+    :showProperties  (
+        [	
+            rdf:type :PropertyDescription ;
+            :property lom-life:instructionaldesigner;
+            :sublens oc:entitySubLens 
+        ]
+        [	
+            rdf:type :PropertyDescription ;
+            :property dc:contributor;
+            :sublens oc:entitySubLens 
+        ]
+        ocw:level 
+        ocw:location 
+        [	
+            rdf:type :PropertyDescription ;
+            :property dc:description;
+            :use oc:descriptionFormat 
+        ]
+        [	
+            rdf:type :PropertyDescription ;
+            :property dc:subject;
+            :sublens oc:conceptSubLens 
+        ] 
+    ) .
+
+oc:entityLabelLens     
+    rdf:type :Lens;
+    rdfs:label "OCW Entity Label Lens"@en;
+    :classLensDomain lom:Entity;
+    :group gr:group;
+    :purpose :labelLens;
+    :showProperties  (
+        rdfs:label  
+    ) .
+
+oc:entityLens     
+    rdf:type :Lens;
+    rdfs:label "OCW Entity Default Lens"@en;
+    :classLensDomain lom:Entity;
+    :group gr:group;
+    :purpose :defaultLens;
+    :showProperties  (
+        rdfs:label  
+    ) .
+
+oc:entitySubLens     
+    rdf:type :Lens;
+    rdfs:label "OCW Entity Sublens"@en;
+    :classLensDomain lom:Entity;
+    :group gr:group .
+oc:conceptFormat     
+    rdf:type :Format;
+    :classFormatDomain skos:Concept;
+    :group gr:group;
+    :resourceStyle "ocw-concept-resource" .
+
+oc:contributorFormat     
+    rdf:type :Format;
+    :group gr:group;
+    :labelFormat  [ 
+        rdf:type :FormatDescription ;
+        :contentAfter ": " 
+    ];
+    :propertyFormatDomain dc:contributor;
+    :propertyStyle "ocw-contributor" .
+
+oc:courseFormat     
+    rdf:type :Format;
+    :classFormatDomain ocw:Course;
+    :group gr:group;
+    :resourceStyle "ocw-resource" .
+
+oc:descriptionFormat     
+    rdf:type :Format;
+    :group gr:group;
+    :propertyFormatDomain dc:description;
+    :propertyStyle "ocw-description" .
+
+oc:designerFormat     
+    rdf:type :Format;
+    :group gr:group;
+    :labelFormat  [ 
+        rdf:type :FormatDescription ;
+        :contentAfter ": " 
+    ];
+    :propertyFormatDomain lom-life:instructionaldesigner;
+    :propertyStyle "ocw-designer" .
+
+oc:entityFormat     
+    rdf:type :Format;
+    :classFormatDomain lom:Entity;
+    :group gr:group;
+    :resourceStyle "ocw-entity-resource" .
+
+oc:levelFormat     
+    rdf:type :Format;
+    :group gr:group;
+    :labelFormat  [ 
+        rdf:type :FormatDescription ;
+        :contentAfter ": " 
+    ];
+    :propertyFormatDomain ocw:level;
+    :propertyStyle "ocw-level" .
+
+oc:locationFormat     
+    rdf:type :Format;
+    :group gr:group;
+    :labelFormat  [ 
+        rdf:type :FormatDescription ;
+        :contentAfter ": " 
+    ];
+    :propertyFormatDomain ocw:location;
+    :propertyStyle "ocw-location";
+    :value :externalLink .
+
+oc:subjectFormat     
+    rdf:type :Format;
+    :group gr:group;
+    :propertyFormatDomain dc:subject;
+    :propertyStyle "ocw-concept" .
+
+oc:titleFormat     
+    rdf:type :Format;
+    :propertyFormatDomain lom-life:version;
+    :valueFormat  [ 
+        rdf:type :FormatDescription ;
+        :contentBefore ", " 
+    ] .
