@@ -374,7 +374,6 @@ OAT.TreeNode = function(li,ul,parent,root) {
 	}
 	
 	this.expand = function(silent) {
-		if (!silent) { OAT.MSG.send(self.root,OAT.MSG.TREE_EXPAND,self); }
 		if (self.options.onlyOneOpened) {
 			/* close all opened siblings */
 			for (var i=0;i<self.parent.children.length;i++) {
@@ -384,10 +383,10 @@ OAT.TreeNode = function(li,ul,parent,root) {
 		}
 		self.state = 1;
 		self.updateStyle();
+		if (!silent) { OAT.MSG.send(self.root,OAT.MSG.TREE_EXPAND,self); }
 	}
 	
 	this.collapse = function() {
-		OAT.MSG.send(self.root,OAT.MSG.TREE_COLLAPSE,self);
 		/* check children for selection. if at lease one descendant is selected, select this node */
 		if (self.options.ascendSelection) {
 			var list = self.testForSelected();
@@ -397,6 +396,7 @@ OAT.TreeNode = function(li,ul,parent,root) {
 		}
 		self.state = 0;
 		self.updateStyle();
+		OAT.MSG.send(self.root,OAT.MSG.TREE_COLLAPSE,self);
 	}
 	
 	this.testForSelected = function() {
