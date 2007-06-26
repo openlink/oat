@@ -4,7 +4,7 @@
 
 <h3>Objects</h3>
 <ul>
-	<li><a href="#map">OAT.Map(something, provider, optionsObject)</a></li>
+	<li><a href="#map">OAT.Map(something, provider, optionsObject, specificOptions)</a></li>
 </ul>
 
 <h3>Methods</h3>
@@ -41,13 +41,14 @@
 
 <hr/>
 
-<h3><a name="map">OAT.Map(something, provider, optionsObject)</a></h3>
+<h3><a name="map">OAT.Map(something, provider, optionsObject, specificOptions)</a></h3>
 <p>Creates a map as a child of <em>something</em>. <em>provider</em> is one of TYPE_ constants. <em>optionsObject</em> may contain:</p> 
 <ul>
 	<li>fix - one of FIX_ constants, used when markers are too close to each other</li>
 	<li>fixDistance - distance for shifting markers</li>
 	<li>fixEpsilon - euclidean distance limit of markers to be taken as identical (in degrees)</li>
 </ul>
+<p>The <em>specificOptions</em> object may contain any engine-specific options, such as <code>{draggableCursor: crosshair}</code> for Google Maps.</p>
 
 <h3><a name="addtypecontrol">OAT.Map::addTypeControl()</a></h3>
 <p>Adds a 'map type' control to the map.</p>

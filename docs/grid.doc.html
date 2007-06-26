@@ -4,7 +4,7 @@
 
 <h3>Objects</h3>
 <ul>
-	<li><a href="#grid">OAT.Grid(element, autoNumber, allowColumnHiding)</a></li>
+	<li><a href="#grid">OAT.Grid(element, optionsObject)</a></li>
 </ul>
 
 <h3>Methods</h3>
@@ -44,9 +44,16 @@
 
 <hr/>
 
-<h3><a name="grid">OAT.Grid(element, autoNumber, allowColumnHiding)</a></h3>
-<p>Creates a grid as a child of <em>element</em>. If <em>autoNumber</em> is true, than the Grid will automatically add the first, 
-auto-numbered column. If <em>allowColumnHiding</em> is true, user can toggle column visibility at runtime.</p> 
+<h3><a name="grid">OAT.Grid(element, optionsObject)</a></h3>
+<p>Creates a grid as a child of <em>element</em>. <em>optionsObject</em> may contain:</p>
+<ul>
+	<li>autoNumber - Grid will automatically add the first auto-numbered column</li>
+	<li>rowOffset - starting offset for auto-numbered column</li>
+	<li>allowColumnHiding - user can toggle column visibility at runtime</li>
+	<li>sortFunc - custom user-specified sorting routine</li>
+	<li>imagePath - path to images (with trailing slash)</li>
+	<li>reorderNotifier - routine to be called when column reordering occurs</li>
+</ul>	
 
 <h3><a name="createrow">OAT.Grid::createRow(data, [index])</a></h3>
 <p>Adds a row. If <em>index</em> is present, it specifies at which index the new row should be inserted. <em>Data</em> 

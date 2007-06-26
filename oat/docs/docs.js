@@ -60,6 +60,7 @@ TOC.push(["sparkline.js","sparkline.doc.html"]);
 TOC.push(["sqlquery.js","sqlquery.doc.html"]);
 TOC.push(["statistics.js","statistics.doc.html"]);
 TOC.push(["tab.js","tab.doc.html"]);
+TOC.push(["tagcloud.js","tagcloud.doc.html"]);
 TOC.push(["ticker.js","ticker.doc.html"]);
 TOC.push(["timeline.js","timeline.doc.html"]);
 TOC.push(["toolbar.js","toolbar.doc.html"]);

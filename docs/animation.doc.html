@@ -18,9 +18,17 @@
 </ul>
 
 <h3>Messages</h3>
+
 <ul>
-	<li>OAT.MSG.ANIMATION_STOP</li>
+	<li>OAT.MSG.ANIMATION_STOP - sent when animation finishes (by its own means, not when stopped by stop())</li>
 </ul>
+
+<p><em>REMARK:</em> When attaching message listeners to Animation* derivatives, attach them to the .animation property instead. Example:</p>
+<pre class="code">
+var as = new OAT.AnimationSize("myDiv");
+OAT.MSG.attach(as.animation, OAT.MSG.ANIMATION_STOP, myCallback);
+</pre>
+
 
 <hr/>
 
