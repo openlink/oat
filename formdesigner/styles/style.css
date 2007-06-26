@@ -180,15 +180,20 @@ div.combo_list_option:hover {
 	height: 20px;
 	margin: 1px 3px;
 	padding: 1px;
-	border: 1px solid #bbb;
 	cursor: pointer;
 }
 
-div.toolbar_icon:hover {
+.toolbar_icon img {
+	border: 1px solid #bbb;
+	display: block;
+	margin: auto;
+}
+
+.toolbar_icon:hover img {
 	border:1px dotted #555;
 }
 
-.toolbar_icon_down {
+.toolbar_icon_down img {
 	border:1px solid #555;
 }
 
