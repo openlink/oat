@@ -445,7 +445,7 @@ var Filter = {
 			var visibleCount = 0;
 			for (var j=0;j<tables.length;j++) {
 				var li = tables[j];
-				var span = li.getElementsByTagName("span")[1];
+				var span = li.getElementsByTagName("span")[2];
 				if (value == "" || value == span.schema) {
 					/* show */
 					OAT.Dom.show(li);
@@ -733,7 +733,7 @@ var Columns = {
 	init:function(num_1,num_2) {
 		global_data.conds_1_count = num_1;
 		global_data.conds_2_count = num_2;
-		grid_in = new OAT.Grid("grid_in",0);
+		grid_in = new OAT.Grid("grid_in");
 		grid_in.createHeader([{value:"&nbsp;Query columns&nbsp;",sortable:0,draggable:0,align:OAT.GridData.ALIGN_CENTER}]);
 		var a = OAT.Dom.create("a");
 		a.setAttribute("href","#");

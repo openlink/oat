@@ -392,8 +392,7 @@ function init() {
 		}
 		headers.push(o); 
 	}
-	grid = new OAT.Grid("xmla_grid");
-	grid.imagePath = "../images/";
+	grid = new OAT.Grid("xmla_grid",{imagePath:"../images/"});
 	self.grid.createHeader(headers);
 	
 	/* data types */

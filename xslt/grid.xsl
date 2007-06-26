@@ -45,8 +45,7 @@
 			
 			function init() {
 				OAT.GridData.init();
-				var grid = new OAT.Grid("grid",1);
-				grid.imagePath = OAT.Preferences.imagePath;
+				var grid = new OAT.Grid("grid",{autoNumber:true});
 				grid.fromTable("table");	
 			}
 			]]>
