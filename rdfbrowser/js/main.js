@@ -16,10 +16,17 @@ var http_cred = {
 	password:"demo",
 	isDav:true
 };
-var ext_open = [
-	["wqx","wqx","Web Query"],
+
+var ext_rdf = [
 	["rq","rq","Saved SPARQL Query"],
-	["isparql","isparql","Saved iSPARQL Query"]
+	["isparql","isparql","Saved iSPARQL Query"],
+	["n3","n3","N3 RDF"],
+	["ttl","ttl","Turtle RDF"],
+	["xml","xml","RDF/XML"],
+	["rdf","rdf","RDF/XML"]
+];
+var ext_open = [
+	["wqx","wqx","Web Query"]
 ];
 var ext_save = [
 	["wqx","wqx","Web Query"]
@@ -41,9 +48,8 @@ var Search = {
 		for (var i=0;i<dsn.length;i++) { dsn[i] = " FROM <"+dsn[i]+"> "; }
 		
 		var text = Search.template.replace(/{dsn}/,dsn.join("")).replace(/{query}/,q);
-		window.query = text;
 		rdfb.store.clear();
-		rdfb.removeAllFilters();
+		rdfb.store.removeAllFilters();
 		rdfb.store.addSPARQL(text);
 	}
 }
@@ -72,23 +78,31 @@ var IO = {
 		OAT.AJAX.GET(filename,false,callback,o);
 	},
 
-	load:function() {
+	loadSession:function() {
 		var options = {
 			extensionFilters:ext_open,
 			callback:function(path,name,data){
-				if (name.match(/\.wqx$/)) {
 					var xmlDoc = OAT.Xml.createXmlDoc(data);
 					rdfb.fromXML(xmlDoc);
 				} 
+		};
+		OAT.WebDav.openDialog(options);
+	},
+
+	loadRDF:function() {
+		var options = {
+			extensionFilters:ext_rdf,
+			callback:function(path,name,data){
 				if (name.match(/\.rq$/)) {
 					rdfb.fromRQ(data,true);
-				}
-				if (name.match(/\.isparql$/)) {
+				} else if (name.match(/\.isparql$/)) {
 					var xmlDoc = OAT.Xml.createXmlDoc(data);
 					var q = xmlDoc.getElementsByTagName("query")[0];
 					rdfb.fromRQ(OAT.Xml.textValue(q),true);
+				} else {
+					rdfb.store.url.value = path+name;
+					rdfb.store.loadFromInput();
 				}
-				return true; /* return false will keep browser open */
 			}
 		};
 		OAT.WebDav.openDialog(options);
@@ -147,10 +161,11 @@ function init() {
 	var m = new OAT.Menu();
 	m.noCloseFilter = "noclose";
 	m.createFromUL("menu");
-	OAT.Dom.attach("menu_about","click",dialogs.about.show);
-	OAT.Dom.attach("menu_options","click",dialogs.options.show);
-	OAT.Dom.attach("menu_save","click",IO.save);
-	OAT.Dom.attach("menu_load","click",IO.load);
+	OAT.Event.attach("menu_about","click",dialogs.about.show);
+	OAT.Event.attach("menu_options","click",dialogs.options.show);
+	OAT.Event.attach("menu_save","click",IO.save);
+	OAT.Event.attach("menu_load","click",IO.loadSession);
+	OAT.Event.attach("menu_rdf","click",IO.loadRDF);
 
 	OAT.Dom.unlink("throbber");
 	var c = $("throbber_content");
@@ -159,19 +174,52 @@ function init() {
 
 	/* browser */
 	rdfb = new OAT.RDFBrowser("browse",{defaultURL:""});
-	rdfb.addTab("browser","Browser",{});
 	rdfb.addTab("navigator","Navigator",{});
+	rdfb.addTab("browser","Browser",{});
 	rdfb.addTab("triples","Raw triples",{});
 	rdfb.addTab("svg","SVG Graph",{});
 	rdfb.addTab("map","Yahoo Map",{provider:OAT.MapData.TYPE_Y});
 	rdfb.addTab("timeline","Timeline",{});
 	rdfb.addTab("images","Images",{});
+	rdfb.addTab("tagcloud","Tag Cloud",{});
 	
 	/* search */
-	OAT.Dom.attach("search_btn","click",Search.go);
-	OAT.Dom.attach("search_query","keypress",function(event) {
+	OAT.Event.attach("search_btn","click",Search.go);
+	OAT.Event.attach("search_query","keypress",function(event) {
 		if (event.keyCode == 13) { Search.go(); }
 	});
+	
+	
+	/* history */
+	if (window.location.href.match(/history/)) {
+		var hs = OAT.Dom.create("select");
+		OAT.Dom.option("","",hs);
+		for (var i=0;i<window.history.length;i++) {
+			OAT.Dom.option(window.history[i],window.history[i],hs);
+		}
+		var div = OAT.Dom.create("div");
+		div.innerHTML = "Browsing history: ";
+		div.appendChild(hs);
+		rdfb.store.div.parentNode.insertBefore(div,rdfb.store.div);
+		hs.selectedIndex = 0;
+		OAT.Event.attach(hs,"change",function() {
+			if (hs.value != "") { rdfb.store.url.value = hs.value; }
+		});
+	}
+	
+	var historyRef = function() {
+		var ch = $("options_history");
+		if (ch.checked) {
+			try {
+				netscape.security.PrivilegeManager.enablePrivilege('UniversalBrowserRead');
+			} catch (e) {
+			alert(e);
+				ch.checked = false;
+			}
+			/* decide based on selection */
+		}
+	}
+	OAT.Event.attach("options_history","change",historyRef);
 	
 	/* load */
 	var obj = OAT.Dom.uriParams();

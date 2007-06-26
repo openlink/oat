@@ -50,14 +50,6 @@
 				}
 				]]>
 				function init() {
-					var ajax = new OAT.Dialog("Please wait","ajax_alert",{width:240,modal:0,zIndex:1001,resize:0});
-					ajax.ok = ajax.hide;
-					ajax.cancel = function() {
-						ajax.hide();
-						OAT.AJAX.cancelAll();
-					}
-					OAT.AJAX.startRef = ajax.show;
-					OAT.AJAX.endRef = ajax.hide;
 				<![CDATA[
 					/* create agg function list */
 					OAT.Dom.clear("pivot_agg");

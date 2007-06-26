@@ -24,9 +24,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <script type="text/javascript">
-		window._apiKey = 'ABQIAAAA9k7T4UNs_ZPbtRb55cbaWxSE7wLQWpSOERXe3608RRLSX3N_sxT9epCX8u3wKPj5DaGLIZPH1zp0Vg';
 		window.YMAPPID = 'yahoo-id';
-		var featureList = ["rdfbrowser","ajax2","dialog","grid","graphsvg","map","ymaps","timeline","menu","dialog","xml"];
+		var featureList = ["rdfbrowser","dimmer","ajax2","dialog","grid","graphsvg","map","ymaps","timeline","menu","dialog","xml","tagcloud"];
   </script>
   <script type="text/javascript" src="js/main.js"></script>
   <script type="text/javascript" src="../oat/loader.js"></script>
@@ -45,6 +44,11 @@
           <ul>
             <li id="menu_save">Save</li>
             <li id="menu_load">Open</li>
+          </ul>
+        </li>
+        <li>File
+          <ul>
+            <li id="menu_rdf">Local RDF Resource</li>
           </ul>
         </li>
         <li>Setup
@@ -68,7 +72,8 @@
 	  &lt;a&gt;++ behavior: <select id="options_app">
 		<option value="click" selected="selected">Activate when clicked</option>
 		<option value="hover">Activate on hover</option>
-	  </select>
+	  </select><br/>
+	  <input type="checkbox" id="options_history" /> Scan Browsing history? (works only in Gecko-based browsers)
     </div>
     
     <div id="connection">

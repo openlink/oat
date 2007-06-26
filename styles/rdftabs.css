@@ -21,11 +21,11 @@
 	padding: 10px;
 	padding-top: 0px;
 	width: 90%;
-	float: left;
-	clear: left;
+	clear: both;
 	border: 1px solid #888;
 	margin: 0.5em;
-	background-color: #eee
+	background-color: #eee;
+	overflow: hidden;
 }
 
 .rdf_group {
@@ -55,9 +55,8 @@
 /* images */
 
 .rdf_image {
-	float:left;
 	border: 1px solid #aaa;
-	margin: 0.5em;
+	margin: auto;
 	padding: 0.3em;
 }
 
@@ -73,11 +72,64 @@
 	float: left;
 }
 
-.rdf_link {
-	border-bottom: 1px dotted #00f;
+/* navigation - spotlight table */
+
+.rdf_nav_spotlight {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 1em 0em;
+}
+
+.rdf_nav_spotlight td {
+	padding: 2px 3px;
+}
+
+.rdf_nav_header {
+	color: #fff;
+	font-weight: bold;
+	background-color: #59e;
+	border-bottom: 1px solid #fff;
 	cursor: pointer;
 }
 
+.rdf_nav_desc {
+	font-size: 90%;
+}
+
+.rdf_nav_toggle {
+	color: #59e;
+}
+
+/* navigation - links */
+
+.rdf_link {
+	color: inherit;
+	border-bottom: 1px dotted #000;
+	cursor: pointer;
+	text-decoration: none;
+}
+
 .rdf_link:hover {
-	border-bottom: 1px solid #00f;
+	border-bottom: 1px solid #000;
+	color: #000;
+}
+
+.rdf_nav_spotlight a {
+	color: inherit;
+}
+
+.rdf_nav_spotlight a:hover {
+	color: #000;
+}
+
+/* tag cloud */
+
+.rdf_tagcloud {
+	width: 50%;
+	font-size: 120%;
+	text-align: justify;
+}
+
+.rdf_tagcloud a {
+	text-decoration: none;
 }
