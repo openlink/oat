@@ -1,3 +1,156 @@
+2007-06-26 13:40  source
+
+	* Updated version to 2.5-rc1
+
+2007-06-26 13:39  source
+
+	* Enhanced RDF browser with new APIs
+
+2007-06-26 13:37  source
+
+	* Added new graphics
+
+2007-06-26 13:37  source
+
+	* Added extra img style elements
+
+2007-06-26 13:35  source
+
+	* Enhanced demos to reflect new APIs
+
+2007-06-26 13:34  source
+
+	* Updated project date
+
+2007-06-26 13:34  source
+
+	* Added rdfbrowser, rdfmini and rdfstore
+	* Added dereference
+	* New bootstrap windowing
+
+2007-06-26 13:30  source
+
+	* Fixed navigation repositioning
+	* Added invisible throbber
+	* Added File menu
+	* Added N3 support
+	* Fixed RDF parser
+	* Added navigator and spotlight tabs
+	* Added browser history
+	* Added throbber abort
+	* Fixded mapping resources detection
+	* Added lat+long direct mapping properties
+	* Fixed yahoo map
+	* Fixed gallery effects in images tab
+	* Added live links in tag soup in rdfb navigator
+	* Use traffic overlay
+	* Fixed timeline scans for 'created'
+	* Adjusted timeline style
+	* Added a++ rdf browser
+	* Added rdf-mini browser
+	* Added tag cloud
+	* Added rdf browser store
+	* Updated rdf parser namespace
+	* Fixed dereference in navigator
+
+2007-06-26 13:23  source
+
+	* Fixed SVG performance
+
+2007-06-26 13:22  source
+
+	* Fixed toolbar DOM
+
+2007-06-26 13:20  source
+
+	* Fixed timeline bugs
+	* Added milliseconds format
+	* Added timeline halfminute step
+	* Added seconds timestep in tlscale
+
+2007-06-26 13:19  source
+
+	* Check callback availability
+
+2007-06-26 13:17  source
+
+	* Added traffic overlay
+	* Added map support for provider-specific options
+	* Added map hover lookup window
+
+2007-06-26 13:16  source
+
+	* Added traffic overlay
+
+2007-06-26 13:15  source
+
+	* Use new OAT.Grid
+	* Added traffic overlay
+
+2007-06-26 13:14  source
+
+	* Use new OAT.Grid
+
+2007-06-26 13:14  source
+
+	* Fixed presentation
+
+2007-06-26 13:13  source
+
+	* Fixed dock delay
+
+2007-06-26 13:12  source
+
+	* Added new OAT.AJAX abort function
+	* Added new callbacks
+
+2007-06-26 13:10  source
+
+	* Rewrote panelbar internals
+
+2007-06-26 13:09  source
+
+	* Added grid doubleclick
+	* Rewrote grid internals
+
+2007-06-26 13:08  source
+
+	* Added new OAT.instant API
+
+2007-06-26 13:07  source
+
+	* Use new OAT.instant API
+
+2007-06-26 13:06  source
+
+	* Added dimmer animation
+	* Added dimmer delay change
+
+2007-06-26 13:05  source
+
+	* Added throbber
+	* Added +r permission to new directory
+
+2007-06-26 13:02  source
+
+	* Updated documentation
+
+2007-06-25 14:12  source
+
+	* Added N3 parser support
+
+2007-06-25 14:12  source
+
+	* Added N3 sample data
+
+2007-06-25 14:05  source
+
+	* Added Tagcloud support
+
+2007-06-25 14:02  source
+
+	* Added DOAP meta information
+
 2007-05-21 13:44  source
 
 	* Updated version to 2.4 for final release
