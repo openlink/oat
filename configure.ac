@@ -27,7 +27,7 @@ AC_REVISION($Id$)
 ##									##
 ##########################################################################
 AC_INIT([OpenLink Ajax Toolkit],
-        [2.5-rc1],
+        [2.5-rc2],
 	[oat.admin@openlinksw.com],
 	[oat])
 AC_CONFIG_SRCDIR([oat/loader.js])
@@ -48,6 +48,7 @@ AC_CONFIG_FILES([
     exhibit-sparql/Makefile
     formdesigner/Makefile
     images/Makefile
+    isparql/Makefile
     oat/docs/Makefile
     oat/Makefile
     openajax/Makefile
