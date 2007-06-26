@@ -318,7 +318,7 @@ DEMO.dimmer = {
 	needs:["dimmer"],
 	cb:function() {
 		OAT.Dom.hide("dimmer_content");
-		OAT.Dom.attach("dimmer_btn","click",function(){OAT.Dimmer.show("dimmer_content",{});OAT.Dom.center("dimmer_content",1,1);});
+		OAT.Dom.attach("dimmer_btn","click",function(){OAT.Dimmer.show("dimmer_content");OAT.Dom.center("dimmer_content",1,1);});
 		OAT.Dom.attach("dimmer_close","click",function(){OAT.Dimmer.hide();});
 	}
 }
@@ -932,6 +932,12 @@ function init() {
 	pb.addPanel("pb_5","pb_55");
 	pb.addPanel("pb_6","pb_66");
 
+	/* create dimmer element */
+	var dimmerElm = OAT.Dom.create("div",{border:"2px solid #000",padding:"1em",position:"absolute",backgroundColor:"#fff"});
+	dimmerElm.innerHTML = "OAT Components loading...";
+	document.body.appendChild(dimmerElm);
+	OAT.Dom.hide(dimmerElm);
+	
 	for (var p in DEMO) { DEMO[p].drawn = false; }
 	tab.options.goCallback = function(oldIndex,newIndex) {
 		var oldName, newName;
@@ -955,7 +961,14 @@ function init() {
 		var obj = DEMO[newName];
 		if (!obj.drawn) {
 			if (obj.cb) {
-				OAT.Loader.loadFeatures(obj.needs,function(){obj.cb();obj.drawn=true;});
+				OAT.Dimmer.show(dimmerElm);
+				OAT.Dom.center(dimmerElm,1,1);
+				var ref = function() {
+					if (!window.location.href.match(/:source/)) { OAT.Dimmer.hide(); }
+					obj.cb();
+					obj.drawn = true;
+				}
+				OAT.Loader.loadFeatures(obj.needs,ref);
 			} else { obj.drawn = true; }
 		} /* if not yet included & drawn */
 	}
