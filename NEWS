@@ -1,5 +1,18 @@
-May 21 2007, V2.4:
+June 27 2007, V2.5:
+  * Added iSPARQL, an SVG-based SPARQL query tool
+  * Added Navigator visualization to RDF browser
+  * Added mini version of RDF browser suitable for Docked environments
+  * Added RDF browser store
+  * Added N3/Turtle parser
+  * Added abortable AJAX calls
+  * Added throbber animations in WebDAV tree
+  * Added API OAT.instant, OAT.Tagcloud
+  * Added halfminute step to timeline
+  * Rewrote Grid widget including column auto-size and better browser 
+    compatibility
+  * Fixed small bugs
 
+May 21 2007, V2.4:
   * Enhanced RDF browser with image tab, navigation tab, search,
     complete permalinks and geocoding.
   * Enhanced DAV browser with permissions, owner and group
