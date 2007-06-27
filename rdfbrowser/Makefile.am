@@ -23,6 +23,7 @@ EXTRA_DIST = \
 	$(srcdir)/images/*.gif \
 	$(srcdir)/images/*.png \
 	$(srcdir)/js/*.js \
+	$(srcdir)/samples/*.n3 \
 	$(srcdir)/samples/*.rdf \
 	$(srcdir)/samples/*.xml \
 	$(srcdir)/styles/*.css
