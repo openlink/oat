@@ -79,7 +79,8 @@ OAT.Fresnel = function(optObj) {
 	
 	self.addClass = function(element,className) {
 		var arr = [];
-		var all = element.getAttribute("class").toString().split(" ");
+		var c = element.getAttribute("class") || "";
+		var all = c.split(" ");
 		for (var i=0;i<all.length;i++) {
 			if (all[i] != className) { arr.push(all[i]); }
 		}
