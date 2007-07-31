@@ -81,7 +81,7 @@ OAT.SparqlQuery = function() {
 	var self = this;
 	this.variables = [];
 	this.distinct = false;
-	this.describe = false;
+	this.mode = "SELECT";
 	this.prefixes = [];
 	this.orders = [];
 	this.limit = false;
@@ -89,28 +89,29 @@ OAT.SparqlQuery = function() {
 	this.from = '';
 	this.from_named = [];
 	this.where = [];
-	this.construct = false;
+	self.construct = false;
 	
 	this.clear = function() {
 		self.variables = [];
-  	self.distinct = false;
-  	self.describe = false;
+		self.distinct = false;
+		self.mode = "SELECT";
 		self.prefixes = [];
 		self.orders = [];
-  	self.limit = false;
-	  self.offset = false;
-  	self.from = '';
-  	self.from_named = [];
-	  self.where = [];
-	  self.construct = false;
+		self.limit = false;
+		self.offset = false;
+		self.from = '';
+		self.from_named = [];
+		self.where = [];
+		self.construct = false;
 	}
 	
 	this.splitPiece = function(string) {
 		var word = string.match(/^(\w+)\s*(.*)/);
 		switch (word[1].toUpperCase()) {
 			case "DESCRIBE":
-			  self.describe = true;
+				self.mode = "DESCRIBE";	
 			case "SELECT":
+				self.mode = "SELECT";
 				var main = word[2];
   				var tmp = main.match(/(distinct)?\s*(.*)/i);
   				var part = tmp[2];
@@ -166,6 +167,18 @@ OAT.SparqlQuery = function() {
 				    else 
 				      self.from = self.expandPrefix(tmp[2]);
 			break;
+			case "INSERT":
+			case "DELETE":
+				self.mode = word[1];
+				var main = word[2];
+				window.m = main;
+				var regs = main.match(/\s*(INTO|FROM)\s*GRAPH\s*(<[^>]+>)(.*)/);
+				self.from = regs[2];
+				var main = regs[3];
+				var bidx = main.indexOf('{');
+				var eidx = main.lastIndexOf('}');
+				self.parseWhere(main.substring(bidx + 1,eidx));
+			break
 			case "WHERE":
 				var main = word[2];
 				var bidx = main.indexOf('{');
@@ -181,18 +194,15 @@ OAT.SparqlQuery = function() {
 		} /* switch */
 	}
 	
-	this.parseWhere = function(where)
-	{
+	this.parseWhere = function(where) {
 	  self.where = self.parseParts(where,self);
 	}
 	
-	this.parseConstruct = function(construct)
-	{
+	this.parseConstruct = function(construct) {
 	  self.construct = self.parseParts(construct,self);
 	}
 	
-	this.parseParts = function(str,pobj,prev)
-	{
+	this.parseParts = function(str,pobj,prev) {
 	  str = str.trim();
 
 	  // separate the parts 
@@ -526,17 +536,24 @@ OAT.SparqlQuery = function() {
 	this.fromString = function(str) {
 		self.clear();
 		try {
-		  var keywords = ["PREFIX","SELECT","DESCRIBE","CONSTRUCT","ASK","FROM","WHERE","ORDER","LIMIT","OFFSET"];
-		
-		  var pieces = self.splitOnKeywords(str,keywords);
-		  for (var i=1;i<pieces.length;i++) {	self.splitPiece(pieces[i]); }
+			var keywords = ["PREFIX","SELECT","INSERT INTO GRAPH","DELETE FROM GRAPH","DESCRIBE","CONSTRUCT","ASK","FROM","WHERE","ORDER","LIMIT","OFFSET"];
+
+			var pieces = self.splitOnKeywords(str,keywords);
+			for (var i=1;i<pieces.length;i++) {	
+				var piece = pieces[i];
+				/* hack */
+				if (piece == "DELETE ") {
+					piece += pieces[i+1];
+					pieces.splice(i+1,1);
+				}
+				self.splitPiece(piece); 
+			}
 		} catch (e) {
-		  alert('Invalid query!\nThere was a problem parsing the query. Please, check the syntax.');
+			alert('Invalid query!\nThere was a problem parsing the query. Please, check the syntax.');
 		}
 	}
 	
-	this.splitOnKeywords = function (str,keywords)
-	{
+	this.splitOnKeywords = function (str,keywords) {
 	  var ret = []
 	  var cnt = 0;
 	  var bgn = 0;
@@ -589,195 +606,198 @@ OAT.SparqlQuery = function() {
 	}
 	
 	this.toString = function() {
-	  var fullquery = ''; 
-	  
-	  // prefix
-	  for(var i = 0;i<self.prefixes.length;i++)
-	    fullquery += 'PREFIX ' + self.prefixes[i].label + ': <' + self.prefixes[i].uri + '>\n';
-	  
-	  // select
-	  if (fullquery != '') fullquery += '\n';
-    if (self.construct)
-    {
-      var construct = '';
-      if (self.construct.type != 'group')
-        construct = '{\n' + self.genWhere(self.construct,1) + '}';
-      else
-        construct = self.genWhere(self.construct,0);
-  	  fullquery += 'CONSTRUCT ' + construct;
-    } else {
-      if (self.describe) fullquery += 'DESCRIBE ';
-      else fullquery += 'SELECT ';
-  	  if (self.distinct) fullquery += 'DISTINCT ';
-  	  if (self.variables.length == 0) fullquery += '*';
-  	  else fullquery += '?' + self.variables.join(' ?');
-    }
-	  if (fullquery != '') fullquery += '\n';
+		var fullquery = ''; 
 
-    // from	    
-	  if (self.from instanceof Array)
-	  {
-  	  for(var i = 0;i<self.from.length ;i++)
-  	    if (self.from[i] != '') fullquery += 'FROM ' + self.from[i] + '\n';
-  	} else
-  	  if (self.from != '') fullquery += 'FROM ' + self.from + '\n';
+		// prefixes
+		for (var i = 0;i<self.prefixes.length;i++) { fullquery += 'PREFIX ' + self.prefixes[i].label + ': <' + self.prefixes[i].uri + '>\n'; }
 
-	  for(var i = 0;i<self.from_named.length ;i++)
-	    fullquery += 'FROM NAMED ' + self.from_named[i] + '\n';
+		// select
+		if (fullquery != '') fullquery += '\n';
+		switch (self.mode) {
+			case "CONSTRUCT":
+				var construct = '';
+				if (self.construct.type != 'group')
+					construct = '{\n' + self.genWhere(self.construct,1) + '}';
+				else
+					construct = self.genWhere(self.construct,0);
+				fullquery += 'CONSTRUCT ' + construct;
+			break;
+			case "SELECT":
+			case "DESCRIBE":
+				fullquery += self.mode+" ";
+				if (self.distinct && self.mode != "DESCRIBE") fullquery += 'DISTINCT '; /* no DESCRIBE & DISTINCT?? */
+				if (self.variables.length == 0) fullquery += '*';
+				else fullquery += '?' + self.variables.join(' ?');
+			break;
+			case "INSERT":
+			case "DELETE":
+				fullquery += self.mode+" "+(self.mode == "INSERT" ? "INTO GRAPH " : "FROM GRAPH ");
+				var graph = "<http://URIQAREPLACEME/dataspace>";
+				if (self.from instanceof Array && self.from.length) {
+					graph = self.from[0];
+				} else if (self.from && !(self.from instanceof Array)) { graph = self.from; }
+				fullquery += graph+" ";
+				fullquery += self.genWhere(self.where,0);
+			break;
+		}
+		if (fullquery != '') fullquery += '\n';
 
-    // where 
-    var where = '';
-    if (self.where.type != 'group')
-      where = '{\n' + self.genWhere(self.where,1) + '}';
-    else
-      where = self.genWhere(self.where,0);
-	  fullquery += 'WHERE ' + where;
-	  
-	  if (self.orders.length > 0)
-	  {
-  	  fullquery += '\nORDER BY';
-  	  for(var i = 0;i<self.orders.length ;i++)
-  	  {
-  	    var order = '?' + self.orders[i].variable;
-  	    if (self.orders[i].desc)
-  	      order = 'DESC(' + order + ')';
-  	    fullquery += ' ' + order;
-  	  }
-	  }
+		if (self.mode != "INSERT" && self.mode != "DELETE") {
+			// from	    
+			if (self.from instanceof Array)  {
+				for (var i = 0;i<self.from.length ;i++) {
+					if (self.from[i]) { fullquery += "FROM " + self.from[i] + '\n'; }
+				}
+			} else {
+				if (self.from) { fullquery += "FROM " + self.from + '\n'; }
+			}
+			for (var i = 0;i<self.from_named.length ;i++) { fullquery += 'FROM NAMED ' + self.from_named[i] + '\n'; }
 
-    if (self.limit)
-	    fullquery += '\nLIMIT ' + self.limit;
-    if (self.offset)
-	    fullquery += '\nOFFSET ' + self.offset;
-	  return fullquery;
+			// where 
+			var where = '';
+			if (self.where.type != 'group') { 
+				where = '{\n' + self.genWhere(self.where,1) + '}'; 
+			} else { where = self.genWhere(self.where,0); }
+			fullquery += 'WHERE ' + where;
+
+			if (self.orders.length > 0) {
+				fullquery += '\nORDER BY';
+				for(var i = 0;i<self.orders.length ;i++) {
+					var order = '?' + self.orders[i].variable;
+					if (self.orders[i].desc) { order = 'DESC(' + order + ')'; }
+					fullquery += ' ' + order;
+				}
+			}
+
+			if (self.limit) fullquery += '\nLIMIT ' + self.limit;
+			if (self.offset) fullquery += '\nOFFSET ' + self.offset;
+		}
+		return fullquery;
 	}
 	
-	this.genWhere = function(obj,depth,next,prev)
-	{
+	this.genWhere = function(obj,depth,next,prev) {
 	  ret = '';
 	  indent = '  ';
 
 	  var tmp = '';
     // Is it union?  {  } union {  } we need another function for this - breakUnions
     
-    switch (obj.type) {
-  	  case 'group':
-  	    if (obj.parent.type != 'graph' && obj.parent.type != 'optional')
-  	      ret += indent.repeat(depth);
-  	    ret += '{\n';
-  		  for (var i = 0; i < obj.children.length; i++)
-  		  {
-  		    var nxt = false;
-  		    var prv = false;
-  		    if (obj.children[i+1])
-  		      nxt = obj.children[i+1];
-  		    if (i > 0)
-  		      prv = obj.children[i-1];
-  		    ret += self.genWhere(obj.children[i],depth + 1,nxt,prv);
-  		  }
-  	    ret += indent.repeat(depth) + '}\n';
-      break;
-  	  case 'union':
-  		  for (var i = 0; i < obj.children.length; i++)
-  		  {
-  		    if (i > 0)
-  		      ret += indent.repeat(depth) + 'UNION\n';
-  	      if (obj.children[i].type != 'group')
-  	      {
-  		      ret += indent.repeat(depth) + '{\n' + self.genWhere(obj.children[i],depth + 1);
-  		      ret += indent.repeat(depth) + '}\n';
-  		    } else ret += self.genWhere(obj.children[i],depth);
-  		  }
-      break;
-    // Is it graph?   graph ?g {  }
-  	  case 'graph':
-		    ret += indent.repeat(depth) + 'GRAPH ' + self.putPrefix(obj.name) + ' ';
-		    if (obj.content.type != 'group')
-		      ret += '{\n';
-		    ret += self.genWhere(obj.content,depth + 1);
-		    if (obj.content.type != 'group')
-		    {
-		      ret += indent.repeat(depth) + '}';
-		      ret += '\n';
-		    }
-      break;
-    // Is it optional?   optional {  }
-  	  case 'optional':
-		    ret += indent.repeat(depth) + 'OPTIONAL';
-		    if (obj.content.type != 'group')
-		      ret += ' {';
-        if (obj.content.type != 'pattern' && obj.content.type != 'group')
-          ret += '\n';
-		    ret += self.genWhere(obj.content,depth + 1);
-        if (obj.content.type != 'pattern')
-  		    ret += indent.repeat(depth)
-		    if (obj.content.type != 'group')
-		    {
-		      ret += '}';
-		      ret += '\n';
-		    }
-      break;
-    // So we must be pattern
-      case "pattern":
-        if (obj.parent.type != 'optional')
-          ret += indent.repeat(depth);
-        if (prev && obj.s == prev.s)
-          ret += ' '.repeat(self.putPrefix(obj.s).length);
-        else
-          ret += self.putPrefix(obj.s);
-        ret += ' ';
-        if (prev && obj.s == prev.s && obj.p == prev.p)
-          ret += ' '.repeat(self.putPrefix(obj.p).length);
-        else
-          ret += self.putPrefix(obj.p);
-        
-        ret += ' ';
-        switch (obj.otype) {
-          case '<http://www.w3.org/2001/XMLSchema#string>':
-          case 'xsd:string':
-            ret += '"' + obj.o + '"';
-            break;
-          case '<http://www.w3.org/2001/XMLSchema#integer>':
-          case 'xsd:integer':
-          case '<http://www.w3.org/2001/XMLSchema#decimal>':
-          case 'xsd:decimal':
-          case '<http://www.w3.org/2001/XMLSchema#double>':
-          case 'xsd:double':
-          case '<http://www.w3.org/2001/XMLSchema#boolean>':
-          case 'xsd:boolean':
-            ret += obj.o;
-            break;
-          case '':
-            ret += self.putPrefix(obj.o);
-            break;
-          default:
-            ret += '"' + obj.o + '"^^' + self.putPrefix(obj.otype);
-          break;
-        }
-        if (obj.filter != '')
-        {
-          ret += ' ';
-          ret += 'FILTER ';
-          if (obj.filterRegex)
-            ret += 'regex';
-          ret += '(';
-          ret += obj.filter;
-          ret += ')';
-        }
-        if (obj.parent.type != 'optional')
-        {
-          ret += ' ';
-          if (next && obj.s == next.s && obj.p == next.p)
-            ret += ',';
-          else if (next && obj.s == next.s)
-            ret += ';';
-          else 
-            ret += '.';
-          ret += ' \n';
-        }
-      default:
-      break;
-    }
+		switch (obj.type) {
+		  case 'group':
+			if (obj.parent.type != 'graph' && obj.parent.type != 'optional')
+			  ret += indent.repeat(depth);
+			ret += '{\n';
+			  for (var i = 0; i < obj.children.length; i++)
+			  {
+				var nxt = false;
+				var prv = false;
+				if (obj.children[i+1])
+				  nxt = obj.children[i+1];
+				if (i > 0)
+				  prv = obj.children[i-1];
+				ret += self.genWhere(obj.children[i],depth + 1,nxt,prv);
+			  }
+			ret += indent.repeat(depth) + '}\n';
+		  break;
+		  case 'union':
+			  for (var i = 0; i < obj.children.length; i++)
+			  {
+				if (i > 0)
+				  ret += indent.repeat(depth) + 'UNION\n';
+			  if (obj.children[i].type != 'group')
+			  {
+				  ret += indent.repeat(depth) + '{\n' + self.genWhere(obj.children[i],depth + 1);
+				  ret += indent.repeat(depth) + '}\n';
+				} else ret += self.genWhere(obj.children[i],depth);
+			  }
+		  break;
+		// Is it graph?   graph ?g {  }
+		  case 'graph':
+				ret += indent.repeat(depth) + 'GRAPH ' + self.putPrefix(obj.name) + ' ';
+				if (obj.content.type != 'group')
+				  ret += '{\n';
+				ret += self.genWhere(obj.content,depth + 1);
+				if (obj.content.type != 'group')
+				{
+				  ret += indent.repeat(depth) + '}';
+				  ret += '\n';
+				}
+		  break;
+		// Is it optional?   optional {  }
+		  case 'optional':
+				ret += indent.repeat(depth) + 'OPTIONAL';
+				if (obj.content.type != 'group')
+				  ret += ' {';
+			if (obj.content.type != 'pattern' && obj.content.type != 'group')
+			  ret += '\n';
+				ret += self.genWhere(obj.content,depth + 1);
+			if (obj.content.type != 'pattern')
+				ret += indent.repeat(depth)
+				if (obj.content.type != 'group')
+				{
+				  ret += '}';
+				  ret += '\n';
+				}
+		  break;
+		// So we must be pattern
+		  case "pattern":
+			if (obj.parent.type != 'optional')
+			  ret += indent.repeat(depth);
+			if (prev && obj.s == prev.s)
+			  ret += ' '.repeat(self.putPrefix(obj.s).length);
+			else
+			  ret += self.putPrefix(obj.s);
+			ret += ' ';
+			if (prev && obj.s == prev.s && obj.p == prev.p)
+			  ret += ' '.repeat(self.putPrefix(obj.p).length);
+			else
+			  ret += self.putPrefix(obj.p);
+			
+			ret += ' ';
+			switch (obj.otype) {
+			  case '<http://www.w3.org/2001/XMLSchema#string>':
+			  case 'xsd:string':
+				ret += '"' + obj.o + '"';
+				break;
+			  case '<http://www.w3.org/2001/XMLSchema#integer>':
+			  case 'xsd:integer':
+			  case '<http://www.w3.org/2001/XMLSchema#decimal>':
+			  case 'xsd:decimal':
+			  case '<http://www.w3.org/2001/XMLSchema#double>':
+			  case 'xsd:double':
+			  case '<http://www.w3.org/2001/XMLSchema#boolean>':
+			  case 'xsd:boolean':
+				ret += obj.o;
+				break;
+			  case '':
+				ret += self.putPrefix(obj.o);
+				break;
+			  default:
+				ret += '"' + obj.o + '"^^' + self.putPrefix(obj.otype);
+			  break;
+			}
+			if (obj.filter != '') {
+			  ret += ' ';
+			  ret += 'FILTER ';
+			  if (obj.filterRegex)
+				ret += 'regex';
+			  ret += '(';
+			  ret += obj.filter;
+			  ret += ')';
+			}
+			if (obj.parent.type != 'optional') {
+			  ret += ' ';
+			  if (next && obj.s == next.s && obj.p == next.p)
+				ret += ',';
+			  else if (next && obj.s == next.s)
+				ret += ';';
+			  else 
+				ret += '.';
+			  ret += ' \n';
+			}
+		  default:
+		  break;
+		}
 		return ret;
 	}
 }
