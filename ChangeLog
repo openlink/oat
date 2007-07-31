@@ -1,3 +1,128 @@
+2007-07-31 11:31  source
+
+	* Fixed newline at end of file
+
+2007-07-31 11:31  source
+
+	* Fixed make distcheck
+
+2007-07-31 11:14  source
+
+	* Updated version to 2.6-rc1
+
+2007-07-31 11:13  source
+
+	* Fixed comments
+
+2007-07-31 11:12  source
+
+	* Added new demos
+
+2007-07-31 10:57  source
+
+	* Small fixes
+
+2007-07-31 10:55  source
+
+	* Updated version date
+
+2007-07-31 10:55  source
+
+	* Enhanced rdf navigator plurals
+	* Rewrote rdfb a++ API
+	* Added support for Fresnel
+	* Added checkboxes in rdfb cache
+	* Fixed schema import and remove
+	* Fixed blank href
+	* Fixed xhtml icon in rdf store
+	* Fixed paint algorithm in rdfb tree
+	* Fixed dereference premalink in rdfb cache
+	* Small fixes
+
+2007-07-31 10:51  source
+
+	* Fixed N3 parsing
+
+2007-07-31 09:29  source
+
+	* Fixed opacity calculation
+	* Added slider and dock options
+
+2007-07-31 09:28  source
+
+	* Added new script dependencies
+
+2007-07-31 09:26  source
+
+	* Complete rewrite of iSPARQL, optimized for speed and code size
+	* Added support for SPARQL INSERT and DELETE
+
+2007-07-31 09:25  source
+
+	* Fixed redraw
+
+2007-07-31 09:23  source
+
+	* Added support for closable dock windows
+	* Added small improvements
+	* Fixed dock resizing
+	* Updated documentation OAT.Dock
+
+2007-07-31 09:18  source
+
+	* Fixed map custom pins in IE
+
+2007-07-31 09:17  source
+
+	* Fixed grid sort
+	* Fixed grid imagepath
+
+2007-07-31 09:16  source
+
+	* Added account name in OAT.Dereference
+
+2007-07-31 09:15  source
+
+	* Added webdav extention filtering in file input
+
+2007-07-31 09:14  source
+
+	* Fixed grid sort
+
+2007-07-31 09:08  source
+
+	* Fixed fresnel css
+
+2007-07-31 05:08  source
+
+	* Complete rewrite of iSPARQL, optimized for speed and code size
+	* Added support for SPARQL INSERT and DELETE
+
+2007-07-31 04:56  source
+
+	* Added new Fresnel API
+
+2007-07-31 04:56  source
+
+	* Added new Slidebar API
+
+2007-07-31 04:55  source
+
+	* Added new Notify API
+
+2007-07-31 04:51  source
+
+	* Added support for fresnel
+
+2007-07-31 04:47  source
+
+	* Updated graphics
+
+2007-07-31 04:47  source
+
+	* Added slidebar demo
+	* Added notify demo
+
 2007-06-27 08:27  source
 
 	* Updated version to 2.5 for final release
