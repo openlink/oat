@@ -82,9 +82,9 @@ var IO = {
 		var options = {
 			extensionFilters:ext_open,
 			callback:function(path,name,data){
-					var xmlDoc = OAT.Xml.createXmlDoc(data);
-					rdfb.fromXML(xmlDoc);
-				} 
+				var xmlDoc = OAT.Xml.createXmlDoc(data);
+				rdfb.fromXML(xmlDoc);
+			}
 		};
 		OAT.WebDav.openDialog(options);
 	},
@@ -107,6 +107,7 @@ var IO = {
 		};
 		OAT.WebDav.openDialog(options);
 	}
+
 }
 
 function init() {
@@ -173,7 +174,7 @@ function init() {
 	OAT.Dom.unlink(c);
 
 	/* browser */
-	rdfb = new OAT.RDFBrowser("browse",{defaultURL:""});
+	rdfb = new OAT.RDFBrowser("browse",{});
 	rdfb.addTab("navigator","Navigator",{});
 	rdfb.addTab("browser","Browser",{});
 	rdfb.addTab("triples","Raw triples",{});
@@ -182,6 +183,7 @@ function init() {
 	rdfb.addTab("timeline","Timeline",{});
 	rdfb.addTab("images","Images",{});
 	rdfb.addTab("tagcloud","Tag Cloud",{});
+	rdfb.addTab("fresnel","Fresnel",{defaultURL:"samples/fresnel-foaf.n3"});
 	
 	/* search */
 	OAT.Event.attach("search_btn","click",Search.go);

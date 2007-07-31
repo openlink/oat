@@ -1,0 +1,86 @@
+@prefix fresnel:  <http://www.w3.org/2004/09/fresnel#> .
+@prefix foaf:     <http://xmlns.com/foaf/0.1/> .
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+@prefix :         <#> .
+
+# -----------------------------------------------
+# 1.Fresnel Lenses for FOAF Person
+# -----------------------------------------------
+
+:personLens rdf:type fresnel:Lens ;
+           fresnel:purpose fresnel:defaultLens ;
+           fresnel:classLensDomain foaf:Person ;
+           fresnel:group :foafGroup ;
+           fresnel:showProperties ( 
+									foaf:depiction
+									foaf:img
+									foaf:name 
+                                    foaf:mbox
+									foaf:office
+                                    [ rdf:type fresnel:PropertyDescription ;
+                                      fresnel:property foaf:knows ;
+                                      fresnel:depth "1" ;
+                                      fresnel:sublens :knowsLens ] ) .
+
+:knowsLens rdf:type fresnel:Lens ;
+                       fresnel:classLensDomain foaf:Person ;
+                       fresnel:group :knowsGroup ;
+                       fresnel:showProperties ( 
+												foaf:name 
+                                                foaf:surname 
+                                                foaf:mbox 
+									) .
+
+			                      
+# -----------------------------------------------
+# 2. Resource formats
+# -----------------------------------------------
+
+:foafGroup rdf:type fresnel:Group ;
+			fresnel:resourceStyle "margin:0.5em; padding:0.5em; color: #000; border:2px solid #000; background-color:brown; clear:both;" .
+
+:depictFormat rdf:type fresnel:Format ;
+              fresnel:propertyFormatDomain foaf:depiction ;
+              fresnel:propertyFormatDomain foaf:img ;
+              fresnel:label fresnel:none ;
+              fresnel:value fresnel:image ;
+              fresnel:valueStyle "float: right; border:2px solid #000; margin:1em;"; 
+              fresnel:group :foafGroup ;
+              fresnel:group :knowsGroup .
+
+:headingFormat rdf:type fresnel:Format ;
+           fresnel:propertyFormatDomain foaf:name ;
+           fresnel:label fresnel:none;
+           fresnel:valueStyle "font-size:150%; margin-bottom:1em;";
+           fresnel:group :foafGroup .
+
+:urlFormat rdf:type fresnel:Format ;
+           fresnel:propertyFormatDomain foaf:homepage ;
+           fresnel:propertyFormatDomain foaf:mbox ;
+           fresnel:value fresnel:externalLink ;
+           fresnel:label fresnel:none ;
+           fresnel:valueStyle "color:#222;";
+			fresnel:valueFormat [ fresnel:contentAfter ", "^^xsd:string ; fresnel:contentLast "" ] ;
+           fresnel:group :foafGroup ;
+           fresnel:group :knowsGroup .
+
+# -----------------------------------------------
+# 2. Knows formats
+# -----------------------------------------------
+
+:knowsGroup rdf:type fresnel:Group .
+
+:friendFormat rdf:type fresnel:Format ;
+        fresnel:group :knowsGroup ;
+        fresnel:group :foafGroup ;
+		fresnel:propertyFormatDomain foaf:knows ;
+		fresnel:valueFormat [ fresnel:contentLast "<div style='clear:both;'> </div>"^^xsd:string ] ;
+		fresnel:valueStyle "margin: 1em; height: 70px; width:200px; display:block; float: left; text-align: center; overflow:hidden" ;
+		fresnel:label "Knows" ;
+		fresnel:labelStyle "clear:both; font-size: 120%; margin: 1em 0px; display:block;" .
+		
+:smallFormat rdf:type fresnel:Format ;
+        fresnel:group :knowsGroup ;
+		fresnel:propertyFormatDomain foaf:name ;
+		fresnel:label fresnel:none .

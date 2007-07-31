@@ -133,3 +133,10 @@
 .rdf_tagcloud a {
 	text-decoration: none;
 }
+
+/* fresnel */
+
+.fresnel_property .fresnel_container {
+	display: inline;
+}
+
