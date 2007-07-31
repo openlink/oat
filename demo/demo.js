@@ -876,6 +876,35 @@ DEMO.tagcloud = {
 	}
 }
 
+DEMO.notify = {
+	panel:3,
+	tab:47,
+	div:"notify",
+	needs:["notify"],
+	cb:function() {
+		OAT.Event.attach("notify_1","click",function() {
+			OAT.Notify.send("This is a standard notification window. It can hold any HTML content.");
+		});
+		OAT.Event.attach("notify_2","click",function() {
+			OAT.Notify.send("Click me to disappear!",{timeout:0,style:{fontWeight:"bold",marginTop:"10px"},color:"#f00"});
+		});
+		OAT.Event.attach("notify_3","click",function() {
+			OAT.Notify.send("I am shown and hidden instantly. Click me to see it :)",
+				{opacity:0.5,timeout:0,delay:0,style:{fontFamily:"courier new"},color:"#00a",background:"#8c8",image:"/DAV/JS/images/Dav_throbber.gif"});
+		});
+      }
+}
+
+DEMO.slidebar = {
+	panel:1,
+	tab:48,
+	div:"slidebar_content",
+	needs:["slidebar"],
+	cb:function() { 
+	  var slb = new OAT.Slidebar ("slb", {imgPrefix: "images/"});
+    }
+}
+
 function init() {
 	OAT.Dom.unlink("throbber");
 	var c = $("throbber_content");
@@ -886,8 +915,14 @@ function init() {
 		OAT.Dimmer.hide();
 		var id = tab.tabs[tab.selectedIndex].value.id;
 		var name = false;
+
 		for (var p in DEMO) if (DEMO[p].div == id) { name = p; }
-		if (!name || !DEMO[name].cb) { alert("Source code for this particular demonstration is not available.\nPlease select another and try again..."); return; }
+
+		if (!name || !DEMO[name].cb) { 
+		    alert ("Source code for this particular demonstration is not available.\nPlease select another and try again..."); 
+		    return; 
+		}
+
 		$("source_permalink").href = $("permalink").href + ":source";
 		var scr = DEMO[name].cb.toString();
 		scr = scr.replace(/^[ \s]*function *\(\) *{([\s\S]*)}[ \s]*$/,"$1");
@@ -910,17 +945,17 @@ function init() {
 	}
 
 	/* source */
-	var source = new OAT.Dialog("Source","source",{modal:1,width:700,height:400});
-	OAT.Dom.unlink(source.cancelBtn);
-	source.hide();
+	var source = new OAT.Dialog ("Source", "source", {modal:1,width:700,height:400});
+	OAT.Dom.unlink (source.cancelBtn);
+	source.hide ();
 	source.ok = source.hide;
-	OAT.Dom.attach("source_btn","click",view_source);
+	OAT.Dom.attach ("source_btn","click",view_source);
 
 	/* tabs */
-	var tab = new OAT.Tab("content");
+	var tab = new OAT.Tab ("content");
 	for (var p in DEMO) {
 		var name = DEMO[p].div;
-		tab.add("tab_"+name,name);
+		tab.add ("tab_" + name, name);
 	}
 
 	/* panelbar_content */

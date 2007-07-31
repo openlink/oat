@@ -67,6 +67,7 @@
 			<div id="tab_tree">Tree control</div>
 			<div id="tab_dock">Dock</div>
 			<div id="tab_panelbar_content">Panelbar</div>
+			<div id="tab_slidebar_content">Slidebar</div>
 			<div id="tab_ticker">Ticker</div>
 			<div id="tab_fisheye">FishEye</div>
 			<div id="tab_dav">WebDAV Browser</div>
@@ -90,6 +91,7 @@
 			<div id="tab_color">Color picker</div>
 			<div id="tab_anchor">Enhanced Anchor</div>
 			<div id="tab_rss">RSS Reader</div>
+			<div id="tab_notify">Notification</div>
 		</div>
 		
 		<div id="pb_4">Libraries</div>
@@ -292,8 +294,19 @@ June 1991.<br />
 	</div>	
 	<div id="panelbar_content">
 		<h3>Panelbar</h3>
-		This whole page is organized into parts using the Panelbar control (on the left side of the page). 
-		Its interface is well known from many user applications and web sites, and allows quick, easy, and intuitive navigation across multiple topics.
+		<p>This whole page is organized into parts using the Panelbar control (on the left side of the page). 
+		Its interface is well known from many user applications and web sites, and allows quick, easy, and intuitive navigation across multiple topics.</p>
+	</div>
+	<div id="slidebar_content">
+		<h3>Slidebar</h3>
+		<p>Slidebar is an animated panel which slides from the side when activated, either by a click or hover, depending of its settings. In autohide mode it slides back automatically after a defined period of time upon mouseout.</p>
+		<div id="slb">
+		  <ul>
+		    <li>White hat</li>
+		    <li>Grey hat</li>
+		    <li>Black hat</li>
+		  </ul>
+		</div>
 	</div>
 	<div id="ticker">
 		<h3>Ticker</h3>
@@ -437,6 +450,14 @@ June 1991.<br />
 		<div id="rss_content_rss"></div>
 		<p>...as well as <a href="feed_rdf.xml">RDF feeds</a>.</p>
 		<div id="rss_content_rdf"></div>
+	</div>
+
+	<div id="notify">
+		<h3>Notifications</h3>
+		<p>Click buttons below to launch several notifications...</p>
+		<input type="button" id="notify_1" value="Standard" />
+		<input type="button" id="notify_2" value="Permanent, styling" />
+		<input type="button" id="notify_3" value="Image, instant appearance, styling"/>
 	</div>
 
 	<div id="rdf">
@@ -723,7 +744,7 @@ June 1991.<br />
 				<td class="bad" title="Incompatible API"></td>
 			</tr>
 		</table>
-	
+		
 	</div>
 	<div id="out_maps">
 		<h3>Map Services Mashups</h3>
