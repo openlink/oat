@@ -1,3 +1,14 @@
+July 31 2007, V2.6:
+  * Added new JavasScript based Fresnel/RDF processor.
+  * Rewrite of iSPARQL application, optimizing for speed and code size
+  * Added support for SPARQL INSERT and DELETE features to iSPARQL app
+  * Enhanced N3/Turtle parser
+  * Added OAT.Notify widget
+  * Added OAT.Slidebar widget
+  * Support for Plurals in RDFB Navigator
+  * Several RDF Browser fixes & enhancements
+  * Fixed small bugs
+
 June 27 2007, V2.5:
   * Added iSPARQL, an SVG-based SPARQL query tool
   * Added Navigator visualization to RDF browser
