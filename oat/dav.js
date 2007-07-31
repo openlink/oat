@@ -97,7 +97,6 @@ OAT.WebDav = {
 	},
 	
 	useFile:function(_path,_file) { /* finish */	
-	
 		if (_path || _file) {
 			var p = _path;
 			var f = _file;
@@ -106,12 +105,6 @@ OAT.WebDav = {
 			var f = this.dom.file.value;
 		}
 
-		var item = this.fileExists(f);
-		if (item && item.dir) {
-			this.openDirectory(p+f);
-			return;
-		}
-		
 		if (this.mode == 0) { /* open */
 			var path = p + f;
 			var error = function(xhr) {
@@ -261,7 +254,6 @@ OAT.WebDav = {
 			var nd = OAT.WebDav.options.path.match(/^(.*\/)[^\/]+\//);
 			OAT.WebDav.openDirectory(nd[1]);
 		});
-
 
 		/* path */
 		var path = OAT.Dom.create('div');
@@ -571,7 +563,7 @@ OAT.WebDav = {
 		}
 		this.tree.walk("sync");
 	},
-
+	
 	treeGetNode:function(path) { /* return tree node for a given directory */
 		var parts = path.split("/");
 		if (parts[0] == "") { parts.shift(); }
@@ -598,6 +590,10 @@ OAT.WebDav = {
 	checkExtension:function(f) {
 		var active = this.options.extensionFilters[this.dom.ext.selectedIndex];
 		var ext = active[1];
+		
+		var r = OAT.WebDav.dom.file.value.match(/^\*\.(.*)$/);
+		if (r && r.length == 2) { ext = r[1]; }
+		
 		if (ext == "*") { return true;}
 		var r = f.match(/\.([^\.]+)$/);
 		if (r && r.length == 2 && r[1].toLowerCase() == ext) { return true; }
@@ -629,6 +625,22 @@ OAT.WebDav = {
 	},
 	
 	attachEvents:function() { /* attach events to dom nodes */
+		var useRef = function() {
+			var p = OAT.WebDav.options.path;
+			var f = $v(OAT.WebDav.dom.file);
+			if (!f) { return; }
+			var item = OAT.WebDav.fileExists(f);
+			if (item && item.dir) { /* existing directory */
+				this.openDirectory(p+f);
+				return;
+			} else if (f.match(/^\*\.(.*)$/)) { /* extension filter */
+				OAT.WebDav.redraw();
+				return;
+			}
+		
+
+			OAT.WebDav.useFile();
+		}
 		OAT.Dom.attach(this.dom.path,"keypress",function(event) {
 			if (event.keyCode != 13) { return; }
 			var p = OAT.WebDav.dom.path.value;
@@ -640,16 +652,14 @@ OAT.WebDav = {
 		});
 		OAT.Dom.attach(this.dom.file,"keypress",function(event) {
 			if (event.keyCode != 13) { return; }
-			OAT.WebDav.useFile();
+			useRef();
 		});
-		OAT.Dom.attach(this.dom.ok,"click",function(event) {
-			if (!OAT.WebDav.dom.file.value) { return; }
-			OAT.WebDav.useFile();
-		});
+		OAT.Dom.attach(this.dom.ok,"click",useRef);
 		OAT.Dom.attach(this.dom.cancel,"click",function(event) {
 			OAT.Dom.hide(OAT.WebDav.window.div);
 		});
 		OAT.Dom.attach(this.dom.ext,"change",function(event) {
+			OAT.WebDav.dom.file.value = "";
 			OAT.WebDav.redraw();
 		});
 		
@@ -787,10 +797,10 @@ OAT.WebDav = {
 		if (permString) { 
 			newPermissions = permString;
 		} else {
-		for (var i=0;i<this.dom.perms.length;i++) {
-			var ch = this.dom.perms[i];
-			newPermissions += (ch.checked ? "1" : "0");
-		}
+			for (var i=0;i<this.dom.perms.length;i++) {
+				var ch = this.dom.perms[i];
+				newPermissions += (ch.checked ? "1" : "0");
+			}
 		}
 		var data = "";
 		data += '<?xml version="1.0" encoding="utf-8" ?>' +
@@ -822,7 +832,7 @@ OAT.WebDav = {
 		OAT.AJAX.PROPFIND(escape(url),data,ref,o);	
 	},
 	
-/* backward compatibility */	
+/* backwards compatibility */	
 
 	open:function(opts) {
 		var o = {};
