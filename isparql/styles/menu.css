@@ -30,7 +30,7 @@
 	padding: 3px 8px}
 
 #menu a {
-	behavior: url("hover.htc");
+	behavior: url("/DAV/JS/styles/hover.htc");
 }
 	
 #menu li:hover, #menu li.hover, #menu a:hover, #menu a.hover {

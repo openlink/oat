@@ -1,4 +1,4 @@
-#  
+#
 #  This file is part of the OpenLink Ajax Toolkit (OAT) project
 #
 #  Copyright (C) 2005-2007 OpenLink Software
@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program; if not, write to the Free Software Foundation,
 #  Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
-#  
+#
 
 # ----------------------------------------------------------------------
 #
@@ -23,14 +23,12 @@
 #
 # ----------------------------------------------------------------------
 EXTRA_DIST = \
-	$(srcdir)/*.css \
 	$(srcdir)/*.html \
 	$(srcdir)/*.js \
 	$(srcdir)/*.vsp \
-	$(srcdir)/hover.htc \
 	$(srcdir)/images/*.gif \
 	$(srcdir)/images/*.jpg \
 	$(srcdir)/images/*.png \
 	$(srcdir)/sql/*.sql \
-	$(srcdir)/syntax/*.js \
+	$(srcdir)/styles/*.css \
 	$(srcdir)/xslt/*.xsl

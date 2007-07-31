@@ -9,6 +9,9 @@
  *  
  */
 
+ 
+@import url("/DAV/JS/styles/rdftabs.css");
+ 
 /* ---------------- grid -------------- */
 
 #graphs_grid_div table,
@@ -91,6 +94,10 @@ ul.tabres {
 /*  margin-right:20px; */
 }
 
+ul.tab_signal {
+  background-color: #999;
+}
+
 ul.tabres li.tab {
   margin: 3px;
   padding: 0px 3px;
@@ -130,41 +137,9 @@ ul.tabres li.tab_selected:hover {
   background-color: #fff;
 }
 
-#res_area {
+body {
   font-family: arial, helvetica, sans-serif;
   font-size: 9pt;
   color: #335;
   margin:0px;
-}  
-
-.res_container {
-  padding:0px;
-  background-color: #fff;
-}
-
-.result {
-  padding:5px;
-}
-
-.request,
-.response {
-  padding:5px;
-/*  overflow:auto; */
-}
-/* ---------------- rdf sidebar -------------- */
-.rdf_sidebar ul, .rdf_sidebar li {
-	margin: 0px;
-	padding: 0px;
-}
-
-.rdf_sidebar li {
-	margin-left: 0.5em;
-}
-
-.rdf_sidebar {
-	font-size: 80%;
-	border: 1px solid #000;
-	background-color: #fff;
-	width: 250px;
-	padding: 3px;
 }

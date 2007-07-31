@@ -9,8 +9,10 @@
  *  
  */
 
-@import url("webdav.css");
+@import url("/DAV/JS/styles/grid.css");
+@import url("/DAV/JS/styles/webdav.css");
 @import url("menu.css");
+@import url("qbe.css");
 
 body {
   font-family: arial, helvetica, sans-serif;

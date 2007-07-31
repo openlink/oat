@@ -9,6 +9,12 @@
  *
  */
 
+var defaultEndpoints = ["/sparql","http://demo.openlinksw.com/sparql","http://myopenlink.net:8890/sparql/",
+						"http://xmlarmyknife.org/api/rdf/sparql/query","http://www.sparql.org/sparql",
+						"http://www.govtrack.us/sparql","http://abdera.watson.ibm.com:8080/sparql",
+						"http://km.aifb.uni-karlsruhe.de/services/sparql/SPARQL","http://jena.hpl.hp.com:3040/backstage",
+						"http://my.opera.com/community/sparql/sparql","http://www.wasab.dk/morten/2005/04/sparqlette/"];
+
 var dialogs = {};
 
 var goptions = {};
@@ -27,12 +33,9 @@ var adv = {};
 var tab = {};
 var tab_qbe = {};
 var tab_query = {};
-var tab_results = {};
-var nav_stack = [];
-var nav_index = 0;
 var page_w = 800;
 var page_h = 800;
-var l = new OAT.Layers(100);
+var iSPARQL = {};
 
 if (typeof(default_dgu) == 'undefined') var default_dgu = '';
 if (typeof(default_qry) == 'undefined') var default_qry = 'SELECT * WHERE {?s ?p ?o}';
@@ -45,15 +48,22 @@ if (typeof(default_user) != 'undefined') goptions.username = default_user;
 if (typeof(default_pass) != 'undefined') goptions.password = default_pass;
 
 function init() {
-  //OAT.Preferences.windowTypeOverride = OAT.WindowData.TYPE_AUTO;
+	OAT.Dom.hide("throbber");
+	init_qbe();
+	/* fix image paths */
+	if (toolkitImagesPath.match(/[^\/]$/)) { toolkitImagesPath += "/"; }
+	OAT.Preferences.imagePath = toolkitImagesPath;
 	OAT.AJAX.imagePath = toolkitImagesPath;
+	OAT.Anchor.imagePath = toolkitImagesPath;
+	OAT.WebDav.options.imagePath = toolkitImagesPath;
+	
 	OAT.AJAX.httpError = 0;
 	$('about_oat_version').innerHTML = OAT.Preferences.version;
-
-	OAT.Preferences.showAjax = 0;
+	$("throbber").src = OAT.Preferences.imagePath + "Dav_throbber.gif";
 
   // determine server type, if virtuoso we show virtuoso specifics
 	OAT.AJAX.GET('./version', '', function(data,headers) { 
+		
 		if (headers.match(/VIRTUOSO/i)) {
 		isVirtuoso = true;
 		OAT.Dom.show('virtuoso_options');
@@ -65,24 +75,18 @@ function init() {
 		}
 	},{async:false});
 
-  OAT.Preferences.showAjax = 1;
 
   OAT.Anchor.zIndex = 1001;
-  OAT.Anchor.imagePath = toolkitImagesPath + '/';
 
 	var m = new OAT.Menu();
 	m.noCloseFilter = "noclose";
 	m.createFromUL("menu");
 
-  var menuOn = function(index)
-  {
+  var menuOn = function(index) {
     var menu_on = menus[index];
-    if (OAT.Browser.isIE)
-      menu_on.style.filter = '';
-    for (var i = 0; i < menu_on.childNodes.length;i++)
-    {
-      if (menu_on.childNodes[i].tagName && menu_on.childNodes[i].tagName.toLowerCase() == "li")
-      {
+    if (OAT.Browser.isIE) menu_on.style.filter = '';
+    for (var i = 0; i < menu_on.childNodes.length;i++) {
+      if (menu_on.childNodes[i].tagName && menu_on.childNodes[i].tagName.toLowerCase() == "li") {
         menu_on.childNodes[i].style.opacity = '';
         menu_on.childNodes[i].style.filter = '';
         menu_on.childNodes[i].style.cursor = 'pointer';
@@ -90,17 +94,14 @@ function init() {
     }
   }
   
-  var menuOff = function(index)
-  {
+  var menuOff = function(index) {
     if (tab.tabs[index].window)
       return;
     var menu_off = menus[index];
     if (OAT.Browser.isIE)
       menu_off.style.filter = 'alpha(opacity=50)';
-    for (var i = 0; i < menu_off.childNodes.length;i++)
-    {
-      if (menu_off.childNodes[i].tagName && menu_off.childNodes[i].tagName.toLowerCase() == "li")
-      {
+    for (var i = 0; i < menu_off.childNodes.length;i++) {
+      if (menu_off.childNodes[i].tagName && menu_off.childNodes[i].tagName.toLowerCase() == "li") {
         menu_off.childNodes[i].style.opacity = 0.5;
         menu_off.childNodes[i].style.filter = 'alpha(opacity=50)';
         menu_off.childNodes[i].style.cursor = 'default';
@@ -110,46 +111,33 @@ function init() {
   
   var menus = [$('menu_file_down'),$('menu_tools_down')];
 
-  var tab_goCallback = function(oldIndex,newIndex)
-  {
-    if (oldIndex != newIndex)
-    {
+  var tab_goCallback = function(oldIndex,newIndex) {
+    if (oldIndex != newIndex) {
       for (var i=0;i < menus.length;i++)
         if (newIndex > 1)
           menuOff(i);
         else
           menuOn(i);
     }
-    //for (var i=0;i < menus.length;i++)
-    //  if (newIndex == i)
-    //    menuOn(i);
-    //  else
-    //    menuOff(i);
 
-    if (OAT.Browser.isIE && dialogs.qbe_unsupp && newIndex == 0)
-    {
+    if (OAT.Browser.isIE && dialogs.qbe_unsupp && newIndex == 0) {
       dialogs.qbe_unsupp.show();
       return;
     }
   }
   
-  var onUnDock = function(newIndex)
-  {
-    if (newIndex == 0)
-    {
+  var onUnDock = function(newIndex) {
+    if (newIndex == 0) {
       var x = 720;
-      if (OAT.Browser.isMac)
-        x = x - 20;
+      if (OAT.Browser.isMac) x -= 20;
       qbe.props_win.moveTo(x,42);
       qbe.schema_win.moveTo(x,182);
     }
     //menuOn(newIndex);
   }
 
-  var onDock = function(newIndex)
-  {
-    if (newIndex == 0)
-    {
+  var onDock = function(newIndex) {
+    if (newIndex == 0) {
       qbe.props_win.moveTo(page_w - 260,92);
       qbe.schema_win.moveTo(page_w - 260,232);
     }
@@ -159,7 +147,6 @@ function init() {
   tab = new OAT.Tab ("main_col",{dockMode:true,dockElement:"tabs",goCallback:tab_goCallback,onDock:onDock,onUnDock:onUnDock,dockWindowWidth:1000,dockWindowHeight:600});
   tab_qbe = tab.add ("tab_qbe","page_qbe");
   tab_query = tab.add ("tab_query","page_query");
-  tab_results = tab.add ("tab_results","page_results");
 
   tab.go (0); /* is 0-based index... */
   
@@ -175,7 +162,7 @@ function init() {
   tabgraphs.add ("tabgrph_named","tabgrph_named_content");
   tabgraphs.go (0);
 
-  var sr_cl = new OAT.Combolist(iSPARQL.defaultEndpoints,"/sparql");
+  var sr_cl = new OAT.Combolist(defaultEndpoints,"/sparql");
   sr_cl.input.name = "service";
   sr_cl.input.id = "service";
   sr_cl.list.style.zIndex = "1200";
@@ -184,7 +171,7 @@ function init() {
   sr_cl.img.height = "16";
   $("sr_cl_div").appendChild(sr_cl.div);
 
-	OAT.WebDav.init({imagePath:toolkitImagesPath + "/",imageExt:"png"});
+	OAT.WebDav.init({imageExt:"png"});
 	
 	/* save */
 	dialogs.save = new OAT.Dialog("Save","save_div",{width:400,modal:1});
@@ -245,75 +232,123 @@ function init() {
 	dialogs.goptions.ok = function(){
 	  var auth = iSPARQL.Common.checkAuth($v('username'),$v('password'));
 
-    if (auth == true)
-    {
-      goptions.username = $v('username');
-      goptions.password = $v('password');
-      goptions.login_put_type = $v('login_put_type');
-      goptions.service = $v('service');
-      goptions.proxy = $('proxy').checked;
-      var sel_sponge = '';
-      if  ($('should-sponge-grab-everything').checked) sel_sponge = 'grab-everything';
-      else if  ($('should-sponge-grab-seealso').checked) sel_sponge = 'grab-seealso';
-      else if  ($('should-sponge-grab-all').checked) sel_sponge = 'grab-all';
-      else if ($('should-sponge-soft').checked) sel_sponge = 'soft';
-      if (sel_sponge != goptions.should_sponge)
-      {
-        $('qbe_sponge').value = sel_sponge;
-        $('adv_sponge').value = sel_sponge;
-      }
-      goptions.should_sponge = sel_sponge;
-    	goptions.initial_screen = false;
-  	  dialogs.goptions.hide();
-  	} else {
-  	  if (auth == false)
-  	    alert('Unauthorized');
-  	  else 
-  	    alert(auth);
-  	}
+	    if (auth == true) {
+	      goptions.username = $v('username');
+	      goptions.password = $v('password');
+	      goptions.login_put_type = $v('login_put_type');
+	      goptions.service = $v('service');
+	      goptions.proxy = $('proxy').checked;
+	      var sel_sponge = '';
+	      if  ($('should-sponge-grab-everything').checked) sel_sponge = 'grab-everything';
+	      else if  ($('should-sponge-grab-seealso').checked) sel_sponge = 'grab-seealso';
+	      else if  ($('should-sponge-grab-all').checked) sel_sponge = 'grab-all';
+	      else if ($('should-sponge-soft').checked) sel_sponge = 'soft';
+	      if (sel_sponge != goptions.should_sponge) {
+	        $('qbe_sponge').value = sel_sponge;
+	        $('adv_sponge').value = sel_sponge;
+	      }
+	      goptions.should_sponge = sel_sponge;
+	    	goptions.initial_screen = false;
+	  	  dialogs.goptions.hide();
+	  	} else {
+	  	  if (auth == false)
+	  	    alert('Unauthorized');
+	  	  else 
+	  	    alert(auth);
+	  	}
 	}
   OAT.Keyboard.add('esc',function(){dialogs.goptions.cancel();},null,'goptions');
   OAT.Keyboard.add('return',function(){dialogs.goptions.ok();},null,'goptions');
 
 	page_w = OAT.Dom.getWH('page')[0] - 20;
 
-  var page_params = OAT.Dom.uriParams();
+	var page_params = OAT.Dom.uriParams();
 
-  if (page_params['default-graph-uri']) default_dgu = page_params['default-graph-uri'];
-  if (page_params['query']) default_qry = page_params['query'];
-  if (page_params['should-sponge']) default_spng = page_params['should-sponge'];
+	if (page_params['default-graph-uri']) default_dgu = page_params['default-graph-uri'];
+	if (page_params['query']) default_qry = page_params['query'];
+	if (page_params['should-sponge']) default_spng = page_params['should-sponge'];
 
-  $('default-graph-uri').value = default_dgu;
-  $('query').value = default_qry;
-  if (!fixed_sponge) fixed_sponge = '';
-  else {
-    if (fixed_sponge == 'local')
-      default_spng = '';
-    else
-      default_spng = fixed_sponge;
-  }
-  $('qbe_sponge').value = default_spng;
-  $('adv_sponge').value = default_spng;
-  goptions.should_sponge = default_spng;
+	$('default-graph-uri').value = default_dgu;
+	$('query').value = default_qry;
+	if (!fixed_sponge) {
+		fixed_sponge = '';
+	} else {
+		if (fixed_sponge == 'local') {
+			default_spng = '';
+		} else {
+			default_spng = fixed_sponge;
+		}
+	}
+	$('qbe_sponge').value = default_spng;
+	$('adv_sponge').value = default_spng;
+	goptions.should_sponge = default_spng;
 
-  qbe = new iSPARQL.QBE();
-  adv = new iSPARQL.Advanced();
+	window.qbe = new iSPARQL.QBE();
+	window.adv = new iSPARQL.Advanced();
+
+	var execCB = function(query) {
+		var orig = tab.selectedIndex;
+		if (qbe.QueryGenerate() == query) { return; }
+		tab.go(0);
+		qbe.loadFromString(query);
+		$("query").value = query;
+		tab.go(orig);
+	}
+	window.qe = new QueryExec({div:"page_results",executeCallback:execCB});
+
+	var loadToQBE = OAT.Dom.create("li",{},"nav");
+	loadToQBE.title = 'Load query to QBE';
+	var img = OAT.Dom.create("img");
+	img.src = "images/arrange.png";
+	OAT.Dom.attach(loadToQBE,'click',function(){ /* load to QBE */
+		tab.go(tab_qbe);
+		var cache = qe.cache[qe.cacheIndex];
+		qbe.loadFromString(cache.opts.query);
+		$('qbe_sponge').value = cache.opts.sponge;
+		qbe.service.input.value = cache.opts.endpoint;
+	});
+	OAT.Dom.append([qe.dom.ul,loadToQBE],[loadToQBE,img]);
   
-  OAT.Dom.attach("menu_b_reset","click",function(){
+  
+	var loadToAdvanced = OAT.Dom.create("li",{},"nav");
+	loadToAdvanced.title = 'Load query to Advanced';
+	var img = OAT.Dom.create("img");
+	img.src = "images/cr22-action-edit.png";
+	OAT.Dom.attach(loadToAdvanced,'click',function(){
+		tab.go(tab_query);
+		var cache = qe.cache[qe.cacheIndex];
+		$('query').value = cache.opts.query;
+		$('default-graph-uri').value = cache.opts.defaultGraph;
+		$('adv_sponge').value = cache.opts.sponge;
+		adv.service.input.value = cache.opts.endpoint;
+	});
+	OAT.Dom.append([qe.dom.ul,loadToAdvanced],[loadToAdvanced,img]);
+  
+  
+	OAT.Resize.create("query_resizer_area", "query_div", OAT.Resize.TYPE_X);
+	OAT.Resize.create("query_resizer_area", "query", OAT.Resize.TYPE_Y);
+	$("query_resizer_area").style.backgroundImage = 'url("'+OAT.Preferences.imagePath+"resize.gif"+'")';
+	$("query_resizer_area").style.cursor = "nw-resize";
+  
+  
+  
+  
+  
+  OAT.Dom.attach("menu_b_reset","click",function() {
     if (tab.tabs.find(tab_qbe) == tab.selectedIndex)
       qbe.func_clear();
     if (tab.tabs.find(tab_query) == tab.selectedIndex)
       adv.func_reset();
   });
   
-  OAT.Dom.attach("menu_b_load","click",function(){
+  OAT.Dom.attach("menu_b_load","click",function() {
     if (tab.tabs.find(tab_qbe) == tab.selectedIndex)
       qbe.func_load();
     if (tab.tabs.find(tab_query) == tab.selectedIndex)
       adv.func_load();
   });
 
-  OAT.Dom.attach("menu_b_save","click",function(){
+  OAT.Dom.attach("menu_b_save","click",function() {
     if (tab.tabs.find(tab_qbe) == tab.selectedIndex)
       qbe.func_save();
     if (tab.tabs.find(tab_query) == tab.selectedIndex)
@@ -344,8 +379,7 @@ function init() {
 
   OAT.Dom.hide("page_loading");
   OAT.Dom.show("page_content");
-  if (qbe.svgsparql)
-    qbe.svgsparql.reposition();
+  if (qbe.svgsparql) { qbe.svgsparql.reposition(); }
 	if (window.__inherited) {
 		if (window.__inherited.username)       goptions.username = window.__inherited.username;
 		if (window.__inherited.password)       goptions.password = window.__inherited.password;
@@ -356,8 +390,7 @@ function init() {
 		if (window.__inherited.query)          qbe.loadFromString(window.__inherited.query);
     if (window.__inherited.graph)          $('qbe_graph').value = window.__inherited.graph;
 
-  	if (window.__inherited.callback)
-  	{
+  	if (window.__inherited.callback) {
     	/* query returning */
     	var returnRef = function() {
     	  if ($v('default-graph-uri') == '' || confirm('WARNING ! ! !\nDefault graph will be lost, construct your query using FROM instead. \nDo you wish to continue?'))
@@ -381,8 +414,7 @@ function init() {
     var page_params = OAT.Dom.uriParams();
   	for (var p in goptions) { if(page_params['goptions.'+p] != undefined) goptions[p] = page_params['goptions.'+p];}
     
-  	if (fixed_sponge)
-  	{
+  	if (fixed_sponge) {
   	  goptions.should_sponge = fixed_sponge;
   	  var inputs = document.getElementsByName('should-sponge');
       for(var i = 0; i < inputs.length; i++)
@@ -392,8 +424,7 @@ function init() {
   	}
   	
   	var show_initial_screen = true;
-  	if(get_initial_credentials)
-  	{
+  	if(get_initial_credentials)	{
       OAT.AJAX.GET(get_initial_credentials, '', function(data,headers){ 
         if (data != '')
         {
@@ -416,19 +447,147 @@ function init() {
     	goptions.initial_screen = true;
   }
 
-  if (OAT.Browser.isIE)
-  {
+  if (OAT.Browser.isIE) {
     tab.go (1); /* is 0-based index... */
   }
 }
 
-iSPARQL.Advanced = function ()
-{
+iSPARQL.QueryExec = function(paramsObj) {
+	    // We use this to fix IE visualization problems with pre content
+	    var putTextInPre = function(elm,txt){
+	      if (OAT.Browser.isIE) 
+	        txt = txt.replace(/\r\n/g,'\r').replace(/\n/g,'\r');
+	      OAT.Dom.append([elm,OAT.Dom.text(txt)]);
+	    }
+
+	  	var params = {
+			onstart:false,
+			onend:false,
+	  		service:goptions.service,               // The sparql endpoint to send the query to
+	  		default_graph_uri:'',                   // Default graph
+	  		query:'',                               // The query itself
+	  		res_div:$('res_area'),                  // DIV where to put the results
+	  		format:'text/html',                     // Sets format to the request and process the results accordinglly.
+	  		should_sponge:goptions.should_sponge,   // should-sponge param - as described in Virtuoso Docs.
+	  		maxrows:0,                              // sets maxrows params to the endpoint, 0 for nolimit /limit left to server/
+	  		proxy:goptions.proxy,                   // If the endpoint is http: ... and this is set, the request would be send to './remote.vsp'
+	  		named_graphs:[],                        // Array of named graphs to send to the endpoint
+	  		prefixes:[], // {"label":'rdf', "uri":'http://www.w3.org/1999/02/22-rdf-syntax-ns#'} // those are used when showing results
+	  		imagePath:'images/',
+	  		errorHandler:function(xhr) {             // function called when the endpoint returns error
+				var status = xhr.getStatus();
+				var response = xhr.getResponseText();
+				var headers = xhr.getAllResponseHeaders();
+				var data = '';
+				if (!response) {
+					data = 'There was a problem with your request! The server returned status code: ' + status + '<br/>\n';
+					data += 'Unfortunately your browser does not allow us to show the error. ';
+					data += 'This is a known bug in the Opera Browser.<br/>\n';
+					data += 'However you can click this link which will open a new window with the error: <br/>\n';
+					data += '<a target="_blank" href="/sparql/?' + body() + '">/sparql/?' + body() + '</a>';
+				} else {
+					data = response.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+				}
+				params.cb(data,headers,'er');
+			},
+	  		hideRequest:false,  // if true hides the request tab in the generated responce
+	  		hideResponce:false, // if true hides the responce tab in the generated responce
+	  		showQuery:false,    // if true shows the query tab in the generated responce
+			//RESULT PROCESSING
+	        callback:function(data,headers,param) {  // function called on result
+		    } /* callback */
+	  	};
+	  	
+	  	for (var p in paramsObj) { params[p] = paramsObj[p]; }
+
+	    if (params.service == '') {
+	      alert('You must specify "Query Service Endpoint"!');
+	      return;
+	    }
+	    
+	    var content_type = 'application/x-www-form-urlencoded';
+	    
+	    var ReqHeaders = {'Accept':params.format,'Content-Type':content_type};
+	  
+	    var endpoint = params.service;
+	    if (endpoint.match(/^http:\/\//) && params.proxy && isVirtuoso)
+	      endpoint = './remote.vsp';
+
+	    OAT.Dom.clear(params.res_div);
+	  
+	    // generate the request body
+	    var body = function()  {
+	      var body = '';
+
+	      if (params.default_graph_uri) {
+	        body += '&default-graph-uri=';
+	        body += encodeURIComponent(params.default_graph_uri);
+	      }
+
+	      if (params.query) {
+	        body += '&query=';
+	        body += encodeURIComponent(params.query);
+	      }
+
+	      if (params.format) {
+	        body += '&format=';
+	        if (params.format == 'application/isparql+table')
+	          body += encodeURIComponent('application/sparql-results+json'); 
+	        else if (params.format == 'application/isparql+rdf-graph')
+	          body += encodeURIComponent('application/rdf+xml'); 
+	        else
+	          body += encodeURIComponent(params.format);
+	      }
+
+	      if (params.maxrows) {
+	        body += '&maxrows=';
+	        body += encodeURIComponent(params.maxrows);
+	      }
+
+	      if (isVirtuoso && params.should_sponge && params.should_sponge != '') {
+	        body += '&should-sponge=';
+	        body += encodeURIComponent(params.should_sponge);
+	      }
+	      
+	      if (endpoint != params.service) {
+	        body += '&service=';
+	        body += encodeURIComponent(params.service);
+	      }
+	      
+	      for(var n = 0; n < params.named_graphs.length; n++) {
+	        if (params.named_graphs[n] != '')
+	        {
+	          body += '&named-graph-uri=';
+	          body += encodeURIComponent(params.named_graphs[n]); 
+	        }
+	      }
+	      return body.substring(1);
+	    }
+
+		var o = {
+			header:ReqHeaders,
+			onerror:params.errorHandler,
+			onstart:params.onstart || function(){OAT.Dom.show("throbber");},
+			onend:params.onend || function(){OAT.Dom.hide("throbber");}
+		}
+
+		function is_new() { /* is this request new? should we cache it? */
+			if (!nav_stack.length) { return true; }
+			var cache = nav_stack[nav_index];
+		    if (params.query != cache.query ||
+		        params.default_graph_uri != cache.default_graph_uri ||
+		        params.format != cache.format ||
+		        params.should_sponge != cache.should_sponge ||
+		        params.service != cache.service) { return true; }
+			return false;
+		}
+
+		OAT.AJAX.POST (endpoint, body(), params.callback, o);
+	}
+
+iSPARQL.Advanced = function () {
 	var self = this;
 
-	//this.nav_stack = [];
-	//this.nav_index = 0;
-	
 	var icon_reset, icon_load, icon_save, icon_saveas, icon_run, icon_load_to_qbe, icon_get_from_qbe;
 	var icon_back, icon_forward, icon_start, icon_finish;
 	
@@ -496,16 +655,6 @@ iSPARQL.Advanced = function ()
 	    $('query').value = data;
 	  }
 
-  	//if (goptions.login_put_type == 'http')
-  	//{
-    //  var fname = "";
-    //  if (goptions.last_path)
-    //    fname = goptions.last_path.substring(goptions.last_path.lastIndexOf("/") + 1);
-		//	var name = OAT.Dav.getFile(path,fname);
-		//	if (!name) { return; }
-    //  goptions.last_path = name;
-		//	OAT.AJAX.GET(name,'',loadProcess,{user:goptions.username,password:goptions.password,auth:OAT.AJAX.AUTH_BASIC});
-  	//} else {
     	var options = {
     		user:goptions.username,
     		pass:goptions.password,
@@ -514,7 +663,7 @@ iSPARQL.Advanced = function ()
     		extension:get_file_type(goptions.last_path),
     		isDav:((goptions.login_put_type == 'http')?false:true),
     		extensionFilters:[['rq','rq','SPARQL Definitions',get_mime_type('rq')],
-    		                  ['isparql','isparql','Dynamic Data Web Page',get_mime_type('isparql')],
+    		                  ['isparql','isparql','Dynamic Linked Data Page',get_mime_type('isparql')],
     		                  ['xml','xml','XML Server Page',get_mime_type('xml')],
     		                  ['','*','All files','']
     		                 ],
@@ -525,8 +674,6 @@ iSPARQL.Advanced = function ()
         }
       }
     	OAT.WebDav.openDialog(options);
-    //	if (goptions.last_path) $('dav_filetype').value = get_file_type(goptions.last_path);
-    //}
 	}
 	
 	this.func_save = function() {
@@ -540,20 +687,9 @@ iSPARQL.Advanced = function ()
 	}
 	
 	this.func_saveas = function() {
-	  //if (tab.selectedIndex != 1 && !tab_query.window) return;
 	  tab.go(tab_query);
-	  //if (goptions.login_put_type == 'http')
-	  //{
-    //  if (goptions.last_path)
-    //  {
-    //    $("save_name").value = goptions.last_path;
-    //    $("savetype").value = get_file_type(goptions.last_path);
-    //  }
-	  //  dialogs.save.show();
-	  //} else {
   	  var path = iSPARQL.Common.getFilePath();
   	  var file = iSPARQL.Common.getFile();
-  	  //var pathDefault = iSPARQL.Common.getDefaultPath();
 
 			var options = {
     		user:goptions.username,
@@ -563,7 +699,7 @@ iSPARQL.Advanced = function ()
     		extension:get_file_type(goptions.last_path),
     		isDav:((goptions.login_put_type == 'http')?false:true),
     		extensionFilters:[['rq','rq','SPARQL Definitions',get_mime_type('rq')],
-    		                  ['isparql','isparql','Dynamic Data Web Page',get_mime_type('isparql')],
+    		                  ['isparql','isparql','Dynamic Linked Data Page',get_mime_type('isparql')],
     		                  ['xml','xml','XML Server Page',get_mime_type('xml')]
     		                 ],
 				callback:function(path,fname){
@@ -576,87 +712,42 @@ iSPARQL.Advanced = function ()
 				}
 			};
 			OAT.WebDav.saveDialog(options);
-    	//if (goptions.last_path) $('dav_filetype').value = get_file_type(goptions.last_path);
-		//}
 	}
 	
 	this.func_run = function() {
-	  //if (tab.selectedIndex != 1 && !tab_query.window) return;
-	  tab.go(tab_query);
-    var params = {
-	    service:self.service.input.value,
-      query:$v('query'),
-      default_graph_uri:$v('default-graph-uri').trim(),
-      //maxrows:$v('maxrows'),
-	    should_sponge:$v('adv_sponge'),
-      format:$v('format'),
-      //res_div:$('res_area'),
-      res_div:$('page_results'),
-      named_graphs:[],
-      browseCallback:function(query,params){
-    	  //OAT.Dom.show(self.results_win.div);
-        //$('query').value = query;
-        //$('default-graph-uri').value = params.default_graph_uri;
-        nav_stack = params.nav_stack;
-        nav_index = params.nav_index;
-      },
-      //browseStart:icon_start,
-      //browseBack:icon_back,
-      //browseForward:icon_forward,
-      //browseFinish:icon_finish,
-      showQuery:true
-    }
-    
-    // get all checked named_graphs from named graphs tab
-    named_graphs = document.getElementsByName('named_graph_cbk');
-    
-    if(named_graphs && named_graphs.length > 0)
-    {
-      for(var n = 0; n < named_graphs.length; n++)
-      {
-        // if it is checked, add to params too
-        if (named_graphs[n].checked)
-        {
-          var named_graph_value = $v('named_graph_'+named_graphs[n].value);
-          if (named_graph_value != '')
-          {
-            params.named_graphs.push(named_graph_value); 
-          }
-        }
-      }
-    }
-    
-    params.prefixes = [];
-    var pre_arr = params.query.match(/prefix\s\w+:\s<\S+>/ig);
-    if (pre_arr)
-      for(var n = 0; n < pre_arr.length; n++)
-      {
-        var tmp = pre_arr[n].match(/prefix\s(\w+):\s<(\S+)>/i);
-        params.prefixes.push({"label":tmp[1],"uri":tmp[2]});
-      }
+		//if (tab.selectedIndex != 1 && !tab_query.window) return;
+		tab.go(tab_query);
 
-	  //OAT.Dom.show(self.results_win.div);
-	  //window.scrollTo(0,OAT.Dom.getWH(self.results_win.div)[0] - 40);
+		// get all checked named_graphs from named graphs tab
+		var graphs = [];
+		named_graphs = document.getElementsByName('named_graph_cbk');
 
-	  if (nav_stack.length == 0)
-	  {
-	    nav_stack = [params];
-	    nav_index = 0;
-	  } else {
-	    if (params.query != nav_stack[nav_index].query ||
-	        params.default_graph_uri != nav_stack[nav_index].default_graph_uri ||
-	        params.format != nav_stack[nav_index].format ||
-	        params.should_sponge != nav_stack[nav_index].should_sponge ||
-	        params.service != nav_stack[nav_index].service)
-	    nav_index++;
-  	  nav_stack.splice(nav_index,nav_stack.length);
-    	nav_stack.push(params);
-  	}
-  	params.nav_index = nav_index;
-  	params.nav_stack = nav_stack;
+		if (named_graphs && named_graphs.length > 0) {
+			for (var n = 0; n < named_graphs.length; n++) {
+				// if it is checked, add to params too
+				if (named_graphs[n].checked) {
+					var named_graph_value = $v('named_graph_'+named_graphs[n].value);
+					if (named_graph_value != '') { graphs.push(named_graph_value); }
+				}
+			}
+		}
 
-	  if(!tab_results.window) tab.go(2);
-    iSPARQL.QueryExec(params);
+		var q = $v("query");
+		var prefixes = [];
+		var pre_arr = q.match(/prefix\s\w+:\s<\S+>/ig);
+		if (pre_arr) for(var n = 0; n < pre_arr.length; n++) {
+			var tmp = pre_arr[n].match(/prefix\s(\w+):\s<(\S+)>/i);
+			prefixes.push({"label":tmp[1],"uri":tmp[2]});
+		}
+
+		var p = {
+			query:q,
+			defaultGraph:$v('default-graph-uri').trim(),
+			sponge:$v("adv_sponge"),
+			endpoint:self.service.input.value,
+			namedGraphs:graphs
+		}
+		qe.execute(p);
 	}
 	
 	this.func_load_to_qbe = function() {
@@ -753,25 +844,6 @@ iSPARQL.Advanced = function ()
 
 	t.addSeparator();
 
-	//icon_start = t.addIcon(0,"images/start-22.png","First",function(){}); 
-  //icon_start.style.opacity = 0.3;
-  //icon_start.style.filter = 'alpha(opacity=30)';
-  //icon_start.style.cursor = 'default';
-	//icon_back = t.addIcon(0,"images/back-22.png","Back",function(){}); 
-  //icon_back.style.opacity = 0.3;
-  //icon_back.style.filter = 'alpha(opacity=30)';
-  //icon_back.style.cursor = 'default';
-	//icon_forward = t.addIcon(0,"images/forward-22.png","Forward",function(){}); 
-  //icon_forward.style.opacity = 0.3;
-  //icon_forward.style.filter = 'alpha(opacity=30)';
-  //icon_forward.style.cursor = 'default';
-	//icon_finish = t.addIcon(0,"images/finish-22.png","Last",function(){}); 
-  //icon_finish.style.opacity = 0.3;
-  //icon_finish.style.filter = 'alpha(opacity=30)';
-  //icon_finish.style.cursor = 'default';
-  //
-	//t.addSeparator();
-
 	icon_run = t.addIcon(0,"images/cr22-action-player_play.png","Run Query",self.func_run); 
 	OAT.Dom.attach("menu_run","click",self.func_run);
 
@@ -783,21 +855,15 @@ iSPARQL.Advanced = function ()
 	icon_get_from_qbe = t.addIcon(0,"images/compfile.png","Get from QBE",self.func_get_from_qbe); 
 	OAT.Dom.attach("menu_get_from_qbe","click",self.func_get_from_qbe);
 	
-	if (OAT.Browser.isIE)
-	{
+	if (OAT.Browser.isIE) {
 	  icon_load_to_qbe.style.filter = 'alpha(opacity=30)';
 	  icon_load_to_qbe.style.cursor = 'default';
 	  icon_get_from_qbe.style.filter = 'alpha(opacity=30)';
 	  icon_get_from_qbe.style.cursor = 'default';
 	}
 
-	//this.results_win = new OAT.Window({title:"Query Results", close:1, min:0, max:0, width:page_w - 40, height:500, x:20,y:560});
-	//$("page_query").appendChild(self.results_win.div);
-	//self.results_win.content.appendChild($("res_area"));
-  //self.results_win.onclose = function() { OAT.Dom.hide(self.results_win.div); }
-  //OAT.Dom.hide(self.results_win.div);
 
-  this.service = new OAT.Combolist(iSPARQL.defaultEndpoints,"/sparql");
+  this.service = new OAT.Combolist(defaultEndpoints,"/sparql");
   self.service.img.src = "images/cl.gif";
   self.service.img.width = "16";
   self.service.img.height = "16";
@@ -855,8 +921,7 @@ iSPARQL.Common = {
 
 }
 
-function get_file_type(file_name)
-{
+function get_file_type(file_name) {
   if (file_name.match(/isparql\.xml$/i))
     return 'isparql';
   else
@@ -887,8 +952,7 @@ function get_mime_type(res){
 
 var last_format = 1;
 
-function format_select()
-{
+function format_select(){
   var query_obg = $('query');
   var query = query_obg.value;
   var format = $('format');
@@ -919,34 +983,29 @@ function format_select()
   
 }
 
-function prefix_insert()
-{
+function prefix_insert(){
   prefix = $v('prefix');
   if ($v('query').indexOf(prefix) == -1)
     $('query').value = prefix + '\n' + $v('query');
 }
 
-function template_insert()
-{
+function template_insert(){
   template = $v('template');
   insert_text($('query'),template);
   $('template').selectedIndex = 0;
 }
 
-function tool_invoke()
-{
+function tool_invoke(){
   tool = $v('tool');
   eval(tool);
   $('tool').selectedIndex = 0;
 }
 
-function tool_put(txt)
-{
+function tool_put(txt){
   insert_text($('query'),txt);
 }
 
-function tool_put_line_start(txt)
-{
+function tool_put_line_start(txt){
   var query = $('query');
   var query_value = $v('query').replace("\r",'');
   var lines = query_value.split("\n");
@@ -987,8 +1046,7 @@ function tool_put_line_start(txt)
   query.focus();
 }
 
-function tool_rem_line_start(txt)
-{
+function tool_rem_line_start(txt){
   var query = $('query');
   var query_value = $v('query').replace("\r",'');
   var lines = query_value.split("\n");
@@ -1031,8 +1089,7 @@ function tool_rem_line_start(txt)
   query.focus();
 }
 
-function tool_put_around(btxt,atxt)
-{
+function tool_put_around(btxt,atxt){
   var elm = $('query');
   var start = 0;
   var end = 0;
@@ -1047,8 +1104,7 @@ function tool_put_around(btxt,atxt)
 }
 
 
-function insert_text(elm,txt)
-{
+function insert_text(elm,txt){
   var start = 0;
   var end = 0;
   
@@ -1103,8 +1159,7 @@ function strCountLines(txt){
 
 var toolswin = null;
 
-function tools_popup()
-{
+function tools_popup(){
   if (toolswin == null)
   {
   	var topbox_ctl_xy = OAT.Dom.getLT('topbox_ctl');
@@ -1127,8 +1182,7 @@ function tools_popup()
 
 var graphs_grid_num = 1;
 
-function add_named_graph()
-{
+function add_named_graph(){
   var named_graph = $v('named_graph_add');
   
   if (!named_graph)
@@ -1184,16 +1238,9 @@ function add_named_graph()
   
 }
 
-function remove_named_graph(ind)
-{
-  OAT.Dom.unlink($('named_graph_list_rom'+ind));
-  $('named_graphs_cnt').innerHTML--;
-  
-  table = $('named_graph_list');
-  
-  if (!table.tBodies[0].rows.length)
-  {
-    OAT.Dom.unlink(table.tBodies[0]);
-  }
-  
+function remove_named_graph(ind){
+	OAT.Dom.unlink($('named_graph_list_rom'+ind));
+	$('named_graphs_cnt').innerHTML--;
+	var table = $('named_graph_list');
+	if (!table.tBodies[0].rows.length) { OAT.Dom.unlink(table.tBodies[0]); }
 }
