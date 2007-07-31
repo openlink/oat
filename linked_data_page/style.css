@@ -1,0 +1,41 @@
+/*
+ *  $Id$
+ *
+ *  This file is part of the OpenLink Software Ajax Toolkit (OAT) project.
+ *
+ *  Copyright (C) 2005-2007 OpenLink Software
+ *
+ *  See LICENSE file for details.
+ */
+
+body {
+	font-family: verdana;
+	font-size: 80%;
+}
+
+table {
+	font-size: 80%;
+}
+
+/* dock */
+
+.dock_column {
+	float: left;
+	width: 30%;
+	padding: 0.5em;
+	border-right: 1px dotted #888;
+}
+
+.dock_column_0 { }
+.dock_column_1 { }
+.dock_column_2 { }
+
+.dock_blank {
+	border: none !important;
+	background-color: #ccc;
+}
+
+.dock_content {
+	overflow: auto;
+	max-height: 400px;
+}

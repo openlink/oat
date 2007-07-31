@@ -1,0 +1,39 @@
+/*
+ *  $Id$
+ *
+ *  This file is part of the OpenLink Software Ajax Toolkit (OAT) project.
+ *
+ *  Copyright (C) 2005-2007 OpenLink Software
+ *
+ *  See LICENSE file for details.
+ */
+
+body {
+	font-family: verdana;
+	font-size: 80%;
+}
+
+table {
+	font-size: 80%;
+}
+
+#iphone {
+	position: relative;
+}
+
+#container {
+	position: absolute;
+	overflow: auto;
+}
+
+#inp {
+	position: absolute;
+	border: none;
+}
+
+#btn {
+	position: absolute;
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+}

@@ -48,7 +48,10 @@ AC_CONFIG_FILES([
     exhibit-sparql/Makefile
     formdesigner/Makefile
     images/Makefile
+    iphone_data_page/Makefile
     isparql/Makefile
+    linked_data_page/Makefile
+    notify/Makefile
     oat/docs/Makefile
     oat/Makefile
     openajax/Makefile
