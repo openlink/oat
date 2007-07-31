@@ -8,6 +8,9 @@
  *  See LICENSE file for details.
  */
 /*
+	var txt = OAT.Xml.escape(xml);
+	var xml = OAT.Xml.unescape(txt);
+
 	var txt = OAT.Xml.textValue(elem)
 	var txt = OAT.Xml.localName(elem)
 	var arr = OAT.Xml.childElements(elm)
@@ -55,6 +58,7 @@ OAT.Xml = {
 	
 	createXmlDoc:function(string) {
 		if (document.implementation && document.implementation.createDocument) {				
+			if (!string) { return document.implementation.createDocument("","",null); }
 			var parser = new DOMParser();
 			try {
 				var xml = parser.parseFromString(string, "text/xml");
@@ -63,7 +67,8 @@ OAT.Xml = {
 			}
 			return xml;
 		} else if (window.ActiveXObject) {
-			var xml = new ActiveXObject("Microsoft.XMLDOM")
+			var xml = new ActiveXObject("Microsoft.XMLDOM");
+			if (!string) { return xml; }
 			xml.loadXML(string);
 			if (xml.parseError.errorCode) {
 				alert('IE XML ERROR: '+xml.parseError.reason+' ('+xml.parseError.errorCode+')');
@@ -206,6 +211,9 @@ OAT.Xml = {
 	removeDefaultNamespace:function(xmlText) {
 		var xml = xmlText.replace(/xmlns="[^"]*"/g,"");
 		return xml;
-	}
+	},
+	
+	escape:OAT.Dom.toSafeXML,
+	unescape:OAT.Dom.fromSafeXML
 }
 OAT.Loader.featureLoaded("xml");
