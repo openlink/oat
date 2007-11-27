@@ -1,0 +1,22 @@
+<h2>rdf.js</h2>
+<p>RDF/XML parser.</p>
+<hr/>
+
+<h3>Functions</h3>
+<ul>
+	<li><a href="#totriples">OAT.RDF.toTriples(xmlDoc)</a></li>
+</ul>
+
+<hr/>
+
+<h3><a name="totriples">OAT.RDF.toTriples(xmlDoc)</a></h3>
+<p>Parses an RDF/XML document into an array of triples (which is then returned). Input should be in xmlDocument format, e.g. created with 
+<code>OAT.Xml.createXmlDoc()</code> or as a result of AJAX call with <code>type:OAT.AJAX.TYPE_XML</code>.</p>
+
+<pre class="code">
+var callback = function(xmlDoc) {
+	var triples = OAT.RDF.toTriples(xmlDoc);
+	alert("There are "+triples.length+" triples.");
+}
+OAT.AJAX.GET("myData.rdf",false,callback,{type:OAT.AJAX.TYPE_XML});
+</pre>

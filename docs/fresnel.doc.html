@@ -1,0 +1,40 @@
+<h2>fresnel.js</h2>
+<p>Fresnel Lens RDF Processor.</p>
+<hr/>
+
+<h3>Objects</h3>
+<ul>
+	<li><a href="#fresnel">OAT.Fresnel()</a></li>
+</ul>
+
+<h3>Methods</h3>
+<ul>
+	<li><a href="#addurl">OAT.Fresnel::addURL(url, callback)</a></li>
+	<li><a href="#format">OAT.Fresnel::format(dataObject)</a></li>
+</ul>
+
+<hr/>
+
+<h3><a name="fresnel">OAT.Fresnel()</a></h3>
+<p>Creates the Fresnel Processor object.</p>
+
+<h3><a name="addurl">OAT.Fresnel::addURL(url, callback)</a></h3>
+<p>Loads a Fresnel RDF template, located at <em>url</em>. After loading and parsing is complete, <em>callback</em> (without arguments) is executed.</p>
+
+<h3><a name="format">OAT.Fresnel::format(dataObject)</a></h3>
+<p>Formats an RDF data set using loaded template. The <em>dataObject</em> is an OAT RDF structure, usually an <code>store.data.all</code> property. 
+This function returns an array with two values:</p>
+<ul>
+	<li>[0] - an XML document, containing the transformed document,</li>
+	<li>[1] - array of CSS stylesheets, referenced in Fresnel template.</li>
+</ul>
+
+<pre class="code">
+var fresnel = new OAT.Fresnel();
+var rdf = new OAT.RDFStore(); /* don't forget to load some RDF into the store... */
+
+var loadedCallback = function() {
+	var results = fresnel.format(rdf.data.all);
+}
+fresnel.addURL("myFresnelTemplate.n3");
+</pre>

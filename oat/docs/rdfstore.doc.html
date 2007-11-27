@@ -1,0 +1,120 @@
+<h2>rdfstore.js</h2>
+<p>Client-side RDF store</p>
+<hr/>
+
+<h3>Objects</h3>
+<ul>
+	<li><a href="#rdfstore">OAT.RDFStore(callback, options)</a></li>
+</ul>
+
+<h3>Properties</h3>
+<ul>
+	<li><a href="#triples">OAT.RDFStore::data.triples</a></li>
+	<li><a href="#all">OAT.RDFStore::data.all</a></li>
+	<li><a href="#structured">OAT.RDFStore::data.structured</a></li>
+</ul>
+
+<h3>Methods</h3>
+<ul>
+	<li><a href="#addurl">OAT.RDFStore::addURL(url, onstart, onend)</a></li>
+	<li><a href="#addtriples">OAT.RDFStore::addTriples(triplesArray, url)</a></li>
+	<li><a href="#addxmldoc">OAT.RDFStore::addXmlDoc(xmlDoc, url)</a></li>
+	<li><a href="#gettitle">OAT.RDFStore::getTitle(itemReference)</a></li>
+	<li><a href="#simplify">OAT.RDFStore::simplify(string)</a></li>
+	<li><a href="#addfilter">OAT.RDFStore::addFilter(type, value1, [value2])</a></li>
+	<li><a href="#removefilter">OAT.RDFStore::removeFilter(type, value1, [value2])</a></li>
+	<li><a href="#disable">OAT.RDFStore::disable(url)</a></li>
+	<li><a href="#enable">OAT.RDFStore::enable(url)</a></li>
+</ul>
+
+<h3>Constants</h3>
+<ul>
+	<li>OAT.RDFStoreData.FILTER_PROPERTY</li>
+	<li>OAT.RDFStoreData.FILTER_URI</li>
+</ul>
+
+
+<hr/>
+
+<h3><a name="rdfstore">OAT.RDFStore(callback, options)</a></h3>
+<p>Creates the object. Argument <em>callback</em> is executed every time store's contents change. Available options (properties of <em> 
+options</em> object) are:</p>
+<ul>
+	<li>ajaxStart - function to be executed when dereferencing starts</li>
+	<li>ajaxEnd - function to be executed when dereferencing stops</li>
+</ul>
+
+<hr />
+
+<h3><a name="triples">OAT.RDFStore::data.triples</a></h3>
+<p>All loaded data in a big array of triples (array of arrays).</p>
+
+<h3><a name="all">OAT.RDFStore::data.all</a></h3>
+<p>All loaded data in a complex JSON object, as shown below.</p>
+
+<pre class="code">
+[
+	{
+		preds:{
+			"http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+				"http://www.w3.org/2000/10/swap/pim/contact#Male", 
+				"http://xmlns.com/foaf/0.1/Person"
+			],
+			"http://www.w3.org/2000/01/rdf-schema#label":["Tim Berners-Lee"], 
+			"http://www.w3.org/2000/10/swap/pim/contact#assistant":[{...}], 
+			"http://www.w3.org/2000/10/swap/pim/contact#homePage":["./"], 
+			"http://www.w3.org/2000/10/swap/pim/contact#office":[{...}]
+		},
+		ouri:"samples/tbl.xml",
+		type:"http://xmlns.com/foaf/0.1/PersonalProfileDocument",
+		uri:"_:832_0", 
+		back:[{...}]
+	}, 
+	...
+]
+</pre>
+
+<h3><a name="structured">OAT.RDFStore::data.structured</a></h3>
+<p>Loaded data after filters have been applied. Same structure as <em>data.all</em>.</p>
+
+<hr/>
+
+<h3><a name="addurl">OAT.RDFStore::addURL(url, onstart, onend)</a></h3>
+<p>Dereferences <em>url</em> and adds its contents to store. Two remaining arguments are used to override global <em>ajaxStart</em> and 
+<em>ajaxEnd</em> parameters.</p>
+
+<h3><a name="addtriples">OAT.RDFStore::addTriples(triplesArray, url)</a></h3>
+<p>Adds an array of triples (<em>triplesArray</em>) to storage. The <em>url</em> specifies the address from where these triples 
+originate.</p>
+
+<h3><a name="addxmldoc">OAT.RDFStore::addXmlDoc(xmlDoc, url)</a></h3>
+<p>Adds an XML document (fetched by OAT.AJAX.GET for instance) to storage. The <em>url</em> specifies the address from where this document
+originates.</p>
+
+<h3><a name="gettitle">OAT.RDFStore::getTitle(itemReference)</a></h3>
+<p>Returns a reasonable title (falls back to URI) of an item in storage.</p>
+
+<h3><a name="simplify">OAT.RDFStore::simplify(string)</a></h3>
+<p>Simplifies an URI by removing as much as possible (leaving the part after '#' or '/').</p>
+
+<h3><a name="addfilter">OAT.RDFStore::addFilter(type, value1, [value2])</a></h3>
+<p>Applies a pass filter to store contents. Filter type is specified as one of available constants. For FILTER_PROPERTY, both 2nd and 3rd arguments 
+should be used: these specify predicate value and object value (only resources having this P and O will pass).<br/>
+For FILTER_URI, only 2nd argument should be used: this value specifies an URI to be filtered (only resources having this URI as O or S will pass).</p>
+
+<h3><a name="removefilter">OAT.RDFStore::removeFilter(type, value1, [value2])</a></h3>
+<p>Removes a previously set filter; syntax is the same as in <em>addFilter</em>.</p>
+
+<h3><a name="disable">OAT.RDFStore::disable(url)</a></h3>
+<p>Temporarily disables (removes) all triples originating from <em>url</em> from the store.</p>
+
+<h3><a name="enable">OAT.RDFStore::enable(url)</a></h3>
+<p>Re-enables previously disabled url, so its contents are loaded in a store.</p>
+
+<pre class="code">
+var callback = function() {
+	alert("Store contents have changed, check them out!");
+}
+var store = new OAT.RDFStore(callback,{});
+store.addURL("myRDF.n3");
+</pre>
