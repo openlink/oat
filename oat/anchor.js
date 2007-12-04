@@ -17,31 +17,31 @@ OAT.AnchorData = {
 }
 
 OAT.Anchor = {
-	imagePath:'/DAV/JS/images/',
-	zIndex:200,
 	
 	appendContent:function(options) {
-		if (options.content) {
+		if (options.content && options.window) {
 			if (typeof(options.content) == "function") { options.content = options.content(); }
-			var win = OAT.AnchorData.window;
-			win.resizeTo(options.width,options.height);
-			OAT.Dom.clear(win.content);
-			win.content.appendChild(options.content);
+			var win = options.window;
+			//win.outerResizeTo(options.width,options.height);
+			OAT.Dom.clear(win.dom.content);
+			win.dom.content.appendChild(options.content);
+			OAT.Anchor.fixSize(win);
 		}
 	},
 	
 	callForData:function(options,pos) {
-		var win = OAT.AnchorData.window;
-		options.status = 1; /* loading */
-		if (options.title) { win.caption.innerHTML = options.title; }
+		var win = options.window;
+		options.stat = 1; /* loading */
+		if (options.title) { win.dom.caption.innerHTML = options.title; }
+		if (options.status) { win.dom.status.innerHTML = options.status; }
 
 		var ds = options.datasource;
 		if (ds) { 
 			ds.connection = options.connection; 
 			var link = options.elm.innerHTML;
 			var unlinkRef = function() {
-				win.caption.innerHTML = options.elm.innerHTML;
-				if (options.title) { win.caption.innerHTML = options.title; }
+				win.dom.caption.innerHTML = options.elm.innerHTML;
+				if (options.title) { win.dom.caption.innerHTML = options.title; }
 			}
 			ds.bindRecord(unlinkRef);
 			ds.bindEmpty(unlinkRef);
@@ -62,7 +62,7 @@ OAT.Anchor = {
 				var f = false;
 				var resizeRef = function() {
 					win.resizeTo(f.totalWidth+5,f.totalHeight+5);
-					win.anchorTo(pos[0],pos[1]);
+					options.anchorTo(pos[0],pos[1]);
 				}
 				options.content = OAT.Dom.create("div");
 				var f = new OAT.Form(options.content,{onDone:resizeRef});
@@ -76,8 +76,8 @@ OAT.Anchor = {
 				var tl = new OAT.FormObject["timeline"](0,20,0); /* x,y,designMode */
 				options.content = tl.elm;
 				tl.elm.style.position = "relative";
-				tl.elm.style.width = (options.width-3)+"px";
-				tl.elm.style.height = (options.height-25)+"px";
+				tl.elm.style.width = (options.width-5)+"px";
+				tl.elm.style.height = (options.height-65)+"px";
 				tl.init();
 				/* canonic binding to output fields */
 				for (var i=0;i<tl.datasources[0].fieldSets.length;i++) {
@@ -109,31 +109,62 @@ OAT.Anchor = {
 		ds.advanceRecord(0);
 	},
 
+	/** adjust width and height if content overflows container depending on block or inline element inside */
+	fixSize:function (win) {
+			/* wait to finish all ajax calls */
+			setTimeout(function(){
+				if (OAT.AJAX.requests.length) {
+					OAT.Anchor.fixSize(win);
+				} else {
+					var height = OAT.Dom.getWH(win.dom.content)[1];
+					while (OAT.Dom.getWH(win.dom.content)[1]+50 > OAT.Dom.getWH(win.dom.container)[1]) {
+						if (OAT.Dom.getWH(win.dom.container)[0] < 650)
+							win.dom.container.style.width = (OAT.Dom.getWH(win.dom.container)[0]+100)+'px';
+						if (height == OAT.Dom.getWH(win.dom.content)[1]) {
+							win.dom.container.style.width = (OAT.Dom.getWH(win.dom.container)[0]-100)+'px';
+						//	if (OAT.Dom.getWH(win.dom.content)[1] > 450) {
+						//		win.dom.content.style.height = '450px';
+						//		win.dom.content.style.overflow = 'auto';
+						//	}
+							win.dom.container.style.height = (OAT.Dom.getWH(win.dom.content)[1]+40)+'px';
+							break;
+						}
+						height = OAT.Dom.getWH(win.dom.content)[1];
+					}
+				}
+			}, 50 );
+		},
+
 	assign:function(element,paramsObj) {
 		var elm = $(element);
 		var options = {
-			href:false,
+			href:false, /* url to be fetched */
 			newHref:"javascript:void(0)",
-			connection:false,
-			datasource:false,
-			content:false,
-			title:false,
-			imagePath:"/DAV/JS/images/",
-			result_control:"grid",
+			connection:false, /* for url fetch */
+			datasource:false, /* for url fetch */
+			content:false, /* node or function to be inserted */
+			status:false, /* window status */
+			title:false, /* window title */
+			result_control:"grid", /* for url fetch */
 			activation:"hover",
-			width:300,
-			height:200
+			width:340,
+			height:false, /* false is 'auto' */
+			elm:elm, /* anchor node */
+			window:false, /* what should be displayed */
+			arrow:false, /* what should be displayed */
+			type:OAT.WinData.TYPE_RECT,
+			template:false /* use with type:OAT.WinData.TYPE_TEMPLATE - see win component documentation */
 		};
 		for (var p in paramsObj) { options[p] = paramsObj[p]; }
-		options.elm = elm;
 
-		if (!OAT.AnchorData.window) { /* create window */
-			var win = new OAT.Window({close:1,resize:1,width:options.width,height:options.height,imagePath:OAT.Anchor.imagePath,title:"Loading..."},OAT.WindowData.TYPE_RECT);
-			win.div.style.zIndex = OAT.Anchor.zIndex;
-			win.close = function() { OAT.Dom.hide(win.div); }
-			win.onclose = win.close;
-			win.close();
-			document.body.appendChild(win.div);
+		var win = new OAT.Win( {
+			visibleButtons:'cr',
+			outerWidth:options.width,
+			outerHeight:options.height,
+			title:"Loading...",
+			type:options.type,
+			status:options.status,
+			template:options.template	} );
 			function checkOver() {
 				var opts = OAT.AnchorData.active;
 				if (!opts) { return; }
@@ -144,39 +175,71 @@ OAT.Anchor = {
 				if (!opts) { return; }
 				if (opts.activation == "hover") { opts.startClose(); }
 			}
-			OAT.Dom.attach(win.div,"mouseover",checkOver);
-			OAT.Dom.attach(win.div,"mouseout",checkOut);
-			OAT.AnchorData.window = win;
-		}
+		OAT.Dom.attach(win.dom.container,"mouseover",checkOver);
+		OAT.Dom.attach(win.dom.container,"mouseout",checkOut);
+		var arrow = OAT.Dom.create("div",{});
+		OAT.Dom.append([win.dom.container,arrow]);
+		options.arrow = arrow;
+		options.window = win;
 
-		options.status = 0; /* not initialized */
+		win.close = function() { OAT.Dom.hide(win.dom.container); }
+		win.onclose = win.close;
+		win.close();
+
+		options.stat = 0; /* not initialized */
 		if (!options.href && 'href' in elm) { options.href = elm.href; } /* if no oat:href provided, then try the default one */
 		if (elm.tagName.toString().toLowerCase() == "a") { OAT.Dom.changeHref(elm,options.newHref); }
 		
 		options.displayRef = function(event) {
-			var win = OAT.AnchorData.window;
-			win.close(); /* close existing window */
+			var win = options.window;
+			win.hide(); /* close existing window */
 			OAT.AnchorData.active = options;
-			options.endClose();
-			OAT.Dom.show(win.div);
 			var pos = OAT.Dom.eventPos(event);
+			OAT.AnchorData.window = win; /* assign last opened window */
 		
-			if (!options.status) { /* first time */
-				win.content.style.width = "200px";
-				win.content.style.height = "50px";
+			if (!options.stat) {
 				OAT.Anchor.callForData(options,pos); 
 			} else { 
 				OAT.Anchor.appendContent(options);
 			}
-			win.anchorTo(pos[0],pos[1]);
+			OAT.Anchor.fixSize(win);
+			win.show();
+			options.anchorTo(pos[0],pos[1]);
+		}
+		options.anchorTo = function(x_,y_) {
+			var win = options.window;
+			var fs = OAT.Dom.getFreeSpace(x_,y_); /* [left,top] */
+			var dims = OAT.Dom.getWH(win.dom.container);
+
+			if (fs[1]) { /* top */
+				var y = y_ - 35 - dims[1];
+				var className = 'bottom';
+			} else { /* bottom */
+				var y = y_ + 30;
+				var className = 'top';
+			}
+
+			if (fs[0]) { /* left */
+				var x = x_ + 10 - dims[0];
+				className += 'right';
+			} else { /* right */
+				var x = x_ - 50;
+				className += 'left';
+			}
+
+			if (x < 0) { x = 10; }
+			if (y < 0) { y = 10; }
+
+			OAT.Dom.addClass(options.arrow,"oat_anchor_arrow_"+className);
+			win.moveTo(x,y);
 		}
 		options.closeRef = function() {
 			if (options.closeFlag) {
-				OAT.AnchorData.window.close();
-				options.endClose();
+				options.window.hide();
 				OAT.AnchorData.active = false;
 			}
 		}
+		options.close = function() { options.window.hide(); }
 		options.startClose = function() {
 			options.closeFlag = 1;
 			setTimeout(options.closeRef,1000);
