@@ -66,6 +66,6 @@ snapshot:
 #  Generate ChangeLog
 #
 changelog:
-	cvs2cl --no-wrap --utc --prune --window 3600
+	cvs2cl --no-wrap --hide-filenames --utc --prune --window 3600
 
 endif
