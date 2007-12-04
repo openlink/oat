@@ -1,0 +1,27 @@
+.HubTestResults {
+	border-collapse:collapse;
+	font-family:sans-serif;
+}
+.HubTestLabel,.HubTestResult {
+	padding-left:1em;
+	padding-right:1em;
+	padding-top:.3em;
+	padding-bottom:.3em;
+	vertical-align:top;
+	border-width:3px;
+	border-style:solid;
+	border-color:black;
+}
+.HubTestLabel {
+	color:darkgreen;
+	font-weight:bold;
+	/* font-size: .8em; */
+	/* width:540px; */
+}
+.HubTestResult {
+	font-weight:bold;
+	/* width: 300px; */
+}
+.InteropFest_10_Results_Banner {
+	width:450px;
+}

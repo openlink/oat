@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+	"http://www.w3.org/TR/html4/loose.dtd">
+<!--
+/*******************************************************************************
+ * InteropFest10/index.html:
+ *		This is the root HTML file for the InteropFest 1.0 template.
+ *
+ *		See Readme.txt in the same folder for top-level InteropFest instructions.
+ *
+ *		ALL PARTICIPANTS IN THE InteropFest NEED TO CUSTOMIZE THIS FILE.
+ *		Almost certainly at least one change will be needed to the index.html.
+ *		(In fact, your application might not even have an index.html file.)
+ *
+ * Copyright 2007 OpenAjax Alliance
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not 
+ * use this file except in compliance with the License. You may obtain a copy 
+ * of the License at http://www.apache.org/licenses/LICENSE-2.0 . Unless 
+ * required by applicable law or agreed to in writing, software distributed 
+ * under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
+ * specific language governing permissions and limitations under the License.
+ *
+ ******************************************************************************/
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>InteropFest 1.0 Example Web Page</title>
+
+<!-- *****************************************************************************************
+* The JavaScript logic for the OpenAjax Hub must be loaded before other Ajax libraries.
+* Obviously, IT IS A REQUIREMENT TO LOAD THE OPENAJAX HUB.
+********************************************************************************************* -->
+<script type="text/javascript" src="OpenAjax/OpenAjax.js"></script>
+
+<!-- *****************************************************************************************
+* The following markup pull in the JavaScript logic and associated CSS stylesheet
+* to generate the snippet of HTML that shows success/failure results in passing
+* this conformance test.
+*
+* IT IS A REQUIRMENT THAT YOUR APPLICATION INCLUDE AN EMPTY <DIV> ELEMENT WITH
+* ID="InteropFest_10_Results". The JavaScript logic in InteropFestResultsComponent/Results.js
+* will populate this <DIV> element.
+********************************************************************************************* -->
+<link rel="StyleSheet" href="InteropFestResultsComponent/Results.css" type="text/css" />
+<script type="text/javascript" src="InteropFestResultsComponent/Results.js"></script>
+
+<!-- *****************************************************************************************
+* The following line pulls in a CSS stylesheet used to control layout and styling of this example file.
+* Feel free to modify, delete or replace this CSS stylesheet.
+********************************************************************************************* -->
+<link rel="StyleSheet" href="template.css" type="text/css" />
+
+<!-- *****************************************************************************************
+* The following lines pulls in the sample data generation component and the sample
+* data visualization component. YOU HAVE SEVERAL CHOICES ABOUT CHANGES YOU CAN MAKE:
+* (a) You can keep the datagen component but replace the datavis component.
+* (b) You can keep the datavis component but replace the datagen component.
+* (c) Many other options, including throwing out most of the template and 
+*			creating a new application from scratch, as long as this new application
+*			uses the Hub in the required manner and includes InteropFestResultsComponent/Results.js
+*			to display the test case results.
+********************************************************************************************* -->
+<script type="text/javascript" src="SampleDataGenComponent/SampleDataGenComponent.js"></script>
+<script type="text/javascript">var featureList = ["notify","piechart"];</script>
+<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>
+<script type="text/javascript" src="oat-notify.js"></script>
+
+<!-- *****************************************************************************************
+* Listen for document 'load' event. When received, broadcast the event
+* "org.openajax.interopfest10.bodyload".
+* You might ask yourself why the various components couldn't just add their own
+* document 'load' event listeners instead of using the OpenAjax Hub as an
+* intermediary. The main justification was expediency - to prevent each component from having
+* to include ~10 lines of JavaScript to address browser differences 
+* in how event listeners are established.
+* NOTE: THE DATAGEN COMPONENT THAT SHIPS WITH THIS TEMPLATE AND THE RESULTS SNIPPET
+* "InteropFestResultsComponent/Results.js" BOTH LISTEN FOR THE
+* "org.openajax.interopfest10.bodyload" EVENT. Therefore, the easiest thing to do in
+* most cases is to leave this small bit of JavaScript and markup in your application.
+********************************************************************************************* -->
+<script type="text/javascript">
+function MyLoadHandler() {
+	OpenAjax.hub.publish("org.openajax.interopfest10.bodyload", null);
+}
+</script>
+</head>
+<body onload="MyLoadHandler()">
+
+	<!-- *****************************************************************************************
+	* IT IS OK TO REMOVE THE TOPMOST OPENAJAX BANNER AND CHANGE/REMOVE THE H1 HEADING.
+	* However, you MUST RETAIN the smaller-size OpenAjax banner that is generated 
+	* by InteropFestResultsComponent/Results.js.
+	********************************************************************************************* -->
+	<p id="OpenAjaxBanner">
+		<a href="http://www.openajax.org">
+			<img id="OpenAjaxBanner" src="InteropFestResultsComponent/OpenAjaxAllianceBanner.jpg" width="100%" alt="OpenAjax Alliance banner"/>
+		</a>
+	</p>
+	<h1 class="HubTestTitle">OpenAjax Alliance InteropFest 1.0 Template</h1>
+
+	<!-- *****************************************************************************************
+	* IT IS OK TO CHANGE THE LAYOUT AS YOU WISH.
+	* However, you MUST INCLUDE the results snippet that is generated 
+	* by InteropFestResultsComponent/Results.js somewhere in your page.
+	********************************************************************************************* -->
+	<table cellpadding="10px">
+		<thead>
+			<colgroup>
+				<col width="50%"/>
+				<col width="50%"/>
+			</colgroup>
+		</thead>
+		<tbody valign="top">
+			<tr valign="top">
+
+				<!-- *****************************************************************************************
+				* YOU ALMOST CERTAINLY SHOULD REMOVE/REPLACE THE "About this template" SECTION.
+				********************************************************************************************* -->
+				<td valign="top">
+					<p class="HubTestCaption">Data notification component</p>
+					<p>This OAA Interop page uses our recent <strong>OAT.Notify</strong> component to show stock price changes.</p>
+				</td>
+
+				<!-- *****************************************************************************************
+				* OK TO KEEP, REMOVE, REPLACE OR MODIFY THIS SNIPPET USED BY THE DATAGEN COMPONENT.
+				* If you keep the datagen component, you probably will want to keep this HTML snippet.
+				* (But OK to modify as you wish.)
+				********************************************************************************************* -->
+				<td valign="top">
+					<p class="HubTestCaption">Data generation component</p>
+					<div id="DataGen_1">
+						<p>Click the button below to pause or resume the continuous 
+								feeds of simulated stock market price changes.</p>
+						<p>
+							<input id="pause_resume" type="button" value="Pause" onclick="SampleDataGenComponent.pause_resume();"/>
+						</p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+
+				<!-- *****************************************************************************************
+				* SOMEWHERE IN YOUR APPLICATION YOU MUST HAVE A <DIV> WITH ID="InteropFest_10_Results".
+				* OK to move it wherever you want to move it, but it must be somewhere on the page.
+				********************************************************************************************* -->
+				<td valign="top">
+					<div id="InteropFest_10_Results">
+					</div>
+				</td>
+
+				<!-- *****************************************************************************************
+				* OK TO KEEP, REMOVE, REPLACE OR MODIFY THIS SNIPPET USED BY THE DATAVIS COMPONENT.
+				* If you keep the datavis component, you probably will want to keep this HTML snippet.
+				* (But OK to modify as you wish.)
+				********************************************************************************************* -->
+				<td valign="top">
+					<p class="HubTestCaption">Data visualization component</p>
+					<div id="DataVis_1">This part is visible only in SVG-enabled browsers, for instance Firefox or Opera.</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

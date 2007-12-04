@@ -1,0 +1,19 @@
+.HubTestTitle {
+	text-align:center;
+	margin-bottom:5pt;
+}
+.HubTestCaption {
+	text-align:center;
+	font-weight:bold;
+	font-size: 1.2em;
+	font-family:sans-serif;
+}
+.HubTestNote {
+	font-style: italic;
+	font-size: 1em;
+	color:#400;
+}
+#DataVis_1 {
+	position:relative;
+	height: 300px;
+}
