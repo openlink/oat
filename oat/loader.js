@@ -14,6 +14,7 @@
 	
 	Contains: 
 	* OAT
+	* OAT.Preferences
 	* OAT.Dom
 	* OAT.Event
 	* OAT.Style
@@ -27,6 +28,19 @@
 
 /* global namespace */
 window.OAT = {};
+
+OAT.Preferences = {
+	showAjax:1, /* show Ajax window even if not explicitly requested by application? */
+	useCursors:1, /* scrollable cursors */
+	windowTypeOverride:0, /* do not guess window type */
+	xsltPath:"/DAV/JS/xslt/",
+	imagePath:"/DAV/JS/images/",
+	stylePath:"/DAV/JS/styles/",
+	version:"03.12.2007",
+	httpError:1, /* show http errors */
+	allowDefaultResize:1,
+	allowDefaultDrag:1
+}
 
 function $(something) {
 	if (typeof(something) == "string") {
@@ -640,6 +654,15 @@ OAT.Dom = { /* DOM common object */
 }
 
 OAT.Style = { /* Style helper */
+	include:function(file) {
+		if (!file) return;
+		var elm = OAT.Dom.create("link");
+		elm.rel = "stylesheet";
+		elm.type = "text/css";
+		elm.href = OAT.Preferences.stylePath + file;
+		document.getElementsByTagName("head")[0].appendChild(elm);
+	},
+
 	get:function(elm,property) {
 		var element = $(elm);
 		if (document.defaultView && document.defaultView.getComputedStyle) {
@@ -647,7 +670,12 @@ OAT.Style = { /* Style helper */
 			if (!cs) { return true; }
 			return cs[property];
 		} else {
-			return element.currentStyle[property];
+			try {
+				var out = element.currentStyle[property];
+			} catch (e) {
+				var out = element.getExpression(property);
+			}
+			return out;
 		} 
 	},
 	
@@ -746,7 +774,6 @@ OAT.Loader = { /* first part of loader object */
 			var name = path+value[i];
 			var script = document.createElement("script");
 			script.src = name;
-			// alert("including "+name);
 			document.getElementsByTagName("head")[0].appendChild(script);
 		}
 	},
@@ -764,9 +791,7 @@ OAT.Loader = { /* first part of loader object */
 	},
 
 	startOpenAjax:function() {
-		OpenAjax.registerLibrary("oat", "http://www.openlinksw.com/oat", "1.0");
-		OpenAjax.registerGlobals("oat", ["OAT","featureList"]);
-		OpenAjax.addOnLoad(function(){OAT.Loader.loadOccurred = 1;}, null, "library");
+		OpenAjax.hub.registerLibrary("oat", "http://www.openlinksw.com/oat", "1.0");
 	}
 }
 
@@ -838,7 +863,7 @@ OAT.Debug = {
 		OAT.Debug.data.push([sender,name,event]);
 	}
 }
-OAT.Debug.attach("*",OAT.MSG.OAT_DEBUG);
+//OAT.Debug.attach("*",OAT.MSG.OAT_DEBUG);
 
 /*
 	OAT Load:
@@ -855,7 +880,6 @@ OAT.Debug.attach("*",OAT.MSG.OAT_DEBUG);
 		6c) execute window.init, if present
 */
 OAT.Loader.findPath();
-if (OAT.Loader.openAjax) { OAT.Loader.startOpenAjax(); } else {
+if (OAT.Loader.openAjax) { OAT.Loader.startOpenAjax(); } 
 	OAT.Event.attach(window,"load",function(){OAT.Loader.loadOccurred = 1;});
-}
 OAT.Loader.include("bootstrap.js");
