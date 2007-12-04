@@ -1,3 +1,18 @@
+December 04 2007, V2.7:
+  * Added new OAT.Win 
+  * Added .LDR loader support for isparql
+  * Added support for OAI protocol
+  * Added more demos
+  * Enhanced a++ links/styles
+  * Enhanced RDFbrowser and iSPARQL apps
+  * Enhanced UI
+  * Fixed URI parsing
+  * Fixed N3 proxy support
+  * Fixed loading path
+  * Fixed parsing month in timeline control
+  * Fixed piechart drawing speeds
+  * Fixed small bugs
+
 July 31 2007, V2.6:
   * Added new JavasScript based Fresnel/RDF processor.
   * Rewrite of iSPARQL application, optimizing for speed and code size
