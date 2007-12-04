@@ -668,12 +668,12 @@ OAT.GraphSVG = function(div,vertices,edges,optObj) { /* constructor */
 				if (!node.svg.parentNode) { self.svg.appendChild(node.svg); }
 				switch (node.type) {
 					case 0:
-							node.svg.setAttribute("x",node.draw_x-node.radius);
-							node.svg.setAttribute("y",node.draw_y-node.radius);
+						node.svg.setAttribute("x",node.draw_x-node.radius);
+						node.svg.setAttribute("y",node.draw_y-node.radius);
 					break;
 					case 1:
-							node.svg.setAttribute("cx",node.draw_x);
-							node.svg.setAttribute("cy",node.draw_y);
+						node.svg.setAttribute("cx",node.draw_x);
+						node.svg.setAttribute("cy",node.draw_y);
 					break;
 				} /* switch */
 			/* if not visible and still present, unlink svg element */

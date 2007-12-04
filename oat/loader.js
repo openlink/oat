@@ -881,5 +881,5 @@ OAT.Debug = {
 */
 OAT.Loader.findPath();
 if (OAT.Loader.openAjax) { OAT.Loader.startOpenAjax(); } 
-	OAT.Event.attach(window,"load",function(){OAT.Loader.loadOccurred = 1;});
+OAT.Event.attach(window,"load",function(){OAT.Loader.loadOccurred = 1;});
 OAT.Loader.include("bootstrap.js");

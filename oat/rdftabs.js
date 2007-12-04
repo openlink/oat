@@ -427,7 +427,7 @@ OAT.RDFTabs.navigator = function(parent,optObj) {
 
 			/* dereferenced, or relative uri/blank node */
 			if(dereferenced || !value.uri.match(/^http/i)) {
-			self.attach(content,value); 
+				self.attach(content,value);
 			} else {
 				self.dattach(content,value.uri);
 			}
@@ -1350,7 +1350,7 @@ OAT.RDFTabs.fresnel = function(parent,optObj) {
 	var btn = OAT.Dom.button("Load Fresnel");
 	var go = function() {
 		if ($v(inp))
-		self.fresnel.addURL($v(inp),self.redraw);
+			self.fresnel.addURL($v(inp),self.redraw);
 
 	}
 	OAT.Event.attach(btn,"click",go);

@@ -165,16 +165,16 @@ OAT.Anchor = {
 			type:options.type,
 			status:options.status,
 			template:options.template	} );
-			function checkOver() {
-				var opts = OAT.AnchorData.active;
-				if (!opts) { return; }
-				if (opts.activation == "hover") { opts.endClose(); }
-			}
-			function checkOut() {
-				var opts = OAT.AnchorData.active;
-				if (!opts) { return; }
-				if (opts.activation == "hover") { opts.startClose(); }
-			}
+		function checkOver() {
+			var opts = OAT.AnchorData.active;
+			if (!opts) { return; }
+			if (opts.activation == "hover") { opts.endClose(); }
+		}
+		function checkOut() {
+			var opts = OAT.AnchorData.active;
+			if (!opts) { return; }
+			if (opts.activation == "hover") { opts.startClose(); }
+		}
 		OAT.Dom.attach(win.dom.container,"mouseover",checkOver);
 		OAT.Dom.attach(win.dom.container,"mouseout",checkOut);
 		var arrow = OAT.Dom.create("div",{});
