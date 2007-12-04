@@ -446,7 +446,7 @@ div.combo_button_option:hover {
 	width: 11px;
 	height: 21px;
 	top: 16px;
-	background-image: url("/DAV/JS/images/Slider.gif");
+	background-image: url("../images/Slider.gif");
 	cursor: w-resize;
 }
 

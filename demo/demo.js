@@ -616,7 +616,7 @@ DEMO.timeline = {
 
 				var a = OAT.Dom.create("div",{left:"-7px"});
 				var ball = OAT.Dom.create("div",{width:"16px",height:"16px",cssFloat:"left",styleFloat:"left"});
-				ball.style.backgroundImage = "url(/DAV/JS/images/Timeline_circle.png)";
+				ball.style.backgroundImage = "url("+OAT.Preferences.imagePath+"Timeline_circle.png)";
 				var t = OAT.Dom.create("span");
 				var time = e.getAttribute("title");
 				t.innerHTML = time;
@@ -789,7 +789,7 @@ DEMO.anchor = {
 		var c1 = new OAT.Connection(OAT.ConnectionData.TYPE_XMLA,{user:"demo",password:"demo"});
 
 		OAT.Anchor.assign("a_1",{activation:"hover",width:"300",datasource:ds_sql,result_control:"grid",connection:c1});
-		OAT.Anchor.assign("a_2",{activation:"click",width:"600",height:"400",datasource:ds_xml,result_control:"timeline",connection:c2});
+		OAT.Anchor.assign("a_2",{activation:"click",width:"800",height:"400",datasource:ds_xml,result_control:"timeline",connection:c2});
 		OAT.Anchor.assign("a_3",{activation:"click",width:"600",height:"400",datasource:ds_sp,result_control:"timeline",connection:c2});
 		OAT.Anchor.assign("a_4",{activation:"click",width:"100",height:"50",datasource:ds_form,result_control:"form",connection:c2});
 	}
@@ -890,7 +890,7 @@ DEMO.notify = {
 		});
 		OAT.Event.attach("notify_3","click",function() {
 			OAT.Notify.send("I am shown and hidden instantly. Click me to see it :)",
-				{opacity:0.5,timeout:0,delay:0,style:{fontFamily:"courier new"},color:"#00a",background:"#8c8",image:"/DAV/JS/images/Dav_throbber.gif"});
+				{opacity:0.5,timeout:0,delay:0,style:{fontFamily:"courier new"},color:"#00a",background:"#8c8",image:OAT.Preferences.imagePath+"Dav_throbber.gif"});
 		});
       }
 }
