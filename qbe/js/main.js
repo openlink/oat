@@ -733,6 +733,7 @@ var Columns = {
 	init:function(num_1,num_2) {
 		global_data.conds_1_count = num_1;
 		global_data.conds_2_count = num_2;
+		OAT.Dom.clear("grid_in");
 		grid_in = new OAT.Grid("grid_in");
 		grid_in.createHeader([{value:"&nbsp;Query columns&nbsp;",sortable:0,draggable:0,align:OAT.GridData.ALIGN_CENTER}]);
 		var a = OAT.Dom.create("a");
@@ -868,8 +869,14 @@ function init() {
 		}
 		query(q); 
 	}
+	
+	var visRef = function() {
+		var data = $v("q");
+		IO.loadProcess(data);
+	}
 	OAT.Dom.attach("menu_exec","click",execRef);
 	OAT.Dom.attach("btn_exec","click",execRef);
+	OAT.Dom.attach("btn_vis","click",visRef);
 
 	/* grid & nav */
 	var g = new OAT.FormObject["grid"](0,0,0); 
