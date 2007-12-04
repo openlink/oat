@@ -53,7 +53,7 @@ OAT.RDFTabs.browser = function(parent,optObj) {
 		
 	this.options = {
 		pageSize:20,
-		removeNS:false
+		removeNS:true
 	}
 	for (var p in optObj) { self.options[p] = optObj[p]; }
 	
@@ -209,7 +209,9 @@ OAT.RDFTabs.browser = function(parent,optObj) {
 		}
 		
 		cnt.innerHTML = "There are "+count+" records ("+tcount+" triples, "+pcount+" predicates) to match selected filters. ";
-		if (count == 0) { cnt.innerHTML += "Perhaps your filters are too restrictive?"; }
+		if (count == 0) { 
+			cnt.innerHTML += "Perhaps your criteria are too restrictive? Please review your filters.";
+		}
 		OAT.Dom.append([self.pageDiv,cnt,gd,div]);
 		
 		function assign(a,page) {
@@ -326,10 +328,11 @@ OAT.RDFTabs.navigator = function(parent,optObj) {
 	this.historyIndex = -1;
 	this.nav = {};
 	this.waiting = false;
+	this.mlCache = [];
 	this.topDiv = OAT.Dom.create("div",{},"rdf_nav");
 	this.mainDiv = OAT.Dom.create("div");
 	this.description = "This module is used for navigating through all locally cached data, one resource at a time. "+
-							"Note that filters doesn't apply here, all data is displayed.";
+							"Note that filters don't apply here, all data is displayed.";
 	OAT.Dom.append([self.elm,self.topDiv,self.mainDiv]);
 
 	this.gd = new OAT.GhostDrag();
@@ -357,12 +360,15 @@ OAT.RDFTabs.navigator = function(parent,optObj) {
 		if (!self.waiting) {
 			self.historyIndex = -1;
 			self.history = [];
+			self.mlCache = [];
 		}
 	}
 
 	this.attach = function(elm,item) { /* attach navigation to link */
 		OAT.Dom.addClass(elm,"rdf_link");
-		OAT.Dom.attach(elm,"click",function() {
+		OAT.Dom.attach(elm,"click",function(event) {
+			/* disable default onclick event for anchor */
+			OAT.Dom.prevent(event);
 			self.history.splice(self.historyIndex+1,self.history.length-self.history.index+1); /* clear forward history */
 			self.history.push(item);
 			self.navigate(self.history.length-1);
@@ -370,7 +376,9 @@ OAT.RDFTabs.navigator = function(parent,optObj) {
 	}
 	
 	this.dattach = function(elm,uri) { /* attach dereference to link */
-		OAT.Event.attach(elm,"click",function() {
+		OAT.Event.attach(elm,"click",function(event) {
+			/* disable default onclick event for anchor */
+			OAT.Dom.prevent(event);
 			self.waiting = true;
 			var img = OAT.Dom.create("img");
 			img.src = self.parent.options.imagePath + "Dav_throbber.gif";
@@ -401,19 +409,50 @@ OAT.RDFTabs.navigator = function(parent,optObj) {
 	this.drawPredicate = function(value) { /* draw one pred's content; return ELM */
 		var content = false;
 		if (typeof(value) == "object") { /* resource */
+			var items = self.parent.store.items;
+			var dereferenced = false;
+			for(var j=0;j<items.length;j++) {
+				var item = items[j];
+				/* handle anchors to local file */
+				var baseuri = value.uri.match(/^[^#]+/);
+				baseuri = baseuri? baseuri[0] : "";
+				var basehref = item.href.match(/^[^#]+/);
+				basehref = basehref? basehref[0] : "";
+				if(basehref == baseuri) { dereferenced = true; };
+			}
+
 			content = OAT.Dom.create("a");
-			content.href = "javascript:void(0)";
+			content.href = value.uri;
 			content.innerHTML = self.parent.getTitle(value);
+
+			/* dereferenced, or relative uri/blank node */
+			if(dereferenced || !value.uri.match(/^http/i)) {
 			self.attach(content,value); 
+			} else {
+				self.dattach(content,value.uri);
+			}
 		} else { /* literal */
 			var type = self.parent.getContentType(value);
 			if (type == 3) { /* image */
 				content = OAT.Dom.create("img");
 				content.src = value;
+				var ref = function() {
+					var w = content.width;
+					var h = content.height;
+					var max = Math.max(w,h);
+					if (max > 600) {
+						var coef = 600 / max;
+						var nw = Math.round(w*coef);
+						var nh = Math.round(h*coef);
+						content.width = nw;
+						content.height = nh;
+					}
+				}
+				OAT.Event.attach(content,"load",ref);
 			} else if (type == 1) { /* dereferencable link */
 				content = OAT.Dom.create("a");
-				content.href = "javascript:void(0)";
-				content.innerHTML = value;
+				content.href = value;
+				content.innerHTML = self.parent.store.simplify(value);
 				self.dattach(content,value);
 			} else { /* text */
 				content = OAT.Dom.create("span");
@@ -433,7 +472,6 @@ OAT.RDFTabs.navigator = function(parent,optObj) {
 						} 
 					} /* for all resources */
 					if (!done) { self.dattach(anchor,anchor.href); }
-					OAT.Dom.changeHref(anchor,"javascript:void(0)");
 				} /* for all nested anchors */
 			}
 		} /* if literal */
@@ -508,9 +546,11 @@ OAT.RDFTabs.navigator = function(parent,optObj) {
 		var td = OAT.Dom.create("td");
 		td.colSpan = 3;
 		var simple = self.parent.simplify(label);
+		/*
 		if (cnt > 1 && simple.charAt(0) != "[") {
 			simple = (simple in self.plurals ? self.plurals[simple] : simple+"s");
 		}
+		*/
 		td.innerHTML = simple;
 		tr.appendChild(td);
 		OAT.Event.attach(arrow,"click",function() {
@@ -523,9 +563,10 @@ OAT.RDFTabs.navigator = function(parent,optObj) {
 	}
 	
 	this.drawSpotlightType = function(label,data,table) {
-		var state = 0;
+		var state = (self.mlCache.find(label) == -1 ? 0 : 1);
 		var states = [" more...","less..."];
-		var count = Math.min(data.length,self.options.limit);
+		var min = Math.min(data.length,self.options.limit);
+		var count = (state ? data.length : min);
 		var tr = OAT.Dom.create("tr",{},"rdf_nav_header");
 		var trset = [];
 		self.drawSpotlightHeading(tr,label,trset,data.length);
@@ -561,26 +602,29 @@ OAT.RDFTabs.navigator = function(parent,optObj) {
 			table.appendChild(tr);
 		}
 		
-		if (count < data.length) {
+		if (self.options.limit < data.length) {
 			var toggletr = OAT.Dom.create("tr",{},"rdf_nav_toggle");
 			toggletr.appendChild(OAT.Dom.create("td"));
 			trset.push(toggletr);
 			var td = OAT.Dom.create("td");
 			var toggle = OAT.Dom.create("span",{cursor:"pointer"});
-			toggle.innerHTML = (data.length - count) + states[state];
+			toggle.innerHTML = (state ? states[state] : (data.length - min) + states[state]);
 			OAT.Dom.append([td,toggle],[toggletr,td],[table,toggletr]);
 			OAT.Event.attach(toggle,"click",function() {
 				state = (state+1) % 2;
-				toggle.innerHTML = (state ? states[state] : (data.length - count) + states[state]);
+				toggle.innerHTML = (state ? states[state] : (data.length - min) + states[state]);
 				if (state) { /* show more */
-					for (var i=count;i<data.length;i++) {
+					self.mlCache.push(label);
+					for (var i=min;i<data.length;i++) {
 						var item = data[i];
 						var tr = createRow(item);
 						trset.splice(i,0,tr);
 						table.insertBefore(tr,toggletr);
 					}
 				} else { /* show less */
-					for (var i=data.length-1;i>=count;i--) {
+					var index = self.mlCache.find(label);
+					self.mlCache.splice(label,index);
+					for (var i=data.length-1;i>=min;i--) {
 						OAT.Dom.unlink(trset[i]);
 						trset.splice(i,1);
 					}
@@ -665,7 +709,8 @@ OAT.RDFTabs.triples = function(parent,optObj) {
 	var self = this;
 	OAT.RDFTabs.parent(self);
 	this.options = {
-		pageSize:100
+		pageSize:100,
+		removeNS:true
 	}
 	for (var p in optObj) { self.options[p] = optObj[p]; }
 
@@ -676,15 +721,21 @@ OAT.RDFTabs.triples = function(parent,optObj) {
 	this.pageDiv = OAT.Dom.create("div");
 	this.gridDiv = OAT.Dom.create("div");
 	this.description = "This module displays all filtered triples.";
+	
+	this.select = OAT.Dom.create("select");
+	OAT.Dom.option("Human readable","0",this.select);
+	OAT.Dom.option("Machine readable","1",this.select);
+	
 	OAT.Dom.append([self.elm,self.pageDiv,self.gridDiv]);
 	
 	this.patchAnchor = function(column) {
 		var a = OAT.Dom.create("a");
 		var v = self.grid.rows[self.grid.rows.length-1].cells[column].value;
-		a.innerHTML = v.innerHTML;
+		var uri = v.innerHTML;
+		a.innerHTML = (self.select.value == "0" ? self.parent.store.simplify(uri) : uri);
 		OAT.Dom.clear(v);
 		v.appendChild(a);		
-		self.parent.processLink(a,a.innerHTML);
+		self.parent.processLink(a,uri);
 	}
 	
 	this.reset = function() {
@@ -698,7 +749,7 @@ OAT.RDFTabs.triples = function(parent,optObj) {
 
 		cnt.innerHTML = "There are "+count+" triples available.";
 		OAT.Dom.clear(self.pageDiv);
-		OAT.Dom.append([self.pageDiv,cnt,div]);
+		OAT.Dom.append([self.pageDiv,cnt,div,self.select]);
 		
 		function assign(a,page) {
 			a.setAttribute("title","Jump to page "+(page+1));
@@ -738,12 +789,18 @@ OAT.RDFTabs.triples = function(parent,optObj) {
 			if (i >= self.currentPage * self.options.pageSize && i < (self.currentPage + 1) * self.options.pageSize) {
 				var triple = triples[i];
 				self.grid.createRow(triple);
-				if (triple[0].match(/^http/i)) { self.patchAnchor(1); }
-				if (triple[2].match(/^http/i)) { self.patchAnchor(3); }
+				for (var j=0;j<triple.length;j++) {
+					var str = triple[j];
+					/* if j = 0, we are subject, so simplify */
+					if (str.match(/^(http|urn|doi)/i) || j == 0) { 
+						self.patchAnchor(j+1);
+					}
+				}
 			} /* if in current page */
 		} /* for all triples */
 		self.drawPager();
 	}
+	OAT.Event.attach(self.select,"change",self.redraw);
 }
 
 OAT.RDFTabs.svg = function(parent,optObj) {
@@ -937,7 +994,9 @@ OAT.RDFTabs.map = function(parent,optObj) {
 
 		function tryList() {
 			if (!self.pointListLock) { 
-				if (!self.pointList.length) { alert("Nothing displayable was found."); }
+				if (!self.pointList.length) { 
+					alert("Current data set contains nothing that could be displayed in this view mode.");
+				}
 				self.map.optimalPosition(self.pointList); 
  			} else {
 				setTimeout(tryList,500);
@@ -1065,7 +1124,7 @@ OAT.RDFTabs.images = function(parent,optObj) {
 
 	this.showBig = function(index) {
 		if (!self.dimmer) {
-			self.dimmer = OAT.Dom.create("div",{position:"absolute",padding:"1em",backgroundColor:"#fff",border:"4px solid #000",textAlign:"center"});
+			self.dimmer = OAT.Dom.create("div",{position:"absolute",padding:"1em",backgroundColor:"#fff",border:"4px solid #000",textAlign:"center",fontSize:"160%"});
 			OAT.Dimmer.show(self.dimmer);
 			self.container = OAT.Dom.create("div",{margin:"auto"});
 			self.prev = OAT.Dom.create("span",{fontWeight:"bold",cursor:"pointer"});
@@ -1100,6 +1159,33 @@ OAT.RDFTabs.images = function(parent,optObj) {
 				img.width = neww;
 				img.height = newh;
 			}
+			
+			var plus = OAT.Dom.create("strong",{cursor:"pointer",marginRight:"3px"});
+			var minus = OAT.Dom.create("strong",{cursor:"pointer"});
+			plus.innerHTML = "+";
+			minus.innerHTML = "&mdash;";
+			var d = OAT.Dom.create("div",{textAlign:"left"});
+			OAT.Dom.append([self.container,d],[d,plus,minus]);
+			
+			var resizeRef = function(coef) {
+				var w = img.width;
+				var h = img.height;
+				w = Math.round(w*coef);
+				h = Math.round(h*coef);
+				img.width = w;
+				img.height = h;
+				OAT.Dom.center(self.dimmer,1,1);
+			}
+			
+			OAT.Event.attach(plus,"click",function(){
+				resizeRef(1.5);
+			});
+
+			
+			OAT.Event.attach(minus,"click",function(){
+				resizeRef(0.667);
+			});
+
 			self.container.appendChild(img);
 			OAT.Dom.center(self.dimmer,1,1);
 		});
@@ -1263,7 +1349,9 @@ OAT.RDFTabs.fresnel = function(parent,optObj) {
 	inp.value = self.options.defaultURL;
 	var btn = OAT.Dom.button("Load Fresnel");
 	var go = function() {
+		if ($v(inp))
 		self.fresnel.addURL($v(inp),self.redraw);
+
 	}
 	OAT.Event.attach(btn,"click",go);
 	OAT.Event.attach(inp,"keypress",function(event) {
