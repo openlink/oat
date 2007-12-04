@@ -23,7 +23,7 @@ OAT.Loader.Dependencies = { /* dependency tree */
 	quickedit:"instant",
 	grid:"instant",
 	combolist:"instant",
-	formobject:["drag","resize","datasource","tab"],
+	formobject:["drag","resize","datasource","tab","window"],
 	tab:"layers",
 	color:"drag",
 	combobutton:"instant",
@@ -47,7 +47,7 @@ OAT.Loader.Dependencies = { /* dependency tree */
 	piechart:"svg",
 	graphsvg:["svg","graphsidebar","rdf","dereference"],
 	rdf:"xml",
-	anchor:["window","rectwin"],
+	anchor:"win",
 	map:["window","rectwin"],
 	openlayers:["map","layers","roundwin"],
 	svgsparql:["svg","ghostdrag","geometry"],
@@ -65,7 +65,9 @@ OAT.Loader.Dependencies = { /* dependency tree */
 	rssreader:"xml",
 	notify:"animation",
 	slidebar:"animation",
-	fresnel:"xml"
+	fresnel:"xml",
+	win:["simplefx","drag","resize","layers"],
+	dimmer:"win"
 }
 
 OAT.Loader.Files = { /* only those whose names differ */
@@ -197,7 +199,6 @@ OAT.LoaderTMP = { /* second part of loader */
 	start:function() {
 		/* initial set of libraries */
 		var fl = (window.featureList ? window.featureList : []);
-		fl.push("preferences");
 		/* go */
 		OAT.Loader.loadFeatures(fl,OAT.Loader.startInit);
 	}
