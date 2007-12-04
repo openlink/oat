@@ -10,7 +10,7 @@
  */
 
  
-@import url("/DAV/JS/styles/rdftabs.css");
+@import url("../../styles/rdftabs.css");
  
 /* ---------------- grid -------------- */
 
@@ -143,3 +143,8 @@ body {
   color: #335;
   margin:0px;
 }
+
+p.copyright {
+font-size: 8pt;
+text-align: right;
+margin-right: 10px}

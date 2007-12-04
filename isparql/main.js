@@ -49,6 +49,7 @@ if (typeof(default_pass) != 'undefined') goptions.password = default_pass;
 
 function init() {
 	OAT.Dom.hide("throbber");
+	OAT.Event.attach("throbber","click",OAT.AJAX.cancelAll);
 	init_qbe();
 	/* fix image paths */
 	if (toolkitImagesPath.match(/[^\/]$/)) { toolkitImagesPath += "/"; }
@@ -172,14 +173,6 @@ function init() {
   $("sr_cl_div").appendChild(sr_cl.div);
 
 	OAT.WebDav.init({imageExt:"png"});
-	
-	/* save */
-	dialogs.save = new OAT.Dialog("Save","save_div",{width:400,modal:1});
-	dialogs.save.ok = function() {
-		self.save($v("save_name"),$v("savetype"));
-		dialogs.save.hide();
-	}
-	dialogs.save.cancel = dialogs.save.hide;
 
 	/* qbe_unsupp */
 	dialogs.qbe_unsupp = new OAT.Dialog("Unsupported","qbe_unsupported_div",{width:400,modal:1});
@@ -287,12 +280,13 @@ function init() {
 	window.adv = new iSPARQL.Advanced();
 
 	var execCB = function(query) {
-		var orig = tab.selectedIndex;
 		if (qbe.QueryGenerate() == query) { return; }
-		tab.go(0);
-		qbe.loadFromString(query);
-		$("query").value = query;
-		tab.go(orig);
+		if (tab.selectedIndex == 0) { 
+			qbe.loadFromString(query);
+		}
+		if (tab.selectedIndex == 1) {
+			$("query").value = query;
+		}
 	}
 	window.qe = new QueryExec({div:"page_results",executeCallback:execCB});
 
@@ -452,6 +446,8 @@ function init() {
   }
 }
 
+iSPARQL.QueryCache = {};
+
 iSPARQL.QueryExec = function(paramsObj) {
 	    // We use this to fix IE visualization problems with pre content
 	    var putTextInPre = function(elm,txt){
@@ -497,7 +493,6 @@ iSPARQL.QueryExec = function(paramsObj) {
 	        callback:function(data,headers,param) {  // function called on result
 		    } /* callback */
 	  	};
-	  	
 	  	for (var p in paramsObj) { params[p] = paramsObj[p]; }
 
 	    if (params.service == '') {
@@ -506,13 +501,9 @@ iSPARQL.QueryExec = function(paramsObj) {
 	    }
 	    
 	    var content_type = 'application/x-www-form-urlencoded';
-	    
 	    var ReqHeaders = {'Accept':params.format,'Content-Type':content_type};
-	  
 	    var endpoint = params.service;
-	    if (endpoint.match(/^http:\/\//) && params.proxy && isVirtuoso)
-	      endpoint = './remote.vsp';
-
+	    if (endpoint.match(/^http:\/\//) && params.proxy && isVirtuoso) { endpoint = './remote.vsp'; }
 	    OAT.Dom.clear(params.res_div);
 	  
 	    // generate the request body
@@ -571,18 +562,16 @@ iSPARQL.QueryExec = function(paramsObj) {
 			onend:params.onend || function(){OAT.Dom.hide("throbber");}
 		}
 
-		function is_new() { /* is this request new? should we cache it? */
-			if (!nav_stack.length) { return true; }
-			var cache = nav_stack[nav_index];
-		    if (params.query != cache.query ||
-		        params.default_graph_uri != cache.default_graph_uri ||
-		        params.format != cache.format ||
-		        params.should_sponge != cache.should_sponge ||
-		        params.service != cache.service) { return true; }
-			return false;
+		var cb = function(data) {
+			iSPARQL.QueryCache[params.query] = data;
+			params.callback(data);
 		}
-
-		OAT.AJAX.POST (endpoint, body(), params.callback, o);
+		
+		if (params.query in iSPARQL.QueryCache) {
+			params.callback(iSPARQL.QueryCache[params.query]);
+		} else {
+			OAT.AJAX.POST (endpoint, body(), cb, o);
+		}
 	}
 
 iSPARQL.Advanced = function () {
@@ -598,8 +587,6 @@ iSPARQL.Advanced = function () {
 		{
 		  //$("query_form").reset();
 		  $("query").value = '';
-  	  
-  	  format_select();
   	  
       var table = $('named_graph_list');
       if (table.tBodies.length)
@@ -664,16 +651,18 @@ iSPARQL.Advanced = function () {
     		isDav:((goptions.login_put_type == 'http')?false:true),
     		extensionFilters:[['rq','rq','SPARQL Definitions',get_mime_type('rq')],
     		                  ['isparql','isparql','Dynamic Linked Data Page',get_mime_type('isparql')],
+    		                  ['ldr','ldr','Dynamic Linked Data Resource',get_mime_type('ldr')],
     		                  ['xml','xml','XML Server Page',get_mime_type('xml')],
     		                  ['','*','All files','']
     		                 ],
-        callback:function(path,fname,data){
-          goptions.last_path = path + fname;
-          loadProcess(data);
-          //OAT.WebDav.close();
+            callback:function(path,fname,data){
+              goptions.last_path = path + fname;
+              loadProcess(data);
+              //OAT.WebDav.close();
+            }
         }
-      }
-    	OAT.WebDav.openDialog(options);
+      	
+		OAT.WebDav.openDialog(options);
 	}
 	
 	this.func_save = function() {
@@ -700,6 +689,7 @@ iSPARQL.Advanced = function () {
     		isDav:((goptions.login_put_type == 'http')?false:true),
     		extensionFilters:[['rq','rq','SPARQL Definitions',get_mime_type('rq')],
     		                  ['isparql','isparql','Dynamic Linked Data Page',get_mime_type('isparql')],
+    		                  ['ldr','ldr','Dynamic Linked Data Resource',get_mime_type('ldr')],
     		                  ['xml','xml','XML Server Page',get_mime_type('xml')]
     		                 ],
 				callback:function(path,fname){
@@ -799,6 +789,7 @@ iSPARQL.Advanced = function () {
 			  data += $v('query');
 			break;
 			case "isparql":
+			case "ldr":
 			  var xslt = location.pathname.substring(0,location.pathname.lastIndexOf("/")) + '/xslt/dynamic-page.xsl';
 			  data += $v('query');
     		var xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
@@ -869,10 +860,6 @@ iSPARQL.Advanced = function () {
   self.service.img.height = "16";
   $("adv_service_div").appendChild(self.service.div);
 	
-	OAT.Dom.attach("query","blur",format_select);
-	OAT.Dom.attach("query","change",format_select);
-	OAT.Dom.attach("query","keyup",format_select);
-	OAT.Dom.attach("query","keypress",format_select);
 }
 
 iSPARQL.Common = {
@@ -944,43 +931,11 @@ function get_mime_type(res){
   switch (ext) {
     case 'xml':
     case 'isparql':
+    case 'ldr':
 	    return 'text/xml';
 	  default:
 	    return 'text/plain';
 	}
-}
-
-var last_format = 1;
-
-function format_select(){
-  var query_obg = $('query');
-  var query = query_obg.value;
-  var format = $('format');
-    
-  if ((query.match(/construct/i) || query.match(/describe/i)) && last_format == 1)
-  {
-    for(var i = format.options.length; i > 0; i--)
-      format.options[i] = null;
-    format.options[0] = new Option('RDF Graph','application/isparql+rdf-graph');
-    format.options[1] = new Option('N3/Turtle','text/rdf+n3');
-    format.options[2] = new Option('RDF/XML','application/rdf+xml');
-    format.selectedIndex = 0;
-    last_format = 2;
-  }
-
-  if ((!query.match(/construct/i) && !query.match(/describe/i)) && last_format == 2)
-  {
-    for(var i = format.options.length; i > 0; i--)
-      format.options[i] = null;
-    format.options[0] = new Option('Table','application/isparql+table');
-    format.options[1] = new Option('XML','application/sparql-results+xml');
-    format.options[2] = new Option('JSON','application/sparql-results+json');
-    format.options[3] = new Option('Javascript','application/javascript');
-    format.options[4] = new Option('HTML','text/html');
-    format.selectedIndex = 0;
-    last_format = 1;
-  }
-  
 }
 
 function prefix_insert(){

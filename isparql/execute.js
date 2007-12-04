@@ -56,6 +56,7 @@ var QueryExec = function(optObj) {
 		
 		endpoint:false,
 		query:false,
+		backupQuery:false, /* to be execude if original fails */
 		defaultGraph:false,
 		namedGraphs:[],
 		sponge:false,
@@ -67,13 +68,18 @@ var QueryExec = function(optObj) {
 	this.dom = {};
 	this.tab = false;
 	this.store = new OAT.RDFStore(false);
+	this.mini = false;
 	
 	this.init = function() {
 		this.dom.result = OAT.Dom.create("div");
 		this.dom.request = OAT.Dom.create("pre"); 
 		this.dom.response = OAT.Dom.create("pre");
 		this.dom.query = OAT.Dom.create("pre");
-		var tabs1 = ["Result","Request","Response","Query"];
+		this.dom.select = OAT.Dom.create("select");
+		OAT.Dom.option("Human readable","0",this.dom.select);
+		OAT.Dom.option("Machine readable","1",this.dom.select);
+		
+		var tabs1 = ["Result","SPARQL Params","Response","Query"];
 		var tabs2 = [self.dom.result,self.dom.request,self.dom.response,self.dom.query];
 		self.dom.tab = OAT.Dom.create("div",{padding:"5px",backgroundColor:"#fff"});
 		self.dom.ul = OAT.Dom.create("ul",{},"tabres");
@@ -86,10 +92,17 @@ var QueryExec = function(optObj) {
 		}
 		if (self.options.div) { 
 			OAT.Dom.clear(self.options.div);
+			OAT.Dom.append([self.options.div,self.dom.select,OAT.Dom.create("br")]);
 			OAT.Dom.append([self.options.div,self.dom.ul,self.dom.tab]); 
 		}
-		
 		self.initNav();
+		
+		OAT.Event.attach(self.dom.select,"change",function(){
+			if (self.cacheIndex > -1) { self.draw(); }
+		});
+		OAT.Event.attach(self.dom.check,"click",function(){
+			if (self.cacheIndex > -1) { self.draw(); }
+		});
 	}
 	
 	this.initNav = function() {
@@ -171,7 +184,7 @@ var QueryExec = function(optObj) {
 		var paramsObj = {};
 		paramsObj["query"] = opts.query;
 		paramsObj["format"] = "application/rdf+xml";
-		if (opts.defaultGraph) { paramsObj["default-graph-uri"] = opts.defaultGraph; }
+		if (opts.defaultGraph && !opts.query.match(/from *</i)) { paramsObj["default-graph-uri"] = opts.defaultGraph; }
 		if (opts.limit) { paramsObj["maxrows"] = opts.limit; }
 		if (opts.sponge && self.options.virtuoso) { paramsObj["should-sponge"] = opts.sponge; }
 
@@ -202,6 +215,34 @@ var QueryExec = function(optObj) {
 	
 	this.drawTable = function() {
 		OAT.Dom.clear(self.dom.result);
+		
+		var entCount = 0;
+		var entities = {};
+		var q = self.cache[self.cacheIndex].opts.query.replace(/[\r\n]/g," ");
+		var where = q.match(/where *{(.*)}/i);
+		if (where) {
+			var regs = where[1].match(/<[^>]+>/g);
+			if (regs) for (var i=0;i<regs.length;i++) {
+				var entity = regs[i].substring(1,regs[i].length-1);
+				if (!(entity in entities)) { 
+					entities[entity] = 1; 
+					entCount++;
+				}
+			}
+		}
+		
+		var h = OAT.Dom.create("h3");
+		h.innerHTML = "This page is about:";
+		if (entCount) {
+			var ul = OAT.Dom.create("ul");
+			for (var p in entities) {
+				var li = OAT.Dom.create("li");
+				ul.appendChild(li);
+				li.innerHTML = p;
+			}
+			OAT.Dom.append([self.dom.result,h,ul]);
+		}
+		
 		var root = self.store.data.all[0];
 		var ns_var = "http://www.w3.org/2005/sparql-results#resultVariable";
 		var ns_var2 = "http://www.w3.org/2005/sparql-results#variable";
@@ -212,6 +253,16 @@ var QueryExec = function(optObj) {
 		
 		var grid = new OAT.Grid(self.dom.result);
 		var header = root.preds[ns_var];
+		if (self.dom.select.value == "1") {
+			var map = {
+				"hasValue":"Range",
+				"isValueOf":"Domain",
+				"property":"Property"
+			}
+			for (var i=0;i<header.length;i++) {
+				if (header[i] in map) { header[i] = map[header[i]]; } 
+			}
+		}
 		grid.createHeader(header);
 		
 		if (!(ns_sol in root.preds)) { return; }
@@ -233,12 +284,19 @@ var QueryExec = function(optObj) {
 				var v = bindings[j].preds[ns_var2][0];
 				var index = header.find(v);
 				row[index] = val;
-				simplified_row[index] = self.simplifyPrefix(val);;
+				simplified_row[index] = self.simplifyPrefix(val);
+
+				if (self.dom.select.value == "0") {
+					var value = simplified_row[index];
+					var simple = self.store.simplify(value);
+					simplified_row[index] = simple;
+				}
 			}
+			
 			grid.createRow(simplified_row);
 			for (var j=0;j<row.length;j++) {
 				var val = row[j];
-				if (val.match(/^http/i)) { /* a++ */
+				if (val.match(/^(http|urn|doi)/i)) { /* a++ */
 					var a = OAT.Dom.create("a");
 					a.innerHTML = simplified_row[j];
 					a.href = "#";
@@ -263,12 +321,20 @@ var QueryExec = function(optObj) {
 		self.dom.request.innerHTML = "";
 		var r = decodeURIComponent(request);
 		var parts = r.split("&");
-		for (var i=0;i<parts.length;i++) { self.dom.request.innerHTML += parts[i]+"\n"; }
+		for (var i=0;i<parts.length;i++) { self.dom.request.innerHTML += OAT.Xml.escape(parts[i])+"\n"; }
 		self.dom.query.innerHTML = OAT.Xml.escape(opts.query);
 
 		if (wasError) {
-			self.dom.result.innerHTML = data;
-			self.dom.response.innerHTML = data;
+			/* trap http codes */
+			var r = data.match(/Error (..[0-9]{3})/);
+			if (r) {
+				self.dom.result.innerHTML = "SPARQL Processor error "+r[1];
+				if (r[1] == "HT404") { self.dom.result.innerHTML += ": Resource not found"; }
+				self.dom.result.innerHTML += ". Check your query and try again.";
+			} else {
+				self.dom.result.innerHTML = OAT.Xml.escape(data);
+			}
+			self.dom.response.innerHTML = OAT.Xml.escape(data);
 		} else {
 			var txt = OAT.Xml.serializeXmlDoc(data);
 			txt = OAT.Xml.escape(txt);
@@ -276,15 +342,24 @@ var QueryExec = function(optObj) {
 
 			if (opts.query.match(/describe/i) || opts.query.match(/construct/i)) {
 				/* rdf mini */
+				var lastIndex = 0;
 				var tabs = [
 					["navigator","Navigator"],
-					["browser","Browser",{removeNS:true}],
-					["triples","Raw Triples",{}],
-					["svg","SVG Graph",{}]
+					["browser","Raw Triples",{removeNS:true}],
+					["triples","Grid View",{}],
+					["svg","SVG Graph",{}],
+					["images","Images",{}],
+					["map","Yahoo Map",{provider:OAT.MapData.TYPE_Y}] 
 				];
-				var mini = new OAT.RDFMini(self.dom.result,{tabs:tabs,showSearch:false});
-				mini.processLink = self.processLink;
-				mini.store.addXmlDoc(data);
+				
+				if(self.mini) {
+					lastIndex = self.mini.select.selectedIndex;
+				}
+				self.mini = new OAT.RDFMini(self.dom.result,{tabs:tabs,showSearch:false});
+				self.mini.processLink = self.processLink;
+				self.mini.store.addXmlDoc(data);
+				self.mini.select.selectedIndex = lastIndex;
+				self.mini.redraw();
 			} else {
 				/* own table */
 				self.store.clear();
@@ -315,50 +390,35 @@ var QueryExec = function(optObj) {
 	this.processLink = function(domNode,href) {
 		var dereferenceRef = function() {
 			var cache = self.cache[self.cacheIndex];
-			var q = "SELECT ?p, ?o \n"+
-					(cache.opts.defaultGraph ? "FROM <"+cache.opts.defaultGraph+">" : "")+
-					"WHERE {<"+href+"> ?p ?o}";
+
+			var q = 'define get:soft "replacing" \n'+
+					'define input:same-as "yes" \n'+
+					'define input:grab-seealso <http://www.w3.org/2002/07/owl#sameAs> \n'+
+					'DESCRIBE <'+href+'>';
+			var bq = 'DESCRIBE <'+href+'>';
 			var o = {};
 			for (var p in cache.opts) { o[p] = cache.opts[p]; }
+			o.defaultGraph = false;
 			o.query = q;
+			o.backupQuery = bq;
 			self.execute(o);
  		}
-		var exploreRef = function() {
-			var cache = self.cache[self.cacheIndex];
-			var q = "SELECT ?property ?hasValue ?isValueOf\n"+
-					(cache.opts.defaultGraph ? "FROM <"+cache.opts.defaultGraph+">" : "")+
-					"WHERE {\n"+
-					"{ <"+href+"> ?property ?hasValue }\n"+
-					"UNION\n"+
-					"{ ?isValueOf ?property <"+href+"> }\n" +
-					"} ";
-			var o = {};
-			for (var p in cache.opts) { o[p] = cache.opts[p]; }
-			o.query = q;
-			self.execute(o);
-		}
 	
 		var genRef = function() {
-			var ul = OAT.Dom.create("ul",{paddingLeft:"20px",marginLeft:"0px"});
+			var ul = OAT.Dom.create("ul",{marginLeft:"20px",marginTop:"10px"});
 
+			var li = OAT.Dom.create("li");
 			var a = OAT.Dom.create("a");
-			a.innerHTML = "Dereference";
+			a.innerHTML = "Data Link";
 			a.href = "#";
 			OAT.Dom.attach(a,"click",dereferenceRef);
 			var li = OAT.Dom.create("li");
 			OAT.Dom.append([ul,li],[li,a]);
 
-			var a = OAT.Dom.create("a");
-			a.innerHTML = "Explore";
-			a.href = "#";
-			OAT.Dom.attach(a,"click",exploreRef);
 			var li = OAT.Dom.create("li");
-			OAT.Dom.append([ul,li],[li,a]);
-
 			var a = OAT.Dom.create("a");
-			a.innerHTML = "(X)HTML Page Open";
+			a.innerHTML = "Document Link";
 			a.href = href;
-			var li = OAT.Dom.create("li");
 			OAT.Dom.append([ul,li],[li,a]);
 			
 			return ul;
@@ -373,6 +433,22 @@ var QueryExec = function(optObj) {
 			activation:"click"
 		};
 		OAT.Anchor.assign(domNode,obj);
+		
+		var img1 = OAT.Dom.create("img",{paddingLeft:"3px",cursor:"pointer"});
+		img1.title = "Data Link";
+		img1.src = OAT.Preferences.imagePath + "RDF_rdf.png";
+		OAT.Dom.attach(img1,"click",dereferenceRef);
+
+		var a = OAT.Dom.create("a",{paddingLeft:"3px"});
+		var img2 = OAT.Dom.create("img",{border:"none"});
+		img2.src = OAT.Preferences.imagePath + "RDF_xhtml.gif";
+		a.title = "Document Link";
+		a.appendChild(img2);
+		a.target = "_blank";
+		a.href = href;
+		
+		domNode.parentNode.appendChild(img1);
+		domNode.parentNode.appendChild(a);
 	}
 	
 	this.execute = function(optObj) {
@@ -386,8 +462,16 @@ var QueryExec = function(optObj) {
 		}
 		var onerror = function(xhr) {
 			var txt = xhr.getResponseText();
-			if (opts.onerror) { opts.onerror(txt); }
-			self.addResponse(request,optObj,1,txt);
+			if (txt.match(/SP031/) && optObj.backupQuery) {
+				var newO = {};
+				for (var p in optObj) { newO[p] = optObj[p]; }
+				newO.query = newO.backupQuery;
+				newO.backupQuery = false;
+				self.execute(newO);
+			} else {
+				if (opts.onerror) { opts.onerror(txt); }
+				self.addResponse(request,optObj,1,txt);
+			}
 		}
 		var o = {
 			type:OAT.AJAX.TYPE_XML,
@@ -395,6 +479,12 @@ var QueryExec = function(optObj) {
 			onend:opts.onend,
 			onerror:onerror
 		}
+		
+		/* fix remote endpoint: */
+		if (opts.endpoint.match(/^http/i)) {
+			opts.endpoint = "/proxy?url="+encodeURIComponent(opts.endpoint);
+		}
+		
 		OAT.AJAX.POST(opts.endpoint,request,callback,o);
 	}
 	

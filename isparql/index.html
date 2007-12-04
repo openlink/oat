@@ -36,11 +36,13 @@
 	</script>
 
 	<title>OpenLink iSPARQL</title>
-	<link type="text/css"rel="stylesheet" href="styles/style.css"/>
-	<link type="text/css"rel="stylesheet" href="styles/execute.css"/>
+	<link type="text/css" rel="stylesheet" href="/DAV/JS/isparql/styles/style.css"/>
+	<link type="text/css" rel="stylesheet" href="/DAV/JS/isparql/styles/execute.css"/>
+	<link type="text/css" rel="stylesheet" href="/DAV/JS/styles/winrect.css" type="text/css" />
 	<script type="text/javascript">
-		var featureList=["keyboard","tab","ajax2","combolist","window","tree","grid","anchor",
-		"dav","xml","svgsparql","toolbar","dialog","sparql","graphsvg","menu","layers","rdfstore","rdfmini"];
+		window.YMAPPID = 'yahoo-id';
+		var featureList=["keyboard","tab","ajax2","combolist","window","tree","grid","anchor","dav","xml",
+		"svgsparql","toolbar","dialog","sparql","graphsvg","menu","layers","rdfstore","rdfmini","map","ymaps"];
 	</script>
 	<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>
 	<script type="text/javascript" src="main.js"></script>
@@ -88,7 +90,7 @@
 						</ul>
 				</li>
 			</ul> <!-- menu -->
-			<img id="throbber" style="float:right; margin-right: 2px;" />
+			<img id="throbber" style="float:right; margin-right: 2px; cursor:pointer;" />
 			<ul id="tabs">
 				<li id="tab_qbe" title="SPARQL Query By Example">QBE</li>
 				<li id="tab_query" title="SPARQL Query By Typing">Advanced</li>
@@ -108,15 +110,6 @@
 							</div>
 
 							<div> <!-- options -->
-								Output format
-								<select id="qbe_format">
-									<option value="application/isparql+table" selected="selected">Table</option>
-									<option value="application/sparql-results+xml">XML</option>
-									<option value="application/sparql-results+json">JSON</option>
-									<option value="application/javascript">Javascript</option>
-									<option value="text/html">HTML</option>
-								</select>
-
 								Max Rows
 								<select id="qbe_maxrows">
 									<option value="10">10</option>
@@ -141,6 +134,7 @@
 								Type
 								<select id="qbe_query_type">
 									<option value="SELECT" selected="selected">SELECT</option>
+									<option value="CONSTRUCT">CONSTRUCT</option>
 									<option value="DESCRIBE">DESCRIBE</option>
 									<option value="INSERT">INSERT</option>
 									<option value="DELETE">DELETE</option>
@@ -324,6 +318,7 @@
 					</div>
 					<br/>
 					<div>
+					  <!--
 					  <label for="format" class="align">Output format</label>
 					  <select id="format">
 						<option value="application/isparql+table" selected="selected">Table</option>
@@ -332,7 +327,6 @@
 						<option value="application/javascript">Javascript</option>
 						<option value="text/html">HTML</option>
 					  </select>
-					  <!--
 					  <label for="maxrows" class="align">Max Rows</label>
 					  <select id="maxrows">
 						<option value="10">10</option>
@@ -406,25 +400,6 @@
           <label for="proxy">Proxy the request via Virtuoso, if it is a remote endpoint.</label>
           <br/> <!-- This break is important, because of positioning problems ... don't remove it. -->
         </div>
-  		</div>
-      <div id="qbe_save_div">
-    		Save as
-    		<select id="qbe_savetype">
-          <option value="rq">SPARQL Definitions Only</option>
-          <option value="isparql">SPARQL Query Diagram</option>
-          <option value="xml">XML file for execution</option>
-    		</select><br/>
-    		File name: <input type="text" name="save" id="qbe_save_name" />
-    		<input type="button" value="Browse" id="qbe_browse_btn" ><br/>
-  		</div>
-      <div id="save_div">
-    		Save as
-    		<select id="savetype">
-          <option value="rq">SPARQL Definitions Only</option>
-          <option value="xml">XML file for execution</option>
-    		</select><br/>
-    		File name: <input type="text" name="save" id="save_name" />
-    		<input type="button" value="Browse" id="browse_btn" ><br/>
   		</div>
       <div id="about_div">
         <h1>OpenLink iSPARQL</h1>
