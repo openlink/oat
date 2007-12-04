@@ -1,3 +1,199 @@
+2007-12-04 16:07  source
+
+	* Hide filenames in ChangeLog
+
+2007-12-04 15:48  source
+
+	* Update version to 2.7-rc2
+
+2007-12-04 15:45  source
+
+	* Added missing files to distrib
+
+2007-12-04 15:17  source
+
+	* Removed deprecated directories
+	* Use newer automake/autoconf constructions
+	* Updated version to 2.7-rc1
+
+2007-12-04 15:14  source
+
+	* Added support for .LDR resource when .isparql page is saved.
+	  Content negotiation will redirect to .ldr if rdf is asked, the ldr
+	  itself will execute query and return result (when endpoint is local one)
+	* Fixed reloading icon in schema tree when adding data source URI
+	* Browser select renamed to raw triples, raw triples to grid view
+	* Fixed typos
+	* Fixed bug with empty objrefs{} in json binding list
+	* Added construction to select
+	* Removed unused qbe_save_type and save_type divs and associated js functions
+	* Removed the results select box from UI layout
+	* Use OAT's rdfstore URI simplification
+	* Fixed html validity
+	* Fixed a++ styling
+	* Persist viewer across deref action
+	* Fixed paths
+	* Small cleanups
+
+2007-12-04 15:07  source
+
+	* Added new targets
+
+2007-12-04 15:05  source
+
+	* Fixd path
+	* Small UI fixes
+
+2007-12-04 15:05  source
+
+	* Fixed path
+	* Small UI fixes
+
+2007-12-04 15:01  source
+
+	* Fixed path
+
+2007-12-04 14:59  source
+
+	* Fixed paths
+	* Added extra demos
+
+2007-12-04 14:58  source
+
+	* Fixed paths
+
+2007-12-04 14:58  source
+
+	* Changed raw triples into labeled grid view
+	* Browser changed to raw triples in rhe rdfb
+	* Fixed a++ behaviour
+	* Fixed paths
+	* Fixed rdfb navigation more/less enhancement
+	* Fixed bug with session if connection was cancelled
+	* Added css link to style a++ used in rdfb
+
+2007-12-04 14:51  source
+
+	* Moved into oat/loader
+
+2007-12-04 14:28  source
+
+	* Fixed load paths
+
+2007-12-04 14:26  source
+
+	* Use new OAT.Win api
+	* Rewrote a++ windows fit
+	* Use new imagePath
+
+2007-12-04 14:24  source
+
+	* Small bugfixes
+
+2007-12-04 14:23  source
+
+	* Enhanced RDF browser
+
+2007-12-04 14:22  source
+
+	* Fixed label texts
+
+2007-12-04 14:20  source
+
+	* Added support for oai protocol
+	* Fixed parsing http://user:pass@host/
+	* Fixed queying proxy for N3 file; specify output format as N3 in request
+
+2007-12-04 14:18  source
+
+	* Added new dependencies
+
+2007-12-04 14:17  source
+
+	* Added OAT.Preferences.stylePath variable
+	* Added new OAT.Style api
+	* Merged OAT.Preferences for loading speed
+	* Small bugfixes
+
+2007-12-04 14:13  source
+
+	* Fixed parsing month in timeline control
+
+2007-12-04 14:12  source
+
+	* Rewrote windows styles in new OAT.Win API
+
+2007-12-04 14:12  source
+
+	* Fixed piechart drawing
+
+2007-12-04 14:11  source
+
+	* Added separate timeouts for fade in and fade out
+
+2007-12-04 14:10  source
+
+	* Fixed bug in menu onclick
+
+2007-12-04 14:09  source
+
+	* Rewrote dimmer styling using new OAT.Win styles
+
+2007-12-04 14:08  source
+
+	* Updated gmaps API
+
+2007-12-04 14:06  source
+
+	* Added missing case for "?" append when security cookies are enabled
+	* Fixed imagePath
+	* Fixed appending "?" to uri even when there is no data
+
+2007-12-04 14:05  source
+
+	* Fixed imagePath
+
+2007-12-04 14:04  source
+
+	* Fixed imagePath
+	* Fixed bug with file extentions
+
+2007-12-04 14:01  source
+
+	* Fixed grid clean
+
+2007-12-04 13:59  source
+
+	* New OAT.Win Api
+
+2007-12-04 13:56  source
+
+	* Added new iphone demo page
+
+2007-12-04 13:56  source
+
+	* Added new fresnel demo
+
+2007-12-04 13:54  source
+
+	* Added new demo for interopfest
+
+2007-12-04 13:53  source
+
+	* Added new images
+
+2007-12-04 13:51  source
+
+	* Moved functionality into oat/loader.js
+
+2007-11-27 15:29  source
+
+	* Updated documentation
+
+2007-07-31 14:15  source
+
+	* Updated version to 2.6
+
 2007-07-31 11:31  source
 
 	* Fixed newline at end of file
@@ -327,10 +523,6 @@
 2007-05-18 11:52  source
 
 	* Added OAT.Event.cancel
-
-2007-05-17 12:24  source
-
-	* Added maintainer options
 
 2007-05-17 10:44  source
 
@@ -1092,10 +1284,6 @@
 2007-01-30 17:25  source
 
 	* Updated version to 2.1-rc1
-
-2007-01-30 17:20  source
-
-	* Makerule to generate ChangeLog
 
 2007-01-30 17:18  source
 
