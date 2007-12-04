@@ -1,4 +1,4 @@
-AC_PREREQ(2.57)
+AC_PREREQ(2.59)
 AC_REVISION($Id$)
 #
 #  configure.in
@@ -27,12 +27,12 @@ AC_REVISION($Id$)
 ##									##
 ##########################################################################
 AC_INIT([OpenLink Ajax Toolkit],
-        [2.6],
+        [2.7-rc1],
 	[oat.admin@openlinksw.com],
 	[oat])
 AC_CONFIG_SRCDIR([oat/loader.js])
 AC_CONFIG_AUX_DIR(admin)
-AM_INIT_AUTOMAKE(AC_PACKAGE_TARNAME, AC_PACKAGE_VERSION, tar-ustar)
+AM_INIT_AUTOMAKE([])
 AM_MAINTAINER_MODE
 
 
@@ -49,12 +49,11 @@ AC_CONFIG_FILES([
     formdesigner/Makefile
     images/Makefile
     iphone_data_page/Makefile
-    isparql/Makefile
     linked_data_page/Makefile
+    isparql/Makefile
     notify/Makefile
     oat/docs/Makefile
     oat/Makefile
-    openajax/Makefile
     qbe/Makefile
     rdfbrowser/Makefile
     styles/Makefile
