@@ -1,3 +1,20 @@
+2007-12-04 17:16  source
+
+	* Updated version to 2.7 for final release
+
+2007-12-04 17:15  source
+
+	* Updated version to 04.12.2007
+
+2007-12-04 17:15  source
+
+	* Added support for currency and comma delimited formatting
+	* Fixed space delimited formatting
+
+2007-12-04 16:25  source
+
+	* Fixed indentation
+
 2007-12-04 16:07  source
 
 	* Hide filenames in ChangeLog
