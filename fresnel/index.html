@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" >
+		var featureList=["rdfstore","fresnel","xml","ajax2","json"];
+		var rdf = false;
+		var fresnel = false;
+		var xsl = false;
+		var loaded = 0;
+
+		function transform() {
+			if (loaded != 3) { return; }
+			var results = fresnel.format(rdf.data.all);
+			/* append stylesheets */
+			var ss = results[1];
+			for (var i=0;i<ss.length;i++) {
+				var s = ss[i];
+				var elm = OAT.Dom.create("link");
+				elm.rel = "stylesheet";
+				elm.type = "text/css";
+				elm.href = s;
+				document.getElementsByTagName("head")[0].appendChild(elm);
+			}
+			/* go */
+			var xmlDoc = results[0];
+			$("out_xml").value = OAT.Xml.serializeXmlDoc(xmlDoc);
+			var out = OAT.Xml.transformXSLT(xmlDoc,xsl);
+			OAT.Dom.clear("out_html");
+			$("out_html").innerHTML = OAT.Xml.serializeXmlDoc(out);
+		}
+		
+		function load() {
+			loaded = 0;
+			
+			var cb1 = function() { 
+				loaded++; 
+				$("out_rdf").value = OAT.JSON.stringify(rdf.data.triples);
+				transform(); 
+			}
+
+			var cb2 = function() { 
+				loaded++; 
+				$("out_fresnel").value = OAT.JSON.stringify(fresnel.store.data.triples);
+				transform(); 
+			}
+
+			var cb3 = function() { 
+				loaded++; 
+				transform(); 
+			}
+
+			rdf = new OAT.RDFStore(cb1);
+			fresnel = new OAT.Fresnel();
+			
+			rdf.addURL($v("rdf"));
+			fresnel.addURL($v("fresnel"),cb2);
+			OAT.AJAX.GET("fresnel2html.xsl",false,function(xmlDoc){
+				xsl = xmlDoc;
+				$("out_xsl").value = OAT.Xml.serializeXmlDoc(xmlDoc);
+				cb3();
+			},{type:OAT.AJAX.TYPE_XML});
+		}
+		
+		function init() {
+			OAT.Event.attach("btn","click",load);
+
+			var cb2 = function() {
+				result = f.format(s.data.all);
+				window.pica = result[0];
+			}
+		}
+	</script>
+	<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>
+	<style type="text/css">
+		.fresnel_resource {
+			border: 1px solid #000;
+			margin: 3px;
+			padding: 3px;
+		}
+		
+		.fresnel_value {
+			display: inline;
+		}
+		
+		.fresnel_container {
+		}
+		
+		.fresnel_property {
+		}
+		
+		.fresnel_label {
+		}
+		
+		table {
+			border-collapse: collapse;
+		}
+		
+		td {
+			padding: 1em;
+			border: 1px solid #888;
+		}
+	</style>
+</head>
+<body>
+	<h1>Fresnel processor tests</h1>
+	<h3>Input</h3>
+	<table>
+		<tr>
+			<td>
+				RDF file: <input type="text" id="rdf" value="tbl.xml" /><br/>
+				(try: tbl.xml for FOAF, music.n3 for MO)
+			</td>
+			<td>
+				Fresnel file: <input type="text" id="fresnel" value="fresnel-foaf.n3" /><br/>
+				(try: fresnel-foaf.n3 for FOAF, fresnel-mo-album.n3 for MO)
+			</td>
+			<td>
+				XSLT file: <input type="text" id="xsl" value="fresnel2html.xsl" /><br/>
+				(try: fresnel2html.xsl)
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" style="text-align:center;">
+				<input type="button" value="GO!" id="btn" />
+			</td>
+	</table>
+	
+	<hr/>
+	
+	<h3>Output</h3>
+	
+	RDF file:<br/>
+	<textarea cols="80" rows="5" id="out_rdf"></textarea><br/><br/>
+	
+	Fresnel file:<br/>
+	<textarea cols="80" rows="5" id="out_fresnel"></textarea><br/><br/>
+
+	XSLT file:<br/>
+	<textarea cols="80" rows="5" id="out_xsl"></textarea><br/><br/>
+
+	Transformed XML:<br/>
+	<textarea cols="80" rows="5" id="out_xml"></textarea><br/><br/>
+
+	XSLT-ed HTML:<br/>
+	<div id="out_html">
+
+</body>
+</html>

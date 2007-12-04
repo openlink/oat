@@ -1,0 +1,109 @@
+@prefix fresnel:  <http://www.w3.org/2004/09/fresnel#> .
+@prefix mo:       <http://purl.org/ontology/mo/> .
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+@prefix :         <#> .
+
+# -----------------------------------------------
+
+:recordLens rdf:type fresnel:Lens ;
+   fresnel:purpose fresnel:defaultLens ;
+   fresnel:classLensDomain mo:Record ;
+   fresnel:group :recordGroup ;
+   fresnel:showProperties ( 
+								mo:image
+								<http://purl.org/dc/elements/1.1/title>
+								[	
+									rdf:type fresnel:PropertyDescription ;
+									fresnel:property <http://purl.org/dc/elements/1.1/creator> ;
+									fresnel:sublens :artistLens
+								]
+								mo:producer
+								<http://purl.org/dc/elements/1.1/date>
+								mo:musicbrainz
+								mo:wikipedia
+								[ 
+									rdf:type fresnel:PropertyDescription ;
+									fresnel:property mo:has_track ;
+									fresnel:sublens :tracksLens
+								]
+	) .
+
+:artistLens rdf:type fresnel:Lens ;
+	fresnel:classLensDomain <http://purl.org/dc/elements/1.1/creator> ;
+	fresnel:showProperties (
+		<http://xmlns.com/foaf/0.1/name>
+	) .
+	
+:tracksLens rdf:type fresnel:Lens ;
+	fresnel:classLensDomain mo:Track ;
+	fresnel:group :tracksGroup ;
+	fresnel:showProperties (
+		<http://purl.org/dc/elements/1.1/title>
+		<http://purl.org/dc/elements/1.1/creator>
+		mo:duration
+		mo:trackNum
+	) .
+
+# -----------------------------------------------
+
+:recordGroup rdf:type fresnel:Group .
+:tracksGroup rdf:type fresnel:Group .
+#			fresnel:resourceStyle "" .
+
+:imageFormat rdf:type fresnel:Format ;
+	fresnel:group :recordGroup ;
+	fresnel:propertyFormatDomain mo:image ;
+	fresnel:label fresnel:none ;
+	fresnel:value fresnel:image ;
+	fresnel:valueStyle "float:right;" .
+	
+:producerFormat rdf:type fresnel:Format ;
+	fresnel:group :recordGroup ;
+	fresnel:propertyFormatDomain mo:producer ;
+	fresnel:value fresnel:externalLink ;
+	fresnel:label "Producer: " .
+
+:dateFormat rdf:type fresnel:Format ;
+	fresnel:group :recordGroup ;
+	fresnel:propertyFormatDomain <http://purl.org/dc/elements/1.1/date> ;
+	fresnel:valueFormat [ 
+		fresnel:contentAfter ", "^^xsd:string ; 
+		fresnel:contentLast "" 
+	] .
+
+:brainzFormat rdf:type fresnel:Format ;
+	fresnel:group :recordGroup ;
+	fresnel:propertyFormatDomain mo:musicbrainz ;
+	fresnel:value fresnel:externalLink ;
+	fresnel:label "Musicbrainz: " .
+
+:wikiFormat rdf:type fresnel:Format ;
+	fresnel:group :recordGroup ;
+	fresnel:propertyFormatDomain mo:wikipedia ;
+	fresnel:value fresnel:externalLink ;
+	fresnel:label "Wikipedia: " .
+
+:titleFormat rdf:type fresnel:Format ;
+	fresnel:group :recordGroup ;
+	fresnel:propertyFormatDomain <http://purl.org/dc/elements/1.1/title> ;
+	fresnel:label fresnel:none ;
+	fresnel:valueStyle "font-size: 200%;" .
+
+:tracksFormat rdf:type fresnel:Format ;
+	fresnel:group :recordGroup ;
+	fresnel:propertyFormatDomain mo:has_track ;
+	fresnel:label "Tracks" ;
+	fresnel:labelStyle "font-size: 200%;" .
+
+:tableFormat rdf:type fresnel:Format ;
+	fresnel:group :tracksGroup ;
+	fresnel:classFormatDomain mo:Track ;
+	fresnel:resourceStyle "display:table-row;" ;
+	fresnel:containerStyle "display:table;" .
+	
+:rowFormat rdf:type fresnel:Format ;
+	fresnel:group :tracksGroup ;
+	fresnel:propertyFormatDomain fresnel:allProperties ;
+	fresnel:label fresnel:none ;
+	fresnel:propertyStyle "display:table-cell;" .
