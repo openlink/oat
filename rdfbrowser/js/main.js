@@ -33,7 +33,7 @@ var ext_save = [
 ];
 
 var Search = {
-	template:'SELECT ?s ?p ?o {dsn} WHERE { ?s ?p ?o . ?o bif:contains "\'{query}\'"}',
+	template:'CONSTRUCT { ?s ?p ?o } {dsn} WHERE { ?s ?p ?o . ?o bif:contains "\'{query}\'"}',
 	go:function() {
 		var q = $v("search_query");
 		if (!q) { return; }
@@ -41,14 +41,17 @@ var Search = {
 		
 		for (var i=0;i<rdfb.store.items.length;i++) {
 			var item = rdfb.store.items[i];
+			rdfb.store.disable(item.href);
 			if (item.href.match(/^http/i)) { dsn.push(item.href); }
 		}
 		
-		if (dsn.length && defaultGraph) { dsn.push(defaultGraph); }
-		for (var i=0;i<dsn.length;i++) { dsn[i] = " FROM <"+dsn[i]+"> "; }
+		if (dsn.length && defaultGraph) { dsn.unshift(defaultGraph); }
+		for (var i=0;i<dsn.length;i++) { 
+			dsn[i] = (i ? " FROM NAMED " : " FROM ") + "<"+dsn[i]+"> ";
+		}
 		
 		var text = Search.template.replace(/{dsn}/,dsn.join("")).replace(/{query}/,q);
-		rdfb.store.clear();
+/*		rdfb.store.clear(); */
 		rdfb.store.removeAllFilters();
 		rdfb.store.addSPARQL(text);
 	}
@@ -156,7 +159,11 @@ function init() {
 		}
 		OAT.AJAX.GET("/sparql?ini",null,ref,{type:OAT.AJAX.TYPE_XML,onerror:function(){}});
 	}
-	dialogs.connection.cancel = dialogs.connection.hide;
+	dialogs.connection.cancel = function() {
+		dialogs.connection.hide();
+		/* init with default options */
+		OAT.WebDav.init();
+	}
 
 	/* menu */
 	var m = new OAT.Menu();
@@ -176,8 +183,8 @@ function init() {
 	/* browser */
 	rdfb = new OAT.RDFBrowser("browse",{});
 	rdfb.addTab("navigator","Navigator",{});
-	rdfb.addTab("browser","Browser",{});
-	rdfb.addTab("triples","Raw triples",{});
+	rdfb.addTab("browser","Raw triples",{});
+	rdfb.addTab("triples","Grid view",{});
 	rdfb.addTab("svg","SVG Graph",{});
 	rdfb.addTab("map","Yahoo Map",{provider:OAT.MapData.TYPE_Y});
 	rdfb.addTab("timeline","Timeline",{});

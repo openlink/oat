@@ -29,10 +29,11 @@
 		"menu","dialog","xml","tagcloud","fresnel"];
   </script>
   <script type="text/javascript" src="js/main.js"></script>
-  <script type="text/javascript" src="../oat/loader.js"></script>
+  <script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>
   <title>OpenLink RDF Browser</title>
-  <link rel="stylesheet" href="styles/rdfbrowser.css" type="text/css" />
-  <link rel="meta" title="DOAP" href="../DOAP-OAT.rdf" type="application/rdf+xml" />
+  <link rel="stylesheet" href="/DAV/JS/rdfbrowser/styles/rdfbrowser.css" type="text/css" />
+  <link rel="stylesheet" href="/DAV/JS/styles/winrect.css" type="text/css" />
+  <link rel="meta" title="DOAP" href="/DAV/JS/DOAP-OAT.rdf" type="application/rdf+xml" />
 </head>
 <body>
     <div id="throbber">
@@ -71,8 +72,8 @@
       <input type="checkbox" id="options_http" checked="checked" /> Show HTTP errors<br/>
       <hr/>
 	  &lt;a&gt;++ behavior: <select id="options_app">
-		<option value="click" selected="selected">Activate when clicked</option>
 		<option value="hover">Activate on hover</option>
+		<option value="click" selected="selected">Activate when clicked</option>
 	  </select><br/>
 	  <input type="checkbox" id="options_history" /> Scan Browsing history? (works only in Gecko-based browsers)
     </div>

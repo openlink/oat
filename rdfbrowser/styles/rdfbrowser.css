@@ -8,10 +8,10 @@
 *  See LICENSE file for details.
 */
 
-@import url("/DAV/JS/styles/timeline.css");
-@import url("/DAV/JS/styles/webdav.css");
-@import url("/DAV/JS/styles/grid.css");
-@import url("/DAV/JS/styles/rdftabs.css");
+@import url("../../styles/timeline.css");
+@import url("../../styles/webdav.css");
+@import url("../../styles/grid.css");
+@import url("../../styles/rdftabs.css");
 @import url("menu.css");
 
 /* common */
@@ -62,7 +62,7 @@ margin-top: 28px;
 float: left;
 clear: both;
 width: 100%;
-background: url(../images/main_bkg_grad.png);
+background: url("../images/main_bkg_grad.png");
 background-repeat: repeat-x;
 }
 
@@ -74,7 +74,7 @@ width: 69%}
 #RT {
 float: left;
 width: 30%;
-background: url(../images/side_box_bkg_grad.png);
+background: url("../images/side_box_bkg_grad.png");
 background-repeat: repeat-x;
 background-color: white;
 border-left: 1px solid #d7e5ee;
@@ -147,7 +147,7 @@ float: left;
 clear: left;
 width: 100%;
 padding-bottom: 10px;
-background: url(../images/bottom_bkg_grad.png);
+background: url("../images/bottom_bkg_grad.png");
 background-repeat: repeat-x;
 background-position: bottom}
 
