@@ -39,7 +39,7 @@ function Toolbox(obj) {
 		}
 	}
 
-	this.win = new OAT.Window({min:0,max:0,close:1,height:0,width:240,x:-15,y:170,title:"Control Properties"});
+	this.win = new OAT.Window({min:0,max:0,close:1,height:0,width:240,x:-15,y:140,title:"Control Properties"});
 	var d = OAT.Dom.create("div",{padding:"3px"},"toolbox");
 	this.win.hide = function() {OAT.Dom.hide(self.win.div);};
 	this.win.show = function() {OAT.Dom.show(self.win.div);};
@@ -59,7 +59,12 @@ function Toolbox(obj) {
 	this.content = OAT.Dom.create("div",{marginTop:"20px",border:"2px solid #000"});
 	d.appendChild(this.content);
 	
-	this.tab = new OAT.Tab(this.content);
+	this.lastTabIndex = 0;
+	this.tab = new OAT.Tab(this.content,{
+		goCallback:function(a,b) {
+			self.lastTabIndex = b;
+		}
+	});
 	
 	this.lis = [];
 	this.tabs = [];
@@ -81,9 +86,11 @@ function Toolbox(obj) {
 	this.tableIndex = 0;
 	
 	this.clear = function() {
+		var last = self.lastTabIndex;
 		for (var i=0;i<self.tables.length;i++) { OAT.Dom.clear(self.tables[i]); }
 //		self.win.accomodate();
 		self.tab.go(0);
+		self.lastTabIndex = last;
 	}
 	
 	this.addTable = function(a,b) {
@@ -156,6 +163,7 @@ function Toolbox(obj) {
 		});
 		self.addTable(t,cont_select);
 	}
+	
 	
 	this.showObject = function(object,tabIndex) {
 		var o = object;
@@ -495,7 +503,11 @@ function Toolbox(obj) {
 		self.addTable(del);
 		
 		/* if specified, switch to tab index */
-		if (tabIndex) { self.tab.go(tabIndex-1); }
+		if (tabIndex) { 
+			self.tab.go(tabIndex-1); 
+		} else {
+			self.tab.go(self.lastTabIndex);
+		}
 	}
 	
 	this.showMulti = function() {

@@ -49,31 +49,36 @@ var FormDesigner = function(parent) {
 	l.addLayer(this.toolbox.win.div);
 	
 	/* --------- available objects ----------- */ 
-	this.palette.addObject("label","Basic controls");
-	this.palette.addObject("input","Basic controls");
-	this.palette.addObject("textarea","Basic controls");
-	this.palette.addObject("checkbox","Basic controls");
-	this.palette.addObject("line","Basic controls");
-	this.palette.addObject("url","Basic controls");
-	this.palette.addObject("map","Advanced controls");
-	this.palette.addObject("grid","Advanced controls");
-	this.palette.addObject("barchart","Basic controls");
-	this.palette.addObject("piechart","Basic controls");
-	this.palette.addObject("linechart","Basic controls");
-	this.palette.addObject("sparkline","Basic controls");
-	this.palette.addObject("pivot","Advanced controls");
-	this.palette.addObject("flash","Basic controls");
-	this.palette.addObject("image","Basic controls");
-	this.palette.addObject("imagelist","Advanced controls");
-	this.palette.addObject("twostate","Advanced controls");
-	this.palette.addObject("timeline","Advanced controls");
-	this.palette.addObject("graph","RDF controls");
-	this.palette.addObject("cloud","Advanced controls");
-	this.palette.addObject("nav","Navigation controls");
-	this.palette.addObject("gem1","Basic controls");
-	this.palette.addObject("uinput","Basic controls");
-	this.palette.addObject("tab","Advanced controls");
-	this.palette.addObject("container","Advanced controls");
+	this.palette.addObject("Basic controls",false,0);
+	this.palette.addObject("Advanced controls",false,0);
+	this.palette.addObject("RDF controls","Advanced controls",0);
+	this.palette.addObject("Navigation controls","Advanced controls",0);
+
+	this.palette.addObject("label","Basic controls",1);
+	this.palette.addObject("input","Basic controls",1);
+	this.palette.addObject("textarea","Basic controls",1);
+	this.palette.addObject("checkbox","Basic controls",1);
+	this.palette.addObject("line","Basic controls",1);
+	this.palette.addObject("url","Basic controls",1);
+	this.palette.addObject("map","Advanced controls",1);
+	this.palette.addObject("grid","Advanced controls",1);
+	this.palette.addObject("barchart","Basic controls",1);
+	this.palette.addObject("piechart","Basic controls",1);
+	this.palette.addObject("linechart","Basic controls",1);
+	this.palette.addObject("sparkline","Basic controls",1);
+	this.palette.addObject("pivot","Advanced controls",1);
+	this.palette.addObject("flash","Basic controls",1);
+	this.palette.addObject("image","Basic controls",1);
+	this.palette.addObject("imagelist","Advanced controls",1);
+	this.palette.addObject("twostate","Advanced controls",1);
+	this.palette.addObject("timeline","Advanced controls",1);
+	this.palette.addObject("graph","RDF controls",1);
+	this.palette.addObject("cloud","Advanced controls",1);
+	this.palette.addObject("nav","Navigation controls",1);
+	this.palette.addObject("gem1","Basic controls",1);
+	this.palette.addObject("uinput","Basic controls",1);
+	this.palette.addObject("tab","Advanced controls",1);
+	this.palette.addObject("container","Advanced controls",1);
 	this.palette.win.accomodate(false,true);
 	/* --------------------------------------- */
 	/* methods */

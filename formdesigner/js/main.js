@@ -933,5 +933,9 @@ function init() {
 		$("bind_gq").checked = true;
 	});
 
+	OAT.Dom.unlink("throbber");
+	var h = $("hidden");
+	while (h.firstChild) { document.body.appendChild(h.firstChild); }
+	OAT.Dom.unlink(h);
 }
 
