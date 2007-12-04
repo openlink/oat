@@ -17,55 +17,8 @@
 #  Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 #
 
-AUTOMAKE_OPTIONS	= gnu 1.7 dist-zip
-
-SUBDIRS = \
-	demo \
-	designer \
-	exhibit-sparql \
-	formdesigner \
-	fresnel \
-	images \
-	interopfest \
-	iphone_data_page \
-	isparql \
-	linked_data_page \
-	notify \
-	oat \
-	qbe \
-	rdfbrowser \
-	styles \
- 	xslt
-
-DISTCLEANFILES = autogen.log
-
 EXTRA_DIST = \
-	LICENSE \
-	CREDITS \
-	DOAP-OAT.rdf \
-	autogen.sh
-
-
-# ----------------------------------------------------------------------
-#
-#  Maintainers only
-#
-# ----------------------------------------------------------------------
-
-if MAINTAINER_MODE
-
-#
-#  Create a source snapshot package
-#
-snapshot:
-	$(MAKE) dist distdir=$(PACKAGE)-`date +"%Y%m%d"`
-
-
-
-#
-#  Generate ChangeLog
-#
-changelog:
-	cvs2cl --no-wrap --utc --prune --window 3600
-
-endif
+	$(srcdir)/*.html \
+	$(srcdir)/*.xml \
+	$(srcdir)/*.xsl \
+	$(srcdir)/*.n3

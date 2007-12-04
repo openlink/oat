@@ -47,10 +47,12 @@ AC_CONFIG_FILES([
     designer/Makefile
     exhibit-sparql/Makefile
     formdesigner/Makefile
+    fresnel/Makefile
     images/Makefile
+    interopfest/Makefile
     iphone_data_page/Makefile
-    linked_data_page/Makefile
     isparql/Makefile
+    linked_data_page/Makefile
     notify/Makefile
     oat/docs/Makefile
     oat/Makefile
