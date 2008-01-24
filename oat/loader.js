@@ -196,7 +196,7 @@ OAT.Dom = { /* DOM common object */
 		var png = !!src.toLowerCase().match(/png$/);
 		if (png && OAT.Browser.isIE) {
 			elm.src = srcBlank;
-			elm.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+src+"', sizingMethod='crop')";
+			elm.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+src+"', sizingMethod='image')";
 		} else {
 			elm.src = src;
 		}
