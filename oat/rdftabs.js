@@ -1066,7 +1066,8 @@ OAT.RDFTabs.timeline = function(parent,optObj) {
 				end = self.tryDeepItem(value);
 			}
 		}
-		if (!start || !end) { return false; }
+		if (!start) { return false; }
+		if (!end) { end = start; }
 		return [start,end];
 	}
 	
