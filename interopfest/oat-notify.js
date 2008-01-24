@@ -1,5 +1,6 @@
 var stockCache = {};
 var chartOpts = {left:60};
+var notifyArea = {};
 
 function oatNotify(eventName, stock) {
 	// stock = {tickerName:<string>, corpName:<string>, price:<number>}
@@ -11,7 +12,7 @@ function oatNotify(eventName, stock) {
 	var bg = "#ccc";
 	if (stock.price >= 105) { bg = "#8f8"; }
 	if (stock.price <= 95) { bg = "#f88"; }
-	OAT.Notify.send(content,{timeout:1000,background:bg,delayIn:0});
+	notifyArea.send(content,{timeout:1000,background:bg,delayIn:0});
 
 	/* refresh pie chart */
 	stockCache[stock.tickerName] = price;
@@ -31,5 +32,6 @@ function oatNotify(eventName, stock) {
 }
 
 function init() {
+	notifyArea = new OAT.Notify();
 	OpenAjax.hub.subscribe("org.openajax.interopfest10.datagen.stockpriceupdate", "oatNotify");
 }

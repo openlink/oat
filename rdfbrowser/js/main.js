@@ -64,7 +64,7 @@ var IO = {
 		var options = {
 			extensionFilters:ext_save,
 			dataCallback:function(file,ext) { return xml; },
-			callback:function() { alert("Saved."); }
+			callback:function() { var note = new OAT.Notify(); note.send("Saved."); }
 		};
 		OAT.WebDav.saveDialog(options);
 	},

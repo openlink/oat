@@ -882,14 +882,15 @@ DEMO.notify = {
 	div:"notify",
 	needs:["notify"],
 	cb:function() {
+		var notify = new OAT.Notify();
 		OAT.Event.attach("notify_1","click",function() {
-			OAT.Notify.send("This is a standard notification window. It can hold any HTML content.");
+			notify.send("This is a standard notification window. It can hold any HTML content.");
 		});
 		OAT.Event.attach("notify_2","click",function() {
-			OAT.Notify.send("Click me to disappear!",{timeout:0,style:{fontWeight:"bold",marginTop:"10px"},color:"#f00"});
+			notify.send("Click me to disappear!",{timeout:0,style:{fontWeight:"bold",marginTop:"10px"},color:"#f00"});
 		});
 		OAT.Event.attach("notify_3","click",function() {
-			OAT.Notify.send("I am shown and hidden instantly. Click me to see it :)",
+			notify.send("I am shown and hidden instantly. Click me to see it :)",
 				{opacity:0.5,timeout:0,delay:0,style:{fontFamily:"courier new"},color:"#00a",background:"#8c8",image:OAT.Preferences.imagePath+"Dav_throbber.gif"});
 		});
       }

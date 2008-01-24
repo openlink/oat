@@ -13,9 +13,10 @@ var dock = false;
 var counter = 0;
 var urls = {};
 
-var Url = function(url,div) {
+var Url = function(url,div,notify) {
 	var self = this;
 	this.url = url;
+	this.notify = notify;
 	this.wakeupTime = false;
 	
 	this.remove = function() {
@@ -55,7 +56,7 @@ var Url = function(url,div) {
 		var s = OAT.Dom.create("strong");
 		s.innerHTML = self.url;
 		OAT.Dom.append([content,s,OAT.Dom.create("br"),OAT.Dom.text("New data!")]);
-		OAT.Notify.send(content,{timeout:3000});
+		self.notify.send(content,{timeout:3000});
 		
 		self.rdf.store.clear();
 		self.rdf.store.addXmlDoc(xmlDoc);
@@ -114,7 +115,7 @@ var Url = function(url,div) {
 	}
 }
 
-var add = function() {
+var add = function(notify) {
 	var url = $v("inp").trim();
 	if (!url) { return; }
 	if (url in urls) { 
@@ -140,7 +141,7 @@ var add = function() {
 
 	var r = new OAT.RDFMini(rdfdiv,{showSearch:false,tabs:tabs});
 
-	var obj = new Url(url,statusdiv); /* refreshing url object */
+	var obj = new Url(url,statusdiv,notify); /* refreshing url object */
 	OAT.Dom.append([container,statusdiv,rdfdiv]);
 	
 	obj.win = win;
@@ -164,6 +165,8 @@ function globalChecker() {
 
 function init() {
 	dock = new OAT.Dock("dock_content",3);
+	notify = new OAT.Notify();
+
 	OAT.MSG.attach(dock,OAT.MSG.DOCK_REMOVE,function(source,message,win){
 		var victim = false;
 		for (var p in urls) {
@@ -174,15 +177,15 @@ function init() {
 	});
 	OAT.Event.attach("btn","click",add);
 	OAT.Event.attach("inp","keypress",function(event){
-		if (event.keyCode == 13) { add(); }
+		if (event.keyCode == 13) { add(notify); }
 	});
 	globalChecker();
 	
 	/**/
-	$("inp").value = "http://www.weather.com/"; add();
-	$("inp").value = "http://www.bbc.co.uk/"; add();
-	$("inp").value = "http://www.cnn.com/"; add();
-	$("inp").value = "http://www.nasdaq.com/"; add();
+	$("inp").value = "http://www.weather.com/"; add(notify);
+	$("inp").value = "http://www.bbc.co.uk/"; add(notify);
+	$("inp").value = "http://www.cnn.com/"; add(notify);
+	$("inp").value = "http://www.nasdaq.com/"; add(notify);
 	$("inp").value = "";
 	/**/
 	
