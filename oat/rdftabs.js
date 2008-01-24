@@ -1325,7 +1325,8 @@ OAT.RDFTabs.fresnel = function(parent,optObj) {
 	OAT.RDFTabs.parent(self);
 
 	this.options = {
-		defaultURL:""
+		defaultURL:"",
+		autoload:false
 	}
 	for (var p in optObj) { self.options[p] = optObj[p]; }
 	
@@ -1360,20 +1361,24 @@ OAT.RDFTabs.fresnel = function(parent,optObj) {
 		OAT.AJAX.GET(OAT.Preferences.xsltPath+"fresnel2html.xsl",false,cb,{type:OAT.AJAX.TYPE_XML});
 	} /* redraw */
 	
-	var inp = OAT.Dom.create("input");
-	inp.size = "60";
-	inp.value = self.options.defaultURL;
-	var btn = OAT.Dom.button("Load Fresnel");
-	var go = function() {
-		if ($v(inp))
-			self.fresnel.addURL($v(inp),self.redraw);
+	if (self.options.autoload && self.options.defaultURL.length) {
+		self.fresnel.addURL(self.options.defaultURL,self.redraw);
+	} else {
+		var inp = OAT.Dom.create("input");
+		inp.size = "60";
+		inp.value = self.options.defaultURL;
+		var btn = OAT.Dom.button("Load Fresnel");
+		var go = function() {
+			if ($v(inp))
+				self.fresnel.addURL($v(inp),self.redraw);
 
+		}
+		OAT.Event.attach(btn,"click",go);
+		OAT.Event.attach(inp,"keypress",function(event) {
+			if (event.keyCode == 13) { go(); }
+		});
+		OAT.Dom.append([self.inputElm,OAT.Dom.text("Fresnel URI: "),inp,btn]);
 	}
-	OAT.Event.attach(btn,"click",go);
-	OAT.Event.attach(inp,"keypress",function(event) {
-		if (event.keyCode == 13) { go(); }
-	});
-	OAT.Dom.append([self.inputElm,OAT.Dom.text("Fresnel URI: "),inp,btn]);
 }
 
 OAT.Loader.featureLoaded("rdftabs");
