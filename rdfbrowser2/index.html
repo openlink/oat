@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd">
+<!--
+
+  $Id$
+
+  This file is part of the OpenLink Ajax Toolkit (OAT) project
+
+  Copyright (C) 2005-2007 OpenLink Software
+
+  This project is free software; you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as published by the
+  Free Software Foundation; only version 2 of the License, dated June 1991
+
+  This project is distributed in the hope that it will be useful, but
+  WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software Foundation,
+  Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<script type="text/javascript">
+		window.YMAPPID = 'yahoo-id';
+		var featureList = ["tab","dav","notify","tree","rdftabs","rdfstore","anchor","dimmer","ajax2","dialog","grid",
+				"graphsvg","map","ymaps","timeline","menu","dialog","xml","tagcloud","fresnel"];
+	</script>
+	<script type="text/javascript" src="./js/main.js"></script>
+	<script type="text/javascript" src="../oat/loader.js"></script>
+	<script type="text/javascript" src="./js/rdfbrowser2.js"></script>
+	<title>OpenLink RDF Browser</title>
+	<link rel="stylesheet" href="./styles/rdfbrowser.css" type="text/css" />
+	<link rel="stylesheet" href="../styles/winrect.css" type="text/css" />
+	<link rel="meta" title="DOAP" href="../DOAP-OAT.rdf" type="application/rdf+xml" />
+</head>
+<body>
+
+<div id="throbber">
+	<img src="./imgs/throbber.gif" />
+</div>
+<div id="throbber_content"/>
+
+<div id="HD">
+	<a href="./"><img src="./imgs/browser_logo.png" id="browser_logo" alt="OpenLink RDF browser" /></a>
+	<div id="rdf_input"></div>
+	<input type="button" id="search_button" value="Search" title="Search!"/>
+	<!--<img src="./imgs/button_search.png" id="search_button" title="Search!"/>-->
+	<div id="rdf_tabs"></div>
+
+	<div id="right_toolbar">
+		<ul>
+			<li>
+				<div style="background-image:url('./imgs/item_categories.png')" id="category">
+					<img src="./imgs/item_hide.png" id="toggler_category" class="item_toggler"/>
+				</div>
+				<ul id="category_ul">
+					<li id="rdf_category"></li>
+				</ul>
+			</li>
+			<li>
+				<div style="background-image:url('./imgs/item_filters.png')" id="filters">
+					<img src="./imgs/item_show.png" id="toggler_filters" class="item_toggler"/>
+				</div>
+				<ul id="filters_ul">
+				</ul>
+			</li>
+			<li>
+				<div style="background-image:url('./imgs/item_prevQueries.png')" id="prevQueries">
+					<img src="./imgs/item_show.png" id="toggler_prevQueries" class="item_toggler"/>
+				</div>
+				<ul id="prevQueries_ul">
+				</ul>
+			</li>
+			<li>
+				<div style="background-image:url('./imgs/item_bookmarks.png')" id="bookmark">
+					<img src="./imgs/item_show.png" id="toggler_bookmark" class="item_toggler"/>
+				</div>
+				<ul id="bookmark_ul">
+				</ul>
+			</li>
+			<li>
+				<div style="background-image:url('./imgs/item_browserOptions.png')" id="browserOptions">
+					<img src="./imgs/item_show.png" id="toggler_browserOptions" class="item_toggler"/>
+				</div>
+				<ul id="browserOptions_ul" style="padding-left: 50px;">
+					<li class="action" id="menu_load" style="list-style-image:url('./imgs/open_session.png');">Open session</li>
+					<li class="action" id="menu_save" style="list-style-image:url('./imgs/save_session.png');">Save session</li>
+					<li class="action" id="menu_rdf" style="list-style-image:url('./imgs/local_rdf_resource.png');">Local RDF Resource</li>
+					<li class="action" id="menu_options" style="list-style-image:url('./imgs/browser_settings.png');">Browser settings</li>
+					<li class="action" id="menu_about" style="list-style-image:url('./imgs/about_rdf_browser.png');">About RDF browser</li>
+				</ul>
+			</li>
+		</ul>
+		<div id="toggler"></div>
+		<div id="copyright"></div>
+	</div> <!-- right toolbar -->
+
+	<div id="MD">
+		<div id="options">
+			XSLT stylesheet path: <input type="text" name="xslt" id="options_xslt" value="" /><br/>
+			<input type="checkbox" id="options_ajax" checked="checked" /> Show pending AJAX calls<br/>
+			<input type="checkbox" id="options_http" checked="checked" /> Show HTTP errors<br/>
+			<hr/>
+			&lt;a&gt;++ behavior: <select id="options_app">
+			<option value="hover">Activate on hover</option>
+			<option value="click" selected="selected">Activate when clicked</option>
+			</select><br/>
+			<input type="checkbox" id="options_history" /> Scan Browsing history? (works only in Gecko-based browsers)
+		</div>
+
+		<div id="about_div">
+			<h1>OpenLink RDF Browser</h1>
+				<h2>Version: <span id="about_version">N/A</span></h2>
+				<h3>Built using 
+					<a target="_blank" href="http://sourceforge.net/projects/oat">OpenLink Ajax Toolkit (OAT)</a>
+				</h3>
+				<h3>OAT version: <span id="about_oat_version">N/A</span></h3>
+		</div>
+
+		<div id="browse" style="position:relative;">
+			<div id="rdf_storage">
+				<img src="./imgs/title_storage.png" id="title_storage" title="Storage"/>
+				<img id="storage_toggle" src="./imgs/item_hide_dark.png" title="Hide storage"/>
+				<a href="javascript:void(0);" id="storage_purge"><img src="./imgs/purge_storage.png" alt="Purge Storage"/> Purge storage</a>
+			</div>
+		<!-- <div id="RT">
+			<div id="rdf_side"></div>
+		</div> -->
+		<div id="rdf_content"></div>
+		<div id="welcome">
+			<div style="top:175px;" onclick="window.open('http://');"></div>
+			<div style="top:228px" onclick="window.open('http://www.zvon.org/xxl/RDFTutorial/General/book.html');"></div>
+			<div style="top:285px" onclick="window.open('http://www.openlinksw.com/');"></div>
+		</div>
+	</div>
+
+</div> <!-- MD -->
+
+</div> <!-- HD -->
+
+</body>
+</html>

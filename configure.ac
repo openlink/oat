@@ -58,6 +58,7 @@ AC_CONFIG_FILES([
     oat/Makefile
     qbe/Makefile
     rdfbrowser/Makefile
+    rdfbrowser2/Makefile
     styles/Makefile
     xslt/Makefile
 ])

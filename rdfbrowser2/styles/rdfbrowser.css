@@ -1,0 +1,494 @@
+/*
+*  $id: rdfbrowser.css,v 1.6 2007/04/10 09:32:10 ondrej Exp $
+*
+*  This file is part of the OpenLink Software Ajax Toolkit (OAT) project.
+*resource
+*  Copyright (C) 2005-2007 OpenLink Software
+*
+*  See LICENSE file for details.
+*/
+
+@import url("../../styles/timeline.css");
+@import url("../../styles/webdav.css");
+@import url("../../styles/grid.css");
+@import url("../../styles/rdftabs.css");
+/*@import url("menu.css");*/
+
+/* common */
+
+a img {
+	border: none;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	background-color: #e7e8f3;
+}
+
+/* header with logo, input field and search */
+div#HD {
+	background-color: #434664;
+}
+
+div#HD img#browser_logo {
+	margin: 18px 0px 0px 20px;
+}
+
+#throbber_content {
+visibility: hidden;
+}
+
+#throbber {
+text-align: center;
+padding-top: 300px; 
+}
+
+#search {
+	padding: 1em;
+}
+
+#search_button  {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	cursor: hand;
+	cursor: pointer;
+	font-weight: bold;
+	padding: 2px;
+	font-size: 1.2em;
+	background-color: #d6d8ec;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-opera-border-radius: 5px;
+	border-radius: 5px;
+	border: none;
+}
+
+img#loading {
+	position: relative;
+	top: -10px;
+	left: 5px;
+}
+
+#search input {
+vertical-align: middle;
+}
+
+
+body {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 9pt;
+color: #5e6166;
+}
+
+h1 { 
+display: none;
+margin-top: 5px;
+margin-left: 10px;
+}
+
+table {
+font-size: 9pt;
+}
+
+#MD {
+margin-top: 38px;
+float: left;
+clear: both;
+width: 100%;
+/*background: url("../images/main_bkg_grad.png");
+background-repeat: repeat-x;*/
+}
+
+#LT {
+	float: left;
+	clear: left;
+	width: 69%;
+}
+
+/*#RT {
+	display: none;
+	float: left;
+	width: 30%;
+	background: url("../images/side_box_bkg_grad.png");
+	background-repeat: repeat-x;
+	background-color: white;
+	border-left: 1px solid #d7e5ee;
+	border-bottom: 1px solid #d7e5ee;
+}
+
+#FT {
+	display: none;
+	float: left;
+	clear: both;
+	width: 100%;
+	margin-top: 20px;
+}*/
+
+#right_toolbar {
+	position: absolute;
+	width: 302px;
+	/*min-height: 95%;*/
+	top: 60px;
+	right: 0px;
+	background-color: #434664;
+	background-image: url('../imgs/right_toolbar_bg.png');
+	background-position: 10px 0px;
+	padding-bottom: 90px;
+	word-wrap: break-word; /* only IE */
+}
+
+#right_toolbar div#toggler {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 100%;
+	background-image: url('../imgs/arrow_toggle_hide.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	cursor: hand;
+	cursor: pointer;
+	z-index: 3;
+}
+
+#right_toolbar div#toggler:hover {
+	background-color: #282b40;
+}
+
+#right_toolbar div#copyright {
+	position: relative;
+	bottom: -40px;
+	left: 20px;
+	width: 272px;
+	height: 14px;
+	background-image: url('../imgs/copyright.png');
+}
+
+#right_toolbar ul {
+	list-style-type: none;
+	display: block;
+	color: #d6daff;
+	position: relative;
+	top: 0px;
+	left: 10px;
+	width: 282px;
+	padding: 0px;
+	margin: 0px;
+}
+
+#right_toolbar ul li {
+	padding: 0px;
+	margin: 0px 0px 5px 0px;
+}
+
+#right_toolbar ul li div:hover {
+	opacity: 0.8;
+}
+
+#right_toolbar ul li div {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	width: 292px;
+	height: 44px;
+	cursor: hand;
+	cursor: pointer;
+}
+
+#right_toolbar ul li ul {
+	list-style-type: disc;
+	position: relative;
+	top: 0px;
+	left: 0px;
+	width: 250px;
+	padding: 1px 0px 5px 30px;
+	background-image: url('../imgs/item_items_bg.png');
+	background-repeat: repeat-y;	
+	
+}
+
+#right_toolbar ul li ul li {
+	margin-top: 3px;
+	width: 256px;
+}
+
+#right_toolbar ul li ul li.action {
+	cursor: hand;
+	cursor: pointer;
+}
+
+#right_toolbar ul li ul li.action:hover {
+ 	color: #ffffff;
+	font-weight: bold;
+}
+
+#right_toolbar img.item_toggler {
+	position: absolute;
+	right: 10px;
+	top: 15px;
+}
+
+ul li ul#category_ul {
+	list-style-type: none;
+}
+
+ul li ul#category_ul * {
+	background-image: none;
+}
+
+ul#category_ul li {
+	padding: 0px;
+	margin: 0px 0px 0px -20px;
+}
+
+ul li ul#category_ul div, div#filters div {
+	margin: 0px;
+	padding: 0px;
+	width: auto;
+	height: auto;
+}
+
+ul#filters_ul li {
+	width: 260px;
+	overflow: hidden;
+}
+
+p.copyright {
+font-size: 8pt;
+text-align: right;
+margin-right: 10px;
+clear: both;
+}
+
+#browse {
+position: inherit;
+top: -30px;
+float: left;
+clear: both;
+width: 98%;
+margin-left: 10px;
+padding: 0;
+z-index: 4;
+	background-image: url('../imgs/triplets.png');
+	background-repeat: no-repeat;
+	background-position: 5px 75px;
+min-height: 592px;
+}
+
+div#welcome {
+	opacity: 0.8;
+	clear: both;
+	position: relative;
+	left: 120px;
+	top: -10px;
+	width: 688px;
+	height: 363px;
+	background-image: url('../imgs/welcome_screen.png');
+}
+
+div#welcome div {
+	position: absolute;
+	cursor: hand;
+	cursor: pointer;
+	left: 40px;
+	height: 35px;
+	width: 440px;
+	opacity: 0.1;
+	-moz-border-radius: 8px;
+}
+
+div#welcome div:hover {
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=10);
+	background-color:#222222;
+	
+}
+
+#rdf_tabs {
+clear: both;
+/*float: left;
+width: 100%;*/
+background-color: #434664;
+margin: 0px;
+padding-bottom: 5px;
+height: 20px;
+list-style-type: none;
+text-align: left;
+/*border-bottom: 1px solid #98bdc6*/
+width: 100%;
+overflow: hidden;
+}
+
+#rdf_tabs li {
+display: relative;
+float: left;
+padding: 3px 5px 5px 5px;
+margin-left: 0.5em;
+background-color: #434664;
+color: #eee;
+cursor: pointer;
+height: 20px;
+}
+
+#rdf_tabs li.tab_selected {
+color: #434664;
+background-color: #e7e8f3;
+background-image: url('../imgs/tabs_bg.png');
+background-repeat: no-repeat;
+background-position: top right;
+_background-image: none;
+}
+
+#rdf_tabs.tab_signal {
+background-color: #bbb;
+}
+
+/*#rdf_tabs li.tab {
+	hover:expression(this.onmouseover=new Function("this.style.background='#9fa2c7';"),this.onmouseout=new Function("this.style.background='#434664';"));
+
+}
+#rdf_tabs li.tab_selected {
+	hover:expression(this.onmouseover=new Function("this.style.background='#e7e8f3';"),this.onmouseout=new Function("this.style.background='#e7e8f3';"));
+
+}*/
+
+
+#rdf_tabs li.tab:hover {
+	color: #0000;
+	background-color: #9fa2c7;
+	background-image: url('../imgs/tabs_bg.png');
+	background-repeat: no-repeat;
+	background-position: top right;
+}
+
+#rdf_tabs li.tab_selected:hover {
+	color: #434664;
+	background-color: #e7e8f3;
+}
+
+#rdf_input {
+/*float: left;*/
+/*clear: left;*/
+position: absolute;
+left: 400px;
+top: 18px;
+width: 60%}
+
+/*#rdf_input input {
+	cursor: hand;
+	cursor: pointer;
+}*/
+
+#rdf_input input#inputquery {
+	position: relative;
+	width: 80%;
+	margin-right: 10px;
+	background-color: #d6d8ec;
+	font-size: 1.1em;
+	color: black;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-opera-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#rdf_input input#querybutton {
+	font-weight: bold;
+	padding: 2px;
+	font-size: 1.2em;
+	background-color: #d6d8ec;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-opera-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#rdf_storage {
+	padding: 0px;
+	margin: 8px 3px 8px 3px;
+	background-color: #b6b9d8;
+}
+
+#rdf_storage a {
+	color: #434664;
+}
+
+#rdf_storage img#title_storage {
+	margin-top: 3px;
+	margin-left: 10px;
+}
+
+#rdf_storage img#storage_toggle {
+	position: absolute;
+	right: 10px;
+	top: 8px;
+	cursor: hand;
+	cursor: pointer;
+}
+
+#rdf_storage a#storage_purge {
+	position: absolute;
+	top: 5px;
+	left: 400px;
+}
+
+#rdf_storage div.storage_item {
+	margin: 4px 20px 1px 20px;
+	padding-bottom: 2px;
+}
+
+#rdf_storage div.storage_item:hover {
+	background-color: #cfd1e7;
+}
+
+#rdf_storage div#storage_total {
+	position: absolute;
+	left: 150px;
+	top: 5px;
+}
+
+#rdf_storage div#storage_total:hover, #rdf_storage div#storage_toggle:hover {
+	background-color: #b6b9d8;
+}
+
+/*#rdf_filter {
+float: left;
+clear: left;
+width: 100%;
+padding-bottom: 10px;
+background: url("../images/bottom_bkg_grad.png");
+background-repeat: repeat-x;
+background-position: bottom}
+
+#rdf_filter a {
+font-size: 80%}*/
+
+#rdf_side {
+float: left;
+padding-left: 4px;
+padding-right: 4px;}
+
+#rdf_content {
+float: left;
+clear: both;
+width: 100%;
+_width: 95%}
+
+.rdf_categories ul, .rdf_categories li {
+margin-left: 0px;
+padding-left: 0.5em
+}
+
+ul#prevQueries_ul li {
+	cursor: hand;
+	cursor: pointer;
+}
+
+ul#prevQueries_ul li#noqueries {
+	cursor: default;
+}
+
+img, div, li, span, input {
+	behavior: url("js/iepngfix.htc");
+}

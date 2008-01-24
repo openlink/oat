@@ -34,6 +34,7 @@ SUBDIRS = \
 	oat \
 	qbe \
 	rdfbrowser \
+	rdfbrowser2 \
 	styles \
  	xslt
 
