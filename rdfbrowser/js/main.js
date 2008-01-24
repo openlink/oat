@@ -210,6 +210,16 @@ function init() {
 		var ver = "$Id$";
 		var r = ver.match(/main\.js,v ([^ ]+)/);
 		$('about_version').innerHTML = r[1];
-		dialogs.connection.show();
+
+		/* look for default graph */
+		var ref = function(xmlDoc) {
+			var nodes = OAT.Xml.getElementsByLocalName(xmlDoc.documentElement,"DefaultGraph");
+			if (nodes && nodes.length) { defaultGraph = OAT.Xml.textValue(nodes[0]); }
+		}
+		OAT.AJAX.GET("/sparql?ini",null,ref,{type:OAT.AJAX.TYPE_XML,onerror:function(){}});	
+
+		/* initialize webdav gui */
+		OAT.WebDav.init();
 	}
+
 }
