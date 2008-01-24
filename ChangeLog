@@ -1,3 +1,128 @@
+2008-01-24 11:27  source
+
+	* Updated version to 2.8-rc1
+
+2008-01-24 11:26  source
+
+	* Fixed browser detecting backward compatibility
+
+2008-01-24 11:24  source
+
+	* Fixed OAT.Dom.image() for IE when called with only one parameter
+
+2008-01-24 11:23  source
+
+	* Added $$(className,element) function, returns a list of children of
+	  element (and element itself) belonging to className
+	* Added test for $$() function
+
+2008-01-24 11:21  source
+
+	* Changed array.find to return first match instead of last match
+
+2008-01-24 11:19  source
+
+	* Fixed OAT.Dom.image behavior with PNG images in IE
+
+2008-01-24 11:18  source
+
+	* Fix to prevent loading already loaded stylesheet
+	  (force option loads it anyway)
+
+2008-01-24 11:01  source
+
+	* Removed connection dialog, since this is now part of webdav
+
+2008-01-24 10:59  source
+
+	* Added ODS skin
+
+2008-01-24 10:59  source
+
+	* Added support for custom images via HTML attributes
+
+2008-01-24 10:58  source
+
+	* Fixed autoloader for fresnel tab
+
+2008-01-24 10:56  source
+
+	* Fixed problem with timeline item that only has a start date.
+
+2008-01-24 10:54  source
+
+	* Dereferencable links now contain relative uri in form:
+	  ?uri=http://something/ so they can be copy/pasted
+
+2008-01-24 10:52  source
+
+	* Changed a++ window/image titles to be consistent with isparql
+
+2008-01-24 10:51  source
+
+	* Added explicit notice that 'deaf' elements can be used as separators
+	* Fixed onclick event to propagate too far, causeing submenus to be
+	  opened again after close.
+
+2008-01-24 10:49  source
+
+	* Added support to handle connections independently
+	* Added connection setup dialog and connection status
+	* Fixed wrong prompt for login as DAV
+
+2008-01-24 10:46  source
+
+	* Fixed dependencies
+
+2008-01-24 10:45  source
+
+	* Added scrollbar when a++ windows is too large
+
+2008-01-24 10:45  source
+
+	* Added new images
+
+2008-01-24 10:44  source
+
+	* Fixed isparql params tab to contain a link with full query
+	* Added SCOT ontology to predefined list
+
+2008-01-24 10:43  source
+
+	* Fixed supported browser list
+
+2008-01-24 10:42  source
+
+	* Fixed whitespace
+
+2008-01-24 10:42  source
+
+	* Updated copyright to 2008
+
+2008-01-24 10:41  source
+
+	* Use relative paths so demos and apps can be started direct from this
+	  source tree.
+
+	  Depending on your needs you may need to replace ../ with an absolute
+	  path when using the OAT library within your own web app.
+
+2008-01-24 10:30  source
+
+	* Rewrote OAT.Notify as proper class with constructor. Added support
+	  for displaying over specific divs and absolute/relative
+	  positioning (centred by default). This allows several 'notify containers'
+	  on the screen simultaneously.
+	* Fixed all apps to reflect new Notify API
+
+2008-01-24 10:13  source
+
+	* Updated documentation
+
+2008-01-24 10:13  source
+
+	* Added new RDF browser app
+
 2007-12-04 17:16  source
 
 	* Updated version to 2.7 for final release
