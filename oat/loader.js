@@ -78,9 +78,8 @@ Array.prototype.copy = function() {
 }
 
 Array.prototype.find = function(str) {
-	var index = -1;
-	for (var i=0;i<this.length;i++) if (this[i] == str) { index = i; }
-	return index;
+	for (var i=0;i<this.length;i++) if (this[i] == str) { return i; }
+	return -1;
 }
 
 Array.prototype.append = function(arr) {
