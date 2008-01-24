@@ -1,0 +1,49 @@
+<h2>win.js</h2>
+<p>Creates windows</p>
+
+<hr/>
+
+<h3>Objects</h3>
+<ul>
+	<li><a href="#win">OAT.Win(paramsObj)</a></li>
+</ul>
+
+<hr/>
+
+<h3><a name="win">OAT.Win(paramsObj)</a></h3>
+<p>Creates a window. Its main div is accessible as <code>object.dom.container</code>, content as <code>object.dom.content</code>, title as <code>object.dom.title</code> and status area at the bottom as <code>object.dom.status</code>.</p>
+
+<p>The <em>type</em> can contain:</p>
+<ul>
+	<li>OAT.WinData.TYPE_MS - MS Windows classic look</li>
+	<li>OAT.WinData.TYPE_MAC - Mac OS X look</li>
+	<li>OAT.WinData.TYPE_ROUND - rounded corners</li>
+	<li>OAT.WinData.TYPE_RECT - rectangular</li>
+	<li>OAT.WinData.TYPE_ODS - Openlink Data Spaces look</li>
+	<li>OAT.WinData.TYPE_AUTO - guess window look according to browser's platform</li>
+	<li>OAT.WinData.TYPE_TEMPLATE - use own template</li>
+</ul>
+
+<p>Meaning of characters in <em>visibleButtons</em> and <em>enabledButtons</em> from <em>paramsObj</em>:</p>
+<ul>
+	<li>c - show close button</li>
+	<li>m - show minimize button</li>
+	<li>M - show maximize button</li>
+	<li>r - show resize button</li>
+	<li>f - show flip</li>
+</ul>
+
+<p>Argument <em>paramsObj</em> has the following properties:</p>
+<ul>
+	<li>visibleButtons - visible buttons</li>
+	<li>enabledButtons - enabled buttons</li>
+	<li>type - window look</li>
+	<li>template - template information for use with <code>OAT.WinData.TYPE_TEMPLATE</code></li>
+	<li>className - class for the window</li>
+	<li>x - left coordinate</li>
+	<li>y - top coordinate</li>
+	<li>outerWidth - width</li>
+	<li>outerHeight - height (<code>false</code> means auto)</li>
+	<li>title - window's title</li>
+	<li>status - window's status</li>
+</ul>

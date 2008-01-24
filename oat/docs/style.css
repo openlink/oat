@@ -35,8 +35,8 @@ a:hover, span.link:hover {
 
 #toc {
 	position: fixed;
-	left: 600px;
-	top: 10px;
+	right: 20px;
+	top: 20px;
 	font-size: 80%;
 	background-color: #eef;
 	border: 1px solid #000;

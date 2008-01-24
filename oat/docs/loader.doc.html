@@ -4,9 +4,11 @@
 <h3>Functions</h3>
 <ul>
 	<li><a href="#$">$(element)</a></li>
+	<li><a href="#$$">$$(className, element)</a></li>
 	<li><a href="#$v">$v(element)</a></li>
 	
 	<li><a href="#create">OAT.Dom.create(tagName, [styleObj], [className])</a></li>
+	<li><a href="#createns">OAT.Dom.createNS(nameSpace, tagName)</a></li>
 	<li><a href="#text">OAT.Dom.text(text)</a></li>
 	<li><a href="#button">OAT.Dom.button(label)</a></li>
 	<li><a href="#radio">OAT.Dom.radio(name)</a></li>
@@ -27,12 +29,17 @@
 	<li><a href="#getviewport">OAT.Dom.getViewport()</a></li>
 	<li><a href="#getscroll">OAT.Dom.getScroll()</a></li>
 	<li><a href="#position">OAT.Dom.position(element)</a></li>
+	<li><a href="#getfreespace">OAT.Dom.getFreeSpace(x,y)</a></li>
 	<li><a href="#getlt">OAT.Dom.getLT(element)</a></li>
 	<li><a href="#getwh">OAT.Dom.getWH(element)</a></li>
 	<li><a href="#moveby">OAT.Dom.moveBy(element, dx, dy)</a></li>
 	<li><a href="#resizeby">OAT.Dom.resizeBy(element, dx, dy)</a></li>
 	<li><a href="#removeselection">OAT.Dom.removeSelection()</a></li>
 	<li><a href="#uriparams">OAT.Dom.uriParams()</a></li>
+	<li><a href="#changehref">OAT.Dom.changeHref(element, newHref)</a></li>
+
+	<li><a href="#tosafexml">OAT.Dom.toSafeXML(string)</a></li>
+	<li><a href="#fromsafexml">OAT.Dom.fromSafeXML(string)</a></li>
 <hr/>
 	<li><a href="#attach">OAT.Event.attach(element, event, callback)</a></li>
 	<li><a href="#detach">OAT.Event.detach(element, event, callback)</a></li>
@@ -41,15 +48,25 @@
 	<li><a href="#eposition">OAT.Event.position(event)</a></li>
 	<li><a href="#prevent">OAT.Event.prevent(event)</a></li>
 <hr/>
+	<li><a href="#includecss">OAT.Style.include(filename)</a></li>
 	<li><a href="#get">OAT.Style.get(element, property)</a></li>
 	<li><a href="#apply">OAT.Style.apply(element, styleObj)</a></li>
 	<li><a href="#opacity">OAT.Style.opacity(element, opacity)</a></li>
 	<li><a href="#background">OAT.Style.background(element, url)</a></li>
-
+<hr/>
+	<li><a href="#includejs">OAT.Loader.include(filename)</a></li>
 </ul>
 	
 <h3>Properties</h3>
 <ul>
+	<li><a href="#showajax">OAT.Preferences.showAjax</a></li>
+	<li><a href="#usecursors">OAT.Preferences.useCursors</a></li>
+	<li><a href="#windowtypeoverride">OAT.Preferences.windowTypeOverride</a></li>
+	<li><a href="#xsltpath">OAT.Preferences.xsltPath</a></li>
+	<li><a href="#imagepath">OAT.Preferences.imagePath</a></li>
+	<li><a href="#stylepath">OAT.Preferences.stylePath</a></li>
+	<li><a href="#httperror">OAT.Preferences.httpError</a></li>
+<hr/>
 	<li><a href="#isie">OAT.Browser.isIE</a></li>
 	<li><a href="#isie6">OAT.Browser.isIE6</a></li>
 	<li><a href="#isie7">OAT.Browser.isIE7</a></li>
@@ -57,7 +74,10 @@
 	<li><a href="#isopera">OAT.Browser.isOpera</a></li>
 	<li><a href="#iswebkit">OAT.Browser.isWebKit</a></li>
 	<li><a href="#iskonqueror">OAT.Browser.isKonqueror</a></li>
+	<li><a href="#iskhtml">OAT.Browser.isKHTML</a></li>
 	<li><a href="#ismac">OAT.Browser.isMac</a></li>
+	<li><a href="#islinux">OAT.Browser.isLinux</a></li>
+	<li><a href="#iswindows">OAT.Browser.isWindows</a></li>
 </ul>
 
 <hr/>
@@ -70,9 +90,14 @@ is to provide a shortcut for longer <code>document.getElementById()</code> funct
 Note that it is perfectly correct to pass an object reference to $-function, although not very useful.</p>
 <p>Due to the presence of this function in toolkit, every other function that accepts a node reference as an argument can also accept its id.</p>
 		
+<h3><a name="$$">$$(className, element)</a></h3>
+<p>This function returns a list of HTML nodes below element (document when not specified), belonging to a specified class.</p>
+<p><em>NOTE!:</em>Prior to version 2.8, this function was identical to <code>$v()</code>. Please update 
+your code to reflect this change and use <code>$v()</code> instead.</p>
+		
 <h3><a name="$v">$v(element)</a></h3>
-<p>This function is identical to <code>$$()</code>. They are shortcuts for <code>$().value</code>. You should use them
-when getting a value of any form element.</p>
+<p>This function is a shortcut for <code>$().value</code>. You should use them
+when getting a value of any form element.  
 
 <h3><a name="create">OAT.Dom.create(tagName, [styleObj], [className])</a></h3>
 <p>Used for dynamic creation of HTML nodes. Three parameters are accepted, the first one is mandatory. Example:</p>
@@ -85,6 +110,9 @@ when getting a value of any form element.</p>
 	CSS properties are not the same for these browsers, so specifying a floating element looks like
 	<code>var element = OAT.Dom.create("div", {cssFloat:"left", styleFloat:"left"});</code> - the first declaration is for Gecko, the latter for MSIE.
 </p>
+
+<h3><a name="createns">OAT.Dom.createNS(namespace, tagName)</a></h3>
+<p>Used for dynamic creation of HTML nodes in particular namespace. See also the function above.</p>
 
 <h3><a name="text">OAT.Dom.text(text)</a></h3>
 <p>Creates and returns DOM text node with value of argument <em>text</em>.</p>
@@ -193,6 +221,15 @@ in form of array with two elements.</p>
 }
 </pre>
 
+<h3><a name="changehref">OAT.Dom.changeHref(element, newHref)</a></h3>
+<p>Changes the <code>href</code> attribute of the given element.</p>
+
+<h3><a name="tosafexml">OAT.Dom.toSafeXML(string)</a></h3>
+<p>Convert HTML special chars in the given string into entities.</p>
+
+<h3><a name="fromsafexml">OAT.Dom.toSafeXML(string)</a></h3>
+<p>Decrypt entities inthe given string.</p>
+
 <hr/>
 
 
@@ -229,6 +266,9 @@ OAT.Dom.attach(div, "click", callback);
 
 <hr/>
 
+<h3><a name="includecss">OAT.Style.include(filename)</a></h3>
+<p>Include CSS stylesheet file into the page. (see <a href="#stylepath">OAT.Preferences.stylePath</a> property)</p>
+
 <h3><a name="get">OAT.Style.get(element, property)</a></h3>
 <p>Returns a style <em>property</em> of <em>element</em>. This is different from accessing the <code>element.style.property</code> value,
 as this function returns the computed style (i.e., set by stylesheets, etc.) instead of a dynamically created one. Example:</p>
@@ -247,6 +287,34 @@ as this function returns the computed style (i.e., set by stylesheets, etc.) ins
 <p>Sets <em>element</em>'s background image to the one specified in <em>url</em>.</p>
 
 <hr/> 
+
+<h3><a name="includejs">OAT.Loader.include(filename)</a></h3>
+<p>Include the specified JavaScript file into the document.</p>
+
+<hr/>
+
+<h3><a name="showajax">OAT.Preferences.showAjax</a></h3>
+<p>Show Ajax window even if not explicitly requested by application.</p>
+
+<h3><a name="usecursors">OAT.Preferences.useCursors</a></h3>
+<p>Use scrollable cursors.</p>
+
+<h3><a name="windowtypeoverride">OAT.Preferences.windowTypeOverride</a></h3>
+<p>Do not guess window type.</p>
+
+<h3><a name="xsltpath">OAT.Preferences.xsltPath</a></h3>
+<p>Path to the XSLT stylesheets.</p>
+
+<h3><a name="imagepath">OAT.Preferences.imagePath</a></h3>
+<p>Path to the images.</p>
+
+<h3><a name="stylepath">OAT.Preferences.stylePath</a></h3>
+<p>Path to the CSS stylesheets.</p>
+
+<h3><a name="httperror">OAT.Preferences.httpError</a></h3>
+<p>Show HTTP errors.</p>
+
+<hr/>  
 
 <h3><a name="isie">OAT.Browser.isIE</a></h3>
 <p>Returns <code>true</code> if used browser is Internet Explorer.</p>
@@ -269,6 +337,14 @@ as this function returns the computed style (i.e., set by stylesheets, etc.) ins
 <h3><a name="iskonqueror">OAT.Browser.isKonqueror</a></h3>
 <p>Returns <code>true</code> if used browser is KDE Konqueror.</p>
 
+<h3><a name="iskhtml">OAT.Browser.isKHTML</a></h3>
+<p>Returns <code>true</code> if used browser is KHTML based (practicaly it means Konqueror or Safari).</p>
+
 <h3><a name="ismac">OAT.Browser.isMac</a></h3>
 <p>Returns <code>true</code> if used operating system is MacOS.</p>
 
+<h3><a name="islinux">OAT.Browser.isLinux</a></h3>
+<p>Returns <code>true</code> if used operating system is Linux.</p>
+
+<h3><a name="iswindows">OAT.Browser.isWindows</a></h3>
+<p>Returns <code>true</code> if used operating system is Windows.</p>

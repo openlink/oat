@@ -71,6 +71,7 @@ TOC.push(["toolbar.js","toolbar.doc.html"]);
 TOC.push(["tree.js","tree.doc.html"]);
 TOC.push(["upload.js","upload.doc.html"]);
 TOC.push(["validation.js","validation.doc.html"]);
+TOC.push(["win.js","win.doc.html"]);
 TOC.push(["window.js","window.doc.html"]);
 TOC.push(["ws.js","ws.doc.html"]);
 TOC.push(["xml.js","xml.doc.html"]);
