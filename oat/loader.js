@@ -190,7 +190,9 @@ OAT.Dom = { /* DOM common object */
 	},
 	
 	image:function(src,srcBlank,w,h) {
-		var elm = OAT.Dom.create("img",{width:w+"px",height:h+"px"});
+		w = (w ? w+'px' : 'auto');
+		h = (h ? h+'px' : 'auto');
+		var elm = OAT.Dom.create("img",{width:w,height:h});
 		OAT.Dom.imageSrc(elm,src,srcBlank);
 		return elm;
 	},
@@ -199,6 +201,7 @@ OAT.Dom = { /* DOM common object */
 		var elm = $(element);
 		var png = !!src.toLowerCase().match(/png$/);
 		if (png && OAT.Browser.isIE) {
+			if (!srcBlank) srcBlank = OAT.Preferences.imagePath + 'Blank.gif';
 			elm.src = srcBlank;
 			elm.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+src+"', sizingMethod='image')";
 		} else {
