@@ -30,7 +30,7 @@
 			<script type="text/javascript">
 				var featureList=["pivot","xmla","soap","ajax2","window","dialog"];
 			</script>	
-			<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>
+			<script type="text/javascript" src="../oat/loader.js"></script>
 			<script type="text/javascript">
 				var pivot = false;
 				var header = [];
@@ -116,7 +116,7 @@
 			</script>
 			
 			<style type="text/css">
-				@import url("/DAV/JS/styles/pivot.css");
+				@import url("../styles/pivot.css");
 				
 				.right {
 					text-align: right;
@@ -131,7 +131,7 @@
 				}
 
 				#ajax_progress {
-					background-image:url("/DAV/JS/images/progress.gif");
+					background-image:url("../images/progress.gif");
 					height: 16px;
 					width: 80%;
 				}

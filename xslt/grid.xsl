@@ -39,7 +39,7 @@
 		<script type="text/javascript">
 			var featureList = ["grid"];
 		</script>
-		<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>
+		<script type="text/javascript" src="../oat/loader.js"></script>
 		<script type="text/javascript">
 <![CDATA[
 			
@@ -51,7 +51,7 @@
 			]]>
 		</script>
 		<style type="text/css">
-			@import url("/DAV/JS/styles/grid.css");
+			@import url("../styles/grid.css");
 			#nav {
 				margin-top: 0.5em;
 			}

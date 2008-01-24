@@ -37,7 +37,7 @@
 			OAT.Dom.hide("throbber");
 		}
 		OAT.Event.attach("throbber","click",OAT.AJAX.cancelAll);
-		OAT.Preferences.imagePath = "/DAV/JS/images/";
+		OAT.Preferences.imagePath = "../images/";
 		var qe = new QueryExec({div:"result"});
 		var opts = OAT.Dom.uriParams();
 		var p = {onstart:startRef,onend:endRef};
@@ -62,14 +62,14 @@
 	}
 </script>
 
-<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>
+<script type="text/javascript" src="../oat/loader.js"></script>
 
 <script type="text/javascript" src="execute.js"></script>
-<link type="text/css" rel="stylesheet" href="/DAV/JS/isparql/styles/execute.css"/>
-<link type="text/css" rel="stylesheet" href="/DAV/JS/styles/winrect.css"/>
+<link type="text/css" rel="stylesheet" href="../isparql/styles/execute.css"/>
+<link type="text/css" rel="stylesheet" href="../styles/winrect.css"/>
 
 <body>
-	<div id="throbber" style="text-align: center;"><img style="margin: auto; cursor:pointer;" src="/DAV/JS/images/throbber.gif" /></div>
+	<div id="throbber" style="text-align: center;"><img style="margin: auto; cursor:pointer;" src="../images/throbber.gif" /></div>
 	<div id="file"></div><p></p>
 	<div id="result"></div>
     <p class="copyright">

@@ -55,7 +55,7 @@
 		<script type="text/javascript">
 			var featureList = ["tree"];
 		</script>
-		<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>
+		<script type="text/javascript" src="../oat/loader.js"></script>
 		<script type="text/javascript">
 		<![CDATA[
 			function init() {

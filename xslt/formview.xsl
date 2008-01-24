@@ -49,7 +49,7 @@
 			<script type="text/javascript">
 				var featureList = ["form"];
 			</script>
-			<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>
+			<script type="text/javascript" src="../oat/loader.js"></script>
 			<script type="text/javascript">
 			<![CDATA[
 				var loadingDiv = false;
@@ -80,10 +80,10 @@
 			</script>
 			
 <style type="text/css">
-	@import url("/DAV/JS/styles/grid.css");
-	@import url("/DAV/JS/styles/timeline.css");
-	@import url("/DAV/JS/styles/pivot.css");
-	@import url("/DAV/JS/styles/webclip.css");
+	@import url("../styles/grid.css");
+	@import url("../styles/timeline.css");
+	@import url("../styles/pivot.css");
+	@import url("../styles/webclip.css");
 	
 	input, select {
 		font: menu;

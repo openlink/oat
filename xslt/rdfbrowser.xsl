@@ -30,7 +30,7 @@
 	<title>RDF Browser redirection...</title>
 	<script type="text/javascript">
 		function init() {
-			document.location = "/DAV/JS/rdfbrowser/index.html?load="+encodeURIComponent(document.location);
+			document.location = "../rdfbrowser/index.html?load="+encodeURIComponent(document.location);
 		}
 	</script>
 </head>

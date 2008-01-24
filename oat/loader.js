@@ -33,10 +33,10 @@ OAT.Preferences = {
 	showAjax:1, /* show Ajax window even if not explicitly requested by application? */
 	useCursors:1, /* scrollable cursors */
 	windowTypeOverride:0, /* do not guess window type */
-	xsltPath:"/DAV/JS/xslt/",
-	imagePath:"/DAV/JS/images/",
-	stylePath:"/DAV/JS/styles/",
-	version:"04.12.2007",
+	xsltPath:"../xslt/",
+	imagePath:"../images/",
+	stylePath:"../styles/",
+	version:"21.01.2008",
 	httpError:1, /* show http errors */
 	allowDefaultResize:1,
 	allowDefaultDrag:1

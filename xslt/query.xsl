@@ -31,7 +31,7 @@
 		<script type="text/javascript">
 			var featureList = ["grid","ajax2","xmla","soap","dialog","crypto","datasource","formobject","webclip"];
 		</script>
-		<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>
+		<script type="text/javascript" src="../oat/loader.js"></script>
 		<script type="text/javascript">
 		
 		var user = "<xsl:value-of select="connection/@user" />";
@@ -103,8 +103,8 @@
 ]]>
 		</script>
 		<style type="text/css">
-			@import url("/DAV/JS/styles/grid.css");
-			@import url("/DAV/JS/styles/webclip.css");
+			@import url("../styles/grid.css");
+			@import url("../styles/webclip.css");
 			
 			.right {
 				text-align: right;

@@ -23,10 +23,10 @@
 	<html>
 	<head>
 		<script type="text/javascript">var featureList = ["xml"];</script>
-		<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>
+		<script type="text/javascript" src="../oat/loader.js"></script>
 		<script type="text/javascript">
 			function init() {
-				var target = "/DAV/JS/isparql/execute.html";
+				var target = "../isparql/execute.html";
 
 				var p = {};
 				p.sponge = "<xsl:value-of select="i:should_sponge" />";
