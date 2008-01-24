@@ -56,11 +56,16 @@ function $(something) {
 	return elm;
 }
 
-function $$(something) {
-	var e = $(something);
-	if (!e) return false;
-	if (!("value" in e)) return false;
-	return e.value;
+function $$(className, root) {
+	var e = root || document;
+	var elms = e.getElementsByTagName("*");
+	var matches = [];
+
+	if (OAT.Dom.isClass(e,className)) { matches.push(e); }
+	for(var i=0;i<elms.length;i++) {
+		if(OAT.Dom.isClass(elms[i],className)) { matches.push(elms[i]); }
+	}
+	return matches;
 }
 
 function $v(something) {
