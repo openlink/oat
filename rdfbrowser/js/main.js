@@ -137,34 +137,6 @@ function init() {
 	dialogs.about.ok = dialogs.about.hide;
 	dialogs.about.cancel = dialogs.about.hide;
 
-
-	/* connection */
-	dialogs.connection = new OAT.Dialog("Connection Setup","connection",{width:500,modal:1,buttons:1});
-	dialogs.connection.ok = function() {
-		http_cred.user = $v("user");
-		http_cred.password = $v("password");
-		http_cred.isDav = ($v("login_put_type") == "1");
-		dialogs.connection.hide();
-		var o = {
-			user:http_cred.user,
-			pass:http_cred.password,
-			isDav:http_cred.isDav,
-			path:"/DAV/home/"+http_cred.user+"/"
-		}
-		OAT.WebDav.init(o);
-		/* also look for default graph */
-		var ref = function(xmlDoc) {
-			var nodes = OAT.Xml.getElementsByLocalName(xmlDoc.documentElement,"DefaultGraph");
-			if (nodes && nodes.length) { defaultGraph = OAT.Xml.textValue(nodes[0]); }
-		}
-		OAT.AJAX.GET("/sparql?ini",null,ref,{type:OAT.AJAX.TYPE_XML,onerror:function(){}});
-	}
-	dialogs.connection.cancel = function() {
-		dialogs.connection.hide();
-		/* init with default options */
-		OAT.WebDav.init();
-	}
-
 	/* menu */
 	var m = new OAT.Menu();
 	m.noCloseFilter = "noclose";
@@ -197,7 +169,6 @@ function init() {
 	OAT.Event.attach("search_query","keypress",function(event) {
 		if (event.keyCode == 13) { Search.go(); }
 	});
-	
 	
 	/* history */
 	if (window.location.href.match(/history/)) {
