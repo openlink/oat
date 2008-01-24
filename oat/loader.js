@@ -654,12 +654,20 @@ OAT.Dom = { /* DOM common object */
 }
 
 OAT.Style = { /* Style helper */
-	include:function(file) {
+	include:function(file,force) {
 		if (!file) return;
+		file = OAT.Preferences.stylePath + file;
+		if (!force) { /* prevent loading when already loaded */
+			var styles = document.getElementsByTagName('link');
+			var host = location.protocol + '//' + location.host;
+			for (var i=0;i<styles.length;i++)
+				if (file == styles[i].getAttribute('href') || host+file==styles[i].getAttribute('href'))
+					return;
+		}
 		var elm = OAT.Dom.create("link");
 		elm.rel = "stylesheet";
 		elm.type = "text/css";
-		elm.href = OAT.Preferences.stylePath + file;
+		elm.href = file;
 		document.getElementsByTagName("head")[0].appendChild(elm);
 	},
 
