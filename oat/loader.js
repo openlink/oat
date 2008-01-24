@@ -333,13 +333,16 @@ OAT.Dom = { /* DOM common object */
 	},
 	
 	isKonqueror:function() { return (navigator.userAgent.match(/konqueror/i) ? true : false); },
+	isKHTML:function() { return (navigator.userAgent.match(/khtml/i) ? true : false); },
 	isIE:function() { return (document.attachEvent && !document.addEventListener ? true : false); },
 	isIE7:function() { return (navigator.userAgent.match(/msie 7/i) ? true : false); },
 	isIE6:function() { return (OAT.Dom.isIE() && !OAT.Dom.isIE7()); },
-	isGecko:function() { return (document.addEventListener ? true : false);	},
+	isGecko:function() { return ( (!OAT.Dom.isKHTML() && navigator.userAgent.match(/Gecko/i)) ? true : false ); },
 	isOpera:function() { return (navigator.userAgent.match(/Opera/) ? true : false); },
 	isWebKit:function() { return (navigator.userAgent.match(/AppleWebKit/) ? true : false); },
 	isMac:function() { return (navigator.platform.toString().match(/mac/i) ? true : false);	},
+	isLinux:function() { return (navigator.platform.toString().match(/linux/i) ? true : false);	},
+	isWindows:function() { return (navigator.userAgent.toString().match(/windows/i) ? true : false);	},
 	
 	color:function(str) {
 		var hex2dec = function(hex) {	return parseInt(hex,16); }
@@ -730,8 +733,11 @@ OAT.Browser = { /* Browser helper */
 	isGecko:OAT.Dom.isGecko(),
 	isOpera:OAT.Dom.isOpera(),
 	isKonqueror:OAT.Dom.isKonqueror(),
+	isKHTML:OAT.Dom.isKHTML(),
 	isWebKit:OAT.Dom.isWebKit(),
-	isMac:OAT.Dom.isMac()
+	isMac:OAT.Dom.isMac(),
+	isLinux:OAT.Dom.isLinux(),
+	isWindows:OAT.Dom.isWindows()
 }
 
 OAT.Event = { /* Event helper */
