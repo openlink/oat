@@ -160,8 +160,6 @@ OAT.RDFBrowser2 = function(div,optObj) {
 			OAT.Dom.attach(ch,"change",f);
 		}
 
-		var tperm = OAT.Dom.create("a");
-		tperm.innerHTML = "permalink";
 		var base = window.location.toString().match(/^[^?#]+/)[0];
 		var th = base+"?";
 		
@@ -200,20 +198,24 @@ OAT.RDFBrowser2 = function(div,optObj) {
 			OAT.Dom.append([d,remove,OAT.Dom.text(" - "),perm],[self.store.div,d]);
 		}
 
+		$("storage_permalink").href = th + self.bookmarks.toURL();
+
 		/* display toggler and purge storage or not */
 		if (self.store.items.length) {
+			OAT.Dom.hide('welcome');
 			OAT.Dom.show("storage_purge");
 			OAT.Dom.show("storage_toggle");
+			OAT.Dom.show("storage_permalink");
 		} else {
 			OAT.Dom.hide("storage_purge");
 			OAT.Dom.hide("storage_toggle");
+			OAT.Dom.hide("storage_permalink");
 		}
 
-		tperm.href = th + self.bookmarks.toURL();
+		
 		if (!$("storage_total")) {
 			var d = OAT.Dom.create("div");
 			d.id = "storage_total";
-			//self.store.div.appendChild(d);
 			$("rdf_storage").appendChild(d);
 		} else {
 			var d = $("storage_total");
@@ -243,7 +245,6 @@ OAT.RDFBrowser2 = function(div,optObj) {
 	}
 
 	this.store.loadFromInput = function() {
-		OAT.Dom.hide('welcome');
 		if ($v(self.store.url)==self.options.defaultQuery) self.store.url.value = "";
 		if (OAT.Browser.isIE && !$v(self.store.url)) { /* explorer gives an error with blank query */
 			alert('Empty query.');

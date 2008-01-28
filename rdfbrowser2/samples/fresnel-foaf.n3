@@ -38,21 +38,21 @@
 # -----------------------------------------------
 
 :foafGroup rdf:type fresnel:Group ;
-			fresnel:resourceStyle "margin:0.5em; padding:0.5em; color: #000; border:2px solid #000; background-color:brown; clear:both;" .
+			fresnel:resourceStyle "margin:0.5em; padding:0.5em; color: #434664; border:1px solid #636684; background-color:#c6c9e8; clear:both;" .
 
 :depictFormat rdf:type fresnel:Format ;
               fresnel:propertyFormatDomain foaf:depiction ;
               fresnel:propertyFormatDomain foaf:img ;
               fresnel:label fresnel:none ;
               fresnel:value fresnel:image ;
-              fresnel:valueStyle "float: right; border:2px solid #000; margin:1em;"; 
+              fresnel:valueStyle "float: right; border:1px solid #434664; margin:1em;"; 
               fresnel:group :foafGroup ;
               fresnel:group :knowsGroup .
 
 :headingFormat rdf:type fresnel:Format ;
            fresnel:propertyFormatDomain foaf:name ;
            fresnel:label fresnel:none;
-           fresnel:valueStyle "font-size:150%; margin-bottom:1em;";
+           fresnel:valueStyle "font-size:120%; margin-bottom:1em;";
            fresnel:group :foafGroup .
 
 :urlFormat rdf:type fresnel:Format ;
@@ -78,7 +78,7 @@
 		fresnel:valueFormat [ fresnel:contentLast "<div style='clear:both;'> </div>"^^xsd:string ] ;
 		fresnel:valueStyle "margin: 1em; height: 70px; width:200px; display:block; float: left; text-align: center; overflow:hidden" ;
 		fresnel:label "Knows" ;
-		fresnel:labelStyle "clear:both; font-size: 120%; margin: 1em 0px; display:block;" .
+		fresnel:labelStyle "clear:both; font-size: 110%; margin: 1em 0px; display:block;" .
 		
 :smallFormat rdf:type fresnel:Format ;
         fresnel:group :knowsGroup ;

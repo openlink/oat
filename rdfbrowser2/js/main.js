@@ -252,6 +252,7 @@ function init() {
 		} else {
 			var elem = event.target;
 		}
+		if (elem.tagName=='IMG') elem = elem.parentNode;
 		$('toggler_'+elem.id).src = './imgs/item_show.png';
 		OAT.Dom.hide( $(elem.id+'_ul') );
 		OAT.Event.detach(elem,"click",rightBarTogglerHide);
@@ -263,6 +264,7 @@ function init() {
 		} else {
 			var elem = event.target;
 		}
+		if (elem.tagName=='IMG') elem = elem.parentNode;
 		$('toggler_'+elem.id).src = './imgs/item_hide.png';
 		OAT.Dom.show( $(elem.id+'_ul') );
 		OAT.Event.detach(elem,"click",rightBarTogglerShow);

@@ -12,10 +12,16 @@
 @import url("../../styles/webdav.css");
 @import url("../../styles/grid.css");
 @import url("../../styles/rdftabs.css");
-/*@import url("menu.css");*/
 
-/* common */
+/* overwrite some of the included styles */
+tr.rdf_nav_header {
+	background-color: #c6c9e8;
+	color: #434664;
+	border-bottom: 1px solid #434664;
+}
 
+
+/* definitions for anywhere */
 a img {
 	border: none;
 }
@@ -97,8 +103,6 @@ margin-top: 38px;
 float: left;
 clear: both;
 width: 100%;
-/*background: url("../images/main_bkg_grad.png");
-background-repeat: repeat-x;*/
 }
 
 #LT {
@@ -107,29 +111,9 @@ background-repeat: repeat-x;*/
 	width: 69%;
 }
 
-/*#RT {
-	display: none;
-	float: left;
-	width: 30%;
-	background: url("../images/side_box_bkg_grad.png");
-	background-repeat: repeat-x;
-	background-color: white;
-	border-left: 1px solid #d7e5ee;
-	border-bottom: 1px solid #d7e5ee;
-}
-
-#FT {
-	display: none;
-	float: left;
-	clear: both;
-	width: 100%;
-	margin-top: 20px;
-}*/
-
 #right_toolbar {
 	position: absolute;
 	width: 302px;
-	/*min-height: 95%;*/
 	top: 60px;
 	right: 0px;
 	background-color: #434664;
@@ -137,6 +121,10 @@ background-repeat: repeat-x;*/
 	background-position: 10px 0px;
 	padding-bottom: 90px;
 	word-wrap: break-word; /* only IE */
+}
+
+div#right_toolbar a {
+	color: #d6daff;
 }
 
 #right_toolbar div#toggler {
@@ -307,15 +295,12 @@ div#welcome div:hover {
 
 #rdf_tabs {
 clear: both;
-/*float: left;
-width: 100%;*/
 background-color: #434664;
 margin: 0px;
 padding-bottom: 5px;
 height: 20px;
 list-style-type: none;
 text-align: left;
-/*border-bottom: 1px solid #98bdc6*/
 width: 100%;
 overflow: hidden;
 }
@@ -344,16 +329,6 @@ _background-image: none;
 background-color: #bbb;
 }
 
-/*#rdf_tabs li.tab {
-	hover:expression(this.onmouseover=new Function("this.style.background='#9fa2c7';"),this.onmouseout=new Function("this.style.background='#434664';"));
-
-}
-#rdf_tabs li.tab_selected {
-	hover:expression(this.onmouseover=new Function("this.style.background='#e7e8f3';"),this.onmouseout=new Function("this.style.background='#e7e8f3';"));
-
-}*/
-
-
 #rdf_tabs li.tab:hover {
 	color: #0000;
 	background-color: #9fa2c7;
@@ -368,17 +343,10 @@ background-color: #bbb;
 }
 
 #rdf_input {
-/*float: left;*/
-/*clear: left;*/
 position: absolute;
 left: 400px;
 top: 18px;
 width: 60%}
-
-/*#rdf_input input {
-	cursor: hand;
-	cursor: pointer;
-}*/
 
 #rdf_input input#inputquery {
 	position: relative;
@@ -433,6 +401,12 @@ width: 60%}
 	left: 400px;
 }
 
+#rdf_storage a#storage_permalink {
+	position: absolute;
+	top: 8px;
+	left: 550px;
+}
+
 #rdf_storage div.storage_item {
 	margin: 4px 20px 1px 20px;
 	padding-bottom: 2px;
@@ -451,18 +425,6 @@ width: 60%}
 #rdf_storage div#storage_total:hover, #rdf_storage div#storage_toggle:hover {
 	background-color: #b6b9d8;
 }
-
-/*#rdf_filter {
-float: left;
-clear: left;
-width: 100%;
-padding-bottom: 10px;
-background: url("../images/bottom_bkg_grad.png");
-background-repeat: repeat-x;
-background-position: bottom}
-
-#rdf_filter a {
-font-size: 80%}*/
 
 #rdf_side {
 float: left;
