@@ -1,3 +1,27 @@
+2008-01-30 11:35  source
+
+	* Updated version to 2.8-rc2
+
+2008-01-30 11:35  source
+
+	* Renamed designer to dbdesigner
+
+2008-01-30 11:30  source
+
+	* Updated version
+
+2008-01-30 11:29  source
+
+	* Fixed pattern matching bug that made uris starting with https not
+	  deferencable
+
+2008-01-28 10:12  source
+
+	* Added session permalink functionality
+	* Fixed aestethics
+	* Fixed color of hyperlinks
+	* Small changes and cleanups
+
 2008-01-24 11:27  source
 
 	* Updated version to 2.8-rc1
