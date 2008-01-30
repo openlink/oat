@@ -21,7 +21,7 @@ AUTOMAKE_OPTIONS	= gnu 1.7 dist-zip
 
 SUBDIRS = \
 	demo \
-	designer \
+	dbdesigner \
 	exhibit-sparql \
 	formdesigner \
 	fresnel \

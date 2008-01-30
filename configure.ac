@@ -44,7 +44,7 @@ AM_MAINTAINER_MODE
 AC_CONFIG_FILES([
     Makefile 
     demo/Makefile
-    designer/Makefile
+    dbdesigner/Makefile
     exhibit-sparql/Makefile
     formdesigner/Makefile
     fresnel/Makefile
