@@ -36,7 +36,7 @@ OAT.Preferences = {
 	xsltPath:"../xslt/",
 	imagePath:"../images/",
 	stylePath:"../styles/",
-	version:"21.01.2008",
+	version:"29.01.2008",
 	httpError:1, /* show http errors */
 	allowDefaultResize:1,
 	allowDefaultDrag:1
