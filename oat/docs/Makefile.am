@@ -19,5 +19,4 @@
 
 EXTRA_DIST = \
 	$(srcdir)/*.css \
-	$(srcdir)/*.html \
-	$(srcdir)/*.js
+	$(srcdir)/*.html
