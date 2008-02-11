@@ -1,0 +1,88 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    <h2> dimmer.js</h2>
+
+    <p>Shows an object while dimming others, i.e. a Lighbox
+    effect.</p>
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#dimmer.js">dimmer.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Functions">Functions</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Dimmer.show(element,%20optObj)">OAT.Dimmer.show(element,
+        optObj)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Dimmer.hide()">OAT.Dimmer.hide()</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Functions</h3>
+
+    <h3>
+    OAT.Dimmer.show(element, optObj)</h3>Shows element. Additional
+    options can be specified via optObj:
+
+    <ul>
+      <li>color - hexadecimal color of dimming layer</li>
+
+      <li>opacity - opacity of dimming layer</li>
+
+      <li>popup - boolean value specifying whether the element
+      should be hidden by clicking to dimmed place</li>
+    </ul>
+      <br/>
+    <pre>
+var div = OAT.Dom.create("div");
+OAT.Dimmer.show(div, {color:"#f00", popup:false}); // modal window
+</pre>
+
+    <h3>
+    OAT.Dimmer.hide()</h3>Hides previously shown object and cancels
+    dimmer effect.
+
+    
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>

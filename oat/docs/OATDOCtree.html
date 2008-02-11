@@ -1,0 +1,161 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    <h2> tree.js</h2>Converts ul
+    tag into interactive tree.
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#tree.js">tree.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Objects">Objects</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Tree(options)">OAT.Tree(options)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Methods">Methods</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.assign(listElement,%20collapse)">.assign(listElement,
+        collapse)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#HTML%20Enhancement">HTML
+        Enhancement</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Objects</h3>
+
+    <h4>OAT.Tree(options)</h4>
+
+    <p>Options may contain any of the following:</p>
+
+    <ul>
+      <li>imagePath - path where all used images live</li>
+
+      <li>imagePrefix - prefix to all images</li>
+
+      <li>ext - image name extension</li>
+
+      <li>onlyOneOpened - boolean, specifying whether only one
+      branch can be opened at a time</li>
+
+      <li>allowDrag - boolean; can user re-drag Tree nodes?</li>
+
+      <li>useDots - boolean; draw dotted connectors?</li>
+
+      <li>onClick - "select|toggle|false"; what to do when user
+      clicks label/icon</li>
+
+      <li>onDblClick - "select|toggle|false"; what to do when user
+      double-clicks label/icon</li>
+
+      <li>poorMode - boolean; switch to "memory
+      <u>saving_increased_performance / lower_visual_features"
+      mode?</u>
+        </li>
+
+      <li>checkboxMode - boolean; use checkbox mode?</li>
+
+      <li>allowDrag - boolean; can user re-drag Tree nodes?</li>
+
+      <li>defaultCheck - boolean (only in checkbox mode) ; are
+      checkboxes checked by default ?</li>
+
+      <li>checkNOI - boolean (only in checkbox mode); if true, then
+      checked nodes are contained in OAT.Tree::checkedNOI.
+      Otherwise, this array contains unchecked nodes.</li>
+
+      <li>checkCallback - function (only in checkbox mode); will be
+      executed (with nodeSet argument) when user changes state of a
+      checkbox.</li>
+    </ul>
+
+    <h3>Methods</h3>
+
+    <h4>.assign(listElement,
+    collapse)</h4>
+
+    <p>This converts a list into an interactive tree. listElement
+    specifies an&lt;ul element in which your list lives. Argument
+    collapse toggles initial collapsing of whole tree.</p>
+
+    <p>Tree data structure can be accessed and modified. See
+    following simple examples for usage:</p>
+      <br/>
+    <pre>
+var t1 = new OAT.Tree({imagePath:"images",imagePrefix:"",ext:"gif"}); // will take images from images/Tree_*.gif
+var t2 = new OAT.Tree({imagePath:"images",imagePrefix:"prefix",ext:"png"}); // will take images from images/Tree_prefix_*.png
+t1.assign("myUL1", true); // collapsed
+t2.assign("myUL2", false); // expanded
+
+var node1 = t1.tree.children[0];
+var node2 = t2.tree.children[1];
+
+node2.appendChild(node1);
+node1.setLabel("newLabel");
+node2.expand();
+node1.createChild("newLabel", true); // second argument means that new child is a node rather than leaf
+node2.deleteChild(node1);
+</pre>
+
+    <h3> HTML Enhancement</h3>Add
+    attributes branchImg, toggleOpenImg and toggleClosedImg, which
+    would be appended to the li tag. This way we can have whatever
+    name AND file format for the tree decoration.
+
+    
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>

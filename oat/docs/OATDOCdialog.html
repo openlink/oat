@@ -1,0 +1,156 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    <h2> dialog.js</h2>
+
+    <p>Simple wrapper for ok/cancel dialog, that can contain any
+    data.</p>
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#dialog.js">dialog.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Objects">Objects</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Dialog(title,%20contentDiv,%20optObj)">OAT.Dialog(title,
+        contentDiv, optObj)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Methods">Methods</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Dialog::show()">OAT.Dialog::show()</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Dialog::hide()">OAT.Dialog::hide()</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Properties">Properties</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Dialog::ok">OAT.Dialog::ok</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Dialog::cancel">OAT.Dialog::cancel</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Objects</h3>
+
+    <h4>OAT.Dialog(title,
+    contentDiv, optObj)</h4>
+
+    <p>Creates a dialog window with title of title, appends
+    contentDiv into it. Various options specify its appearance and
+    behavior:</p>
+
+    <ul>
+      <li>width - in pixels, 0 = auto</li>
+
+      <li>height - in pixels, 0 = auto</li>
+
+      <li>modal - 1/0</li>
+
+      <li>zIndex - default 1000</li>
+
+      <li>onshow - callback to be performed when dialog is
+      shown</li>
+
+      <li>onhide - callback to be performed when dialog is
+      hidden</li>
+
+      <li>buttons - 1/0, whether to show OK/Cancel buttons</li>
+    </ul>
+
+    <h3> Methods</h3>
+
+    <h4>OAT.Dialog::show()</h4>Shows the
+    dialog.
+
+    <h4>OAT.Dialog::hide()</h4>Hides the
+    dialog.
+
+    <h3> Properties</h3>
+
+    <h4>OAT.Dialog::ok</h4>Callback to be
+    performed when user clicks 'OK' button.
+
+    <h4>OAT.Dialog::cancel</h4>Callback to be
+    performed when user clicks 'Cancel' button.<br/>
+    <pre>
+var d = new OAT.Dialog("dialog", div, {modal:1, buttons:1});
+d.show();
+</pre>
+
+    
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>

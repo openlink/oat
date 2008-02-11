@@ -1,0 +1,160 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    <h2> drag.js</h2>
+
+    <p>Provides dragging (moving) capability for any DOM node</p>
+    
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#drag.js">drag.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Functions">Functions</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Drag.create(clicker,%20mover,%20optObj)">OAT.Drag.create(clicker,
+        mover, optObj)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Drag.remove(clicker,%20mover)">OAT.Drag.remove(clicker,
+        mover)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Drag.removeAll(clicker)">OAT.Drag.removeAll(clicker)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Constants">Constants</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Drag.TYPE_X">OAT.Drag.TYPE_X</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Drag.TYPE_Y">OAT.Drag.TYPE_Y</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Drag.TYPE_XY">OAT.Drag.TYPE_XY</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Functions</h3>
+
+    <h4>
+    OAT.Drag.create(clicker, mover, optObj)</h4>
+
+    <p>Modifies element mover such that clicking and moving on
+    clicker will cause it to move. Additional options can be
+    specified using optObj object:</p>
+
+    <ul>
+      <li>type - one of the constants, specifies direction in which
+      the dragging will be possible</li>
+
+      <li>restrictionFunction - callback which specifies movement
+      restriction</li>
+
+      <li>endFunction - callback to be executed when dragging
+      ends</li>
+
+      <li>magnetsH - array of elements to horizontaly snap to</li>
+
+      <li>magnetsV - array of elements to vertically snap to</li>
+
+      <li>cursor - bool, adjust automatically css cursor</li>
+    </ul>
+      <br/>
+    <pre>
+var header = Dom.create("div");
+var body = Dom.create("div");
+body.appendChild(header);
+OAT.Drag.create(header, body, {type:TYPE_XY});
+</pre>
+
+    <h4>
+    OAT.Drag.remove(clicker, mover)</h4>Removes dragging relation
+    between clicker and mover.
+
+    <h4>OAT.Drag.removeAll(clicker)</h4>Removes
+    all dragging relations from clicker.
+
+    <h3> Constants</h3>
+
+    <h4>
+    OAT.Drag.TYPE_X</h4>
+
+    <h4>
+    OAT.Drag.TYPE_Y</h4>
+
+    <h4>
+    OAT.Drag.TYPE_XY</h4>
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>

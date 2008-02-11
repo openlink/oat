@@ -1,0 +1,155 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    <h2> tab.js</h2>Provides tab
+    functionality.
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#tab.js">tab.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Objects">Objects</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Tab(element,options)">OAT.Tab(element,options)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Methods">Methods</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Tab.add(clicker,%20window)">OAT.Tab.add(clicker,
+        window)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Tab.remove(clicker)">OAT.Tab.remove(clicker)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Tab.go(index)">OAT.Tab.go(index)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#CSS%20classes">CSS
+        classes</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Objects</h3>
+
+    <h4>OAT.Tab(element,options)</h4>Creates
+    Tab object. The element specifies a container where the tab
+    contents will be placed. options may contain:
+
+    <ul>
+      <li>goCallback - function to be called when tab switching
+      occurs. Two parameters will be supplied: old index and new
+      index.</li>
+
+      <li>onUnDock - function to be called when tab undocks. One
+      parameters will be supplied: tab's index.</li>
+
+      <li>onDock - function to be called when tab docks. One
+      parameters will be supplied: tab's index.</li>
+
+      <li>dockMode - true; whether tabs can be undocked into
+      standalone windows. You need to include the 'windows'
+      library.</li>
+
+      <li>dockElement - DOM node (or ID) specifying parent node for
+      tabs; only needed when dockMode == true</li>
+
+      <li>dockWindowWidth - Sets the width of the dock window</li>
+
+      <li>dockWindowHeight - Sets the height of the dock
+      window</li>
+    </ul>
+
+    <h3> Methods</h3>
+
+    <h4>OAT.Tab.add(clicker,
+    window)</h4>Adds a new clicker - window pair, i.e., when the
+    user clicks clicker, window will be shown.
+
+    <h4>OAT.Tab.remove(clicker)</h4>Removes
+    a clicker - window pair.
+
+    <h4>OAT.Tab.go(index)</h4>Switches to tab,
+    according to index.<br/>
+    <pre>
+var t = new OAT.Tab("content");
+t.add("header_1","window_1");
+t.add("header_2","window_2");
+t.go(0);
+</pre>
+
+    <h3> CSS classes</h3>
+
+    <ul>
+      <li>.tab</li>
+
+      <li>.tab_selected</li>
+    </ul>
+
+    
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    
+    
+
+    <h2>graphsvg.js</h2>
+
+    <p>SVG-based RDF Graph viewer.</p>
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#graphsvg.js">graphsvg.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Objects">Objects</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.GraphSVG(div,%20vertices,%20edges,%20optionsObject)">OAT.GraphSVG(div,
+        vertices, edges, optionsObject)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#CSS%20Classes">CSS
+        Classes</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.rdf_sidebar">.rdf_sidebar</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Objects</h3>
+
+    <h4>OAT.GraphSVG(div,
+    vertices, edges, optionsObject)</h4>
+
+    <p>Creates the Graph Viewer inside div. vertices is an array of
+    vertex objects:</p>
+      <br/>
+    <pre>
+{ name: "node_label", type: 0/1 } // type: URI/non-URI; edges is an 
+array of edge objects: { vertex1: vertex_object, vertex2: vertex_objects, name: "edge_label" }. 
+</pre>
+
+    <p>Available options:</p>
+
+    <ul>
+      <li>imagePath - path with images for tree in sidebar</li>
+
+      <li>vertexColor - string</li>
+
+      <li>edgeColor - string</li>
+
+      <li>backgroundColor - string</li>
+
+      <li>vertexSize - int</li>
+
+      <li>vertexPadding - int</li>
+
+      <li>padding - int</li>
+
+      <li>edgeSize - int</li>
+
+      <li>type - int; 0 - all nodes at once, 1 - equal
+      distances</li>
+
+      <li>placement - int; 0 - random, 1 - circle</li>
+
+      <li>distance - int; 0 - close, 1 - medim, 2 - far</li>
+
+      <li>projection - int; 0 - planar, 1 - spherical</li>
+
+      <li>labels - int; 0 - only element, 1-4 - distances</li>
+
+      <li>show - int; 0 - all, 1-4 - distances</li>
+    </ul>
+
+    <h3> CSS Classes</h3>
+
+    <h4> .rdf_sidebar</h4>
+
+    <p>CSS class of the sidebar div containing trees with RDF
+    resources, classes and predicates.</p>
+
+    
+
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>

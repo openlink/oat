@@ -1,0 +1,172 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    
+    
+
+    <h2> rdftabs.js</h2>
+
+    <p>Tabs API for OAT RDF applications. (see <a href="OATDOCrdfbrowser.html">RDF Browser</a>)</p>
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#rdftabs.js">rdftabs.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Must%20implement">Must
+        implement</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Can%20use">Can use</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#CSS%20classes">CSS
+        classes</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Available%20tabs">Available
+        tabs</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Must implement</h3>
+
+    <ul>
+      <li>[constructor](parent, optionsObject) - parent is a
+      reference to owner object (such as <a href="OATDOCrdfbrowser.html">RDB Browser</a>)</li>
+
+      <li>.elm - DOM node</li>
+
+      <li>.description - textual</li>
+
+      <li>.redraw() - redraw contents</li>
+
+      <li>.reset(hard) - called by parent when triple store
+      changes. when the change is initiated by applying filters,
+      hard == false. When the change is initiated by
+      adding/removing URL, hard == true.</li>
+    </ul>
+
+    <h3> Can use</h3>
+
+    <ul>
+      <li>parent.data = { triples:[] - array of triples all:{} -
+      object structured:{} - object with applied filters }</li>
+
+      <li>parent.store - instance of OAT.RDFStore</li>
+
+      <li>parent.getContentType(string) - return 1=link, 2=mail,
+      3=image, 0=others</li>
+
+      <li>parent.getTitle(dataItem) - returns title string for data
+      item</li>
+
+      <li>parent.getURI(dataItem) - returns URI for data item</li>
+
+      <li>parent.processLink(domNode, href, disabledActions) -
+      attach external handlers to a link</li>
+    </ul>
+
+    <h3> CSS classes</h3>
+
+    <ul>
+      <li>.rdf_sort</li>
+
+      <li>.rdf_group</li>
+
+      <li>.rdf_clear</li>
+
+      <li>.rdf_data</li>
+
+      <li>.rtf <u>tl_port</u>
+        </li>
+
+      <li>.rdf <u>tl_slider</u>
+        </li>
+
+      <li>.rdf_tagcloud</li>
+    </ul>
+
+    <h3> Available tabs</h3>
+
+    <ul>
+      <li>OAT.RDFTabs.browser(parent, options) - Used for viewing
+      all filtered data, structured into resource items. (options
+      pageSize (default 20), removeNS (default true))</li>
+
+      <li>OAT.RDFTabs.navigator(parent, options) - Used for
+      navigating through all locally cached data, one resource at a
+      time. Note that filters don't apply here, all data is
+      displayed. (option limit (default 5))</li>
+
+      <li>OAT.RDFTabs.triples(parent, options) - Displays all
+      filtered triples. (options pageSize, removeNS)</li>
+
+      <li>OAT.RDFTabs.svg(parent, options) - Displays filtered data
+      as SVG Graph. For performance reasons, the number of used
+      triples is limited by option limit (default 100).</li>
+
+      <li>OAT.RDFTabs.map(parent, options) - Plots all geodata
+      found in filtered resources onto a map. (options provider
+      (default OAT.MapData.TYPE_G), fix (default
+      OAT.MapData.FIX_ROUND1))</li>
+
+      <li>OAT.RDFTabs.timeline(parent, options) - Displays all
+      date/time containing resources on an interactive time line.
+      (options imagePath (default Oat.Preferences.imagePath))</li>
+
+      <li>OAT.RDFTabs.images(parent, options) - Displays all images
+      found in filtered data set. (options columns (default 4),
+      thumbSize (default 150), size (default 600))</li>
+
+      <li>OAT.RDFTabs.tagcloud(parent) - Displays all links found
+      in filtered data set.</li>
+
+      <li>OAT.RDFTabs.fresnel(parent, options) - Applies Fresnel
+      RDF Vocabularies to all dereferenced data. (options
+      defaultURL (default ""), autoload (default false))
+      
+
+        <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    
+    
+
+    <h2>
+    linechart.js</h2>
+
+    <p>Library for drawing Line charts, using SVG.</p>
+    
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#linechart.js">linechart.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Objects">Objects</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Methods">Methods</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.LineChart::attachData(dataArray)">OAT.LineChart::attachData(dataArray)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.LineChart::attachTextX(textArray)">OAT.LineChart::attachTextX(textArray)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.LineChart::attachTextY(textArray)">OAT.LineChart::attachTextY(textArray)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.LineChart::draw()">OAT.LineChart::draw()</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Constants">Constants</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.LineChartMarker.MARKER_CIRCLE">OAT.LineChartMarker.MARKER_CIRCLE</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.LineChartMarker.MARKER_TRIANGLE">OAT.LineChartMarker.MARKER_TRIANGLE</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.LineChartMarker.MARKER_CROSS">OAT.LineChartMarker.MARKER_CROSS</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.LineChartMarker.MARKER_SQUARE">OAT.LineChartMarker.MARKER_SQUARE</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Objects</h3>Creates a
+    Line Chart inside div, optObj describes its properties. Its
+    values:
+
+    <ul>
+      <li>paddingLeft, paddingBottom, paddingTop, paddingRight</li>
+
+      <li>axes - bool, should axes be drawn?</li>
+
+      <li>legend - bool, should legend be drawn?</li>
+
+      <li>markerSize - int</li>
+
+      <li>colors - array of strings; one color per each
+      dataset</li>
+
+      <li>grid - bool, should we draw horizontal lines?</li>
+
+      <li>gridDesc - bool; should we draw labels for horizontal
+      lines?</li>
+
+      <li>gridNum - int; approximate count of horizontal lines</li>
+
+      <li>desc - bool; should we draw X labels</li>
+
+      <li>markers - array of marker constants</li>
+
+      <li>gridColor - string</li>
+
+      <li>fontSize - int</li>
+    </ul>
+
+    <h3> Methods</h3>
+
+    <h4>OAT.LineChart::attachData(dataArray)</h4>Adds
+    data to chart. dataArray may be an array of arrays; in this
+    case, each sub-array is treated as one dataset.
+
+    <h4>OAT.LineChart::attachTextX(textArray)</h4>Adds
+    X axis labels.
+
+    <h4>OAT.LineChart::attachTextY(textArray)</h4>Adds
+    legend labels.
+
+    <h4>OAT.LineChart::draw()</h4>Draws the
+    chart.<br/>
+    <pre>
+var data = [ [1,2,4,3], [4,3,2,1], [2,1,3,4], [3,4,1,2]];
+var lc = new OAT.LineChart("myDiv",{markerSize:6});
+lc.attachData(data);
+lc.attachTextX(["a","b","c","d"]);
+lc.attachTextY(["red","blue","green","yellow"]);
+lc.draw();
+</pre>
+
+    <h3> Constants</h3>
+
+    <h4>
+    OAT.LineChartMarker.MARKER_CIRCLE</h4>
+
+    <h4>
+    OAT.LineChartMarker.MARKER_TRIANGLE</h4>
+
+    <h4>
+    OAT.LineChartMarker.MARKER_CROSS</h4>
+
+    <h4>
+    OAT.LineChartMarker.MARKER_SQUARE</h4>
+
+    <p>Constants specifying shape of the value markers.</p>
+
+    
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>

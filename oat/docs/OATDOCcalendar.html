@@ -1,0 +1,199 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    <h2>
+    calendar.js</h2>Displays a calendar for date picking.
+    
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#calendar.js">calendar.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Objects">Objects</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Calendar(optObj)">OAT.Calendar(optObj)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Methods">Methods</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Calendar::show(x,%20y,%20callback,%20[date])">OAT.Calendar::show(x,
+        y, callback, [date])</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#CSS%20classes">CSS
+        classes</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.calendar">.calendar</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.calendar_selected">.calendar_selected</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.calendar_special">.calendar_special</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.calendar_year">.calendar_year</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.calendar_month">.calendar_month</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Objects</h3>
+
+    <h4>OAT.Calendar(optObj)</h4>Instantiates
+    the OAT.Calendar object. optObj may contain:
+
+    <ul>
+      <li>popup - bool; should clicking anywhere close the
+      calendar? (default: false)</li>
+    </ul>
+
+    <h3> Methods</h3>
+
+    <h4>OAT.Calendar::show(x,
+    y, callback, [date])</h4>
+
+    <p>Shows the calendar. It will appear at [x, y]. If date is
+    specified, it will be pre-selected. All dates are in form of
+    [year, month, day], starting from 1. When user selects a date,
+    a callback(date) will be called.</p>
+
+    <p>Further customizations can be done by setting some
+    properties:</p>
+
+    <ul>
+      <li>OAT.Calendar.dayNames - array of 7 day names</li>
+
+      <li>OAT.Calendar.monthNames - array of 12 month names</li>
+
+      <li>OAT.Calendar.specialDays - array specifying which days
+      should be special (weekends)</li>
+
+      <li>OAT.Calendar.weekStartIndex - index of day (in
+      OAT.Calendar.dayNames) when week starts</li>
+
+      <li>OAT.Calendar.dayZeroIndex - index of day for which
+      Date::getDay() returns 0, i.e. Sunday.</li>
+    </ul>
+      <br/>
+    <pre>
+var c = new OAT.Calendar();
+c.dayNames = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+c.monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+c.specialDays = [0,0,0,0,0,1,1];
+c.dayZeroIndex = 6;
+c.weekStartIndex = 6;
+c.show(100, 100, function(){});
+</pre>
+
+    <h3> CSS classes</h3>
+
+    <h4> .calendar</h4>
+
+    <p>CSS class of calendar div.</p>
+
+    <h4> .calendar_selected</h4>
+
+    <p>CSS class of previously selected day.</p>
+
+    <h4> .calendar_special</h4>
+
+    <p>CSS class of special days, e.g. Sundays, holidays.</p>
+
+    <h4> .calendar_year</h4>
+
+    <p>CSS class of div containing the year title and
+    selection.</p>
+
+    <h4> .calendar_month</h4>
+
+    <p>CSS class of div containing the month title and
+    selection.</p>
+
+    
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>

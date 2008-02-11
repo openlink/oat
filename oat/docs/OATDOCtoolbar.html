@@ -1,0 +1,159 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    <h2>
+    toolbar.js</h2>Basic Toolbar control
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#toolbar.js">toolbar.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Objects">Objects</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Toolbar(div,%20options)">OAT.Toolbar(div,
+        options)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Methods">Methods</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.addIcon(twoStates,%20imagePath,%20tooltip,%20callback)">.addIcon(twoStates,
+        imagePath, tooltip, callback)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.addSeparator()">.addSeparator()</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.removeIcon(icon)">.removeIcon(icon)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.removeSeparator(separator)">.removeSeparator(separator)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#CSS%20slasses">CSS
+        slasses</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Objects</h3>
+
+    <h4> OAT.Toolbar(div,
+    options)</h4>
+
+    <p>Creates a Toolbar. Its main DIV is accessible as
+    toolbar.div. You can use following options:</p>
+
+    <ul>
+      <li>labels - use labels (default false)</li>
+    </ul>
+
+    <h3> Methods</h3>
+
+    <h4>.addIcon(twoStates,
+    imagePath, tooltip, callback)</h4>
+
+    <p>Adds a new icon to Toolbar. If twoStates == true, than this
+    icon will have two states (otherwise 1). This icon will have
+    image located at imagePath, it will display tooltip onHover and
+    clicking it will execute callback (with state #, 0 or 1, as an
+    argument).</p>
+
+    <h4>.addSeparator()</h4>Adds a
+    separator.
+
+    <h4>.removeIcon(icon)</h4>Remove icon.
+
+    <h4>.removeSeparator(separator)</h4>Remove
+    separator.<br/>
+    <pre>
+var callback = function(state) { alert(state); }
+var t = new OAT.Toolbar();
+t.addIcon(true, "", "some tooltip", callback);
+document.body.appendChild(t.div);
+</pre>
+
+    <h3> CSS slasses</h3>
+
+    <ul>
+      <li>.toolbar</li>
+
+      <li>.toolbar_icon</li>
+
+      <li>.toolbar <u>icon_down</u>
+        </li>
+
+      <li>.toolbar_separator</li>
+    </ul>
+
+    
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+#oatnav {
+    background: silver;
+    color: black;
+    margin-top: 2px; margin-bottom: 2px;
+    font-size: 120%;
+    margin-bottom: 1em;
+}
+
+#oatcopy {
+    background: silver;
+    color: black;
+    margin-top: 2px; margin-bottom: 2px;
+    font-size: 120%;
+    margin-top: 2em;
+}
+
+#oatnav a {
+    color: blue;
+    text-decoration: none;
+}
+
+#oatnav a:hover {
+    color: red;
+    text-decoration: underline;
+}
+
+label.c2 { color: white; }
+
+pre { 
+    background-color: #E5E5E5; 
+    color: black; 
+    border: solid 1px #303030; 
+    padding: 1em }
+
+a { 
+    color: blue; 
+    text-decoration: none; 
+}
+
+a:hover {
+    color: red; 
+    text-decoration: underline 
+}
+
+table {
+    border: solid 2px #DADADA;
+    border-collapse: collapse;
+}
+
+table * {
+    border: solid 1px #DADADA;
+    border-collapse: collapse;
+}
+
+table * td {
+    padding: 3px;
+}

@@ -1,0 +1,156 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    
+    
+
+    <h2>timeline.js</h2>Draggable timeline.
+    
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#timeline.js">timeline.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Objects">Objects</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Timeline(contentDiv,%20options)">OAT.Timeline(contentDiv,
+        options)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Methods">Methods</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.addBand(name,%20color,%20label)">.addBand(name, color,
+        label)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.addEvent(bandName,%20startTime,%20endTime,%20content,%20color)">
+        .addEvent(bandName, startTime, endTime, content,
+        color)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Timeline::draw()">OAT.Timeline::draw()</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#CSS%20Classes">CSS
+        Classes</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Objects</h3>
+
+    <h4>OAT.Timeline(contentDiv,
+    options)</h4>
+
+    <p>Creates a Timeline inside contentDiv. options may contain
+    these options:</p>
+
+    <ul>
+      <li>lineHeight - int, height of one record</li>
+
+      <li>bandHeight - int, height of one band's header</li>
+
+      <li>margins - int, (default 200)</li>
+
+      <li>resize - bool (default true)</li>
+
+      <li>formatter - bool (default true)</li>
+
+      <li>sliderHeight - int, height of slider</li>
+
+      <li>autoHeight - bool, should height be automatically
+      adjusted? (default true)</li>
+    </ul>
+
+    <h3>Methods</h3>
+
+    <h4>.addBand(name,
+    color, label)</h4>Adds a data band to chart. The band is
+    identified by name and labeled with label.
+
+    <h4>.addEvent(bandName,
+    startTime, endTime, content, color)</h4>Adds new event to
+    Timeline, resp. to its band bandName. endTime can be false,
+    when the event has no duration. content is a HTML element;
+    color is a background color for time strip (only when endTime
+    != false).
+
+    <h4>OAT.Timeline::draw()</h4>Draws the
+    timeline.
+
+    <h3>CSS Classes</h3>
+
+    <ul>
+      <li>.timeline</li>
+
+      <li>.timeline_port</li>
+
+      <li>.timeline_slider</li>
+    </ul>
+
+    
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>

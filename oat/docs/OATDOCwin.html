@@ -1,0 +1,160 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    
+    
+
+    <h2> win.js</h2>
+
+    <p>Creates windows.</p>
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#win.js">win.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Objects">Objects</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Win(options)">OAT.Win(options)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Constants">Constants</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#CSS%20Styles">CSS Styles</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Objects</h3>
+
+    <h4> OAT.Win(options)</h4>
+
+    <p>Creates a window. Its components are accessible via:</p>
+
+    <ul>
+      <li>container</li>
+
+      <li>content</li>
+
+      <li>title (all titlebar)</li>
+
+      <li>caption (text in the titlebar)</li>
+
+      <li>status</li>
+    </ul>
+
+    <p>For types see constants section.</p>
+
+    <p>Options can be following:</p>
+
+    <ul>
+      <li>title - title of the window</li>
+
+      <li>x - x position (default 0)</li>
+
+      <li>y - y position (default 0)</li>
+
+      <li>visibleButtons - use letters cmMfr
+
+        <ul>
+          <li>c - close</li>
+
+          <li>m - minimize</li>
+
+          <li>M - maximize</li>
+
+          <li>f - flip</li>
+
+          <li>r - resize</li>
+        </ul>
+      </li>
+
+      <li>enabledButtons - use letters cmMfr (as above)</li>
+
+      <li>outerWidth - (default 350)</li>
+
+      <li>outerHeight - (false means CSS auto) (default auto)</li>
+
+      <li>type - (default OAT.WinData.TYPE_AUTO) See constants
+      section. No need to specify when using object of the
+      particular type.</li>
+
+      <li>template - (default false) - use only with type template,
+      contains object with template specification</li>
+
+      <li>className - additional class name for the window (default
+      false)</li>
+    </ul>
+
+    <h3>Constants</h3>
+
+    <ul>
+      <li>OAT.WindowData.TYPE_MS - Redmond style like oldschool
+      Windows</li>
+
+      <li>OAT.WindowData.TYPE_MAC - Apple Aqua style</li>
+
+      <li>OAT.WindowData.TYPE_ROUND - window with rounded
+      corners</li>
+
+      <li>OAT.WindowData.TYPE_RECT - rectangular window</li>
+
+      <li>OAT.WindowData.TYPE_ODS - OpenLink Data Spaces look</li>
+
+      <li>OAT.WindowData.TYPE_AUTO - determines OS and uses
+      appropriate type</li>
+
+      <li>OAT.WindowData.TYPE_TEMPLATE - you can create your own
+      look</li>
+    </ul>
+
+    <h3> CSS Styles</h3>See
+    oat/styles/win*.css files.
+
+    
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>

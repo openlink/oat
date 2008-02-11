@@ -1,0 +1,75 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    
+    
+
+    <h2> Ajax Security
+    mechanisms</h2>
+
+    <p>XML for Analysis methods.</p>
+
+    <p>Under some circumstances (GET requests for JSON-serialized
+    data), it is possible for a malicious site to hijack personal
+    data. More about this can be found in this document. OAT
+    provides support for preventing these attacks. To make your web
+    application invulnerable to such attacks, use the
+    following:</p>
+
+    <ol>
+      <li>Shared secret cookie verification - for every GET request
+      generated, OAT sets a cookie named oatSecurityCookie to a
+      random value. The same value is appended to a query string.
+      Server endpoint is encouraged to compare these two values and
+      verify that they don't differ. This guarantees that the
+      request was made from the correct page.</li>
+
+      <li>JS Traps in returned JSON - to prevent JSON code
+      execution, OAT filters out the following text parts from JSON
+      data:
+
+        <ul>
+          <li>The while(1); construct, located at the beginning of
+          JSON text,</li>
+
+          <li>Comments at the beginning and end of the text.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <p>JSON data providers are encouraged to use one or both of
+    these methods to prevent data execution. Such JSON response may
+    the look like this:</p>
+      <br/>
+    <pre>
+while(1);/*{[
+        {"name":"safe value 1"},
+        {"name":"safe value 2"},
+        ...
+]}*/
+</pre>
+
+    
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>

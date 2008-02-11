@@ -1,0 +1,282 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    <h2> xmla.js</h2>
+
+    <p>XML for Analysis methods.</p>
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#xmla.js">xmla.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Functions">Functions</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Xmla.discover(callback)">OAT.Xmla.discover(callback)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Xmla.dbschema(callback)">OAT.Xmla.dbschema(callback)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Xmla.tables(catalog,%20callback)">OAT.Xmla.tables(catalog,
+        callback)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Xmla.columns(catalog,%20schema,%20table,%20callback)">
+        OAT.Xmla.columns(catalog, schema, table, callback)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Xmla.execute(callback)">OAT.Xmla.execute(callback)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Xmla.qualifiers(callback)">OAT.Xmla.qualifiers(callback)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Xmla.primaryKeys(catalog,schema,table,callback)">OAT.Xmla.primaryKeys(catalog,schema,table,callback)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Xmla.foreignKeys(catalog,schema,%20table,callback)">OAT.Xmla.foreignKeys(catalog,schema,
+        table,callback)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Xmla.providerTypes(callback)">OAT.Xmla.providerTypes(callback)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Properties">Properties</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Functions</h3>
+
+    <h4>
+    OAT.Xmla.discover(callback)</h4>
+
+    <p>Sends a 'discover datasources' request, processes response,
+    then performs callback. OAT.Xmla.connection should be set
+    before calling this function.</p>
+      <br/>
+    <pre>
+var callback = function(data); {
+alert(data); // array of DSNs
+}
+OAT.Xmla.discover(callback);
+</pre>
+
+    <h4>OAT.Xmla.dbschema(callback)</h4>
+
+    <p>Sends a 'dbschema_catalogs' request, processes response,
+    then performs callback. OAT.Xmla.connection should be set
+    before calling this function.</p>
+      <br/>
+    <pre>
+var callback = function(data); {
+alert(data); // array of catalogs
+}
+OAT.Xmla.dbschema(callback);
+</pre>
+
+    <h4>OAT.Xmla.tables(catalog,
+    callback)</h4>
+
+    <p>Sends a 'dbschema_tables' request with catalog restriction,
+    processes response, then performs callback. OAT.Xmla.connection
+    should be set before calling this function.</p>
+      <br/>
+    <pre>
+var callback = function(data); {
+alert(data[0]); // array of table names
+alert(data[1]); // array of table schemes
+}
+OAT.Xmla.tables(callback);
+</pre>
+
+    <h4>
+    OAT.Xmla.columns(catalog, schema, table, callback)</h4>
+
+    <p>Sends a 'dbschema_columns' request with <i>catalog, schema
+    and table</i> restrictions, processes response, then performs
+    <i>callback</i>. OAT.Xmla.connection should be set before
+    calling this function.</p>
+      <br/>
+    <pre>
+var callback = function(data); {
+// data is an array of objects
+alert(data[0].name); // name of first column
+}
+OAT.Xmla.columns(callback);
+</pre>
+
+    <h4>
+    OAT.Xmla.execute(callback)</h4>
+
+    <p>Sends a query for execution. OAT.Xmla.connection should be
+    set before calling this function.</p>
+      <br/>
+    <pre>
+var callback = function(data); {
+var header = data[0];
+var data = data[1];
+alert(header.length); // count of columns in result
+alert(data.length); // count of rows in result
+}
+OAT.Xmla.execute(callback);
+</pre>
+
+    <h4>
+    OAT.Xmla.qualifiers(callback)</h4>
+
+    <p>Discovers qualifiers.</p>
+      <br/>
+    <pre>
+var callback = function(data); {
+alert("First qualifier "+data[0]);
+alert("Second qualifier "+data[1]);
+}
+OAT.Xmla.qualifiers(callback);
+</pre>
+
+    <h4>
+    OAT.Xmla.primaryKeys(catalog,schema,table,callback)</h4>
+
+    <p>Gets primary keys for this table.</p>
+      <br/>
+    <pre>
+var callback = function(data); {
+// data == array of column names
+alert(data);
+}
+OAT.Xmla.primaryKeys(catalog,schema,table,callback);
+</pre>
+
+    <h4>
+    OAT.Xmla.foreignKeys(catalog,schema, table,callback)</h4>
+
+    <p>Gets all columns being a part of foreign key using this
+    table.</p>
+      <br/>
+    <pre>
+var callback = function(data); {
+// data == array of objects
+for (var i=0;i&lt;data.length;i++) {
+alert(data[i][0].column+" "+data[i][1].column);
+}
+}
+OAT.Xmla.foreignKeys(catalog,schema,table,callback);
+</pre>
+
+    <h4>
+    OAT.Xmla.providerTypes(callback)</h4>Discovers available
+    datatypes.
+
+    <p>Gets all columns being a part of foreign key using this
+    table.</p>
+      <br/>
+    <pre>
+var callback = function(data); {
+// data == array of objects
+for (var i=0;i&lt;data.length;i++) {
+alert(data[i].name+" "+data[i].type);
+}
+}
+OAT.Xmla.providerTypes(catalog,schema,table,callback);
+</pre>
+
+    <h3> Properties</h3>
+
+    <ul>
+      <li>OAT.Xmla.connection</li>
+
+      <li>OAT.Xmla.query</li>
+    </ul>
+
+    
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>

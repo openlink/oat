@@ -1,0 +1,157 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    
+    
+
+    <h2>
+    tagcloud.js</h2>
+
+    <p>Displays a "Tag Cloud", visually enhanced set of links.</p>
+    
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#tagcloud.js">tagcloud.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Objects">Objects</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.TagCloud(div,%20optionsObject)">OAT.TagCloud(div,
+        optionsObject)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Methods">Methods</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.clearItems()">.clearItems()</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.addItem(name,%20link,%20frequency)">.addItem(name, link,
+        frequency)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.draw()">.draw()</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Constants">Constants</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Objects</h3>
+
+    <h4>OAT.TagCloud(div,
+    optionsObject)</h4>Creates a Tag Cloud inside div. Options are
+    specified in optionsObject:
+
+    <ul>
+      <li>separator - string, separating individual entries</li>
+
+      <li>colors - array of colors to be used</li>
+
+      <li>sizes - array of font sizes to be used</li>
+
+      <li>colorMapping - one of the COLOR_ constants</li>
+    </ul>
+
+    <h3> Methods</h3>
+
+    <h4>.clearItems()</h4>Removes all
+    items (links).
+
+    <h4>.addItem(name, link,
+    frequency)</h4>Adds a new item. Its label is name, link is an
+    URL. Third argument, frequency is optional and defaults to 1.
+
+    <h4>.draw()</h4>Draws the Tag
+    Cloud.<br/>
+    <pre>
+var colors = ["#f00","#0f0","#00f"];
+var sizes = ["80%","100%","120%"];
+var tc = new OAT.TagCloud("myDiv",{separator:", ", colorMapping:OAT.TagCloudData.COLOR_SIZE, colors:colors, sizes:sizes});
+
+tc.addItem("Label 1", "http://", 10);
+tc.addItem("Label 2", "http://", 5);
+tc.addItem("Label 3", "http://"); /* frequency == 1 */
+
+tc.draw();
+</pre>
+
+    <h3> Constants</h3>
+
+    <ul>
+      <li>OAT.TagCloudData.COLOR_SIZE - create color based on size
+      (=frequency)</li>
+
+      <li>OAT.TagCloudData.COLOR_CYCLE - periodically cycle all
+      specified colors</li>
+
+      <li>OAT.TagCloudData.COLOR_RANDOM - use randomly chosen color
+      for each item</li>
+    </ul>
+
+    
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>

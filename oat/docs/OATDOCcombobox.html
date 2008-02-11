@@ -1,0 +1,156 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    <h2>combobox.js</h2>
+
+    <p>Creates a combobox, an enhanced &lt;select&gt; which allows
+    richer options.</p>
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#combobox.js">combobox.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Objects">Objects</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Combobox(defaultValue)">OAT.Combobox(defaultValue)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Methods">Methods</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Combobox::addOption(element,%20textValue)">OAT.Combobox::addOption(element,
+        textValue)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#CSS%20classes">CSS
+        classes</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.combo_box">.combo_box</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.combo_box_list">.combo_box_list</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.combo_box_value">.combo_box_value</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.combo_image">.combo_image</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Objects</h3>
+
+    <h4>OAT.Combobox(defaultValue)</h4>Creates
+    a combobox with a value of defaultValue. Its main div is
+    accessible as OAT.Combobox::div. Onchange callback may be set
+    via OAT.Combobox::onchange property.
+
+    <h3> Methods</h3>
+
+    <h4>OAT.Combobox::addOption(element,
+    textValue)</h4>Adds a new option, represented by element with a
+    value of textValue.<br/>
+    <pre>
+var cb = new OAT.Combobox("[choose here]");
+document.body.appendChild( cb.div );
+cb.addOption(someElement, "option 1");
+cb.addOption(someOtherElement, "option 2");
+</pre>
+
+    <h3> CSS classes</h3>
+
+    <h4> .combo_box</h4>
+
+    <p>CSS class of the main combo box div.</p>
+
+    <h4> .combo_box_list</h4>
+
+    <p>CSS class of options list div.</p>
+
+    <h4> .combo_box_value</h4>
+
+    <p>CSS class of the currently selected option.</p>
+
+    <h4> .combo_image</h4>
+
+    <p>CSS class of the dropdown clicker image.</p>
+
+    
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>

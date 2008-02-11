@@ -1,0 +1,166 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    
+    
+
+    <h2>simplefx.js</h2>
+
+    <p>Simple eyecandy effects: shadows, rounding etc.</p>
+    
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#simplefx.js">simplefx.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Functions">Functions</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.SimpleFX.shadow(element,%20options)">OAT.SimpleFX.shadow(element,
+        options)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.SimpleFX.roundImg(element,%20options)">OAT.SimpleFX.roundImg(element,
+        options)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.SimpleFX.roundImg(element,%20optionsObject)">OAT.SimpleFX.roundImg(element,
+        optionsObject)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.SimpleFX.shader(clicker,%20target,%20options)">OAT.SimpleFX.shader(clicker,
+        target, options)</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Functions</h3>
+
+    <h4>OAT.SimpleFX.shadow(element,
+    options)</h4>Adds a shadow to element. Available options are:
+
+    <ul>
+      <li>imagePath - path to directory with shadow images</li>
+
+      <li>offsetX, offsetY - horizontal and vertical offset</li>
+
+      <li>rightSize, bottomSize - dimensions of shadows</li>
+
+      <li>rightImage, bottomImage, cornerImage - file names</li>
+    </ul>
+      <br/>
+    <pre>
+OAT.SimpleFX.shadow("myDiv", {});
+</pre>
+
+    <h4>OAT.SimpleFX.roundImg(element,
+    options)</h4>Creates rounded corners, using images. Available
+    options are:
+
+    <ul>
+      <li>corners - array of booleans, specifying corners to be
+      rounded. Starting from left top clockwise.</li>
+
+      <li>edges - array of booleans, specifying edges to be
+      rounded. Starting from top clockwise.</li>
+
+      <li>cornerFiles, edgeFiles - array of file names</li>
+
+      <li>thickness - array of sizes, specifying thicknesses of
+      corners. Starting from left top clockwise.</li>
+    </ul>
+      <br/>
+    <pre>
+OAT.SimpleFX.roundDiv("myDiv",{corners:[1,1,0,0]});
+</pre>
+
+    <h4>OAT.SimpleFX.roundImg(element,
+    optionsObject)</h4>Creates rounded corners, using stacked DIVs.
+    Available options are:
+
+    <ul>
+      <li>corners - array of booleans, specifying corners to be
+      rounded. Starting from left top clockwise.</li>
+
+      <li>color, backgroundColor - colors to be used.
+      BackgroundColor? is used only for computation of
+      antialiasing color. Defaults to 'auto' (=inherit).</li>
+
+      <li>antialias - boolean value</li>
+
+      <li>size - radius. Good values are 2-8.</li>
+    </ul>
+      <br/>
+    <pre>
+OAT.SimpleFX.roundDiv("myDiv", {antialias:1, size:5});
+</pre>
+
+    <h4>OAT.SimpleFX.shader(clicker,
+    target, options)</h4>Marks clicker as a button, who hides/shows
+    target. Target may be an array of elements. Available options
+    are:
+
+    <ul>
+      <li>type - 0=only hide, 1=only show, 2=both (toggle)</li>
+    </ul>
+      <br/>
+    <pre>
+OAT.SimpleFX.shader("myDiv", ["myDiv1","myDiv2"], {type:2});
+</pre>
+
+    
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>

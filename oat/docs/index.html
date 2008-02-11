@@ -1,34 +1,308 @@
 <html>
-	<head>
-		<script type="text/javascript" >
-			var featureList=["ajax2","drag","window"];
-		</script>
-		<title>OAT Documentation</title>
-		<link rel="stylesheet" type="text/css" href="style.css" />
-		<script type="text/javascript" src="../loader.js"></script>
-		<script type="text/javascript" src="docs.js"></script>
-	</head>
-	<body >
-		<div id="toc">
-			<div id="toc_header">
-				<h1>Table of contents</h1>
-				<div>[<a href="#" id="toggle">-</a>]</div>
-			</div>
-			<div id="toc_content"></div>
-		</div>
-		<h1>OAT Documentation</h1>
-		<div id="content">
-			<h2>What's new?</h2>
-			<ul id="whatsnew">
-				<li>OAT.RDFStore</li>
-				<li>OAT.RDF and OAT.N3 parsers</li>
-				<li>new OAT.Instant()</li>
-				<li>List of obsolete calls</li>
-				<li>OAT.Event and OAT.Style objects (loader.js)</li>
-				<li>OAT.Browser properties (loader.js)</li>
-				<li>reworked DAV Browser (dav.js) with richer and more straightforward API</li>
-				<li>new OAT.AJAX (ajax2.js) instead of OAT.Ajax (ajax.js)</li>
-			</ul>
-		</div>
-	</body>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    
+
+    <h2>OAT Documentation</h2>
+
+    <h3>OAT Conceptual
+    Overview</h3>
+
+    <ul>
+      <li>
+          <a href="OATDOCbasicoperation.html">Basic Operation</a>
+        </li>
+
+      <li>
+          <a href="OATDOCobsoletecalls.html">Obsolete Calls</a>
+        </li>
+
+      <li>
+          <a href="OATDOCevents.html">Event Handling Basics</a>
+        </li>
+
+      <li>
+          <a href="OATDOCmessaging.html">Messaging</a>
+        </li>
+
+      <li>
+          <a href="OATDOCsecurity.html">AJAX Security mechanisms</a>
+        </li>
+
+      <li>
+          <a href="OATDOCNew.html">What is new in OAT?</a>
+        </li>
+    </ul>
+
+    <h3>OAT API Index</h3>
+
+    <ul>
+      <li>
+          <a href="OATDOCajax2.html">ajax2.js</a> - Provides basic asynchronous
+      xml call (AJAX) routines.</li>
+
+      <li>
+          <a href="OATDOCanchor.html">anchor.js</a> - Enhanced Anchor tag.</li>
+
+      <li>
+          <a href="OATDOCanimation.html">animation.js</a> - Implements basic
+      animation framework, as well as some pre-defined animation
+      effects.</li>
+
+      <li>
+          <a href="OATDOCbarchart.html">barchart.js</a> - Library for drawing Bar
+      charts, using HTML DOM.</li>
+
+      <li>
+          <a href="OATDOCbezier.html">bezier.js</a> - Provides two mathematical
+      functions for drawing Bezier curves.</li>
+
+      <li>
+          <a href="OATDOCcalendar.html">calendar.js</a> - Displays a calendar for
+      date picking.</li>
+
+      <li>
+          <a href="OATDOCcolor.html">color.js</a> - Displays a color picker.</li>
+
+      <li>
+          <a href="OATDOCcombobox.html">combobox.js</a> - Creates a combobox, an
+      enhanced select which allows richer options.</li>
+
+      <li>
+          <a href="OATDOCcombobutton.html">combobutton.js</a> - Creates a
+      multifunctional button, which enables user to specify a
+      callback action to be performed when it is clicked.</li>
+
+      <li>
+          <a href="OATDOCcombolist.html">combolist.js</a> - Creates a combolist,
+      select with additional possibility of direct user input.</li>
+
+      <li>
+          <a href="OATDOCconnection.html">connection.js</a> - Connection object for
+      data access.</li>
+
+      <li>
+          <a href="OATDOCcrypto.html">crypto.js</a> - Provides cryptographic
+      (hashing) functions.</li>
+
+      <li>
+          <a href="OATDOCdatasource.html">datasource.js</a> - Provides data access
+      support for various data sources (SQL,SPARQL,SOAP...) and
+      allows binding and execution of callbacks upon data
+      arrival.</li>
+
+      <li>
+          <a href="OATDOCdav.html">dav.js</a> - Displays a WebDav Browser
+      window for file picking/opening/saving.</li>
+
+      <li>
+          <a href="OATDOCdialog.html">dialog.js</a> - Simple wrapper for ok/cancel
+      dialog, that can contain any data.</li>
+
+      <li>
+          <a href="OATDOCdimmer.html">dimmer.js</a> - Shows an object while
+      dimming others, i.e. a Lighbox effect.</li>
+
+      <li>
+          <a href="OATDOCdock.html">dock.js</a> - Creates a draggable system of
+      docking elements, grouped into columns.</li>
+
+      <li>
+          <a href="OATDOCdrag.html">drag.js</a> - Provides dragging (moving)
+      capability for any DOM node.</li>
+
+      <li>
+          <a href="OATDOCfisheye.html">fisheye.js</a> - Creates Mac-like dock.</li>
+
+      <li>
+          <a href="OATDOCfresnel.html">fresnel.js</a> - Fresnel Lens RDF
+      Processor.</li>
+
+      <li>
+          <a href="OATDOCghostdrag.html">ghostdrag.js</a> - Provides drag'n'drop
+      functionality.</li>
+
+      <li>
+          <a href="OATDOCgraphsvg.html">graphsvg.js</a> - SVG-based RDF Graph
+      viewer.</li>
+
+      <li>
+          <a href="OATDOCgrid.html">grid.js</a> - Advanced grid (table)
+      control.</li>
+
+      <li>
+          <a href="OATDOCinstant.html">instant.js</a> - Provides pop-up
+      functionality to any element.</li>
+
+      <li>
+          <a href="OATDOCjson.html">json.js</a> - Implements two crucial JSON
+      functions - parse and stringify.</li>
+
+      <li>
+          <a href="OATDOCkeyboard.html">keyboard.js</a> - Keyboard events and
+      shortcut handling.</li>
+
+      <li>
+          <a href="OATDOClayers.html">layers.js</a> - Generic z-index
+      manager.</li>
+
+      <li>
+          <a href="OATDOClinechart.html">linechart.js</a> - Library for drawing Line
+      charts, using SVG.</li>
+
+      <li>
+          <a href="OATDOCloader.html">loader.js</a> - This is the basic library.
+      Can be considered a toolkit on its own, as it provides many
+      useful functions and shortcuts.</li>
+
+      <li>
+          <a href="OATDOCmap.html">map.js</a> - Abstract API atop various
+      mapping providers.</li>
+
+      <li>
+          <a href="OATDOCmenu.html">menu.js</a> - Pop-up menu control.</li>
+
+      <li>
+          <a href="OATDOCn3.html">n3.js</a> - N3/Turtle parser.</li>
+
+      <li>
+          <a href="OATDOCnotify.html">notify.js</a> - Provides API for informative
+      notification boxes.</li>
+
+      <li>
+          <a href="OATDOCpanelbar.html">panelbar.js</a> - Panelbar widget (like
+      mozilla sidebar).</li>
+
+      <li>
+          <a href="OATDOCpiechart.html">piechart.js</a> - Library for drawing Pie
+      charts, using SVG.</li>
+
+      <li>
+          <a href="OATDOCpivot.html">pivot.js</a> - Advanced interactive Pivot
+      table.</li>
+
+      <li>
+          <a href="OATDOCquickedit.html">quickedit.js</a> - Provides edit-in-place
+      functionality.</li>
+
+      <li>
+          <a href="OATDOCrdf.html">rdf.js</a> - RDF/XML parser.</li>
+
+      <li>
+          <a href="OATDOCrdfbrowser.html">rdfbrowser.js</a> - Multi-purpose RDF
+      Browser.</li>
+
+      <li>
+          <a href="OATDOCrdfstore.html">rdfstore.js</a> - Client-side RDF
+      store.</li>
+
+      <li>
+          <a href="OATDOCrdftabs.html">rdftabs.js</a> - Tabs API for OAT RDF
+      applications.</li>
+
+      <li>
+          <a href="OATDOCresize.html">resize.js</a> - Provides resizing capability
+      for any DOM node.</li>
+
+      <li>
+          <a href="OATDOCrotator.html">rotator.js</a> - Creates a set of 'rotating'
+      elements, which are cyclically displayed in an infinite
+      fashion (1, 2, 3, 1, 2 ...).</li>
+
+      <li>
+          <a href="OATDOCrssreader.html">rssreader.js</a> - RSS Feed reader
+      supporting both RSS and RDF feeds.</li>
+
+      <li>
+          <a href="OATDOCsimplefx.html">simplefx.js</a> - Simple eyecandy effects:
+      shadows, rounding etc.</li>
+
+      <li>
+          <a href="OATDOCsoap.html">soap.js</a> - Provides basic asynchronous
+      XML call (AJAX) routines for use with SOAP requests.</li>
+
+      <li>
+          <a href="OATDOCsparqline.html">sparqline.js</a> - Library for drawing
+      Sparklines using SVG.</li>
+
+      <li>
+          <a href="OATDOCsqlquery.html">sqlquery.js</a> - SQL Query manipulation
+      library. This is an incomplete library, thus without
+      doc.</li>
+
+      <li>
+          <a href="OATDOCstatistics.html">statistics.js</a> - Elementary statistic
+      functions.</li>
+
+      <li>
+          <a href="OATDOCsvg.html">svg.js</a> - SVG helper provides simplified
+      way of SVG elements creation.</li>
+
+      <li>
+          <a href="OATDOCtab.html">tab.js</a> - Provides tab
+      functionality.</li>
+
+      <li>
+          <a href="OATDOCtagcloud.html">tagcloud.js</a> - Displays a "Tag Cloud",
+      visually enhanced set of links.</li>
+
+      <li>
+          <a href="OATDOCticker.html">ticker.js</a> - Slowly appearing and
+      disappearing text.</li>
+
+      <li>
+          <a href="OATDOCtimeline.html">timeline.js</a> - Draggable timeline.</li>
+
+      <li>
+          <a href="OATDOCtoolbar.html">toolbar.js</a> - Basic Toolbar control.</li>
+
+      <li>
+          <a href="OATDOCtree.html">tree.js</a> - Converts ul tag into
+      interactive tree.</li>
+
+      <li>
+          <a href="OATDOCupload.html">upload.js</a> - Creates form with variable
+      number of upload slots.</li>
+
+      <li>
+          <a href="OATDOCvalidation.html">validation.js</a> - Creates restricted input
+      controls.</li>
+
+      <li>
+          <a href="OATDOCwin.html">win.js</a> - Creates windows.</li>
+
+      <li>
+          <a href="OATDOCws.html">ws.js</a> - Web Services (WSDL)
+      interface.</li>
+
+      <li>
+          <a href="OATDOCxml.html">xml.js</a> - Parses a string of XML data and
+      returns a document object.</li>
+
+      <li>
+          <a href="OATDOCxmla.html">xmla.js</a> - XML for Analysis methods.</li>
+    </ul>
+
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
 </html>

@@ -1,0 +1,134 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    <h2>
+    panelbar.js</h2>
+
+    <p>Panelbar widget (like mozilla sidebar).</p>
+    
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#panelbar.js">panelbar.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Objects">Objects</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Panelbar(fadeDelay)">OAT.Panelbar(fadeDelay)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Methods">Methods</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Panelbar.addPanel(clicker,%20element)">OAT.Panelbar.addPanel(clicker,
+        element)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Panelbar.go(index)">OAT.Panelbar.go(index)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#CSS%20classes">CSS
+        classes</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Objects</h3>
+
+    <h4>OAT.Panelbar(fadeDelay)</h4>Creates
+    a panelbar. Its main div is accessible as panelbar.div. Fading
+    speed can be controlled via fadeDelay.
+
+    <h3> Methods</h3>
+
+    <h4>OAT.Panelbar.addPanel(clicker,
+    element)</h4>Adds a new panel, contained in element. It will be
+    shown after clicking on clicker.
+
+    <h4>OAT.Panelbar.go(index)</h4>Switches
+    to appropriate panel.<br/>
+    <pre>
+var header = OAT.Dom.create("div");
+var body = OAT.Dom.create("div");
+var panelbar = new OAT.Panelbar(10);
+panelbar.addPanel(header, body);
+panelbar.go(0);
+</pre>
+
+    <h3> CSS classes</h3>
+
+    <ul>
+      <li>.panelbar</li>
+
+      <li>.panelbar_option</li>
+
+      <li>.panelbar <u>option_selected</u>
+        </li>
+
+      <li>.panelbar <u>option_upper</u>
+        </li>
+
+      <li>.panelbar <u>option_lower</u>
+        </li>
+
+      <li>.panelbar_content</li>
+    </ul>
+
+    
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>

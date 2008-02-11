@@ -1,0 +1,122 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    <h2> fisheye.js</h2>
+
+    <p>Creates Mac-like dock.</p>
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#fisheye.js">fisheye.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Objects">Objects</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.FishEye(optionsObject)">OAT.FishEye(optionsObject)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Methods">Methods</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.FishEye::addImage(url)">OAT.FishEye::addImage(url)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#CSS%20classes">CSS
+        classes</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.fisheye">.fisheye</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Objects</h3>
+
+    <h4>OAT.FishEye(optionsObject)</h4>The
+    dock will be created using options specified in optionsObject.
+
+    <ul>
+      <li>smallSize - minimal (normal) size of an image.</li>
+
+      <li>bigSize - maximal size of an active image.</li>
+
+      <li>limit - radius of the fisheye effect.</li>
+
+      <li>spacing - space between images.</li>
+    </ul>
+
+    <h3> Methods</h3>
+
+    <h4>
+    OAT.FishEye::addImage(url)</h4>Adds a new image to the
+    dock.<br/>
+    <pre>
+var f = new OAT.FishEye({smallSize:48, bigSize:64, limit:200, spacing:5});
+document.body.appendChild(f.div);
+f.addImage("image.png");
+</pre>
+
+    <h3> CSS classes</h3>
+
+    <h4> .fisheye</h4>
+
+    <p>CSS class of the fisheye div.</p>
+
+    
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>

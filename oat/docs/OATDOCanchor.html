@@ -1,0 +1,123 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    
+    
+
+    <h2> anchor.js</h2>
+
+    <p>Enhanced Anchor tag.</p>
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#anchor.js">anchor.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Functions">Functions</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.Anchor.assign(anchor,%20options)">OAT.Anchor.assign(anchor,
+        options)</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Functions</h3>
+
+    <h4>OAT.Anchor.assign(anchor,
+    options)</h4>
+
+    <p>Modifies anchor element so it acts like Enhanced Anchor:
+    when activated, it displays some additional data in lookup
+    bubble. The lookup bubble is an instance of <a href="OATDOCwin.html">OAT.Win</a> object - so it can be styled the
+    same way: use predefined OAT.Win styles or use its own via
+    template. Options are following:</p>
+
+    <ul>
+      <li>href - String, url of requested data. When false, anchor
+      inherits this value from the href attribute.</li>
+
+      <li>connection - OAT.Connection object</li>
+
+      <li>datasource - OAT.DataSource object</li>
+
+      <li>result_control - "grid", "timeline" or "form". Default is
+      grid. Use false for common window.</li>
+
+      <li>content - node to be inserted (for raw text can be used
+      OAT.Dom.text() for example)</li>
+
+      <li>status - string to be inserted into status line</li>
+
+      <li>title - string to be in the title area of the window</li>
+
+      <li>activation - "hover", "click", "dblclick" or "focus"</li>
+
+      <li>width, height - dimensions of lookup window (false is
+      like 'auto' in CSS)</li>
+
+      <li>elm - anchor node (use when other than current)</li>
+
+      <li>newHref - new 'href' attribute of the anchor, defaults to
+      'javascript:void(0)'</li>
+
+      <li>type - Window style type (default OST.WinData.RECT). See
+      OAT.Win doc for other types.</li>
+
+      <li>template - custom type data - see OAT.Win doc for
+      details.</li>
+
+      <li>visibleButtons - default "cr" (see <a href="OATDOCwin.html">OAT.Win</a>)</li>
+
+      <li>enabledButtons - default "cr" (see <a href="OATDOCwin.html">OAT.Win</a>)</li>
+    </ul>
+      <br/>
+    <pre>
+var options = {
+        title:"Title text",
+        content:OAT.Dom.text("Content text"),
+        status:"Status text",
+        result_control:false,
+        activation: "hover",
+        type:OAT.WinData.TYPE_MAC
+}
+OAT.Anchor.assign("elementID", options);
+</pre>
+
+    
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>

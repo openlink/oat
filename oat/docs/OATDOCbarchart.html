@@ -1,0 +1,223 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    <h2>
+    barchart.js</h2>
+
+    <p>Library for drawing Bar charts, using HTML DOM.</p>
+    
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#barchart.js">barchart.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Objects">Objects</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.BarChart(div,%20optObj)">OAT.BarChart(div,
+        optObj)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Methods">Methods</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.BarChart::attachData(dataArray)">OAT.BarChart::attachData(dataArray)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.BarChart::attachTextX(textArray)">OAT.BarChart::attachTextX(textArray)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.BarChart::attachTextY(textArray)">OAT.BarChart::attachTextY(textArray)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.BarChart::draw()">OAT.BarChart::draw()</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#CSS%20classes">CSS
+        classes</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.legend">.legend</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.legend_box">.legend_box</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.textX">.textX</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#.textY">.textY</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Objects</h3>
+
+    <h4>OAT.BarChart(div,
+    optObj)</h4>
+
+    <p>Creates a Bar Chart inside div, optObj describes its
+    properties. Its values:</p>
+
+    <ul>
+      <li>percentage - bool; is it a percentage plot?</li>
+
+      <li>spacing - int; spacing between columns</li>
+
+      <li>paddingLeft, paddingBottom, paddingTop</li>
+
+      <li>width - int; width of one column</li>
+
+      <li>colors - array of css colors, one for each value set</li>
+
+      <li>border - bool; outline each column?</li>
+
+      <li>grid - bool; show horizontal grid lines?</li>
+
+      <li>gridDesc - bool; show description of lines?</li>
+
+      <li>gridNum - int; approximate number of lines</li>
+
+      <li>shadow - bool; draw shadow for columns?</li>
+
+      <li>shadowColor - css color</li>
+
+      <li>shadowOffset - int; distance between column and its
+      shadow</li>
+    </ul>
+
+    <h3> Methods</h3>
+
+    <h4>OAT.BarChart::attachData(dataArray)</h4>Adds
+    data to chart. Each value of dataArray describes one column;
+    each column may consist of multiple values. In such case,
+    dataArray is array of arrays.
+
+    <h4>OAT.BarChart::attachTextX(textArray)</h4>Adds
+    horizontal labels.
+
+    <h4>OAT.BarChart::attachTextY(textArray)</h4>Adds
+    vertical labels.
+
+    <h4>OAT.BarChart::draw()</h4>Draws the
+    chart.<br/>
+    <pre>
+var chart = new OAT.BarChart("myDiv",{});
+chart.attachData([1,3,2]);
+chart.attachTextX(["a","b","c"]);
+chart.draw();
+</pre>
+
+    <h3> CSS classes</h3>
+
+    <h4> .legend</h4>
+
+    <p>CSS class of legend div.</p>
+
+    <h4> .legend_box</h4>
+
+    <p>CSS class of boxes with bar color, positioned left from the
+    value description text.</p>
+
+    <h4> .textX</h4>
+
+    <p>CSS class of X axis description.</p>
+
+    <h4> .textY</h4>
+
+    <p>CSS class of Y axis description.</p>
+
+    
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>

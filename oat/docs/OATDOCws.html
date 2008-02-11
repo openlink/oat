@@ -1,0 +1,143 @@
+<html>
+<head>
+    <title>OpenLink AJAX Toolkit</title>
+    <link rel="STYLESHEET" type="text/css" href="oat.css"/>
+  </head>
+
+<body>
+  <div class="topic-text">
+    
+
+    <div id="oatnav">
+        <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+      </div>
+
+    
+    
+
+    <h2>ws.js</h2>Web Services
+    (WSDL) interface.
+
+    <div class="wikitoc">
+      <ul>
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+        <a href="#ws.js">ws.js</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#Functions">Functions</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.WS.getEndpoint(wsdlURL,%20callback)">OAT.WS.getEndpoint(wsdlURL,
+        callback)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.WS.listServices(wsdlURL,%20callback)">OAT.WS.listServices(wsdlURL,
+        callback)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.WS.listParameters(wsdlURL,%20service,%20callback)">OAT.WS.listParameters(wsdlURL,
+        service, callback)</a>
+          </li>
+
+        <li>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label>
+            <label class="c2">_</label> <a href="#OAT.WS.invoke(wsdlURL,%20service,%20callback,%20options)">
+        OAT.WS.invoke(wsdlURL, service, callback, options)</a>
+          </li>
+      </ul>
+    </div>
+
+    <h3> Functions</h3>
+
+    <h4>OAT.WS.getEndpoint(wsdlURL,
+    callback)</h4>Asynchronously retrieve the endpoint URL for a
+    given wsdlURL. Will callback(url) when retrieved.
+
+    <h4>OAT.WS.listServices(wsdlURL,
+    callback)</h4>Asynchronously retrieve a list of valid services
+    for a given wsdlURL. Will callback(servicesArray) when
+    retrieved.
+
+    <h4>OAT.WS.listParameters(wsdlURL,
+    service, callback)</h4>Asynchronously retrieve input and output
+    values for given wsdlURL and service. Will
+    callback(inputObject, outputObject) when retrieved.
+
+    <h4>OAT.WS.invoke(wsdlURL,
+    service, callback, options)</h4>Invokes a web service, with
+    WSDL file located at wsdlURL. Input values are specified in
+    options; will callback(outputObject) when finished. Options:
+
+    <ul>
+      <li>type - (default OAT.AJAX.TYPE_XML)</li>
+
+      <li>headers - (default {"SOAPAction":service})</li>
+    </ul>
+      <br/>
+    <pre>
+/* Sample code for google search */
+var wsdl = "/google/services.wsdl";
+var serviceName = "doGoogleSearch";
+var inputObject = {
+        doGoogleSearch:{
+                key:"IGWnqjhQFHKvB8MdJlVI0GPKDJxZhwBf",
+                q:"my query",
+                start:0,
+                maxResults:10,
+                filter:"",
+                restrict:"",
+                safeSearch:"",
+                lr:"",
+                ie:"",
+                oe:""
+        }
+}
+
+function callback(outputObject) {
+        alert('Data arrived!');
+}
+
+OAT.WS.invoke(wsdl, callback, serviceName, inputObject);
+</pre>
+
+    
+    
+
+    <div id="oatcopy">
+      Copyright (C) 
+      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
+      2005-2008
+    </div>
+  </div>
+</body>
+</html>
