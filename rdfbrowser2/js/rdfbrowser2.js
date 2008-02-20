@@ -269,7 +269,7 @@ OAT.RDFBrowser2 = function(div,optObj) {
 		btn1.id = "querybutton";
 		btn1.title = "Go!";
 
-		self.btnStart = self.throbberReplace(self.store.div,false);
+		self.btnStart = self.throbberReplace(btn1,false);
 
 		OAT.Dom.append([self.inputDiv,url,btn1,OAT.Dom.text(" ")]);
 		OAT.Dom.append([self.storageDiv,self.store.div]);

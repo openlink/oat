@@ -166,6 +166,7 @@ function init() {
 	//rdfb.addTab("fresnel","Music",{defaultURL:"We don't have a music template yet"});
 	rdfb.addTab("svg","SVG Graph",{});
 	rdfb.addTab("browser","Raw triples",{});
+	rdfb.addTab("fresnel","Custom",{defaultURL:""});
 	
 	/* history */
 	if (window.location.href.match(/history/)) {
@@ -221,7 +222,7 @@ function init() {
 
 	/* adjust div#MD (=main content) size */	
 	var adjustContentWidth = function() {
-		var contentwidth = OAT.Dom.getWH(document.body)[0] - OAT.Dom.getWH($('right_toolbar'))[0] - 35;
+		var contentwidth = OAT.Dom.getWH(document.body)[0] - OAT.Dom.getWH($('right_toolbar'))[0] - 20;
 		$('browse').style.width = contentwidth + 'px';
 	}
 	adjustContentWidth();

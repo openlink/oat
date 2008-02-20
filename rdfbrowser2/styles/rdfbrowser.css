@@ -19,6 +19,14 @@ tr.rdf_nav_header {
 	color: #434664;
 	border-bottom: 1px solid #434664;
 }
+table.rdf_nav_spotlight {
+    width: 100%;
+}
+
+div.rdf_nav div {
+    display: inline;
+    margin-right: 4px;
+}
 
 
 /* definitions for anywhere */
@@ -73,8 +81,10 @@ padding-top: 300px;
 
 img#loading {
 	position: relative;
-	top: -10px;
-	left: 5px;
+	top: 2px;
+	left: 0px;
+	margin-left: 2px;
+	margin-right: 5px;
 }
 
 #search input {
@@ -270,7 +280,7 @@ div#welcome {
 	clear: both;
 	position: relative;
 	left: 120px;
-	top: -10px;
+	top: 10px;
 	width: 688px;
 	height: 363px;
 	background-image: url('../imgs/welcome_screen.png');
@@ -350,8 +360,7 @@ width: 60%}
 
 #rdf_input input#inputquery {
 	position: relative;
-	width: 80%;
-	margin-right: 10px;
+	width: 72%;
 	background-color: #d6d8ec;
 	font-size: 1.1em;
 	color: black;
@@ -362,6 +371,8 @@ width: 60%}
 }
 
 #rdf_input input#querybutton {
+	position: absolute;
+	left: 76%;
 	font-weight: bold;
 	padding: 2px;
 	font-size: 1.2em;
@@ -438,8 +449,8 @@ width: 100%;
 _width: 95%}
 
 .rdf_categories ul, .rdf_categories li {
-margin-left: 0px;
-padding-left: 0.5em
+	margin-left: 0px;
+	padding-left: 0.5em
 }
 
 ul#prevQueries_ul li {
