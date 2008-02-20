@@ -1253,9 +1253,9 @@ OAT.RDFTabs.images = function(parent,optObj) {
 					var value = pred[j];
 					if (typeof(value) == "object") { continue; }
 					if (self.parent.getContentType(value) == 3) { 
-						self.addUriItem(value,item); 
+						self.addUriItem(value,item);
 					} else {
-						var all = value.match(/http:[^'"]+\.(jpg|png|gif)/g);
+						var all = value.match(/http:[^'"]+\.(jpeg|png|gif)/gi);
 						if (all) for (var k=0;k<all.length;k++) { self.addUriItem(all[k],item); } /* for all embedded images */
 					} /* if not image */
 				} /* for all values */
@@ -1360,7 +1360,7 @@ OAT.RDFTabs.fresnel = function(parent,optObj) {
 		}
 		OAT.AJAX.GET(OAT.Preferences.xsltPath+"fresnel2html.xsl",false,cb,{type:OAT.AJAX.TYPE_XML});
 	} /* redraw */
-	
+
 	if (self.options.autoload && self.options.defaultURL.length) {
 		self.fresnel.addURL(self.options.defaultURL,self.redraw);
 	} else {
