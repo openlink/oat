@@ -1,3 +1,96 @@
+2008-02-20 00:23  source
+
+	* Updated version to 2.8-rc5
+
+2008-02-20 00:22  source
+
+	* Fixed SPARQL queries
+
+2008-02-20 00:22  source
+
+	* Updated oat version
+
+2008-02-20 00:21  source
+
+	* Fixed regexp to be case-insensitive to image extensions
+
+2008-02-20 00:15  source
+
+	* Added tab for custom Fresnel
+	* Fixed throbber position
+	* Fixed vertical wrap width between main content and right toolbar
+	* Minor css fixes
+
+2008-02-11 10:19  source
+
+	* Fixed documentation link
+
+2008-02-11 10:11  source
+
+	* Updated version to 2.8-rc4
+
+2008-02-11 10:09  source
+
+	* Fixed dependencies
+
+2008-02-11 10:08  source
+
+	* New OAT documentation
+
+2008-02-07 16:06  source
+
+	* Fixed issue with look
+	* Fixed aliasing of images
+
+2008-02-06 10:03  source
+
+	* Updated version to 2.8-rc3
+
+2008-02-06 10:03  source
+
+	* Updated version
+
+2008-02-06 10:02  source
+
+	* Rewrote rounded win style
+	* Fixed slow behaviour when used with big number of windows as anchor
+
+2008-02-06 10:01  source
+
+	* Added activation by focus and doubleclick
+	* Added smoother opening and positioning of new windows
+
+2008-02-06 10:00  source
+
+	* Hide dialog's window div immediately after constructor call to reduce
+	  flashing while dialog is being built
+
+2008-02-06 09:59  source
+
+	* Added call to simplify titles
+
+2008-02-06 09:58  source
+
+	* Rewrote rounded win style
+
+2008-02-06 09:56  source
+
+	* Added dependency to simplefx
+
+2008-02-06 09:55  source
+
+	* Removed old dependency for simplefx from win
+
+2008-01-30 14:19  source
+
+	* Fixed dereferencing of turtle file (.ttl extension) to explicitly
+	  specify output format to sponger
+
+2008-01-30 14:18  source
+
+	* Change special characters &lt; &gt; and &amp; from encoded (x)html)
+	  stream into < > & before displaying
+
 2008-01-30 11:35  source
 
 	* Updated version to 2.8-rc2
