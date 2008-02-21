@@ -62,6 +62,16 @@ padding-top: 300px;
 	padding: 1em;
 }
 
+#search_list {
+	position: relative;
+	top: 10px;
+}
+
+#search_list div {
+	font-weight: bold;
+	margin: 10px 0px 8px 10px;
+}
+
 #search_button  {
 	position: absolute;
 	right: 20px;

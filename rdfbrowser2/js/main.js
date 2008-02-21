@@ -33,25 +33,31 @@ var ext_save = [
 ];
 
 var Search = {
-	template:'CONSTRUCT { ?s ?p ?o } {dsn} WHERE { ?s ?p ?o . ?o bif:contains "\'{query}\'"}',
+	//template:'CONSTRUCT { ?s ?p ?o } {dsn} WHERE { ?s ?p ?o . ?o bif:contains "\'{query}\'"}',
+	template:'CONSTRUCT { ?s ?p ?o } WHERE { {dsn} }',
 	go:function() {
 		var q = $v("search_query");
-		if (!q) { return; }
+		if (!q) return;
 		var dsn = [];
 
-		for (var i=0;i<rdfb.store.items.length;i++) {
-			var item = rdfb.store.items[i];
-			rdfb.store.disable(item.href);
-			if (item.href.match(/^http/i)) { dsn.push(item.href); }
+		var items = $("search_list").getElementsByTagName("input"); // this searches over selected items
+		
+		//if (items.length && defaultGraph) { dsn.unshift(defaultGraph); } // what's this??
+		for (var i=0;i<items.length;i++) {
+			//dsn[i] = (i ? " FROM NAMED " : " FROM ") + "<"+dsn[i]+"> ";
+			if (items[i].checked)
+				dsn.push("{ graph <"+items[i].value+"> {?s ?p ?o . ?o bif:contains \"\'{query}\'\"} }");
 		}
 		
-		if (dsn.length && defaultGraph) { dsn.unshift(defaultGraph); }
-		for (var i=0;i<dsn.length;i++) { 
-			dsn[i] = (i ? " FROM NAMED " : " FROM ") + "<"+dsn[i]+"> ";
+		if (!dsn.length) {
+			alert("You must select search scope.");
+			return;
 		}
 		
-		var text = Search.template.replace(/{dsn}/,dsn.join("")).replace(/{query}/,q);
-/*		rdfb.store.clear(); */
+		for (var i=0;i<rdfb.store.items.length;i++)
+			rdfb.store.disable(rdfb.store.items[i].href);
+
+		var text = Search.template.replace(/{dsn}/,dsn.join(" UNION ")).replace(/{query}/g,q);
 		rdfb.store.removeAllFilters();
 		rdfb.store.addSPARQL(text);
 	}
@@ -322,16 +328,20 @@ function init() {
 	OAT.Event.attach(searchinput,"keypress",function(event) {
 		if (event.keyCode == 13) { Search.go(); }
 	});
+	var searchlist = OAT.Dom.create('div'); // div with list of storage items
+	searchlist.id = "search_list";
+	divsearch.appendChild(searchlist);
 	var obj = {
 		title:"Search",
 		content:divsearch,
 		status:"",
-		width:250,
+		width:300,
 		result_control:false,
 		activation: "click",
 		type:OAT.WinData.TYPE_RECT
 	}
 	OAT.Anchor.assign("search_button",obj);
+	OAT.Event.attach("search_button","click",rdfb.store.redraw);
 	
 	/* input box default content */
 	var clearQuery = function() {

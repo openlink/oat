@@ -162,6 +162,7 @@ OAT.RDFBrowser2 = function(div,optObj) {
 
 		var base = window.location.toString().match(/^[^?#]+/)[0];
 		var th = base+"?";
+		$("search_list").innerHTML = '';
 		
 		for (var i=0;i<self.store.items.length;i++) {
 			var d = OAT.Dom.create("div");
@@ -196,6 +197,15 @@ OAT.RDFBrowser2 = function(div,optObj) {
 			th += encodeURIComponent("uri[]")+"="+encodeURIComponent(item.href)+"&";
 			
 			OAT.Dom.append([d,remove,OAT.Dom.text(" - "),perm],[self.store.div,d]);
+			if (item.href.substring(0,5)=='http:') {
+				$("search_list").innerHTML += '<input type="checkbox" checked="checked" value="'+label+'" id="searchscope'+i+'"> <label for="searchscope'+i+'">' + label + "</label><br/>";
+			}
+		}
+
+		if (!$("search_list").innerHTML) {
+			$("search_list").innerHTML = '<div>Nothing to search in</div>';
+		} else {
+			$("search_list").innerHTML = '<div>Select search scope:</div>' + $("search_list").innerHTML;
 		}
 
 		$("storage_permalink").href = th + self.bookmarks.toURL();
@@ -212,7 +222,6 @@ OAT.RDFBrowser2 = function(div,optObj) {
 			OAT.Dom.hide("storage_permalink");
 		}
 
-		
 		if (!$("storage_total")) {
 			var d = OAT.Dom.create("div");
 			d.id = "storage_total";
