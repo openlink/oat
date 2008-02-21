@@ -1,3 +1,26 @@
+2008-02-21 20:56  source
+
+	* Updated version to 2.8-rc7
+
+2008-02-21 20:55  source
+
+	* Added fulltext search
+	* Fixed typos
+
+2008-02-21 20:55  source
+
+	* Removed ibis ontology from ontology import drop-down since the remote
+	  host seems to be down
+	* Fixed typos
+
+2008-02-21 20:53  source
+
+	* Fixed typos
+
+2008-02-21 00:26  source
+
+	* Updated version to 2.8-rc6
+
 2008-02-21 00:23  source
 
 	* Fixed make distcheck
