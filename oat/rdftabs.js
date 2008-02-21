@@ -18,7 +18,7 @@
 		.elm - DOM node
 		.description - textual
 		.redraw() - redraw contents
-		.reset(hard) - called by parent when triple store changes. when the change is initiated by applying filteres, hard == false.
+		.reset(hard) - called by parent when triple store changes. when the change is initiated by applying filters, hard == false.
 						when the change is initiated by adding/removing URL, hard == true
 
 	2) CAN use
@@ -894,8 +894,8 @@ OAT.RDFTabs.map = function(parent,optObj) {
 		for (var p in preds) {
 			var pred = preds[p];
 			var simple = self.parent.simplify(p);
-			if (self.keyProperties.find(simple) != -1) { pointResource = pred[0]; } /* this is resource containig geo coordinates */
-			if (self.locProperties.find(simple) != -1) { locValue = pred[0]; } /* this is resource containig geo coordinates */
+			if (self.keyProperties.find(simple) != -1) { pointResource = pred[0]; } /* this is resource containing geo coordinates */
+			if (self.locProperties.find(simple) != -1) { locValue = pred[0]; } /* this is resource containing geo coordinates */
 		}
 		if (!pointResource && !locValue) { return; }
 		

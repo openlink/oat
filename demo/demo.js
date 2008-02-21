@@ -230,7 +230,7 @@ DEMO.dock = {
 		var ds = new OAT.DataSource(OAT.DataSourceData.TYPE_SOAP)
 		var wsdl = "/google/services.wsdl";
 		ds.connection = new OAT.Connection(OAT.ConnectionData.TYPE_WSDL,{url:wsdl});
-		var searchRecieveRef = function(data,index) {
+		var searchReceiveRef = function(data,index) {
 			var cnt = Math.min(data.length,3);
 			OAT.Dom.clear("dock_results");
 			for (var i=0;i<cnt;i++) {
@@ -246,7 +246,7 @@ DEMO.dock = {
 				$("dock_results").appendChild(br);
 			}
 		}
-		ds.bindPage(searchRecieveRef);
+		ds.bindPage(searchReceiveRef);
 		var searchRef = function() {
 			var obj = {
 				doGoogleSearch:{
