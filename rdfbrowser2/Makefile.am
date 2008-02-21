@@ -23,6 +23,6 @@ EXTRA_DIST = \
 	$(srcdir)/imgs/*.gif \
 	$(srcdir)/imgs/*.png \
 	$(srcdir)/js/*.js \
-	$(srcdir)/js/*.htc \
-	$(srcdir)/samples/*.n3 \
+	$(srcdir)/js/iepngfix.htc \
+	$(srcdir)/samples/fresnel-foaf.n3 \
 	$(srcdir)/styles/*.css
