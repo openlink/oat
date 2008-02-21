@@ -1,3 +1,15 @@
+2008-02-21 00:23  source
+
+	* Fixed make distcheck
+
+2008-02-21 00:21  source
+
+	* Added resizable containers
+
+2008-02-21 00:19  source
+
+	* Regenerated documentation
+
 2008-02-20 00:23  source
 
 	* Updated version to 2.8-rc5
@@ -1033,7 +1045,7 @@
 	* Small visual fixes
 	* Fixed browser compatibility
 
-2007-05-16 14:26  source
+2007-05-16 14:32  source
 
 	* Fixed loading
 	* Small visual fixes
@@ -1760,17 +1772,6 @@
 	* Color grouping for svsparql
 	* Fixed Formdesigner
 	* Fixed broken mapping mashups
-
-2007-01-30 14:49  source
-
-	* OAT.Xmla now uses connection object
-	* Fixed OAT.Connection.toXML
-
-2007-01-30 14:49  source
-
-	* Fixed Documentation drag
-	* Fixed FormObject fromXML
-	* Removed need for toolkitPath
 
 2007-01-30 14:48  source
 
