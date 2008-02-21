@@ -2,8 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>OpenLink Fresnel processor tests</title>
 	<script type="text/javascript" >
-		var featureList=["rdfstore","fresnel","xml","ajax2","json"];
+		var featureList=["rdfstore","fresnel","xml","ajax2","json","resize"];
 		var rdf = false;
 		var fresnel = false;
 		var xsl = false;
@@ -69,10 +70,37 @@
 				result = f.format(s.data.all);
 				window.pica = result[0];
 			}
+
+			/* make the textareas resizable */
+			var img = OAT.Preferences.imagePath + "MsWin_resize.gif";
+
+			var corner = OAT.Dom.image(img);
+			var body = $("out_rdf_div");
+			body.appendChild(corner);
+			OAT.Resize.create(corner, body, OAT.Resize.TYPE_XY);
+
+			var corner = OAT.Dom.image(img);
+			var body = $("out_fresnel_div");
+			body.appendChild(corner);
+			OAT.Resize.create(corner, body, OAT.Resize.TYPE_XY);
+
+			var corner = OAT.Dom.image(img);
+			var body = $("out_xsl_div");
+			body.appendChild(corner);
+			OAT.Resize.create(corner, body, OAT.Resize.TYPE_XY);
+
+			var corner = OAT.Dom.image(img);
+			var body = $("out_xml_div");
+			body.appendChild(corner);
+			OAT.Resize.create(corner, body, OAT.Resize.TYPE_XY);
+
 		}
 	</script>
 	<script type="text/javascript" src="../oat/loader.js"></script>
 	<style type="text/css">
+		body {
+			background-color: #f5f5f5;
+		}
 		.fresnel_resource {
 			border: 1px solid #000;
 			margin: 3px;
@@ -99,6 +127,18 @@
 		td {
 			padding: 1em;
 			border: 1px solid #888;
+		}
+		textarea {
+			width: 99%;
+			height: 95%;
+		}
+		div.out {
+			width: 80%;
+			text-align: right;
+			margin-bottom: 5px;
+		}
+		div.out img {
+			margin: 3px;
 		}
 	</style>
 </head>
@@ -131,19 +171,21 @@
 	<h3>Output</h3>
 	
 	RDF file:<br/>
-	<textarea cols="80" rows="5" id="out_rdf"></textarea><br/><br/>
+	
+	<div class="out" id="out_rdf_div"><textarea rows="6" id="out_rdf"></textarea><img src=""/></div>
 	
 	Fresnel file:<br/>
-	<textarea cols="80" rows="5" id="out_fresnel"></textarea><br/><br/>
+	<div class="out" id="out_fresnel_div"><textarea rows="6" id="out_fresnel"></textarea></div>
 
 	XSLT file:<br/>
-	<textarea cols="80" rows="5" id="out_xsl"></textarea><br/><br/>
+	<div class="out" id="out_xsl_div"><textarea rows="6" id="out_xsl"></textarea></div>
 
 	Transformed XML:<br/>
-	<textarea cols="80" rows="5" id="out_xml"></textarea><br/><br/>
+	<div class="out" id="out_xml_div"><textarea rows="6" id="out_xml"></textarea></div>
 
 	XSLT-ed HTML:<br/>
 	<div id="out_html">
+	</div>
 
 </body>
 </html>
