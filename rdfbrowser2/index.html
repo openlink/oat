@@ -82,6 +82,54 @@
 				</ul>
 			</li>
 			<li>
+				<div style="background-image:url('./imgs/item_dataRetrievalOptions.png')" id="dataRetrievalOpt">
+					<img src="./imgs/item_show.png" id="toggler_dataRetrievalOpt" class="item_toggler"/>
+				</div>
+				<ul id="dataRetrievalOpt_ul">
+					<li><span style="font-weight:bold;font-size:120%;">Caching Schemes</span><br/>
+						<input type="radio" name="cachingSchemes" value="get:soft" id="cachSchemes0" checked="checked"/> Automatic<br/>
+						<input type="radio" name="cachingSchemes" value="get:replacing" id="cachSchemes1"/> None<br/>
+					</li>
+					<li><span style="font-weight:bold;font-size:120%;">Path Traversal Schemes</span><br/>
+						<input type="radio" name="pathTraversalSchemes" value="grab-seealso" id="pTravSchemes0"/> Follow Properties<br/>
+						<select style="margin-left: 50px;width:150px;">
+							<option value="predicate0">Predicate 0</option>
+							<option value="predicate1">Predicate 1</option>
+							<option value="predicate2">Predicate 2</option>
+						</select><br/>
+						<input type="radio" name="pathTraversalSchemes" value="grab-all" id="pTravSchemes1" checked="checked"/> Follow all Properties<br/>
+						<input type="radio" name="pathTraversalSchemes" value="grab-everything" id="pTravSchemes2"/> Follow all  Links with unlimited depth<br/>
+
+					</li>
+					<li><span style="font-weight:bold;font-size:120%;">Path Traversal Options</span><br/>
+						Max. Nodes Retrieved: 
+						<select id="maxNodesRetrieved">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+						</select><br/>
+						Max. Nodes Traversed (Crawled) 
+						<select id="maxNodesTraversed">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+						</select><br/>
+					</li>
+				</ul>
+			</li>
+			<li>
 				<div style="background-image:url('./imgs/item_browserOptions.png')" id="browserOptions">
 					<img src="./imgs/item_show.png" id="toggler_browserOptions" class="item_toggler"/>
 				</div>
@@ -124,14 +172,19 @@
 			<div id="rdf_storage">
 				<img src="./imgs/title_storage.png" id="title_storage" title="Storage"/>
 				<img id="storage_toggle" src="./imgs/item_hide_dark.png" title="Hide storage"/>
+				<div id="storage_controls">
+					<a href="javascript:void(0);" id="storage_checkall">Check all</a>
+					<a href="javascript:void(0);" id="storage_uncheckall">Uncheck all</a>
 				<a href="javascript:void(0);" id="storage_purge"><img src="./imgs/purge_storage.png" alt="Purge Storage"/> Purge storage</a>
 				<a href="javascript:void(0);" id="storage_permalink">permalink</a>
+			</div>
 			</div>
 		<!-- <div id="RT">
 			<div id="rdf_side"></div>
 		</div> -->
 		<div id="rdf_content"></div>
 		<div id="welcome">
+			<div style="top:3px;left:620px;width:60px;height:18px;cursor:hand;cursor:pointer;" onclick="this.parentNode.style.display='none';"></div>
 			<div style="top:175px;" onclick="window.open('http://');"></div>
 			<div style="top:228px" onclick="window.open('http://www.zvon.org/xxl/RDFTutorial/General/book.html');"></div>
 			<div style="top:285px" onclick="window.open('http://www.openlinksw.com/');"></div>

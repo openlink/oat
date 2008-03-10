@@ -213,13 +213,11 @@ OAT.RDFBrowser2 = function(div,optObj) {
 		/* display toggler and purge storage or not */
 		if (self.store.items.length) {
 			OAT.Dom.hide('welcome');
-			OAT.Dom.show("storage_purge");
+			OAT.Dom.show("storage_controls");
 			OAT.Dom.show("storage_toggle");
-			OAT.Dom.show("storage_permalink");
 		} else {
-			OAT.Dom.hide("storage_purge");
+			OAT.Dom.hide("storage_controls");
 			OAT.Dom.hide("storage_toggle");
-			OAT.Dom.hide("storage_permalink");
 		}
 
 		if (!$("storage_total")) {

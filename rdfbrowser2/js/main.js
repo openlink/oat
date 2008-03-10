@@ -222,8 +222,8 @@ function init() {
 		}
 		OAT.AJAX.GET("/sparql?ini",null,ref,{type:OAT.AJAX.TYPE_XML,onerror:function(){}});	
 
-		/* initialize webdav gui */
-		OAT.WebDav.init();
+		/* initialize webdav gui with http auth options*/
+		OAT.WebDav.init(http_cred);
 	}
 
 	/* adjust div#MD (=main content) size */	
@@ -311,6 +311,8 @@ function init() {
 	
 	/* purge storage */
 	OAT.Event.attach($("storage_purge"),"click",rdfb.store.clear);
+	OAT.Event.attach($("storage_checkall"),"click",rdfb.store.enableAll);
+	OAT.Event.attach($("storage_uncheckall"),"click",rdfb.store.disableAll);
 
 	/* search */
 	var divsearch = OAT.Dom.create('div');

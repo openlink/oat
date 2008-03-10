@@ -416,16 +416,32 @@ width: 60%}
 	cursor: pointer;
 }
 
-#rdf_storage a#storage_purge {
+#rdf_storage #storage_controls {
 	position: absolute;
 	top: 5px;
-	left: 400px;
+	left: 100px;
+}
+
+#rdf_storage a#storage_checkall {
+	position: relative;
+	left: 180px;
+	font-size: 0.9em;
+}
+
+#rdf_storage a#storage_uncheckall {
+	position: relative;
+	left: 190px;
+	font-size: 0.9em;
+}
+
+#rdf_storage a#storage_purge {
+	position: relative;
+	left: 320px;
 }
 
 #rdf_storage a#storage_permalink {
-	position: absolute;
-	top: 8px;
-	left: 550px;
+	position: relative;
+	left: 370px;
 }
 
 #rdf_storage div.storage_item {
@@ -439,7 +455,7 @@ width: 60%}
 
 #rdf_storage div#storage_total {
 	position: absolute;
-	left: 150px;
+	left: 130px;
 	top: 5px;
 }
 
