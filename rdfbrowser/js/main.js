@@ -200,7 +200,7 @@ function init() {
 		}
 	}
 	OAT.Event.attach("options_history","change",historyRef);
-	
+
 	/* load */
 	var obj = OAT.Dom.uriParams();
 	if ("load" in obj && obj.load != "") {
@@ -218,8 +218,8 @@ function init() {
 		}
 		OAT.AJAX.GET("/sparql?ini",null,ref,{type:OAT.AJAX.TYPE_XML,onerror:function(){}});	
 
-		/* initialize webdav gui */
-		OAT.WebDav.init();
+		/* initialize webdav gui with http auth options */
+		OAT.WebDav.init(http_cred);
 	}
 
 }
