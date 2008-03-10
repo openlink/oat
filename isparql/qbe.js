@@ -671,7 +671,7 @@ iSPARQL.QBE = function () {
 			
 			var nodeLabel = label || parts[1];
 			
-			/* search for Concepts / Properties node */
+			/* search for Classes / Properties node */
 			var labels = {};
 			for (var i=0;i<schemaNode.children.length;i++) {
 				var child = schemaNode.children[i];
@@ -680,10 +680,10 @@ iSPARQL.QBE = function () {
 			
 			var parentNode = false;
 			if (type == 'class') {
-				if ("Concepts" in labels) {
-					parentNode = labels["Concepts"];
+				if ("Classes" in labels) {
+					parentNode = labels["Classes"];
 				} else {
-					parentNode = schemaNode.createChild('Concepts',1); 
+					parentNode = schemaNode.createChild('Classes',1); 
 					parentNode.collapse();
 				}
 			} else {
@@ -752,37 +752,45 @@ iSPARQL.QBE = function () {
 			if (!containerNode.children.length) { schemaNode.deleteChild(containerNode); }
 			if (!schemaNode.children.length) { root.deleteChild(schemaNode); }
 		},
-		Update:function(node) { /* get Concepts and Properties for a prefix */
+		Update:function(node) { /* get Classes and Properties for a prefix */
 			if (node.children.length > 0) { return; } /* nothing when already fetched */
 			var callback = function(data) {
 				var JSONData = eval('(' + data + ')');
+
+				var insert = function(obj,type,schemaParts) {
+						var uri = obj.uri.value;
+						var parts = self.getPrefixParts(uri);
+						if (parts[0] != schemaParts[0]) { return; }
+						var label = (obj.label ? obj.label.value : false);
+						var comment = (obj.comment ? obj.comment.value : false);
+						self.Schemas.InsertNode(self.Schemas.Unbound,uri,type,label,comment);
+				}
+						
 				if (JSONData.results.bindings.length > 0) {
 					var objs = JSONData.results.bindings;
 					var schemaParts = self.getPrefixParts(node.schema);
+					var classes = [];
+					var rels = [];
+					var attrs = [];
 					for (var i=0;i<objs.length;i++) {
 						var obj = objs[i];
-						var uri = obj.uri.value;
-						var parts = self.getPrefixParts(uri);
-						if (parts[0] != schemaParts[0]) { continue; }
-						var label = (obj.label ? obj.label.value : false);
-						var comment = (obj.comment ? obj.comment.value : false);
-						
-						var type = false;
 						switch (obj.type.value) {
 							case "http://www.w3.org/2000/01/rdf-schema#Class":
 							case "http://www.w3.org/2002/07/owl#Class":
-								type = 'class';
+								classes.push(obj);
 							break;
 							case "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property":
 							case "http://www.w3.org/2002/07/owl#ObjectProperty":
 							case "http://www.w3.org/2002/07/owl#DatatypeProperty":
 							case "http://www.w3.org/2002/07/owl#InverseFunctionalProperty":
-								type = (self.Schemas.IsAttribute(obj) ? 'property_attr' : 'property_rel');
+								if (self.Schemas.IsAttribute(obj)) { attrs.push(obj); }
+								else { rels.push(obj); }
 							break;
 						}
-						if (!type) { continue; }
-						self.Schemas.InsertNode(self.Schemas.Unbound,uri,type,label,comment);
 					} /* for all elements */
+					for (var i=0;i<classes.length;i++) { var c = classes[i]; var type = 'class'; insert(c,type,schemaParts); }
+					for (var i=0;i<attrs.length;i++) { var a = attrs[i]; var type = 'property_attr'; insert(a,type,schemaParts); }
+					for (var i=0;i<rels.length;i++) { var r = rels[i]; var type = 'property_rel'; insert(r,type,schemaParts); }
 				} /* if data ok */
 			}
 			var oldIcon = "";
@@ -1186,8 +1194,8 @@ iSPARQL.QBE = function () {
 	var qbe_graph_label = OAT.Dom.create("label");
 	qbe_graph_label["htmlFor"] = "qbe_graph";
 
-	qbe_graph_label.innerHTML = 'Data Source URI';
-	qbe_graph_label.title = 'RDF Data Source URI';
+	qbe_graph_label.innerHTML = 'Data Source (URL):';
+	qbe_graph_label.title = 'RDF Data Source (URL):';
 
 	var qbe_datasource_cnt = OAT.Dom.create("sub");
 	qbe_datasource_cnt.id = "qbe_datasource_cnt";
