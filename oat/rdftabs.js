@@ -35,7 +35,7 @@
 		parent.processLink(domNode, href, disabledActions) - attach external handlers to a link
 
 	
-	.rdf_sort .rdf_group .rdf_clear .rdf_data .rtf_tl_port .rdf_tl_slider .rdf_tagcloud
+	.rdf_sort .rdf_group .rdf_clear .rdf_data .rtf_tl_port .rdf_tl_slider .rdf_tagcloud .rdf_tagcloud_title
 */
 if (!OAT.RDFTabs) { OAT.RDFTabs = {}; }
 
@@ -731,11 +731,23 @@ OAT.RDFTabs.triples = function(parent,optObj) {
 	this.patchAnchor = function(column) {
 		var a = OAT.Dom.create("a");
 		var v = self.grid.rows[self.grid.rows.length-1].cells[column].value;
-		var uri = v.innerHTML;
+		var uri = decodeURIComponent(v.innerHTML);
 		a.innerHTML = (self.select.value == "0" ? self.parent.store.simplify(uri) : uri);
+		a.href = v.innerHTML;
 		OAT.Dom.clear(v);
 		v.appendChild(a);		
 		self.parent.processLink(a,uri);
+	}
+	
+	this.patchEmbedded = function(column) {
+		var v = self.grid.rows[self.grid.rows.length-1].cells[column].value;
+		var all = v.getElementsByTagName("a");
+		var uris = [];
+		for (var i=0;i<all.length;i++) { uris.push(all[i]); }
+		for (var i=0;i<uris.length;i++) {
+			var uri = uris[i];
+			self.parent.processLink(uri,uri.href);
+		}
 	}
 	
 	this.reset = function() {
@@ -791,10 +803,10 @@ OAT.RDFTabs.triples = function(parent,optObj) {
 				self.grid.createRow(triple);
 				for (var j=0;j<triple.length;j++) {
 					var str = triple[j];
-					/* if j = 0, we are subject, so simplify */
-					if (str.match(/^(http|urn|doi)/i) || j == 0) { 
-						self.patchAnchor(j+1);
-					}
+					/* if j = 0, we are subject, so simplify & attach a++ */
+					if (j == 0 || str.match(/^(http|urn|doi)/i)) { self.patchAnchor(j+1); }
+					/* if j = 2, we are object, find embedded hrefs and process */
+					if (j == 2 && str.match(/href/)) { self.patchEmbedded(j+1); }
 				}
 			} /* if in current page */
 		} /* for all triples */
@@ -1255,7 +1267,7 @@ OAT.RDFTabs.images = function(parent,optObj) {
 					if (self.parent.getContentType(value) == 3) { 
 						self.addUriItem(value,item);
 					} else {
-						var all = value.match(/http:[^'"]+\.(jpeg|png|gif)/gi);
+						var all = value.match(/http:[^ ]+\.(jpe?g|png|gif)/gi);
 						if (all) for (var k=0;k<all.length;k++) { self.addUriItem(all[k],item); } /* for all embedded images */
 					} /* if not image */
 				} /* for all values */
@@ -1295,21 +1307,72 @@ OAT.RDFTabs.tagcloud = function(parent,optObj) {
 	
 	this.parent = parent;
 	this.initialized = false;
-	this.elm.className = "rdf_tagcloud";
 	this.description = "This module displays all links found in filtered data set.";
-	self.tc = new OAT.TagCloud(self.elm,optObj);
+	this.clouds = [];
 	
-	this.redraw = function() {
-		self.tc.clearItems();
+	this.addTag = function(item,cloud) {
+		var preds = item.preds;
+		var title = self.parent.getTitle(item);
+		var freq = 1;
 
+		for (var p in preds) {
+			var simple = self.parent.simplify(p);
+			if (simple == "ownAFrequency") {
+				freq = preds[p][0];
+				break;
+			}
+		}
+		
+		cloud.addItem(title,item.uri,freq);
+	}
+
+	this.addCloud = function(item) {
+		var preds = item.preds;
+		var title = self.parent.getTitle(item);
+
+		var div = OAT.Dom.create("div");
+		var cdiv = OAT.Dom.create("div",{},"rdf_tagcloud");
+		var tdiv = OAT.Dom.create("div",{},"rdf_tagcloud_title");
+
+		var a = OAT.Dom.create("a");
+		a.href = item.uri;
+		a.innerHTML = title;
+
+		OAT.Dom.append([self.elm,div],[div,tdiv,cdiv],[tdiv,a]);
+
+		var cloud = new OAT.TagCloud(cdiv);
+		for (var p in preds) {
+			var simple = self.parent.simplify(p);
+			if (simple == "hasTag") {
+				var tags = preds[p];
+				for (var i=0;i<tags.length;i++) {
+					var tag = tags[i];
+					self.addTag(tag,cloud);
+				}
+			}
+		}
+
+		this.clouds.push(cloud);
+	}	
+
+	this.redraw = function() {
 		var data = self.parent.data.structured;
+
+		this.clouds = [];
+		OAT.Dom.clear(self.elm);
+
 		for (var i=0;i<data.length;i++) {
 			var item = data[i];
-			if (self.parent.simplify(item.type) == "Concept") {
-				self.tc.addItem(self.parent.getTitle(item),item.uri);
+			if (self.parent.simplify(item.type) == "Tagcloud") {
+				self.addCloud(item);
 			}
 		} /* for all items */
-		self.tc.draw();
+
+		for (var i=0; i<this.clouds.length;i++) {
+			var cloud = this.clouds[i];
+			cloud.draw();
+		}
+
 		var all = [];
 		var links = self.elm.getElementsByTagName("a");
 		for (var i=0;i<links.length;i++) { all.push(links[i]); }
