@@ -15,8 +15,8 @@ var IO = {
 		var recv_ref = function(data) { alert('Saved.'); }
 		var o = {
 			auth:OAT.AJAX.AUTH_BASIC,
-			user:http_cred.user,
-			password:http_cred.password
+			user:OAT.WebDav.options.user,
+			password:OAT.WebDav.options.pass
 		}
 		OAT.AJAX.PUT(name,xml,recv_ref,o);
 	},
@@ -30,24 +30,11 @@ var IO = {
 			IO.save(xml,IO.lastPName);
 			return;
 		}
-	    if ($("options_type_http").checked) {
-			var name = OAT.Dav.getNewFile("/DAV/home/"+http_cred.user,".xml","xml");
-			if (!name) { return; }
-			lastPName = name;
-			if (name.slice(name.length-4).toLowerCase() != ".xml") { name += ".xml"; }
-			IO.save(xml,name);
-		}
-		if ($("options_type_dav").checked) {
 			var options = {
-				mode:'save_dialog',
-				user:OAT.Xmla.connection.options.user,
-				pass:OAT.Xmla.connection.options.password,
-				pathDefault:"/DAV/home/"+OAT.Xmla.connection.options.user+"/",
-			  file_ext:'xml',
-				onConfirmClick:function() { return xml;}
+			extensionFilters:[ ["xml","xml","Pivot Design"] ],
+			dataCallback:function() { return xml;}
 			};
-			OAT.WebDav.open(options);
-		}
+		OAT.WebDav.saveDialog(options);
 	},
 
 	save_q:function() {
@@ -117,61 +104,26 @@ var IO = {
 	},
 
 	load_q:function() {
-		if ($("options_type_http").checked) {
-			var name = OAT.Dav.getFile("/DAV/home/"+http_cred.user,".xml");
-			if (!name) { return; }
-			IO.lastQName = name;
-			IO.save_type = "xml";
-			var o = {
-				auth:OAT.AJAX.AUTH_BASIC,
-				user:http_cred.user,
-				password:http_cred.password
-			}
-			OAT.AJAX.GET(name,false,IO.loadProcess,o);
-		}
-		if ($("options_type_dav").checked) {
 			var options = {
-				mode:'open_dialog',
-				user:OAT.Xmla.connection.options.user,
-				pass:OAT.Xmla.connection.options.password,
-				pathDefault:"/DAV/home/"+OAT.Xmla.connection.options.user+"/",
-				onConfirmClick:function(path,fname,data){
+			callback:function(path,fname,data){
 					IO.lastQName = path+fname;
 					IO.save_type = "xml";
 					IO.loadProcess(data);
 					return true; /* return false will keep browser open */
 				}
 			};
-			OAT.WebDav.open(options);
-		}
+		OAT.WebDav.openDialog(options);
 	},
 
 	load_p:function() {
-		if ($("options_type_http").checked) {
-			var name = OAT.Dav.getFile("/DAV/home/"+http_cred.user,".xml");
-			if (!name) { return; }
-			IO.lastPName = name;
-			var o = {
-				auth:OAT.AJAX.AUTH_BASIC,
-				user:http_cred.user,
-				password:http_cred.password
-			}
-			OAT.AJAX.GET(name,false,pivot_design_load,o);
-		}
-		if ($("options_type_dav").checked) {
 			var options = {
-				mode:'open_dialog',
-				user:OAT.Xmla.connection.options.user,
-				pass:OAT.Xmla.connection.options.password,
-				pathDefault:"/DAV/home/"+OAT.Xmla.connection.options.user+"/",
-				onConfirmClick:function(path,fname,data) {
+			callback:function(path,fname,data) {
 					IO.lastPName = path+fname;
 					pivot_design_load(data);
 					return true; /* return false will keep browser open */
 				}
 			};
-			OAT.WebDav.open(options);
-		}
+		OAT.WebDav.openDialog(options);
 	},
 
 	blankColumn:function() {

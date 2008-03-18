@@ -49,7 +49,7 @@ var Query = {
 	},
 	
 	glue:function(type) { /* glue together all pieces */
-		if (!Query.obj.columns.count) {
+		if (!Query.obj || !Query.obj.columns.count) {
 			return false;
 		}
 		var q = Query.obj.toString(type);
@@ -168,12 +168,6 @@ var Connection = {
 		connection.options.password = $v("password");
 		connection.options.dsn = $v("dsn");
 		connection.options.endpoint = $v("endpoint");
-		var h = $('options_type_http');
-		var d = $('options_type_dav');
-		h.checked = ($v('login_put_type') == "http");
-		d.checked = ($v('login_put_type') == "dav");
-		h.__checked = (h.checked ? "1" : "0");
-		d.__checked = (d.checked ? "1" : "0");
 	},
 	
 	discover_dsn:function() {
@@ -775,9 +769,28 @@ function init() {
 	OAT.Dom.attach("endpoint","blur",Connection.discover_dsn);
 	OAT.Dom.attach("endpoint","keyup",function(e) { if (e.keyCode == 13) { Connection.discover_dsn(); }});
 	OAT.Dom.attach("dsn","click",function(){if ($("dsn").childNodes.length == 0) { Connection.discover_dsn(); }});
-	OAT.Dom.attach("login_put_type","change",function(){if ($("dsn").childNodes.length == 0) { Connection.discover_dsn(); }});
-	dialogs.connection.ok = function(){Connection.use_dsn(1);};
-	dialogs.connection.cancel = dialogs.connection.hide;
+	dialogs.connection.ok = function(){ 
+		Connection.use_dsn(1);
+		var options = {
+			imagePath:'../images/',
+			imageExt:'png',
+			user:$v("user"),
+			pass:$v("password"),	
+			isDav:($v("login_put_type") == "dav")
+		};
+		OAT.WebDav.init(options);
+	};
+	dialogs.connection.cancel = function() { 
+		var options = {
+			imagePath:'../images/',
+			imageExt:'png',
+			user:$v("user"),
+			pass:$v("password"),	
+			isDav:($v("login_put_type") == "dav")
+		};
+		OAT.WebDav.init(options);
+		dialogs.connection.hide(); 
+	};
 	dialogs.connection.okBtn.setAttribute("disabled","disabled");
 
 	/* columns grid */
@@ -929,28 +942,16 @@ function init() {
 	OAT.Resize.create("resizer_area","design_area",OAT.Resize.TYPE_Y);
 	OAT.Resize.create("resizer_area","design_columns",-OAT.Resize.TYPE_Y);
 	
-	/* file name for saving */
+	/* file name for query saving */
 	var fileRef = function() {
-		if ($("options_type_http").checked) {
-			var name = OAT.Dav.getNewFile("/DAV/home/"+http_cred.user,".xml","xml");
-			if (!name) { return; }
-			if (name.slice(name.length-4).toLowerCase() != ".xml") { name += ".xml"; }
-			$("save_name").value = name;
-		}
-		if ($("options_type_dav").checked) {
 			var options = {
-				mode:'browser',
-				onConfirmClick:function(path,fname){
+			callback:function(path,fname){
 					var name = path + fname;
 					$("save_name").value = name;
 				},
-				user:connection.options.user,
-				pass:connection.options.password,
-				pathDefault:"/DAV/home/"+connection.options.user+"/",
-				file_ext:'xml'
+			extensionFilters:[ ["xml","xml","Saved SQL Query"] ]
 			};
-			OAT.WebDav.open(options);
-		}
+		OAT.WebDav.openDialog(options);
 	}
 	OAT.Dom.attach("btn_browse","click",fileRef);
 	
@@ -1019,24 +1020,11 @@ function init() {
 	}
 	OAT.Dom.attach("btn_return","click",returnRef);
 	
-	/* DAV Browser init */
-	var options = {
-		imagePath:'../images/',
-		imageExt:'png'
-	};
-	OAT.WebDav.init(options);
-	
 	if (window.__inherited) {
 		connection.options.user = window.__inherited.user;
 		connection.options.dsn = window.__inherited.dsn;
 		connection.options.endpoint = window.__inherited.endpoint;
 		connection.options.password = window.__inherited.password;
-		var h = $('options_type_http');
-		var d = $('options_type_dav');
-		h.checked = (window.__inherited.type == "http");
-		d.checked = (window.__inherited.type == "dav");
-		h.__checked = (h.checked ? "1" : "0");
-		d.__checked = (d.checked ? "1" : "0");
 		OAT.Dom.show("btn_return");
 		var cb = function() {}
 		if (window.__inherited.query != "") {
