@@ -77,13 +77,26 @@ OAT.RDFStore = function(tripleChangeCallback,optObj) {
 				var xmlDoc = OAT.Xml.createXmlDoc(str);
 				var triples = OAT.RDF.toTriples(xmlDoc,url);
 			}
-			/* sanitize triples */
+			var decode = function(str) {
+				str = str.replace(/&amp;/gi,'&');
+				str = str.replace(/&gt;/gi,'>');
+				str = str.replace(/&lt;/gi,'<');
+				str = str.replace(/&quot;/gi,'"');
+				return str;
+			}
+
+			var sanitize = function(str) {
+				str = str.replace(/<script[^>]*>/gi,'');
+				return str;
+			}
+
 			for (var i=0;i<triples.length;i++) {
 				var t = triples[i];
-				t[2] = t[2].replace(/&amp;/gi,'&');
-				t[2] = t[2].replace(/&gt;/gi,'>');
-				t[2] = t[2].replace(/&lt;/gi,'<');
-				t[2] = t[2].replace(/<script[^>]*>/gi,'');
+				/* remove all scripts to prevent their execution */
+				t[2] = sanitize(t[2]);
+
+				/* replace some special characters in objects */
+				t[2] = decode(t[2]);
 			}
 			self.addTriples(triples,url);
 		}
@@ -139,11 +152,21 @@ OAT.RDFStore = function(tripleChangeCallback,optObj) {
 		self.rebuild(true);
 	}
 		
+	this.enableAll = function() {
+		for (var i=0;i<self.items.length;i++)
+			self.enable(self.items[i].href);
+	}
+
 	this.disable = function(url) {
 		var index = self.findIndex(url);
 		if (index == -1) { return; }
 		self.items[index].enabled = false;
 		self.rebuild(true);
+	}
+
+	this.disableAll = function() {
+		for (var i=0;i<self.items.length;i++)
+			self.disable(self.items[i].href);
 	}
 
 	this.rebuild = function(complete) {
