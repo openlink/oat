@@ -14,9 +14,18 @@
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
       </div>
 
-    <h2> tree.js</h2>Converts ul
-    tag into interactive tree.
 
+    
+
+    <h2>
+        <a name="tree.js" id="tree.js"> 
+      </a> tree.js</h2>Converts
+    Unordered List (ul element) into interactive tree.
+
+    
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -54,7 +63,7 @@
             <label class="c2">_</label>
             <label class="c2">_</label>
             <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.assign(listElement,%20collapse)">.assign(listElement,
+              <label class="c2">_</label> <a href="#OAT.Tree.assign(listElement,%20collapse)">OAT.Tree.assign(listElement,
         collapse)</a>
           </li>
 
@@ -65,71 +74,151 @@
             <label class="c2">_</label> <a href="#HTML%20Enhancement">HTML
         Enhancement</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Objects</h3>
+    <h3>
+        <a name="Objects" id="Objects"> 
+      </a> Objects</h3>
 
-    <h4>OAT.Tree(options)</h4>
-
-    <p>Options may contain any of the following:</p>
+    <h4>
+        <a name="OAT.Tree(options)"> 
+      </a>OAT.Tree(options)</h4>
+      <tt>Options</tt>
+    may contain any of the following:
 
     <ul>
-      <li>imagePath - path where all used images live</li>
+      <li>
+          <tt>
+            <b>imagePath</b>
+          </tt> - path to all images used in
+      tree</li>
 
-      <li>imagePrefix - prefix to all images</li>
+      <li>
+          <tt>
+            <b>imagePrefix</b>
+          </tt> - prefix to all images</li>
 
-      <li>ext - image name extension</li>
+      <li>
+          <tt>
+            <b>ext</b>
+          </tt> - image name extension</li>
 
-      <li>onlyOneOpened - boolean, specifying whether only one
-      branch can be opened at a time</li>
+      <li>
+          <tt>
+            <b>onlyOneOpened</b>
+          </tt> - boolean; can only one
+      branch can be opened at a time?</li>
 
-      <li>allowDrag - boolean; can user re-drag Tree nodes?</li>
+      <li>
+          <tt>
+            <b>allowDrag</b>
+          </tt> - boolean; can user re-drag
+      Tree nodes?</li>
 
-      <li>useDots - boolean; draw dotted connectors?</li>
+      <li>
+          <tt>
+            <b>useDots</b>
+          </tt> - boolean; draw dotted
+      connectors?</li>
 
-      <li>onClick - "select|toggle|false"; what to do when user
-      clicks label/icon</li>
+      <li>
+          <tt>
+            <b>onClick</b>
+          </tt> - "<tt>select|toggle|false</tt>";
+      what to do when user clicks label/icon</li>
 
-      <li>onDblClick - "select|toggle|false"; what to do when user
+      <li>
+          <tt>
+            <b>onDblClick</b>
+          </tt> -
+      "<tt>select|toggle|false</tt>"; what to do when user
       double-clicks label/icon</li>
 
-      <li>poorMode - boolean; switch to "memory
-      <u>saving_increased_performance / lower_visual_features"
-      mode?</u>
-        </li>
+      <li>
+          <tt>
+            <b>poorMode</b>
+          </tt> - boolean; switch to
+      "memory_saving_increased_performance / lower_visual_features"
+      mode?</li>
 
-      <li>checkboxMode - boolean; use checkbox mode?</li>
+      <li>
+          <tt>
+            <b>checkboxMode</b>
+          </tt> - boolean; use checkbox
+      mode?</li>
 
-      <li>allowDrag - boolean; can user re-drag Tree nodes?</li>
+      <li>
+          <tt>
+            <b>allowDrag</b>
+          </tt> - boolean; can user re-drag
+      Tree nodes?</li>
 
-      <li>defaultCheck - boolean (only in checkbox mode) ; are
-      checkboxes checked by default ?</li>
+      <li>
+          <tt>
+            <b>defaultCheck</b>
+          </tt> - boolean (only in
+      <tt>checkbox</tt> mode) ; are checkboxes checked by default
+      ?</li>
 
-      <li>checkNOI - boolean (only in checkbox mode); if true, then
-      checked nodes are contained in OAT.Tree::checkedNOI.
-      Otherwise, this array contains unchecked nodes.</li>
+      <li>
+          <tt>
+            <b>checkNOI</b>
+          </tt> - boolean (only in
+      <tt>checkbox</tt> mode); if true, then checked nodes are
+      contained in <tt>OAT.Tree::checkedNOI</tt>. Otherwise, this
+      array contains unchecked nodes.</li>
 
-      <li>checkCallback - function (only in checkbox mode); will be
-      executed (with nodeSet argument) when user changes state of a
-      checkbox.</li>
+      <li>
+          <tt>
+            <b>checkCallback</b>
+          </tt> - function (only in
+      <tt>checkbox</tt> mode); will be executed (with nodeSet
+      argument) when user changes state of a checkbox.</li>
     </ul>
 
-    <h3>Methods</h3>
+    <h3>
+        <a name="Methods" id="Methods"> 
+      </a>Methods</h3>
 
-    <h4>.assign(listElement,
-    collapse)</h4>
+    <h4>
+        <a name="OAT.Tree.assign(listElement, collapse)"> 
+      </a>
+    OAT.Tree.assign(listElement, collapse)</h4>
 
-    <p>This converts a list into an interactive tree. listElement
-    specifies an&lt;ul element in which your list lives. Argument
-    collapse toggles initial collapsing of whole tree.</p>
+    <p>This converts a list into an interactive tree.
+    <tt>listElement</tt> specifies an <tt>&lt;ul&gt;</tt> element
+    in which your list lives. Argument <tt>collapse</tt> toggles
+    initial collapsing of whole tree.</p>
 
     <p>Tree data structure can be accessed and modified. See
-    following simple examples for usage:</p>
+    Example for usage.</p>
+
+    <h3>
+        <a name="HTML Enhancement"> 
+      </a> HTML Enhancement</h3>Add
+    attributes <tt>branchImg</tt>, <tt>toggleOpenImg</tt> and
+    <tt>toggleClosedImg</tt>, which would be appended to the
+    <tt>&lt;li&gt;</tt> tag. This way we can have any desired name
+    AND file format for the tree decoration.
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
       <br/>
     <pre>
-var t1 = new OAT.Tree({imagePath:"images",imagePrefix:"",ext:"gif"}); // will take images from images/Tree_*.gif
-var t2 = new OAT.Tree({imagePath:"images",imagePrefix:"prefix",ext:"png"}); // will take images from images/Tree_prefix_*.png
+var t1 = new OAT.Tree({imagePath:"images",    // will take images from
+         imagePrefix:"", ext:"gif"});         // images/Tree_*.gif
+var t2 = new OAT.Tree({imagePath:"images",    // will take images from
+         imagePrefix:"prefix", ext:"png"});   // images/Tree_prefix_*.png
 t1.assign("myUL1", true); // collapsed
 t2.assign("myUL2", false); // expanded
 
@@ -139,14 +228,10 @@ var node2 = t2.tree.children[1];
 node2.appendChild(node1);
 node1.setLabel("newLabel");
 node2.expand();
-node1.createChild("newLabel", true); // second argument means that new child is a node rather than leaf
+node1.createChild("newLabel", true);  // second argument means that new 
+                                      // child is a node rather than leaf
 node2.deleteChild(node1);
 </pre>
-
-    <h3> HTML Enhancement</h3>Add
-    attributes branchImg, toggleOpenImg and toggleClosedImg, which
-    would be appended to the li tag. This way we can have whatever
-    name AND file format for the tree decoration.
 
     
     

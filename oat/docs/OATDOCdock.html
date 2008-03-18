@@ -14,11 +14,20 @@
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
       </div>
 
-    <h2> dock.js</h2>
+    
+    
+
+    <h2>
+        <a name="dock.js" id="dock.js"> 
+      </a> dock.js</h2>
 
     <p>Creates a draggable system of docking elements, grouped into
     columns.</p>
 
+    
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -156,32 +165,116 @@
             <label class="c2">_</label>
             <label class="c2">_</label> <a href="#.dock_content">.dock_content</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Objects</h3>
+    <h3>
+        <a name="Objects" id="Objects"> 
+      </a> Objects</h3>
 
-    <h4>OAT.Dock(div,
-    numColumns)</h4>
+    <h4>
+        <a name="OAT.Dock(div, numColumns)"> 
+      </a>OAT.Dock(div,
+    numColumns)</h4>Creates a dock inside <tt>div</tt> with
+    <tt>numColumns</tt> columns.
 
-    <p>Creates a dock inside div with numColumn columns.</p>
+    <h3>
+        <a name="Methods" id="Methods"> 
+      </a> Methods</h3>
 
-    <h3> Methods</h3>
-
-    <h4>OAT.Dock.addObject(colIndex,
-    content, options)</h4>
-
-    <p>Adds a new window to dock, resp. to its column with index
-    colIndex. This window contains content. Object options may
-    contain:</p>
+    <h4>
+        <a name="OAT.Dock.addObject(colIndex, content, options)"> 
+      </a>OAT.Dock.addObject(colIndex,
+    content, options)</h4>Adds a new window to dock, to the column
+    with index <tt>colIndex</tt>. This window contains
+    <tt>content</tt>. Object <tt>options</tt> may contain:
 
     <ul>
-      <li>color - of border &amp; header</li>
+      <li>
+          <tt>
+            <b>color</b>
+          </tt> - of border &amp; header</li>
 
-      <li>titleColor - font color in header</li>
+      <li>
+          <tt>
+            <b>titleColor</b>
+          </tt> - font color in header</li>
 
-      <li>title</li>
+      <li>
+          <tt>
+            <b>title</b>
+          </tt>
+        </li>
     </ul>
+
+    <h3>
+        <a name="Messages" id="Messages"> 
+      </a>Messages</h3>
+
+    <h4>
+        <a name="OAT.MSG.DOCK_DRAG" id="OAT.MSG.DOCK_DRAG"> 
+      </a>
+    OAT.MSG.DOCK_DRAG</h4>Sent after dock window is dragged to
+    another position. Contains object with old and new coordinates
+    of the window <tt>(oldX,oldY,newX,newY)</tt>.
+
+    <h4>
+        <a name="OAT.MSG.DOCK_REMOVE" id="OAT.MSG.DOCK_REMOVE"> 
+      </a>
+    OAT.MSG.DOCK_REMOVE</h4>Sent after dock window is closed
+    (removed). Contains the removed window object.
+
+    <h3>
+        <a name="CSS classes"> 
+      </a> CSS classes</h3>
+
+    <h4>
+        <a name=".dock"> 
+      </a> .dock</h4>CSS class of the whole dock
+    div.
+
+    <h4>
+        <a name=".dock_blank"> 
+      </a> .dock_blank</h4>CSS class of the
+    blank space that appears below when dock window is being
+    dragged to another place.
+
+    <h4>
+        <a name=".dock_column"> 
+      </a> .dock_column</h4>CSS class of
+    all dock columns.
+
+    <h4>
+        <a name=".dock_column_n"> 
+      </a> .dock_column_n</h4>CSS class
+    specific to nth dock column.
+
+    <h4>
+        <a name=".dock_window"> 
+      </a> .dock_window</h4>CSS class of
+    the dock window div (single item in the dock)
+
+    <h4>
+        <a name=".dock_header"> 
+      </a> .dock_header</h4>CSS class of
+    the dock window header div
+
+    <h4>
+        <a name=".dock_content"> 
+      </a> .dock_content</h4>CSS class of
+    the dock window content div
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
       <br/>
     <pre>
 var content = OAT.Dom.create("div");
@@ -189,51 +282,6 @@ content.innerHTML = "lorem ipsum :)"
 var d = new OAT.Dock("parentDiv", 3);
 d.addObject(0, content, {title:"Sample window"});
 </pre>
-
-    <h3>Messages</h3>
-
-    <h4>
-    OAT.MSG.DOCK_DRAG</h4>
-
-    <p>Sent after dock window is dragged to another position.
-    Contains object with old and new coordinates of the window
-    (oldX,oldY,newX,newY).</p>
-
-    <h4>
-    OAT.MSG.DOCK_REMOVE</h4>Sent after dock window was closed
-    (removed). Contains the removed window object.
-
-    <h3> CSS classes</h3>
-
-    <h4> .dock</h4>
-
-    <p>CSS class of the whole dock div.</p>
-
-    <h4> .dock_blank</h4>
-
-    <p>CSS class of the blank space that appears below when dock
-    window is being dragged to another place.</p>
-
-    <h4> .dock_column</h4>
-
-    <p>CSS class of all dock columns.</p>
-
-    <h4> .dock_column_n</h4>
-
-    <p>CSS class specific to nth dock column.</p>
-
-    <h4> .dock_window</h4>
-
-    <p>CSS class of the dock window div (single item in the
-    dock)</p>
-
-    <h4> .dock_header</h4>
-
-    <p>CSS class of the dock window header div</p>
-
-    <h4> .dock_content</h4>
-
-    <p>CSS class of the dock window content div</p>
 
     
     

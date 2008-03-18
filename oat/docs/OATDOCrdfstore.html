@@ -18,10 +18,16 @@
     
 
     <h2>
+        <a name="rdfstore.js" id="rdfstore.js"> 
+      </a>
     rdfstore.js</h2>
 
     <p>Client-side RDF store. (see <a href="OATDOCrdfbrowser.html">RDF Browser</a>)</p>
 
+    
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -185,33 +191,274 @@
             <label class="c2">_</label>
             <label class="c2">_</label>
             <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.RDFStoreData.FILTER_PROPERTY">OAT.RDFStoreData.FILTER_PROPERTY</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.RDFStoreData.FILTER_URI">OAT.RDFStoreData.FILTER_URI</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
             <label class="c2">_</label> <a href="#CSS%20IDs">CSS IDs</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#rdf_side">rdf_side</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#rdf_cache">rdf_cache</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#rdf_filter">rdf_filter</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#rdf_tabs">rdf_tabs</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#rdf_content">rdf_content</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Examples">Examples</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example%201">Example 1</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example%202">Example 2</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Objects</h3>
+    <h3>
+        <a name="Objects" id="Objects"> 
+      </a> Objects</h3>
 
-    <h4>OAT.RDFStore(callback,
-    options)</h4>Creates the object. Argument callback is executed
-    every time store's contents change. Available options
-    (properties of options object) are:
+    <h4>
+        <a name="OAT.RDFStore(callback, options)"> 
+      </a>OAT.RDFStore(callback,
+    options)</h4>Creates the object. Argument <tt>callback</tt> is
+    executed every time store's contents change. Available
+    <tt>options</tt> (properties of options object) are:
 
     <ul>
-      <li>ajaxStart - function to be executed when dereferencing
-      starts</li>
+      <li>
+          <tt>
+            <b>ajaxStart</b>
+          </tt> - function to be executed when
+      dereferencing starts</li>
 
-      <li>ajaxEnd - function to be executed when dereferencing
-      stops</li>
+      <li>
+          <tt>
+            <b>ajaxEnd</b>
+          </tt> - function to be executed when
+      dereferencing stops</li>
     </ul>
 
-    <h3> Properties</h3>
+    <h3>
+        <a name="Properties" id="Properties"> 
+      </a> Properties</h3>
 
-    <h4>OAT.RDFStore::data.triples</h4>All
+    <h4>
+        <a name="OAT.RDFStore::data.triples" id="OAT.RDFStore::data.triples"> 
+      </a>OAT.RDFStore::data.triples</h4>All
     loaded data in a big array of triples (array of arrays).
 
-    <h4>OAT.RDFStore::data.all</h4>All
-    loaded data in a complex JSON object, as shown below.<br/>
+    <h4>
+        <a name="OAT.RDFStore::data.all" id="OAT.RDFStore::data.all"> 
+      </a>OAT.RDFStore::data.all</h4>All
+    loaded data in a complex JSON object, as shown in the Example.
+
+    <h4>
+        <a name="OAT.RDFStore::data.structured" id="OAT.RDFStore::data.structured"> 
+      </a>OAT.RDFStore::data.structured</h4>Loaded
+    data after filters have been applied. Same structure as
+    <tt>data.all</tt>.
+
+    <h3>
+        <a name="Methods" id="Methods"> 
+      </a> Methods</h3>
+
+    <h4>
+        <a name="OAT.RDFStore::addURL(url, onstart, onend)"> 
+      </a>OAT.RDFStore::addURL(url,
+    onstart, onend)</h4>Dereferences <tt>url</tt> and adds its
+    contents to store. <tt>onstart</tt> and <tt>onend</tt>
+    arguments are used to override global <tt>ajaxStart</tt> and
+    <tt>ajaxEnd</tt> parameters, respectively.
+
+    <h4>
+        <a name="OAT.RDFStore::addTriples(triplesArray, url)"> 
+      </a>OAT.RDFStore::addTriples(triplesArray,
+    url)</h4>Adds an array of triples (triplesArray) to storage.
+    The <tt>url</tt> specifies the address where these triples
+    originate.
+
+    <h4>
+        <a name="OAT.RDFStore::addXmlDoc(xmlDoc, url)"> 
+      </a>OAT.RDFStore::addXmlDoc(xmlDoc,
+    url)</h4>Adds an XML document (<tt>xmlDoc</tt>, fetched by
+    <tt>OAT.AJAX.GET</tt> for instance) to storage. The
+    <tt>url</tt> specifies the address where this document
+    originates.
+
+    <h4>
+        <a name="OAT.RDFStore::getTitle(itemReference)"> 
+      </a>OAT.RDFStore::getTitle(itemReference)</h4>Returns
+    a reasonable title (falls back to URI) of an item in storage.
+
+    <h4>
+        <a name="OAT.RDFStore::simplify(string)"> 
+      </a>OAT.RDFStore::simplify(string)</h4>Simplifies
+    an URI by removing as much as possible (leaving the part after
+    '#' or '/').
+
+    <h4>
+        <a name="OAT.RDFStore::addFilter(type, value1, [value2])"> 
+      </a>OAT.RDFStore::addFilter(type,
+    value1, [value2])</h4>Applies a pass filter to store contents.
+    Filter type is specified as one of available constants.
+
+    <p>For <tt>FILTER_PROPERTY</tt>, both 2nd and 3rd arguments
+    should be used: these specify <tt>predicate value</tt> and
+    <tt>object value</tt> (only resources having this P and O will
+    pass).</p>
+
+    <p>For <tt>FILTER_URI</tt>, only 2nd argument should be used:
+    this <tt>value</tt> specifies an URI to be filtered (only
+    resources having this URI as O or S will pass).</p>
+
+    <h4>
+        <a name="OAT.RDFStore::removeFilter(type, value1, [value2])"> 
+      </a>OAT.RDFStore::removeFilter(type,
+    value1, [value2])</h4>Removes a previously set filter; syntax
+    is the same as in <tt>addFilter</tt>.
+
+    <h4>
+        <a name="OAT.RDFStore::disable(url)"> 
+      </a>OAT.RDFStore::disable(url)</h4>Temporarily
+    disables (removes) all triples originating from <tt>URL</tt>
+    from the store. URL must be dereferenced.
+
+    <h4>
+        <a name="OAT.RDFStore::enable(url)"> 
+      </a>OAT.RDFStore::enable(url)</h4>Re-enables
+    previously disabled <tt>URL</tt>, so its contents are loaded in
+    a store. URL must be dereferenced.
+
+    <h3>
+        <a name="Constants" id="Constants"> 
+      </a> Constants</h3>
+
+    <h4>
+        <a name="OAT.RDFStoreData.FILTER_PROPERTY" id="OAT.RDFStoreData.FILTER_PROPERTY"> 
+      </a>
+    OAT.RDFStoreData.FILTER_PROPERTY</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name="OAT.RDFStoreData.FILTER_URI" id="OAT.RDFStoreData.FILTER_URI"> 
+      </a>
+    OAT.RDFStoreData.FILTER_URI</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h3>
+        <a name="CSS IDs"> 
+      </a> CSS IDs</h3>
+
+    <h4>
+        <a name="rdf_side" id="rdf_side"> 
+      </a>
+    rdf_side</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name="rdf_cache" id="rdf_cache"> 
+      </a>
+    rdf_cache</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name="rdf_filter" id="rdf_filter"> 
+      </a>
+    rdf_filter</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name="rdf_tabs" id="rdf_tabs"> 
+      </a>
+    rdf_tabs</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name="rdf_content" id="rdf_content"> 
+      </a>
+    rdf_content</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h3>
+        <a name="Examples" id="Examples"> 
+      </a>Examples</h3>
+
+    <h4>
+        <a name="Example 1"> 
+      </a>Example 1</h4>
+      <br/>
     <pre>
 [
         {
@@ -234,54 +481,10 @@
 ]
 </pre>
 
-    <h4>OAT.RDFStore::data.structured</h4>Loaded
-    data after filters have been applied. Same structure as
-    data.all.
-
-    <h3> Methods</h3>
-
-    <h4>OAT.RDFStore::addURL(url,
-    onstart, onend)</h4>Dereferences url and adds its contents to
-    store. Two remaining arguments are used to override global
-    ajaxStart and ajaxEnd parameters.
-
-    <h4>OAT.RDFStore::addTriples(triplesArray,
-    url)</h4>Adds an array of triples (triplesArray) to storage.
-    The url specifies the address from where these triples
-    originate.
-
-    <h4>OAT.RDFStore::addXmlDoc(xmlDoc,
-    url)</h4>Adds an XML document (fetched by OAT.AJAX.GET for
-    instance) to storage. The url specifies the address from where
-    this document originates.
-
-    <h4>OAT.RDFStore::getTitle(itemReference)</h4>Returns
-    a reasonable title (falls back to URI) of an item in storage.
-
-    <h4>OAT.RDFStore::simplify(string)</h4>Simplifies
-    an URI by removing as much as possible (leaving the part after
-    '#' or '/').
-
-    <h4>OAT.RDFStore::addFilter(type,
-    value1, [value2])</h4>Applies a pass filter to store contents.
-    Filter type is specified as one of available constants. For
-    FILTER_PROPERTY, both 2nd and 3rd arguments should be used:
-    these specify predicate value and object value (only resources
-    having this P and O will pass). For FILTER_URI, only 2nd
-    argument should be used: this value specifies an URI to be
-    filtered (only resources having this URI as O or S will pass).
-
-    <h4>OAT.RDFStore::removeFilter(type,
-    value1, [value2])</h4>Removes a previously set filter; syntax
-    is the same as in addFilter.
-
-    <h4>OAT.RDFStore::disable(url)</h4>Temporarily
-    disables (removes) all triples originating from URL from the
-    store. URL must be dereferenced.
-
-    <h4>OAT.RDFStore::enable(url)</h4>Re-enables
-    previously disabled URL, so its contents are loaded in a store.
-    URL must be dereferenced.<br/>
+    <h4>
+        <a name="Example 2"> 
+      </a>Example 2</h4>
+      <br/>
     <pre>
 var callback = function() {
         alert("Store contents have changed, check them out!");
@@ -289,28 +492,6 @@ var callback = function() {
 var store = new OAT.RDFStore(callback, {});
 store.addURL("myRDF.n3");
 </pre>
-
-    <h3> Constants</h3>
-
-    <ul>
-      <li>OAT.RDFStoreData.FILTER_PROPERTY</li>
-
-      <li>OAT.RDFStoreData.FILTER_URI</li>
-    </ul>
-
-    <h3> CSS IDs</h3>
-
-    <ul>
-      <li>rdf_side</li>
-
-      <li>rdf_cache</li>
-
-      <li>rdf_filter</li>
-
-      <li>rdf_tabs</li>
-
-      <li>rdf_content</li>
-    </ul>
 
     
     

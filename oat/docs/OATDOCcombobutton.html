@@ -14,13 +14,22 @@
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
       </div>
 
+    
+    
+
     <h2>
+        <a name="combobutton.js" id="combobutton.js"> 
+      </a>
     combobutton.js</h2>
 
     <p>Creates a combobutton, which is a multi-functional button.
     It enables user to specify a callback action to be performed
     when it is clicked.</p>
 
+    
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -124,24 +133,84 @@
             <label class="c2">_</label>
             <label class="c2">_</label> <a href="#.combo_button_down">.combo_button_down</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Objects</h3>
+    <h3>
+        <a name="Objects" id="Objects"> 
+      </a> Objects</h3>
 
-    <h4>OAT.Combobutton()</h4>Creates a
+    <h4>
+        <a name="OAT.Combobutton()"> 
+      </a>OAT.Combobutton()</h4>Creates a
     combobutton. Its main div is accessible as
-    OAT.Combobutton::div.
+    <tt>OAT.Combobutton::div</tt>.
 
-    <h3> Methods</h3>
+    <h3>
+        <a name="Methods" id="Methods"> 
+      </a> Methods</h3>
 
-    <h4>OAT.Combobutton::addOption(imagePath,
+    <h4>
+        <a name="OAT.Combobutton::addOption(imagePath, textValue, callback)"> 
+      </a>OAT.Combobutton::addOption(imagePath,
     textValue, callback)</h4>Adds a new option, described as
-    textValue with image located at imagePath. When this option is
-    clicked, callback is called.
+    <tt>textValue</tt> with image located at <tt>imagePath</tt>.
+    When this option is clicked, <tt>callback</tt> is called.
 
-    <h4>OAT.Combobutton::removeOption(index)</h4>Removes
-    index-th option.<br/>
+    <h4>
+        <a name="OAT.Combobutton::removeOption(index)"> 
+      </a>OAT.Combobutton::removeOption(index)</h4>Removes
+    <tt>index</tt>-th option.
+
+    <h3>
+        <a name="CSS classes"> 
+      </a> CSS classes</h3>
+
+    <h4>
+        <a name=".combo_button"> 
+      </a> .combo_button</h4>
+
+    <p>CSS class of the button options list.</p>
+
+    <h4>
+        <a name=".combo_image"> 
+      </a> .combo_image</h4>
+
+    <p>CSS class of the dropdown clicker image.</p>
+
+    <h4>
+        <a name=".combo_button_option"> 
+      </a>
+    .combo_button_option</h4>
+
+    <p>CSS class of the button option div.</p>
+
+    <h4>
+        <a name=".combo_button_text"> 
+      </a> .combo_button_text</h4>
+
+    <p>CSS class of the div with textual description of the
+    option.</p>
+
+    <h4>
+        <a name=".combo_button_down"> 
+      </a> .combo_button_down</h4>
+
+    <p>CSS class that is added/removed to option whenever the
+    button is clicked/released.</p>
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
+      <br/>
     <pre>
 var cb = new OAT.Combobutton();
 document.body.appendChild( cb.div );
@@ -149,31 +218,6 @@ cb.addOption("img1.gif", "option 1", function(){});
 cb.addOption("img2.gif", "option 2", function(){});
 cb.removeOption(0);
 </pre>
-
-    <h3> CSS classes</h3>
-
-    <h4> .combo_button</h4>
-
-    <p>CSS class of the button options list.</p>
-
-    <h4> .combo_image</h4>
-
-    <p>CSS class of the dropdown clicker image.</p>
-
-    <h4>
-    .combo_button_option</h4>
-
-    <p>CSS class of the button option div.</p>
-
-    <h4> .combo_button_text</h4>
-
-    <p>CSS class of the div with textual description of the
-    option.</p>
-
-    <h4> .combo_button_down</h4>
-
-    <p>CSS class that is added/removed to option whenever the
-    button is clicked/released.</p>
 
     
     

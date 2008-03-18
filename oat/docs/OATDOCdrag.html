@@ -14,11 +14,19 @@
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
       </div>
 
-    <h2> drag.js</h2>
+    
+    
+
+    <h2>
+        <a name="drag.js" id="drag.js"> 
+      </a> drag.js</h2>
 
     <p>Provides dragging (moving) capability for any DOM node</p>
     
 
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -96,34 +104,104 @@
             <label class="c2">_</label>
             <label class="c2">_</label> <a href="#OAT.Drag.TYPE_XY">OAT.Drag.TYPE_XY</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Functions</h3>
+    <h3>
+        <a name="Functions" id="Functions"> 
+      </a> Functions</h3>
 
     <h4>
+        <a name="OAT.Drag.create(clicker, mover, optObj)"> 
+      </a>
     OAT.Drag.create(clicker, mover, optObj)</h4>
 
-    <p>Modifies element mover such that clicking and moving on
-    clicker will cause it to move. Additional options can be
-    specified using optObj object:</p>
+    <p>Modifies element <tt>mover</tt> such that clicking and
+    moving on <tt>clicker</tt> will cause it to move. Additional
+    options can be specified using <tt>optObj</tt> object:</p>
 
     <ul>
-      <li>type - one of the constants, specifies direction in which
-      the dragging will be possible</li>
+      <li>
+          <tt>
+            <b>type</b>
+          </tt> - one of the constants, specifies
+      direction in which element may be dragged</li>
 
-      <li>restrictionFunction - callback which specifies movement
-      restriction</li>
+      <li>
+          <tt>
+            <b>restrictionFunction</b>
+          </tt> - callback which
+      specifies movement restriction</li>
 
-      <li>endFunction - callback to be executed when dragging
-      ends</li>
+      <li>
+          <tt>
+            <b>endFunction</b>
+          </tt> - callback to be executed
+      when dragging ends</li>
 
-      <li>magnetsH - array of elements to horizontally snap to</li>
+      <li>
+          <tt>
+            <b>magnetsH</b>
+          </tt> - array of elements to
+      horizontally snap to</li>
 
-      <li>magnetsV - array of elements to vertically snap to</li>
+      <li>
+          <tt>
+            <b>magnetsV</b>
+          </tt> - array of elements to
+      vertically snap to</li>
 
-      <li>cursor - bool, adjust automatically css cursor</li>
+      <li>
+          <tt>
+            <b>cursor</b>
+          </tt> - bool, automatically adjust CSS
+      cursor</li>
     </ul>
+
+    <h4>
+        <a name="OAT.Drag.remove(clicker, mover)"> 
+      </a>
+    OAT.Drag.remove(clicker, mover)</h4>Removes dragging relation
+    between <tt>clicker</tt> and <tt>mover</tt>.
+
+    <h4>
+        <a name="OAT.Drag.removeAll(clicker)"> 
+      </a>OAT.Drag.removeAll(clicker)</h4>Removes
+    all dragging relations from <tt>clicker</tt>.
+
+    <h3>
+        <a name="Constants" id="Constants"> 
+      </a> Constants</h3>
+
+    <h4>
+        <a name="OAT.Drag.TYPE_X" id="OAT.Drag.TYPE_X"> 
+      </a>
+    OAT.Drag.TYPE_X</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name="OAT.Drag.TYPE_Y" id="OAT.Drag.TYPE_Y"> 
+      </a>
+    OAT.Drag.TYPE_Y</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name="OAT.Drag.TYPE_XY" id="OAT.Drag.TYPE_XY"> 
+      </a>
+    OAT.Drag.TYPE_XY</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
       <br/>
     <pre>
 var header = Dom.create("div");
@@ -132,23 +210,8 @@ body.appendChild(header);
 OAT.Drag.create(header, body, {type:TYPE_XY});
 </pre>
 
-    <h4>
-    OAT.Drag.remove(clicker, mover)</h4>Removes dragging relation
-    between clicker and mover.
-
-    <h4>OAT.Drag.removeAll(clicker)</h4>Removes
-    all dragging relations from clicker.
-
-    <h3> Constants</h3>
-
-    <h4>
-    OAT.Drag.TYPE_X</h4>
-
-    <h4>
-    OAT.Drag.TYPE_Y</h4>
-
-    <h4>
-    OAT.Drag.TYPE_XY</h4>
+    
+    
 
     <div id="oatcopy">
       Copyright (C) 

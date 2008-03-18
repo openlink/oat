@@ -14,11 +14,19 @@
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
       </div>
 
-    <h2> resize.js</h2>
+    
+    
+
+    <h2>
+        <a name="resize.js" id="resize.js"> 
+      </a> resize.js</h2>
 
     <p>Provides resizing capability for any DOM node.</p>
     
 
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -40,9 +48,9 @@
             <label class="c2">_</label>
             <label class="c2">_</label>
             <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Resize.create(clicker,%20mover,%20type,%20restrictionFunction,%20endFunction)">
-        OAT.Resize.create(clicker, mover, type,
-        restrictionFunction, endFunction)</a>
+              <label class="c2">_</label> <a href="#OAT.Resize.create(clicker,%20mover,%20type[,%20restrictionFunction[,%20endFunction]])">
+        OAT.Resize.create(clicker, mover, type[,
+        restrictionFunction[, endFunction]])</a>
           </li>
 
         <li>
@@ -70,28 +78,109 @@
             <label class="c2">_</label>
             <label class="c2">_</label> <a href="#Constants">Constants</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.Resize.TYPE_">OAT.Resize.TYPE_</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Functions</h3>
+    <h3>
+        <a name="Functions" id="Functions"> 
+      </a> Functions</h3>
 
     <h4>
-    OAT.Resize.create(clicker, mover, type,
-    restrictionFunction, endFunction)</h4>Modifies element such
-    that clicking and moving on clicker will cause it to resize.
-    Type (constant) specifies resizing direction.
+        <a name="OAT.Resize.create(clicker, mover, type[, restrictionFunction[, endFunction]])"> 
+      </a>OAT.Resize.create(clicker, mover, type[,
+    restrictionFunction[, endFunction]])</h4>Modifies element such
+    that clicking and moving on <tt>clicker</tt> will cause it to
+    resize.
 
     <ul>
-      <li>clicker, mover - ID or DOM element</li>
+      <li>
+          <tt>
+            <b>clicker</b>
+          </tt> - ID or DOM element</li>
 
-      <li>type - see Constants section</li>
+      <li>
+          <tt>
+            <b>mover</b>
+          </tt> - ID or DOM element</li>
 
-      <li>restrictionFunction - function with bool result which
-      tells if resizing is permitted (optional)</li>
+      <li>
+          <tt>
+            <b>type</b>
+          </tt> - one of the
+      <tt>OAT.Resize.TYPE_</tt> constants; specifies resizing
+      direction(s).</li>
 
-      <li>endFunction - function performed at the end of resize
-      task (optional)</li>
+      <li>
+          <tt>
+            <b>restrictionFunction</b>
+          </tt> - function with bool
+      result which tells if resizing is permitted (optional)</li>
+
+      <li>
+          <tt>
+            <b>endFunction</b>
+          </tt> - function performed at the
+      end of resize task (optional)</li>
     </ul>
+
+    <h4>
+        <a name="OAT.Resize.remove(clicker, element)"> 
+      </a>OAT.Resize.remove(clicker,
+    element)</h4>Removes resizing relation between <tt>clicker</tt>
+    and <tt>element</tt>.
+
+    <h4>
+        <a name="OAT.Resize.removeAll(clicker)"> 
+      </a>OAT.Resize.removeAll(clicker)</h4>Removes
+    all resizing relations from <tt>clicker</tt>.
+
+    <h3>
+        <a name="Constants" id="Constants"> 
+      </a> Constants</h3>
+
+    <h4>
+        <a name="OAT.Resize.TYPE_" id="OAT.Resize.TYPE_"> 
+      </a>
+    OAT.Resize.TYPE_</h4>Tells which direction resizing is
+    permitted.
+
+    <ul>
+      <li>
+          <tt>
+            <b>OAT.Resize.TYPE_X</b>
+          </tt> - X-axis only</li>
+
+      <li>
+          <tt>
+            <b>OAT.Resize.TYPE_Y</b>
+          </tt> - Y-axis only</li>
+
+      <li>
+          <tt>
+            <b>OAT.Resize.TYPE_XY</b>
+          </tt> - both axes</li>
+    </ul>
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
       <br/>
     <pre>
 var corner = OAT.Dom.create("div");
@@ -99,24 +188,6 @@ var body = OAT.Dom.create("div");
 body.appendChild(corner);
 OAT.Resize.create(corner, body, OAT.Resize.TYPE_XY);
 </pre>
-
-    <h4>OAT.Resize.remove(clicker,
-    element)</h4>Removes resizing relation between clicker and
-    element.
-
-    <h4>OAT.Resize.removeAll(clicker)</h4>Removes
-    all resizing relations from clicker.
-
-    <h3> Constants</h3>Tells
-    which direction resizing is permitted.
-
-    <ul>
-      <li>OAT.Resize.TYPE_X</li>
-
-      <li>OAT.Resize.TYPE_Y</li>
-
-      <li>OAT.Resize.TYPE_XY</li>
-    </ul>
 
     
     

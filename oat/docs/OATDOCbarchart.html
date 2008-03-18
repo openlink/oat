@@ -14,12 +14,20 @@
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
       </div>
 
-    <h2>
-    barchart.js</h2>
-
-    <p>Library for drawing Bar charts, using HTML DOM.</p>
+    
     
 
+    <h2>
+        <a name="barchart.js" id="barchart.js"> 
+      </a>
+    barchart.js</h2>
+
+    <p>Library for drawing bar charts, using HTML DOM.</p>
+    
+
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -131,84 +139,166 @@
             <label class="c2">_</label>
             <label class="c2">_</label> <a href="#.textY">.textY</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Objects</h3>
+    <h3>
+        <a name="Objects" id="Objects"> 
+      </a> Objects</h3>
 
-    <h4>OAT.BarChart(div,
+    <h4>
+        <a name="OAT.BarChart(div, optObj)"> 
+      </a>OAT.BarChart(div,
     optObj)</h4>
 
-    <p>Creates a Bar Chart inside div, optObj describes its
-    properties. Its values:</p>
+    <p>Creates a Bar Chart inside <tt>div</tt>; <tt>optObj</tt>
+    describes its properties. <tt>optObj</tt> values:</p>
 
     <ul>
-      <li>percentage - bool; is it a percentage plot?</li>
+      <li>
+          <tt>
+            <b>percentage</b>
+          </tt> - bool; is it a percentage
+      plot?</li>
 
-      <li>spacing - int; spacing between columns</li>
+      <li>
+          <tt>
+            <b>spacing</b>
+          </tt> - int; spacing between
+      columns</li>
 
-      <li>paddingLeft, paddingBottom, paddingTop</li>
+      <li>
+          <tt>
+            <b>paddingLeft</b>, <b>paddingBottom</b>,
+      <b>paddingTop</b>
+          </tt>
+        </li>
 
-      <li>width - int; width of one column</li>
+      <li>
+          <tt>
+            <b>width</b>
+          </tt> - int; width of one column</li>
 
-      <li>colors - array of css colors, one for each value set</li>
+      <li>
+          <tt>
+            <b>colors</b>
+          </tt> - array of CSS colors, one for
+      each value set</li>
 
-      <li>border - bool; outline each column?</li>
+      <li>
+          <tt>
+            <b>border</b>
+          </tt> - bool; outline each column?</li>
 
-      <li>grid - bool; show horizontal grid lines?</li>
+      <li>
+          <tt>
+            <b>grid</b>
+          </tt> - bool; show horizontal grid
+      lines?</li>
 
-      <li>gridDesc - bool; show description of lines?</li>
+      <li>
+          <tt>
+            <b>gridDesc</b>
+          </tt> - bool; show description of
+      lines?</li>
 
-      <li>gridNum - int; approximate number of lines</li>
+      <li>
+          <tt>
+            <b>gridNum</b>
+          </tt> - int; approximate number of
+      lines</li>
 
-      <li>shadow - bool; draw shadow for columns?</li>
+      <li>
+          <tt>
+            <b>shadow</b>
+          </tt> - bool; draw shadow for
+      columns?</li>
 
-      <li>shadowColor - css color</li>
+      <li>
+          <tt>
+            <b>shadowColor</b>
+          </tt> - CSS color</li>
 
-      <li>shadowOffset - int; distance between column and its
-      shadow</li>
+      <li>
+          <tt>
+            <b>shadowOffset</b>
+          </tt> - int; distance between
+      column and its shadow</li>
     </ul>
 
-    <h3> Methods</h3>
+    <h3>
+        <a name="Methods" id="Methods"> 
+      </a> Methods</h3>
 
-    <h4>OAT.BarChart::attachData(dataArray)</h4>Adds
-    data to chart. Each value of dataArray describes one column;
-    each column may consist of multiple values. In such case,
-    dataArray is array of arrays.
+    <h4>
+        <a name="OAT.BarChart::attachData(dataArray)"> 
+      </a>OAT.BarChart::attachData(dataArray)</h4>Adds
+    data to chart. Each value of <tt>dataArray</tt> describes one
+    column; each column may consist of multiple values. In such
+    case, <tt>dataArray</tt> is an array of arrays.
 
-    <h4>OAT.BarChart::attachTextX(textArray)</h4>Adds
+    <h4>
+        <a name="OAT.BarChart::attachTextX(textArray)"> 
+      </a>OAT.BarChart::attachTextX(textArray)</h4>Adds
     horizontal labels.
 
-    <h4>OAT.BarChart::attachTextY(textArray)</h4>Adds
+    <h4>
+        <a name="OAT.BarChart::attachTextY(textArray)"> 
+      </a>OAT.BarChart::attachTextY(textArray)</h4>Adds
     vertical labels.
 
-    <h4>OAT.BarChart::draw()</h4>Draws the
-    chart.<br/>
+    <h4>
+        <a name="OAT.BarChart::draw()"> 
+      </a>OAT.BarChart::draw()</h4>Draws the
+    chart.
+
+    <h3>
+        <a name="CSS classes"> 
+      </a> CSS classes</h3>
+
+    <h4>
+        <a name=".legend"> 
+      </a> .legend</h4>
+
+    <p>CSS class of legend div.</p>
+
+    <h4>
+        <a name=".legend_box"> 
+      </a> .legend_box</h4>
+
+    <p>CSS class of boxes with bar color, positioned left from the
+    value description text.</p>
+
+    <h4>
+        <a name=".textX"> 
+      </a> .textX</h4>
+
+    <p>CSS class of X axis description.</p>
+
+    <h4>
+        <a name=".textY"> 
+      </a> .textY</h4>
+
+    <p>CSS class of Y axis description.</p>
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
+      <br/>
     <pre>
 var chart = new OAT.BarChart("myDiv",{});
 chart.attachData([1,3,2]);
 chart.attachTextX(["a","b","c"]);
 chart.draw();
 </pre>
-
-    <h3> CSS classes</h3>
-
-    <h4> .legend</h4>
-
-    <p>CSS class of legend div.</p>
-
-    <h4> .legend_box</h4>
-
-    <p>CSS class of boxes with bar color, positioned left from the
-    value description text.</p>
-
-    <h4> .textX</h4>
-
-    <p>CSS class of X axis description.</p>
-
-    <h4> .textY</h4>
-
-    <p>CSS class of Y axis description.</p>
 
     
     

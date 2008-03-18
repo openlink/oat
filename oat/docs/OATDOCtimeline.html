@@ -17,9 +17,14 @@
     
     
 
-    <h2>timeline.js</h2>Draggable timeline.
+    <h2>
+        <a name="timeline.js" id="timeline.js"> 
+      </a>timeline.js</h2>Draggable timeline.
     
 
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -58,8 +63,8 @@
             <label class="c2">_</label>
             <label class="c2">_</label>
             <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.addBand(name,%20color,%20label)">.addBand(name, color,
-        label)</a>
+              <label class="c2">_</label> <a href="#OAT.Timeline.addBand(name,%20color,%20label)">OAT.Timeline.addBand(name,
+        color, label)</a>
           </li>
 
         <li>
@@ -68,9 +73,9 @@
             <label class="c2">_</label>
             <label class="c2">_</label>
             <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.addEvent(bandName,%20startTime,%20endTime,%20content,%20color)">
-        .addEvent(bandName, startTime, endTime, content,
-        color)</a>
+              <label class="c2">_</label> <a href="#OAT.Timeline.addEvent(bandName,%20startTime,%20endTime,%20content,%20color)">
+        OAT.Timeline.addEvent(bandName, startTime, endTime,
+        content, color)</a>
           </li>
 
         <li>
@@ -89,59 +94,152 @@
             <label class="c2">_</label> <a href="#CSS%20Classes">CSS
         Classes</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.Timeline.timeline">OAT.Timeline.timeline</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.Timeline.timeline_port">OAT.Timeline.timeline_port</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.Timeline.timeline_slider">OAT.Timeline.timeline_slider</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Objects</h3>
+    <h3>
+        <a name="Objects" id="Objects"> 
+      </a> Objects</h3>
 
-    <h4>OAT.Timeline(contentDiv,
-    options)</h4>
-
-    <p>Creates a Timeline inside contentDiv. options may contain
-    these options:</p>
+    <h4>
+        <a name="OAT.Timeline(contentDiv, options)"> 
+      </a>OAT.Timeline(contentDiv,
+    options)</h4>Creates a Timeline inside <tt>contentDiv</tt>. The
+    <tt>options</tt> may include:
 
     <ul>
-      <li>lineHeight - int, height of one record</li>
+      <li>
+          <tt>
+            <b>lineHeight</b>
+          </tt> - int, height of one
+      record</li>
 
-      <li>bandHeight - int, height of one band's header</li>
+      <li>
+          <tt>
+            <b>bandHeight</b>
+          </tt> - int, height of one band's
+      header</li>
 
-      <li>margins - int, (default 200)</li>
+      <li>
+          <tt>
+            <b>margins</b>
+          </tt> - int, (default
+      <tt>200</tt>)</li>
 
-      <li>resize - bool (default true)</li>
+      <li>
+          <tt>
+            <b>resize</b>
+          </tt> - bool (default
+      <tt>true</tt>)</li>
 
-      <li>formatter - bool (default true)</li>
+      <li>
+          <tt>
+            <b>formatter</b>
+          </tt> - bool (default
+      <tt>true</tt>)</li>
 
-      <li>sliderHeight - int, height of slider</li>
+      <li>
+          <tt>
+            <b>sliderHeight</b>
+          </tt> - int, height of slider</li>
 
-      <li>autoHeight - bool, should height be automatically
-      adjusted? (default true)</li>
+      <li>
+          <tt>
+            <b>autoHeight</b>
+          </tt> - bool, should height be
+      automatically adjusted? (default <tt>true</tt>)</li>
     </ul>
 
-    <h3>Methods</h3>
+    <h3>
+        <a name="Methods" id="Methods"> 
+      </a>Methods</h3>
 
-    <h4>.addBand(name,
+    <h4>
+        <a name="OAT.Timeline.addBand(name, color, label)"> 
+      </a>OAT.Timeline.addBand(name,
     color, label)</h4>Adds a data band to chart. The band is
-    identified by name and labeled with label.
+    identified by <tt>name</tt>, drawn in <tt>color</tt>, and
+    labeled with <tt>label</tt>.
 
-    <h4>.addEvent(bandName,
-    startTime, endTime, content, color)</h4>Adds new event to
-    Timeline, resp. to its band bandName. endTime can be false,
-    when the event has no duration. content is a HTML element;
-    color is a background color for time strip (only when endTime
-    != false).
+    <h4>
+        <a name="OAT.Timeline.addEvent(bandName, startTime, endTime, content, color)"> 
+      </a>OAT.Timeline.addEvent(bandName, startTime, endTime,
+    content, color)</h4>Adds new event to Timeline, respective to
+    its band <tt>bandName</tt>. <tt>startTime</tt> and
+    <tt>endTime</tt> are data-time strings formatted as
+    <tt>YYYY-MM-DDThh-mm-ss</tt>. ( <i>
+        <div class="tdl">ToBeDone</div> - verify preceding sentence!</i> )
+    <tt>endTime</tt> can be false, when the event has no duration.
+    <tt>content</tt> is a HTML element; <tt>color</tt> is a
+    background color for time strip (only when <tt>endTime</tt> is
+    not <tt>false</tt>).
 
-    <h4>OAT.Timeline::draw()</h4>Draws the
+    <h4>
+        <a name="OAT.Timeline::draw()"> 
+      </a>OAT.Timeline::draw()</h4>Draws the
     timeline.
 
-    <h3>CSS Classes</h3>
+    <h3>
+        <a name="CSS Classes"> 
+      </a>CSS Classes</h3>
 
-    <ul>
-      <li>.timeline</li>
+    <h4>
+        <a name="OAT.Timeline.timeline" id="OAT.Timeline.timeline"> 
+      </a>
+    OAT.Timeline.timeline</h4>
+      <div class="tdl">ToBeDone</div>
 
-      <li>.timeline_port</li>
+    <h4>
+        <a name="OAT.Timeline.timeline_port" id="OAT.Timeline.timeline_port"> 
+      </a>
+    OAT.Timeline.timeline_port</h4>
+      <div class="tdl">ToBeDone</div>
 
-      <li>.timeline_slider</li>
-    </ul>
+    <h4>
+        <a name="OAT.Timeline.timeline_slider" id="OAT.Timeline.timeline_slider"> 
+      </a>
+    OAT.Timeline.timeline_slider</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
+      <div class="tdl">ToBeDone</div>
 
     
     

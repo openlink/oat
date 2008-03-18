@@ -14,10 +14,18 @@
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
       </div>
 
+    
+    
+
     <h2>
+        <a name="calendar.js" id="calendar.js"> 
+      </a>
     calendar.js</h2>Displays a calendar for date picking.
     
 
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -63,6 +71,58 @@
             <label class="c2">_</label>
             <label class="c2">_</label>
             <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Properties">Properties</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.Calendar.dayNames">OAT.Calendar.dayNames</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.Calendar.monthNames">OAT.Calendar.monthNames</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.Calendar.specialDays">OAT.Calendar.specialDays</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.Calendar.weekStartIndex">OAT.Calendar.weekStartIndex</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.Calendar.dayZeroIndex">OAT.Calendar.dayZeroIndex</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
             <label class="c2">_</label> <a href="#CSS%20classes">CSS
         classes</a>
           </li>
@@ -111,46 +171,120 @@
             <label class="c2">_</label>
             <label class="c2">_</label> <a href="#.calendar_month">.calendar_month</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Objects</h3>
+    <h3>
+        <a name="Objects" id="Objects"> 
+      </a> Objects</h3>
 
-    <h4>OAT.Calendar(optObj)</h4>Instantiates
-    the OAT.Calendar object. optObj may contain:
-
-    <ul>
-      <li>popup - bool; should clicking anywhere close the
-      calendar? (default: false)</li>
-    </ul>
-
-    <h3> Methods</h3>
-
-    <h4>OAT.Calendar::show(x,
-    y, callback, [date])</h4>
-
-    <p>Shows the calendar. It will appear at [x, y]. If date is
-    specified, it will be pre-selected. All dates are in form of
-    [year, month, day], starting from 1. When user selects a date,
-    a callback(date) will be called.</p>
-
-    <p>Further customizations can be done by setting some
-    properties:</p>
+    <h4>
+        <a name="OAT.Calendar(optObj)"> 
+      </a>
+    OAT.Calendar(optObj)</h4>Instantiates the <tt>OAT.Calendar</tt>
+    object. <tt>optObj</tt> may contain:
 
     <ul>
-      <li>OAT.Calendar.dayNames - array of 7 day names</li>
-
-      <li>OAT.Calendar.monthNames - array of 12 month names</li>
-
-      <li>OAT.Calendar.specialDays - array specifying which days
-      should be special (weekends)</li>
-
-      <li>OAT.Calendar.weekStartIndex - index of day (in
-      OAT.Calendar.dayNames) when week starts</li>
-
-      <li>OAT.Calendar.dayZeroIndex - index of day for which
-      Date::getDay() returns 0, i.e. Sunday.</li>
+      <li>
+          <tt>popup</tt> - bool; should clicking anywhere close the
+      calendar? (default: <tt>false</tt>)</li>
     </ul>
+
+    <h3>
+        <a name="Methods" id="Methods"> 
+      </a> Methods</h3>
+
+    <h4>
+        <a name="OAT.Calendar::show(x, y, callback, [date])"> 
+      </a>
+    OAT.Calendar::show(x, y, callback, [date])</h4>
+
+    <p>Shows the calendar. It will appear at <tt>[x, y]</tt>. If
+    <tt>date</tt> is specified, it will be pre-selected. All dates
+    are in form of <tt>[year, month, day]</tt>, starting from 1.
+    When user selects a date, a <tt>callback(date)</tt> will be
+    called.</p>
+
+    <h3>
+        <a name="Properties" id="Properties"> 
+      </a> Properties</h3>
+
+    <h4>
+        <a name="OAT.Calendar.dayNames" id="OAT.Calendar.dayNames"> 
+      </a> OAT.Calendar.dayNames</h4>array of
+    7 day names
+
+    <h4>
+        <a name="OAT.Calendar.monthNames" id="OAT.Calendar.monthNames"> 
+      </a>
+    OAT.Calendar.monthNames</h4>array of 12 month names
+
+    <h4>
+        <a name="OAT.Calendar.specialDays" id="OAT.Calendar.specialDays"> 
+      </a>
+    OAT.Calendar.specialDays</h4>array specifying which days should
+    be special (weekends)
+
+    <h4>
+        <a name="OAT.Calendar.weekStartIndex" id="OAT.Calendar.weekStartIndex"> 
+      </a>
+    OAT.Calendar.weekStartIndex</h4>index of day (in
+    <tt>OAT.Calendar.dayNames</tt>) when week starts
+
+    <h4>
+        <a name="OAT.Calendar.dayZeroIndex" id="OAT.Calendar.dayZeroIndex"> 
+      </a>
+    OAT.Calendar.dayZeroIndex</h4>index of day (in
+    <tt>OAT.Calendar.dayNames</tt>) for which
+    <tt>Date::getDay()</tt> returns 0, i.e., "Sun".
+
+    <h3>
+        <a name="CSS classes"> 
+      </a> CSS classes</h3>
+
+    <h4>
+        <a name=".calendar"> 
+      </a> .calendar</h4>
+
+    <p>CSS class of calendar div.</p>
+
+    <h4>
+        <a name=".calendar_selected"> 
+      </a> .calendar_selected</h4>
+
+    <p>CSS class of previously selected day.</p>
+
+    <h4>
+        <a name=".calendar_special"> 
+      </a> .calendar_special</h4>
+
+    <p>CSS class of special days, e.g., Sundays, holidays.</p>
+
+    <h4>
+        <a name=".calendar_year"> 
+      </a> .calendar_year</h4>
+
+    <p>CSS class of div containing the year title and
+    selection.</p>
+
+    <h4>
+        <a name=".calendar_month"> 
+      </a> .calendar_month</h4>
+
+    <p>CSS class of div containing the month title and
+    selection.</p>
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a> Example</h3>
       <br/>
     <pre>
 var c = new OAT.Calendar();
@@ -161,30 +295,6 @@ c.dayZeroIndex = 6;
 c.weekStartIndex = 6;
 c.show(100, 100, function(){});
 </pre>
-
-    <h3> CSS classes</h3>
-
-    <h4> .calendar</h4>
-
-    <p>CSS class of calendar div.</p>
-
-    <h4> .calendar_selected</h4>
-
-    <p>CSS class of previously selected day.</p>
-
-    <h4> .calendar_special</h4>
-
-    <p>CSS class of special days, e.g. Sundays, holidays.</p>
-
-    <h4> .calendar_year</h4>
-
-    <p>CSS class of div containing the year title and
-    selection.</p>
-
-    <h4> .calendar_month</h4>
-
-    <p>CSS class of div containing the month title and
-    selection.</p>
 
     
     

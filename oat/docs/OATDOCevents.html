@@ -8,18 +8,24 @@
   <div class="topic-text">
     
 
+    
+
     <div id="oatnav">
         <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
       </div>
 
-    <h2>Event handling
+    <h2>
+        <a name="Event handling basics"> 
+      </a>Event handling
     basics</h2>
 
     <p>Event handling is very simple in this toolkit. There are two
     routines that accomplish this:</p>
 
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -33,22 +39,53 @@
             <label class="c2">_</label>
             <label class="c2">_</label>
             <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Event.attach()">OAT.Event.attach()</a>
+              <label class="c2">_</label> <a href="#OAT.Event.attach(element,%20event,%20functionReference)">OAT.Event.attach(element,
+        event, functionReference)</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Examples">Examples</a>
           </li>
 
         <li>
             <label class="c2">_</label>
             <label class="c2">_</label>
             <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Event.detach()">OAT.Event.detach()</a>
+              <label class="c2">_</label> <a href="#OAT.Event.detach(element,%20event,%20functionReference)">OAT.Event.detach(element,
+        event, functionReference)</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
           </li>
       </ul>
     </div>
+      </div>
 
-    <h3>OAT.Event.attach()</h3>
+    <h3>
+        <a name="OAT.Event.attach(element, event, functionReference)"> 
+      </a>OAT.Event.attach(element,
+    event, functionReference)</h3>
 
-    <p>You should supply exactly three arguments to this routine.
-    For instance:</p>
+    <p>First argument specifies an <tt>element</tt> which should
+    detect the event. Second is the <tt>event</tt> (without the
+    'on' prefix). Last argument is a valid function reference,
+    i.e., the name of an existing function or Anonymous
+    function.</p>
+
+    <h4>
+        <a name="Examples" id="Examples"> 
+      </a>Examples</h4>
       <br/>
     <pre>
 var div = OAT.Dom.create("div");
@@ -61,20 +98,22 @@ OAT.Event.attach(div, "mouseover", function() { alert('Hi!'); });
 OAT.Event.attach("some_id", "click", genericFunctionReference);
 </pre>
 
-    <p>First argument specifies an element which should detect the
-    event. Second is the event (without the 'on' prefix). Last
-    argument is a valid function reference, i.e. a name of existing
-    function or Anonymous function.</p>
+    <h3>
+        <a name="OAT.Event.detach(element, event, functionReference)"> 
+      </a>
+    OAT.Event.detach(element, event, functionReference)</h3>Use the
+    same syntax as in <tt>OAT.Event.attach()</tt>.: The
+    <tt>functionReference</tt> argument must exist in the current
+    scope, so it is not possible to remove an <tt>event</tt>
+    handled by anonymous function.
 
-    <h3> OAT.Event.detach()</h3>We
-    use the same syntax as in OAT.Event.attach():<br/>
+    <h4>
+        <a name="Example" id="Example"> 
+      </a>Example</h4>
+      <br/>
     <pre>
 OAT.Event.detach(element, "click", functionReference);
 </pre>
-
-    <p>The functionReference argument must exist in the current
-    scope, so it is not possible to remove an event handled by
-    anonymous function.</p>
 
     
     

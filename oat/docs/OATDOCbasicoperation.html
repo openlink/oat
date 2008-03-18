@@ -19,6 +19,8 @@
 
     
 
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -37,28 +39,30 @@
           </li>
       </ul>
     </div>
+      </div>
 
-    <h3>Basic operation</h3>
+    <h3>
+        <a name="Basic operation"> 
+      </a>Basic operation</h3>
 
     <p>This short document describes what you need to do to include
     OAT's features into your web pages.</p>
 
     <ol>
-      <li>Download a release of OAT from Sourceforge</li>
+      <li>Download the latest release of OAT from <a href="http://sourceforge.net/projects/oat" class="absuri">Sourceforge</a>.</li>
 
-      <li>Unpack the archive to some directory</li>
-
-      <li>There are many files and directories included in the
-      distribution. Most of them are applications / demos, which
-      are usually not needed</li>
+      <li>Unpack the archive to some directory. There are many
+      files and directories included in the distribution. Most of
+      them are applications and/or demos, which are usually not
+      needed</li>
 
       <li>The only important directory is oat; copy it to your
       project</li>
 
-      <li>Now you need to include OAT within you page:
+      <li>Now you need to include OAT within your page:
 
         <ol>
-          <li>Specify which features do you want to load:<br/>
+          <li>Specify which features you want to load:<br/>
             <pre>
 <br/>&lt;script type="text/javascript"&gt;
 var featureList = ["grid","pivot",barchart"];
@@ -76,17 +80,22 @@ var featureList = ["grid","pivot",barchart"];
         </ol>
       </li>
 
-      <li>OAT will take care of dependencies and include all needed
-      files</li>
+      <li>OAT will take care of internal dependencies and include
+      all needed files.</li>
 
-      <li>Don't put anything into &lt;body onload= handler; specify
-      a function called init instead - it will be called
-      automatically when OAT finishes loading</li>
+      <li>Don't put anything into the <tt>&lt;body onload=...</tt>
+      handler; specify a function called <tt>init</tt> instead - it
+      will be called automatically when OAT finishes loading.</li>
     </ol>
 
-    <h3>Example</h3>The
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>The
     following example shows how to use OAT to display a date
-    picker.<br/>
+    picker.
+
+    <blockquote>
+      <br/>
     <pre>
 &lt;html&gt;
 &lt;head&gt;
@@ -147,6 +156,7 @@ var featureList = ["grid","pivot",barchart"];
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
+    </blockquote>
 
     
     

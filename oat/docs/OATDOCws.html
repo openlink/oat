@@ -17,9 +17,15 @@
     
     
 
-    <h2>ws.js</h2>Web Services
+    <h2>
+        <a name="ws.js" id="ws.js"> 
+      </a>ws.js</h2>Web Services
     (WSDL) interface.
 
+    
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -74,35 +80,68 @@
             <label class="c2">_</label> <a href="#OAT.WS.invoke(wsdlURL,%20service,%20callback,%20options)">
         OAT.WS.invoke(wsdlURL, service, callback, options)</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Functions</h3>
+    <h3>
+        <a name="Functions" id="Functions"> 
+      </a> Functions</h3>
 
-    <h4>OAT.WS.getEndpoint(wsdlURL,
+    <h4>
+        <a name="OAT.WS.getEndpoint(wsdlURL, callback)"> 
+      </a>OAT.WS.getEndpoint(wsdlURL,
     callback)</h4>Asynchronously retrieve the endpoint URL for a
-    given wsdlURL. Will callback(url) when retrieved.
-
-    <h4>OAT.WS.listServices(wsdlURL,
-    callback)</h4>Asynchronously retrieve a list of valid services
-    for a given wsdlURL. Will callback(servicesArray) when
+    given <tt>wsdlURL</tt>. Will <tt>callback(url)</tt> when
     retrieved.
 
-    <h4>OAT.WS.listParameters(wsdlURL,
-    service, callback)</h4>Asynchronously retrieve input and output
-    values for given wsdlURL and service. Will
-    callback(inputObject, outputObject) when retrieved.
+    <h4>
+        <a name="OAT.WS.listServices(wsdlURL, callback)"> 
+      </a>OAT.WS.listServices(wsdlURL,
+    callback)</h4>Asynchronously retrieve a list of valid services
+    for a given <tt>wsdlURL</tt>. Will
+    <tt>callback(servicesArray)</tt> when retrieved.
 
-    <h4>OAT.WS.invoke(wsdlURL,
-    service, callback, options)</h4>Invokes a web service, with
-    WSDL file located at wsdlURL. Input values are specified in
-    options; will callback(outputObject) when finished. Options:
+    <h4>
+        <a name="OAT.WS.listParameters(wsdlURL, service, callback)"> 
+      </a>OAT.WS.listParameters(wsdlURL,
+    service, callback)</h4>Asynchronously retrieve input and output
+    values for given <tt>wsdlURL</tt> and service. Will
+    <tt>callback(inputObject, outputObject)</tt> when retrieved.
+
+    <h4>
+        <a name="OAT.WS.invoke(wsdlURL, service, callback, options)"> 
+      </a>OAT.WS.invoke(wsdlURL,
+    service, callback, options)</h4>Invokes a web <tt>service</tt>,
+    with WSDL file located at <tt>wsdlURL</tt>. Input values are
+    specified in <tt>options</tt>; will
+    <tt>callback(outputObject)</tt> when finished. Options:
 
     <ul>
-      <li>type - (default OAT.AJAX.TYPE_XML)</li>
+      <li>
+          <tt>
+            <b>type</b> <tt>- (default
+      <tt>OAT.AJAX.TYPE_XML</tt>)</tt>
+          </tt>
+        </li>
 
-      <li>headers - (default {"SOAPAction":service})</li>
+      <li>
+          <tt>
+            <b>headers</b>
+          </tt> - (default
+      <tt>{"SOAPAction":service}</tt>)</li>
     </ul>
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
       <br/>
     <pre>
 /* Sample code for google search */

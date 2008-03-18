@@ -14,11 +14,18 @@
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
       </div>
 
-    <h2> soap.js</h2>
+    
+    
+
+    <h2>
+        <a name="soap.js" id="soap.js"> 
+      </a> soap.js</h2>
 
     <p>Provides basic asynchronous XML call (AJAX) routines for use
     with SOAP requests.</p>
 
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -40,21 +47,79 @@
             <label class="c2">_</label>
             <label class="c2">_</label>
             <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Soap.command(target,%20data_func,%20return_func,%20customHeaders)">
-        OAT.Soap.command(target, data_func, return_func,
+              <label class="c2">_</label> <a href="#OAT.Soap.command(url,%20data,%20callback,%20customHeaders)">
+        OAT.Soap.command(url, data, callback,
         customHeaders)</a>
           </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Functions</h3>
+    <h3>
+        <a name="Functions" id="Functions"> 
+      </a> Functions</h3>
 
     <h4>
-    OAT.Soap.command(target, data_func, return_func,
-    customHeaders)</h4>This function work exactly the same as its
-    <a href="OATDOCajax2.html">AJAX.*</a> counterpart, except that you don't
-    have to specify method (HTTP GET with SOAP headers is used) and
-    sent data are automatically put into the SOAP envelope.
+        <a name="OAT.Soap.command(url, data, callback, customHeaders)"> 
+      </a>OAT.Soap.command(url,
+    data, callback, customHeaders)</h4>Sends an HTTP request to a
+    page <tt>url</tt>. Data to be contained in request are
+    specified in <tt>data</tt>. When response arrives,
+    <tt>callback(response)</tt> will be executed. You may specify
+    the following <tt>customHeaders</tt> --
+
+    <ul>
+      <li>
+          <div class="tdl">ToBeDone</div>
+        </li>
+    </ul>
+
+    <p>This function is similar to its <tt>
+          <a href="OATDOCajax2.html">OAT.AJAX.*</a>
+        </tt> counterpart, except that
+    you don't have to specify method (HTTP <tt>GET</tt> with SOAP
+    headers is always used) and sent data are automatically put
+    into the SOAP envelope.</p>
+
+    <p>Using this call replaces this --</p>
+      <br/>
+    <pre>
+        <div class="tdl">
+var options = {
+    type:OAT.AJAX.TYPE_XML,
+    auth:OAT.AJAX.AUTH_BASIC,
+    async:true
+    noSecurityCookie:false
+    user:"username",
+    password:"top_secret",
+    headers: ToBeDone -- put some headers in! 
+    onerror:function(request) { alert(request.getStatus()); }
+    onstart:
+    onend:
+}
+var callback = function(data) { alert(data); };
+OAT.AJAX.SOAP("/myfile.xml", false, callback, options);
+</div>
+      </pre>
+
+    <p>-- with this --</p>
+      <br/>
+    <pre>
+        <div class="tdl">
+var customHeaders = ToBeDone -- put some headers in! ; 
+var callback = function(data) { alert(data); };
+OAT.Soap.command("/myfile.xml", false, callback, customHeaders);
+</div>
+      </pre>
+      <i>
+        <div class="tdl">ToBeDone</div> - correct the code snippets above to
+    reflect the actual effective replacement...</i>
+
+    <p>
+        <div class="tdl">ToBeDone</div> - add Constants, Messages, Properties,
+    <tt>OAT.Soap.abortAll()</tt>, borrowing from <tt>
+          <a href="OATDOCajax2.html">OAT.AJAX.*</a>
+        </tt> as relevant</p>
 
     
     

@@ -17,11 +17,16 @@
     
     
 
-    <h2>sparkline.js</h2>
+    <h2>
+        <a name="sparkline.js" id="sparkline.js"> 
+      </a>sparkline.js</h2>
 
     <p>Library for drawing Sparklines using SVG.</p>
     
 
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -71,49 +76,115 @@
             <label class="c2">_</label>
             <label class="c2">_</label> <a href="#OAT.Sparkline::draw()">OAT.Sparkline::draw()</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Objects</h3>
+    <h3>
+        <a name="Objects" id="Objects"> 
+      </a> Objects</h3>
 
-    <h4>OAT.Sparkline(div,
-    options)</h4>Creates a Sparkline inside div, options describes
-    its properties. Its values are the same as in Line Chart.
-    Options can be following:
+    <h4>
+        <a name="OAT.Sparkline(div, options)"> 
+      </a>OAT.Sparkline(div,
+    options)</h4>Creates a <tt>Sparkline</tt> inside <tt>div</tt>;
+    <tt>options</tt> describes its properties. Its values are the
+    same as in <tt>
+        <a href="OATDOClinechart.html">OAT.LineChart</a>
+      </tt>. Options can be
+    following:
 
     <ul>
-      <li>axes - display axes? (bool) (default false)</li>
+      <li>
+          <tt>
+            <b>axes</b>
+          </tt> - display axes? (bool, default
+      <tt>false</tt>)</li>
 
-      <li>grid - display grid? (bool) (default false)</li>
+      <li>
+          <tt>
+            <b>grid</b>
+          </tt> - display grid? (bool, default
+      <tt>false</tt>)</li>
 
-      <li>legend - display legend? (bool) (default false)</li>
+      <li>
+          <tt>
+            <b>legend</b>
+          </tt> - display legend? (bool, default
+      <tt>false</tt>)</li>
 
-      <li>gridDesc - display grid description? (bool) (default
-      false)</li>
+      <li>
+          <tt>
+            <b>gridDesc</b>
+          </tt> - display grid description?
+      (bool, default <tt>false</tt>)</li>
 
-      <li>desc - display description? (bool) (default false)</li>
+      <li>
+          <tt>
+            <b>desc</b>
+          </tt> - display description? (bool,
+      default <tt>false</tt>)</li>
 
-      <li>paddingLeft - (default 2)</li>
+      <li>
+          <tt>
+            <b>paddingLeft</b>
+          </tt> - (default <tt>2</tt>)</li>
 
-      <li>paddingTop - (default 2)</li>
+      <li>
+          <tt>
+            <b>paddingTop</b>
+          </tt> - (default <tt>2</tt>)</li>
 
-      <li>paddingRight - (default 1)</li>
+      <li>
+          <tt>
+            <b>paddingRight</b>
+          </tt> - (default <tt>1</tt>)</li>
 
-      <li>paddingBottom - (default 2)</li>
+      <li>
+          <tt>
+            <b>paddingBottom</b>
+          </tt> - (default <tt>2</tt>)</li>
 
-      <li>colors - array of colors (default ["#888"])</li>
+      <li>
+          <tt>
+            <b>colors</b>
+          </tt> - array of colors (default
+      <tt>["#888"]</tt>)</li>
 
-      <li>markers - array of markers (default
-      [OAT.LineChartMarker.MARKER_NONE]) (see <a href="OATDOClinechart.html">OAT.LineChart constants</a>)</li>
+      <li>
+          <tt>
+            <b>markers</b>
+          </tt> - array of markers (default
+      <tt>[OAT.LineChartMarker.MARKER_NONE]</tt>) (see <tt>
+            <a href="OATDOClinechart.html">OAT.LineChart</a> constants)</tt>
+        </li>
     </ul>
 
-    <h3> Methods</h3>
+    <h3>
+        <a name="Methods" id="Methods"> 
+      </a> Methods</h3>
 
-    <h4>OAT.Sparkline::attachData(dataArray)</h4>Adds
-    data to the Sparkline.
+    <h4>
+        <a name="OAT.Sparkline::attachData(dataArray)"> 
+      </a>OAT.Sparkline::attachData(dataArray)</h4>Adds
+    <tt>dataArray</tt> to the Sparkline.
 
-    <h4>OAT.Sparkline::draw()</h4>Draws the
-    Sparkline.<br/>
+    <h4>
+        <a name="OAT.Sparkline::draw()"> 
+      </a>OAT.Sparkline::draw()</h4>Draws the
+    Sparkline.
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
+      <br/>
     <pre>
 var s = new OAT.Sparkline("myDiv",{});
 s.attachData([1,2,3,-5,2,3.7,5,4]);

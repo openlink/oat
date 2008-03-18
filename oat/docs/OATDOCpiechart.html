@@ -18,11 +18,16 @@
     
 
     <h2>
+        <a name="piechart.js" id="piechart.js"> 
+      </a>
     piechart.js</h2>
 
     <p>Library for drawing Pie charts using SVG.</p>
     
 
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -92,47 +97,92 @@
           </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Objects</h3>
+    <h3>
+        <a name="Objects" id="Objects"> 
+      </a> Objects</h3>
 
-    <h4>OAT.PieChart(div,
-    options)</h4>Creates a Pie Chart inside specified div. You can
-    specify those options:
+    <h4>
+        <a name="OAT.PieChart(div, options)"> 
+      </a>OAT.PieChart(div,
+    options)</h4>Creates a Pie Chart inside specified <tt>div</tt>.
+    You can specify the following <tt>options</tt>:
 
     <ul>
-      <li>radius - int; if 0, then radius is computed
+      <li>
+          <tt>
+            <b>radius</b>
+          </tt> - int; if 0, then radius is
+      computed automatically</li>
+
+      <li>
+          <tt>
+            <b>depth</b>
+          </tt> - int; height of pie</li>
+
+      <li>
+          <tt>
+            <b>width</b>
+          </tt> - int; if 0, then width is computed
       automatically</li>
 
-      <li>depth - int; height of pie</li>
+      <li>
+          <tt>
+            <b>height</b>
+          </tt> - int; if 0, then height is
+      computed automatically</li>
 
-      <li>width - int; if 0, then width is computed
-      automatically</li>
+      <li>
+          <tt>
+            <b>legend</b>
+          </tt> - bool; should we draw the legend?
+      default <tt>true</tt>
+        </li>
 
-      <li>height - int; if 0, then height is computed
-      automatically</li>
+      <li>
+          <div class="tdl">ToBeDone</div> (this has the wrong option name)
+      <tt>
+            <b>ycoef</b>
+          </tt> - float; how much skewing should be
+      applied?</li>
 
-      <li>legend - bool; should we draw the legend? default
-      true.</li>
+      <li>
+          <tt>
+            <b>left</b>, <b>top</b>
+          </tt> - position, default
+      <tt>30, 40</tt>
+        </li>
 
-      <li>ycoef - float; how much skewing should be applied?</li>
-
-      <li>left, top - position, default 30, 40</li>
-
-      <li>ycoef - coefficient for the y axis (default 0.7)</li>
+      <li>
+          <tt>
+            <b>ycoef</b>
+          </tt> - coefficient for the y axis
+      (default <tt>0.7</tt>)</li>
     </ul>
 
-    <h3> Methods</h3>
+    <h3>
+        <a name="Methods" id="Methods"> 
+      </a> Methods</h3>
 
-    <h4>OAT.PieChart::attachData(dataArray)</h4>Adds
+    <h4>
+        <a name="OAT.PieChart::attachData(dataArray)"> 
+      </a>OAT.PieChart::attachData(dataArray)</h4>Adds
     data to chart.
 
-    <h4>OAT.PieChart::attachText(textArray)</h4>Adds
+    <h4>
+        <a name="OAT.PieChart::attachText(textArray)"> 
+      </a>OAT.PieChart::attachText(textArray)</h4>Adds
     legend labels.
 
-    <h4>OAT.PieChart::attachColors(colorArray)</h4>Adds
+    <h4>
+        <a name="OAT.PieChart::attachColors(colorArray)"> 
+      </a>OAT.PieChart::attachColors(colorArray)</h4>Adds
     colors.
 
-    <h4>OAT.PieChart::draw()</h4>Draws the
+    <h4>
+        <a name="OAT.PieChart::draw()"> 
+      </a>OAT.PieChart::draw()</h4>Draws the
     chart.<br/>
     <pre>
 var chart = new OAT.PieChart("myDiv",{});

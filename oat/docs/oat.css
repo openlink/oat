@@ -1,9 +1,56 @@
+body {
+    font-family: sans-serif;
+    font-size: 10pt;
+}
+
+h1 {
+    font-size: 120%;
+    margin: none;
+    margin-bottom: 10px;
+    margin-top: 1.25em;
+}
+
+h2 {
+    font-size: 115%;
+    margin: none;
+    margin-bottom: 10px;
+    margin-top: 1.25em;
+}
+
+h3 {
+    font-size: 110%;
+    margin: none;
+    margin-bottom: 10px;
+    margin-top: 1.25em;
+}
+
+h4 {
+    font-size: 105%;
+    margin: none;
+    margin-bottom: 10px;
+    margin-top: 1.25em;
+}
+
+h5 {
+    font-size: 100%;
+    margin: none;
+    margin-bottom: 10px;
+    margin-top: 1.25em;
+}
+
+br {
+    display: none;
+    height: 0px;
+}
+
 #oatnav {
     background: silver;
     color: black;
     margin-top: 2px; margin-bottom: 2px;
-    font-size: 120%;
+    font-size: 115%;
     margin-bottom: 1em;
+    padding-left: 0.5em;
+    padding: 2px;
 }
 
 #oatcopy {
@@ -12,6 +59,8 @@
     margin-top: 2px; margin-bottom: 2px;
     font-size: 120%;
     margin-top: 2em;
+    padding: 2px;
+    padding-left: 0.5em;
 }
 
 #oatnav a {
@@ -30,7 +79,20 @@ pre {
     background-color: #E5E5E5; 
     color: black; 
     border: solid 1px #303030; 
-    padding: 1em }
+    padding: 10px;
+    font-family: monospace;
+    margin: none;
+}
+
+tt {
+    font-size: 100%;
+    font-family: monospace;
+}
+
+code {
+    font-size: 100%;
+    font-family: monospace;
+}
 
 a { 
     color: blue; 
@@ -54,4 +116,34 @@ table * {
 
 table * td {
     padding: 3px;
+}
+
+table * td tt {
+    padding: 3px;
+    border: none;
+}
+
+div.tdl {
+/*    display: none; */
+    font-style: italic;
+    display: inline;
+}
+
+div.oatwikitoc {
+    width: 100%;
+    border: none;
+    border-bottom: solid 1px #F0F0F0;
+    border-top: solid 1px #F0F0F0;
+}
+
+div.wikitoc ul {
+    list-style-type: none;
+}
+
+div.wikitoc ul li {
+    list-style-type: none;
+}
+
+label.c2 {
+    font-size: 50%;
 }

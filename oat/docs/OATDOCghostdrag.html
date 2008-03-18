@@ -14,12 +14,20 @@
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
       </div>
 
-    <h2>
-    ghostdrag.js</h2>
-
-    <p>Provides drag'n'drop functionality</p>
+    
     
 
+    <h2>
+        <a name="ghostdrag.js" id="ghostdrag.js"> 
+      </a>
+    ghostdrag.js</h2>
+
+    <p>Provides drag'n'drop functionality.</p>
+    
+
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -106,37 +114,69 @@
             <label class="c2">_</label>
             <label class="c2">_</label> <a href="#OAT.GhostDrag::clearTargets()">OAT.GhostDrag::clearTargets()</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Objects</h3>
+    <h3>
+        <a name="Objects" id="Objects"> 
+      </a> Objects</h3>
 
-    <h4>OAT.GhostDrag()</h4>Creates a
-    GhostDrag? object.
+    <h4>
+        <a name="OAT.GhostDrag()"> 
+      </a>OAT.GhostDrag()</h4>Creates a
+    <tt>GhostDrag</tt> object.
 
-    <h3> Methods</h3>
+    <h3>
+        <a name="Methods" id="Methods"> 
+      </a> Methods</h3>
 
-    <h4>OAT.GhostDrag::addSource(element,
-    process, callback)</h4>Marks element as draggable. When user
-    drags it, a 'ghost' clone is created. Then, the process
-    function is called with this clone as argument. If user drags
-    the clone to one of marked target zones, a callback is
-    performed with three arguments - x, y and target element.
+    <h4>
+        <a name="OAT.GhostDrag::addSource(element, process, callback)"> 
+      </a>OAT.GhostDrag::addSource(element,
+    process, callback)</h4>Marks <tt>element</tt> as draggable.
+    When user drags it, a "ghost" clone is created. Then, the
+    <tt>process</tt> function is called with this clone as
+    argument. If user drags the clone to one of marked target
+    zones, a <tt>callback</tt> is performed with three arguments -
+    <tt>x</tt>, <tt>y</tt> and <tt>target element</tt>.
 
-    <h4>OAT.GhostDrag::delSource(element)</h4>Marks
-    element as not draggable.
+    <h4>
+        <a name="OAT.GhostDrag::delSource(element)"> 
+      </a>OAT.GhostDrag::delSource(element)</h4>Marks
+    <tt>element</tt> as not draggable.
 
-    <h4>OAT.GhostDrag::clearSources()</h4>Removes
-    all draggable elements from this GhostDrag? object.
+    <h4>
+        <a name="OAT.GhostDrag::clearSources()"> 
+      </a>OAT.GhostDrag::clearSources()</h4>Removes
+    all draggable elements from this <tt>GhostDrag</tt> object.
 
-    <h4>OAT.GhostDrag::addTarget(element)</h4>Marks
-    element as a valid ending zone for drag'n'drop.
+    <h4>
+        <a name="OAT.GhostDrag::addTarget(element)"> 
+      </a>OAT.GhostDrag::addTarget(element)</h4>Marks
+    <tt>element</tt> as a valid ending zone for drag'n'drop.
 
-    <h4>OAT.GhostDrag::delTarget(element)</h4>Marks
-    element as not a target zone.
+    <h4>
+        <a name="OAT.GhostDrag::delTarget(element)"> 
+      </a>OAT.GhostDrag::delTarget(element)</h4>Marks
+    <tt>element</tt> as not a target zone.
 
-    <h4>OAT.GhostDrag::clearTargets()</h4>Removes
-    all target zones from this GhostDrag? object.<br/>
+    <h4>
+        <a name="OAT.GhostDrag::clearTargets()"> 
+      </a>OAT.GhostDrag::clearTargets()</h4>Removes
+    all target zones from this <tt>GhostDrag</tt> object.
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
+      <br/>
     <pre>
 var product = Dom.create("img");
 var shopping_cart = Dom.create("div");

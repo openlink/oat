@@ -17,10 +17,16 @@
     
     
 
-    <h2>fresnel.js</h2>
+    <h2>
+        <a name="fresnel.js" id="fresnel.js"> 
+      </a>fresnel.js</h2>
 
     <p>Fresnel Lens RDF Processor.</p>
 
+    
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -70,25 +76,43 @@
             <label class="c2">_</label>
             <label class="c2">_</label> <a href="#OAT.Fresnel::format(dataObject)">OAT.Fresnel::format(dataObject)</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Objects</h3>
+    <h3>
+        <a name="Objects" id="Objects"> 
+      </a> Objects</h3>
 
-    <h4>OAT.Fresnel()</h4>Creates the
+    <h4>
+        <a name="OAT.Fresnel()"> 
+      </a>OAT.Fresnel()</h4>Creates the
     Fresnel Processor object.
 
-    <h3> Methods</h3>
+    <h3>
+        <a name="Methods" id="Methods"> 
+      </a> Methods</h3>
 
-    <h4>OAT.Fresnel::addURL(url,
-    callback)</h4>Loads a Fresnel RDF template, located at url.
-    After loading and parsing is complete, callback (without
-    arguments) is executed.
+    <h4>
+        <a name="OAT.Fresnel::addURL(url, callback)"> 
+      </a>OAT.Fresnel::addURL(url,
+    callback)</h4>Loads a Fresnel RDF template, located at
+    <tt>url</tt>. After loading and parsing is complete,
+    <tt>callback</tt> (without arguments) is executed.
 
-    <h4>OAT.Fresnel::format(dataObject)</h4>Formats
-    an RDF data set using loaded template. The dataObject is an OAT
-    RDF structure, usually an store.data.all property. This
-    function returns an array with two values:
+    <h4>
+        <a name="OAT.Fresnel::format(dataObject)"> 
+      </a>OAT.Fresnel::format(dataObject)</h4>Formats
+    an RDF data set using loaded template. The <tt>dataObject</tt>
+    is an OAT RDF structure, usually a <tt>store.data.all</tt>
+    property. This function returns an array with two values:
 
     <ul>
       <li>[0] - an XML document, containing the transformed
@@ -97,6 +121,10 @@
       <li>[1] - array of CSS stylesheets, referenced in Fresnel
       template.</li>
     </ul>
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
       <br/>
     <pre>
 var fresnel = new OAT.Fresnel();

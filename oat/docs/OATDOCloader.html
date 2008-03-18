@@ -17,12 +17,18 @@
     
     
 
-    <h2> loader.js</h2>
+    <h2>
+        <a name="loader.js" id="loader.js"> 
+      </a> loader.js</h2>
 
     <p>This is the basic library. Can be considered a toolkit on
     its own, as it provides many useful functions and
     shortcuts.</p>
 
+    
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -138,9 +144,9 @@
             <label class="c2">_</label>
             <label class="c2">_</label>
             <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Dom.append([parent1,%20child1,%20child2,%20...],%20...)">
-        OAT.Dom.append([parent1, child1, child2, ...],
-        ...)</a>
+              <label class="c2">_</label> <a href="#OAT.Dom.append([parent1,%20child1,%20child2,%20...],%20[parent2,%20child1,%20...],...)">
+        OAT.Dom.append([parent1, child1, child2, ...], [parent2,
+        child1, ...],...)</a>
           </li>
 
         <li>
@@ -622,222 +628,341 @@
           </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Functions</h3>
+    <h3>
+        <a name="Functions" id="Functions"> 
+      </a> Functions</h3>
 
-    <h4>$(element)</h4>This function is
-    very popular and appears in almost every JS framework
-    available. Its purpose is to provide a shortcut for longer
-    document.getElementById() functions. Basic usage is:<br/>
+    <h4>
+        <a name="$(element)"> 
+      </a>$(element)</h4>This function is
+    very popular and appears in almost every JavaScript framework available. Its
+    purpose is to provide a shortcut for longer
+    <tt>document.getElementById()</tt> functions. Basic usage is:
+
+    <blockquote>
+      <br/>
     <pre>
 var object = $("some_id");
 alert(object.tagName);
 </pre>
+    </blockquote>
 
     <p>In this example, we assume that there is a HTML node with id
-    "some_id". The $-function converts a string to the object. Note
-    that it is perfectly correct to pass an object reference to
-    $-function, although not very useful.</p>
+    "<tt>some_id</tt>". The <tt>$()</tt> function converts a string
+    to the object. Note that it is perfectly correct to pass an
+    object reference to <tt>$()</tt> function, although not very
+    useful.</p>
 
     <p>Due to the presence of this function in toolkit, every other
     function that accepts a node reference as an argument can also
     accept its id.</p>
 
-    <h4> $$(className,
+    <h4>
+        <a name="$$(className, element)"> 
+      </a> $$(className,
     element)</h4>This function returns a list of HTML nodes below
-    element (document when not specified), belonging to a specified
-    class.
+    <tt>element</tt> (document when not specified), belonging to a
+    specified <tt>className</tt>.<b>NOTE!</b> Prior to OAT version
+    2.8, this function was identical to <tt>$v()</tt>. Please
+    update your code to reflect this change and use <tt>$v()</tt>
+    where appropriate.
 
-    <p>NOTE!: Prior to version 2.8, this function was identical to
-    $v(). Please update your code to reflect this change and use
-    $v() instead.</p>
+    <h4>
+        <a name="$v(element)"> 
+      </a>$v(element)</h4>This function is
+    a shortcut for <tt>$().value</tt>. You should use it when
+    getting a value of any form <tt>element</tt>.
 
-    <h4>$v(element)</h4>This function is
-    a shortcut for $().value. You should use it when getting a
-    value of any form element.
-
-    <h4>OAT.Dom.create(tagName,
+    <h4>
+        <a name="OAT.Dom.create(tagName, [styleObj], [className])"> 
+      </a>OAT.Dom.create(tagName,
     [styleObj], [className])</h4>Used for dynamic creation of HTML
-    nodes. Three parameters are accepted, the first one is
-    mandatory. Example:<br/>
+    nodes. Three parameters are accepted; the first one is
+    mandatory. Example:
+
+    <blockquote>
+      <br/>
     <pre>
  var myDiv = OAT.Dom.create("div"); var myStyledDiv = OAT.Dom.create("div", {color : "#f00", fontWeight : "bold"}, "myDiv_class");
 </pre>
+    </blockquote>
 
-    <p>The second (optional) argument styleObj is an object
-    comprised of CSS properties. For a full list of valid
+    <p>The second (optional) argument <tt>styleObj</tt> is an
+    object comprised of CSS properties. For a full list of valid
     properties, see Mozilla documentation and MSDN. CSS properties
-    are not the same for these browsers, so specifying a floating
-    element looks like</p>
+    are not the same for all browsers, so specifying a floating
+    element looks like:</p>
+
+    <blockquote>
       <br/>
     <pre>
 var element = OAT.Dom.create("div", {cssFloat:"left", styleFloat:"left"}); 
 </pre>
+    </blockquote>
 
-    <p>- the first declaration is for Gecko, the latter for
+    <p>The first declaration is for Gecko; the latter is for
     MSIE.</p>
 
     <h4>
-    OAT.Dom.createNS(namespace, tagName)</h4>
+        <a name="OAT.Dom.createNS(namespace, tagName)"> 
+      </a>
+    OAT.Dom.createNS(namespace, tagName)</h4>Used for dynamic
+    creation of HTML nodes in particular <tt>namespace</tt>. See
+    also <tt>OAT.Dom.create()</tt>, above.
 
-    <p>Used for dynamic creation of HTML nodes in particular
-    namespace. See also the function above.</p>
+    <h4>
+        <a name="OAT.Dom.text(text)"> 
+      </a>OAT.Dom.text(text)</h4>Creates and
+    returns DOM text node with value of argument <tt>text</tt>.
 
-    <h4>OAT.Dom.text(text)</h4>Creates and
-    returns DOM text node with value of argument text.
+    <h4>
+        <a name="OAT.Dom.button(label)"> 
+      </a>OAT.Dom.button(label)</h4>Creates
+    and returns DOM button with specified <tt>label</tt>.
 
-    <h4>OAT.Dom.button(label)</h4>Creates
-    and returns DOM button with specified label..
+    <h4>
+        <a name="OAT.Dom.radio(name)"> 
+      </a>OAT.Dom.radio(name)</h4>Creates and
+    returns DOM radio input with specified <tt>name</tt>.
 
-    <h4>OAT.Dom.radio(name)</h4>Creates and
-    returns DOM radio input with specified name.
-
-    <h4>OAT.Dom.image(src,
+    <h4>
+        <a name="OAT.Dom.image(src, srcBlank, width, height)"> 
+      </a>OAT.Dom.image(src,
     srcBlank, width, height)</h4>Creates and returns DOM image
-    node. src is image's URL; when PNG is used, specify srcBlank
-    (url of transparent image) for Internet Explorer's workaround.
+    node. <tt>src</tt> is image's URL; when PNG is used, specify
+    <tt>srcBlank</tt> (url of transparent image) for Internet
+    Explorer's workaround.
 
-    <h4>OAT.Dom.option(name,
-    value, [parent])</h4>Creates and returns DOM
-  </div>node with name of name and value of value. If parent is
-  specified, this function also appends newly created node to that
-  parent. Example:<br/>
+    <h4>
+        <a name="OAT.Dom.option(name, value, [parent])"> 
+      </a>OAT.Dom.option(name,
+    value, [parent])</h4>Creates and returns DOM &lt;option&gt;
+    node with name of <tt>name</tt> and value of <tt>value</tt>. If
+    <tt>parent</tt> is specified, this function also appends newly
+    created node to that parent. Example:
+
+    <blockquote>
+      <br/>
   <pre>
 var s = OAT.Dom.create("select"); OAT.Dom.option("apples",1,s); OAT.Dom.option("bananas",2,s); OAT.Dom.option("cherries",3,s);
 </pre>
+    </blockquote>
 
-  <h4>OAT.Dom.append([parent1,
-  child1, child2, ...], ...)</h4>Links any number of DOM nodes.
-  Takes variable amount of arguments, each argument must be an
-  array. For each argument:
+    <h4>
+        <a name="OAT.Dom.append([parent1, child1, child2, ...], [parent2, child1, ...],...)"> 
+      </a>OAT.Dom.append([parent1, child1, child2, ...], [parent2,
+    child1, ...],...)</h4>Links any number of DOM nodes. Takes
+    variable amount of arguments, each argument must be an array.
+    For each argument:
 
   <ul>
     <li>First value is taken as parent node</li>
 
-    <li>All other values are appended to parent (in order in which
-    they appear)</li>
+      <li>All other values are appended to parent (in order in
+      which they appear)</li>
   </ul>
 
-  <h4>OAT.Dom.hide(element)</h4>Hides
-  specified element by setting its style.visibility property.
+    <h4>
+        <a name="OAT.Dom.hide(element)"> 
+      </a>OAT.Dom.hide(element)</h4>Hides
+    specified <tt>element</tt> by setting its
+    <tt>style.visibility</tt> property.
 
-  <h4>OAT.Dom.show(element)</h4>Unhides
-  previously hidden element by setting its style.visibility to
-  default value.
+    <h4>
+        <a name="OAT.Dom.show(element)"> 
+      </a>OAT.Dom.show(element)</h4>Unhides
+    previously hidden <tt>element</tt> by setting its
+    <tt>style.visibility</tt> to default value.
 
-  <h4>OAT.Dom.clear(element)</h4>This
-  function clears all child nodes from an element. May be called
-  with either object reference as an argument, or a id-string. So,
-  for instance:<br/>
+    <h4>
+        <a name="OAT.Dom.clear(element)"> 
+      </a>OAT.Dom.clear(element)</h4>This
+    function clears all child nodes from an <tt>element</tt>. May
+    be called with either object reference or id-string as an
+    argument. So, for instance --
+
+    <blockquote>
+      <br/>
   <pre>
 OAT.Dom.clear("my_select_element");
 </pre>
+    </blockquote>
 
-  <p>removes all options from existing &lt;select&gt; element with
-  id "my <u>select_element".</u>
+    <p>-- removes all options from existing <tt>&lt;select&gt;</tt>
+    element with id "<tt>my <u>select_element".</u>
+        </tt>
     </p>
 
-  <h4>OAT.Dom.unlink(element)</h4>Unlinks
-  element from DOM tree. Notice that the element is not destroyed
-  as long as it can be referenced
+    <h4>
+        <a name="OAT.Dom.unlink(element)"> 
+      </a>OAT.Dom.unlink(element)</h4>Unlinks
+    <tt>element</tt> from DOM tree. Notice that the element is not
+    destroyed as long as it can be referenced
 
-  <h4>OAT.Dom.center(element,
-  x, y, [reference])</h4>Centers element relative to its parent
-  node. If reference is specified, this node is used instead of
-  parent node. x and y are bools, specifying whether horizontal
-  and/or vertical centering should be done.
+    <h4>
+        <a name="OAT.Dom.center(element, x, y, [reference])"> 
+      </a>OAT.Dom.center(element,
+    x, y, [reference])</h4>Centers <tt>element</tt> relative to its
+    parent node. If <tt>reference</tt> is specified, this node is
+    used instead of parent node. <tt>x</tt> and <tt>y</tt> are
+    bools, specifying whether horizontal and/or vertical centering
+    should be done.
 
-  <h4>OAT.Dom.isChild(child,
-  parent)</h4>Tests whether a child is a subnode of node parent.
-  The depth is not important here.
+    <h4>
+        <a name="OAT.Dom.isChild(child, parent)"> 
+      </a>OAT.Dom.isChild(child,
+    parent)</h4>Tests whether a <tt>child</tt> is a subnode of node
+    <tt>parent</tt>. The depth is not important here.
 
-  <h4>OAT.Dom.isClass(element,
+    <h4>
+        <a name="OAT.Dom.isClass(element, className)"> 
+      </a>OAT.Dom.isClass(element,
   className)</h4>HTML elements may be of multiple classes, this
-  function returns true when at least one of element's classes is
-  className. Example:<br/>
+    function returns true when at least one of <tt>element</tt>'s
+    classes is <tt>className</tt>. Example:
+
+    <blockquote>
+      <br/>
   <pre>
 var div = OAT.Dom.create("div"); div.className = "big red fox"; alert( OAT.Dom.isClass(div,"fox"); ); // true
 </pre>
+    </blockquote>
 
-  <h4>OAT.Dom.addClass(element,
-  className)</h4>Adds class className to element.
+    <h4>
+        <a name="OAT.Dom.addClass(element, className)"> 
+      </a>OAT.Dom.addClass(element,
+    className)</h4>Adds class <tt>className</tt> to
+    <tt>element</tt>.
 
-  <h4>OAT.Dom.removeClass(element,
-  className)</h4>Removes class className from element.
+    <h4>
+        <a name="OAT.Dom.removeClass(element, className)"> 
+      </a>OAT.Dom.removeClass(element,
+    className)</h4>Removes class <tt>className</tt> from
+    <tt>element</tt>.
 
-  <h4>OAT.Dom.getViewport()</h4>Returns
+    <h4>
+        <a name="OAT.Dom.getViewport()"> 
+      </a>OAT.Dom.getViewport()</h4>Returns
   size (2-item array) of current viewport.
 
-  <h4>OAT.Dom.getScroll()</h4>Returns amount
-  of scroll (2-item array) of current viewport.
+    <h4>
+        <a name="OAT.Dom.getScroll()"> 
+      </a>OAT.Dom.getScroll()</h4>Returns
+    amount of scroll (2-item array) of current viewport.
 
-  <h4>OAT.Dom.position(element)</h4>Returns
-  x and y coordinates of element's top left corner, relative to
-  page's top left corner. Coordinates are returned in an array of
-  two elements. To count this value, the whole tree of
-  offsetParents must be climbed up, so it is not wise to call this
-  function too often. Example:<br/>
+    <h4>
+        <a name="OAT.Dom.position(element)"> 
+      </a>OAT.Dom.position(element)</h4>Returns
+    x and y coordinates of <tt>element</tt>'s top left corner,
+    relative to page's top left corner. Coordinates are returned in
+    an array of two elements. To count this value, the whole tree
+    of <tt>offsetParents</tt> must be climbed up, so it is not wise
+    to call this function too often. Example:
+
+    <blockquote>
+      <br/>
   <pre>
 var coords = OAT.Dom.position(div);
 alert("x: " + coords[0]+", y:" + coords[1]);
 </pre>
+    </blockquote>
 
-  <h4>OAT.Dom.getLT(element)</h4>Returns x
-  and y coordinates of element's top left corner, relative to its
-  offsetParent, in form of array with two elements.
-
-  <h4>OAT.Dom.getWH(element)</h4>Returns
-  width and height of element (in pixels), in form of array with
+    <h4>
+        <a name="OAT.Dom.getLT(element)"> 
+      </a>OAT.Dom.getLT(element)</h4>Returns
+    x and y coordinates of <tt>element</tt>'s top left corner,
+    relative to its <tt>offsetParent</tt>, in form of array with
   two elements.
 
-  <h4>OAT.Dom.moveBy(element, dx,
-  dy)</h4>Moves element by dx pixels horizontally and dy pixels
-  vertically.
+    <h4>
+        <a name="OAT.Dom.getWH(element)"> 
+      </a>OAT.Dom.getWH(element)</h4>Returns
+    width and height of <tt>element</tt> (in pixels), in form of
+    array with two elements.
 
-  <h4>OAT.Dom.resizeBy(element,
-  dx, dy)</h4>Resizes element by dx pixels horizontally and dy
-  pixels vertically.
+    <h4>
+        <a name="OAT.Dom.moveBy(element, dx, dy)"> 
+      </a>OAT.Dom.moveBy(element,
+    dx, dy)</h4>Moves <tt>element</tt> by <tt>dx</tt> pixels
+    horizontally and <tt>dy</tt> pixels vertically.
 
-  <h4>OAT.Dom.removeSelection()</h4>Unselects
+    <h4>
+        <a name="OAT.Dom.resizeBy(element, dx, dy)"> 
+      </a>OAT.Dom.resizeBy(element,
+    dx, dy)</h4>Resizes <tt>element</tt> by <tt>dx</tt> pixels
+    horizontally and <tt>dy</tt> pixels vertically.
+
+    <h4>
+        <a name="OAT.Dom.removeSelection()"> 
+      </a>OAT.Dom.removeSelection()</h4>Unselects
   everything selected.
 
-  <h4>OAT.Dom.uriParams()</h4>Returns an
+    <h4>
+        <a name="OAT.Dom.uriParams()"> 
+      </a>OAT.Dom.uriParams()</h4>Returns an
   object of current URI parameters. So, for
-  /?a=b&amp;c[]=d&amp;c[]=e, this returns:<br/>
+    <tt>/?a=b&amp;c[]=d&amp;c[]=e</tt>, this returns:
+
+    <blockquote>
+      <br/>
   <pre>
 {
         a:"b",
         c:["d","e"]
 }
 </pre>
+    </blockquote>
 
-  <h4>OAT.Dom.changeHref(element,
-  newHref)</h4>Changes the href attribute of the given element.
+    <h4>
+        <a name="OAT.Dom.changeHref(element, newHref)"> 
+      </a>OAT.Dom.changeHref(element,
+    newHref)</h4>Changes the href attribute of the given
+    <tt>element</tt>.
 
-  <h4>OAT.Dom.toSafeXML(string)</h4>Convert
-  HTML special chars in the given string into entities.
+    <h4>
+        <a name="OAT.Dom.toSafeXML(string)"> 
+      </a>OAT.Dom.toSafeXML(string)</h4>Convert
+    HTML special chars in the given <tt>string</tt> into entities.
 
-  <h4>OAT.Dom.toSafeXML(string)</h4>Decrypt
-  entities in the given string.
+    <h4>
+        <a name="OAT.Dom.toSafeXML(string)"> 
+      </a>OAT.Dom.toSafeXML(string)</h4>Decrypt
+    entities in the given <tt>string</tt>.
 
-  <h4>OAT.Event.attach(element,
-  event, callback)</h4>Attaches function specified with callback to
-  event detected on element. The event is specified without the
-  "on" prefix. Function reference callback will be called with one
-  argument, the event object reference. Example:<br/>
+    <h4>
+        <a name="OAT.Event.attach(element, event, callback)"> 
+      </a>OAT.Event.attach(element,
+    event, callback)</h4>Attaches function specified with
+    <tt>callback</tt> to <tt>event</tt> detected on
+    <tt>element</tt>. The event is specified without the "on"
+    prefix. Function reference callback will be called with one
+    argument, the event object reference. Example:
+
+    <blockquote>
+      <br/>
   <pre>
 OAT.Event.attach("myDiv", "click", function() { alert("!"); });
 </pre>
+    </blockquote>
 
-  <h4>OAT.Event.detach(element,
-  event, callback)</h4>Removes attached callback from element fired
-  with event. Note that only non-anonymous functions can be
-  detached.
+    <h4>
+        <a name="OAT.Event.detach(element, event, callback)"> 
+      </a>OAT.Event.detach(element,
+    event, callback)</h4>Removes attached <tt>callback</tt> from
+    <tt>element</tt> fired with <tt>event</tt>. Note that only
+    non-anonymous functions can be detached.
 
-  <h4>OAT.Event.source(event)</h4>Converts
-  event to reference to element which fired it. This can be useful
-  when multiple elements fire the same callback and one needs to
-  know which element fired it. Example:<br/>
+    <h4>
+        <a name="OAT.Event.source(event)"> 
+      </a>OAT.Event.source(event)</h4>Converts
+    <tt>event</tt> to reference to element which fired it. This can
+    be useful when multiple elements fire the same callback and one
+    needs to know which element fired it. Example:
+
+    <blockquote>
+      <br/>
   <pre>
 var callback = function(event) {
         var id = OAT.Event.source(event).id;
@@ -847,104 +972,168 @@ var div = OAT.Dom.create("div");
 div.id = "myDiv";
 OAT.Dom.attach(div, "click", callback);
 </pre>
+    </blockquote>
 
-  <h4>OAT.Event.cancel(event)</h4>Cancels
-  bubbling of event.
+    <h4>
+        <a name="OAT.Event.cancel(event)"> 
+      </a>OAT.Event.cancel(event)</h4>Cancels
+    bubbling of <tt>event</tt>.
 
-  <h4>OAT.Event.position(event)</h4>Returns
-  coordinates of event, relative to top left corner of page.
+    <h4>
+        <a name="OAT.Event.position(event)"> 
+      </a>OAT.Event.position(event)</h4>Returns
+    coordinates of <tt>event</tt>, relative to top left corner of
+    page.
 
-  <h4>OAT.Event.prevent(event)</h4>Prevents
-  default action if event (form submit, context menu,
+    <h4>
+        <a name="OAT.Event.prevent(event)"> 
+      </a>OAT.Event.prevent(event)</h4>Prevents
+    default action if <tt>event</tt> (form submit, context menu,
   image-to-new-tab drag, ...).
 
-  <h4>OAT.Style.include(filename,force)</h4>Include
-  CSS stylesheet file into the page. (see OAT.Preferences.stylePath
-  property). Stylesheet will be reincluded if force option is
-  passed.
+    <h4>
+        <a name="OAT.Style.include(filename,force)"> 
+      </a>OAT.Style.include(filename,force)</h4>Include
+    CSS stylesheet <tt>filename</tt> into the page. (See
+    <tt>OAT.Preferences.stylePath</tt> property.) Stylesheet will
+    be reincluded if <tt>force</tt> option is passed.
 
-  <h4>OAT.Style.get(element,
+    <h4>
+        <a name="OAT.Style.get(element, property)"> 
+      </a>OAT.Style.get(element,
   property)</h4>
 
-  <p>Returns a style property of element. This is different from
-  accessing the element.style.property value, as this function
-  returns the computed style (i.e., set by stylesheets, etc.)
-  instead of a dynamically created one. Example:</p>
+    <p>Returns a style <tt>property</tt> of <tt>element</tt>. This
+    is different from accessing the <tt>element.style.property</tt>
+    value, as this function returns the computed style (i.e., set
+    by stylesheets, etc.) instead of a dynamically created one.
+    Example:</p>
+
+    <blockquote>
     <br/>
   <pre>
 var family = OAT.Style.get("elementId", "fontFamily");
 alert(family); // returns actual font-family for this element, wherever it is set
 </pre>
+    </blockquote>
 
-  <h4>OAT.Style.apply(element,
-  styleObj)</h4>Applies styleObj to element. styleObj follows the
-  same conventions defined in OAT.Dom.create().
+    <h4>
+        <a name="OAT.Style.apply(element, styleObj)"> 
+      </a>OAT.Style.apply(element,
+    styleObj)</h4>Applies <tt>styleObj</tt> to <tt>element</tt>.
+    <tt>styleObj</tt> follows the same conventions defined in
+    <tt>OAT.Dom.create()</tt>.
 
-  <h4>OAT.Style.opacity(element,
-  opacity)</h4>Sets element's opacity to opacity. Acceptable range:
-  0 (transparent) - 1 (opaque).
+    <h4>
+        <a name="OAT.Style.opacity(element, opacity)"> 
+      </a>OAT.Style.opacity(element,
+    opacity)</h4>Sets <tt>element</tt>'s opacity to
+    <tt>opacity</tt>. Acceptable range: 0 (transparent) - 1
+    (opaque).
 
-  <h4>OAT.Style.background(element,
-  url)</h4>Sets element's background image to the one specified in
-  url.
+    <h4>
+        <a name="OAT.Style.background(element, url)"> 
+      </a>OAT.Style.background(element,
+    url)</h4>Sets <tt>element</tt>'s background image to the one
+    specified by <tt>url</tt>.
 
-  <h3>Preferences</h3>
+    <h3>
+        <a name="Preferences" id="Preferences"> 
+      </a>Preferences</h3>
 
-  <h4>OAT.Preferences.showAjax</h4>Show
+    <h4>
+        <a name="OAT.Preferences.showAjax" id="OAT.Preferences.showAjax"> 
+      </a>OAT.Preferences.showAjax</h4>Show
   Ajax window even if not explicitly requested by application.
 
-  <h4>OAT.Preferences.useCursors</h4>Use
+    <h4>
+        <a name="OAT.Preferences.useCursors" id="OAT.Preferences.useCursors"> 
+      </a>OAT.Preferences.useCursors</h4>Use
   scrollable cursors.
 
-  <h4>OAT.Preferences.windowTypeOverride</h4>Do
+    <h4>
+        <a name="OAT.Preferences.windowTypeOverride" id="OAT.Preferences.windowTypeOverride"> 
+      </a>OAT.Preferences.windowTypeOverride</h4>Do
   not guess window type.
 
-  <h4>OAT.Preferences.xsltPath</h4>Path
+    <h4>
+        <a name="OAT.Preferences.xsltPath" id="OAT.Preferences.xsltPath"> 
+      </a>OAT.Preferences.xsltPath</h4>Path
   to the XSLT stylesheets.
 
-  <h4>OAT.Preferences.imagePath</h4>Path
+    <h4>
+        <a name="OAT.Preferences.imagePath" id="OAT.Preferences.imagePath"> 
+      </a>OAT.Preferences.imagePath</h4>Path
   to the images.
 
   <h4>
+        <a name="OAT.Preferences.stylePath" id="OAT.Preferences.stylePath"> 
+      </a>
   OAT.Preferences.stylePath</h4>Path to the CSS stylesheets.
 
   <h4>
+        <a name="OAT.Preferences.httpError" id="OAT.Preferences.httpError"> 
+      </a>
   OAT.Preferences.httpError</h4>Show HTTP errors.
 
-  <h3> Properties</h3>
+    <h3>
+        <a name="Properties" id="Properties"> 
+      </a> Properties</h3>
 
-  <h4>OAT.Browser.isIE</h4>Returns true if used
-  browser is Internet Explorer.
+    <h4>
+        <a name="OAT.Browser.isIE" id="OAT.Browser.isIE"> 
+      </a>OAT.Browser.isIE</h4>Returns true if
+    used browser is Internet Explorer.
 
-  <h4>OAT.Browser.isIE6</h4>Returns true if
+    <h4>
+        <a name="OAT.Browser.isIE6" id="OAT.Browser.isIE6"> 
+      </a>OAT.Browser.isIE6</h4>Returns true if
   used browser is Internet Explorer 6.
 
-  <h4>OAT.Browser.isIE7</h4>Returns true if
+    <h4>
+        <a name="OAT.Browser.isIE7" id="OAT.Browser.isIE7"> 
+      </a>OAT.Browser.isIE7</h4>Returns true if
   used browser is Internet Explorer 7.
 
-  <h4>OAT.Browser.isGecko</h4>Returns true if
-  used browser is Gecko-based (Firefox, Mozilla).
+    <h4>
+        <a name="OAT.Browser.isGecko" id="OAT.Browser.isGecko"> 
+      </a>OAT.Browser.isGecko</h4>Returns true
+    if used browser is Gecko-based (Firefox, Mozilla).
 
-  <h4>OAT.Browser.isOpera</h4>Returns true if
-  used browser is Opera.
+    <h4>
+        <a name="OAT.Browser.isOpera" id="OAT.Browser.isOpera"> 
+      </a>OAT.Browser.isOpera</h4>Returns true
+    if used browser is Opera.
 
-  <h4>OAT.Browser.isWebKit</h4>Returns true
-  if used browser is Apple WebKit?.
+    <h4>
+        <a name="OAT.Browser.isWebKit" id="OAT.Browser.isWebKit"> 
+      </a>OAT.Browser.isWebKit</h4>Returns
+    true if used browser is Apple WebKit.
 
-  <h4>OAT.Browser.isKonqueror</h4>Returns
+    <h4>
+        <a name="OAT.Browser.isKonqueror" id="OAT.Browser.isKonqueror"> 
+      </a>OAT.Browser.isKonqueror</h4>Returns
   true if used browser is KDE Konqueror.
 
-  <h4>OAT.Browser.isKHTML</h4>Returns true if
-  used browser isKHTML based (practically it means Konqueror or
-  Safari) .
+    <h4>
+        <a name="OAT.Browser.isKHTML" id="OAT.Browser.isKHTML"> 
+      </a>OAT.Browser.isKHTML</h4>Returns true
+    if used browser is KHTML-based (practically, this means
+    Konqueror or Safari) .
 
-  <h4>OAT.Browser.isMac</h4>Returns true if
-  used operating system is MacOS?.
+    <h4>
+        <a name="OAT.Browser.isMac" id="OAT.Browser.isMac"> 
+      </a>OAT.Browser.isMac</h4>Returns true if
+    used operating system is Mac OS.
 
-  <h4>OAT.Browser.isLinux</h4>Returns true if
-  used operating system is Linux.
+    <h4>
+        <a name="OAT.Browser.isLinux" id="OAT.Browser.isLinux"> 
+      </a>OAT.Browser.isLinux</h4>Returns true
+    if used operating system is Linux.
 
-  <h4>OAT.Browser.isWindows</h4>Returns
+    <h4>
+        <a name="OAT.Browser.isWindows" id="OAT.Browser.isWindows"> 
+      </a>OAT.Browser.isWindows</h4>Returns
   true if used operating system is Windows.
 
   
@@ -955,5 +1144,6 @@ alert(family); // returns actual font-family for this element, wherever it is se
       <a href="http://www.openlinksw.com/">OpenLink Software</a> 
       2005-2008
     </div>
+  </div>
 </body>
 </html>

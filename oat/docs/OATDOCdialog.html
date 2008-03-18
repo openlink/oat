@@ -14,11 +14,20 @@
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
       </div>
 
-    <h2> dialog.js</h2>
 
-    <p>Simple wrapper for ok/cancel dialog, that can contain any
+    
+
+    <h2>
+        <a name="dialog.js" id="dialog.js"> 
+      </a> dialog.js</h2>
+
+    <p>Simple wrapper for OK/Cancel dialog, that can contain any
     data.</p>
 
+    
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -93,51 +102,102 @@
             <label class="c2">_</label>
             <label class="c2">_</label> <a href="#OAT.Dialog::cancel">OAT.Dialog::cancel</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Objects</h3>
+    <h3>
+        <a name="Objects" id="Objects"> 
+      </a> Objects</h3>
 
-    <h4>OAT.Dialog(title,
+    <h4>
+        <a name="OAT.Dialog(title, contentDiv, optObj)"> 
+      </a>OAT.Dialog(title,
     contentDiv, optObj)</h4>
 
-    <p>Creates a dialog window with title of title, appends
-    contentDiv into it. Various options specify its appearance and
-    behavior:</p>
+    <p>Creates a dialog window with title of <tt>title</tt>, puts
+    <tt>contentDiv</tt> into it. Various options specify its
+    appearance and behavior:</p>
 
     <ul>
-      <li>width - in pixels, 0 = auto</li>
+      <li>
+          <tt>
+            <b>width</b>
+          </tt> - in pixels, 0 = auto</li>
 
-      <li>height - in pixels, 0 = auto</li>
+      <li>
+          <tt>
+            <b>height</b>
+          </tt> - in pixels, 0 = auto</li>
 
-      <li>modal - 1/0</li>
+      <li>
+          <tt>
+            <b>modal</b>
+          </tt> - 1/0</li>
 
-      <li>zIndex - default 1000</li>
+      <li>
+          <tt>
+            <b>zIndex</b>
+          </tt> - default 1000</li>
 
-      <li>onshow - callback to be performed when dialog is
-      shown</li>
+      <li>
+          <tt>
+            <b>onshow</b>
+          </tt> - callback to be performed when
+      dialog is shown</li>
 
-      <li>onhide - callback to be performed when dialog is
-      hidden</li>
+      <li>
+          <tt>
+            <b>onhide</b>
+          </tt> - callback to be performed when
+      dialog is hidden</li>
 
-      <li>buttons - 1/0, whether to show OK/Cancel buttons</li>
+      <li>
+          <tt>
+            <b>buttons</b>
+          </tt> - 1/0, whether to show OK/Cancel
+      buttons</li>
     </ul>
 
-    <h3> Methods</h3>
+    <h3>
+        <a name="Methods" id="Methods"> 
+      </a> Methods</h3>
 
-    <h4>OAT.Dialog::show()</h4>Shows the
+    <h4>
+        <a name="OAT.Dialog::show()"> 
+      </a>OAT.Dialog::show()</h4>Shows the
     dialog.
 
-    <h4>OAT.Dialog::hide()</h4>Hides the
+    <h4>
+        <a name="OAT.Dialog::hide()"> 
+      </a>OAT.Dialog::hide()</h4>Hides the
     dialog.
 
-    <h3> Properties</h3>
+    <h3>
+        <a name="Properties" id="Properties"> 
+      </a> Properties</h3>
 
-    <h4>OAT.Dialog::ok</h4>Callback to be
+    <h4>
+        <a name="OAT.Dialog::ok" id="OAT.Dialog::ok"> 
+      </a>OAT.Dialog::ok</h4>Callback to be
     performed when user clicks 'OK' button.
 
-    <h4>OAT.Dialog::cancel</h4>Callback to be
-    performed when user clicks 'Cancel' button.<br/>
+    <h4>
+        <a name="OAT.Dialog::cancel" id="OAT.Dialog::cancel"> 
+      </a>OAT.Dialog::cancel</h4>Callback to be
+    performed when user clicks 'Cancel' button.
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
+      <br/>
     <pre>
 var d = new OAT.Dialog("dialog", div, {modal:1, buttons:1});
 d.show();

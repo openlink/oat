@@ -14,11 +14,20 @@
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
       </div>
 
-    <h2> bezier.js</h2>
+    
+    
+
+    <h2>
+        <a name="bezier.js" id="bezier.js"> 
+      </a> bezier.js</h2>
 
     <p>Provides two mathematical functions for drawing Bezier
-    curves</p>
+    curves.</p>
 
+    
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -69,45 +78,61 @@
             <label class="c2">_</label>
             <label class="c2">_</label> <a href="#OAT.Bezier.create2()">OAT.Bezier.create2()</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Functions</h3>
+    <h3>
+        <a name="Functions" id="Functions"> 
+      </a> Functions</h3>
 
-    <h4>OAT.Bezier.setPointList(pointList)</h4>
+    <h4>
+        <a name="OAT.Bezier.setPointList(pointList)"> 
+      </a>OAT.Bezier.setPointList(pointList)</h4>
 
-    <p>Marks an array of 2D points as a base for a bezier curve.
-    Example:</p>
-      <br/>
-    <pre>
-var points = [];
-points.push([0,0]);
-points.push([1,0]);
-points.push([1,1]);
-OAT.Bezier.setPointList(points);
-</pre>
+    <p>Marks an array of 2D points as a base for a Bezier
+    curve.</p>
 
-    <h4>OAT.Bezier.initFactorial(max)</h4>
+    <h4>
+        <a name="OAT.Bezier.initFactorial(max)"> 
+      </a>OAT.Bezier.initFactorial(max)</h4>
 
-    <p>Pre-computes factorials of 1..max for later execution. Call
-    this function once, in the initialization part of your script.
-    This speeds up creation of bezier curves using
-    OAT.Bezier.create2() function. Set the max argument to the
-    number of points.</p>
+    <p>Pre-computes factorials of <tt>1..max</tt> for later
+    execution. Call this function once, in the initialization part
+    of your script. This speeds up creation of bezier curves using
+    <tt>OAT.Bezier.create2()</tt> function. Set the max argument to
+    the number of points.</p>
 
-    <h4>OAT.Bezier.create()</h4>
+    <h4>
+        <a name="OAT.Bezier.create()"> 
+      </a>OAT.Bezier.create()</h4>
 
-    <p>Returns a Bezier function f: [0,1] 
-    R^2 which describes parametric Bezier curve, based on points
-    set by OAT.Bezier.setPointList(). Uses slow but precise
-    recursive de Casteljau's algorithm.</p>
+    <p>Returns a Bezier function <tt>f: [0,1] -&gt; R^2</tt> which
+    describes parametric Bezier curve, based on points set by
+    <tt>OAT.Bezier.setPointList()</tt>.</p>
 
-    <h4>OAT.Bezier.create2()</h4>
+    <p>Uses slow but precise recursive <a href="http://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm" class="absuri">de Casteljau's algorithm</a>.</p>
 
-    <p>Returns a Bezier function f: [0,1] 
-    R^2 which describes parametric Bezier curve, based on points
-    set by OAT.Bezier.setPointList(). Uses faster factorial
-    algorithm based directly on Bernstein polynomials.</p>
+    <h4>
+        <a name="OAT.Bezier.create2()"> 
+      </a>OAT.Bezier.create2()</h4>
+
+    <p>Returns a Bezier function <tt>f: [0,1] -&gt; R^2</tt> which
+    describes parametric Bezier curve, based on points set by
+    <tt>OAT.Bezier.setPointList()</tt>.</p>
+
+    <p>Uses faster factorial algorithm based directly on <a href="http://en.wikipedia.org/wiki/Bernstein_polynomial" class="absuri">Bernstein polynomials</a>.</p>
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
       <br/>
     <pre>
 var points = [];

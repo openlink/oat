@@ -17,15 +17,21 @@
     
     
 
-    <h2> ajax2.js</h2>
+    <h2>
+        <a name="ajax2.js" id="ajax2.js"> 
+      </a> ajax2.js</h2>
 
-    <p>Provides basic asynchronous XML call (AJAX)
-    routines.</p>
-      <b>THIS IS THE NEW VERSION OF API. YOU CAN STILL
-    USE THE OLD ONE (ajax.js), BUT IT IS OBSOLETE AND UNSUPPORTED.
-    YOU SHOULD SWITCH TO THIS INTERFACE ASAP.</b>
+    <p>Provides basic Asynchronous XML (AJAX) routines. (also see
+    <a href="OATDOCsoap.html">soap.js</a> for simplified SOAP
+    routines.)</p>
+      <b>THIS IS THE NEW API VERSION. YOU CAN STILL USE
+    THE OLD ONE (<tt>ajax.js</tt>), BUT IT IS OBSOLETE AND
+    UNSUPPORTED. YOU SHOULD SWITCH TO THIS INTERFACE ASAP.</b>
     
 
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -58,14 +64,6 @@
             <label class="c2">_</label>
             <label class="c2">_</label>
             <label class="c2">_</label> <a href="#OAT.AJAX.abortAll()">OAT.AJAX.abortAll()</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Valid%20method%20names">Valid
-        method names</a>
           </li>
 
         <li>
@@ -169,45 +167,208 @@
             <label class="c2">_</label>
             <label class="c2">_</label> <a href="#OAT.MSG.AJAX_ERROR">OAT.MSG.AJAX_ERROR</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Functions</h3>
+    <h3>
+        <a name="Functions" id="Functions"> 
+      </a> Functions</h3>
 
-    <h4>OAT.AJAX.[METHOD](url,
+    <h4>
+        <a name="OAT.AJAX.[METHOD](url, data, callback, options)"> 
+      </a>OAT.AJAX.[METHOD](url,
     data, callback, options)</h4>
 
-    <p>Sends an HTTP request to a page url. Data to be contained in
-    request are specified in data. When response arrives,
-    callback(response) will be executed. You may specify the
-    following options:</p>
+    <p>Sends an HTTP request to a page <tt>url</tt>. Valid
+    <tt>METHOD</tt> names are:</p>
 
     <ul>
-      <li>type - response format, one of TYPE_ constants</li>
+      <li>
+          <tt>GET</tt>
+        </li>
 
-      <li>auth - authorization type, one of AUTH_ constants</li>
+      <li>
+          <tt>POST</tt>
+        </li>
 
-      <li>async - bool</li>
+      <li>
+          <tt>SOAP</tt>
+        </li>
 
-      <li>noSecurityCookie - bool, forbids sending a security
-      cookie &amp; corresponding GET parameter</li>
+      <li>
+          <tt>PUT</tt>
+        </li>
 
-      <li>user, password - credentials for http authorization</li>
+      <li>
+          <tt>MKCOL</tt>
+        </li>
 
-      <li>headers - JS object containing additional headers to be
-      sent</li>
+      <li>
+          <tt>PROPFIND</tt>
+        </li>
 
-      <li>onerror - callback to be executed when error occurs</li>
+      <li>
+          <tt>PROPPATCH</tt>
+        </li>
+    </ul>
 
-      <li>onstart - callback to be executed when call launches</li>
+    <p>Data to be contained in request are specified in
+    <tt>data</tt>. When response arrives,
+    <tt>callback(response)</tt> will be executed. You may specify
+    the following <tt>options</tt>:</p>
 
-      <li>onend - callback to be executed when call finishes,
-      independently on success/error</li>
+    <ul>
+      <li>
+          <tt>
+            <b>type</b>
+          </tt> - response format, one of
+      <tt>TYPE_</tt> constants</li>
+
+      <li>
+          <tt>
+            <b>auth</b>
+          </tt> - authorization type, one of
+      <tt>AUTH_</tt> constants</li>
+
+      <li>
+          <tt>
+            <b>async</b>
+          </tt> - bool</li>
+
+      <li>
+          <tt>
+            <b>noSecurityCookie</b>
+          </tt> - bool, forbids sending
+      a security cookie &amp; corresponding GET parameter</li>
+
+      <li>
+          <tt>
+            <b>user</b>, <b>password</b>
+          </tt> - credentials for
+      http authorization</li>
+
+      <li>
+          <tt>
+            <b>headers</b>
+          </tt> - JS object containing additional
+      headers to be sent</li>
+
+      <li>
+          <tt>
+            <b>onerror</b>
+          </tt> - callback to be executed when
+      error occurs</li>
+
+      <li>
+          <tt>
+            <b>onstart</b>
+          </tt> - callback to be executed when
+      call launches</li>
+
+      <li>
+          <tt>
+            <b>onend</b>
+          </tt> - callback to be executed when call
+      finishes, regardless of success or error condition</li>
     </ul>
       <b>To prevent JavaScript hijacking attacks, web
-    application authors are encouraged to use some of the
-    countermeasures described in 'security' part of the
-    documentation.</b>
+    application authors are encouraged to use some of OAT's
+    <a href="OATDOCsecurity.html">built-in countermeasures</a>.</b>
+
+    <h4>
+        <a name="OAT.AJAX.abortAll()"> 
+      </a>OAT.AJAX.abortAll()</h4>Cancels all
+    pending requests.
+
+    <h3>
+        <a name="Properties" id="Properties"> 
+      </a> Properties</h3>
+
+    <h4>
+        <a name="OAT.AJAX.startRef" id="OAT.AJAX.startRef"> 
+      </a>OAT.AJAX.startRef</h4>
+
+    <p>Function to be executed when a request is being sent.</p>
+
+    <h4>
+        <a name="OAT.AJAX.endRef" id="OAT.AJAX.endRef"> 
+      </a>OAT.AJAX.endRef</h4>
+
+    <p>Function to be executed when all requests are satisfied (or
+    canceled).</p>
+
+    <h3>
+        <a name="Constants" id="Constants"> 
+      </a> Constants</h3>
+
+    <h4>
+        <a name="OAT.AJAX.AUTH_NONE" id="OAT.AJAX.AUTH_NONE"> 
+      </a>OAT.AJAX.AUTH_NONE</h4>
+
+    <p>When <tt>auth</tt> option of request is set to this
+    constant, no authentication will be performed.</p>
+
+    <h4>
+        <a name="OAT.AJAX.AUTH_BASIC" id="OAT.AJAX.AUTH_BASIC"> 
+      </a>
+    OAT.AJAX.AUTH_BASIC</h4>
+
+    <p>When <tt>auth</tt> option of request is set to this
+    constant, request header with authentication data will be
+    appended using auth basic scheme (as described in <a href="http://www.ietf.org/rfc/rfc2617.txt" class="absuri">rfc2617</a>).</p>
+
+    <h4>
+        <a name="OAT.AJAX.AUTH_DIGEST" id="OAT.AJAX.AUTH_DIGEST"> 
+      </a> OAT.AJAX.AUTH_DIGEST</h4>
+
+    <p>Auth digest scheme is not yet supported.</p>
+
+    <h4>
+        <a name="OAT.AJAX.TYPE_TEXT" id="OAT.AJAX.TYPE_TEXT"> 
+      </a>
+    OAT.AJAX.TYPE_TEXT</h4>
+
+    <p>When <tt>type</tt> option of request is set to this value,
+    request will be returned as plain text.</p>
+
+    <h4>
+        <a name="OAT.AJAX.TYPE_XML" id="OAT.AJAX.TYPE_XML"> 
+      </a>
+    OAT.AJAX.TYPE_XML</h4>
+
+    <p>When <tt>type</tt> option of request is set to this value,
+    request will be returned as XML document.</p>
+
+    <h3>
+        <a name="Messages" id="Messages"> 
+      </a> Messages</h3>
+
+    <h4>
+        <a name="OAT.MSG.AJAX_START" id="OAT.MSG.AJAX_START"> 
+      </a>OAT.MSG.AJAX_START</h4>
+
+    <p>When AJAX request is sent, OAT emits this message containing
+    URL of the request and appropriate message code.</p>
+
+    <h4>
+        <a name="OAT.MSG.AJAX_ERROR" id="OAT.MSG.AJAX_ERROR"> 
+      </a>
+    OAT.MSG.AJAX_ERROR</h4>
+
+    <p>When AJAX request is unsuccessful, OAT emits this message
+    containing request object and appropriate message code.</p>
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
       <br/>
     <pre>
 var options = {
@@ -219,84 +380,6 @@ var options = {
 var callback = function(data) { alert(data); };
 OAT.AJAX.GET("/myfile.xml", false, callback, options);
 </pre>
-
-    <h4>OAT.AJAX.abortAll()</h4>Cancels all
-    pending requests.
-
-    <h3> Valid method names</h3>
-
-    <ul>
-      <li>GET</li>
-
-      <li>POST</li>
-
-      <li>SOAP</li>
-
-      <li>PUT</li>
-
-      <li>MKCOL</li>
-
-      <li>PROPFIND</li>
-
-      <li>PROPPATCH</li>
-    </ul>
-
-    <h3> Properties</h3>
-
-    <h4>OAT.AJAX.startRef</h4>
-
-    <p>Here you can give a function to be executed when a request
-    is being sent.</p>
-
-    <h4>OAT.AJAX.endRef</h4>
-
-    <p>Here you can give a function to be executed when all
-    requests were satisfied (or canceled).</p>
-
-    <h3> Constants</h3>
-
-    <h4>OAT.AJAX.AUTH_NONE</h4>
-
-    <p>When auth option of request is set to this constant, no
-    authentication will be performed.</p>
-
-    <h4>
-    OAT.AJAX.AUTH_BASIC</h4>
-
-    <p>When auth option of request is set to this constant, request
-    header with authentication data will be appended using auth
-    basic scheme (as described in rfc2617).</p>
-
-    <h4> OAT.AJAX.AUTH_DIGEST</h4>
-
-    <p>Auth digest scheme is not yet supported.</p>
-
-    <h4>
-    OAT.AJAX.TYPE_TEXT</h4>
-
-    <p>When type option of request is set to this value, request
-    will be returned as plain text.</p>
-
-    <h4>
-    OAT.AJAX.TYPE_XML</h4>
-
-    <p>When type option of request is set to this value, request
-    will be returned as XML document.</p>
-
-    <h3> Messages</h3>
-
-    <h4>OAT.MSG.AJAX_START</h4>
-
-    <p>When AJAX request is sent, OAT emits this message containing
-    URL of the request and appropriate message code.</p>
-
-    <h4>
-    OAT.MSG.AJAX_ERROR</h4>
-
-    <p>When AJAX request is unsuccessful, OAT emits this message
-    containing request object and appropriate message
-    code.</p>
-      <br/>
 
     
     

@@ -18,11 +18,17 @@
     
 
     <h2>
+        <a name="tagcloud.js" id="tagcloud.js"> 
+      </a>
     tagcloud.js</h2>
 
-    <p>Displays a "Tag Cloud", visually enhanced set of links.</p>
+    <p>Displays a "Tag Cloud", a visually enhanced set of
+    links.</p>
     
 
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -61,7 +67,7 @@
             <label class="c2">_</label>
             <label class="c2">_</label>
             <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.clearItems()">.clearItems()</a>
+              <label class="c2">_</label> <a href="#OAT.TagCloud.clearItems()">OAT.TagCloud.clearItems()</a>
           </li>
 
         <li>
@@ -70,8 +76,8 @@
             <label class="c2">_</label>
             <label class="c2">_</label>
             <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.addItem(name,%20link,%20frequency)">.addItem(name, link,
-        frequency)</a>
+              <label class="c2">_</label> <a href="#OAT.TagCloud.addItem(name,%20link[,%20frequency])">OAT.TagCloud.addItem(name,
+        link[, frequency])</a>
           </li>
 
         <li>
@@ -80,7 +86,7 @@
             <label class="c2">_</label>
             <label class="c2">_</label>
             <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.draw()">.draw()</a>
+              <label class="c2">_</label> <a href="#OAT.TagCloud.draw()">OAT.TagCloud.draw()</a>
           </li>
 
         <li>
@@ -89,40 +95,133 @@
             <label class="c2">_</label>
             <label class="c2">_</label> <a href="#Constants">Constants</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.TagCloudData.COLOR_SIZE">OAT.TagCloudData.COLOR_SIZE</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.TagCloudData.COLOR_CYCLE">OAT.TagCloudData.COLOR_CYCLE</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.TagCloudData.COLOR_RANDOM">OAT.TagCloudData.COLOR_RANDOM</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Objects</h3>
+    <h3>
+        <a name="Objects" id="Objects"> 
+      </a> Objects</h3>
 
-    <h4>OAT.TagCloud(div,
-    optionsObject)</h4>Creates a Tag Cloud inside div. Options are
-    specified in optionsObject:
+    <h4>
+        <a name="OAT.TagCloud(div, optionsObject)"> 
+      </a>OAT.TagCloud(div,
+    optionsObject)</h4>Creates a Tag Cloud inside <tt>div</tt>.
+    Options are specified in <tt>optionsObject</tt>:
 
     <ul>
-      <li>separator - string, separating individual entries</li>
+      <li>
+          <tt>
+            <b>separator</b>
+          </tt> - string which separates
+      individual entries</li>
 
-      <li>colors - array of colors to be used</li>
+      <li>
+          <tt>
+            <b>colors</b>
+          </tt> - array of colors to be used</li>
 
-      <li>sizes - array of font sizes to be used</li>
+      <li>
+          <tt>
+            <b>sizes</b>
+          </tt> - array of font sizes to be
+      used</li>
 
-      <li>colorMapping - one of the COLOR_ constants</li>
+      <li>
+          <tt>
+            <b>colorMapping</b>
+          </tt> - one of the
+      <tt>OAT.TagCloudData.COLOR_</tt> constants</li>
     </ul>
 
-    <h3> Methods</h3>
+    <h3>
+        <a name="Methods" id="Methods"> 
+      </a> Methods</h3>
 
-    <h4>.clearItems()</h4>Removes all
-    items (links).
+    <h4>
+        <a name="OAT.TagCloud.clearItems()"> 
+      </a>
+    OAT.TagCloud.clearItems()</h4>Removes all items (links).
 
-    <h4>.addItem(name, link,
-    frequency)</h4>Adds a new item. Its label is name, link is an
-    URL. Third argument, frequency is optional and defaults to 1.
+    <h4>
+        <a name="OAT.TagCloud.addItem(name, link[, frequency])"> 
+      </a>
+    OAT.TagCloud.addItem(name, link[, frequency])</h4>Adds a new
+    item. Its label is <tt>name</tt>, <tt>link</tt> is an URL.
+    Third argument, <tt>frequency</tt> is optional and defaults to
+    1.
 
-    <h4>.draw()</h4>Draws the Tag
-    Cloud.<br/>
+    <h4>
+        <a name="OAT.TagCloud.draw()"> 
+      </a>
+    OAT.TagCloud.draw()</h4>Draws the Tag Cloud.
+
+    <h3>
+        <a name="Constants" id="Constants"> 
+      </a> Constants</h3>
+
+    <h4>
+        <a name="OAT.TagCloudData.COLOR_SIZE" id="OAT.TagCloudData.COLOR_SIZE"> 
+      </a>
+    OAT.TagCloudData.COLOR_SIZE</h4>Create color based on size
+    (=frequency).
+
+    <h4>
+        <a name="OAT.TagCloudData.COLOR_CYCLE" id="OAT.TagCloudData.COLOR_CYCLE"> 
+      </a>
+    OAT.TagCloudData.COLOR_CYCLE</h4>Periodically cycle all
+    specified colors.
+
+    <h4>
+        <a name="OAT.TagCloudData.COLOR_RANDOM" id="OAT.TagCloudData.COLOR_RANDOM"> 
+      </a>
+    OAT.TagCloudData.COLOR_RANDOM</h4>Use randomly chosen color for
+    each item.
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
+      <br/>
     <pre>
 var colors = ["#f00","#0f0","#00f"];
 var sizes = ["80%","100%","120%"];
-var tc = new OAT.TagCloud("myDiv",{separator:", ", colorMapping:OAT.TagCloudData.COLOR_SIZE, colors:colors, sizes:sizes});
+var tc = new OAT.TagCloud("myDiv",{separator:", ", 
+                          colorMapping:OAT.TagCloudData.COLOR_SIZE, 
+                          colors:colors, sizes:sizes});
 
 tc.addItem("Label 1", "http://", 10);
 tc.addItem("Label 2", "http://", 5);
@@ -130,19 +229,6 @@ tc.addItem("Label 3", "http://"); /* frequency == 1 */
 
 tc.draw();
 </pre>
-
-    <h3> Constants</h3>
-
-    <ul>
-      <li>OAT.TagCloudData.COLOR_SIZE - create color based on size
-      (=frequency)</li>
-
-      <li>OAT.TagCloudData.COLOR_CYCLE - periodically cycle all
-      specified colors</li>
-
-      <li>OAT.TagCloudData.COLOR_RANDOM - use randomly chosen color
-      for each item</li>
-    </ul>
 
     
     

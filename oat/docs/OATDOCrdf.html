@@ -17,11 +17,16 @@
     
     
 
-    <h2> rdf.js</h2>
+    <h2>
+        <a name="rdf.js" id="rdf.js"> 
+      </a> rdf.js</h2>
 
     <p>RDF/XML parser. (see also <a href="OATDOCn3.html">N3/Turtle parser</a>)</p>
     
 
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -53,17 +58,100 @@
             <label class="c2">_</label>
             <label class="c2">_</label> <a href="#Constants">Constants</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.RDFData.DISABLE_HTML">OAT.RDFData.DISABLE_HTML</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.RDFData.DEREFERENCE">OAT.RDFData.DEREFERENCE</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.RDFData.BOOKMARK">OAT.RDFData.BOOKMARK</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.RDFData.FILTER">OAT.RDFData.FILTER</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Functions</h3>
+    <h3>
+        <a name="Functions" id="Functions"> 
+      </a> Functions</h3>
 
-    <h4>OAT.RDF.toTriples(xmlDoc,
-    url)</h4>Parses an RDF/XML document into an array of triples
-    which is then returned. Input should be in xmlDocument format,
-    e.g. created with <a href="OATDOCxml.html">OAT.Xml.createXmlDoc()</a> or as a result of
-    <a href="OATDOCajax2.html">AJAX call of type XML</a>. Url is to use for
-    prefix and is optional.<br/>
+    <h4>
+        <a name="OAT.RDF.toTriples(xmlDoc, url)"> 
+      </a>OAT.RDF.toTriples(xmlDoc,
+    url)</h4>Parses an RDF/XML document, <tt>xmlDoc</tt> into an
+    array of triples which is then returned. Input should be in
+    xmlDocument format, e.g., created with <tt>
+        <a href="OATDOCxml.html">OAT.Xml.createXmlDoc()</a>
+      </tt> or as a result
+    of <a href="OATDOCajax2.html">AJAX call of type XML</a>. <tt>Url</tt> is to
+    use for prefix and is optional.
+
+    <h3>
+        <a name="Constants" id="Constants"> 
+      </a> Constants</h3>
+
+    <h4>
+        <a name="OAT.RDFData.DISABLE_HTML" id="OAT.RDFData.DISABLE_HTML"> 
+      </a>
+    OAT.RDFData.DISABLE_HTML</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name="OAT.RDFData.DEREFERENCE" id="OAT.RDFData.DEREFERENCE"> 
+      </a>
+    OAT.RDFData.DEREFERENCE</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name="OAT.RDFData.BOOKMARK" id="OAT.RDFData.BOOKMARK"> 
+      </a>
+    OAT.RDFData.BOOKMARK</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name="OAT.RDFData.FILTER" id="OAT.RDFData.FILTER"> 
+      </a>
+    OAT.RDFData.FILTER</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
+      <br/>
     <pre>
 var callback = function(xmlDoc) {
         var triples = OAT.RDF.toTriples(xmlDoc);
@@ -71,18 +159,6 @@ var callback = function(xmlDoc) {
 }
 OAT.AJAX2.GET("myData.rdf", false, callback,{type:OAT.AJAX.TYPE_XML});
 </pre>
-
-    <h3> Constants</h3>
-
-    <ul>
-      <li>OAT.RDFData.DISABLE_HTML</li>
-
-      <li>OAT.RDFData.DEREFERENCE</li>
-
-      <li>OAT.RDFData.BOOKMARK</li>
-
-      <li>OAT.RDFData.FILTER</li>
-    </ul>
 
     
     

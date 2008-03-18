@@ -17,11 +17,15 @@
     
     
 
-    <h2>Messaging</h2>
+    <h2>
+        <a name="Messaging" id="Messaging"> 
+      </a>Messaging</h2>
 
     <p>How to send &amp; receive inter-control messages</p>
     
 
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -66,30 +70,84 @@
             <label class="c2">_</label> <a href="#OAT.MSG.detach(sender,%20message,%20callback)">OAT.MSG.detach(sender,
         message, callback)</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Functions</h3>
+    <h3>
+        <a name="Functions" id="Functions"> 
+      </a> Functions</h3>
 
-    <h4>OAT.MSG.send(sender,
-    message, event)</h4>Dispatches a message. The message must be a
-    constant, defined in OAT.MSG. Developers are encouraged to add
-    more message types; example messages: OAT_LOAD, TREE_EXPAND,
-    AJAX_FAILURE. sender should equal to object sending this
-    message. event is an object carrying data relevant to this
-    message; no particular format is required.
+    <h4>
+        <a name="OAT.MSG.send(sender, message, event)"> 
+      </a>OAT.MSG.send(sender,
+    message, event)</h4>Dispatches a message.
 
-    <h4>OAT.MSG.attach(sender,
-    message, callback)</h4>Subscribes to receiving messages. sender
-    equals to object whose messages we want to receive; value of
-    "*" means ALL senders. message is the message we want to
-    receive; it is possible to use "*" or RegExp? matches here. When a message arrives,
-    callback is executed with arguments passed to appropriate
-    OAT.MSG.send function.
+    <ul>
+      <li>
+          <tt>
+            <b>sender</b>
+          </tt> - to object sending this
+      message.</li>
 
-    <h4>OAT.MSG.detach(sender,
+      <li>
+          <tt>
+            <b>message</b>
+          </tt> - a constant, defined in
+      <tt>OAT.MSG</tt>. Developers are encouraged to add more
+      message types. Examples include <tt>OAT_LOAD</tt>,
+      <tt>TREE_EXPAND</tt>, and <tt>AJAX_FAILURE</tt>.</li>
+
+      <li>
+          <tt>
+            <b>event</b>
+          </tt> - an object carrying data relevant
+      to this message; no particular format is required.</li>
+    </ul>
+
+    <h4>
+        <a name="OAT.MSG.attach(sender, message, callback)"> 
+      </a>OAT.MSG.attach(sender,
+    message, callback)</h4>Subscribes to messages.
+
+    <ul>
+      <li>
+          <tt>
+            <b>sender</b>
+          </tt> - the object whose messages we
+      want to receive; value of "*" means ALL senders.</li>
+
+      <li>
+          <tt>
+            <b>message</b>
+          </tt> - the message we want to receive;
+      it is possible to use "*" or RegExp matches here.</li>
+
+      <li>
+          <tt>
+            <b>callback</b>
+          </tt> - When a message arrives,
+      <tt>callback</tt> is executed with arguments passed to
+      appropriate <tt>OAT.MSG.send()</tt> function.</li>
+    </ul>
+
+    <h4>
+        <a name="OAT.MSG.detach(sender, message, callback)"> 
+      </a>OAT.MSG.detach(sender,
     message, callback)</h4>Detaches previously set message
-    receiving handler. All three fields must match.<br/>
+    receiving handler. All three fields must match.
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
+      <br/>
     <pre>
 /* assume that there exists OAT.MSG.CUSTOM_MESSAGE */
 

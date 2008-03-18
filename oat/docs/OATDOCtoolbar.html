@@ -14,9 +14,18 @@
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
       </div>
 
-    <h2>
-    toolbar.js</h2>Basic Toolbar control
+    
+    
 
+    <h2>
+        <a name="toolbar.js" id="toolbar.js"> 
+      </a>
+    toolbar.js</h2>Basic Toolbar control.
+
+
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -55,8 +64,9 @@
             <label class="c2">_</label>
             <label class="c2">_</label>
             <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.addIcon(twoStates,%20imagePath,%20tooltip,%20callback)">.addIcon(twoStates,
-        imagePath, tooltip, callback)</a>
+              <label class="c2">_</label> <a href="#OAT.Toolbar.addIcon(twoStates,%20imagePath,%20tooltip,%20callback)">
+        OAT.Toolbar.addIcon(twoStates, imagePath, tooltip,
+        callback)</a>
           </li>
 
         <li>
@@ -65,7 +75,7 @@
             <label class="c2">_</label>
             <label class="c2">_</label>
             <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.addSeparator()">.addSeparator()</a>
+              <label class="c2">_</label> <a href="#OAT.Toolbar.addSeparator()">OAT.Toolbar.addSeparator()</a>
           </li>
 
         <li>
@@ -74,7 +84,7 @@
             <label class="c2">_</label>
             <label class="c2">_</label>
             <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.removeIcon(icon)">.removeIcon(icon)</a>
+              <label class="c2">_</label> <a href="#OAT.Toolbar.removeIcon(icon)">OAT.Toolbar.removeIcon(icon)</a>
           </li>
 
         <li>
@@ -83,7 +93,7 @@
             <label class="c2">_</label>
             <label class="c2">_</label>
             <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.removeSeparator(separator)">.removeSeparator(separator)</a>
+              <label class="c2">_</label> <a href="#OAT.Toolbar.removeSeparator(separator)">OAT.Toolbar.removeSeparator(separator)</a>
           </li>
 
         <li>
@@ -93,58 +103,145 @@
             <label class="c2">_</label> <a href="#CSS%20classes">CSS
         classes</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.Toolbar.toolbar">OAT.Toolbar.toolbar</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.Toolbar.toolbar_icon">OAT.Toolbar.toolbar_icon</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.Toolbar.toolbar">OAT.Toolbar.toolbar</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.Toolbar.toolbar_separator">OAT.Toolbar.toolbar_separator</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Objects</h3>
+    <h3>
+        <a name="Objects" id="Objects"> 
+      </a> Objects</h3>
 
-    <h4> OAT.Toolbar(div,
+    <h4>
+        <a name="OAT.Toolbar(div, options)"> 
+      </a> OAT.Toolbar(div,
     options)</h4>
 
-    <p>Creates a Toolbar. Its main DIV is accessible as
-    toolbar.div. You can use following options:</p>
+    <p>Creates a <tt>Toolbar</tt>. Its main <tt>div</tt> is
+    accessible as <tt>toolbar.div</tt>. You can use the following
+    <tt>options</tt>:</p>
 
     <ul>
-      <li>labels - use labels (default false)</li>
+      <li>
+          <tt>
+            <b>labels</b>
+          </tt> - use labels (default
+      <tt>false</tt>)</li>
     </ul>
 
-    <h3> Methods</h3>
+    <h3>
+        <a name="Methods" id="Methods"> 
+      </a> Methods</h3>
 
-    <h4>.addIcon(twoStates,
-    imagePath, tooltip, callback)</h4>
+    <h4>
+        <a name="OAT.Toolbar.addIcon(twoStates, imagePath, tooltip, callback)"> 
+      </a>
+    OAT.Toolbar.addIcon(twoStates, imagePath, tooltip,
+    callback)</h4>Adds a new icon to Toolbar. If <tt>twoStates</tt>
+    is <tt>true</tt>, then this icon will have two states
+    (otherwise 1). This icon will have image located at
+    <tt>imagePath</tt>; <tt>onHover</tt> it will display
+    <tt>tooltip</tt>; and clicking it will execute
+    <tt>callback</tt> (with state #, <tt>0</tt> or <tt>1</tt>, as
+    an argument).
 
-    <p>Adds a new icon to Toolbar. If twoStates == true, than this
-    icon will have two states (otherwise 1). This icon will have
-    image located at imagePath, it will display tooltip onHover and
-    clicking it will execute callback (with state #, 0 or 1, as an
-    argument).</p>
+    <h4>
+        <a name="OAT.Toolbar.addSeparator()"> 
+      </a>
+    OAT.Toolbar.addSeparator()</h4>Adds a separator.
 
-    <h4>.addSeparator()</h4>Adds a
-    separator.
+    <h4>
+        <a name="OAT.Toolbar.removeIcon(icon)"> 
+      </a>
+    OAT.Toolbar.removeIcon(icon)</h4>Remove <tt>icon</tt>.
 
-    <h4>.removeIcon(icon)</h4>Remove icon.
+    <h4>
+        <a name="OAT.Toolbar.removeSeparator(separator)"> 
+      </a>
+    OAT.Toolbar.removeSeparator(separator)</h4>Remove
+    <tt>separator</tt>.
 
-    <h4>.removeSeparator(separator)</h4>Remove
-    separator.<br/>
+    <h3>
+        <a name="CSS classes"> 
+      </a> CSS classes</h3>
+
+    <h4>
+        <a name="OAT.Toolbar.toolbar" id="OAT.Toolbar.toolbar"> 
+      </a>
+    OAT.Toolbar.toolbar</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name="OAT.Toolbar.toolbar_icon" id="OAT.Toolbar.toolbar_icon"> 
+      </a>
+    OAT.Toolbar.toolbar_icon</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name="OAT.Toolbar.toolbar" id="OAT.Toolbar.toolbar"> 
+      </a>
+    OAT.Toolbar.toolbar <u>icon_down</u>
+      </h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name="OAT.Toolbar.toolbar_separator" id="OAT.Toolbar.toolbar_separator"> 
+      </a>
+    OAT.Toolbar.toolbar_separator</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
+      <br/>
     <pre>
 var callback = function(state) { alert(state); }
 var t = new OAT.Toolbar();
 t.addIcon(true, "", "some tooltip", callback);
 document.body.appendChild(t.div);
 </pre>
-
-    <h3> CSS classes</h3>
-
-    <ul>
-      <li>.toolbar</li>
-
-      <li>.toolbar_icon</li>
-
-      <li>.toolbar <u>icon_down</u>
-        </li>
-
-      <li>.toolbar_separator</li>
-    </ul>
 
     
     

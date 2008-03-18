@@ -14,10 +14,18 @@
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
       </div>
 
+    
+    
+
     <h2>
+        <a name="validation.js" id="validation.js"> 
+      </a>
     validation.js</h2>Creates restricted input controls.
     
 
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -49,61 +57,144 @@
             <label class="c2">_</label>
             <label class="c2">_</label> <a href="#Constants">Constants</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.Validation.TYPE_">OAT.Validation.TYPE_</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Functions</h3>
+    <h3>
+        <a name="Functions" id="Functions"> 
+      </a> Functions</h3>
 
     <h4>
+        <a name="OAT.Validation.create(element, type, options)"> 
+      </a>
     OAT.Validation.create(element, type, options)</h4>
 
-    <p>Restricts input element. Restriction type is a constant,
-    specified in type. For type see constants section. Options are
-    consisting of:</p>
+    <p>Restricts input <tt>element</tt>. Restriction <tt>type</tt>
+    is an <tt>OAT.Validation.TYPE_</tt> constant. <tt>Options</tt>
+    may consist of:</p>
 
     <ul>
-      <li>min - minimum number of chars (for TYPE <u>NUMERIC and
-      TYPE_LETTERS) (default 0)</u>
-        </li>
+      <li>
+          <tt>
+            <b>min</b>
+          </tt> - minimum number of chars (for
+      <tt>OAT.Validation.TYPE_NUMERIC</tt> and
+      <tt>OAT.Validation.TYPE_LETTERS</tt>) (default
+      <tt>0</tt>)</li>
 
-      <li>max - maximum number of chars (for TYPE <u>NUMERIC and
-      TYPE_LETTERS) (default 50)</u>
-        </li>
+      <li>
+          <tt>
+            <b>max</b>
+          </tt> - maximum number of chars (for
+      <tt>OAT.Validation.TYPE_NUMERIC</tt> and
+      <tt>OAT.Validation.TYPE_LETTERS</tt>) (default
+      <tt>50</tt>)</li>
 
-      <li>def - default character (for TYPE <u>NUMERIC and
-      TYPE_LETTERS) (default "_")</u>
-        </li>
+      <li>
+          <tt>
+            <b>def</b>
+          </tt> - default character (for
+      <tt>OAT.Validation.TYPE_NUMERIC</tt> and
+      <tt>OAT.Validation.TYPE_LETTERS</tt>) (default
+      <tt>"_"</tt>)</li>
 
-      <li>defDate - default date (default
-      [today.getFullYear(),today.getMonth()+1,today.getDate()])</li>
+      <li>
+          <tt>
+            <b>defDate</b>
+          </tt> - default date (default
+      <tt>[today.getFullYear(),today.getMonth()+1,today.getDate()]</tt>)</li>
 
-      <li>minDate - minimum allowed date (for TYPE_DATE), in form
-      of [year, month, day], all indexed from 1 (default
-      [1900,1,1],)</li>
+      <li>
+          <tt>
+            <b>minDate</b>
+          </tt> - minimum allowed date (for
+      <tt>OAT.Validation.TYPE_DATE</tt>), in form of <tt>[year,
+      month, day]</tt>, all indexed from 1 (default
+      <tt>[1900,1,1]</tt>)</li>
 
-      <li>maxDate - maximum allowed date (for TYPE_DATE), in form
-      of [year, month, day], all indexed from 1 (default
-      [2010,12,31])</li>
+      <li>
+          <tt>
+            <b>maxDate</b>
+          </tt> - maximum allowed date (for
+      <tt>OAT.Validation.TYPE_DATE</tt>), in form of <tt>[year,
+      month, day]</tt>, all indexed from 1 (default
+      <tt>[2010,12,31]</tt>)</li>
 
-      <li>regexp - regular expression (default "")</li>
+      <li>
+          <tt>
+            <b>regexp</b>
+          </tt> - regular expression (default
+      <tt>""</tt>)</li>
     </ul>
+
+    <h3>
+        <a name="Constants" id="Constants"> 
+      </a> Constants</h3>
+
+    <h4>
+        <a name="OAT.Validation.TYPE_" id="OAT.Validation.TYPE_"> 
+      </a> OAT.Validation.TYPE_</h4>
+
+    <ul>
+      <li>
+          <tt>
+            <b>OAT.Validation.TYPE_NUMERIC</b>
+          </tt>
+          <div class="tdl"> -
+      ToBeDone</div>
+        </li>
+
+      <li>
+          <tt>
+            <b>OAT.Validation.TYPE_LETTERS</b>
+          </tt>
+          <div class="tdl"> -
+      ToBeDone</div>
+        </li>
+
+      <li>
+          <tt>
+            <b>OAT.Validation.TYPE_DATE</b>
+          </tt>
+          <div class="tdl"> -
+      ToBeDone</div>
+        </li>
+
+      <li>
+          <tt>
+            <b>OAT.Validation.TYPE_REGEXP</b>
+          </tt>
+          <div class="tdl"> -
+      ToBeDone</div>
+        </li>
+    </ul>
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
       <br/>
     <pre>
 var i = OAT.Dom.create("input");
-OAT.Validation.create(i, OAT.Validation.TYPE_LETTERS, {min:3, max:10, def:"_"}); // 3-10 chars, default '___'
+OAT.Validation.create(i, OAT.Validation.TYPE_LETTERS,   // 3-10 chars, 
+                      {min:3, max:10, def:"_"});        // default '___'
 </pre>
-
-    <h3> Constants</h3>
-
-    <ul>
-      <li>OAT.Validation.TYPE_NUMERIC</li>
-
-      <li>OAT.Validation.TYPE_LETTERS</li>
-
-      <li>OAT.Validation.TYPE_DATE</li>
-
-      <li>OAT.Validation.TYPE_REGEXP</li>
-    </ul>
 
     
     

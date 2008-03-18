@@ -18,11 +18,16 @@
     
 
     <h2>
+        <a name="keyboard.js" id="keyboard.js"> 
+      </a>
     keyboard.js</h2>
 
     <p>Keyboard events and shortcut handling.</p>
     
 
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -66,30 +71,51 @@
             <label class="c2">_</label>
             <label class="c2">_</label> <a href="#OAT.Keyboard.enable(group)">OAT.Keyboard.enable(group)</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Functions</h3>
+    <h3>
+        <a name="Functions" id="Functions"> 
+      </a> Functions</h3>
 
     <h4>
-    OAT.Keyboard.add(key, downCallback, upCallback, group, id,
-    obj)</h4>Listens for pressing a given key. downCallback and
-    upCallback are executed during onkeydown and onkeyup events.
-    obj is the element which should handle these events; defaults
-    to document. group is a arbitrary string - one can then
-    enable/disable groups of keyboard shortcuts. id is not used
-    yet.<br/>
+        <a name="OAT.Keyboard.add(key, downCallback, upCallback, group, id, obj)"> 
+      </a>OAT.Keyboard.add(key, downCallback, upCallback, group, id,
+    obj)</h4>Listens for pressing a given <tt>key</tt>.
+    <tt>downCallback</tt> and <tt>upCallback</tt> are executed
+    during onkeydown and onkeyup events. <tt>obj</tt> is the
+    element which should handle these events; defaults to document.
+    <tt>group</tt> is a arbitrary string - one can then
+    enable/disable groups of keyboard shortcuts. <tt>id</tt> is not
+    used yet.
+
+    <h4>
+        <a name="OAT.Keyboard.disable(group)"> 
+      </a>OAT.Keyboard.disable(group)</h4>Disables
+    all shortcuts contained in <tt>group</tt>.
+
+    <h4>
+        <a name="OAT.Keyboard.enable(group)"> 
+      </a>OAT.Keyboard.enable(group)</h4>Enables
+    all shortcuts contained in <tt>group</tt>.
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
+      <br/>
     <pre>
 var key = "ctrl-alt-7";
 var callback = function() { alert('Pressed!'); }
 OAT.Keyboard.add(key, callback, false, "mygroup", false, false);
 </pre>
-
-    <h4>OAT.Keyboard.disable(group)</h4>Disables
-    all shortcuts, containing into group.
-
-    <h4>OAT.Keyboard.enable(group)</h4>Enables
-    all shortcuts, containing into group.
 
     
     

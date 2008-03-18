@@ -14,10 +14,19 @@
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
       </div>
 
-    <h2> pivot.js</h2>
+    
+    
+
+    <h2>
+        <a name="pivot.js" id="pivot.js"> 
+      </a> pivot.js</h2>
 
     <p>Advanced interactive Pivot table.</p>
 
+    
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -56,142 +65,413 @@
             <label class="c2">_</label>
             <label class="c2">_</label>
             <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.PivotData.TYPE_">OAT.PivotData.TYPE_</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
             <label class="c2">_</label> <a href="#CSS%20classes">CSS
         classes</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#.pivot_table">.pivot_table</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#.h1">.h1</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#.h2">.h2</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#.odd">.odd</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#.even">.even</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#.subtotal">.subtotal</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#.total">.total</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#.gtotal">.gtotal</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#.pivot_chart">.pivot_chart</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#.pivot">.pivot</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#.pivot">.pivot</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Objects</h3>
+    <h3>
+        <a name="Objects" id="Objects"> 
+      </a> Objects</h3>
 
     <h4>
-    OAT.Pivot(div, chartDiv, filterDiv, headerRow, dataRows,
+        <a name="OAT.Pivot(div, chartDiv, filterDiv, headerRow, dataRows, headerRowIndexes, headerColIndexes, filterIndexes, dataColumnIndex, options)"> 
+      </a>OAT.Pivot(div, chartDiv, filterDiv, headerRow, dataRows,
     headerRowIndexes, headerColIndexes, filterIndexes,
     dataColumnIndex, options)</h4>
 
     <p>Creates Pivot table. Arguments are explained below:</p>
 
     <ul>
-      <li>div - the pivot table will be created as a child of this
-      element (dom element)</li>
+      <li>
+          <tt>
+            <b>div</b>
+          </tt> - the pivot table will be created as
+      a child of this element (dom element)</li>
 
-      <li>chartDiv - pivot chart will be created as a child of this
-      element (dom element)</li>
+      <li>
+          <tt>
+            <b>chartDiv</b>
+          </tt> - pivot chart will be created as
+      a child of this element (dom element)</li>
 
-      <li>filterDiv - 'paging' selects will go here (dom
-      element)</li>
+      <li>
+          <tt>
+            <b>filterDiv</b>
+          </tt> - 'paging' selects will go here
+      (dom element)</li>
 
-      <li>headerRow - array of headings for dataRows (array)</li>
+      <li>
+          <tt>
+            <b>headerRow</b>
+          </tt> - array of headings for
+      dataRows (array)</li>
 
-      <li>dataRows - array of rows. Every row (array) must have the
-      same number of elements as headerRow (array of arrays)</li>
+      <li>
+          <tt>
+            <b>dataRows</b>
+          </tt> - array of rows. Every row
+      (array) must have the same number of elements as
+      <tt>headerRow</tt> (array of arrays)</li>
 
-      <li>headerRowIndexes - array, containing indexes of columns
-      which should be drawn as vertical aggregate columns
+      <li>
+          <tt>
+            <b>headerRowIndexes</b>
+          </tt> - array, containing
+      indexes of columns which should be drawn as vertical
+      aggregate columns (array)</li>
+
+      <li>
+          <tt>
+            <b>headerColIndexes</b>
+          </tt> - array, containing
+      indexes of columns which should be drawn as horizontal
+      aggregate columns (array)</li>
+
+      <li>
+          <tt>
+            <b>filterIndexes</b>
+          </tt> - array, containing indexes
+      of columns which should be drawn as paging aggregate columns
       (array)</li>
 
-      <li>headerColIndexes - array, containing indexes of columns
-      which should be drawn as horizontal aggregate columns
-      (array)</li>
+      <li>
+          <tt>
+            <b>dataColumnIndex</b>
+          </tt> - index of data column
+      (number)</li>
 
-      <li>filterIndexes - array, containing indexes of columns
-      which should be drawn as paging aggregate columns
-      (array)</li>
-
-      <li>dataColumnIndex - index of data column (number)</li>
-
-      <li>optObj - object containing following:
+      <li>
+        <tt>
+            <b>optObj</b>
+          </tt> - object containing following:
 
         <ul>
-          <li>headingBefore - should we create headings before
-          data? (bool)</li>
+          <li>
+              <tt>
+                <b>headingBefore</b>
+              </tt> - should we create
+          headings before data? (bool)</li>
 
-          <li>headingAfter - should we create headings after data?
+          <li>
+              <tt>
+                <b>headingAfter</b>
+              </tt> - should we create
+          headings after data? (bool)</li>
+
+          <li>
+              <tt>
+                <b>agg</b>
+              </tt> - constant, specifying
+          appropriate aggregating function index (number)</li>
+
+          <li>
+              <tt>
+                <b>aggTotals</b>
+              </tt> - constant, specifying
+          appropriate aggregating function index for sub-totals and
+          totals (number)</li>
+
+          <li>
+              <tt>
+                <b>showChart</b>
+              </tt> - show chart? (bool)</li>
+
+          <li>
+              <tt>
+                <b>showRowChart</b>
+              </tt> - show row totals chart?
           (bool)</li>
 
-          <li>agg - constant, specifying appropriate aggregating
-          function index (number)</li>
+          <li>
+              <tt>
+                <b>showColChart</b>
+              </tt> - show column totals
+          chart? (bool)</li>
 
-          <li>aggTotals - constant, specifying appropriate
-          aggregating function index for sub-totals and totals
-          (number)</li>
+          <li>
+              <tt>
+                <b>type</b>
+              </tt> - one of <tt>TYPE_</tt>
+          constants for number formatting
+          (<tt>OAT.PivotData</tt>)</li>
 
-          <li>showChart - show chart? (bool)</li>
+          <li>
+              <tt>
+                <b>customType</b>
+              </tt> - formatting function for
+          <tt>TYPE_CUSTOM</tt>
+            </li>
 
-          <li>showRowChart - show row totals chart? (bool)</li>
+          <li>
+              <tt>
+                <b>showEmpty</b>
+              </tt> - show columns &amp; rows
+          with null values? (bool)</li>
 
-          <li>showColChart - show column totals chart? (bool)</li>
-
-          <li>type - one of TYPE_ constants for number formatting
-          (OAT.PivotData)</li>
-
-          <li>customType - formatting function for TYPE_CUSTOM</li>
-
-          <li>showEmpty - show columns &amp; rows with null values?
+          <li>
+              <tt>
+                <b>subtotals</b>
+              </tt> - show subtotals?
           (bool)</li>
 
-          <li>subtotals - show subtotals? (bool)</li>
+          <li>
+              <tt>
+                <b>totals</b>
+              </tt> - show totals? (bool)</li>
 
-          <li>totals - show totals? (bool)</li>
-
-          <li>currencySymbol - when using
-          OAT.PivotData.TYPE_CURRENCY as customType option. Default
-          is $.</li>
+          <li>
+              <tt>
+                <b>currencySymbol</b>
+              </tt> - when using
+          <tt>OAT.PivotData.TYPE_CURRENCY</tt> as
+          <tt>customType</tt> option. Default is $.</li>
         </ul>
       </li>
     </ul>
+
+    <h3>
+        <a name="Constants" id="Constants"> 
+      </a> Constants</h3>
+
+    <h4>
+        <a name="OAT.PivotData.TYPE_" id="OAT.PivotData.TYPE_"> 
+      </a>
+    OAT.PivotData.TYPE_</h4>
+
+    <ul>
+      <li>
+          <tt>
+            <b>OAT.PivotData.TYPE_BASIC</b>
+          </tt> - 1234.56</li>
+
+      <li>
+          <tt>
+            <b>OAT.PivotData.TYPE_PERCENT</b>
+          </tt> -
+      1234.56%</li>
+
+      <li>
+          <tt>
+            <b>OAT.PivotData.TYPE_SCI</b>
+          </tt> - 1234E+02</li>
+
+      <li>
+          <tt>
+            <b>OAT.PivotData.TYPE_SPACE</b>
+          </tt> - 1 234.56</li>
+
+      <li>
+          <tt>
+            <b>OAT.PivotData.TYPE_CUSTOM</b>
+          </tt> - function in
+      <tt>options.customType</tt>
+        </li>
+
+      <li>
+          <tt>
+            <b>OAT.PivotData.TYPE_COMMA</b>
+          </tt> - 1,234.56</li>
+
+      <li>
+          <tt>
+            <b>OAT.PivotData.TYPE_CURRENCY</b>
+          </tt> (currency
+      symbol in <tt>options.currencySymbol</tt>. <tt>$</tt> is
+      default)</li>
+    </ul>
+
+    <h3>
+        <a name="CSS classes"> 
+      </a> CSS classes</h3>
+
+    <h4>
+        <a name=".pivot_table"> 
+      </a>
+    .pivot_table</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name=".h1"> 
+      </a> .h1</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name=".h2"> 
+      </a> .h2</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name=".odd"> 
+      </a> .odd</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name=".even"> 
+      </a> .even</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name=".subtotal"> 
+      </a> .subtotal</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name=".total"> 
+      </a> .total</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name=".gtotal"> 
+      </a> .gtotal</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name=".pivot_chart"> 
+      </a>
+    .pivot_chart</h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name=".pivot"> 
+      </a> .pivot
+    <u>row_chart</u>
+      </h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h4>
+        <a name=".pivot"> 
+      </a> .pivot
+    <u>col_chart</u>
+      </h4>
+      <div class="tdl">ToBeDone</div>
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
       <br/>
     <pre>
-var pivot = new OAT.Pivot(div, chartDiv, filterDiv, headerRow, dataRows, headerRowIndexes, headerColIndexes, filterIndexes, dataColumnIndex, {}) 
+var pivot = new OAT.Pivot(div, chartDiv, filterDiv, headerRow, dataRows, 
+                          headerRowIndexes, headerColIndexes, 
+                          filterIndexes, dataColumnIndex, {}) 
 </pre>
-
-    <h3> Constants</h3>
-
-    <ul>
-      <li>OAT.PivotData.TYPE_BASIC - 1234.56</li>
-
-      <li>OAT.PivotData.TYPE_PERCENT - 1234.56%</li>
-
-      <li>OAT.PivotData.TYPE_SCI - 1234E+02</li>
-
-      <li>OAT.PivotData.TYPE_SPACE - 1 234.56</li>
-
-      <li>OAT.PivotData.TYPE_CUSTOM - function in
-      options.customType</li>
-
-      <li>OAT.PivotData.TYPE_COMMA - 1,234.56</li>
-
-      <li>OAT.PivotData.TYPE_CURRENCY (currency symbol in
-      options.currencySymbol. $ is default)</li>
-    </ul>
-
-    <h3> CSS classes</h3>
-
-    <ul>
-      <li>.pivot_table</li>
-
-      <li>.h1</li>
-
-      <li>.h2</li>
-
-      <li>.odd</li>
-
-      <li>.even</li>
-
-      <li>.subtotal</li>
-
-      <li>.total</li>
-
-      <li>.gtotal</li>
-
-      <li>.pivot_chart</li>
-
-      <li>.pivot <u>row_chart</u>
-        </li>
-
-      <li>.pivot <u>col_chart</u>
-        </li>
-    </ul>
 
     
     

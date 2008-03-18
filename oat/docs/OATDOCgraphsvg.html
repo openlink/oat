@@ -17,10 +17,16 @@
     
     
 
-    <h2>graphsvg.js</h2>
+    <h2>
+        <a name="graphsvg.js" id="graphsvg.js"> 
+      </a>graphsvg.js</h2>
 
     <p>SVG-based RDF Graph viewer.</p>
 
+    
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -64,56 +70,114 @@
           </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Objects</h3>
+    <h3>
+        <a name="Objects" id="Objects"> 
+      </a> Objects</h3>
 
-    <h4>OAT.GraphSVG(div,
-    vertices, edges, optionsObject)</h4>
-
-    <p>Creates the Graph Viewer inside div. vertices is an array of
-    vertex objects:</p>
-      <br/>
+    <h4>
+        <a name="OAT.GraphSVG(div, vertices, edges, optionsObject)"> 
+      </a>OAT.GraphSVG(div,
+    vertices, edges, optionsObject)</h4>Creates the Graph Viewer
+    inside <tt>div</tt>. <tt>vertices</tt> is an array of vertex
+    objects:<br/>
     <pre>
-{ name: "node_label", type: 0/1 } // type: URI/non-URI; edges is an 
-array of edge objects: { vertex1: vertex_object, vertex2: vertex_objects, name: "edge_label" }. 
+{ name: "node_label", type: 0/1 } // type: URI/non-URI; 
+</pre>
+      <tt>edges</tt> is an array of edge objects:<br/>
+    <pre>
+{ vertex1: vertex_object, vertex2: vertex_objects, name: "edge_label" }. 
 </pre>
 
-    <p>Available options:</p>
+    <p>
+        <tt>optionsObject</tt> holds available options:</p>
 
     <ul>
-      <li>imagePath - path with images for tree in sidebar</li>
+      <li>
+          <tt>
+            <b>imagePath</b>
+          </tt> - path with images for tree in
+      sidebar</li>
 
-      <li>vertexColor - string</li>
+      <li>
+          <tt>
+            <b>vertexColor</b>
+          </tt> - string</li>
 
-      <li>edgeColor - string</li>
+      <li>
+          <tt>
+            <b>edgeColor</b>
+          </tt> - string</li>
 
-      <li>backgroundColor - string</li>
+      <li>
+          <tt>
+            <b>backgroundColor</b>
+          </tt> - string</li>
 
-      <li>vertexSize - int</li>
+      <li>
+          <tt>
+            <b>vertexSize</b>
+          </tt> - int</li>
 
-      <li>vertexPadding - int</li>
+      <li>
+          <tt>
+            <b>vertexPadding</b>
+          </tt> - int</li>
 
-      <li>padding - int</li>
+      <li>
+          <tt>
+            <b>padding</b>
+          </tt> - int</li>
 
-      <li>edgeSize - int</li>
+      <li>
+          <tt>
+            <b>edgeSize</b>
+          </tt> - int</li>
 
-      <li>type - int; 0 - all nodes at once, 1 - equal
+      <li>
+          <tt>
+            <b>type</b>
+          </tt> - int; 0 - all nodes at once, 1 -
+      equal distances</li>
+
+      <li>
+          <tt>
+            <b>placement</b>
+          </tt> - int; 0 - random, 1 -
+      circle</li>
+
+      <li>
+          <tt>
+            <b>distance</b>
+          </tt> - int; 0 - close, 1 - medium, 2
+      - far</li>
+
+      <li>
+          <tt>
+            <b>projection</b>
+          </tt> - int; 0 - planar, 1 -
+      spherical</li>
+
+      <li>
+          <tt>
+            <b>labels</b>
+          </tt> - int; 0 - only element, 1-4 -
       distances</li>
 
-      <li>placement - int; 0 - random, 1 - circle</li>
-
-      <li>distance - int; 0 - close, 1 - medium, 2 - far</li>
-
-      <li>projection - int; 0 - planar, 1 - spherical</li>
-
-      <li>labels - int; 0 - only element, 1-4 - distances</li>
-
-      <li>show - int; 0 - all, 1-4 - distances</li>
+      <li>
+          <tt>
+            <b>show</b>
+          </tt> - int; 0 - all, 1-4 - distances</li>
     </ul>
 
-    <h3> CSS Classes</h3>
+    <h3>
+        <a name="CSS Classes"> 
+      </a> CSS Classes</h3>
 
-    <h4> .rdf_sidebar</h4>
+    <h4>
+        <a name=".rdf_sidebar"> 
+      </a> .rdf_sidebar</h4>
 
     <p>CSS class of the sidebar div containing trees with RDF
     resources, classes and predicates.</p>

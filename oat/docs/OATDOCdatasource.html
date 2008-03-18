@@ -17,13 +17,18 @@
     
     
 
-    <h2>datasource.js</h2>
+    <h2>
+        <a name="datasource.js" id="datasource.js"> 
+      </a>datasource.js</h2>
 
-    <p>Provides data access support for various data sources
-    (SQL,SPARQL,SOAP...) and allows binding and execution of
-    callbacks upon data arrival. Data are fetched on demand and
-    cached.</p>
+    <p>Is an Ajax Database Connectivity (ADBC) layer. Provides data
+    access support for various data sources (SQL, SPARQL, SOAP,
+    etc.) and allows binding and execution of callbacks upon data
+    arrival. Data are fetched on demand and cached.</p>
 
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -243,109 +248,204 @@
           </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Objects</h3>
+    <h3>
+        <a name="Objects" id="Objects"> 
+      </a> Objects</h3>
 
-    <h4>OAT.DataSource(type)</h4>Creates new
-    DataSource? object. type is one of type constants.
+    <h4>
+        <a name="OAT.DataSource(type)"> 
+      </a>OAT.DataSource(type)</h4>Creates new
+    <tt>DataSource</tt> object. <tt>type</tt> is one of
+    <tt>TYPE_</tt> constants.
 
-    <h3> Properties</h3>
+    <h3>
+        <a name="Properties" id="Properties"> 
+      </a> Properties</h3>
 
-    <h4>OAT.DataSource::connection</h4>Assigns
-    an OAT.Connection object to this datasource.
+    <h4>
+        <a name="OAT.DataSource::connection" id="OAT.DataSource::connection"> 
+      </a>OAT.DataSource::connection</h4>Assigns
+    an <tt>OAT.Connection</tt> object to this DataSource.
 
-    <h4>OAT.DataSource::options</h4>
+    <h4>
+        <a name="OAT.DataSource::options" id="OAT.DataSource::options"> 
+      </a>OAT.DataSource::options</h4>
 
     <p>Object with various properties, dependent on
-    DataSource? Type:</p>
+    DataSource <tt>TYPE_</tt>:</p>
 
     <ul>
-      <li>TYPE_SQL
+      <li>
+        <tt>
+            <b>TYPE_SQL</b>
+          </tt>
 
         <ul>
-          <li>query - SQL query</li>
+          <li>
+              <tt>
+                <b>query</b>
+              </tt> - SQL query</li>
 
-          <li>limit - cursor limit</li>
+          <li>
+              <tt>
+                <b>limit</b>
+              </tt> - cursor limit</li>
 
-          <li>cursortype - 0/1; 0 - snapshot, 1 - dynaset</li>
+          <li>
+              <tt>
+                <b>cursortype</b>
+              </tt> - 0/1; 0 - snapshot, 1 -
+          dynaset</li>
         </ul>
       </li>
 
-      <li>TYPE_SOAP
+      <li>
+        <tt>
+            <b>TYPE_SOAP</b>
+          </tt>
 
         <ul>
-          <li>service - name of WSDL service</li>
+          <li>
+              <tt>
+                <b>service</b>
+              </tt> - name of WSDL service</li>
 
-          <li>rootelement - name of root input WSDL element</li>
+          <li>
+              <tt>
+                <b>rootelement</b>
+              </tt> - name of root input WSDL
+          element</li>
 
-          <li>inputobj - input WSDL object (see ws.js documentation
-          for details)</li>
+          <li>
+              <tt>
+                <b>inputobj</b>
+              </tt> - input WSDL object (see
+          <a href="OATDOCws.html">ws.js</a> documentation for
+          details)</li>
         </ul>
       </li>
 
-      <li>TYPE_REST, TYPE_SPARQL, TYPE_GDATA
+      <li>
+        <tt>
+            <b>TYPE_REST</b>
+          </tt>, <tt>
+            <b>TYPE_SPARQL</b>
+          </tt>,
+        <tt>
+            <b>TYPE_GDATA</b>
+          </tt>
 
         <ul>
-          <li>query - HTTP GET querystring</li>
+          <li>
+              <tt>
+                <b>query</b>
+              </tt> - HTTP GET querystring</li>
 
-          <li>output - 0/1; 0 - xml, 1 = json</li>
+          <li>
+              <tt>
+                <b>output</b>
+              </tt> - 0/1; 0 - xml, 1 = json</li>
 
-          <li>xpath - bool; are outputFields specified as XPath
-          expressions, or as node names?</li>
+          <li>
+              <tt>
+                <b>xpath</b>
+              </tt> - bool; how are outputFields
+          specified? True = XPath expressions; False = node
+          names</li>
         </ul>
       </li>
     </ul>
 
-    <h4>OAT.DataSource::outputFields</h4>List
+    <h4>
+        <a name="OAT.DataSource::outputFields" id="OAT.DataSource::outputFields"> 
+      </a>OAT.DataSource::outputFields</h4>List
     of wanted fields in fetched data.
 
-    <h3> Methods</h3>
+    <h3>
+        <a name="Methods" id="Methods"> 
+      </a> Methods</h3>
 
-    <h4>OAT.DataSource::bindRecord(recordCallback)</h4>Listens
+    <h4>
+        <a name="OAT.DataSource::bindRecord(recordCallback)"> 
+      </a>OAT.DataSource::bindRecord(recordCallback)</h4>Listens
     for new data records. When new record is available,
-    recordCallback is executed with 2 arguments: record data and
-    record index.
+    <tt>recordCallback</tt> is executed with 2 arguments:
+    <tt>record data</tt> and <tt>record index</tt>.
 
-    <h4>OAT.DataSource::bindPage(pageCallback)</h4>Listens
+    <h4>
+        <a name="OAT.DataSource::bindPage(pageCallback)"> 
+      </a>OAT.DataSource::bindPage(pageCallback)</h4>Listens
     for new data record pages. When new data page (record set) is
-    available, pageCallback is executed with 2 arguments: page data
-    and page index.
+    available, <tt>pageCallback</tt> is executed with 2 arguments:
+    <tt>page data</tt> and <tt>page index</tt>.
 
-    <h4>OAT.DataSource::bindFile(fileCallback)</h4>Listens
+    <h4>
+        <a name="OAT.DataSource::bindFile(fileCallback)"> 
+      </a>OAT.DataSource::bindFile(fileCallback)</h4>Listens
     for new data file. When new data file is available,
-    fileCallback is executed with 1 argument: file contents.
-
-    <h4>OAT.DataSource::bindEmpty(emptyCallback)</h4>Listens
-    for empty dataset. When empty dataset arrives, emptyCallback is
-    executed.
-
-    <h4>OAT.DataSource::bindHeader(headerCallback)</h4>Listens
-    for data header. When header arrives, headerCallback is
-    executed with 1 argument: data header.
-
-    <h4>OAT.DataSource::advanceRecord(recordIndex)</h4>Advanced
-    through records. recordIndex can be an integer or "-1" or "+1".
-
-    <h3> Constants</h3>
+    <tt>fileCallback</tt> is executed with 1 argument: <tt>file
+    contents</tt>.
 
     <h4>
+        <a name="OAT.DataSource::bindEmpty(emptyCallback)"> 
+      </a>OAT.DataSource::bindEmpty(emptyCallback)</h4>Listens
+    for empty dataset. When empty dataset arrives,
+    <tt>emptyCallback</tt> is executed.
+
+    <h4>
+        <a name="OAT.DataSource::bindHeader(headerCallback)"> 
+      </a>OAT.DataSource::bindHeader(headerCallback)</h4>Listens
+    for data header. When header arrives, <tt>headerCallback</tt>
+    is executed with 1 argument: <tt>data header</tt>.
+
+    <h4>
+        <a name="OAT.DataSource::advanceRecord(recordIndex)"> 
+      </a>OAT.DataSource::advanceRecord(recordIndex)</h4>Advances
+    through records. <tt>recordIndex</tt> must be an integer.
+
+    <h3>
+        <a name="Constants" id="Constants"> 
+      </a> Constants</h3>
+
+    <h4>
+        <a name="OAT.DataSourceData.TYPE_SQL" id="OAT.DataSourceData.TYPE_SQL"> 
+      </a>
     OAT.DataSourceData.TYPE_SQL</h4>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
+        <a name="OAT.DataSourceData.TYPE_SOAP" id="OAT.DataSourceData.TYPE_SOAP"> 
+      </a>
     OAT.DataSourceData.TYPE_SOAP</h4>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
+        <a name="OAT.DataSourceData.TYPE_REST" id="OAT.DataSourceData.TYPE_REST"> 
+      </a>
     OAT.DataSourceData.TYPE_REST</h4>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
+        <a name="OAT.DataSourceData.TYPE_SPARQL" id="OAT.DataSourceData.TYPE_SPARQL"> 
+      </a>
     OAT.DataSourceData.TYPE_SPARQL</h4>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
+        <a name="OAT.DataSourceData.TYPE_GDATA" id="OAT.DataSourceData.TYPE_GDATA"> 
+      </a>
     OAT.DataSourceData.TYPE_GDATA</h4>
+      <div class="tdl">ToBeDone</div>
 
-    <h3> Examples</h3>
+    <h3>
+        <a name="Examples" id="Examples"> 
+      </a> Examples</h3>
 
-    <h4> REST Example</h4>
+    <h4>
+        <a name="REST Example"> 
+      </a> REST Example</h4>
       <br/>
     <pre>
 var conn = new OAT.Connection(OAT.ConnectionData.TYPE_REST, {url:"myfile.xml"});
@@ -366,7 +466,9 @@ ds.bindRecord(recordCallback);
 ds.advanceRecord(0);
 </pre>
 
-    <h4> SQL Example</h4>
+    <h4>
+        <a name="SQL Example"> 
+      </a> SQL Example</h4>
       <br/>
     <pre>
 var conn = new OAT.Connection(OAT.ConnectionData.TYPE_XMLA, {dsn:"DSN=Local_Instance",endpoint:"/XMLA"});
@@ -382,7 +484,9 @@ ds.bindRecord(recordCallback);
 ds.advanceRecord(0);
 </pre>
 
-    <h4> SPARQL Example</h4>
+    <h4>
+        <a name="SPARQL Example"> 
+      </a> SPARQL Example</h4>
       <br/>
     <pre>
 var connection = new OAT.Connection(OAT.ConnectionData.TYPE_REST,{url:"/sparql/"});
@@ -405,7 +509,9 @@ ds.bindRecord(recordCallback);
 ds.advanceRecord(0);
 </pre>
 
-    <h4> GData Example</h4>
+    <h4>
+        <a name="GData Example"> 
+      </a> GData Example</h4>
       <br/>
     <pre>
 var conn = new OAT.Connection(OAT.ConnectionData.TYPE_REST, {url:"gdata.xml"});

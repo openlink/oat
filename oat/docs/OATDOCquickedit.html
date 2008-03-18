@@ -14,10 +14,18 @@
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
       </div>
 
+    
+    
+
     <h2>
+        <a name="quickedit.js" id="quickedit.js"> 
+      </a>
     quickedit.js</h2>Provides edit-in-place functionality.
     
 
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -49,34 +57,74 @@
             <label class="c2">_</label>
             <label class="c2">_</label> <a href="#Constants">Constants</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.QuickEdit.STRING">OAT.QuickEdit.STRING</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#OAT.QuickEdit.SELECT">OAT.QuickEdit.SELECT</a>
+            </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Functions</h3>
+    <h3>
+        <a name="Functions" id="Functions"> 
+      </a> Functions</h3>
 
-    <h4>OAT.QuickEdit.assign(element,
+    <h4>
+        <a name="OAT.QuickEdit.assign(element, type, [options])"> 
+      </a>OAT.QuickEdit.assign(element,
     type, [options])</h4>
 
-    <p>Marks element as QuickEdit?, i.e. when user clicks it, it transforms
-    into input. Input type is specified via second argument
-    (QuickEdit.STRING =&gt; input, QuickEdit.SELECT =&gt; select).
-    If QuickEdit.SELECT type is chosen, its options are specified
-    in options.</p>
+    <p>Marks element as <tt>QuickEdit</tt>, i.e., when user clicks
+    it, it transforms into input. <tt>type</tt> specifies input
+    type -- <tt>QuickEdit.STRING</tt> =&gt; input,
+    <tt>QuickEdit.SELECT</tt> =&gt; select. If
+    <tt>QuickEdit.SELECT</tt> type is chosen, values are specified
+    as an array in <tt>options</tt>.</p>
+
+    <h3>
+        <a name="Constants" id="Constants"> 
+      </a> Constants</h3>
+
+    <h4>
+        <a name="OAT.QuickEdit.STRING" id="OAT.QuickEdit.STRING"> 
+      </a>OAT.QuickEdit.STRING</h4>string
+    value
+
+    <h4>
+        <a name="OAT.QuickEdit.SELECT" id="OAT.QuickEdit.SELECT"> 
+      </a>OAT.QuickEdit.SELECT</h4>predefined
+    values from the select element
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
       <br/>
     <pre>
 var text = OAT.Dom.create("span");
 text.innerHTML = "hello";
 OAT.QuickEdit.assign(text, OAT.QuickEdit.SELECT, ["hello","hi","goodbye"]);
 </pre>
-
-    <h3> Constants</h3>
-
-    <ul>
-      <li>OAT.QuickEdit.STRING - string value</li>
-
-      <li>OAT.QuickEdit.SELECT - predefined values from the select
-      element</li>
-    </ul>
 
     
     

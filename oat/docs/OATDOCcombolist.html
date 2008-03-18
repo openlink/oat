@@ -14,11 +14,20 @@
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
       </div>
 
-    <h2>combolist.js</h2>
+    
+    
+
+    <h2>
+        <a name="combolist.js" id="combolist.js"> 
+      </a>combolist.js</h2>
 
     <p>Creates a combolist, &lt;select&gt; with additional
     possibility of direct user input.</p>
 
+    
+
+    <div class="oatwikitoc">
+        <h1>Table of Contents</h1>
     <div class="wikitoc">
       <ul>
         <li>
@@ -113,58 +122,100 @@
             <label class="c2">_</label>
             <label class="c2">_</label> <a href="#.combo_list_list">.combo_list_list</a>
           </li>
+
+        <li>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label>
+              <label class="c2">_</label> <a href="#Example">Example</a>
+            </li>
       </ul>
     </div>
+      </div>
 
-    <h3> Objects</h3>
+    <h3>
+        <a name="Objects" id="Objects"> 
+      </a> Objects</h3>
 
-    <h4>OAT.Combolist(optList,
+    <h4>
+        <a name="OAT.Combolist(optList, defaultValue, optionsObject)"> 
+      </a>OAT.Combolist(optList,
     defaultValue, optionsObject)</h4>
 
-    <p>Creates a combolist, containing values from optList array,
-    with a value of defaultValue. Its main div is accessible as
-    OAT.Combolist::div. Onchange callback may be set via
-    OAT.Combolist::onchange property. optionsObject may
-    contain:</p>
+    <p>Creates a combolist, containing values from <tt>optList</tt>
+    array, with a value of <tt>defaultValue</tt>. Its main div is
+    accessible as <tt>OAT.Combolist::div</tt>. Onchange callback
+    may be set via <tt>OAT.Combolist::onchange</tt> property.
+    <tt>optionsObject</tt> may contain:</p>
 
     <ul>
-      <li>name - html name attribute for relevant input tag</li>
+      <li>
+          <tt>
+            <b>name</b>
+          </tt> - html name attribute for relevant
+      input tag</li>
 
-      <li>imagePath</li>
+      <li>
+          <tt>
+            <b>imagePath</b>
+          </tt>
+        </li>
     </ul>
 
-    <h3> Methods</h3>
+    <h3>
+        <a name="Methods" id="Methods"> 
+      </a> Methods</h3>
 
-    <h4>OAT.Combolist::addOption(label,
-    value)</h4>Adds a new option labeled label with value of value.
-    If value is not specified, label is used instead.
+    <h4>
+        <a name="OAT.Combolist::addOption(label, value)"> 
+      </a>OAT.Combolist::addOption(label,
+    value)</h4>Adds a new option labeled <tt>label</tt> with value
+    of <tt>value</tt>. If <tt>value</tt> is not specified,
+    <tt>label</tt> is used instead.
 
-    <h4>OAT.Combolist::clearOpts()</h4>Clears
-    all options.<br/>
+    <h4>
+        <a name="OAT.Combolist::clearOpts()"> 
+      </a>OAT.Combolist::clearOpts()</h4>Clears
+    all options.
+
+    <h3>
+        <a name="CSS classes"> 
+      </a> CSS classes</h3>
+
+    <h4>
+        <a name=".combo_list"> 
+      </a> .combo_list</h4>
+
+    <p>CSS class of the combolist div.</p>
+
+    <h4>
+        <a name=".combo_list_input"> 
+      </a> .combo_list_input</h4>
+
+    <p>CSS class of the text input field option.</p>
+
+    <h4>
+        <a name=".combo_list_option"> 
+      </a> .combo_list_option</h4>
+
+    <p>CSS class of the regular option.</p>
+
+    <h4>
+        <a name=".combo_list_list"> 
+      </a> .combo_list_list</h4>
+
+    <p>CSS class of the option list.</p>
+
+    <h3>
+        <a name="Example" id="Example"> 
+      </a>Example</h3>
+      <br/>
     <pre>
  var cl = new OAT.Combolist([],"default",{name:"myName"});
 document.body.appendChild( cl.div );
 cl.addOption("option 1");
 cl.addOption("option 2","value 2");
 </pre>
-
-    <h3> CSS classes</h3>
-
-    <h4> .combo_list</h4>
-
-    <p>CSS class of the combolist div.</p>
-
-    <h4> .combo_list_input</h4>
-
-    <p>CSS class of the text input field option.</p>
-
-    <h4> .combo_list_option</h4>
-
-    <p>CSS class of the regular option.</p>
-
-    <h4> .combo_list_list</h4>
-
-    <p>CSS class of the option list.</p>
 
     
     
