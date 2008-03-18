@@ -86,36 +86,34 @@
 					<img src="./imgs/item_show.png" id="toggler_dataRetrievalOpt" class="item_toggler"/>
 				</div>
 				<ul id="dataRetrievalOpt_ul">
-					<li><span style="font-weight:bold;font-size:120%;">Caching Schemes</span><br/>
-						<input type="radio" name="cachingSchemes" value="get:soft" id="cachSchemes0" checked="checked"/> Automatic<br/>
-						<input type="radio" name="cachingSchemes" value="get:replacing" id="cachSchemes1"/> None<br/>
+					<li><span>Caching Schemes</span><br/>
+						<input type="radio" name="cachingSchemes" value="get:soft" id="spongerGetSoft" checked="checked"/> Automatic<br/>
+						<input type="radio" name="cachingSchemes" value="get:replacing" id="spongerGetReplacing"/> None<br/>
 					</li>
-					<li><span style="font-weight:bold;font-size:120%;">Path Traversal Schemes</span><br/>
-						<input type="radio" name="pathTraversalSchemes" value="grab-seealso" id="pTravSchemes0"/> Follow Properties<br/>
-						<select style="margin-left: 50px;width:150px;">
-							<option value="predicate0">Predicate 0</option>
-							<option value="predicate1">Predicate 1</option>
-							<option value="predicate2">Predicate 2</option>
+					<li><span>Path Traversal Schemes</span><br/>
+						<input type="radio" name="pathTraversalSchemes" value="grab-seealso" id="spongerGrabSeealso"/> Follow Properties <input type="button" value="Select" id="predicates_select"/><br/>
+						<div style="display:none;">
+							<div id="predicates_popup">
+								<select id="spongerGrabSeealsoPredicates" multiple="multiple">
 						</select><br/>
-						<input type="radio" name="pathTraversalSchemes" value="grab-all" id="pTravSchemes1" checked="checked"/> Follow all Properties<br/>
-						<input type="radio" name="pathTraversalSchemes" value="grab-everything" id="pTravSchemes2"/> Follow all  Links with unlimited depth<br/>
+								<a href="javascript:void(0);" onclick="OAT.Anchor.close(this);">Close</a><br/>
+							</div>
+						</div>
+						<input type="radio" name="pathTraversalSchemes" value="grab-all" id="spongerGrabAll" checked="checked"/> Follow all Properties<br/>
+						<input type="radio" name="pathTraversalSchemes" value="grab-everything" id="spongerGrabEverything"/> Follow all  Links with unlimited depth<br/>
 
 					</li>
-					<li><span style="font-weight:bold;font-size:120%;">Path Traversal Options</span><br/>
+					<li><span>Path Traversal Options</span><br/>
 						Max. Nodes Retrieved: 
-						<select id="maxNodesRetrieved">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
+						<select id="spongerLimitNodes">
+							<option value="100">100</option>
+							<option value="200">200</option>
+							<option value="300">300</option>
+							<option value="400">400</option>
+							<option value="500">500</option>
 						</select><br/>
-						Max. Nodes Traversed (Crawled) 
-						<select id="maxNodesTraversed">
+						Max. Nodes Traversed (Crawled): 
+						<select id="spongerLimitDepth">
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -125,6 +123,7 @@
 							<option value="7">7</option>
 							<option value="8">8</option>
 							<option value="9">9</option>
+							<option value="10">10</option>
 						</select><br/>
 					</li>
 				</ul>

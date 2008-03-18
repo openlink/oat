@@ -41,6 +41,14 @@ OAT.RDFBrowser2 = function(div,optObj) {
 	}
 	for (var p in optObj) { this.options[p] = optObj[p]; }
 	
+	/* default pragmas */
+	this.dataRetrievalOpts = {
+		cachingSchemes:'get::soft',
+		pathTrSchemes:'grab::all',
+		maxNodesRetrieved:100,
+		maxNodesCrawled:1
+	}
+	
 	this.parent = $(div);
 	this.tabs = [];
 	this.lastQueries = [];

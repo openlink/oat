@@ -491,3 +491,18 @@ ul#prevQueries_ul li#noqueries {
 img, div, li, span, input {
 	behavior: url("js/iepngfix.htc");
 }
+
+/* pragmas */
+#predicates {
+	height: 200px;
+	width: 180px;
+}
+
+#predicates_popup {
+	text-align: center;
+}
+
+#dataRetrievalOpt_ul li span {
+	font-weight: bold;
+	font-size: 120%;
+}

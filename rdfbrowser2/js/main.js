@@ -280,12 +280,14 @@ function init() {
 	OAT.Dom.hide("bookmark_ul");
 	OAT.Dom.hide("filters_ul");
 	OAT.Dom.hide("prevQueries_ul");
+	OAT.Dom.hide("dataRetrievalOpt_ul");
 	OAT.Dom.hide("browserOptions_ul");
 	//OAT.Dom.hide("category_ul");
 	OAT.Event.attach("category","click",rightBarTogglerHide);
 	OAT.Event.attach("bookmark","click",rightBarTogglerShow);
 	OAT.Event.attach("filters","click",rightBarTogglerShow);
 	OAT.Event.attach("prevQueries","click",rightBarTogglerShow);
+	OAT.Event.attach("dataRetrievalOpt","click",rightBarTogglerShow);
 	OAT.Event.attach("browserOptions","click",rightBarTogglerShow);
 
 	/* storage rounded */
@@ -357,4 +359,35 @@ function init() {
 	query.value = rdfb.options.defaultQuery;
 	OAT.Event.attach(query,"focus",clearQuery);
 
+	/* pragmas */
+	var predicates = {
+		title:"Select Predicates",
+		content:$('predicates_popup'),
+		status:"Select more with Ctrl click",
+		width:220,
+		result_control:false,
+		activation:"click",
+		type:OAT.WinData.TYPE_RECT
+	}
+	OAT.Anchor.assign("predicates_select",predicates);
+
+	/* pragmas change */
+	OAT.Event.attach($("spongerGetSoft"),"click",function() { rdfb.dataRetrievalOpts.cachingSchemes = "get::soft"; });
+	OAT.Event.attach($("spongerGetReplacing"),"click",function() { rdfb.dataRetrievalOpts.cachingSchemes = "get::replacing"; });
+	var grabSeealsoValues = function() {
+		var out = new Array();
+		var list = $("spongerGrabSeealsoPredicates");
+		for (var i=0; i < list.options.length; i++) {
+			if (list[i].selected) {
+				out.push(list[i].value);
+			}
+		}
+		rdfb.dataRetrievalOpts.cachingSchemes = out;
+	}
+	OAT.Event.attach($("spongerGrabSeealso"),"click",grabSeealsoValues);
+	OAT.Event.attach($("spongerGrabSeealsoPredicates"),"change",grabSeealsoValues);
+	OAT.Event.attach($("spongerGrabAll"),"click",function() { rdfb.dataRetrievalOpts.cachingSchemes = "grab::all"; });
+	OAT.Event.attach($("spongerGrabEverything"),"click",function() { rdfb.dataRetrievalOpts.cachingSchemes = "grab::everything"; });
+	OAT.Event.attach($("spongerLimitNodes"),"change",function() { rdfb.dataRetrievalOpts.LimitNodes = $("spongerLimitNodes").value; });
+	OAT.Event.attach($("spongerLimitDepth"),"change",function() { rdfb.dataRetrievalOpts.LimitDepth = $("spongerLimitDepth").value; });
 }
