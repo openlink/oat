@@ -11,32 +11,16 @@ function Toolbox(obj) {
 	var self = this;
 	this.obj = obj;
 
-	this.selectFile = function(callback,mode) {
-		if ($("options_type_http").checked) {
-			var name = OAT.Dav.getNewFile("/DAV/home/"+http_cred.user,".xml","xml");
-			if (!name) { return; }
-			if (name.slice(name.length-4).toLowerCase() != ".xml") { name += ".xml"; }
-			callback(name);
-		}
-		if ($("options_type_dav").checked) {
+	this.selectFile = function(callback) {
 			var options = {
-				mode:mode,
-				onConfirmClick:function(path,fname){
-					var name = path + fname;
-					callback(name);
-				},
-				onConfirmClick:function(path,fname,data){
+			callback:function(path,fname){
 					var name = path + fname;
 					callback(name);
 					return true; /* return false will keep browser open */
 				},
-				user:http_cred.user,
-				pass:http_cred.password,
-				pathDefault:"/DAV/home/"+http_cred.user+"/",
-				file_ext:'xml'
+			extensionFilters: [ "xml", "xml", "Form Design" ]
 			};
-			OAT.WebDav.open(options);
-		}
+		OAT.WebDav.openDialog(options);
 	}
 
 	this.win = new OAT.Window({min:0,max:0,close:1,height:0,width:240,x:-15,y:140,title:"Control Properties"});
@@ -301,7 +285,7 @@ function Toolbox(obj) {
 					input.appendChild(txt);
 					input.appendChild(input2);
 					
-					var browseRef = self.browseRef(input1,p,p.dialog);
+					var browseRef = self.browseRef(input1,p);
 					OAT.Dom.attach(input2,"click",browseRef);
 					self.addTable(text,input);
 				break;
@@ -566,7 +550,7 @@ function Toolbox(obj) {
 		}
 	}
 	
-	this.browseRef = function(elm,property,mode) {
+	this.browseRef = function(elm,property) {
 		return function() {
 			var callback = function(name) {
 				var f = name.split("/").pop();
@@ -574,7 +558,7 @@ function Toolbox(obj) {
 				property.value = name;
 				if (property.onselect) { property.onselect(); }
 			}
-			self.selectFile(callback,mode);
+			self.selectFile(callback);
 		}
 	}
 

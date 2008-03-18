@@ -10,7 +10,6 @@
 var fd = false;
 var dialogs = {};
 var tbar = false;
-var servertype = -1; /* 0 - put, 1 - webdav */
 var ds_tab = false;
 var http_cred = {
 	user:"demo",
@@ -173,41 +172,22 @@ var IO = {
 		set_filename(name);
 		var o = {
 			auth:OAT.AJAX.AUTH_BASIC,
-			user:http_cred.user,
-			password:http_cred.password
+			user:OAT.WebDav.options.user,
+			password:OAT.WebDav.options.pass
 		}
 		OAT.AJAX.PUT(name,xml,recv_ref,o);
 	},
 
 	load:function() {
-		if (servertype == 0) {
-			var name = OAT.Dav.getFile("/DAV/home/"+http_cred.user,".xml");
-			if (!name) { return; }
-			set_filename(name);
-			$("corner").innerHTML = name;
-			var callback = function(xmlDoc) { fd.fromXML(xmlDoc); }
-			var o = {
-				auth:OAT.AJAX.AUTH_BASIC,
-				user:http_cred.user,
-				password:http_cred.password
-			}
-			OAT.AJAX.GET(name,false,callback,o);
-		}
-		if (servertype == 1) {
 			var options = {
-				mode:'open_dialog',
-				user:http_cred.user,
-				pass:http_cred.password,
-				filetypes:[{ext:"xml",label:"Form Design"}],
-				pathDefault:'/DAV/home/'+http_cred.user+'/',
-				onConfirmClick:function(path,fname,data){
+			extensionFilters:[ ["xml","xml","Form Design"] ],
+			callback:function(path,fname,data){
 					set_filename(path+fname);
 					fd.fromXML(data);
 					return true; /* return false will keep browser open */
 				}
 			};
-			OAT.WebDav.open(options);
-		}
+		OAT.WebDav.openDialog(options);
 	},
 
 	preview:function() {
@@ -625,8 +605,8 @@ var DS = { /* datasources / bindings */
 	},
 	
 	load:function(type) {
-		var callback = function(f) {
-			var qRef = function(data) {
+		var options = {
+			callback:function(path,fname,data) {
 				switch (type) {
 					case OAT.DataSourceData.TYPE_SQL: /* sql */
 						var queryObj = new OAT.SqlQuery();
@@ -639,32 +619,10 @@ var DS = { /* datasources / bindings */
 						$("bind_sparql_query").value = data;
 					break;
 				}
-			}
-			var o = {
-				auth:OAT.AJAX.AUTH_BASIC,
-				user:http_cred.user,
-				password:http_cred.password
-			}
-			OAT.AJAX.GET(f,false,qRef,o);
-		}
-		if (servertype == 0) {
-			var name = OAT.getFile("/DAV/home/"+http_cred.user,".xml");
-			if (!name) { return; }
-			callback(name);
-		}
-		if (servertype == 1) {
-			var options = {
-				mode:'open_dialog',
-				user:http_cred.user,
-				pass:http_cred.password,
-				pathDefault:'/DAV/home/'+http_cred.user+'/',
-				onConfirmClick:function(path,fname,data) {
-					callback(path+fname);
 					return true; /* false == keep browser opened */
 				}
 			};
-			OAT.WebDav.open(options);
-		}
+		OAT.WebDav.openDialog(options);
 	},
 
 	save:function() {
@@ -680,28 +638,16 @@ var DS = { /* datasources / bindings */
 	save_as:function() {
 		var xslStr = '<?xml-stylesheet type="text/xsl" href="'+$v("options_xslt")+'formview.xsl"?>';
 		var xml = fd.toXML(xslStr);
-		if (servertype == 0) {
-			var name = OAT.Dav.getNewFile("/DAV/home/"+http_cred.user,".xml","xml");
-			if (!name) { return; }
-			if (name.slice(name.length-4).toLowerCase() != ".xml") { name += ".xml"; }
-			IO.save(xml,name);
-		}
-		if (servertype == 1) {
 			var options = {
-				mode:'save_dialog',
-				user:http_cred.user,
-				pass:http_cred.password,
-				pathDefault:'/DAV/home/'+http_cred.user+'/',
-				filetypes:[{ext:"xml",label:"Form Design"}],
- 				onConfirmClick:function() { 
+			extensionFilters:[ ["xml","xml", "Form Design"] ],
+ 			dataCallback:function() { 
 					return xml;
 				},
-				afterSave:function(path,name) {
+			callback:function(path,name) {
 					set_filename(path+name);
 				}
 			};
-			OAT.WebDav.open(options);
-		}
+		OAT.WebDav.saveDialog(options);
 	}
 
 }
@@ -714,16 +660,6 @@ function init() {
 	$("options_http").checked = (OAT.Preferences.httpError == 1 ? true : false);
 	OAT.AJAX.httpError = OAT.Preferences.httpError;
 	OAT.Dom.attach("options_http","change",function(){OAT.AJAX.httpError = ($("options_http").checked ? 1 : 0);});
-
-	/* servertype */
-	dialogs.servertype = new OAT.Dialog("Server type","servertype",{width:400,modal:1,buttons:1});
-	dialogs.servertype.ok = function(){ 
-		servertype = parseInt($v("login_put_type")); 
-		http_cred.user = $v("user");
-		http_cred.password = $v("password");
-		dialogs.servertype.hide(); 
-	};
-	dialogs.servertype.cancel = function(){ servertype = 0; dialogs.servertype.hide(); };
 
 	/* connection */
 	OAT.Dom.attach("bind_sql_endpoint","blur",Connection.discover_dsn);
@@ -873,7 +809,7 @@ function init() {
 		obj.password = conn.options.password;
 		obj.dsn = conn.options.dsn;
 		obj.endpoint = conn.options.endpoint;
-		obj.type = (servertype == 1 ? "dav" : "http");
+		obj.type = (OAT.WebDav.options.isDav)? "dav" : "http";
 		obj.query = $v("bind_sql_query_text");
 		obj.callback = function(q) { 
 			$("bind_sql_query").checked = true;
@@ -887,7 +823,7 @@ function init() {
 		var obj = {};
 		obj.username = http_cred.user;
 		obj.password = http_cred.password;
-		obj.login_put_type = (servertype == 1 ? "dav" : "http");
+		obj.login_put_type = (OAT.WebDav.options.isDav)? "dav" : "http";
 		obj.endpoint = $v("bind_sparql_url");
 		obj.query = $v("bind_sparql_query");
 		obj.callback = function(q) { 
@@ -923,8 +859,6 @@ function init() {
 	};
 	OAT.WebDav.init(options);
 
-	dialogs.servertype.show();
-	
 	OAT.Resize.createDefault($("bind_sparql_query_container"));
 	OAT.Resize.createDefault($("bind_sql_query_container"));
 	

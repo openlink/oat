@@ -29,7 +29,7 @@
 		var featureList = ["formobject","xmla","soap","ajax2","drag","resize","dom","window",
 							"ghostdrag","color","combolist","bindings","toolbar","map","ws",
 							"menu","dimmer","dav","sqlquery","xml","webclip","dialog","layers",
-							"datasource","sparql","layers","tab","tree"];
+							"datasource","sparql","layers","tab","tree","crypto"];
 	</script>
 	<script type="text/javascript" src="../oat/loader.js"></script>
 	<script type="text/javascript" src="js/formcolumns.js"></script>
@@ -88,17 +88,6 @@
 
 		<div id="form">
 			<div id="formbase"></div>
-		</div>
-		
-		<div id="servertype">
-			<table>
-			<tr><td class="right">Username: </td><td><input type="text" id="user" name="user" value="demo" /></td></tr>
-			<tr><td class="right">Password: </td><td><input type="password" id="password" value="demo" /></td></tr>
-			<tr><td class="right">Web Server type: </td><td><select id="login_put_type">
-				<option value="0">HTTP - Basic</option>
-				<option value="1" selected="selected">HTTP - WebDAV</option>
-			</select></td></tr>
-			</table>
 		</div>
 		
 		<div id="dslist">
@@ -233,11 +222,6 @@
 			<input type="checkbox" id="options_ajax" checked="checked" /> Show pending AJAX calls (FormDesigner)<br/>
 			<input type="checkbox" id="options_showajax" checked="checked" /> Show pending AJAX calls (resulting Form)<br/>
 			<input type="checkbox" id="options_http" checked="checked" /> Show HTTP errors
-			<hr/>
-			Server type:<br/>
-			<input type="radio" id="options_type_http" name="options_type" value="http" checked="checked" />HTTP - Basic<br/>
-			<input type="radio" id="options_type_dav" name="options_type" value="dav" />HTTP - WebDAV<br/>
-<!--		<input type="radio" name="options_type" value="s3" />Amazon S3<br/> -->
 			<hr/>
 			<input type="checkbox" id="options_uid" /> Store credentials in saved files<br/>
 			<input type="checkbox" id="options_nocred" /> Disable login prompt (if credentials are not saved)<br/>
