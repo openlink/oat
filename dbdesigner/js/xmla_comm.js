@@ -230,10 +230,4 @@ function xmla_settings() {
 	http_cred.user = c.options.user;
 	http_cred.password = c.options.password;
 	OAT.Xmla.connection = c;
-	var h = $('options_type_http');
-	var d = $('options_type_dav');
-	h.checked = ($v('login_put_type') == "http");
-	d.checked = ($v('login_put_type') == "dav");
-	h.__checked = (h.checked ? "1" : "0");
-	d.__checked = (d.checked ? "1" : "0");
 }	

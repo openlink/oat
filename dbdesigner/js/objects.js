@@ -1022,25 +1022,13 @@ function IOAdmin_save() {
 }
 
 function IOAdmin_load() {
-	if ($("options_type_http").checked) {
-		var name = OAT.Dav.getFile("/DAV/home/"+http_cred.user,".xml");
-		if (!name) { return; }
-		IO.filename = name;
-		OAT.AJAX.GET(name,false,import_xml);
-	}
-	if ($("options_type_dav").checked) {
 		var options = {
-			mode:'open_dialog',
-			user:$v("user"),
-			pass:$v("password"),
-			pathDefault:"/DAV/home/"+$v("user")+"/",
-			onConfirmClick:function(path,fname,data){
+		callback:function(path,fname,data){
 				IO.filename = path+fname;
 				return import_xml(data);
 			}
 		};
-		OAT.WebDav.open(options);
-	}
+	OAT.WebDav.openDialog(options);
 }
 
 function IOAdmin() {

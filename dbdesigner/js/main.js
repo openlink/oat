@@ -276,11 +276,30 @@ function init() {
 	/* connection */
 	dialogs.connection = new OAT.Dialog("XMLA Data Provider Connection Setup","connection",{width:500,modal:1,buttons:1});
 	OAT.Dom.attach("xmla_endpoint","blur",xmla_discover);
-	OAT.Dom.attach("login_put_type","change",function(){if ($("xmla_dsn").childNodes.length == 0) { xmla_discover(); }});
 	OAT.Dom.attach("xmla_dsn","click",function(){if ($("xmla_dsn").childNodes.length == 0) { xmla_discover(); }});
 	OAT.Dom.attach("xmla_endpoint","keyup",function(e) { if (e.keyCode == 13) { xmla_discover(); }});
-	dialogs.connection.ok = xmla_dbschema;
-	dialogs.connection.cancel = dialogs.connection.hide;
+	dialogs.connection.ok = function() {
+		xmla_dbschema();
+		var options = {
+			imagePath:'../images/',
+			imageExt:'png',
+			user:$v("user"),
+			pass:$v("password"),
+			isDav:($v("login_put_type") == "dav")
+		};
+		OAT.WebDav.init(options);
+	}
+	dialogs.connection.cancel = function() {
+		dialogs.connection.hide();
+		var options = {
+			imagePath:'../images/',
+			imageExt:'png',
+			user:$v("user"),
+			pass:$v("password"),
+			isDav:($v("login_put_type") == "dav")
+		};
+		OAT.WebDav.init(options);
+	}
 	dialogs.connection.okBtn.setAttribute("disabled","disabled");
 	dialogs.connection.show();
 
@@ -347,29 +366,16 @@ function init() {
 
 	/* file name for saving */ 
 	var fileRef = function() {
-		var ext = ($v("options_savetype") == "sql" ? ".sql" : ".xml");
+		var ext = ($v("options_savetype") == "sql")? ["sql","sql","SQL file"] : ["xml","xml","XML (Zenark)"];
 		
-		if ($("options_type_http").checked) {
-			var name = OAT.Dav.getNewFile("/DAV/home/"+http_cred.user,ext,ext);
-			if (!name) { return; }
-			if (name.slice(name.length-4).toLowerCase() != ext) { name += ext; }
-			$("save_name").value = name;
-		}
-		
-		if ($("options_type_dav").checked) {
 			var options = {
-				mode:'browser',
-				onConfirmClick:function(path,fname) {
+			callback:function(path,fname) {
 					var name = path + fname;
 					$("save_name").value = name;
 				},
-				user:$v("user"),
-				pass:$v("password"),
-				file_ext:ext,
-				pathDefault:"/DAV/home/"+$v("user")+"/"
+			extensionFilters:[ext]
 			};
-			OAT.WebDav.open(options);
-		}
+		OAT.WebDav.openDialog(options);
 	}
 	OAT.Dom.attach("btn_browse","click",fileRef);
 	
@@ -405,13 +411,6 @@ function init() {
 	var pasteRef = function(xmlStr){ import_xml(xmlStr); }
 	var typeRef = function(){ return "ol_design"; }
 	OAT.WebClipBindings.bind("webclip", typeRef, genRef, pasteRef, onRef, outRef);
-
-	/* DAV Browser init */
-	var options = {
-		imagePath:'../images/',
-		imageExt:'png'
-	};
-	OAT.WebDav.init(options);
 }
 
 
