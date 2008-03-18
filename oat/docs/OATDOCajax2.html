@@ -4,372 +4,429 @@
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
 
-<body>
+<div id="oatnav">
+    <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+  </div>
+  <h1>
+    OATDOCajax2</h1>
   <div class="topic-text">
     
 
-    <div id="oatnav">
-        <a href="index.html">Index</a> | 
-      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
-      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
-      </div>
-
-    
-    
-
-    <h2>
-        <a name="ajax2.js" id="ajax2.js"> 
-      </a> ajax2.js</h2>
-
-    <p>Provides basic Asynchronous XML (AJAX) routines. (also see
-    <a href="OATDOCsoap.html">soap.js</a> for simplified SOAP
-    routines.)</p>
-      <b>THIS IS THE NEW API VERSION. YOU CAN STILL USE
-    THE OLD ONE (<tt>ajax.js</tt>), BUT IT IS OBSOLETE AND
-    UNSUPPORTED. YOU SHOULD SWITCH TO THIS INTERFACE ASAP.</b>
-    
-
-
     <div class="oatwikitoc">
-        <h1>Table of Contents</h1>
-    <div class="wikitoc">
+      <div class="wikitoc">
       <ul>
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
+            <a href="#OATDOCajax2">OATDOCajax2</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
         <a href="#ajax2.js">ajax2.js</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Functions">Functions</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Functions">Functions</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.AJAX.[METHOD](url,%20data,%20callback,%20options)">OAT.AJAX.[METHOD](url,
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.AJAX.[METHOD](url,%20data,%20callback,%20options)">OAT.AJAX.[METHOD](url,
         data, callback, options)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.AJAX.abortAll()">OAT.AJAX.abortAll()</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.AJAX.abortAll()">OAT.AJAX.abortAll()</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Properties">Properties</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Properties">Properties</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.AJAX.startRef">OAT.AJAX.startRef</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.AJAX.startRef">OAT.AJAX.startRef</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.AJAX.endRef">OAT.AJAX.endRef</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.AJAX.endRef">OAT.AJAX.endRef</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Constants">Constants</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Constants">Constants</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.AJAX.AUTH_NONE">OAT.AJAX.AUTH_NONE</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.AJAX.AUTH_NONE">OAT.AJAX.AUTH_NONE</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.AJAX.AUTH_BASIC">OAT.AJAX.AUTH_BASIC</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.AJAX.AUTH_BASIC">OAT.AJAX.AUTH_BASIC</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.AJAX.AUTH_DIGEST">OAT.AJAX.AUTH_DIGEST</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.AJAX.AUTH_DIGEST">OAT.AJAX.AUTH_DIGEST</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.AJAX.TYPE_TEXT">OAT.AJAX.TYPE_TEXT</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.AJAX.TYPE_TEXT">OAT.AJAX.TYPE_TEXT</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.AJAX.TYPE_XML">OAT.AJAX.TYPE_XML</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.AJAX.TYPE_XML">OAT.AJAX.TYPE_XML</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Messages">Messages</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Messages">Messages</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.MSG.AJAX_START">OAT.MSG.AJAX_START</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.MSG.AJAX_START">OAT.MSG.AJAX_START</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.MSG.AJAX_ERROR">OAT.MSG.AJAX_ERROR</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.MSG.AJAX_ERROR">OAT.MSG.AJAX_ERROR</a>
           </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Example">Example</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Example">Example</a>
+          </li>
       </ul>
     </div>
-      </div>
+    </div>
+
+    
+
+    
+
+    
+
+    <h2>
+      <a name="ajax2.js" id="ajax2.js"> 
+      </a> ajax2.js</h2>
+
+    <p>Provides basic Asynchronous XML (AJAX) routines. (also see
+    <a href="OATDOCsoap.html">soap.js</a> for simplified SOAP
+    routines.)<br/>
+    <strong>THIS IS THE NEW API VERSION. YOU CAN STILL USE THE OLD
+    ONE ( <tt>ajax.js</tt> ), BUT IT IS OBSOLETE AND UNSUPPORTED.
+    YOU SHOULD SWITCH TO THIS INTERFACE ASAP.</strong>
+    </p>
 
     <h3>
-        <a name="Functions" id="Functions"> 
+      <a name="Functions" id="Functions"> 
       </a> Functions</h3>
 
-    <h4>
-        <a name="OAT.AJAX.[METHOD](url, data, callback, options)"> 
-      </a>OAT.AJAX.[METHOD](url,
-    data, callback, options)</h4>
+    
 
-    <p>Sends an HTTP request to a page <tt>url</tt>. Valid
+    <h4>
+      <a name="OAT.AJAX.[METHOD](url, data, callback, options)"> 
+      </a>
+    OAT.AJAX.[METHOD](url, data, callback, options)</h4>
+
+    <p>Sends an HTTP request to a page <tt>url</tt> . Valid
     <tt>METHOD</tt> names are:</p>
 
     <ul>
       <li>
-          <tt>GET</tt>
-        </li>
+        <tt>GET</tt>
+        <br/>
+      </li>
 
       <li>
-          <tt>POST</tt>
-        </li>
+        <tt>POST</tt>
+        <br/>
+      </li>
 
       <li>
-          <tt>SOAP</tt>
-        </li>
+        <tt>SOAP</tt>
+        <br/>
+      </li>
 
       <li>
-          <tt>PUT</tt>
-        </li>
+        <tt>PUT</tt>
+        <br/>
+      </li>
 
       <li>
-          <tt>MKCOL</tt>
-        </li>
+        <tt>MKCOL</tt>
+        <br/>
+      </li>
 
       <li>
-          <tt>PROPFIND</tt>
-        </li>
+        <tt>PROPFIND</tt>
+        <br/>
+      </li>
 
       <li>
-          <tt>PROPPATCH</tt>
-        </li>
+        <tt>PROPPATCH</tt>
+        <br/>
+      Data to be contained in request are specified in
+      <tt>data</tt> . When response arrives,
+      <tt>callback(response)</tt> will be executed. You may specify
+      the following <tt>options</tt> :</li>
     </ul>
-
-    <p>Data to be contained in request are specified in
-    <tt>data</tt>. When response arrives,
-    <tt>callback(response)</tt> will be executed. You may specify
-    the following <tt>options</tt>:</p>
 
     <ul>
       <li>
-          <tt>
-            <b>type</b>
-          </tt> - response format, one of
-      <tt>TYPE_</tt> constants</li>
+        <strong>
+          <tt>type</tt>
+        </strong> - response format, one of
+      <tt>TYPE_</tt> constants<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>auth</b>
-          </tt> - authorization type, one of
-      <tt>AUTH_</tt> constants</li>
+        <strong>
+          <tt>auth</tt>
+        </strong> - authorization type, one
+      of <tt>AUTH_</tt> constants<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>async</b>
-          </tt> - bool</li>
+        <strong>
+          <tt>async</tt>
+        </strong> - bool<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>noSecurityCookie</b>
-          </tt> - bool, forbids sending
-      a security cookie &amp; corresponding GET parameter</li>
+        <strong>
+          <tt>noSecurityCookie</tt>
+        </strong> - bool,
+      forbids sending a security cookie &amp; corresponding GET
+      parameter<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>user</b>, <b>password</b>
-          </tt> - credentials for
-      http authorization</li>
+        <strong>
+          <tt>user</tt>
+        </strong> ,
+      <strong>
+          <tt>password</tt>
+        </strong> - credentials for http
+      authorization<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>headers</b>
-          </tt> - JS object containing additional
-      headers to be sent</li>
+        <strong>
+          <tt>headers</tt>
+        </strong> - JS object containing
+      additional headers to be sent<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>onerror</b>
-          </tt> - callback to be executed when
-      error occurs</li>
+        <strong>
+          <tt>onerror</tt>
+        </strong> - callback to be
+      executed when error occurs<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>onstart</b>
-          </tt> - callback to be executed when
-      call launches</li>
+        <strong>
+          <tt>onstart</tt>
+        </strong> - callback to be
+      executed when call launches<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>onend</b>
-          </tt> - callback to be executed when call
-      finishes, regardless of success or error condition</li>
+        <strong>
+          <tt>onend</tt>
+        </strong> - callback to be executed
+      when call finishes, regardless of success or error condition
+      <strong>To prevent JavaScript hijacking attacks, web
+      application authors are encouraged to use some of OAT's
+      <a href="OATDOCsecurity.html">built-in countermeasures</a> .</strong>
+      </li>
     </ul>
-      <b>To prevent JavaScript hijacking attacks, web
-    application authors are encouraged to use some of OAT's
-    <a href="OATDOCsecurity.html">built-in countermeasures</a>.</b>
 
     <h4>
-        <a name="OAT.AJAX.abortAll()"> 
-      </a>OAT.AJAX.abortAll()</h4>Cancels all
-    pending requests.
+      <a name="OAT.AJAX.abortAll()"> 
+      </a> OAT.AJAX.abortAll()</h4>
+
+    <p>
+      <br/>
+    Cancels all pending requests.</p>
 
     <h3>
-        <a name="Properties" id="Properties"> 
+      <a name="Properties" id="Properties"> 
       </a> Properties</h3>
 
+    
+
     <h4>
-        <a name="OAT.AJAX.startRef" id="OAT.AJAX.startRef"> 
-      </a>OAT.AJAX.startRef</h4>
+      <a name="OAT.AJAX.startRef" id="OAT.AJAX.startRef"> 
+      </a>
+    OAT.AJAX.startRef</h4>
 
     <p>Function to be executed when a request is being sent.</p>
 
+    
+
     <h4>
-        <a name="OAT.AJAX.endRef" id="OAT.AJAX.endRef"> 
-      </a>OAT.AJAX.endRef</h4>
+      <a name="OAT.AJAX.endRef" id="OAT.AJAX.endRef"> 
+      </a>
+    OAT.AJAX.endRef</h4>
 
     <p>Function to be executed when all requests are satisfied (or
     canceled).</p>
 
+    
+
     <h3>
-        <a name="Constants" id="Constants"> 
+      <a name="Constants" id="Constants"> 
       </a> Constants</h3>
 
+    
+
     <h4>
-        <a name="OAT.AJAX.AUTH_NONE" id="OAT.AJAX.AUTH_NONE"> 
-      </a>OAT.AJAX.AUTH_NONE</h4>
+      <a name="OAT.AJAX.AUTH_NONE" id="OAT.AJAX.AUTH_NONE"> 
+      </a>
+    OAT.AJAX.AUTH_NONE</h4>
 
     <p>When <tt>auth</tt> option of request is set to this
     constant, no authentication will be performed.</p>
 
+    
+
     <h4>
-        <a name="OAT.AJAX.AUTH_BASIC" id="OAT.AJAX.AUTH_BASIC"> 
+      <a name="OAT.AJAX.AUTH_BASIC" id="OAT.AJAX.AUTH_BASIC"> 
       </a>
     OAT.AJAX.AUTH_BASIC</h4>
 
     <p>When <tt>auth</tt> option of request is set to this
     constant, request header with authentication data will be
-    appended using auth basic scheme (as described in <a href="http://www.ietf.org/rfc/rfc2617.txt" class="absuri">rfc2617</a>).</p>
+    appended using auth basic scheme (as described in <a href="http://www.ietf.org/rfc/rfc2617.txt" class="absuri">rfc2617</a> ).</p>
+
+    
 
     <h4>
-        <a name="OAT.AJAX.AUTH_DIGEST" id="OAT.AJAX.AUTH_DIGEST"> 
+      <a name="OAT.AJAX.AUTH_DIGEST" id="OAT.AJAX.AUTH_DIGEST"> 
       </a> OAT.AJAX.AUTH_DIGEST</h4>
 
     <p>Auth digest scheme is not yet supported.</p>
 
+    
+
     <h4>
-        <a name="OAT.AJAX.TYPE_TEXT" id="OAT.AJAX.TYPE_TEXT"> 
+      <a name="OAT.AJAX.TYPE_TEXT" id="OAT.AJAX.TYPE_TEXT"> 
       </a>
     OAT.AJAX.TYPE_TEXT</h4>
 
     <p>When <tt>type</tt> option of request is set to this value,
     request will be returned as plain text.</p>
 
+    
+
     <h4>
-        <a name="OAT.AJAX.TYPE_XML" id="OAT.AJAX.TYPE_XML"> 
+      <a name="OAT.AJAX.TYPE_XML" id="OAT.AJAX.TYPE_XML"> 
       </a>
     OAT.AJAX.TYPE_XML</h4>
 
     <p>When <tt>type</tt> option of request is set to this value,
     request will be returned as XML document.</p>
 
+    
+
     <h3>
-        <a name="Messages" id="Messages"> 
+      <a name="Messages" id="Messages"> 
       </a> Messages</h3>
 
+    
+
     <h4>
-        <a name="OAT.MSG.AJAX_START" id="OAT.MSG.AJAX_START"> 
-      </a>OAT.MSG.AJAX_START</h4>
+      <a name="OAT.MSG.AJAX_START" id="OAT.MSG.AJAX_START"> 
+      </a>
+    OAT.MSG.AJAX_START</h4>
 
     <p>When AJAX request is sent, OAT emits this message containing
     URL of the request and appropriate message code.</p>
 
+    
+
     <h4>
-        <a name="OAT.MSG.AJAX_ERROR" id="OAT.MSG.AJAX_ERROR"> 
+      <a name="OAT.MSG.AJAX_ERROR" id="OAT.MSG.AJAX_ERROR"> 
       </a>
     OAT.MSG.AJAX_ERROR</h4>
 
     <p>When AJAX request is unsuccessful, OAT emits this message
     containing request object and appropriate message code.</p>
 
+    
+
     <h3>
-        <a name="Example" id="Example"> 
-      </a>Example</h3>
-      <br/>
+      <a name="Example" id="Example"> 
+      </a> Example</h3>
+
+    
     <pre>
 var options = {
         user:"username",
@@ -379,16 +436,16 @@ var options = {
 }
 var callback = function(data) { alert(data); };
 OAT.AJAX.GET("/myfile.xml", false, callback, options);
+
 </pre>
 
     
-    
 
-    <div id="oatcopy">
-      Copyright (C) 
-      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
-      2005-2008
-    </div>
+    
+    <hr/>
   </div>
-</body>
+<div id="oatcopy">
+      Copyright (C) 2005-2008
+      <a href="http://www.openlinksw.com/">OpenLink Software</a>
+  </div>
 </html>

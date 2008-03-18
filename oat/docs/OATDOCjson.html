@@ -4,112 +4,131 @@
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
 
-<body>
+<div id="oatnav">
+    <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+  </div>
+  <h1> OATDOCjson</h1>
   <div class="topic-text">
     
 
-    <div id="oatnav">
-        <a href="index.html">Index</a> | 
-      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
-      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
-      </div>
-
-
-
-    
-    <h2>
-        <a name="json.js" id="json.js"> 
-      </a> json.js</h2>
-
-    <p>Implements two crucial JSON functions - <tt>parse</tt> and
-    <tt>stringify</tt>.</p>
-
-    
-
     <div class="oatwikitoc">
-        <h1>Table of Contents</h1>
-    <div class="wikitoc">
+      <div class="wikitoc">
       <ul>
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
+            <a href="#OATDOCjson">OATDOCjson</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
         <a href="#json.js">json.js</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Functions">Functions</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Functions">Functions</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.JSON.parse(string)">OAT.JSON.parse(string)</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.JSON.parse(string)">OAT.JSON.parse(string)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.JSON.stringify(variable,%20[maxDepth])">OAT.JSON.stringify(variable,
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.JSON.stringify(variable,%20[maxDepth])">OAT.JSON.stringify(variable,
         [maxDepth])</a>
           </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Example">Example</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Example">Example</a>
+          </li>
       </ul>
     </div>
-      </div>
+    </div>
+
+    
+
+    
+
+    
+
+    <h2>
+      <a name="json.js" id="json.js"> 
+      </a> json.js</h2>
+
+    <p>Implements two crucial JSON functions - <tt>parse</tt> and
+    <tt>stringify</tt> .</p>
+
+    
 
     <h3>
-        <a name="Functions" id="Functions"> 
+      <a name="Functions" id="Functions"> 
       </a> Functions</h3>
 
-    <h3>
-        <a name="OAT.JSON.parse(string)"> 
-      </a>
-    OAT.JSON.parse(string)</h3>Parses JSON <tt>string</tt>.
+    
 
-    <p class="c3">To prevent JavaScript hijacking attacks, web
+    <h3>
+      <a name="OAT.JSON.parse(string)"> 
+      </a>
+    OAT.JSON.parse(string)</h3>
+
+    <p>
+      <br/>
+    Parses JSON <tt>string</tt> .<br/>
+    <strong>To prevent JavaScript hijacking attacks, web
     application authors are encouraged to use some of OAT's
-    <a href="OATDOCsecurity.html">built-in countermeasures</a>.</p>
+    <a href="OATDOCsecurity.html">built-in countermeasures</a> .</strong>
+    </p>
+
+    
 
     <h3>
-        <a name="OAT.JSON.stringify(variable, [maxDepth])"> 
+      <a name="OAT.JSON.stringify(variable, [maxDepth])"> 
       </a>
-    OAT.JSON.stringify(variable, [maxDepth])</h3>Returns JSON
-    representation of <tt>variable</tt>. The <tt>maxDepth</tt>
-    argument specifies maximum depth for recursive structures;
-    <tt>-1</tt> signifies no depth limit.
+    OAT.JSON.stringify(variable, [maxDepth])</h3>
 
-    <p>Cyclic structures are detected and safely interrupted, but
+    <p>
+      <br/>
+    Returns JSON representation of <tt>variable</tt> . The
+    <tt>maxDepth</tt> argument specifies maximum depth for
+    recursive structures; <tt>-1</tt> signifies no depth
+    limit.<br/>
+    Cyclic structures are detected and safely interrupted, but
     could not be further restored.</p>
 
+    
+
     <h3>
-        <a name="Example" id="Example"> 
-      </a>Example</h3>
-      <br/>
+      <a name="Example" id="Example"> 
+      </a> Example</h3>
+
+    
     <pre>
 var a = {x:"y", number:123};
 var b = OAT.JSON.stringify(a,-1);
 var c = OAT.JSON.parse(b); // c now equals
+
 </pre>
 
     
-    
 
-    <div id="oatcopy">
-      Copyright (C) 
-      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
-      2005-2008
-    </div>
+    
+    <hr/>
   </div>
-</body>
+<div id="oatcopy">
+      Copyright (C) 2005-2008
+      <a href="http://www.openlinksw.com/">OpenLink Software</a>
+  </div>
 </html>

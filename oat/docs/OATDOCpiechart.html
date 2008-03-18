@@ -4,202 +4,245 @@
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
 
-<body>
+<div id="oatnav">
+    <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+  </div>
+  <h1>
+    OATDOCpiechart</h1>
   <div class="topic-text">
     
 
-    <div id="oatnav">
-        <a href="index.html">Index</a> | 
-      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
-      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
-      </div>
-
-    
-    
-
-    <h2>
-        <a name="piechart.js" id="piechart.js"> 
-      </a>
-    piechart.js</h2>
-
-    <p>Library for drawing Pie charts using SVG.</p>
-    
-
-
     <div class="oatwikitoc">
-        <h1>Table of Contents</h1>
-    <div class="wikitoc">
+      <div class="wikitoc">
       <ul>
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
+            <a href="#OATDOCpiechart">OATDOCpiechart</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
         <a href="#piechart.js">piechart.js</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Objects">Objects</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Objects">Objects</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.PieChart(div,%20options)">OAT.PieChart(div,
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.PieChart(div,%20options)">OAT.PieChart(div,
         options)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Methods">Methods</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Methods">Methods</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.PieChart::attachData(dataArray)">OAT.PieChart::attachData(dataArray)</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.PieChart::attachData(dataArray)">OAT.PieChart::attachData(dataArray)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.PieChart::attachText(textArray)">OAT.PieChart::attachText(textArray)</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.PieChart::attachText(textArray)">OAT.PieChart::attachText(textArray)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.PieChart::attachColors(colorArray)">OAT.PieChart::attachColors(colorArray)</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.PieChart::attachColors(colorArray)">OAT.PieChart::attachColors(colorArray)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.PieChart::draw()">OAT.PieChart::draw()</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.PieChart::draw()">OAT.PieChart::draw()</a>
           </li>
       </ul>
     </div>
-      </div>
+    </div>
+
+    
+
+    
+
+    
+
+    <h2>
+      <a name="piechart.js" id="piechart.js"> 
+      </a>
+    piechart.js</h2>
+
+    <p>Library for drawing Pie charts using SVG.</p>
+
+    
 
     <h3>
-        <a name="Objects" id="Objects"> 
+      <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
+    
+
     <h4>
-        <a name="OAT.PieChart(div, options)"> 
-      </a>OAT.PieChart(div,
-    options)</h4>Creates a Pie Chart inside specified <tt>div</tt>.
-    You can specify the following <tt>options</tt>:
+      <a name="OAT.PieChart(div, options)"> 
+      </a> OAT.PieChart(div,
+    options)</h4>
+
+    <p>
+      <br/>
+    Creates a Pie Chart inside specified <tt>div</tt> . You can
+    specify the following <tt>options</tt> :<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>
-            <b>radius</b>
-          </tt> - int; if 0, then radius is
-      computed automatically</li>
+        <strong>
+          <tt>radius</tt>
+        </strong> - int; if 0, then radius
+      is computed automatically<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>depth</b>
-          </tt> - int; height of pie</li>
+        <strong>
+          <tt>depth</tt>
+        </strong> - int; height of
+      pie<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>width</b>
-          </tt> - int; if 0, then width is computed
-      automatically</li>
+        <strong>
+          <tt>width</tt>
+        </strong> - int; if 0, then width
+      is computed automatically<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>height</b>
-          </tt> - int; if 0, then height is
-      computed automatically</li>
+        <strong>
+          <tt>height</tt>
+        </strong> - int; if 0, then height
+      is computed automatically<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>legend</b>
-          </tt> - bool; should we draw the legend?
-      default <tt>true</tt>
-        </li>
+        <strong>
+          <tt>legend</tt>
+        </strong> - bool; should we draw
+      the legend? default <tt>true</tt>
+        <br/>
+      </li>
 
       <li>
-          <div class="tdl">ToBeDone</div> (this has the wrong option name)
-      <tt>
-            <b>ycoef</b>
-          </tt> - float; how much skewing should be
-      applied?</li>
+        <div class="tdl">ToBeDone</div> (this has the wrong option name)
+      <strong>
+          <tt>ycoef</tt>
+        </strong> - float; how much skewing
+      should be applied?<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>left</b>, <b>top</b>
-          </tt> - position, default
-      <tt>30, 40</tt>
-        </li>
+        <strong>
+          <tt>left</tt>
+        </strong> ,
+      <strong>
+          <tt>top</tt>
+        </strong> - position, default <tt>30,
+      40</tt>
+        <br/>
+      </li>
 
       <li>
-          <tt>
-            <b>ycoef</b>
-          </tt> - coefficient for the y axis
-      (default <tt>0.7</tt>)</li>
+        <strong>
+          <tt>ycoef</tt>
+        </strong> - coefficient for the y
+      axis (default <tt>0.7</tt> )</li>
     </ul>
 
     <h3>
-        <a name="Methods" id="Methods"> 
+      <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    <h4>
-        <a name="OAT.PieChart::attachData(dataArray)"> 
-      </a>OAT.PieChart::attachData(dataArray)</h4>Adds
-    data to chart.
+    
 
     <h4>
-        <a name="OAT.PieChart::attachText(textArray)"> 
-      </a>OAT.PieChart::attachText(textArray)</h4>Adds
-    legend labels.
+      <a name="OAT.PieChart::attachData(dataArray)"> 
+      </a>
+    OAT.PieChart::attachData(dataArray)</h4>
+
+    <p>
+      <br/>
+    Adds data to chart.</p>
 
     <h4>
-        <a name="OAT.PieChart::attachColors(colorArray)"> 
-      </a>OAT.PieChart::attachColors(colorArray)</h4>Adds
-    colors.
+      <a name="OAT.PieChart::attachText(textArray)"> 
+      </a>
+    OAT.PieChart::attachText(textArray)</h4>
+
+    <p>
+      <br/>
+    Adds legend labels.</p>
 
     <h4>
-        <a name="OAT.PieChart::draw()"> 
-      </a>OAT.PieChart::draw()</h4>Draws the
-    chart.<br/>
+      <a name="OAT.PieChart::attachColors(colorArray)"> 
+      </a>
+    OAT.PieChart::attachColors(colorArray)</h4>
+
+    <p>
+      <br/>
+    Adds colors.</p>
+
+    <h4>
+      <a name="OAT.PieChart::draw()"> 
+      </a>
+    OAT.PieChart::draw()</h4>
+
+    <p>
+      <br/>
+    Draws the chart.<br/>
+    </p>
     <pre>
 var chart = new OAT.PieChart("myDiv",{});
 chart.attachData([1,3,2]);
 chart.attachText(["a","b","c"]);
 chart.attachColors(["#f00","#0f0","#00f"]);
 chart.draw();
+
 </pre>
 
     
-    
 
-    <div id="oatcopy">
-      Copyright (C) 
-      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
-      2005-2008
-    </div>
+    
+    <hr/>
   </div>
-</body>
+<div id="oatcopy">
+      Copyright (C) 2005-2008
+      <a href="http://www.openlinksw.com/">OpenLink Software</a>
+  </div>
 </html>

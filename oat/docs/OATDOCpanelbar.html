@@ -4,240 +4,293 @@
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
 
-<body>
+<div id="oatnav">
+    <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+  </div>
+  <h1>
+    OATDOCpanelbar</h1>
   <div class="topic-text">
     
 
-    <div id="oatnav">
-        <a href="index.html">Index</a> | 
-      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
-      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
-      </div>
-
-    
-    
-
-    <h2>
-        <a name="panelbar.js" id="panelbar.js"> 
-      </a>
-    panelbar.js</h2>
-
-    <p>Panelbar widget (like Mozilla sidebar).</p>
-    
-
-
     <div class="oatwikitoc">
-        <h1>Table of Contents</h1>
-    <div class="wikitoc">
+      <div class="wikitoc">
       <ul>
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
+            <a href="#OATDOCpanelbar">OATDOCpanelbar</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
         <a href="#panelbar.js">panelbar.js</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Objects">Objects</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Objects">Objects</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Panelbar(fadeDelay)">OAT.Panelbar(fadeDelay)</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Panelbar(fadeDelay)">OAT.Panelbar(fadeDelay)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Methods">Methods</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Methods">Methods</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Panelbar.addPanel(clicker,%20element)">OAT.Panelbar.addPanel(clicker,
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Panelbar.addPanel(clicker,%20element)">OAT.Panelbar.addPanel(clicker,
         element)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Panelbar.go(index)">OAT.Panelbar.go(index)</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Panelbar.go(index)">OAT.Panelbar.go(index)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#CSS%20classes">CSS
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#CSS%20classes">CSS
         classes</a>
           </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#.panelbar">.panelbar</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.panelbar">.panelbar</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#.panelbar_option">.panelbar_option</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.panelbar_option">.panelbar_option</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#.panelbar">.panelbar</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.panelbar">.panelbar</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#.panelbar">.panelbar</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.panelbar">.panelbar</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#.panelbar">.panelbar</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.panelbar">.panelbar</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#.panelbar_content">.panelbar_content</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.panelbar_content">.panelbar_content</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Example">Example</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Example">Example</a>
+          </li>
       </ul>
     </div>
-      </div>
+    </div>
+
+    
+
+    
+
+    
+
+    <h2>
+      <a name="panelbar.js" id="panelbar.js"> 
+      </a>
+    panelbar.js</h2>
+
+    <p>Panelbar widget (like Mozilla sidebar).</p>
+
+    
 
     <h3>
-        <a name="Objects" id="Objects"> 
+      <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
+    
+
     <h4>
-        <a name="OAT.Panelbar(fadeDelay)"> 
-      </a>OAT.Panelbar(fadeDelay)</h4>Creates
-    a panelbar. Its main div is accessible as
-    <tt>panelbar.div</tt>. Fading speed can be controlled via
-    <tt>fadeDelay</tt>.
+      <a name="OAT.Panelbar(fadeDelay)"> 
+      </a>
+    OAT.Panelbar(fadeDelay)</h4>
+
+    <p>
+      <br/>
+    Creates a panelbar. Its main div is accessible as
+    <tt>panelbar.div</tt> . Fading speed can be controlled via
+    <tt>fadeDelay</tt> .</p>
 
     <h3>
-        <a name="Methods" id="Methods"> 
+      <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    <h4>
-        <a name="OAT.Panelbar.addPanel(clicker, element)"> 
-      </a>OAT.Panelbar.addPanel(clicker,
-    element)</h4>Adds a new panel, contained in <tt>element</tt>.
-    It will be shown after clicking on <tt>clicker</tt>.
+    
 
     <h4>
-        <a name="OAT.Panelbar.go(index)"> 
-      </a>OAT.Panelbar.go(index)</h4>Switches
-    to appropriate panel based on <tt>index</tt>.
+      <a name="OAT.Panelbar.addPanel(clicker, element)"> 
+      </a>
+    OAT.Panelbar.addPanel(clicker, element)</h4>
+
+    <p>
+      <br/>
+    Adds a new panel, contained in <tt>element</tt> . It will be
+    shown after clicking on <tt>clicker</tt> .</p>
+
+    <h4>
+      <a name="OAT.Panelbar.go(index)"> 
+      </a>
+    OAT.Panelbar.go(index)</h4>
+
+    <p>
+      <br/>
+    Switches to appropriate panel based on <tt>index</tt> .</p>
 
     <h3>
-        <a name="CSS classes"> 
+      <a name="CSS classes"> 
       </a> CSS classes</h3>
 
+    
+
     <h4>
-        <a name=".panelbar"> 
+      <a name=".panelbar"> 
       </a> .panelbar</h4>
-      <div class="tdl">ToBeDone</div>
+
+    <p>
+      <br/>
+      <div class="tdl">
+    ToBeDone</div>
+    </p>
 
     <h4>
-        <a name=".panelbar_option"> 
-      </a>
-    .panelbar_option</h4>
-      <div class="tdl">ToBeDone</div>
+      <a name=".panelbar_option"> 
+      </a> .panelbar_option</h4>
+
+    <p>
+      <br/>
+      <div class="tdl">
+    ToBeDone</div>
+    </p>
 
     <h4>
-        <a name=".panelbar"> 
+      <a name=".panelbar"> 
       </a> .panelbar
-    <u>option_selected</u>
-      </h4>
-      <div class="tdl">ToBeDone</div>
+    <strong>option_selected</strong>
+    </h4>
+
+    <p>
+      <br/>
+      <div class="tdl">
+    ToBeDone</div>
+    </p>
 
     <h4>
-        <a name=".panelbar"> 
+      <a name=".panelbar"> 
       </a> .panelbar
-    <u>option_upper</u>
-      </h4>
-      <div class="tdl">ToBeDone</div>
+    <strong>option_upper</strong>
+    </h4>
+
+    <p>
+      <br/>
+      <div class="tdl">
+    ToBeDone</div>
+    </p>
 
     <h4>
-        <a name=".panelbar"> 
+      <a name=".panelbar"> 
       </a> .panelbar
-    <u>option_lower</u>
-      </h4>
-      <div class="tdl">ToBeDone</div>
+    <strong>option_lower</strong>
+    </h4>
+
+    <p>
+      <br/>
+      <div class="tdl">
+    ToBeDone</div>
+    </p>
 
     <h4>
-        <a name=".panelbar_content"> 
-      </a>
-    .panelbar_content</h4>
-      <div class="tdl">ToBeDone</div>
+      <a name=".panelbar_content"> 
+      </a> .panelbar_content</h4>
+
+    <p>
+      <br/>
+      <div class="tdl">
+    ToBeDone</div>
+    </p>
 
     <h3>
-        <a name="Example" id="Example"> 
-      </a>Example</h3>
-      <br/>
+      <a name="Example" id="Example"> 
+      </a> Example</h3>
+
+    
     <pre>
 var header = OAT.Dom.create("div");
 var body = OAT.Dom.create("div");
 var panelbar = new OAT.Panelbar(10);
 panelbar.addPanel(header, body);
 panelbar.go(0);
+
 </pre>
 
     
-    
 
-    <div id="oatcopy">
-      Copyright (C) 
-      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
-      2005-2008
-    </div>
+    
+    <hr/>
   </div>
-</body>
+<div id="oatcopy">
+      Copyright (C) 2005-2008
+      <a href="http://www.openlinksw.com/">OpenLink Software</a>
+  </div>
 </html>

@@ -4,301 +4,361 @@
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
 
-<body>
+<div id="oatnav">
+    <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+  </div>
+  <h1>
+    OATDOCticker</h1>
   <div class="topic-text">
     
 
-    <div id="oatnav">
-        <a href="index.html">Index</a> | 
-      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
-      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
-      </div>
-
-    
-    
-
-    <h2>
-        <a name="ticker.js" id="ticker.js"> 
-      </a>
-    ticker.js</h2>Ticker - slowly appearing and disappearing text. 
-    
-
-
     <div class="oatwikitoc">
-        <h1>Table of Contents</h1>
-    <div class="wikitoc">
+      <div class="wikitoc">
       <ul>
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
+            <a href="#OATDOCticker">OATDOCticker</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
         <a href="#ticker.js">ticker.js</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Objects">Objects</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Objects">Objects</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Ticker(element,%20text,%20options)">OAT.Ticker(element,
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Ticker(element,%20text,%20options)">OAT.Ticker(element,
         text, options)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Methods">Methods</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Methods">Methods</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.start()">.start()</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.start()">.start()</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.stop()">.stop()</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.stop()">.stop()</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Constants">Constants</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Constants">Constants</a>
           </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.TickerData.ADD_">OAT.TickerData.ADD_</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.TickerData.ADD_">OAT.TickerData.ADD_</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.TickerData.CLEAR_">OAT.TickerData.CLEAR_</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.TickerData.CLEAR_">OAT.TickerData.CLEAR_</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.TickerData.TIMING_">OAT.TickerData.TIMING_</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.TickerData.TIMING_">OAT.TickerData.TIMING_</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.TickerData.LOOP_">OAT.TickerData.LOOP_</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.TickerData.LOOP_">OAT.TickerData.LOOP_</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Example">Example</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Example">Example</a>
+          </li>
       </ul>
     </div>
-      </div>
+    </div>
+
+    
+
+    
+
+    
+
+    <h2>
+      <a name="ticker.js" id="ticker.js"> 
+      </a> ticker.js</h2>
+
+    <p>
+      <br/>
+    Ticker - slowly appearing and disappearing text.</p>
 
     <h3>
-        <a name="Objects" id="Objects"> 
+      <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
+    
+
     <h4>
-        <a name="OAT.Ticker(element, text, options)"> 
-      </a>OAT.Ticker(element,
-    text, options)</h4>Creates <tt>Ticker</tt>. It will show
-    <tt>text</tt> in <tt>element</tt>. Argument <tt>options</tt> is
-    an object containing the following:
+      <a name="OAT.Ticker(element, text, options)"> 
+      </a>
+    OAT.Ticker(element, text, options)</h4>
+
+    <p>
+      <br/>
+    Creates <tt>Ticker</tt> . It will show <tt>text</tt> in
+    <tt>element</tt> . Argument <tt>options</tt> is an object
+    containing the following:<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>
-            <b>loop</b>
-          </tt> - an <tt>OAT.TickerData.LOOP_</tt>
-      constant (default <tt>OAT.TickerData.LOOP_NONE</tt>)</li>
+        <strong>
+          <tt>loop</tt>
+        </strong> - an
+      <tt>OAT.TickerData.LOOP_</tt> constant (default
+      <tt>OAT.TickerData.LOOP_NONE</tt> )<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>add</b>
-          </tt> - an <tt>OAT.TickerData.ADD_</tt>
-      constant (default <tt>OAT.TickerData.ADD_END</tt>)</li>
+        <strong>
+          <tt>add</tt>
+        </strong> - an
+      <tt>OAT.TickerData.ADD_</tt> constant (default
+      <tt>OAT.TickerData.ADD_END</tt> )<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>clear</b>
-          </tt> - an <tt>OAT.TickerData.CLEAR_</tt>
-      constant (default <tt>OAT.TickerData.CLEAR_ALL</tt>)</li>
+        <strong>
+          <tt>clear</tt>
+        </strong> - an
+      <tt>OAT.TickerData.CLEAR_</tt> constant (default
+      <tt>OAT.TickerData.CLEAR_ALL</tt> )<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>timing</b>
-          </tt> - an
+        <strong>
+          <tt>timing</tt>
+        </strong> - an
       <tt>OAT.TickerData.TIMING_</tt> constant (default
-      <tt>OAT.TickerData.TIMING_GLOBAL</tt>)</li>
+      <tt>OAT.TickerData.TIMING_GLOBAL</tt> )<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>defDelay</b>
-          </tt> - delay in msec (default
-      <tt>3000</tt>)</li>
+        <strong>
+          <tt>defDelay</tt>
+        </strong> - delay in msec
+      (default <tt>3000</tt> )<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>pause</b>
-          </tt> - pause (in msec) when all text is
-      drawn (default <tt>1000</tt>)</li>
+        <strong>
+          <tt>pause</tt>
+        </strong> - pause (in msec) when
+      all text is drawn (default <tt>1000</tt> )</li>
     </ul>
 
     <h3>
-        <a name="Methods" id="Methods"> 
+      <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    <h4>
-        <a name=".start()"> 
-      </a>.start()</h4>Starts ticking.
+    
 
     <h4>
-        <a name=".stop()"> 
-      </a>.stop()</h4>Stops ticking.
+      <a name=".start()"> 
+      </a> .start()</h4>
+
+    <p>
+      <br/>
+    Starts ticking.</p>
+
+    <h4>
+      <a name=".stop()"> 
+      </a> .stop()</h4>
+
+    <p>
+      <br/>
+    Stops ticking.</p>
 
     <h3>
-        <a name="Constants" id="Constants"> 
+      <a name="Constants" id="Constants"> 
       </a> Constants</h3>
 
+    
+
     <h4>
-        <a name="OAT.TickerData.ADD_" id="OAT.TickerData.ADD_"> 
+      <a name="OAT.TickerData.ADD_" id="OAT.TickerData.ADD_"> 
       </a>
-    OAT.TickerData.ADD_</h4>Where to add characters to ticker
+    OAT.TickerData.ADD_</h4>
+
+    <p>
+      <br/>
+    Where to add characters to ticker<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>
-            <b>OAT.TickerData.ADD_START</b>
-          </tt> - at the
-      beginning</li>
+        <strong>
+          <tt>OAT.TickerData.ADD_START</tt>
+        </strong> - at
+      the beginning<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>OAT.TickerData.ADD_END</b>
-          </tt> - at the end</li>
+        <strong>
+          <tt>OAT.TickerData.ADD_END</tt>
+        </strong> - at the
+      end</li>
     </ul>
 
     <h4>
-        <a name="OAT.TickerData.CLEAR_" id="OAT.TickerData.CLEAR_"> 
-      </a> OAT.TickerData.CLEAR_</h4>How to
-    remove characters
+      <a name="OAT.TickerData.CLEAR_" id="OAT.TickerData.CLEAR_"> 
+      </a> OAT.TickerData.CLEAR_</h4>
+
+    <p>
+      <br/>
+    How to remove characters<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>
-            <b>OAT.TickerData.CLEAR_ALL</b>
-          </tt> - all at
-      once</li>
+        <strong>
+          <tt>OAT.TickerData.CLEAR_ALL</tt>
+        </strong> - all
+      at once<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>OAT.TickerData.CLEAR_START</b>
-          </tt> - one-by-one
-      from beginning</li>
+        <strong>
+          <tt>OAT.TickerData.CLEAR_START</tt>
+        </strong> -
+      one-by-one from beginning<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>OAT.TickerData.CLEAR_END</b>
-          </tt> - one-by-one
-      from end</li>
+        <strong>
+          <tt>OAT.TickerData.CLEAR_END</tt>
+        </strong> -
+      one-by-one from end</li>
     </ul>
 
     <h4>
-        <a name="OAT.TickerData.TIMING_" id="OAT.TickerData.TIMING_"> 
-      </a> OAT.TickerData.TIMING_</h4>How
-    delay is specified
+      <a name="OAT.TickerData.TIMING_" id="OAT.TickerData.TIMING_"> 
+      </a> OAT.TickerData.TIMING_</h4>
+
+    <p>
+      <br/>
+    How delay is specified<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>
-            <b>OAT.TickerData.TIMING_PERCHAR</b>
-          </tt> - per
-      character</li>
+        <strong>
+          <tt>OAT.TickerData.TIMING_PERCHAR</tt>
+        </strong> -
+      per character<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>OAT.TickerData.TIMING_GLOBAL</b>
-          </tt> - per
-      string</li>
+        <strong>
+          <tt>OAT.TickerData.TIMING_GLOBAL</tt>
+        </strong> -
+      per string</li>
     </ul>
 
     <h4>
-        <a name="OAT.TickerData.LOOP_" id="OAT.TickerData.LOOP_"> 
-      </a> OAT.TickerData.LOOP_</h4>What
-    looping to use
+      <a name="OAT.TickerData.LOOP_" id="OAT.TickerData.LOOP_"> 
+      </a> OAT.TickerData.LOOP_</h4>
+
+    <p>
+      <br/>
+    What looping to use<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>
-            <b>OAT.TickerData.LOOP_NONE</b>
-          </tt> - no loop</li>
+        <strong>
+          <tt>OAT.TickerData.LOOP_NONE</tt>
+        </strong> - no
+      loop<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>OAT.TickerData.LOOP_BACK</b>
-          </tt> - draw text,
-      hide it, and stop</li>
+        <strong>
+          <tt>OAT.TickerData.LOOP_BACK</tt>
+        </strong> - draw
+      text, hide it, and stop<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>OAT.TickerData.LOOP_FULL</b>
-          </tt> - continuous
-      loop</li>
+        <strong>
+          <tt>OAT.TickerData.LOOP_FULL</tt>
+        </strong> -
+      continuous loop</li>
     </ul>
 
     <h3>
-        <a name="Example" id="Example"> 
-      </a>Example</h3>
-      <br/>
+      <a name="Example" id="Example"> 
+      </a> Example</h3>
+
+    
     <pre>
 var t = new OAT.Ticker(div, "Hello world!", 
                        {delay:30,timing:TickerData.TIMING_PERCHAR});
 t.start();
+
 </pre>
 
     
-    
 
-    <div id="oatcopy">
-      Copyright (C) 
-      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
-      2005-2008
-    </div>
+    
+    <hr/>
   </div>
-</body>
+<div id="oatcopy">
+      Copyright (C) 2005-2008
+      <a href="http://www.openlinksw.com/">OpenLink Software</a>
+  </div>
 </html>

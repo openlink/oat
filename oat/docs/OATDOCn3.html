@@ -4,94 +4,106 @@
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
 
-<body>
+<div id="oatnav">
+    <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+  </div>
+  <h1> OATDOCn3</h1>
   <div class="topic-text">
     
 
-    <div id="oatnav">
-        <a href="index.html">Index</a> | 
-      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
-      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
-      </div>
-
-    
-    
-
-    <h2>
-        <a name="n3.js" id="n3.js"> 
-      </a> n3.js</h2>
-
-    <p>N3/Turtle parser. (see also <a href="OATDOCrdf.html">RDF parser</a>)</p>
-
-    
-
     <div class="oatwikitoc">
-        <h1>Table of Contents</h1>
-    <div class="wikitoc">
+      <div class="wikitoc">
       <ul>
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
+            <a href="#OATDOCn3">OATDOCn3</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
         <a href="#n3.js">n3.js</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Functions">Functions</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Functions">Functions</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.N3.toTriples(string)">OAT.N3.toTriples(string)</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.N3.toTriples(string)">OAT.N3.toTriples(string)</a>
           </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Example">Example</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Example">Example</a>
+          </li>
       </ul>
     </div>
-      </div>
+    </div>
+
+    
+
+    
+
+    
+
+    <h2>
+      <a name="n3.js" id="n3.js"> 
+      </a> n3.js</h2>
+
+    <p>N3/Turtle parser. (see also <a href="OATDOCrdf.html">RDF parser</a> )</p>
+
+    
 
     <h3>
-        <a name="Functions" id="Functions"> 
+      <a name="Functions" id="Functions"> 
       </a> Functions</h3>
 
+    
+
     <h4>
-        <a name="OAT.N3.toTriples(string)"> 
-      </a>OAT.N3.toTriples(string)</h4>Parses
-    a N3/Turtle RDF document into a JavaScript array of triples
-    which is then returned. Input should be a <tt>string</tt>
-    containing serialized RDF.
+      <a name="OAT.N3.toTriples(string)"> 
+      </a>
+    OAT.N3.toTriples(string)</h4>
+
+    <p>
+      <br/>
+    Parses a N3/Turtle RDF document into a JavaScript array of triples which is then
+    returned. Input should be a <tt>string</tt> containing
+    serialized RDF.</p>
 
     <h3>
-        <a name="Example" id="Example"> 
-      </a>Example</h3>
-      <br/>
+      <a name="Example" id="Example"> 
+      </a> Example</h3>
+
+    
     <pre>
 var callback = function(string) {
         var triples = OAT.RDF.toTriples(string);
         alert("There are " + triples.length + " triples.");
 }
 OAT.AJAX.GET("myData.n3", false, callback, {type:OAT.AJAX.TYPE_TEXT});
+
 </pre>
 
     
-    
 
-    <div id="oatcopy">
-      Copyright (C) 
-      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
-      2005-2008
-    </div>
+    
+    <hr/>
   </div>
-</body>
+<div id="oatcopy">
+      Copyright (C) 2005-2008
+      <a href="http://www.openlinksw.com/">OpenLink Software</a>
+  </div>
 </html>

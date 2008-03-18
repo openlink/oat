@@ -4,14 +4,14 @@ body {
 }
 
 h1 {
-    font-size: 120%;
+    font-size: 160%;
     margin: none;
     margin-bottom: 10px;
     margin-top: 1.25em;
 }
 
 h2 {
-    font-size: 115%;
+    font-size: 130%;
     margin: none;
     margin-bottom: 10px;
     margin-top: 1.25em;
@@ -73,7 +73,7 @@ br {
     text-decoration: underline;
 }
 
-label.c2 { color: white; }
+label.c2, label.c1 { color: white; }
 
 pre { 
     background-color: #E5E5E5; 
@@ -124,7 +124,7 @@ table * td tt {
 }
 
 div.tdl {
-/*    display: none; */
+    /*    display: none; */
     font-style: italic;
     display: inline;
 }

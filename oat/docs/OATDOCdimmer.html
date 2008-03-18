@@ -4,21 +4,69 @@
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
 
-<body>
+<div id="oatnav">
+    <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+  </div>
+  <h1>
+    OATDOCdimmer</h1>
   <div class="topic-text">
     
 
-    <div id="oatnav">
-        <a href="index.html">Index</a> | 
-      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
-      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
-      </div>
+    <div class="oatwikitoc">
+      <div class="wikitoc">
+      <ul>
+        <li>
+            <a href="#OATDOCdimmer">OATDOCdimmer</a>
+          </li>
 
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+        <a href="#dimmer.js">dimmer.js</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Functions">Functions</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Dimmer.show(element,%20optObj)">OAT.Dimmer.show(element,
+        optObj)</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Dimmer.hide()">OAT.Dimmer.hide()</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Example">Example</a>
+          </li>
+      </ul>
+    </div>
+    </div>
+
+    
+
+    
 
     
 
     <h2>
-        <a name="dimmer.js" id="dimmer.js"> 
+      <a name="dimmer.js" id="dimmer.js"> 
       </a> dimmer.js</h2>
 
     <p>Reveals an object while dimming all others, i.e., a Lightbox
@@ -26,100 +74,72 @@
 
     
 
-    <div class="oatwikitoc">
-        <h1>Table of Contents</h1>
-    <div class="wikitoc">
-      <ul>
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-        <a href="#dimmer.js">dimmer.js</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Functions">Functions</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Dimmer.show(element,%20optObj)">OAT.Dimmer.show(element,
-        optObj)</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Dimmer.hide()">OAT.Dimmer.hide()</a>
-          </li>
-
-        <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Example">Example</a>
-            </li>
-      </ul>
-    </div>
-      </div>
-
     <h3>
-        <a name="Functions" id="Functions"> 
+      <a name="Functions" id="Functions"> 
       </a> Functions</h3>
 
+    
+
     <h3>
-        <a name="OAT.Dimmer.show(element, optObj)"> 
+      <a name="OAT.Dimmer.show(element, optObj)"> 
       </a>
-    OAT.Dimmer.show(element, optObj)</h3>Shows <tt>element</tt>.
-    Additional options can be specified via <tt>optObj</tt>:
+    OAT.Dimmer.show(element, optObj)</h3>
+
+    <p>
+      <br/>
+    Shows <tt>element</tt> . Additional options can be specified
+    via <tt>optObj</tt> :<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>
-            <b>color</b>
-          </tt> - hexadecimal color of dimming
-      layer</li>
+        <strong>
+          <tt>color</tt>
+        </strong> - hexadecimal color of
+      dimming layer<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>opacity</b>
-          </tt> - opacity of dimming layer</li>
+        <strong>
+          <tt>opacity</tt>
+        </strong> - opacity of dimming
+      layer<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>popup</b>
-          </tt> - boolean value specifying whether
-      the element should be hidden by clicking to dimmed place</li>
+        <strong>
+          <tt>popup</tt>
+        </strong> - boolean value
+      specifying whether the element should be hidden by clicking
+      to dimmed place</li>
     </ul>
 
     <h3>
-        <a name="OAT.Dimmer.hide()"> 
-      </a>
-    OAT.Dimmer.hide()</h3>Hides previously shown object and cancels
-    dimmer effect.
+      <a name="OAT.Dimmer.hide()"> 
+      </a> OAT.Dimmer.hide()</h3>
+
+    <p>
+      <br/>
+    Hides previously shown object and cancels dimmer effect.</p>
 
     <h3>
-        <a name="Example" id="Example"> 
+      <a name="Example" id="Example"> 
       </a> Example</h3>
-      <br/>
+
+    
     <pre>
 var div = OAT.Dom.create("div");
 OAT.Dimmer.show(div, {color:"#f00", popup:false}); // modal window
+
 </pre>
 
     
-    
 
-    <div id="oatcopy">
-      Copyright (C) 
-      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
-      2005-2008
-    </div>
+    
+    <hr/>
   </div>
-</body>
+<div id="oatcopy">
+      Copyright (C) 2005-2008
+      <a href="http://www.openlinksw.com/">OpenLink Software</a>
+  </div>
 </html>

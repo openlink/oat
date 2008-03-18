@@ -4,136 +4,161 @@
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
 
-<body>
+<div id="oatnav">
+    <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+  </div>
+  <h1>
+    OATDOCquickedit</h1>
   <div class="topic-text">
     
 
-    <div id="oatnav">
-        <a href="index.html">Index</a> | 
-      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
-      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
-      </div>
-
-    
-    
-
-    <h2>
-        <a name="quickedit.js" id="quickedit.js"> 
-      </a>
-    quickedit.js</h2>Provides edit-in-place functionality.
-    
-
-
     <div class="oatwikitoc">
-        <h1>Table of Contents</h1>
-    <div class="wikitoc">
+      <div class="wikitoc">
       <ul>
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
+            <a href="#OATDOCquickedit">OATDOCquickedit</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
         <a href="#quickedit.js">quickedit.js</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Functions">Functions</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Functions">Functions</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.QuickEdit.assign(element,%20type,%20[options])">OAT.QuickEdit.assign(element,
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.QuickEdit.assign(element,%20type,%20[options])">OAT.QuickEdit.assign(element,
         type, [options])</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Constants">Constants</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Constants">Constants</a>
           </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.QuickEdit.STRING">OAT.QuickEdit.STRING</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.QuickEdit.STRING">OAT.QuickEdit.STRING</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.QuickEdit.SELECT">OAT.QuickEdit.SELECT</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.QuickEdit.SELECT">OAT.QuickEdit.SELECT</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Example">Example</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Example">Example</a>
+          </li>
       </ul>
     </div>
-      </div>
+    </div>
+
+    
+
+    
+
+    
+
+    <h2>
+      <a name="quickedit.js" id="quickedit.js"> 
+      </a>
+    quickedit.js</h2>
+
+    <p>
+      <br/>
+    Provides edit-in-place functionality.</p>
 
     <h3>
-        <a name="Functions" id="Functions"> 
+      <a name="Functions" id="Functions"> 
       </a> Functions</h3>
 
-    <h4>
-        <a name="OAT.QuickEdit.assign(element, type, [options])"> 
-      </a>OAT.QuickEdit.assign(element,
-    type, [options])</h4>
+    
 
-    <p>Marks element as <tt>QuickEdit</tt>, i.e., when user clicks
+    <h4>
+      <a name="OAT.QuickEdit.assign(element, type, [options])"> 
+      </a>
+    OAT.QuickEdit.assign(element, type, [options])</h4>
+
+    <p>Marks element as <tt>QuickEdit</tt> , i.e., when user clicks
     it, it transforms into input. <tt>type</tt> specifies input
-    type -- <tt>QuickEdit.STRING</tt> =&gt; input,
-    <tt>QuickEdit.SELECT</tt> =&gt; select. If
-    <tt>QuickEdit.SELECT</tt> type is chosen, values are specified
-    as an array in <tt>options</tt>.</p>
+    type -- <tt>QuickEdit.STRING</tt>
+    </p>
+
+    <p>&gt; input, <tt>QuickEdit.SELECT</tt>
+    </p>
+
+    <p>&gt; select. If <tt>QuickEdit.SELECT</tt> type is chosen,
+    values are specified as an array in <tt>options</tt> .</p>
+
+    
 
     <h3>
-        <a name="Constants" id="Constants"> 
+      <a name="Constants" id="Constants"> 
       </a> Constants</h3>
 
-    <h4>
-        <a name="OAT.QuickEdit.STRING" id="OAT.QuickEdit.STRING"> 
-      </a>OAT.QuickEdit.STRING</h4>string
-    value
+    
 
     <h4>
-        <a name="OAT.QuickEdit.SELECT" id="OAT.QuickEdit.SELECT"> 
-      </a>OAT.QuickEdit.SELECT</h4>predefined
-    values from the select element
+      <a name="OAT.QuickEdit.STRING" id="OAT.QuickEdit.STRING"> 
+      </a> OAT.QuickEdit.STRING</h4>
+
+    <p>
+      <br/>
+    string value</p>
+
+    <h4>
+      <a name="OAT.QuickEdit.SELECT" id="OAT.QuickEdit.SELECT"> 
+      </a> OAT.QuickEdit.SELECT</h4>
+
+    <p>
+      <br/>
+    predefined values from the select element</p>
 
     <h3>
-        <a name="Example" id="Example"> 
-      </a>Example</h3>
-      <br/>
+      <a name="Example" id="Example"> 
+      </a> Example</h3>
+
+    
     <pre>
 var text = OAT.Dom.create("span");
 text.innerHTML = "hello";
 OAT.QuickEdit.assign(text, OAT.QuickEdit.SELECT, ["hello","hi","goodbye"]);
+
 </pre>
 
     
-    
 
-    <div id="oatcopy">
-      Copyright (C) 
-      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
-      2005-2008
-    </div>
+    
+    <hr/>
   </div>
-</body>
+<div id="oatcopy">
+      Copyright (C) 2005-2008
+      <a href="http://www.openlinksw.com/">OpenLink Software</a>
+  </div>
 </html>

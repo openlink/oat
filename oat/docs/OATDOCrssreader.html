@@ -4,169 +4,205 @@
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
 
-<body>
+<div id="oatnav">
+    <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+  </div>
+  <h1>
+    OATDOCrssreader</h1>
   <div class="topic-text">
     
 
-    <div id="oatnav">
-        <a href="index.html">Index</a> | 
-      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
-      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
-      </div>
-
-    
-    
-
-    <h2>
-        <a name="rssreader.js" id="rssreader.js"> 
-      </a>rssreader.js</h2>
-
-    <p>RSS Feed reader supporting both RSS and RDF feeds.</p>
-    
-
-
     <div class="oatwikitoc">
-        <h1>Table of Contents</h1>
-    <div class="wikitoc">
+      <div class="wikitoc">
       <ul>
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
+            <a href="#OATDOCrssreader">OATDOCrssreader</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
         <a href="#rssreader.js">rssreader.js</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Objects">Objects</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Objects">Objects</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.RSSReader(div,%20options)">OAT.RSSReader(div,
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.RSSReader(div,%20options)">OAT.RSSReader(div,
         options)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Methods">Methods</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Methods">Methods</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.RSSReader::display(xmlText)">OAT.RSSReader::display(xmlText)</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.RSSReader::display(xmlText)">OAT.RSSReader::display(xmlText)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#CSS%20Classes">CSS
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#CSS%20Classes">CSS
         Classes</a>
           </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#.rss_reader">.rss_reader</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.rss_reader">.rss_reader</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#.rss_header">.rss_header</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.rss_header">.rss_header</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#.rss_body">.rss_body</a>
-            </li>
-    </ul>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.rss_body">.rss_body</a>
+          </li>
+      </ul>
     </div>
-      </div>
+    </div>
+
+    
+
+    
+
+    
+
+    <h2>
+      <a name="rssreader.js" id="rssreader.js"> 
+      </a>
+    rssreader.js</h2>
+
+    <p>RSS Feed reader supporting both RSS and RDF feeds.</p>
+
+    
 
     <h3>
-        <a name="Objects" id="Objects"> 
+      <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
+    
+
     <h4>
-        <a name="OAT.RSSReader(div, options)"> 
-      </a>OAT.RSSReader(div,
-    options)</h4>Creates a <tt>RSSReader</tt> object. Contents will
-    be displayed inside <tt>div</tt>. Available <tt>options</tt>:
+      <a name="OAT.RSSReader(div, options)"> 
+      </a>
+    OAT.RSSReader(div, options)</h4>
+
+    <p>
+      <br/>
+    Creates a <tt>RSSReader</tt> object. Contents will be displayed
+    inside <tt>div</tt> . Available <tt>options</tt> :<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>
-            <b>limit</b>
-          </tt> - maximum number of items
-      (integer)</li>
+        <strong>
+          <tt>limit</tt>
+        </strong> - maximum number of items
+      (integer)<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>showTitle</b>
-          </tt> - should we display feed title?
-      (bool)</li>
+        <strong>
+          <tt>showTitle</tt>
+        </strong> - should we display
+      feed title? (bool)</li>
     </ul>
 
     <h3>
-        <a name="Methods" id="Methods"> 
+      <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
+    
+
     <h4>
-        <a name="OAT.RSSReader::display(xmlText)"> 
-      </a>OAT.RSSReader::display(xmlText)</h4>Parses
-    <tt>xmlText</tt> and displays feed contents. Both RSS and RDF
-    feeds are supported.
+      <a name="OAT.RSSReader::display(xmlText)"> 
+      </a>
+    OAT.RSSReader::display(xmlText)</h4>
+
+    <p>
+      <br/>
+    Parses <tt>xmlText</tt> and displays feed contents. Both RSS
+    and RDF feeds are supported.</p>
 
     <h3>
-        <a name="CSS Classes"> 
+      <a name="CSS Classes"> 
       </a> CSS Classes</h3>
 
+    
+
     <h4>
-        <a name=".rss_reader"> 
+      <a name=".rss_reader"> 
       </a> .rss_reader</h4>
-      <div class="tdl">ToBeDone</div>
+
+    <p>
+      <br/>
+      <div class="tdl">
+    ToBeDone</div>
+    </p>
 
     <h4>
-        <a name=".rss_header"> 
+      <a name=".rss_header"> 
       </a> .rss_header</h4>
-      <div class="tdl">ToBeDone</div>
+
+    <p>
+      <br/>
+      <div class="tdl">
+    ToBeDone</div>
+    </p>
 
     <h4>
-        <a name=".rss_body"> 
+      <a name=".rss_body"> 
       </a> .rss_body</h4>
-      <div class="tdl">ToBeDone</div>
+
+    <p>
+      <br/>
+      <div class="tdl">
+    ToBeDone</div>
+      <br/>
+    </p>
 
     
-    
-
-    <div id="oatcopy">
-      Copyright (C) 
-      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
-      2005-2008
-    </div>
+    <hr/>
   </div>
-</body>
+<div id="oatcopy">
+      Copyright (C) 2005-2008
+      <a href="http://www.openlinksw.com/">OpenLink Software</a>
+  </div>
 </html>

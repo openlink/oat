@@ -4,174 +4,204 @@
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
 
-<body>
+<div id="oatnav">
+    <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+  </div>
+  <h1>
+    OATDOCupload</h1>
   <div class="topic-text">
     
 
-    <div id="oatnav">
-        <a href="index.html">Index</a> | 
-      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
-      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
-      </div>
-
-    
-    
-
-    <h2>
-        <a name="upload.js" id="upload.js"> 
-      </a>
-    upload.js</h2>Creates form with variable number of upload
-    slots.
-
-    
-
     <div class="oatwikitoc">
-        <h1>Table of Contents</h1>
-    <div class="wikitoc">
+      <div class="wikitoc">
       <ul>
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
+            <a href="#OATDOCupload">OATDOCupload</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
         <a href="#upload.js">upload.js</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Objects">Objects</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Objects">Objects</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Upload(method,%20action,%20target)">OAT.Upload(method,
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Upload(method,%20action,%20target)">OAT.Upload(method,
         action, target)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#CSS%20classes">CSS
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#CSS%20classes">CSS
         classes</a>
           </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.Upload.upload">OAT.Upload.upload</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Upload.upload">OAT.Upload.upload</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.Upload.upload_add">OAT.Upload.upload_add</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Upload.upload_add">OAT.Upload.upload_add</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.Upload.upload_submit">OAT.Upload.upload_submit</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Upload.upload_submit">OAT.Upload.upload_submit</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Example">Example</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Example">Example</a>
+          </li>
       </ul>
     </div>
-      </div>
+    </div>
+
+    
+
+    
+
+    
+
+    <h2>
+      <a name="upload.js" id="upload.js"> 
+      </a> upload.js</h2>
+
+    <p>
+      <br/>
+    Creates form with variable number of upload slots.</p>
 
     <h3>
-        <a name="Objects" id="Objects"> 
+      <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
+    
+
     <h4>
-        <a name="OAT.Upload(method, action, target)"> 
+      <a name="OAT.Upload(method, action, target)"> 
       </a>
-    OAT.Upload(method, action, target)</h4>Creates an upload form.
-    Its main DIV is accessible as <tt>upload.div</tt>, arguments
-    are the same as you pass to the form element. Each
-    <tt>&lt;input type="file" /&gt;</tt> element is given name in
-    form of <tt>inputName_number</tt>.
+    OAT.Upload(method, action, target)</h4>
+
+    <p>
+      <br/>
+    Creates an upload form. Its main DIV is accessible as
+    <tt>upload.div</tt> , arguments are the same as you pass to the
+    form element. Each <tt>&lt;input type="file" /&gt;</tt> element
+    is given name in form of <tt>inputName_number</tt> .<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>
-            <b>method</b>
-          </tt>
-          <div class="tdl"> - ToBeDone</div>
-        </li>
+        <strong>
+          <tt>method</tt>
+        </strong>
+        <div class="tdl"> - ToBeDone</div>
+        <br/>
+      </li>
 
       <li>
-          <tt>
-            <b>action</b>
-          </tt>
-          <div class="tdl"> - ToBeDone</div>
-        </li>
+        <strong>
+          <tt>action</tt>
+        </strong>
+        <div class="tdl"> - ToBeDone</div>
+        <br/>
+      </li>
 
       <li>
-          <tt>
-            <b>target</b>
-          </tt>
-          <div class="tdl"> - ToBeDone</div>
-        </li>
+        <strong>
+          <tt>target</tt>
+        </strong>
+        <div class="tdl"> - ToBeDone</div>
+      </li>
     </ul>
 
     <h3>
-        <a name="CSS classes"> 
+      <a name="CSS classes"> 
       </a> CSS classes</h3>
 
+    
+
     <h4>
-        <a name="OAT.Upload.upload" id="OAT.Upload.upload"> 
+      <a name="OAT.Upload.upload" id="OAT.Upload.upload"> 
       </a>
     OAT.Upload.upload</h4>
-      <div class="tdl">ToBeDone</div>
+
+    <p>
+      <br/>
+      <div class="tdl">
+    ToBeDone</div>
+    </p>
 
     <h4>
-        <a name="OAT.Upload.upload_add" id="OAT.Upload.upload_add"> 
-      </a>
-    OAT.Upload.upload_add</h4>
-      <div class="tdl">ToBeDone</div>
+      <a name="OAT.Upload.upload_add" id="OAT.Upload.upload_add"> 
+      </a> OAT.Upload.upload_add</h4>
+
+    <p>
+      <br/>
+      <div class="tdl">
+    ToBeDone</div>
+    </p>
 
     <h4>
-        <a name="OAT.Upload.upload_submit" id="OAT.Upload.upload_submit"> 
-      </a>
-    OAT.Upload.upload_submit</h4>
-      <div class="tdl">ToBeDone</div>
+      <a name="OAT.Upload.upload_submit" id="OAT.Upload.upload_submit"> 
+      </a> OAT.Upload.upload_submit</h4>
+
+    <p>
+      <br/>
+      <div class="tdl">
+    ToBeDone</div>
+    </p>
 
     <h3>
-        <a name="Example" id="Example"> 
-      </a>Example</h3>
-      <br/>
+      <a name="Example" id="Example"> 
+      </a> Example</h3>
+
+    
     <pre>
 u = new OAT.Upload(method,action,target);
 document.body.appendChild(u.div);
+
 </pre>
 
     
-    
 
-    <div id="oatcopy">
-      Copyright (C) 
-      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
-      2005-2008
-    </div>
+    
+    <hr/>
   </div>
-</body>
+<div id="oatcopy">
+      Copyright (C) 2005-2008
+      <a href="http://www.openlinksw.com/">OpenLink Software</a>
+  </div>
 </html>

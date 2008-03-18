@@ -4,84 +4,93 @@
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
 
-<body>
+<div id="oatnav">
+    <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+  </div>
+  <h1> OATDOCbasicoperation</h1>
   <div class="topic-text">
     
 
-    <div id="oatnav">
-        <a href="index.html">Index</a> | 
-      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
-      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
-      </div>
-
-    
-    
-
-    
-
     <div class="oatwikitoc">
-        <h1>Table of Contents</h1>
-    <div class="wikitoc">
+      <div class="wikitoc">
       <ul>
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Basic%20operation">Basic
+            <a href="#OATDOCbasicoperation">OATDOCbasicoperation</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Basic%20operation">Basic
         operation</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Example">Example</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Example">Example</a>
           </li>
       </ul>
     </div>
-      </div>
+    </div>
+
+    
+
+    
+
+    
 
     <h3>
-        <a name="Basic operation"> 
-      </a>Basic operation</h3>
+      <a name="Basic operation"> 
+      </a> Basic operation</h3>
 
     <p>This short document describes what you need to do to include
     OAT's features into your web pages.</p>
 
     <ol>
-      <li>Download the latest release of OAT from <a href="http://sourceforge.net/projects/oat" class="absuri">Sourceforge</a>.</li>
+      <li>Download the latest release of OAT from <a href="http://sourceforge.net/projects/oat" class="absuri">Sourceforge</a> .<br/>
+      </li>
 
       <li>Unpack the archive to some directory. There are many
       files and directories included in the distribution. Most of
       them are applications and/or demos, which are usually not
-      needed</li>
-
-      <li>The only important directory is oat; copy it to your
-      project</li>
-
-      <li>Now you need to include OAT within your page:
-
-        <ol>
-          <li>Specify which features you want to load:<br/>
-            <pre>
-<br/>&lt;script type="text/javascript"&gt;
-var featureList = ["grid","pivot",barchart"];
-&lt;script&gt;
-</pre>
-              <br/>
-          </li>
-
-          <li>Include loader.js file:<br/>
-            <pre>
-<br/>&lt;script type="text/javascript" src="oat/loader.js"&gt;&lt;/script&gt;
-</pre>
-              <br/>
-          </li>
-        </ol>
+      needed<br/>
       </li>
 
+      <li>The only important directory is oat; copy it to your
+      project<br/>
+      </li>
+
+      <li>Now you need to include OAT within your page:<br/>
+      </li>
+
+      <li>Specify which features you want to load:</li>
+    </ol>
+    <br/>
+    <pre>
+&lt;script type="text/javascript"&gt;
+var featureList = ["grid","pivot",barchart"];
+&lt;script&gt;
+
+</pre>
+
+    <ol>
+      <li>Include loader.js file:</li>
+    </ol>
+    <br/>
+    <pre>
+&lt;script type="text/javascript" src="oat/loader.js"&gt;&lt;/script&gt;
+
+</pre>
+
+    <ol>
       <li>OAT will take care of internal dependencies and include
-      all needed files.</li>
+      all needed files.<br/>
+      </li>
 
       <li>Don't put anything into the <tt>&lt;body onload=...</tt>
       handler; specify a function called <tt>init</tt> instead - it
@@ -89,83 +98,83 @@ var featureList = ["grid","pivot",barchart"];
     </ol>
 
     <h3>
-        <a name="Example" id="Example"> 
-      </a>Example</h3>The
-    following example shows how to use OAT to display a date
-    picker.
+      <a name="Example" id="Example"> 
+      </a> Example</h3>
 
-    <blockquote>
+    <p>
       <br/>
+    The following example shows how to use OAT to display a date
+    picker.<br/>
+    </p>
     <pre>
 &lt;html&gt;
 &lt;head&gt;
-        &lt;script type="text/javascript"&gt;
-                var featureList=["calendar"];
-                function init() {
-                        var returnedDate = function(date) { alert("You selected "+date); }
-                        var calendar = new OAT.Calendar();
-                        
-                        var showCallback = function(event) {
-                                calendar.show(event.clientX, event.clientY, returnedDate);
-                        }
-                        
-                        OAT.Event.attach("button","click",showCallback);
-                }
-        &lt;/script&gt;
-        &lt;script type="text/javascript" src="oat/loader.js"&gt;&lt;/script&gt;
-        &lt;style type="text/css"&gt;
-                .calendar {
-                        border: 1px solid #000;
-                }
+    &lt;script type="text/javascript"&gt;
+        var featureList=["calendar"];
+        function init() {
+            var returnedDate = function(date) { alert("You selected "+date); }
+            var calendar = new OAT.Calendar();
 
-                .calendar_year, .calendar_month {
-                        text-align: center;
-                        border-bottom: 1px solid #aaa;
-                        padding: 2px 0px;
-                }
+            var showCallback = function(event) {
+                calendar.show(event.clientX, event.clientY, returnedDate);
+            }
 
-                .calendar table {
-                        margin-top: 2px;
-                }
+            OAT.Event.attach("button","click",showCallback);
+        }
+    &lt;/script&gt;
+    &lt;script type="text/javascript" src="oat/loader.js"&gt;&lt;/script&gt;
+    &lt;style type="text/css"&gt;
+        .calendar {
+            border: 1px solid #000;
+        }
 
-                .calendar thead {
-                        font-weight: bold;
-                }
+        .calendar_year, .calendar_month {
+            text-align: center;
+            border-bottom: 1px solid #aaa;
+            padding: 2px 0px;
+        }
 
-                .calendar thead td {
-                        padding: 0px 2px;
-                }
+        .calendar table {
+            margin-top: 2px;
+        }
 
-                .calendar td {
-                        font-size: 60%;
-                        text-align: center;
-                }
+        .calendar thead {
+            font-weight: bold;
+        }
 
-                td.calendar_selected {
-                        background-color: #faa;
-                }
+        .calendar thead td {
+            padding: 0px 2px;
+        }
 
-                .calendar_special {
-                        color: #c55;
-                }
-        &lt;/style&gt;
-        &lt;title&gt;OAT Demo&lt;/title&gt;
+        .calendar td {
+            font-size: 60%;
+            text-align: center;
+        }
+
+        td.calendar_selected {
+            background-color: #faa;
+        }
+
+        .calendar_special {
+            color: #c55;
+        }
+    &lt;/style&gt;
+    &lt;title&gt;OAT Demo&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-        &lt;input type="button" id="button" value="Pick" /&gt;
+    &lt;input type="button" id="button" value="Pick" /&gt;
 &lt;/body&gt;
 &lt;/html&gt;
+
 </pre>
-    </blockquote>
 
     
-    
 
-    <div id="oatcopy">
-      Copyright (C) 
-      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
-      2005-2008
-    </div>
+    
+    <hr/>
   </div>
-</body>
+<div id="oatcopy">
+      Copyright (C) 2005-2008
+      <a href="http://www.openlinksw.com/">OpenLink Software</a>
+  </div>
 </html>

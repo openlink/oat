@@ -4,300 +4,356 @@
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
 
-<body>
+<div id="oatnav">
+    <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+  </div>
+  <h1> OATDOCxml</h1>
   <div class="topic-text">
     
 
-    <div id="oatnav">
-        <a href="index.html">Index</a> | 
-      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
-      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
-      </div>
-
-    
-    
-
-    <h2>
-        <a name="xml.js" id="xml.js"> 
-      </a> xml.js</h2>Useful
-    function for XML access and manipulation.
-    
-
-
     <div class="oatwikitoc">
-        <h1>Table of Contents</h1>
-    <div class="wikitoc">
+      <div class="wikitoc">
       <ul>
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
+            <a href="#OATDOCxml">OATDOCxml</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
         <a href="#xml.js">xml.js</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Functions">Functions</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Functions">Functions</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Xml.createXmlDoc(string)">OAT.Xml.createXmlDoc(string)</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Xml.createXmlDoc(string)">OAT.Xml.createXmlDoc(string)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.Xml.transformXSLT(xmlDoc,%20xslDoc[,%20paramsArray])">
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Xml.transformXSLT(xmlDoc,%20xslDoc[,%20paramsArray])">
         OAT.Xml.transformXSLT(xmlDoc, xslDoc[,
         paramsArray])</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Xml.textValue(node)">OAT.Xml.textValue(node)</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Xml.textValue(node)">OAT.Xml.textValue(node)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Xml.localName(node)">OAT.Xml.localName(node)</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Xml.localName(node)">OAT.Xml.localName(node)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Xml.childElements(node)">OAT.Xml.childElements(node)</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Xml.childElements(node)">OAT.Xml.childElements(node)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Xml.getElementsByLocalName(node,%20localName)">OAT.Xml.getElementsByLocalName(node,
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Xml.getElementsByLocalName(node,%20localName)">OAT.Xml.getElementsByLocalName(node,
         localName)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Xml.getLocalAttribute(node,%20attributeName)">OAT.Xml.getLocalAttribute(node,
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Xml.getLocalAttribute(node,%20attributeName)">OAT.Xml.getLocalAttribute(node,
         attributeName)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Xml.removeDefaultNamespace(string)">OAT.Xml.removeDefaultNamespace(string)</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Xml.removeDefaultNamespace(string)">OAT.Xml.removeDefaultNamespace(string)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.Xml.xpath(xmlDoc,%20xPathQuery,%20nsObject)">OAT.Xml.xpath(xmlDoc,
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Xml.xpath(xmlDoc,%20xPathQuery,%20nsObject)">OAT.Xml.xpath(xmlDoc,
         xPathQuery, nsObject)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Xml.escape(xml)">OAT.Xml.escape(xml)</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Xml.escape(xml)">OAT.Xml.escape(xml)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Xml.unescape(txt)">OAT.Xml.unescape(txt)</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Xml.unescape(txt)">OAT.Xml.unescape(txt)</a>
           </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Examples">Examples</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Examples">Examples</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Example%201">Example 1</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Example%201">Example 1</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Example%202">Example 2</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Example%202">Example 2</a>
+          </li>
       </ul>
     </div>
-      </div>
+    </div>
+
+    
+
+    
+
+    
+
+    <h2>
+      <a name="xml.js" id="xml.js"> 
+      </a> xml.js</h2>
+
+    <p>
+      <br/>
+    Useful function for XML access and manipulation.</p>
 
     <h3>
-        <a name="Functions" id="Functions"> 
+      <a name="Functions" id="Functions"> 
       </a> Functions</h3>
 
-    <h4>
-        <a name="OAT.Xml.createXmlDoc(string)"> 
-      </a>OAT.Xml.createXmlDoc(string)</h4>Parses
-    a string of XML data and returns a document object.
+    
 
     <h4>
-        <a name="OAT.Xml.transformXSLT(xmlDoc, xslDoc[, paramsArray])"> 
-      </a>OAT.Xml.transformXSLT(xmlDoc,
-    xslDoc[, paramsArray])</h4>Applies a XSLT template.
-    <tt>xslDoc</tt> is a template to be applied to <tt>xmlDoc</tt>.
-    Both arguments must be valid XML documents (not strings). The
-    third (optional) argument is an array of XSLT parameters. Each
-    parameter is a triple (array), which consists of
-    <tt>Namespace</tt>, <tt>Name</tt> and <tt>Value</tt>.
+      <a name="OAT.Xml.createXmlDoc(string)"> 
+      </a>
+    OAT.Xml.createXmlDoc(string)</h4>
+
+    <p>
+      <br/>
+    Parses a string of XML data and returns a document object.</p>
 
     <h4>
-        <a name="OAT.Xml.textValue(node)"> 
-      </a>OAT.Xml.textValue(node)</h4>Returns
-    a text value of <tt>node</tt>. So, for this markup --
+      <a name="OAT.Xml.transformXSLT(xmlDoc, xslDoc[, paramsArray])"> 
+      </a>
+    OAT.Xml.transformXSLT(xmlDoc, xslDoc[, paramsArray])</h4>
 
-    <blockquote>
+    <p>
+      <br/>
+    Applies a XSLT template. <tt>xslDoc</tt> is a template to be
+    applied to <tt>xmlDoc</tt> . Both arguments must be valid XML
+    documents (not strings). The third (optional) argument is an
+    array of XSLT parameters. Each parameter is a triple (array),
+    which consists of <tt>Namespace</tt> , <tt>Name</tt> and
+    <tt>Value</tt> .</p>
+
+    <h4>
+      <a name="OAT.Xml.textValue(node)"> 
+      </a>
+    OAT.Xml.textValue(node)</h4>
+
+    <p>
+      <br/>
+    Returns a text value of <tt>node</tt> . So, for this markup
+    --<br/>
+    </p>
     <pre>
-<tt>
 &lt;tag&gt;content&lt;/tag&gt;
-</tt>
+
 </pre>
-    </blockquote>-- the <tt>textValue</tt> of <tt>tag</tt> is
-    <tt>content</tt>.
+
+    <p>
+      <br/>
+    -- the <tt>textValue</tt> of <tt>tag</tt> is <tt>content</tt>
+    .</p>
 
     <h4>
-        <a name="OAT.Xml.localName(node)"> 
-      </a>OAT.Xml.localName(node)</h4>Returns
-    <tt>node</tt>'s local name - the part without namespace prefix.
-    <tt>&lt;xsl:template&gt;</tt> has a <tt>localName</tt>
-    template.
+      <a name="OAT.Xml.localName(node)"> 
+      </a>
+    OAT.Xml.localName(node)</h4>
+
+    <p>
+      <br/>
+    Returns <tt>node</tt> 's local name - the part without
+    namespace prefix. <tt>&lt;xsl:template&gt;</tt> has a
+    <tt>localName</tt> template.</p>
 
     <h4>
-        <a name="OAT.Xml.childElements(node)"> 
-      </a>OAT.Xml.childElements(node)</h4>Returns
-    all child nodes which are ordinary elements (i.e., no
-    <tt>#text</tt> nodes, etc.).
+      <a name="OAT.Xml.childElements(node)"> 
+      </a>
+    OAT.Xml.childElements(node)</h4>
+
+    <p>
+      <br/>
+    Returns all child nodes which are ordinary elements (i.e., no
+    <tt>#text</tt> nodes, etc.).</p>
 
     <h4>
-        <a name="OAT.Xml.getElementsByLocalName(node, localName)"> 
-      </a>OAT.Xml.getElementsByLocalName(node,
-    localName)</h4>Identical to <tt>getElementsByTagName</tt>, but
-    looks only into non-namespace part of tag name.
+      <a name="OAT.Xml.getElementsByLocalName(node, localName)"> 
+      </a>
+    OAT.Xml.getElementsByLocalName(node, localName)</h4>
+
+    <p>
+      <br/>
+    Identical to <tt>getElementsByTagName</tt> , but looks only
+    into non-namespace part of tag name.</p>
 
     <h4>
-        <a name="OAT.Xml.getLocalAttribute(node, attributeName)"> 
-      </a>OAT.Xml.getLocalAttribute(node,
-    attributeName)</h4>Returns a value of attribute whose
-    non-prefixed name is <tt>attributeName</tt>
+      <a name="OAT.Xml.getLocalAttribute(node, attributeName)"> 
+      </a>
+    OAT.Xml.getLocalAttribute(node, attributeName)</h4>
+
+    <p>
+      <br/>
+    Returns a value of attribute whose non-prefixed name is
+    <tt>attributeName</tt>
+    </p>
 
     <h4>
-        <a name="OAT.Xml.removeDefaultNamespace(string)"> 
-      </a>OAT.Xml.removeDefaultNamespace(string)</h4>Takes
-    an XML document in <tt>string</tt> form and removes default
-    namespace. This is useful when we want to use XPath queries
-    against such a document, since these cannot be executed against
-    documents with default namespaces. Returns XML string.
+      <a name="OAT.Xml.removeDefaultNamespace(string)"> 
+      </a>
+    OAT.Xml.removeDefaultNamespace(string)</h4>
+
+    <p>
+      <br/>
+    Takes an XML document in <tt>string</tt> form and removes
+    default namespace. This is useful when we want to use XPath
+    queries against such a document, since these cannot be executed
+    against documents with default namespaces. Returns XML
+    string.</p>
 
     <h4>
-        <a name="OAT.Xml.xpath(xmlDoc, xPathQuery, nsObject)"> 
-      </a>OAT.Xml.xpath(xmlDoc,
-    xPathQuery, nsObject)</h4>Runs an XPath query
-    (<tt>xPathQuery</tt>) against <tt>xmlDoc</tt>. Namespaces are
-    resolved as properties of <tt>nsObject</tt>.
+      <a name="OAT.Xml.xpath(xmlDoc, xPathQuery, nsObject)"> 
+      </a>
+    OAT.Xml.xpath(xmlDoc, xPathQuery, nsObject)</h4>
+
+    <p>
+      <br/>
+    Runs an XPath query ( <tt>xPathQuery</tt> ) against
+    <tt>xmlDoc</tt> . Namespaces are resolved as properties of
+    <tt>nsObject</tt> .</p>
 
     <h4>
-        <a name="OAT.Xml.escape(xml)"> 
-      </a>OAT.Xml.escape(xml)</h4>Returns
-    escaped.
+      <a name="OAT.Xml.escape(xml)"> 
+      </a> OAT.Xml.escape(xml)</h4>
+
+    <p>
+      <br/>
+    Returns escaped.</p>
 
     <h4>
-        <a name="OAT.Xml.unescape(txt)"> 
-      </a>OAT.Xml.unescape(txt)</h4>Returns
-    unescaped.
+      <a name="OAT.Xml.unescape(txt)"> 
+      </a>
+    OAT.Xml.unescape(txt)</h4>
+
+    <p>
+      <br/>
+    Returns unescaped.</p>
 
     <h3>
-        <a name="Examples" id="Examples"> 
-      </a>Examples</h3>
+      <a name="Examples" id="Examples"> 
+      </a> Examples</h3>
+
+    
 
     <h4>
-        <a name="Example 1"> 
-      </a>Example 1</h4>
+      <a name="Example 1"> 
+      </a> Example 1</h4>
 
-    <blockquote>
-      <br/>
-      <pre>
+    
+    <pre>
 var xmlDoc, xslDoc; // somehow fill these with data
 var params = [
         ["myNS","myparam1","myvalue1"],
         ["myNS","myparam2","myvalue2"]
 ]
 var result = OAT.Xml.transformXSLT(xmlDoc, xslDoc, params);
+
 </pre>
-    </blockquote>
+
+    
 
     <h4>
-        <a name="Example 2"> 
-      </a>Example 2</h4>
+      <a name="Example 2"> 
+      </a> Example 2</h4>
 
-    <blockquote>
-      <br/>
+    
     <pre>
 var xmlString = '&lt;?xml version="1.0" ?&gt;&lt;document&gt;&lt;node&gt;value&lt;/node&gt;&lt;node /&gt;&lt;/document&gt;';
 var xmlDoc = OAT.Xml.createXmlDoc(xmlString);
 var nodeArray = OAT.Xml.xpath(xmlDoc, '//node', {});
 alert(nodeArray.length); // 2
+
 </pre>
-    </blockquote>
 
     
-    
 
-    <div id="oatcopy">
-      Copyright (C) 
-      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
-      2005-2008
-    </div>
+    
+    <hr/>
   </div>
-</body>
+<div id="oatcopy">
+      Copyright (C) 2005-2008
+      <a href="http://www.openlinksw.com/">OpenLink Software</a>
+  </div>
 </html>

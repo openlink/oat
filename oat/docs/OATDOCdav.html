@@ -4,22 +4,81 @@
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
 
-<body>
+<div id="oatnav">
+    <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+  </div>
+  <h1> OATDOCdav</h1>
   <div class="topic-text">
     
 
-    <div id="oatnav">
-        <a href="index.html">Index</a> | 
-      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
-      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
-      </div>
+    <div class="oatwikitoc">
+      <div class="wikitoc">
+      <ul>
+        <li>
+            <a href="#OATDOCdav">OATDOCdav</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+        <a href="#dav.js">dav.js</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Functions">Functions</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.WebDav.init(options)">OAT.WebDav.init(options)</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.WebDav.openDialog(options)">OAT.WebDav.openDialog(options)</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.WebDav.saveDialog(options)">OAT.WebDav.saveDialog(options)</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Examples">Examples</a>
+          </li>
+      </ul>
+    </div>
+    </div>
 
     
+
+    
+
     
 
     <h2>
-        <a name="dav.js" id="dav.js"> 
-      </a>dav.js</h2>
+      <a name="dav.js" id="dav.js"> 
+      </a> dav.js</h2>
 
     <p>Displays a WebDav Browser window for file
     picking/opening/saving. Optionally prompts for auth
@@ -27,139 +86,101 @@
 
     
 
-    <div class="oatwikitoc">
-        <h1>Table of Contents</h1>
-    <div class="wikitoc">
-      <ul>
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-        <a href="#dav.js">dav.js</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Functions">Functions</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.WebDav.init(options)">OAT.WebDav.init(options)</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.WebDav.openDialog(options)">OAT.WebDav.openDialog(options)</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.WebDav.saveDialog(options)">OAT.WebDav.saveDialog(options)</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Examples">Examples</a>
-          </li>
-      </ul>
-    </div>
-      </div>
-
     <h3>
-        <a name="Functions" id="Functions"> 
+      <a name="Functions" id="Functions"> 
       </a> Functions</h3>
 
+    
+
     <h4>
-        <a name="OAT.WebDav.init(options)"> 
+      <a name="OAT.WebDav.init(options)"> 
       </a>
     OAT.WebDav.init(options)</h4>
 
     <p>Creates WebDAV Browser window and sets various
-    configuration <tt>options</tt>, if needed. All possible
+    configuration <tt>options</tt> , if needed. All possible
     options:</p>
 
     <ul>
       <li>
-          <tt>
-            <b>user</b>
-          </tt> - username</li>
+        <strong>
+          <tt>user</tt>
+        </strong> - username<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>pass</b>
-          </tt> - username</li>
+        <strong>
+          <tt>pass</tt>
+        </strong> - username<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>path</b>
-          </tt> - path which should be opened</li>
+        <strong>
+          <tt>path</tt>
+        </strong> - path which should be
+      opened<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>file</b>
-          </tt> - default preselected file name</li>
+        <strong>
+          <tt>file</tt>
+        </strong> - default preselected file
+      name<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>silentStart</b>
-          </tt> - do not display connection
-      setup dialog on WebDAV initialization</li>
+        <strong>
+          <tt>silentStart</tt>
+        </strong> - do not display
+      connection setup dialog on WebDAV initialization<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>extension</b>
-          </tt> - ID of default file type
-      extension to be selected</li>
+        <strong>
+          <tt>extension</tt>
+        </strong> - ID of default file
+      type extension to be selected<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>pathFallback</b>
-          </tt> - this is a failsafe path
-      which will be offered when HTTP errors prohibit changing to
-      requested path</li>
+        <strong>
+          <tt>pathFallback</tt>
+        </strong> - this is a
+      failsafe path which will be offered when HTTP errors prohibit
+      changing to requested path<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>imagePath</b>
-          </tt> - path to images, with trailing
-      slash</li>
+        <strong>
+          <tt>imagePath</tt>
+        </strong> - path to images,
+      with trailing slash<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>imageExt</b>
-          </tt> - image files extension</li>
+        <strong>
+          <tt>imageExt</tt>
+        </strong> - image files
+      extension<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>isDav</b>
-          </tt> - whether the server is DAV. For
-      non-DAV HTTP servers, a minimal 'prompt' will be used instead
-      of full Browser</li>
+        <strong>
+          <tt>isDav</tt>
+        </strong> - whether the server is
+      DAV. For non-DAV HTTP servers, a minimal 'prompt' will be
+      used instead of full Browser<br/>
+      When no user/pass is passed in <tt>options</tt> or
+      <tt>silentSetup</tt> is set to false, user will be prompted
+      for credentials through connection settings dialog.</li>
     </ul>
 
-    <p>When no user/pass is passed in <tt>options</tt> or
-    <tt>silentSetup</tt> is set to false, user will be prompted for
-    credentials through connection settings dialog.</p>
+    
 
     <h4>
-        <a name="OAT.WebDav.openDialog(options)"> 
-      </a>OAT.WebDav.openDialog(options)</h4>
+      <a name="OAT.WebDav.openDialog(options)"> 
+      </a>
+    OAT.WebDav.openDialog(options)</h4>
 
     <p>Opens the Browser in file browse mode. User can select a
     file, which will be passed back to application. All
@@ -168,25 +189,29 @@
 
     <ul>
       <li>
-          <tt>
-            <b>callback</b>
-          </tt> - function to be executed when
-      user selects a file. This will be called with 3 arguments:
-      <tt>path</tt>, <tt>filename</tt> and <tt>contents</tt>.</li>
+        <strong>
+          <tt>callback</tt>
+        </strong> - function to be
+      executed when user selects a file. This will be called with 3
+      arguments: <tt>path</tt> , <tt>filename</tt> and
+      <tt>contents</tt> .<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>extensionFilters</b>
-          </tt> - array of file type
-      extensions. Each item consists of 4 values: <tt>arbitrary
-      unique ID</tt>, <tt>extension</tt>, <tt>description</tt>, and
-      optional <tt>content type</tt>
-        </li>
+        <strong>
+          <tt>extensionFilters</tt>
+        </strong> - array of
+      file type extensions. Each item consists of 4 values:
+      <tt>arbitrary unique ID</tt> , <tt>extension</tt> ,
+      <tt>description</tt> , and optional <tt>content
+      type</tt>
+      </li>
     </ul>
 
     <h4>
-        <a name="OAT.WebDav.saveDialog(options)"> 
-      </a>OAT.WebDav.saveDialog(options)</h4>
+      <a name="OAT.WebDav.saveDialog(options)"> 
+      </a>
+    OAT.WebDav.saveDialog(options)</h4>
 
     <p>Opens the Browser in file save mode. User can select a
     new/existing file, the Browser will then save specified data to
@@ -196,38 +221,44 @@
 
     <ul>
       <li>
-          <tt>
-            <b>callback</b>
-          </tt> - same as in
+        <strong>
+          <tt>callback</tt>
+        </strong> - same as in
       <tt>OAT.WebDav.openDialog</tt>
-        </li>
+        <br/>
+      </li>
 
       <li>
-          <tt>
-            <b>extensionFilters</b>
-          </tt> - same as in
+        <strong>
+          <tt>extensionFilters</tt>
+        </strong> - same as in
       <tt>OAT.WebDav.openDialog</tt>
-        </li>
+        <br/>
+      </li>
 
       <li>
-          <tt>
-            <b>confirmOverwrite</b>
-          </tt> - bool, should we ask
-      for a confirmation when overwriting existing file?</li>
+        <strong>
+          <tt>confirmOverwrite</tt>
+        </strong> - bool, should
+      we ask for a confirmation when overwriting existing
+      file?<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>dataCallback</b>
-          </tt> - function which provides
-      data to be saved. Will be executed with two arguments:
-      <tt>selected file name</tt> and <tt>used extension ID</tt>.
-      If set to <tt>false</tt>, nothing will be saved.</li>
+        <strong>
+          <tt>dataCallback</tt>
+        </strong> - function which
+      provides data to be saved. Will be executed with two
+      arguments: <tt>selected file name</tt> and <tt>used extension
+      ID</tt> . If set to <tt>false</tt> , nothing will be
+      saved.</li>
     </ul>
 
     <h3>
-        <a name="Examples" id="Examples"> 
+      <a name="Examples" id="Examples"> 
       </a> Examples</h3>
-      <br/>
+
+    
     <pre>
 var options = {
         user:"demo",
@@ -248,16 +279,16 @@ function showContents(path, file, data) {
 }
 
 OAT.WebDav.openDialog({callback:showContents});
+
 </pre>
 
     
-    
 
-    <div id="oatcopy">
-      Copyright (C) 
-      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
-      2005-2008
-    </div>
+    
+    <hr/>
   </div>
-</body>
+<div id="oatcopy">
+      Copyright (C) 2005-2008
+      <a href="http://www.openlinksw.com/">OpenLink Software</a>
+  </div>
 </html>

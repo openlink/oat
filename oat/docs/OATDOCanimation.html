@@ -4,326 +4,395 @@
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
 
-<body>
+<div id="oatnav">
+    <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+  </div>
+  <h1>
+    OATDOCanimation</h1>
   <div class="topic-text">
     
 
-    <div id="oatnav">
-        <a href="index.html">Index</a> | 
-      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
-      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
-      </div>
+    <div class="oatwikitoc">
+      <div class="wikitoc">
+      <ul>
+        <li>
+            <a href="#OATDOCanimation">OATDOCanimation</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+        <a href="#animation.js">animation.js</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Objects">Objects</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Animation(element,%20optionsObject)">OAT.Animation(element,
+        optionsObject)</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.AnimationSize(element,%20optionsObject)">OAT.AnimationSize(element,
+        optionsObject)</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.AnimationPosition(element,%20optionsObject)">OAT.AnimationPosition(element,
+        optionsObject)</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.AnimationOpacity(element,%20optionsObject)">OAT.AnimationOpacity(element,
+        optionsObject)</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.AnimationCSS(element,%20optionsObject)">OAT.AnimationCSS(element,
+        optionsObject)</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Methods">Methods</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Animation::start()">OAT.Animation::start()</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Animation::stop()">OAT.Animation::stop()</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Messages">Messages</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.MSG.ANIMATION_STOP">OAT.MSG.ANIMATION_STOP</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Example">Example</a>
+          </li>
+      </ul>
+    </div>
+    </div>
 
     
+
+    
+
     
 
     <h2>
-        <a name="animation.js" id="animation.js"> 
+      <a name="animation.js" id="animation.js"> 
       </a>
     animation.js</h2>
 
     <p>Implements basic animation framework, as well as some
     pre-defined animation effects.</p>
 
-    <div class="oatwikitoc">
-        <h1>Table of Contents</h1>
-    <div class="wikitoc">
-      <ul>
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-        <a href="#animation.js">animation.js</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Objects">Objects</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Animation(element,%20optionsObject)">OAT.Animation(element,
-        optionsObject)</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.AnimationSize(element,%20optionsObject)">OAT.AnimationSize(element,
-        optionsObject)</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.AnimationPosition(element,%20optionsObject)">OAT.AnimationPosition(element,
-        optionsObject)</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.AnimationOpacity(element,%20optionsObject)">OAT.AnimationOpacity(element,
-        optionsObject)</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.AnimationCSS(element,%20optionsObject)">OAT.AnimationCSS(element,
-        optionsObject)</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Methods">Methods</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Animation::start()">OAT.Animation::start()</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Animation::stop()">OAT.Animation::stop()</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Messages">Messages</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.MSG.ANIMATION_STOP">OAT.MSG.ANIMATION_STOP</a>
-          </li>
-
-        <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Example">Example</a>
-            </li>
-      </ul>
-    </div>
-      </div>
+    
 
     <h3>
-        <a name="Objects" id="Objects"> 
+      <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
+    
+
     <h4>
-        <a name="OAT.Animation(element, optionsObject)"> 
-      </a>OAT.Animation(element,
-    optionsObject)</h4>Creates animation of <tt>element</tt>. All
-    parameters are specified in <tt>optionsObject</tt>; for most
-    use cases, it is more suitable to use some pre-defined
-    <tt>Animation*</tt> object. Properties of
-    <tt>optionsObject</tt>:
+      <a name="OAT.Animation(element, optionsObject)"> 
+      </a>
+    OAT.Animation(element, optionsObject)</h4>
+
+    <p>
+      <br/>
+    Creates animation of <tt>element</tt> . All parameters are
+    specified in <tt>optionsObject</tt> ; for most use cases, it is
+    more suitable to use some pre-defined <tt>Animation*</tt>
+    object. Properties of <tt>optionsObject</tt> :<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>
-            <b>delay</b>
-          </tt> - in msec</li>
+        <strong>
+          <tt>delay</tt>
+        </strong> - in msec<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>startFunction</b>
-          </tt> - to be executed when
-      animation starts</li>
+        <strong>
+          <tt>startFunction</tt>
+        </strong> - to be executed
+      when animation starts<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>conditionFunction</b>
-          </tt> - checked every
-      step</li>
+        <strong>
+          <tt>conditionFunction</tt>
+        </strong> - checked
+      every step<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>stepFunction</b>
-          </tt> - executed every step</li>
+        <strong>
+          <tt>stepFunction</tt>
+        </strong> - executed every
+      step<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>stopFunction</b>
-          </tt> - executed when
+        <strong>
+          <tt>stopFunction</tt>
+        </strong> - executed when
       <tt>conditionFunction</tt> returns true (and animation
       stops)</li>
     </ul>
 
     <h4>
-        <a name="OAT.AnimationSize(element, optionsObject)"> 
-      </a>OAT.AnimationSize(element,
-    optionsObject)</h4>Animates <tt>element</tt>'s size. Properties
-    of <tt>optionsObject</tt>:
+      <a name="OAT.AnimationSize(element, optionsObject)"> 
+      </a>
+    OAT.AnimationSize(element, optionsObject)</h4>
+
+    <p>
+      <br/>
+    Animates <tt>element</tt> 's size. Properties of
+    <tt>optionsObject</tt> :<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>
-            <b>delay</b>
-          </tt> - in msec</li>
+        <strong>
+          <tt>delay</tt>
+        </strong> - in msec<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>width</b>
-          </tt> - final width; -1 to ignore</li>
+        <strong>
+          <tt>width</tt>
+        </strong> - final width; -1 to
+      ignore<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>height</b>
-          </tt> - final height; -1 to ignore</li>
+        <strong>
+          <tt>height</tt>
+        </strong> - final height; -1 to
+      ignore<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>speed</b>
-          </tt> - speed of animation (in
+        <strong>
+          <tt>speed</tt>
+        </strong> - speed of animation (in
       pixels)</li>
     </ul>
 
     <h4>
-        <a name="OAT.AnimationPosition(element, optionsObject)"> 
-      </a>OAT.AnimationPosition(element,
-    optionsObject)</h4>Animates <tt>element</tt>'s position.
-    Properties of <tt>optionsObject</tt>:
+      <a name="OAT.AnimationPosition(element, optionsObject)"> 
+      </a>
+    OAT.AnimationPosition(element, optionsObject)</h4>
+
+    <p>
+      <br/>
+    Animates <tt>element</tt> 's position. Properties of
+    <tt>optionsObject</tt> :<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>
-            <b>delay</b>
-          </tt> - in msec</li>
+        <strong>
+          <tt>delay</tt>
+        </strong> - in msec<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>left</b>
-          </tt> - final left coordinate; -1 to
-      ignore</li>
+        <strong>
+          <tt>left</tt>
+        </strong> - final left coordinate;
+      -1 to ignore<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>top</b>
-          </tt> - final top coordinate; -1 to
-      ignore</li>
+        <strong>
+          <tt>top</tt>
+        </strong> - final top coordinate; -1
+      to ignore<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>speed</b>
-          </tt> - speed of animation (in
+        <strong>
+          <tt>speed</tt>
+        </strong> - speed of animation (in
       pixels)</li>
     </ul>
 
     <h4>
-        <a name="OAT.AnimationOpacity(element, optionsObject)"> 
-      </a>OAT.AnimationOpacity(element,
-    optionsObject)</h4>Animates <tt>element</tt>'s opacity.
-    Properties of <tt>optionsObject</tt>:
+      <a name="OAT.AnimationOpacity(element, optionsObject)"> 
+      </a>
+    OAT.AnimationOpacity(element, optionsObject)</h4>
+
+    <p>
+      <br/>
+    Animates <tt>element</tt> 's opacity. Properties of
+    <tt>optionsObject</tt> :<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>
-            <b>delay</b>
-          </tt> - in msec</li>
+        <strong>
+          <tt>delay</tt>
+        </strong> - in msec<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>opacity</b>
-          </tt> - final opacity in 0..1</li>
+        <strong>
+          <tt>opacity</tt>
+        </strong> - final opacity in
+      0..1<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>speed</b>
-          </tt> - speed of animation (in opacity
-      steps)</li>
+        <strong>
+          <tt>speed</tt>
+        </strong> - speed of animation (in
+      opacity steps)</li>
     </ul>
 
     <h4>
-        <a name="OAT.AnimationCSS(element, optionsObject)"> 
-      </a>OAT.AnimationCSS(element,
-    optionsObject)</h4>Animates <tt>element</tt>'s CSS property.
-    Properties of <tt>optionsObject</tt>:
+      <a name="OAT.AnimationCSS(element, optionsObject)"> 
+      </a>
+    OAT.AnimationCSS(element, optionsObject)</h4>
+
+    <p>
+      <br/>
+    Animates <tt>element</tt> 's CSS property. Properties of
+    <tt>optionsObject</tt> :<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>
-            <b>delay</b>
-          </tt> - in msec</li>
+        <strong>
+          <tt>delay</tt>
+        </strong> - in msec<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>property</b>
-          </tt> - name of CSS property</li>
+        <strong>
+          <tt>property</tt>
+        </strong> - name of CSS
+      property<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>start</b>
-          </tt> - initial value</li>
+        <strong>
+          <tt>start</tt>
+        </strong> - initial
+      value<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>step</b>
-          </tt> - per-step value</li>
+        <strong>
+          <tt>step</tt>
+        </strong> - per-step
+      value<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>stop</b>
-          </tt> - final value</li>
+        <strong>
+          <tt>stop</tt>
+        </strong> - final value</li>
     </ul>
 
     <h3>
-        <a name="Methods" id="Methods"> 
+      <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    <h4>
-        <a name="OAT.Animation::start()"> 
-      </a>OAT.Animation::start()</h4>Starts
-    the animation.
+    
 
     <h4>
-        <a name="OAT.Animation::stop()"> 
-      </a>OAT.Animation::stop()</h4>Stops the
-    animation.
+      <a name="OAT.Animation::start()"> 
+      </a>
+    OAT.Animation::start()</h4>
+
+    <p>
+      <br/>
+    Starts the animation.</p>
+
+    <h4>
+      <a name="OAT.Animation::stop()"> 
+      </a>
+    OAT.Animation::stop()</h4>
+
+    <p>
+      <br/>
+    Stops the animation.</p>
 
     <h3>
-        <a name="Messages" id="Messages"> 
+      <a name="Messages" id="Messages"> 
       </a> Messages</h3>
 
+    
+
     <h4>
-        <a name="OAT.MSG.ANIMATION_STOP" id="OAT.MSG.ANIMATION_STOP"> 
+      <a name="OAT.MSG.ANIMATION_STOP" id="OAT.MSG.ANIMATION_STOP"> 
       </a> OAT.MSG.ANIMATION_STOP</h4>
 
     <p>OAT emits this message (by its own means, not when stopped
@@ -333,30 +402,35 @@
     <p>REMARK: When attaching message listeners to Animation*
     derivatives, attach them to the <tt>.animation</tt> property
     instead. Example:</p>
-      <br/>
+
+    
     <pre>
 var as = new OAT.AnimationSize("myDiv");
 OAT.MSG.attach(as.animation, OAT.MSG.ANIMATION_STOP, myCallback);
+
 </pre>
 
+    
+
     <h3>
-        <a name="Example" id="Example"> 
-      </a>Example</h3>
-      <br/>
+      <a name="Example" id="Example"> 
+      </a> Example</h3>
+
+    
     <pre>
 var div = Dom.create("div");
 var a = new OAT.AnimationOpacity(div, {opacity:0.5, delay:50, speed: 0.02});
 a.start(); // will slowly make &lt;div&gt; element 50% transparent
+
 </pre>
 
     
-    
 
-    <div id="oatcopy">
-      Copyright (C) 
-      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
-      2005-2008
-    </div>
+    
+    <hr/>
   </div>
-</body>
+<div id="oatcopy">
+      Copyright (C) 2005-2008
+      <a href="http://www.openlinksw.com/">OpenLink Software</a>
+  </div>
 </html>

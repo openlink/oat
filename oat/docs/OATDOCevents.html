@@ -4,78 +4,87 @@
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
 
-<body>
+<div id="oatnav">
+    <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+  </div>
+  <h1>
+    OATDOCevents</h1>
   <div class="topic-text">
     
 
-    
-
-    <div id="oatnav">
-        <a href="index.html">Index</a> | 
-      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
-      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
-      </div>
-
-    <h2>
-        <a name="Event handling basics"> 
-      </a>Event handling
-    basics</h2>
-
-    <p>Event handling is very simple in this toolkit. There are two
-    routines that accomplish this:</p>
-
     <div class="oatwikitoc">
-        <h1>Table of Contents</h1>
-    <div class="wikitoc">
+      <div class="wikitoc">
       <ul>
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
+            <a href="#OATDOCevents">OATDOCevents</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
         <a href="#Event%20handling%20basics">Event handling
         basics</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.Event.attach(element,%20event,%20functionReference)">OAT.Event.attach(element,
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Event.attach(element,%20event,%20functionReference)">OAT.Event.attach(element,
         event, functionReference)</a>
-            </li>
-
-        <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Examples">Examples</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.Event.detach(element,%20event,%20functionReference)">OAT.Event.detach(element,
-        event, functionReference)</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Examples">Examples</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Example">Example</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Event.detach(element,%20event,%20functionReference)">OAT.Event.detach(element,
+        event, functionReference)</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Example">Example</a>
           </li>
       </ul>
     </div>
-      </div>
+    </div>
+
+    
+
+    
+
+    
+
+    <h2>
+      <a name="Event handling basics"> 
+      </a> Event handling
+    basics</h2>
+
+    <p>Event handling is very simple in this toolkit. There are two
+    routines that accomplish this:</p>
+
+    
 
     <h3>
-        <a name="OAT.Event.attach(element, event, functionReference)"> 
-      </a>OAT.Event.attach(element,
-    event, functionReference)</h3>
+      <a name="OAT.Event.attach(element, event, functionReference)"> 
+      </a>
+    OAT.Event.attach(element, event, functionReference)</h3>
 
     <p>First argument specifies an <tt>element</tt> which should
     detect the event. Second is the <tt>event</tt> (without the
@@ -83,46 +92,58 @@
     i.e., the name of an existing function or Anonymous
     function.</p>
 
+    
+
     <h4>
-        <a name="Examples" id="Examples"> 
-      </a>Examples</h4>
-      <br/>
+      <a name="Examples" id="Examples"> 
+      </a> Examples</h4>
+
+    
     <pre>
 var div = OAT.Dom.create("div");
 OAT.Event.attach(div, "mouseover", function() { alert('Hi!'); });
+
 </pre>
 
     <p>or</p>
-      <br/>
+
+    
     <pre>
 OAT.Event.attach("some_id", "click", genericFunctionReference);
+
 </pre>
+
+    
 
     <h3>
-        <a name="OAT.Event.detach(element, event, functionReference)"> 
+      <a name="OAT.Event.detach(element, event, functionReference)"> 
       </a>
-    OAT.Event.detach(element, event, functionReference)</h3>Use the
-    same syntax as in <tt>OAT.Event.attach()</tt>.: The
+    OAT.Event.detach(element, event, functionReference)</h3>
+
+    <p>
+      <br/>
+    Use the same syntax as in <tt>OAT.Event.attach()</tt> .: The
     <tt>functionReference</tt> argument must exist in the current
     scope, so it is not possible to remove an <tt>event</tt>
-    handled by anonymous function.
+    handled by anonymous function.</p>
 
     <h4>
-        <a name="Example" id="Example"> 
-      </a>Example</h4>
-      <br/>
+      <a name="Example" id="Example"> 
+      </a> Example</h4>
+
+    
     <pre>
 OAT.Event.detach(element, "click", functionReference);
+
 </pre>
 
     
-    
 
-    <div id="oatcopy">
-      Copyright (C) 
-      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
-      2005-2008
-    </div>
+    
+    <hr/>
   </div>
-</body>
+<div id="oatcopy">
+      Copyright (C) 2005-2008
+      <a href="http://www.openlinksw.com/">OpenLink Software</a>
+  </div>
 </html>

@@ -4,288 +4,336 @@
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
 
-<body>
+<div id="oatnav">
+    <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+  </div>
+  <h1>
+    OATDOCcalendar</h1>
   <div class="topic-text">
     
 
-    <div id="oatnav">
-        <a href="index.html">Index</a> | 
-      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
-      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
-      </div>
-
-    
-    
-
-    <h2>
-        <a name="calendar.js" id="calendar.js"> 
-      </a>
-    calendar.js</h2>Displays a calendar for date picking.
-    
-
-
     <div class="oatwikitoc">
-        <h1>Table of Contents</h1>
-    <div class="wikitoc">
+      <div class="wikitoc">
       <ul>
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
+            <a href="#OATDOCcalendar">OATDOCcalendar</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
         <a href="#calendar.js">calendar.js</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Objects">Objects</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Objects">Objects</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Calendar(optObj)">OAT.Calendar(optObj)</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Calendar(optObj)">OAT.Calendar(optObj)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Methods">Methods</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Methods">Methods</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Calendar::show(x,%20y,%20callback,%20[date])">OAT.Calendar::show(x,
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Calendar::show(x,%20y,%20callback,%20[date])">OAT.Calendar::show(x,
         y, callback, [date])</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Properties">Properties</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Properties">Properties</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.Calendar.dayNames">OAT.Calendar.dayNames</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Calendar.dayNames">OAT.Calendar.dayNames</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.Calendar.monthNames">OAT.Calendar.monthNames</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Calendar.monthNames">OAT.Calendar.monthNames</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.Calendar.specialDays">OAT.Calendar.specialDays</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Calendar.specialDays">OAT.Calendar.specialDays</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.Calendar.weekStartIndex">OAT.Calendar.weekStartIndex</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Calendar.weekStartIndex">OAT.Calendar.weekStartIndex</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.Calendar.dayZeroIndex">OAT.Calendar.dayZeroIndex</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Calendar.dayZeroIndex">OAT.Calendar.dayZeroIndex</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#CSS%20classes">CSS
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#CSS%20classes">CSS
         classes</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.calendar">.calendar</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.calendar">.calendar</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.calendar_selected">.calendar_selected</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.calendar_selected">.calendar_selected</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.calendar_special">.calendar_special</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.calendar_special">.calendar_special</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.calendar_year">.calendar_year</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.calendar_year">.calendar_year</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.calendar_month">.calendar_month</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.calendar_month">.calendar_month</a>
           </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Example">Example</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Example">Example</a>
+          </li>
       </ul>
     </div>
-      </div>
+    </div>
+
+    
+
+    
+
+    
+
+    <h2>
+      <a name="calendar.js" id="calendar.js"> 
+      </a>
+    calendar.js</h2>
+
+    <p>
+      <br/>
+    Displays a calendar for date picking.</p>
 
     <h3>
-        <a name="Objects" id="Objects"> 
+      <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
+    
+
     <h4>
-        <a name="OAT.Calendar(optObj)"> 
+      <a name="OAT.Calendar(optObj)"> 
       </a>
-    OAT.Calendar(optObj)</h4>Instantiates the <tt>OAT.Calendar</tt>
-    object. <tt>optObj</tt> may contain:
+    OAT.Calendar(optObj)</h4>
+
+    <p>
+      <br/>
+    Instantiates the <tt>OAT.Calendar</tt> object. <tt>optObj</tt>
+    may contain:<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>popup</tt> - bool; should clicking anywhere close the
-      calendar? (default: <tt>false</tt>)</li>
+        <tt>popup</tt> - bool; should clicking anywhere close the
+      calendar? (default: <tt>false</tt> )</li>
     </ul>
 
     <h3>
-        <a name="Methods" id="Methods"> 
+      <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
+    
+
     <h4>
-        <a name="OAT.Calendar::show(x, y, callback, [date])"> 
+      <a name="OAT.Calendar::show(x, y, callback, [date])"> 
       </a>
     OAT.Calendar::show(x, y, callback, [date])</h4>
 
-    <p>Shows the calendar. It will appear at <tt>[x, y]</tt>. If
+    <p>Shows the calendar. It will appear at <tt>[x, y]</tt> . If
     <tt>date</tt> is specified, it will be pre-selected. All dates
-    are in form of <tt>[year, month, day]</tt>, starting from 1.
+    are in form of <tt>[year, month, day]</tt> , starting from 1.
     When user selects a date, a <tt>callback(date)</tt> will be
     called.</p>
 
+    
+
     <h3>
-        <a name="Properties" id="Properties"> 
+      <a name="Properties" id="Properties"> 
       </a> Properties</h3>
 
-    <h4>
-        <a name="OAT.Calendar.dayNames" id="OAT.Calendar.dayNames"> 
-      </a> OAT.Calendar.dayNames</h4>array of
-    7 day names
+    
 
     <h4>
-        <a name="OAT.Calendar.monthNames" id="OAT.Calendar.monthNames"> 
-      </a>
-    OAT.Calendar.monthNames</h4>array of 12 month names
+      <a name="OAT.Calendar.dayNames" id="OAT.Calendar.dayNames"> 
+      </a> OAT.Calendar.dayNames</h4>
+
+    <p>
+      <br/>
+    array of 7 day names</p>
 
     <h4>
-        <a name="OAT.Calendar.specialDays" id="OAT.Calendar.specialDays"> 
-      </a>
-    OAT.Calendar.specialDays</h4>array specifying which days should
-    be special (weekends)
+      <a name="OAT.Calendar.monthNames" id="OAT.Calendar.monthNames"> 
+      </a> OAT.Calendar.monthNames</h4>
+
+    <p>
+      <br/>
+    array of 12 month names</p>
 
     <h4>
-        <a name="OAT.Calendar.weekStartIndex" id="OAT.Calendar.weekStartIndex"> 
-      </a>
-    OAT.Calendar.weekStartIndex</h4>index of day (in
-    <tt>OAT.Calendar.dayNames</tt>) when week starts
+      <a name="OAT.Calendar.specialDays" id="OAT.Calendar.specialDays"> 
+      </a> OAT.Calendar.specialDays</h4>
+
+    <p>
+      <br/>
+    array specifying which days should be special (weekends)</p>
 
     <h4>
-        <a name="OAT.Calendar.dayZeroIndex" id="OAT.Calendar.dayZeroIndex"> 
+      <a name="OAT.Calendar.weekStartIndex" id="OAT.Calendar.weekStartIndex"> 
       </a>
-    OAT.Calendar.dayZeroIndex</h4>index of day (in
-    <tt>OAT.Calendar.dayNames</tt>) for which
-    <tt>Date::getDay()</tt> returns 0, i.e., "Sun".
+    OAT.Calendar.weekStartIndex</h4>
+
+    <p>
+      <br/>
+    index of day (in <tt>OAT.Calendar.dayNames</tt> ) when week
+    starts</p>
+
+    <h4>
+      <a name="OAT.Calendar.dayZeroIndex" id="OAT.Calendar.dayZeroIndex"> 
+      </a> OAT.Calendar.dayZeroIndex</h4>
+
+    <p>
+      <br/>
+    index of day (in <tt>OAT.Calendar.dayNames</tt> ) for which
+    <tt>Date::getDay()</tt> returns 0, i.e., "Sun".</p>
 
     <h3>
-        <a name="CSS classes"> 
+      <a name="CSS classes"> 
       </a> CSS classes</h3>
 
+    
+
     <h4>
-        <a name=".calendar"> 
+      <a name=".calendar"> 
       </a> .calendar</h4>
 
     <p>CSS class of calendar div.</p>
 
+    
+
     <h4>
-        <a name=".calendar_selected"> 
+      <a name=".calendar_selected"> 
       </a> .calendar_selected</h4>
 
     <p>CSS class of previously selected day.</p>
 
+    
+
     <h4>
-        <a name=".calendar_special"> 
+      <a name=".calendar_special"> 
       </a> .calendar_special</h4>
 
     <p>CSS class of special days, e.g., Sundays, holidays.</p>
 
+    
+
     <h4>
-        <a name=".calendar_year"> 
+      <a name=".calendar_year"> 
       </a> .calendar_year</h4>
 
     <p>CSS class of div containing the year title and
     selection.</p>
 
+    
+
     <h4>
-        <a name=".calendar_month"> 
+      <a name=".calendar_month"> 
       </a> .calendar_month</h4>
 
     <p>CSS class of div containing the month title and
     selection.</p>
 
+    
+
     <h3>
-        <a name="Example" id="Example"> 
+      <a name="Example" id="Example"> 
       </a> Example</h3>
-      <br/>
+
+    
     <pre>
 var c = new OAT.Calendar();
 c.dayNames = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
@@ -294,16 +342,16 @@ c.specialDays = [0,0,0,0,0,1,1];
 c.dayZeroIndex = 6;
 c.weekStartIndex = 6;
 c.show(100, 100, function(){});
+
 </pre>
 
     
-    
 
-    <div id="oatcopy">
-      Copyright (C) 
-      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
-      2005-2008
-    </div>
+    
+    <hr/>
   </div>
-</body>
+<div id="oatcopy">
+      Copyright (C) 2005-2008
+      <a href="http://www.openlinksw.com/">OpenLink Software</a>
+  </div>
 </html>

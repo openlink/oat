@@ -4,443 +4,516 @@
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
 
-<body>
+<div id="oatnav">
+    <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+  </div>
+  <h1> OATDOCgrid</h1>
   <div class="topic-text">
     
 
-    <div id="oatnav">
-        <a href="index.html">Index</a> | 
-      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
-      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
-      </div>
+    <div class="oatwikitoc">
+      <div class="wikitoc">
+      <ul>
+        <li>
+            <a href="#OATDOCgrid">OATDOCgrid</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+        <a href="#grid.js">grid.js</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Objects">Objects</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Grid(element,%20optionsObject)">OAT.Grid(element,
+        optionsObject)</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Methods">Methods</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Grid::createRow(data,%20[index])">OAT.Grid::createRow(data,
+        [index])</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Grid::createHeader(data)">OAT.Grid::createHeader(data)</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Grid::appendHeader(data,%20[index])">OAT.Grid::appendHeader(data,
+        [index])</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Grid::fromTable(table)">OAT.Grid::fromTable(table)</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Grid::row::addCell(data,%20[index])">OAT.Grid::row::addCell(data,
+        [index])</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Grid::removeColumn(index)">OAT.Grid::removeColumn(index)</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Grid::clearData()">OAT.Grid::clearData()</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Grid::rows[index].select()">OAT.Grid::rows[index].select()</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.Grid::rows[index].deselect()">OAT.Grid::rows[index].deselect()</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Constants">Constants</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.GridData.LIMIT">OAT.GridData.LIMIT</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.GridData.ALIGN_">OAT.GridData.ALIGN_</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.GridData.SORT_">OAT.GridData.SORT_</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.GridData.TYPE_">OAT.GridData.TYPE_</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#CSS%20classes">CSS
+        classes</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.grid">.grid</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.even">.even</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.odd">.odd</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.hover">.hover</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.index">.index</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.header_value">.header_value</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#.row_value">.row_value</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Example">Example</a>
+          </li>
+      </ul>
+    </div>
+    </div>
 
     
+
+    
+
     
 
     <h2>
-        <a name="grid.js" id="grid.js"> 
+      <a name="grid.js" id="grid.js"> 
       </a> grid.js</h2>
 
     <p>Advanced grid (table) control.</p>
 
     
 
-    <div class="oatwikitoc">
-        <h1>Table of Contents</h1>
-    <div class="wikitoc">
-      <ul>
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-        <a href="#grid.js">grid.js</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Objects">Objects</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Grid(element,%20optionsObject)">OAT.Grid(element,
-        optionsObject)</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Methods">Methods</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Grid::createRow(data,%20[index])">OAT.Grid::createRow(data,
-        [index])</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Grid::createHeader(data)">OAT.Grid::createHeader(data)</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Grid::appendHeader(data,%20[index])">OAT.Grid::appendHeader(data,
-        [index])</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Grid::fromTable(table)">OAT.Grid::fromTable(table)</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Grid::row::addCell(data,%20[index])">OAT.Grid::row::addCell(data,
-        [index])</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Grid::removeColumn(index)">OAT.Grid::removeColumn(index)</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.Grid::clearData()">OAT.Grid::clearData()</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.Grid::rows[index].select()">OAT.Grid::rows[index].select()</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.Grid::rows[index].deselect()">OAT.Grid::rows[index].deselect()</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Constants">Constants</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.GridData.LIMIT">OAT.GridData.LIMIT</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.GridData.ALIGN_">OAT.GridData.ALIGN_</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.GridData.SORT_">OAT.GridData.SORT_</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.GridData.TYPE_">OAT.GridData.TYPE_</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#CSS%20classes">CSS
-        classes</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.grid">.grid</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.even">.even</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.odd">.odd</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.hover">.hover</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.index">.index</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.header_value">.header_value</a>
-          </li>
-
-        <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#.row_value">.row_value</a>
-          </li>
-
-        <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Example">Example</a>
-            </li>
-      </ul>
-    </div>
-      </div>
-
     <h3>
-        <a name="Objects" id="Objects"> 
+      <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
+    
+
     <h4>
-        <a name="OAT.Grid(element, optionsObject)"> 
-      </a>OAT.Grid(element,
-    optionsObject)</h4>Creates a <tt>grid</tt> as a child of
-    <tt>element</tt>. <tt>optionsObject</tt> may contain:
+      <a name="OAT.Grid(element, optionsObject)"> 
+      </a>
+    OAT.Grid(element, optionsObject)</h4>
+
+    <p>
+      <br/>
+    Creates a <tt>grid</tt> as a child of <tt>element</tt> .
+    <tt>optionsObject</tt> may contain:<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>
-            <b>autoNumber</b>
-          </tt> - Grid will automatically add
-      the first auto-numbered column</li>
+        <strong>
+          <tt>autoNumber</tt>
+        </strong> - Grid will
+      automatically add the first auto-numbered column<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>rowOffset</b>
-          </tt> - starting offset for
-      auto-numbered column</li>
+        <strong>
+          <tt>rowOffset</tt>
+        </strong> - starting offset for
+      auto-numbered column<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>allowColumnHiding</b>
-          </tt> - user can toggle
-      column visibility at runtime</li>
+        <strong>
+          <tt>allowColumnHiding</tt>
+        </strong> - user can
+      toggle column visibility at runtime<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>sortFunc</b>
-          </tt> - custom user-specified sorting
-      routine</li>
+        <strong>
+          <tt>sortFunc</tt>
+        </strong> - custom
+      user-specified sorting routine<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>imagePath</b>
-          </tt> - path to images (with trailing
-      slash)</li>
+        <strong>
+          <tt>imagePath</tt>
+        </strong> - path to images
+      (with trailing slash)<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>reorderNotifier</b>
-          </tt> - routine to be called
-      when column reordering occurs</li>
+        <strong>
+          <tt>reorderNotifier</tt>
+        </strong> - routine to be
+      called when column reordering occurs</li>
     </ul>
 
     <h3>
-        <a name="Methods" id="Methods"> 
+      <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
+    
+
     <h4>
-        <a name="OAT.Grid::createRow(data, [index])"> 
-      </a>OAT.Grid::createRow(data,
-    [index])</h4>Adds a row. If <tt>index</tt> is present, it
-    specifies at which index the new row should be inserted.
-    <tt>Data</tt> is an array of either values or objects. If
-    objects are used, they should contain:
+      <a name="OAT.Grid::createRow(data, [index])"> 
+      </a>
+    OAT.Grid::createRow(data, [index])</h4>
+
+    <p>
+      <br/>
+    Adds a row. If <tt>index</tt> is present, it specifies at which
+    index the new row should be inserted. <tt>Data</tt> is an array
+    of either values or objects. If objects are used, they should
+    contain:<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>
-            <b>value</b>
-          </tt> - cell value</li>
+        <strong>
+          <tt>value</tt>
+        </strong> - cell value<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>align</b>
-          </tt> - one of ALIGN_ constants</li>
-    </ul>
-
-    <h4>
-        <a name="OAT.Grid::createHeader(data)"> 
-      </a>OAT.Grid::createHeader(data)</h4>Creates
-    a header row. <tt>Data</tt> is an array of either values or
-    objects. If objects are used, they should contain:
-
-    <ul>
-      <li>
-          <tt>
-            <b>value</b>
-          </tt> - cell value</li>
-
-      <li>
-          <tt>
-            <b>sortable</b>
-          </tt> - whether this column is
-      sortable</li>
-
-      <li>
-          <tt>
-            <b>draggable</b>
-          </tt> - whether this column is
-      draggable</li>
-
-      <li>
-          <tt>
-            <b>resizable</b>
-          </tt> - whether this column is
-      resizable</li>
-
-      <li>
-          <tt>
-            <b>align</b>
-          </tt> - one of <tt>ALIGN_</tt>
-      constants</li>
-
-      <li>
-          <tt>
-            <b>sort</b>
-          </tt> - one of <tt>SORT_</tt>
-      constants</li>
-
-      <li>
-          <tt>
-            <b>type</b>
-          </tt> - one of <tt>TYPE_</tt>
+        <strong>
+          <tt>align</tt>
+        </strong> - one of ALIGN_
       constants</li>
     </ul>
 
     <h4>
-        <a name="OAT.Grid::appendHeader(data, [index])"> 
-      </a>OAT.Grid::appendHeader(data,
-    [index])</h4>Adds a new header cell. If <tt>index</tt> is
-    present, it specifies at which index the new cell should be
-    inserted. <tt>Data</tt> are in the same format as in
-    <tt>OAT.Grid::createHeader()</tt>.
+      <a name="OAT.Grid::createHeader(data)"> 
+      </a>
+    OAT.Grid::createHeader(data)</h4>
+
+    <p>
+      <br/>
+    Creates a header row. <tt>Data</tt> is an array of either
+    values or objects. If objects are used, they should
+    contain:<br/>
+    </p>
+
+    <ul>
+      <li>
+        <strong>
+          <tt>value</tt>
+        </strong> - cell value<br/>
+      </li>
+
+      <li>
+        <strong>
+          <tt>sortable</tt>
+        </strong> - whether this column
+      is sortable<br/>
+      </li>
+
+      <li>
+        <strong>
+          <tt>draggable</tt>
+        </strong> - whether this column
+      is draggable<br/>
+      </li>
+
+      <li>
+        <strong>
+          <tt>resizable</tt>
+        </strong> - whether this column
+      is resizable<br/>
+      </li>
+
+      <li>
+        <strong>
+          <tt>align</tt>
+        </strong> - one of <tt>ALIGN_</tt>
+      constants<br/>
+      </li>
+
+      <li>
+        <strong>
+          <tt>sort</tt>
+        </strong> - one of <tt>SORT_</tt>
+      constants<br/>
+      </li>
+
+      <li>
+        <strong>
+          <tt>type</tt>
+        </strong> - one of <tt>TYPE_</tt>
+      constants</li>
+    </ul>
 
     <h4>
-        <a name="OAT.Grid::fromTable(table)"> 
-      </a>OAT.Grid::fromTable(table)</h4>Converts
-    an existing <tt>table</tt> into a grid.
+      <a name="OAT.Grid::appendHeader(data, [index])"> 
+      </a>
+    OAT.Grid::appendHeader(data, [index])</h4>
+
+    <p>
+      <br/>
+    Adds a new header cell. If <tt>index</tt> is present, it
+    specifies at which index the new cell should be inserted.
+    <tt>Data</tt> are in the same format as in
+    <tt>OAT.Grid::createHeader()</tt> .</p>
 
     <h4>
-        <a name="OAT.Grid::row::addCell(data, [index])"> 
-      </a>OAT.Grid::row::addCell(data,
-    [index])</h4>Adds one cell to one row. If <tt>index</tt> is
-    present, it specifies at which index new cell should be
-    inserted. <tt>Data</tt> are in the same format as in
-    <tt>OAT.Grid::createRow()</tt>. This method should be called as
-    <tt>grid.rows[i].addCell()</tt>.
+      <a name="OAT.Grid::fromTable(table)"> 
+      </a>
+    OAT.Grid::fromTable(table)</h4>
+
+    <p>
+      <br/>
+    Converts an existing <tt>table</tt> into a grid.</p>
 
     <h4>
-        <a name="OAT.Grid::removeColumn(index)"> 
-      </a>OAT.Grid::removeColumn(index)</h4>Removes
-    one column specified by <tt>index</tt> from the grid.
+      <a name="OAT.Grid::row::addCell(data, [index])"> 
+      </a>
+    OAT.Grid::row::addCell(data, [index])</h4>
+
+    <p>
+      <br/>
+    Adds one cell to one row. If <tt>index</tt> is present, it
+    specifies at which index new cell should be inserted.
+    <tt>Data</tt> are in the same format as in
+    <tt>OAT.Grid::createRow()</tt> . This method should be called
+    as <tt>grid.rows[i].addCell()</tt> .</p>
 
     <h4>
-        <a name="OAT.Grid::clearData()"> 
-      </a>OAT.Grid::clearData()</h4>Clears
-    the grid (preserves header).
+      <a name="OAT.Grid::removeColumn(index)"> 
+      </a>
+    OAT.Grid::removeColumn(index)</h4>
+
+    <p>
+      <br/>
+    Removes one column specified by <tt>index</tt> from the
+    grid.</p>
 
     <h4>
-        <a name="OAT.Grid::rows[index].select()"> 
-      </a>OAT.Grid::rows[index].select()</h4>Selects
-    row.
+      <a name="OAT.Grid::clearData()"> 
+      </a>
+    OAT.Grid::clearData()</h4>
+
+    <p>
+      <br/>
+    Clears the grid (preserves header).</p>
 
     <h4>
-        <a name="OAT.Grid::rows[index].deselect()"> 
-      </a>OAT.Grid::rows[index].deselect()</h4>Deselects
-    row.
+      <a name="OAT.Grid::rows[index].select()"> 
+      </a>
+    OAT.Grid::rows[index].select()</h4>
+
+    <p>
+      <br/>
+    Selects row.</p>
+
+    <h4>
+      <a name="OAT.Grid::rows[index].deselect()"> 
+      </a>
+    OAT.Grid::rows[index].deselect()</h4>
+
+    <p>
+      <br/>
+    Deselects row.</p>
 
     <h3>
-        <a name="Constants" id="Constants"> 
+      <a name="Constants" id="Constants"> 
       </a> Constants</h3>
 
-    <h4>
-        <a name="OAT.GridData.LIMIT" id="OAT.GridData.LIMIT"> 
-      </a>
-    OAT.GridData.LIMIT</h4>Sets the minimal width of the column.
+    
 
     <h4>
-        <a name="OAT.GridData.ALIGN_" id="OAT.GridData.ALIGN_"> 
+      <a name="OAT.GridData.LIMIT" id="OAT.GridData.LIMIT"> 
+      </a>
+    OAT.GridData.LIMIT</h4>
+
+    <p>
+      <br/>
+    Sets the minimal width of the column.</p>
+
+    <h4>
+      <a name="OAT.GridData.ALIGN_" id="OAT.GridData.ALIGN_"> 
       </a>
     OAT.GridData.ALIGN_</h4>
 
@@ -448,51 +521,60 @@
 
     <ul>
       <li>
-          <tt>
-            <b>OAT.GridData.ALIGN_CENTER</b>
-          </tt>
-        </li>
+      <strong>
+          <tt>OAT.GridData.ALIGN_CENTER</tt>
+        </strong>
+        <br/>
+      </li>
 
       <li>
-          <tt>
-            <b>OAT.GridData.ALIGN_LEFT</b>
-          </tt>
-        </li>
+      <strong>
+          <tt>OAT.GridData.ALIGN_LEFT</tt>
+        </strong>
+        <br/>
+      </li>
 
       <li>
-          <tt>
-            <b>OAT.GridData.ALIGN_RIGHT</b>
-          </tt>
-        </li>
+        <strong>
+          <tt>OAT.GridData.ALIGN_RIGHT</tt>
+        </strong>
+      </li>
     </ul>
 
     <h4>
-        <a name="OAT.GridData.SORT_" id="OAT.GridData.SORT_"> 
+      <a name="OAT.GridData.SORT_" id="OAT.GridData.SORT_"> 
       </a>
-    OAT.GridData.SORT_</h4>Column sorting order.
+    OAT.GridData.SORT_</h4>
+
+    <p>
+      <br/>
+    Column sorting order.<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>
-            <b>OAT.GridData.SORT_NONE</b>
-          </tt>
-        </li>
+      <strong>
+          <tt>OAT.GridData.SORT_NONE</tt>
+        </strong>
+        <br/>
+      </li>
 
       <li>
-          <tt>
-            <b>OAT.GridData.SORT_ASC</b>
-          </tt>
-        </li>
+      <strong>
+          <tt>OAT.GridData.SORT_ASC</tt>
+        </strong>
+        <br/>
+      </li>
 
       <li>
-          <tt>
-            <b>OAT.GridData.SORT_DESC</b>
-          </tt>
-        </li>
+        <strong>
+          <tt>OAT.GridData.SORT_DESC</tt>
+        </strong>
+      </li>
     </ul>
 
     <h4>
-        <a name="OAT.GridData.TYPE_" id="OAT.GridData.TYPE_"> 
+      <a name="OAT.GridData.TYPE_" id="OAT.GridData.TYPE_"> 
       </a>
     OAT.GridData.TYPE_</h4>
 
@@ -503,79 +585,107 @@
 
     <ul>
       <li>
-          <tt>
-            <b>OAT.GridData.TYPE_AUTO</b>
-          </tt>
-        </li>
+      <strong>
+          <tt>OAT.GridData.TYPE_AUTO</tt>
+        </strong>
+        <br/>
+      </li>
 
       <li>
-          <tt>
-            <b>OAT.GridData.TYPE_STRING</b>
-          </tt>
-        </li>
+      <strong>
+          <tt>OAT.GridData.TYPE_STRING</tt>
+        </strong>
+        <br/>
+      </li>
 
       <li>
-          <tt>
-            <b>OAT.GridData.TYPE_NUMERIC</b>
-          </tt>
-        </li>
+        <strong>
+          <tt>OAT.GridData.TYPE_NUMERIC</tt>
+        </strong>
+      </li>
     </ul>
 
     <h3>
-        <a name="CSS classes"> 
+      <a name="CSS classes"> 
       </a> CSS classes</h3>
 
-    <h4>
-        <a name=".grid"> 
-      </a> .grid</h4>CSS class of grid table
-    element.
+    
 
     <h4>
-        <a name=".even"> 
-      </a> .even</h4>CSS class of even and odd
-    rows.
+      <a name=".grid"> 
+      </a> .grid</h4>
+
+    <p>
+      <br/>
+    CSS class of grid table element.</p>
 
     <h4>
-        <a name=".odd"> 
-      </a> .odd</h4>CSS class of even and odd
-    rows.
+      <a name=".even"> 
+      </a> .even</h4>
+
+    <p>
+      <br/>
+    CSS class of even and odd rows.</p>
 
     <h4>
-        <a name=".hover"> 
-      </a> .hover</h4>CSS class of hovered row.
+      <a name=".odd"> 
+      </a> .odd</h4>
+
+    <p>
+      <br/>
+    CSS class of even and odd rows.</p>
 
     <h4>
-        <a name=".index"> 
-      </a> .index</h4>CSS class of the first
-    column (index) when auto numbering option is active.
+      <a name=".hover"> 
+      </a> .hover</h4>
+
+    <p>
+      <br/>
+    CSS class of hovered row.</p>
 
     <h4>
-        <a name=".header_value"> 
-      </a> .header_value</h4>CSS class of
-    the header (first row) column.
+      <a name=".index"> 
+      </a> .index</h4>
+
+    <p>
+      <br/>
+    CSS class of the first column (index) when auto numbering
+    option is active.</p>
 
     <h4>
-        <a name=".row_value"> 
-      </a> .row_value</h4>CSS class of a
-    regular data column.
+      <a name=".header_value"> 
+      </a> .header_value</h4>
+
+    <p>
+      <br/>
+    CSS class of the header (first row) column.</p>
+
+    <h4>
+      <a name=".row_value"> 
+      </a> .row_value</h4>
+
+    <p>
+      <br/>
+    CSS class of a regular data column.</p>
 
     <h3>
-        <a name="Example" id="Example"> 
-      </a>Example</h3>
-      <br/>
+      <a name="Example" id="Example"> 
+      </a> Example</h3>
+
+    
     <pre>
 myGridInstance.rows[index].select(); 
 myGridInstance.rows[index].deselect(); 
+
 </pre>
-    
 
     
 
-    <div id="oatcopy">
-      Copyright (C) 
-      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
-      2005-2008
-    </div>
+    
+    <hr/>
   </div>
-</body>
+<div id="oatcopy">
+      Copyright (C) 2005-2008
+      <a href="http://www.openlinksw.com/">OpenLink Software</a>
+  </div>
 </html>

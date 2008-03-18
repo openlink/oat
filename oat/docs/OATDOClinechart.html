@@ -4,270 +4,332 @@
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
 
-<body>
+<div id="oatnav">
+    <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+  </div>
+  <h1>
+    OATDOClinechart</h1>
   <div class="topic-text">
     
 
-    <div id="oatnav">
-        <a href="index.html">Index</a> | 
-      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
-      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
-      </div>
-
-    
-    
-
-    <h2>
-        <a name="linechart.js" id="linechart.js"> 
-      </a>
-    linechart.js</h2>
-
-    <p>Library for drawing Line charts, using SVG.</p>
-    
-
-
     <div class="oatwikitoc">
-        <h1>Table of Contents</h1>
-    <div class="wikitoc">
+      <div class="wikitoc">
       <ul>
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
+            <a href="#OATDOClinechart">OATDOClinechart</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
         <a href="#linechart.js">linechart.js</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Functions">Functions</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Functions">Functions</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.LineChart(div,%20optObj)">OAT.LineChart(div,
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.LineChart(div,%20optObj)">OAT.LineChart(div,
         optObj)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Methods">Methods</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Methods">Methods</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.LineChart::attachData(dataArray)">OAT.LineChart::attachData(dataArray)</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.LineChart::attachData(dataArray)">OAT.LineChart::attachData(dataArray)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.LineChart::attachTextX(textArray)">OAT.LineChart::attachTextX(textArray)</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.LineChart::attachTextX(textArray)">OAT.LineChart::attachTextX(textArray)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.LineChart::attachTextY(textArray)">OAT.LineChart::attachTextY(textArray)</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.LineChart::attachTextY(textArray)">OAT.LineChart::attachTextY(textArray)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.LineChart::draw()">OAT.LineChart::draw()</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.LineChart::draw()">OAT.LineChart::draw()</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Constants">Constants</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Constants">Constants</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.LineChartMarker.MARKER_">OAT.LineChartMarker.MARKER_</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.LineChartMarker.MARKER_">OAT.LineChartMarker.MARKER_</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Example">Example</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Example">Example</a>
           </li>
       </ul>
     </div>
-      </div>
+    </div>
+
+    
+
+    
+
+    
+
+    <h2>
+      <a name="linechart.js" id="linechart.js"> 
+      </a>
+    linechart.js</h2>
+
+    <p>Library for drawing Line charts, using SVG.</p>
+
+    
 
     <h3>
-        <a name="Functions" id="Functions"> 
+      <a name="Functions" id="Functions"> 
       </a> Functions</h3>
 
+    
+
     <h4>
-        <a name="OAT.LineChart(div, optObj)"> 
+      <a name="OAT.LineChart(div, optObj)"> 
       </a>
-    OAT.LineChart(div, optObj)</h4>Creates a Line Chart inside
-    <tt>div</tt>, <tt>optObj</tt> describes its properties. Its
-    values:
+    OAT.LineChart(div, optObj)</h4>
+
+    <p>
+      <br/>
+    Creates a Line Chart inside <tt>div</tt> , <tt>optObj</tt>
+    describes its properties. Its values:<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>
-            <b>paddingLeft</b>, <b>paddingBottom</b>,
-      <b>paddingTop</b>, <b>paddingRight</b>
-          </tt>
-        </li>
+        <strong>
+          <tt>paddingLeft</tt>
+        </strong> ,
+      <strong>
+          <tt>paddingBottom</tt>
+        </strong> ,
+      <strong>
+          <tt>paddingTop</tt>
+        </strong> ,
+      <strong>
+          <tt>paddingRight</tt>
+        </strong>
+        <br/>
+      </li>
 
       <li>
-          <tt>
-            <b>axes</b>
-          </tt> - bool, should axes be drawn?</li>
+        <strong>
+          <tt>axes</tt>
+        </strong> - bool, should axes be
+      drawn?<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>legend</b>
-          </tt> - bool, should legend be
-      drawn?</li>
+        <strong>
+          <tt>legend</tt>
+        </strong> - bool, should legend be
+      drawn?<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>markerSize</b>
-          </tt> - int</li>
+        <strong>
+          <tt>markerSize</tt>
+        </strong> - int<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>colors</b>
-          </tt> - array of strings; one color per
-      each dataset</li>
+        <strong>
+          <tt>colors</tt>
+        </strong> - array of strings; one
+      color per each dataset<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>grid</b>
-          </tt> - bool, should horizontal lines be
-      drawn?</li>
+        <strong>
+          <tt>grid</tt>
+        </strong> - bool, should horizontal
+      lines be drawn?<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>gridDesc</b>
-          </tt> - bool; should labels for
-      horizontal lines be drawn?</li>
+        <strong>
+          <tt>gridDesc</tt>
+        </strong> - bool; should labels
+      for horizontal lines be drawn?<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>gridNum</b>
-          </tt> - int; approximate count of
-      horizontal lines</li>
+        <strong>
+          <tt>gridNum</tt>
+        </strong> - int; approximate
+      count of horizontal lines<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>desc</b>
-          </tt> - bool; should X labels be
-      drawn?</li>
+        <strong>
+          <tt>desc</tt>
+        </strong> - bool; should X labels be
+      drawn?<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>markers</b>
-          </tt> - array of marker constants</li>
+        <strong>
+          <tt>markers</tt>
+        </strong> - array of marker
+      constants<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>gridColor</b>
-          </tt> - string</li>
+        <strong>
+          <tt>gridColor</tt>
+        </strong> - string<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>fontSize</b>
-          </tt> - int</li>
+        <strong>
+          <tt>fontSize</tt>
+        </strong> - int</li>
     </ul>
 
     <h3>
-        <a name="Methods" id="Methods"> 
+      <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    <h4>
-        <a name="OAT.LineChart::attachData(dataArray)"> 
-      </a>OAT.LineChart::attachData(dataArray)</h4>Adds
-    data to chart. <tt>dataArray</tt> may be an array of arrays; in
-    this case, each sub-array is treated as one dataset.
+    
 
     <h4>
-        <a name="OAT.LineChart::attachTextX(textArray)"> 
-      </a>OAT.LineChart::attachTextX(textArray)</h4>Adds
-    X axis labels.
+      <a name="OAT.LineChart::attachData(dataArray)"> 
+      </a>
+    OAT.LineChart::attachData(dataArray)</h4>
+
+    <p>
+      <br/>
+    Adds data to chart. <tt>dataArray</tt> may be an array of
+    arrays; in this case, each sub-array is treated as one
+    dataset.</p>
 
     <h4>
-        <a name="OAT.LineChart::attachTextY(textArray)"> 
-      </a>OAT.LineChart::attachTextY(textArray)</h4>Adds
-    legend labels.
+      <a name="OAT.LineChart::attachTextX(textArray)"> 
+      </a>
+    OAT.LineChart::attachTextX(textArray)</h4>
+
+    <p>
+      <br/>
+    Adds X axis labels.</p>
 
     <h4>
-        <a name="OAT.LineChart::draw()"> 
-      </a>OAT.LineChart::draw()</h4>Draws the
-    chart.
+      <a name="OAT.LineChart::attachTextY(textArray)"> 
+      </a>
+    OAT.LineChart::attachTextY(textArray)</h4>
+
+    <p>
+      <br/>
+    Adds legend labels.</p>
+
+    <h4>
+      <a name="OAT.LineChart::draw()"> 
+      </a>
+    OAT.LineChart::draw()</h4>
+
+    <p>
+      <br/>
+    Draws the chart.</p>
 
     <h3>
-        <a name="Constants" id="Constants"> 
+      <a name="Constants" id="Constants"> 
       </a> Constants</h3>
 
+    
+
     <h4>
-        <a name="OAT.LineChartMarker.MARKER_" id="OAT.LineChartMarker.MARKER_"> 
+      <a name="OAT.LineChartMarker.MARKER_" id="OAT.LineChartMarker.MARKER_"> 
       </a>
-    OAT.LineChartMarker.MARKER_</h4>Constants specifying shape of
-    the value markers.
+    OAT.LineChartMarker.MARKER_</h4>
+
+    <p>
+      <br/>
+    Constants specifying shape of the value markers.<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>
-            <b>OAT.LineChartMarker.MARKER_CIRCLE</b>
-          </tt>
-        </li>
+      <strong>
+          <tt>OAT.LineChartMarker.MARKER_CIRCLE</tt>
+        </strong>
+        <br/>
+      </li>
 
       <li>
-          <tt>
-            <b>OAT.LineChartMarker.MARKER_TRIANGLE</b>
-          </tt>
-        </li>
+      <strong>
+          <tt>OAT.LineChartMarker.MARKER_TRIANGLE</tt>
+        </strong>
+        <br/>
+      </li>
 
       <li>
-          <tt>
-            <b>OAT.LineChartMarker.MARKER_CROSS</b>
-          </tt>
-        </li>
+      <strong>
+          <tt>OAT.LineChartMarker.MARKER_CROSS</tt>
+        </strong>
+        <br/>
+      </li>
 
       <li>
-          <tt>
-            <b>OAT.LineChartMarker.MARKER_SQUARE</b>
-          </tt>
-        </li>
+      <strong>
+          <tt>OAT.LineChartMarker.MARKER_SQUARE</tt>
+        </strong>
+      </li>
     </ul>
 
     <h3>
-        <a name="Example" id="Example"> 
-      </a>Example</h3>
-      <br/>
+      <a name="Example" id="Example"> 
+      </a> Example</h3>
+
+    
     <pre>
 var data = [ [1,2,4,3], [4,3,2,1], [2,1,3,4], [3,4,1,2]];
 var lc = new OAT.LineChart("myDiv",{markerSize:6});
@@ -275,16 +337,16 @@ lc.attachData(data);
 lc.attachTextX(["a","b","c","d"]);
 lc.attachTextY(["red","blue","green","yellow"]);
 lc.draw();
+
 </pre>
 
     
-    
 
-    <div id="oatcopy">
-      Copyright (C) 
-      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
-      2005-2008
-    </div>
+    
+    <hr/>
   </div>
-</body>
+<div id="oatcopy">
+      Copyright (C) 2005-2008
+      <a href="http://www.openlinksw.com/">OpenLink Software</a>
+  </div>
 </html>

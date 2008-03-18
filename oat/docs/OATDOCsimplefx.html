@@ -4,322 +4,369 @@
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
 
-<body>
+<div id="oatnav">
+    <a href="index.html">Index</a> | 
+      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
+      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
+  </div>
+  <h1>
+    OATDOCsimplefx</h1>
   <div class="topic-text">
     
 
-    <div id="oatnav">
-        <a href="index.html">Index</a> | 
-      <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
-      <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
-      </div>
-
-    
-    
-
-    <h2>
-        <a name="simplefx.js" id="simplefx.js"> 
-      </a>simplefx.js</h2>
-
-    <p>Simple eyecandy effects: shadows, rounding etc.</p>
-    
-
-
     <div class="oatwikitoc">
-        <h1>Table of Contents</h1>
-    <div class="wikitoc">
+      <div class="wikitoc">
       <ul>
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
+            <a href="#OATDOCsimplefx">OATDOCsimplefx</a>
+          </li>
+
+        <li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
         <a href="#simplefx.js">simplefx.js</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#Functions">Functions</a>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Functions">Functions</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.SimpleFX.shadow(element,%20options)">OAT.SimpleFX.shadow(element,
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.SimpleFX.shadow(element,%20options)">OAT.SimpleFX.shadow(element,
         options)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.SimpleFX.roundImg(element,%20options)">OAT.SimpleFX.roundImg(element,
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.SimpleFX.roundImg(element,%20options)">OAT.SimpleFX.roundImg(element,
         options)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#OAT.SimpleFX.roundDiv(element,%20optionsObject)">OAT.SimpleFX.roundDiv(element,
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.SimpleFX.roundDiv(element,%20optionsObject)">OAT.SimpleFX.roundDiv(element,
         optionsObject)</a>
           </li>
 
         <li>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label>
-            <label class="c2">_</label> <a href="#OAT.SimpleFX.shader(clicker,%20target,%20options)">OAT.SimpleFX.shader(clicker,
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#OAT.SimpleFX.shader(clicker,%20target,%20options)">OAT.SimpleFX.shader(clicker,
         target, options)</a>
           </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Examples">Examples</a>
-            </li>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Examples">Examples</a>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Example%201,%20using%20OAT.SimpleFX.roundImg">Example 1,
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Example%201,%20using%20OAT.SimpleFX.roundImg">Example 1,
         using OAT.SimpleFX.roundImg</a>
-            </li>
+          </li>
 
         <li>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label>
-              <label class="c2">_</label> <a href="#Example%202,%20using%20OAT.SimpleFX.roundDiv">Example 2,
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label>
+            <label class="c1">_</label> <a href="#Example%202,%20using%20OAT.SimpleFX.roundDiv">Example 2,
         using OAT.SimpleFX.roundDiv</a>
-            </li>
+          </li>
       </ul>
     </div>
-      </div>
+    </div>
+
+    
+
+    
+
+    
+
+    <h2>
+      <a name="simplefx.js" id="simplefx.js"> 
+      </a>
+    simplefx.js</h2>
+
+    <p>Simple eyecandy effects: shadows, rounding etc.</p>
+
+    
 
     <h3>
-        <a name="Functions" id="Functions"> 
+      <a name="Functions" id="Functions"> 
       </a> Functions</h3>
 
+    
+
     <h4>
-        <a name="OAT.SimpleFX.shadow(element, options)"> 
-      </a>OAT.SimpleFX.shadow(element,
-    options)</h4>Adds a shadow to <tt>element</tt>. Available
-    <tt>options</tt> are:
+      <a name="OAT.SimpleFX.shadow(element, options)"> 
+      </a>
+    OAT.SimpleFX.shadow(element, options)</h4>
+
+    <p>
+      <br/>
+    Adds a shadow to <tt>element</tt> . Available <tt>options</tt>
+    are:<br/>
+    </p>
 
     <ul>
       <li>
-          <tt>
-            <b>imagePath</b>
-          </tt> - path to directory with shadow
-      images</li>
+        <strong>
+          <tt>imagePath</tt>
+        </strong> - path to directory
+      with shadow images<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>offsetX</b>
-          </tt>, <tt>
-            <b>offsetY</b>
-          </tt> -
-      horizontal and vertical offset</li>
+        <strong>
+          <tt>offsetX</tt>
+        </strong> ,
+      <strong>
+          <tt>offsetY</tt>
+        </strong> - horizontal and vertical
+      offset<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>rightSize</b>
-          </tt>, <tt>
-            <b>bottomSize</b>
-          </tt> -
-      dimensions of shadows</li>
+        <strong>
+          <tt>rightSize</tt>
+        </strong> ,
+      <strong>
+          <tt>bottomSize</tt>
+        </strong> - dimensions of
+      shadows<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>rightImage</b>
-          </tt>, <tt>
-            <b>bottomImage</b>
-          </tt>,
-      <tt>
-            <b>cornerImage</b>
-          </tt> - file names</li>
+        <strong>
+          <tt>rightImage</tt>
+        </strong> ,
+      <strong>
+          <tt>bottomImage</tt>
+        </strong> ,
+      <strong>
+          <tt>cornerImage</tt>
+        </strong> - file names</li>
     </ul>
 
     <h4>
-        <a name="OAT.SimpleFX.roundImg(element, options)"> 
-      </a>OAT.SimpleFX.roundImg(element,
-    options)</h4>
-      <i>
+      <a name="OAT.SimpleFX.roundImg(element, options)"> 
+      </a>
+    OAT.SimpleFX.roundImg(element, options)</h4>
+
+    <p>
+      <br/>
+    <strong>
         <div class="tdl">ToBeDone</div> - Verify <tt>OAT.SimpleFX.roundDiv</tt>
     vs <tt>OAT.SimpleFX.roundImg</tt> - original documentation had
     this section header as <tt>roundImg</tt> -- but sample code was
     <tt>roundDiv</tt>
-      </i>
-
-    <p>Creates rounded corners on <tt>element</tt>, using images.
+      </strong>
+      <br/>
+    Creates rounded corners on <tt>element</tt> , using images.
     Available <tt>options</tt> are:</p>
 
     <ul>
       <li>
-          <tt>
-            <b>corners</b>
-          </tt> - array of booleans, specifying
-      corners to be rounded. Starting from left top clockwise.</li>
+        <strong>
+          <tt>corners</tt>
+        </strong> - array of booleans,
+      specifying corners to be rounded. Starting from left top
+      clockwise.<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>edges</b>
-          </tt> - array of booleans, specifying
-      edges to be rounded. Starting from top clockwise.</li>
+        <strong>
+          <tt>edges</tt>
+        </strong> - array of booleans,
+      specifying edges to be rounded. Starting from top
+      clockwise.<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>cornerFiles</b>
-          </tt>, <tt>
-            <b>edgeFiles</b>
-          </tt> -
-      array of file names</li>
+        <strong>
+          <tt>cornerFiles</tt>
+        </strong> ,
+      <strong>
+          <tt>edgeFiles</tt>
+        </strong> - array of file
+      names<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>thickness</b>
-          </tt> - array of sizes, specifying
-      thicknesses of corners. Starting from left top
+        <strong>
+          <tt>thickness</tt>
+        </strong> - array of sizes,
+      specifying thicknesses of corners. Starting from left top
       clockwise.</li>
     </ul>
 
     <h4>
-        <a name="OAT.SimpleFX.roundDiv(element, optionsObject)"> 
-      </a>OAT.SimpleFX.roundDiv(element,
-    optionsObject)</h4>
-      <i>
+      <a name="OAT.SimpleFX.roundDiv(element, optionsObject)"> 
+      </a>
+    OAT.SimpleFX.roundDiv(element, optionsObject)</h4>
+
+    <p>
+      <br/>
+    <strong>
         <div class="tdl">ToBeDone</div> - Verify <tt>OAT.SimpleFX.roundDiv</tt>
     vs <tt>OAT.SimpleFX.roundImg</tt> - original documentation had
     this section header as <tt>roundImg</tt> -- but sample code was
     <tt>roundDiv</tt>
-      </i>
-
-    <p>Creates rounded corners on <tt>element</tt>, using stacked
+      </strong>
+      <br/>
+    Creates rounded corners on <tt>element</tt> , using stacked
     DIVs. Available <tt>options</tt> are:</p>
 
     <ul>
       <li>
-          <tt>
-            <b>corners</b>
-          </tt> - array of booleans, specifying
-      <tt>corners</tt> to be rounded, clockwise from top left.</li>
+        <strong>
+          <tt>corners</tt>
+        </strong> - array of booleans,
+      specifying <tt>corners</tt> to be rounded, clockwise from top
+      left.<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>color</b>
-          </tt>, <tt>
-            <b>backgroundColor</b>
-          </tt> -
-      colors to be used. <tt>BackgroundColor</tt> is used only for computation of
-      antialiasing color. Defaults to '<tt>auto</tt>'
-      (=inherit).</li>
+        <strong>
+          <tt>color</tt>
+        </strong> ,
+      <strong>
+          <tt>backgroundColor</tt>
+        </strong> - colors to be
+      used. BackgroundColor is used only for computation of
+      antialiasing color. Defaults to ' <tt>auto</tt> '
+      (inherit).<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>antialias</b>
-          </tt> - boolean value</li>
+        <strong>
+          <tt>antialias</tt>
+        </strong> - boolean
+      value<br/>
+      </li>
 
       <li>
-          <tt>
-            <b>size</b>
-          </tt> - radius. Good values are
-      <tt>2-8</tt>.</li>
+        <strong>
+          <tt>size</tt>
+        </strong> - radius. Good values are
+      <tt>2-8</tt> .</li>
     </ul>
 
     <h4>
-        <a name="OAT.SimpleFX.shader(clicker, target, options)"> 
-      </a>OAT.SimpleFX.shader(clicker,
-    target, options)</h4>Marks <tt>clicker</tt> as a button, which
-    hides/shows <tt>target</tt>. <tt>Target</tt> may be an array of
-    elements. Available <tt>options</tt> are:
+      <a name="OAT.SimpleFX.shader(clicker, target, options)"> 
+      </a>
+    OAT.SimpleFX.shader(clicker, target, options)</h4>
+
+    <p>
+      <br/>
+    Marks <tt>clicker</tt> as a button, which hides/shows
+    <tt>target</tt> . <tt>Target</tt> may be an array of elements.
+    Available <tt>options</tt> are:<br/>
+    </p>
 
     <ul>
       <li>
-        <tt>
-            <b>type</b>
-          </tt> - (toggle)
-
-        <ul>
-          <li>
-              <tt>
-                <b>0</b>
-              </tt> = only hide</li>
-
-          <li>
-              <tt>
-                <b>1</b>
-              </tt> = only show</li>
-
-          <li>
-              <tt>
-                <b>2</b>
-              </tt> = both</li>
-        </ul>
+        <tt>type</tt> - (toggle)<br/>
       </li>
+
+      <li>
+        <tt>0</tt> - only hide<br/>
+      </li>
+
+      <li>
+        <tt>1</tt> - only show<br/>
+      </li>
+
+      <li>
+        <tt>2</tt> - both</li>
     </ul>
 
     <h3>
-        <a name="Examples" id="Examples"> 
+      <a name="Examples" id="Examples"> 
       </a> Examples</h3>
 
+    
+
     <h4>
-        <a name="Example 1, using OAT.SimpleFX.roundImg"> 
+      <a name="Example 1, using OAT.SimpleFX.roundImg"> 
       </a>
     Example 1, using OAT.SimpleFX.roundImg</h4>
-      <i>
+
+    <p>
+      <br/>
+    <strong>
         <div class="tdl">ToBeDone</div> - Verify <tt>OAT.SimpleFX.roundImg</tt>
     vs <tt>OAT.SimpleFX.roundDiv</tt> - original code had
-    <tt>roundDiv</tt>, but description was
+    <tt>roundDiv</tt> , but description was
     <tt>roundImg</tt>
-      </i>
+      </strong>
       <br/>
+    </p>
     <pre>
 OAT.SimpleFX.shadow("myDiv", {});
 OAT.SimpleFX.roundImg("myDiv",{corners:[1,1,0,0]});
 OAT.SimpleFX.shader("myDiv", ["myDiv1","myDiv2"], {type:2});
 </pre>
 
+    
+
     <h4>
-        <a name="Example 2, using OAT.SimpleFX.roundDiv"> 
+      <a name="Example 2, using OAT.SimpleFX.roundDiv"> 
       </a>
     Example 2, using OAT.SimpleFX.roundDiv</h4>
-      <i>
+
+    <p>
+      <br/>
+    <strong>
         <div class="tdl">ToBeDone</div> - Verify <tt>OAT.SimpleFX.roundImg</tt>
     vs <tt>OAT.SimpleFX.roundDiv</tt> - original code had
-    <tt>roundDiv</tt>, but description was
+    <tt>roundDiv</tt> , but description was
     <tt>roundImg</tt>
-      </i>
+      </strong>
       <br/>
+    </p>
     <pre>
 OAT.SimpleFX.shadow("myDiv", {});
 OAT.SimpleFX.roundDiv("myDiv", {antialias:1, size:5});
 OAT.SimpleFX.shader("myDiv", ["myDiv1","myDiv2"], {type:2});
+
 </pre>
 
     
-    
 
-    <div id="oatcopy">
-      Copyright (C) 
-      <a href="http://www.openlinksw.com/">OpenLink Software</a> 
-      2005-2008
-    </div>
+    
+    <hr/>
   </div>
-</body>
+<div id="oatcopy">
+      Copyright (C) 2005-2008
+      <a href="http://www.openlinksw.com/">OpenLink Software</a>
+  </div>
 </html>
