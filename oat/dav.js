@@ -21,10 +21,11 @@ OAT.WebDav = {
 	options: { /* defaults */
 		user:false,
 		pass:false,
-		path:'/DAV/', /* where are we now */
+		path:'/DAV/home/', /* where are we now */
 		file:'', /* preselected filename */
 		extension:false, /* preselected extension */
-		pathFallback:'/DAV/', /* what to offer when dirchange fails */
+		silentStart:true, /* don't display our settings dialog on startup */
+		pathFallback:'/DAV/home/', /* what to offer when dirchange fails */
 		width:760,
 		height:450,
 		imagePath:OAT.Preferences.imagePath,
@@ -37,33 +38,20 @@ OAT.WebDav = {
 	},
 	displayMode:0, /* details / icons */
 	mode:0, /* open / save */
-	connected:false,
 	
 /* basic api */
 	
 	openDialog:function(optObj) { /* open in browse file mode */
 		this.dom.ok.value = "Open";
 		this.mode = 0;
-		this.applyOptions(optObj);
-
-		if(!this.connected) {
-			this.connectDialog.show();
-		} else {
-			this.commonDialog();
-		}
+		this.commonDialog(optObj);
 		OAT.Dom.hide("dav_permissions");
 	},
 	
 	saveDialog:function(optObj) { /* open in save file mode */
 		this.dom.ok.value = "Save";
 		this.mode = 1;
-		this.applyOptions(optObj);
-
-		if(!this.connected) {
-			this.connectDialog.show();
-		} else {
-			this.commonDialog();
-		}
+		this.commonDialog(optObj);
 		
 		var state = [1,1,0,1,0,0,1,0,0];
 		this.dom.perms[2].disabled = true;
@@ -81,7 +69,7 @@ OAT.WebDav = {
 		if (dir.substring(newDir.length-1) != "/") { dir += "/"; } /* add trailing slash */
 		
 		var error = function(xhr) {
-			var p = prompt("Cannot change directory to "+dir+".\n Please specify other directory.",OAT.WebDav.options.pathFallback);
+			var p = prompt("Cannot change directory to "+dir+". It does not exist or you do not have sufficient privileges.\nPlease specify other directory.",OAT.WebDav.options.pathFallback);
 			if (!p) { return; }
 			OAT.WebDav.openDirectory(p);
 		} /* error callback */
@@ -358,18 +346,18 @@ OAT.WebDav = {
 
 		var user = OAT.Dom.create("input");
 	 	user.setAttribute("type","text");
-		user.id = "user";
+		user.id = "dav_user";
 		user.name = "user";
 		user.value = "demo";
 
 		var pass = OAT.Dom.create("input");
 	 	pass.setAttribute("type","password");
-		pass.id = "pass";
+		pass.id = "dav_pass";
 		pass.name = "pass";
 		pass.value = "demo";
 
 		var conntype = OAT.Dom.create("select");
-		conntype.id = "login_put_type";
+		conntype.id = "dav_login_put_type";
 		var conntype_basic = OAT.Dom.create("option");
 		conntype_basic.value = "0";
 		conntype_basic.innerHTML = "HTTP - Basic";
@@ -396,14 +384,12 @@ OAT.WebDav = {
 		var cdialog = new OAT.Dialog("Connection Setup",connectDiv,{width:400,modal:1,buttons:1});
 		cdialog.ok = function() {
 			with(OAT.WebDav.options) {
-				user = $v("user");
-				pass = $v("pass");
-				isDav = ($v("login_put_type") == "1");
+				user = $v("dav_user");
+				pass = $v("dav_pass");
+				isDav = ($v("dav_login_put_type") == "1");
 				path = "/DAV/home/" + user + "/";
 			}
 			cdialog.hide();
-			OAT.WebDav.connected = true;
-			OAT.WebDav.commonDialog();
 		}
 		
 		cdialog.cancel = function() {
@@ -412,14 +398,6 @@ OAT.WebDav = {
 
 		this.connectDialog = cdialog;
 
-		/* check whether already connected */
-		with(this.options) {
-			if(user !== false && pass !== false) {
-				path = "/DAV/home/" + user + "/";
-				this.connected = true;
-			}
-		}
-		
 		/* permissions */
 		this.initPermissions(bottom);
 		OAT.Dom.append([bottom,line_1,line_2]);
@@ -433,6 +411,12 @@ OAT.WebDav = {
 		this.treeSyncDir(this.options.path);
 
 		this.attachEvents();
+
+		with(this.options) {
+			if(user !== false) { path = "/DAV/home/" + user + "/"; }
+			if(!silentStart || (user === false && pass === false)) { this.connectDialog.show(); }
+		}
+		
 	},
 	
 	initPermissions:function(parentDiv) { /* draw the permissions table */
@@ -729,7 +713,7 @@ OAT.WebDav = {
 			if (!f) { return; }
 			var item = OAT.WebDav.fileExists(f);
 			if (item && item.dir) { /* existing directory */
-				this.openDirectory(p+f);
+				OAT.WebDav.openDirectory(p+f);
 				return;
 			} else if (f.match(/^\*\.(.*)$/)) { /* extension filter */
 				OAT.WebDav.redraw();
@@ -825,7 +809,8 @@ OAT.WebDav = {
 		for (var p in optObj) { this.options[p] = optObj[p]; }
 	},
 	
-	commonDialog:function() { /* common phase for both dialog types */
+	commonDialog:function(optObj) { /* common phase for both dialog types */
+		this.applyOptions(optObj);
 		var allContained = false;
 		for (var i=0;i<this.options.extensionFilters.length;i++) {
 			var filter = this.options.extensionFilters[i];
@@ -882,7 +867,7 @@ OAT.WebDav = {
 		if (this.options.path in this.cache) {
 			delete this.cache[this.options.path];
 		}
-		this.openDirectory(this.options.path,false,this.tree.tree.children[0]);	
+		OAT.WebDav.openDirectory(this.options.path,false,this.tree.tree.children[0]);	
 	},
 
 	imagePathHtml:function(name) { /* get html code for image */
