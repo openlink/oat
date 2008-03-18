@@ -211,6 +211,7 @@ OAT.Anchor = {
 			}
 			options.anchorTo(pos[0],pos[1]);
 			win.show();
+			options.anchorTo(pos[0],pos[1]); /* after adding arrows, window can be shifted a bit */
 		}
 		options.anchorTo = function(x_,y_) {
 			var win = options.window;
@@ -270,6 +271,17 @@ OAT.Anchor = {
 				OAT.Dom.attach(elm,"blur",options.close);
 			break;
 			
+		}
+	},
+
+	close:function(elem, recursive) {
+		elem = $(elem);
+		if (elem.tagName=='BODY') return;
+		if (elem.className.match(/^oat_win.+_container$/)) {
+			OAT.Dom.hide(elem);
+			if (recursive) this.close(elem.parentNode);
+		} else {
+			this.close(elem.parentNode);
 		}
 	}
 }
