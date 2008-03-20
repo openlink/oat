@@ -1,3 +1,136 @@
+2008-03-20 09:48  source
+
+	* Updated version to 2.8-rc8
+
+2008-03-20 09:48  source
+
+	* Updated version
+
+2008-03-20 09:47  source
+
+	* Added support for passing pragmas/options to dereference
+
+2008-03-20 09:47  source
+
+	* Added new gmapapi + fixed loader
+
+2008-03-20 09:45  source
+
+	* Added callbacks for pragmas connected to OAT.Dereference
+	* Added defauklt options for node limit/mode depth selects
+	* Removed grab-everything pragma, since it is not supported by proxy
+
+2008-03-18 18:48  source
+
+	* Regenerated documentation
+
+2008-03-18 09:06  source
+
+	* Updated version
+
+2008-03-18 09:05  source
+
+	* Fixed dependencies
+
+2008-03-18 09:05  source
+
+	* Changed input label to "Data Source (URL):"
+
+2008-03-18 09:04  source
+
+	* Added check/uncheck all feature in rdfstore
+	* Added missing &quot; for " replacement in url sanitization
+	* Minor refactoring in sanitization
+
+2008-03-18 09:03  source
+
+	* Process anchors embedded in content in grid view tab
+	* Fixed regex for grabbing all image URLs embedded in text
+	* Tagcloud tab now displays tagclouds/tags/frequency using SCOT ontology
+	  and is capable of displaying multiple clouds at once
+
+2008-03-18 09:01  source
+
+	* Modified element ids for connection setup to prevent namespace
+	  collisions
+	* Updated the error messages to be more verbose
+	* Moved connection setup back to WebDav.init
+	* Added silenStart option; if set to true, no connection setup dialog
+	  is displayed
+	* Set default path to /DAV/home
+	* Pass http auth options to WebDav.init now
+
+2008-03-18 08:58  source
+
+	* Fixed positioning when attached to hidden elements
+	* Added function to close the anchor from anywhere
+
+2008-03-18 08:55  source
+
+	* Changed visible columns popup to moveable
+	* Replaced OAT.Instant with OAT.Anchor which provides advanced behaviour
+
+2008-03-18 08:54  source
+
+	* Added five seconds granularity to time line scaling
+
+2008-03-18 08:53  source
+
+	* Added checks for defined arguments
+	* Check for proper input param in getElementsByLocalName
+
+2008-03-18 08:50  source
+
+	* Changed to new WebDav API
+	* Removed dav/http connection type from options
+	* Renamed callbacks to match the new API
+	* Added dependency to crypto
+
+2008-03-18 08:45  source
+
+	* Regenerated documentation
+
+2008-03-18 08:44  source
+
+	* Added UI and controls for pragmas
+	* Renamed the data retrieval option fields to spongerSomething
+
+2008-03-18 08:42  source
+
+	* Changed to new WebDav API
+	* Removed dav/http connection type from options
+
+2008-03-10 21:37  source
+
+	* Use http credentials for webdav initialization
+
+2008-03-10 21:34  source
+
+	* Added close button to welcome_screen
+	* Added Data Retrieval Options button
+	* Fixed image size
+	* Added check/uncheck all features in rdfstore
+	* Use http credentials for webdav initialization
+
+2008-03-10 21:33  source
+
+	* Updated images
+
+2008-03-10 21:31  source
+
+	* Fixed labels in advanced tab
+	* Removed commented and unused html code for format and query rows
+	* Changed input label to "Data Source (URL)"
+	* Renamed concepts to classes
+	* Sorted properties and split to attributes/relations
+	* Added labeled sponger-related option select
+	* Renamed pragma options
+	* Moved webdav initialization
+
+2008-03-10 11:34  source
+
+	* Updated documentation
+
 2008-02-21 20:56  source
 
 	* Updated version to 2.8-rc7
