@@ -1,3 +1,22 @@
+March 20 2008, V2.8:
+  * Use relative paths within source tree
+  * Added new RDF browser app
+  * Enhanced a++ API
+  * Enhanced Anchor API
+  * Enhanced Dereference API
+  * Enhanced Grid API
+  * Enhanced Notify API
+  * Enhanced RDFstore and RDFtabs APIs
+  * Enhanced Tagcloud API
+  * Enhanced Timeline API
+  * Enhanced Tree API
+  * Enhanced WebDav API
+  * Enhanced Win API
+  * Enhanced iSPARQL and RDFBrowser apps
+  * Updated google map API
+  * Updated demos to use new APIs
+  * Updated documentation
+
 December 04 2007, V2.7:
   * Added new OAT.Win 
   * Added .LDR loader support for isparql
