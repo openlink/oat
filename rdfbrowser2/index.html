@@ -100,12 +100,11 @@
 							</div>
 						</div>
 						<input type="radio" name="pathTraversalSchemes" value="grab-all" id="spongerGrabAll" checked="checked"/> Follow all Properties<br/>
-						<input type="radio" name="pathTraversalSchemes" value="grab-everything" id="spongerGrabEverything"/> Follow all  Links with unlimited depth<br/>
-
 					</li>
 					<li><span>Path Traversal Options</span><br/>
 						Max. Nodes Retrieved: 
 						<select id="spongerLimitNodes">
+							<option value="">default</option>
 							<option value="100">100</option>
 							<option value="200">200</option>
 							<option value="300">300</option>
@@ -114,6 +113,7 @@
 						</select><br/>
 						Max. Nodes Traversed (Crawled): 
 						<select id="spongerLimitDepth">
+							<option value="">default</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>

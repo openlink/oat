@@ -372,22 +372,50 @@ function init() {
 	OAT.Anchor.assign("predicates_select",predicates);
 
 	/* pragmas change */
-	OAT.Event.attach($("spongerGetSoft"),"click",function() { rdfb.dataRetrievalOpts.cachingSchemes = "get::soft"; });
-	OAT.Event.attach($("spongerGetReplacing"),"click",function() { rdfb.dataRetrievalOpts.cachingSchemes = "get::replacing"; });
+	OAT.Event.attach($("spongerGetSoft"),"click",function() { 
+		var o = { 'get':'soft' };
+		OAT.Dereference.setPragmas(o);
+	});
+	OAT.Event.attach($("spongerGetReplacing"),"click",function() { 
+		var o = { 'get':'replacing' };
+		OAT.Dereference.setPragmas(o);
+	});
+
+	OAT.Event.attach($("spongerGrabAll"),"click",function() { 
+		var o = { 
+					'sparql_input:grab-all':"yes",
+					'sparql_input:grab-seealso':false 
+		};
+		OAT.Dereference.setPragmas(o);
+	});
+
+	OAT.Event.attach($("spongerLimitNodes"),"change",function() { 
+		var o = { 'sparql_input:limit':$("spongerLimitNodes").value };
+		OAT.Dereference.setPragmas(o);
+	});
+
+	OAT.Event.attach($("spongerLimitDepth"),"change",function() { 
+		var o = { 'sparql_input:limit-depth':$("spongerLimitDepth").value };
+		OAT.Dereference.setPragmas(o);
+	});
+
+
 	var grabSeealsoValues = function() {
-		var out = new Array();
-		var list = $("spongerGrabSeealsoPredicates");
-		for (var i=0; i < list.options.length; i++) {
-			if (list[i].selected) {
-				out.push(list[i].value);
+		var out = [];
+		var preds = $("spongerGrabSeealsoPredicates").options;
+		for (var i=0;i<preds.length; i++) {
+			var p = preds[i];
+			if (p.selected) { 
+				var v = "<" + p.value + ">";
+				out.push(v);
 			}
 		}
-		rdfb.dataRetrievalOpts.cachingSchemes = out;
+		var o = { 
+					'sparql_input:grab-seealso': out.join(" "), 
+					'sparql_input:grab-all':false 
+		};
+		OAT.Dereference.setPragmas(o);
 	}
 	OAT.Event.attach($("spongerGrabSeealso"),"click",grabSeealsoValues);
 	OAT.Event.attach($("spongerGrabSeealsoPredicates"),"change",grabSeealsoValues);
-	OAT.Event.attach($("spongerGrabAll"),"click",function() { rdfb.dataRetrievalOpts.cachingSchemes = "grab::all"; });
-	OAT.Event.attach($("spongerGrabEverything"),"click",function() { rdfb.dataRetrievalOpts.cachingSchemes = "grab::everything"; });
-	OAT.Event.attach($("spongerLimitNodes"),"change",function() { rdfb.dataRetrievalOpts.LimitNodes = $("spongerLimitNodes").value; });
-	OAT.Event.attach($("spongerLimitDepth"),"change",function() { rdfb.dataRetrievalOpts.LimitDepth = $("spongerLimitDepth").value; });
 }
