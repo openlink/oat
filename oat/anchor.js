@@ -17,7 +17,7 @@ OAT.AnchorData = {
 }
 
 OAT.Anchor = {
-	
+		
 	appendContent:function(options) {
 		if (options.content && options.window) {
 			if (typeof(options.content) == "function") { options.content = options.content(); }
@@ -113,7 +113,7 @@ OAT.Anchor = {
 	fixSize:function (win) {
 			/* wait to finish all ajax calls */
 			setTimeout(function(){
-				if (OAT.AJAX.requests.length) {
+				if (OAT.AJAX && OAT.AJAX.requests.length) {
 					OAT.Anchor.fixSize(win);
 				} else {
 					var height = OAT.Dom.getWH(win.dom.content)[1];
@@ -193,16 +193,16 @@ OAT.Anchor = {
 		options.stat = 0; /* not initialized */
 		if (!options.href && 'href' in elm) { options.href = elm.href; } /* if no oat:href provided, then try the default one */
 		if (elm.tagName.toString().toLowerCase() == "a") { OAT.Dom.changeHref(elm,options.newHref); }
-		
+
 		options.displayRef = function(event) {
 			var win = options.window;
 			win.hide(); /* close existing window */
 			OAT.AnchorData.active = options;
 			var pos = OAT.Dom.eventPos(event);
 			OAT.AnchorData.window = win; /* assign last opened window */
-		
+
 			if (!options.stat) {
-				OAT.Anchor.callForData(options,pos); 
+				OAT.Anchor.callForData(options,pos);
 			} else { 
 				OAT.Anchor.appendContent(options);
 			}
@@ -254,7 +254,7 @@ OAT.Anchor = {
 		options.endClose = function() {
 			options.closeFlag = 0;
 		}
-	
+
 		switch (options.activation) {
 			case "hover":
 				OAT.Dom.attach(elm,"mouseover",options.displayRef);
