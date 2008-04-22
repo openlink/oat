@@ -13,7 +13,7 @@ var dialogs = {};
 
 var http_cred = {
 	user:"demo",
-	password:"demo",
+	pass:"demo",
 	isDav:true
 };
 
@@ -74,7 +74,7 @@ var IO = {
 		var o = {
 			auth:OAT.AJAX.AUTH_BASIC,
 			user:http_cred.user,
-			pass:http_cred.password,
+			pass:http_cred.pass,
 			type:OAT.AJAX.TYPE_XML
 		}
 		if (ignoreCredentials) { o.auth = OAT.AJAX.AUTH_NONE; }
