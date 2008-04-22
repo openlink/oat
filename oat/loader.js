@@ -590,11 +590,12 @@ OAT.Dom = { /* DOM common object */
 	},
 
 	toSafeXML:function(str) {
-		if (typeof(str) != "string") { return str; }
+		if (!str || (typeof(str) != "string")) { return str; }
 		return str.replace(/&/g,"&amp;").replace(/>/g,"&gt;").replace(/</g,"&lt;");
 	},
 	
 	fromSafeXML:function(str) {
+		if (!str || (typeof(str) != "string")) { return str; }
 		return str.replace(/&amp;/g,"&").replace(/&gt;/g,">").replace(/&lt;/g,"<");
 	},
 	
