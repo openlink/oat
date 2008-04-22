@@ -37,14 +37,65 @@ ul, li {
   background: #e8f3f6;
 }
 
-fieldset.derefOpts div {
-	display: none;
+fieldset {
+	display: inline;
 }
 
-div.derefOptsWinContent {
+fieldset.derefOpts {
+	width: 600px;
+	float: right;
+	margin-top: -28px;
+}
+
+span.title {
+	font-weight: bold;
+}
+
+div.controls {
+	background-color: #eee;
+	padding: 10px 10px 0px 40px;
+	border: 1px solid #666;
+}
+
+fieldset.queryopts {
+	display: block;
+	width: 360px;
+}
+
+fieldset.endpoint {
+	margin-top: 10px;
+	display: block;
+	width: 260px;
+}
+
+
+div#pragmaAddProp h2 {
+    margin-top: 0px;
+}
+
+div#pragmaAddProp {
+	position: absolute;
+	width: 20%;
+	left: 40%;
+	top: 25%;
+	padding: 20px 15px 20px 30px;
+	background-color: #eee;
+	border: 2px #ddd outset;
 	text-align: center;
-	width: 100%;
-	padding: 10px;
+}
+
+
+div#opttoggler {
+	width: 180px;
+	position: relative;
+	left: -33px;
+	top: -8px;
+	margin-bottom: 5px;
+	font-weight: bold;
+	font-size: 12pt;
+	color: #333;
+	cursor: hand;
+	cursor: pointer;
 }
 
 fieldset.derefOpts button {

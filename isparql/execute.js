@@ -18,7 +18,8 @@ window.defaultPrefixes = [{"label":'atom', "uri":'http://atomowl.org/ontologies/
 						 {"label":'owl', "uri":'http://www.w3.org/2002/07/owl#'},
 						 {"label":'sioct', "uri":'http://rdfs.org/sioc/types#'},
 						 {"label":'sioc', "uri":'http://rdfs.org/sioc/ns#'},
-					   /*{"label":'ibis', "uri":'http://purl.org/ibis#'},*/
+						 {"label":'ibis', "uri":'http://purl.org/ibis#',"hidden":1},
+						 {"label":'conf', "uri":'http://www.mindswap.org/~golbeck/web/www04photo.owl#'},
 						 {"label":'scot', "uri":'http://scot-project.org/scot/ns'},
 						 {"label":'ical', "uri":'http://www.w3.org/2002/12/cal/icaltzd#'},
 						 {"label":'mo', "uri":'http://purl.org/ontology/mo/'},
@@ -183,11 +184,22 @@ var QueryExec = function(optObj) {
 	
 	this.buildRequest = function(opts) {
 		var paramsObj = {};
-		paramsObj["query"] = opts.query;
 		paramsObj["format"] = "application/rdf+xml";
 		if (opts.defaultGraph && !opts.query.match(/from *</i)) { paramsObj["default-graph-uri"] = opts.defaultGraph; }
 		if (opts.limit) { paramsObj["maxrows"] = opts.limit; }
 		if (opts.sponge && self.options.virtuoso) { paramsObj["should-sponge"] = opts.sponge; }
+
+		var pragmas = [];
+		if (opts.pragmas) { 
+			for (var i=0;i<opts.pragmas.length;i++) {
+				var pragma = opts.pragmas[i];
+				var name = pragma[0];
+				var values = pragma[1];
+				for(var j=0;j<values.length;j++) { pragmas.push(name+" "+values[j]); }
+			}
+		}
+
+		paramsObj["query"] = pragmas.join('\n') + '\n' + opts.query;
 
 		var arr = [];
 		for (var p in paramsObj) {
@@ -319,19 +331,24 @@ var QueryExec = function(optObj) {
 		
 		if (self.options.executeCallback) { self.options.executeCallback(opts.query); }
 		
-		var a = OAT.Dom.create("a");
-		a.innerHTML = "Query URI";
-		a.href = opts.endpoint + "?" + request;
-		a.target = "_blank";
-		OAT.Dom.append([self.dom.request,a]);
-
 		var r = decodeURIComponent(request);
 		var parts = r.split("&");
 		var req = OAT.Dom.create("pre");
 		OAT.Dom.append([self.dom.request,req]);
 
 		for (var i=0;i<parts.length;i++) { req.innerHTML += OAT.Xml.escape(parts[i])+"\n"; }
-		self.dom.query.innerHTML = OAT.Xml.escape(opts.query);
+
+		OAT.Dom.clear(self.dom.query);
+
+		var a = OAT.Dom.create("a");
+		a.innerHTML = "Query URI";
+		a.href = opts.endpoint + "?" + request;
+		a.target = "_blank";
+
+		var q = OAT.Dom.create("pre");
+		q.innerHTML = OAT.Xml.escape(opts.query);
+
+		OAT.Dom.append([self.dom.query,a,q]);
 
 		if (wasError) {
 			/* trap http codes */
@@ -412,13 +429,36 @@ var QueryExec = function(optObj) {
 			o.backupQuery = bq;
 			self.execute(o);
  		}
+
+		var selectRef = function() {
+			var cache = self.cache[self.cacheIndex];
+			var o = {};
+			for (var p in cache.opts) { o[p] = cache.opts[p]; }
+
+			var graph = o.defaultGraph || false;
+
+			var q = 'SELECT DISTINCT * \n';
+			if (graph) { q += 'FROM <' + graph + '> \n'; }
+			q += 'WHERE { { <'+href+'> ?p ?o } UNION { ?s ?p <'+href+'> } }';
+
+			o.query = q;
+			self.execute(o);
+		}
 	
 		var genRef = function() {
 			var ul = OAT.Dom.create("ul",{marginLeft:"20px",marginTop:"10px"});
 
 			var li = OAT.Dom.create("li");
 			var a = OAT.Dom.create("a");
-			a.innerHTML = "Data Link";
+			a.innerHTML = "Get Entities";
+			a.href = "#";
+			OAT.Dom.attach(a,"click",selectRef);
+			var li = OAT.Dom.create("li");
+			OAT.Dom.append([ul,li],[li,a]);
+
+			var li = OAT.Dom.create("li");
+			var a = OAT.Dom.create("a");
+			a.innerHTML = "Describe Entities";
 			a.href = "#";
 			OAT.Dom.attach(a,"click",dereferenceRef);
 			var li = OAT.Dom.create("li");
@@ -426,7 +466,7 @@ var QueryExec = function(optObj) {
 
 			var li = OAT.Dom.create("li");
 			var a = OAT.Dom.create("a");
-			a.innerHTML = "Document Link";
+			a.innerHTML = "Open Web Page";
 			a.href = href;
 			OAT.Dom.append([ul,li],[li,a]);
 			
@@ -444,14 +484,14 @@ var QueryExec = function(optObj) {
 		OAT.Anchor.assign(domNode,obj);
 		
 		var img1 = OAT.Dom.create("img",{paddingLeft:"3px",cursor:"pointer"});
-		img1.title = "Data Link";
+		img1.title = "Describe Entities";
 		img1.src = OAT.Preferences.imagePath + "RDF_rdf.png";
 		OAT.Dom.attach(img1,"click",dereferenceRef);
 
 		var a = OAT.Dom.create("a",{paddingLeft:"3px"});
 		var img2 = OAT.Dom.create("img",{border:"none"});
 		img2.src = OAT.Preferences.imagePath + "RDF_xhtml.gif";
-		a.title = "Document Link";
+		a.title = "Open Web Page";
 		a.appendChild(img2);
 		a.target = "_blank";
 		a.href = href;
@@ -467,6 +507,7 @@ var QueryExec = function(optObj) {
 		
 		var request = self.buildRequest(opts);
 		var callback = function(data) {
+			if (opts.callback) { opts.callback(data); }
 			self.addResponse(request,optObj,0,data);
 		}
 		var onerror = function(xhr) {
