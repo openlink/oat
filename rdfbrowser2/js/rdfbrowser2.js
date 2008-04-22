@@ -40,7 +40,7 @@ OAT.RDFBrowser2 = function(div,optObj) {
 		defaultQuery:"Data Source URI"
 	}
 	for (var p in optObj) { this.options[p] = optObj[p]; }
-	
+
 	/* default pragmas */
 	this.dataRetrievalOpts = {
 		cachingSchemes:'get::soft',
@@ -171,7 +171,7 @@ OAT.RDFBrowser2 = function(div,optObj) {
 		var base = window.location.toString().match(/^[^?#]+/)[0];
 		var th = base+"?";
 		$("search_list").innerHTML = '';
-		
+
 		for (var i=0;i<self.store.items.length;i++) {
 			var d = OAT.Dom.create("div");
 			OAT.Dom.addClass(d,"storage_item");
@@ -795,7 +795,7 @@ OAT.RDFBrowser2 = function(div,optObj) {
 			self.tabs[newIndex].redraw();
 			self.descDiv.innerHTML = self.tabs[newIndex].description;
 		}
-		
+
 		self.redraw();
 		self.store.init();
 		self.bookmarks.init();

@@ -95,8 +95,16 @@
 						<div style="display:none;">
 							<div id="predicates_popup">
 								<select id="spongerGrabSeealsoPredicates" multiple="multiple">
-						</select><br/>
-								<a href="javascript:void(0);" onclick="OAT.Anchor.close(this);">Close</a><br/>
+									<option value="foaf:knows">foaf:knows</option>
+									<option value="sioc:links_to">sioc:links_to</option>
+									<option value="rdfs:isDefinedBy">rdfs:isDefinedBy</option>
+									<option value="rdfs:seeAlso">rdfs:seeAlso</option>
+									<option value="owl:sameAs">owl:sameAs</option>
+								</select><br/>
+								
+								<input type="button" id="spongerPredsAdd" value="Add custom"/> <input type="button" id="spongerPredsDel" value="Remove selected"/><br/> <input type="button" id="spongerPredsDefault" value="Restore default set"/><br/><br/>
+								
+								<a href="javascript:void(0);" onclick="OAT.Anchor.close(this);">Close</a><br/><br/>
 							</div>
 						</div>
 						<input type="radio" name="pathTraversalSchemes" value="grab-all" id="spongerGrabAll" checked="checked"/> Follow all Properties<br/>
@@ -174,9 +182,9 @@
 				<div id="storage_controls">
 					<a href="javascript:void(0);" id="storage_checkall">Check all</a>
 					<a href="javascript:void(0);" id="storage_uncheckall">Uncheck all</a>
-				<a href="javascript:void(0);" id="storage_purge"><img src="./imgs/purge_storage.png" alt="Purge Storage"/> Purge storage</a>
-				<a href="javascript:void(0);" id="storage_permalink">permalink</a>
-			</div>
+					<a href="javascript:void(0);" id="storage_purge"><img src="./imgs/purge_storage.png" alt="Purge Storage"/> Purge storage</a>
+					<a href="javascript:void(0);" id="storage_permalink">permalink</a>
+				</div>
 			</div>
 		<!-- <div id="RT">
 			<div id="rdf_side"></div>
@@ -184,9 +192,9 @@
 		<div id="rdf_content"></div>
 		<div id="welcome">
 			<div style="top:3px;left:620px;width:60px;height:18px;cursor:hand;cursor:pointer;" onclick="this.parentNode.style.display='none';"></div>
-			<div style="top:175px;" onclick="window.open('http://');"></div>
-			<div style="top:228px" onclick="window.open('http://www.zvon.org/xxl/RDFTutorial/General/book.html');"></div>
-			<div style="top:285px" onclick="window.open('http://www.openlinksw.com/');"></div>
+			<!-- <div style="top:175px;" onclick="window.open('http://');"></div> -->
+			<div style="top:170px" onclick="window.open('http://www.zvon.org/xxl/RDFTutorial/General/book.html');"></div> <!-- 228px -->
+			<div style="top:267px" onclick="window.open('http://www.openlinksw.com/');"></div> <!-- 285px -->
 		</div>
 	</div>
 

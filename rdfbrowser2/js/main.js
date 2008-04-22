@@ -13,7 +13,7 @@ var dialogs = {};
 
 var http_cred = {
 	user:"demo",
-	password:"demo",
+	pass:"demo",
 	isDav:true
 };
 
@@ -33,8 +33,9 @@ var ext_save = [
 ];
 
 var Search = {
-	//template:'CONSTRUCT { ?s ?p ?o } {dsn} WHERE { ?s ?p ?o . ?o bif:contains "\'{query}\'"}',
-	template:'CONSTRUCT { ?s ?p ?o } WHERE { {dsn} }',
+	/*template:'CONSTRUCT { ?s ?p ?o } {dsn} WHERE { ?s ?p ?o . ?o bif:contains "\'{query}\'"}',*/
+	//template:'CONSTRUCT { ?s ?p ?o } WHERE { {dsn} }',
+	template:'CONSTRUCT { ?s ?p ?o } FROM <fromstr> WHERE {graph ?g {?s ?p ?o. ?o bif:contains <pattern>} union graph ?g {?s ?p ?o filter regex(?o,<pattern>)} } ',
 	go:function() {
 		var q = $v("search_query");
 		if (!q) return;
@@ -42,22 +43,24 @@ var Search = {
 
 		var items = $("search_list").getElementsByTagName("input"); // this searches over selected items
 		
-		//if (items.length && defaultGraph) { dsn.unshift(defaultGraph); } // what's this??
+		/* if (items.length && defaultGraph) { dsn.unshift(defaultGraph); } // what's this?? */
 		for (var i=0;i<items.length;i++) {
-			//dsn[i] = (i ? " FROM NAMED " : " FROM ") + "<"+dsn[i]+"> ";
 			if (items[i].checked)
-				dsn.push("{ graph <"+items[i].value+"> {?s ?p ?o . ?o bif:contains \"\'{query}\'\"} }");
+				//dsn.push("{ graph <"+items[i].value+"> {?s ?p ?o . ?o bif:contains \"\'{query}\'\"} }");
+				dsn.push(items[i].value);
 		}
-		
+
 		if (!dsn.length) {
 			alert("You must select search scope.");
 			return;
 		}
-		
+
 		for (var i=0;i<rdfb.store.items.length;i++)
 			rdfb.store.disable(rdfb.store.items[i].href);
 
-		var text = Search.template.replace(/{dsn}/,dsn.join(" UNION ")).replace(/{query}/g,q);
+		//text = Search.template.replace(/{dsn}/,dsn.join(" UNION ")).replace(/{query}/g,q);
+		text = Search.template.replace(/fromstr/,dsn.join(" "));
+		text = text.replace(/pattern/g,q);
 		rdfb.store.removeAllFilters();
 		rdfb.store.addSPARQL(text);
 	}
@@ -80,7 +83,7 @@ var IO = {
 		var o = {
 			auth:OAT.AJAX.AUTH_BASIC,
 			user:http_cred.user,
-			pass:http_cred.password,
+			pass:http_cred.pass,
 			type:OAT.AJAX.TYPE_XML
 		}
 		if (ignoreCredentials) { o.auth = OAT.AJAX.AUTH_NONE; }
@@ -341,12 +344,12 @@ function init() {
 		status:"",
 		width:300,
 		result_control:false,
-		activation: "click",
+		activation:"click",
 		type:OAT.WinData.TYPE_RECT
 	}
 	OAT.Anchor.assign("search_button",obj);
 	OAT.Event.attach("search_button","click",rdfb.store.redraw);
-	
+
 	/* input box default content */
 	var clearQuery = function() {
 		var query = $('inputquery');
@@ -418,4 +421,41 @@ function init() {
 	}
 	OAT.Event.attach($("spongerGrabSeealso"),"click",grabSeealsoValues);
 	OAT.Event.attach($("spongerGrabSeealsoPredicates"),"change",grabSeealsoValues);
+
+	/* add predicate */
+	OAT.Event.attach($("spongerPredsAdd"),"click",function() {
+		var pred = window.prompt("Type new predicate:");
+		if (pred) {
+			for (var i=0;i<$("spongerGrabSeealsoPredicates").options.length;i++) {
+				if ($("spongerGrabSeealsoPredicates").options[i].value==pred) {
+					alert("Predicate "+pred+" is already present in the list.");
+					return;
+				}	
+			}
+			var l =$("spongerGrabSeealsoPredicates").options.length;
+			$("spongerGrabSeealsoPredicates").options[l] = new Option(pred,pred);
+		} else {
+			alert("No predicate added.");
+		}
+	});
+	/* remove selected predicate */
+	OAT.Event.attach($("spongerPredsDel"),"click",function() {
+		for (var i=0;i<$("spongerGrabSeealsoPredicates").options.length;i++)
+			if ($("spongerGrabSeealsoPredicates").options[i].selected) {
+				$("spongerGrabSeealsoPredicates").options[i] = null;
+				i--;
+			}
+	});
+	/* restore default set of predicates (ask only if list length is not 0) */
+	OAT.Event.attach($("spongerPredsDefault"),"click",function() {
+		if ($("spongerGrabSeealsoPredicates").options.length==0 || window.confirm("This will remove custom added predicates. Really restore?")) {
+			$("spongerGrabSeealsoPredicates").options.length = 0;
+			$("spongerGrabSeealsoPredicates").options[0] = new Option('foaf:knows','foaf:knows');
+			$("spongerGrabSeealsoPredicates").options[1] = new Option('sioc:links_to','sioc:links_to');
+			$("spongerGrabSeealsoPredicates").options[2] = new Option('rdfs:isDefinedBy','rdfs:isDefinedBy');
+			$("spongerGrabSeealsoPredicates").options[3] = new Option('rdfs:seeAlso','rdfs:seeAlso');
+			$("spongerGrabSeealsoPredicates").options[4] = new Option('owl:sameAs','owl:sameAs');
+		}
+	});
+
 }

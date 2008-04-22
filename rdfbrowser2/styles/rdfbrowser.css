@@ -301,7 +301,7 @@ div#welcome div {
 	cursor: hand;
 	cursor: pointer;
 	left: 40px;
-	height: 35px;
+	height: 65px;
 	width: 440px;
 	opacity: 0.1;
 	-moz-border-radius: 8px;
@@ -505,4 +505,9 @@ img, div, li, span, input {
 #dataRetrievalOpt_ul li span {
 	font-weight: bold;
 	font-size: 120%;
+}
+
+#spongerGrabSeealsoPredicates {
+	width: 190px;
+	height: 180px;
 }
