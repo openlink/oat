@@ -960,7 +960,7 @@ function init() {
 	}
 
 	/* panelbar_content */
-	var pb = new OAT.Panelbar("panelbar",10);
+	var pb = new OAT.Panelbar("panelbar",20);
 	pb.addPanel("pb_1","pb_11");
 	pb.addPanel("pb_2","pb_22");
 	pb.addPanel("pb_3","pb_33");
@@ -997,7 +997,7 @@ function init() {
 		var obj = DEMO[newName];
 		if (!obj.drawn) {
 			if (obj.cb) {
-				OAT.Dimmer.show(dimmerElm);
+				OAT.Dimmer.show(dimmerElm,{opacity:0.0});
 				OAT.Dom.center(dimmerElm,1,1);
 				var ref = function() {
 					if (!window.location.href.match(/:source/)) { OAT.Dimmer.hide(); }
