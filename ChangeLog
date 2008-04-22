@@ -1,3 +1,120 @@
+2008-04-22 23:03  source
+
+	* Updated version to 2.9-rc1
+
+2008-04-22 23:03  source
+
+	* Updated version date
+
+2008-04-22 23:02  source
+
+	* Added callback to request opts
+	* Added common sponger options
+	* Added conf ontology
+	* Added correct namespace prefixes to seealso option
+	* Added debug option to iSPARQL.Preferences
+	* Added default to follow-predicate
+	* Added get entities option to a++ which will execute a select on the
+	  resource form the current result set
+	* Added newline between pragmas and query
+	* Added RDF file extensions to save dialog
+	* Added RDF file type case to getsaveData
+	* Added sparql pragmaes before query
+	* Added support for custom predicates in pragma settings
+	* Clear results tab before adding new content
+	* Fixed border width
+	* Fixed menu options
+	* Fixed qbe referenced in query exec callback which does not work with msie
+	* Fixed redraw
+	* Fixed restoring options for SeeAlso
+	* Hooked element events to calls to setters in iSPARQL.Common
+	* Hooked schemas to iSPARQL.dataObj
+	* Moved query URI link to query tab in results
+	* Outfactored isparql IO to separate class
+	* Refactored queryexec class used by schemas
+	* Refactored the sponger options handling to one function
+	* Removed service option in connection setup, since endpoint is now
+	  configurable from main UI
+	* Removed unused variables and events attached to nonexisting menu elements
+	* Renamed document link to open web page, data link to describe entities
+	* Replaced save/load with calls to iSPARQL.IO
+	* Rewrote named graphs set function
+
+2008-04-22 22:12  source
+
+	* Added support for custom predicates in pragmas
+	* Fixed webdav auth pass parameter
+	* Temporarily removed link to usage on welceom screen
+
+2008-04-22 22:10  source
+
+	* Fixed webdav auth pass parameter
+
+2008-04-22 22:07  source
+
+	* Fixed nocred and showajax attribute handling
+	* Fixed checking both /form and //connection for variables and enclose
+	  them with "" just to be sure
+
+2008-04-22 22:03  source
+
+	* Changed style to improve displaygin status text when resizing window
+
+2008-04-22 22:00  source
+
+	* Added XMLA endpoint setting to OAT.Preferences
+
+2008-04-22 21:56  source
+
+	* Fixed for bug in Safari not handling innerHTML assignment properly
+
+2008-04-22 21:55  source
+
+	* Fixed positioning when we do not use OAT.AJAX2
+
+2008-04-22 21:54  source
+
+	* Fixed need to escape directory names with special characters, since server
+	  handles them just file. We just decode them to get them displayed correctly
+
+2008-04-22 21:52  source
+
+	* Added check for arguments in OAT.Dom.from/toSafeXML
+
+2008-04-22 21:51  source
+
+	* Removed unneeded argument to OAT.Dereference.clearPragmas
+
+2008-04-22 21:50  source
+
+	* Added support for passing onchange function as an option
+	* Added check for null optList when accessing optlist.length
+
+2008-04-22 21:48  source
+
+	* Added messages for OAT.Grid when user clicks a row and cell to get the
+	  cell content
+
+2008-04-22 21:46  source
+
+	* Added missing connection dependency to crypto
+
+2008-04-22 21:46  source
+
+	* Fixed problem with undefined arrays for verices/edges
+
+2008-04-22 21:45  source
+
+	* Fixed demo links to isparql and rdfbrowser2
+
+2008-04-22 21:44  source
+
+	* Fixed faster animation
+
+2008-04-22 21:43  source
+
+	* Added support for accordion animation
+
 2008-03-20 14:46  source
 
 	* Updated version to 2.8 for final release
