@@ -262,6 +262,7 @@ function init() {
 	
 	/* xslt path */
 	$("options_xslt").value = OAT.Preferences.xsltPath;
+	$("xmla_endpoint").value = OAT.Preferences.endpointXmla;
 	
 	/* ajax http errors */
 	$("options_http").checked = (OAT.Preferences.httpError == 1 ? true : false);

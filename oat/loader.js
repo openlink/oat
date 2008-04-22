@@ -36,6 +36,7 @@ OAT.Preferences = {
 	xsltPath:"../xslt/",
 	imagePath:"../images/",
 	stylePath:"../styles/",
+	endpointXmla:"/XMLA",
 	version:"19.03.2008",
 	httpError:1, /* show http errors */
 	allowDefaultResize:1,
