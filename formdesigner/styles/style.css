@@ -168,11 +168,14 @@ div.combo_list_option:hover {
 }
 
 #tbar {
+	position: absolute;
+	width: 100%;
 	margin-top: 24px;
 	_margin-top: 0px;
 	height: 26px;
 	background-color: #bbb;
 	border-bottom: 1px solid #000;
+	z-index: 700;
 }
 
 .toolbar_icon {

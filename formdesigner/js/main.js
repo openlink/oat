@@ -192,7 +192,8 @@ var IO = {
 
 	preview:function() {
 		if (IO.filename == "") { alert("Design not saved yet!"); return; }
-		var newloc = "http://"+window.location.host+IO.filename;
+		var proto = window.location.href.match(/^(http[s]?:\/\/)/)[1];
+		var newloc = proto+window.location.host+IO.filename;
 		window.open(newloc);
 	}
 }

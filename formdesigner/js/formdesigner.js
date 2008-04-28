@@ -409,6 +409,8 @@ var FormDesigner = function(parent) {
 			var ds = new OAT.DataSource(parseInt(dsnode.getAttribute("type")));
 			self.datasources.push(ds);
 			ds.fromXML(dsnode);
+			if (ds.connection.nocred) { $("options_nocred").checked = true; }
+			if (ds.connection.uid) { $("options_uid").checked = true; }
 			var cb = (i==0 ? function(){self.selectForm();}:function(){});
 			ds.refresh(cb,false,self.datasources);
 		}

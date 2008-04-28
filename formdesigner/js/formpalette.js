@@ -9,7 +9,7 @@
  */
 function Palette(obj) {
 	var self = this;
-	this.win = new OAT.Window({min:0,max:0,close:1,width:180,height:0,x:-15,y:20,title:"Controls Palette"});
+	this.win = new OAT.Window({min:0,max:0,close:1,width:180,height:0,x:-15,y:80,title:"Controls Palette"});
 	this.win.hide = function() {OAT.Dom.hide(self.win.div);};
 	this.win.show = function() {OAT.Dom.show(self.win.div);};
 	this.win.onclose = function() {
