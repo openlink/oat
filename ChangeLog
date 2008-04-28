@@ -1,3 +1,40 @@
+2008-04-28 20:26  source
+
+	* Updated version to 2.9-rc2
+
+2008-04-28 20:25  source
+
+	* Added proper protocol when previewing
+	* Added absoluite position and z-index to toolbar
+	* Fixed window positions to reflect
+	* Fixed application options restore when unserializing from xml
+
+2008-04-28 20:23  source
+
+	* Added OAT.MSD.AJAZ_TIMEOUT and renumbered other messages
+
+2008-04-28 20:23  source
+
+	* Added optional scope parameter to OAT.Event. Passed callback can now
+	  be executed within this scope
+
+2008-04-28 20:21  source
+
+	* Fixed closing of anchors when clicked outside them
+
+2008-04-28 20:20  source
+
+	* Added uit parameter to connection to specify whether credentials where
+	  stored within the serialized object
+
+2008-04-28 20:19  source
+
+	* Added code to simplify the predicate before comparing it to "type"
+
+2008-04-28 20:18  source
+
+	* Added support for request timeouts
+
 2008-04-22 23:03  source
 
 	* Updated version to 2.9-rc1
