@@ -249,9 +249,23 @@ var FormDesigner = function(parent) {
 			OAT.Drag.removeAll(self.objects[i].elm);
 			if (self.objects[i].selected) { this.selObjs.push(self.objects[i]); }
 		}
+		
+		var pos = OAT.Dom.getLT(self.base);
+		var basedims = OAT.Dom.getWH(self.base);
+		var resx = pos[0] + basedims[0];
+		var resy = pos[1] + basedims[1];
+
 		for (var i=0;i<this.selObjs.length;i++) {
 			for (var j=0;j<this.selObjs.length;j++) {
-				OAT.Drag.create(this.selObjs[i].elm,this.selObjs[j].elm,{endFunction:self.checkTabPlacement});
+				var selected = this.selObjs[j].elm;
+				var restriction = function(x,y) {
+					var dims = OAT.Dom.getWH(selected);
+					return (x < 0) || (y < 0) || ((x+dims[0]) > resx) || ((y+dims[1]) > resy);
+				}
+				OAT.Drag.create(this.selObjs[i].elm,this.selObjs[j].elm,{
+					endFunction:self.checkTabPlacement,
+					restrictionFunction:restriction
+				});
 			}
 		}
 	} /* FormDesigner::createDrags() */
