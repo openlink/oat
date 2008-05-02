@@ -23,7 +23,7 @@ function Toolbox(obj) {
 		OAT.WebDav.openDialog(options);
 	}
 
-	this.win = new OAT.Window({min:0,max:0,close:1,height:0,width:240,x:-15,y:160,title:"Control Properties"});
+	this.win = new OAT.Window({min:0,max:0,close:1,height:0,width:240,x:-15,y:140,title:"Control Properties"});
 	var d = OAT.Dom.create("div",{padding:"3px"},"toolbox");
 	this.win.hide = function() {OAT.Dom.hide(self.win.div);};
 	this.win.show = function() {OAT.Dom.show(self.win.div);};

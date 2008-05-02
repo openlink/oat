@@ -12,7 +12,7 @@ function Columns(obj) {
 	this.obj = obj;
 	this.columns = [];
 	this.elm = OAT.Dom.create("div",{padding:"3px"});
-	this.win = new OAT.Window({min:0,max:0,close:1,height:0,width:180,x:-15,y:370,title:"Available fields"});
+	this.win = new OAT.Window({min:0,max:0,close:1,height:0,width:180,x:-15,y:350,title:"Available fields"});
 	this.win.content.appendChild(this.elm);
 	this.win.hide = function() {OAT.Dom.hide(self.win.div);};
 	this.win.show = function() {OAT.Dom.show(self.win.div);};
