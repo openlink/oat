@@ -370,13 +370,14 @@ function init() {
 		var ext = ($v("options_savetype") == "sql")? ["sql","sql","SQL file"] : ["xml","xml","XML (Zenark)"];
 		
 			var options = {
+			dataCallback:false,
 			callback:function(path,fname) {
 					var name = path + fname;
 					$("save_name").value = name;
 				},
 			extensionFilters:[ext]
 			};
-		OAT.WebDav.openDialog(options);
+		OAT.WebDav.saveDialog(options);
 	}
 	OAT.Dom.attach("btn_browse","click",fileRef);
 	
