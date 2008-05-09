@@ -1016,13 +1016,14 @@ function IOAdmin_save() {
 	} else {
 		var xslStr = '<?xml-stylesheet type="text/xsl" href="'+$v("options_xslt")+'designview.xsl"?>';
 		var xml = export_xml(xslStr,false,true);
-		callback();
+		callback(xml);
 	}
 	
 }
 
 function IOAdmin_load() {
 		var options = {
+		extensionFilters:[ ["sql","sql","SQL file"], ["xml","xml","XML (Zenark)"] ],
 		callback:function(path,fname,data){
 				IO.filename = path+fname;
 				return import_xml(data);
