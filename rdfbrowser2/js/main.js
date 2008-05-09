@@ -127,6 +127,12 @@ function init() {
 	/* xslt path */
 	$("options_xslt").value = OAT.Preferences.xsltPath;
 	
+	/* load stylesheets */
+	OAT.Style.include("grid.css");
+	OAT.Style.include("rdftabs.css");
+	OAT.Style.include("timeline.css");
+	OAT.Style.include("webdav.css");
+	
 	/* ajax http errors */
 	$("options_http").checked = (OAT.Preferences.httpError == 1 ? true : false);
 	OAT.AJAX.httpError = OAT.Preferences.httpError;
@@ -248,7 +254,6 @@ function init() {
 	var togglerShow = function() {
 		$('toggler').style.backgroundImage = 'url("./imgs/arrow_toggle_hide.png")';
 		$('right_toolbar').style.width = '302px';
-		$('right_toolbar').style.overflow = 'auto';
 		OAT.Event.detach("toggler","click",togglerShow);
 		OAT.Event.attach("toggler","click",togglerHide);
 		adjustContentWidth();

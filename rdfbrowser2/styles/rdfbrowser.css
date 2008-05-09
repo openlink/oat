@@ -8,10 +8,6 @@
 *  See LICENSE file for details.
 */
 
-@import url("../../styles/timeline.css");
-@import url("../../styles/webdav.css");
-@import url("../../styles/grid.css");
-@import url("../../styles/rdftabs.css");
 
 /* overwrite some of the included styles */
 tr.rdf_nav_header {
