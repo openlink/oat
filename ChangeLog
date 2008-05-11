@@ -1,3 +1,96 @@
+2008-05-11 22:07  source
+
+	* Updated version to 2.9-rc4
+
+2008-05-11 22:07  source
+
+	* Simplified menu
+	* Removed custom callbacks from menu
+	* Moved results to separate tab
+	* Hide sponger opts by default
+	* Fixed description on triggering buttons
+	* Fixed labels
+
+2008-05-11 22:05  source
+
+	* Removed call to init() in xslted file body
+
+2008-05-11 22:04  source
+
+	* Updated version
+
+2008-05-11 22:03  source
+
+	* Added support for custom headers that are sent along with ajax request
+
+2008-05-09 15:10  source
+
+	* Added check in isClass whether elm.className is defined, otherwise split
+	  would throw an error
+	* Updated version
+
+2008-05-09 15:09  source
+
+	* Fixed and improved panel animation
+
+2008-05-09 15:09  source
+
+	* Fixed problem with home and fallback paths
+
+2008-05-09 15:08  source
+
+	* Fixed className with svg elements
+
+2008-05-09 15:07  source
+
+	* Added extension filers to file open dialog
+	* Fixed problem with saving xml
+
+2008-05-09 15:06  source
+
+	* Fixed problem loading css stylesheets
+
+2008-05-02 13:41  source
+
+	* Updated version to 2.9-rc3
+
+2008-05-02 13:41  source
+
+	* Updated version
+
+2008-05-02 13:41  source
+
+	* Fixed positioning of windows
+	* Fixed style
+
+2008-05-02 13:40  source
+
+	* Fixed use of OAT.WebDav.saveDialog for filename selection
+
+2008-05-02 13:39  source
+
+	* Fixed label
+
+2008-05-02 13:39  source
+
+	* Fixed problem with running updatepermissions when no datacallback is
+	  specified; this also allows the user to use saveDialog for filename
+	  selection only
+
+2008-05-02 12:28  source
+
+	* Fixed problem with dragging elements outside of canvas
+	* Fixed negative x,y coordinates in style by setting them to 0
+
+2008-04-29 08:52  source
+
+	* Updated version
+
+2008-04-29 08:52  source
+
+	* Added support for using # or href value for hred attribute
+	* Preventing default browser action for given element/anchor
+
 2008-04-28 20:26  source
 
 	* Updated version to 2.9-rc2
