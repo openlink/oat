@@ -23,7 +23,6 @@ OAT.Anchor = {
 		if (options.content && options.window) {
 			if (typeof(options.content) == "function") { options.content = options.content(); }
 			var win = options.window;
-			//win.outerResizeTo(options.width,options.height);
 			OAT.Dom.clear(win.dom.content);
 			win.dom.content.appendChild(options.content);
 			OAT.Anchor.fixSize(win);
@@ -117,6 +116,9 @@ OAT.Anchor = {
 				if (OAT.AJAX && OAT.AJAX.requests.length) {
 					OAT.Anchor.fixSize(win);
 				} else {
+					if (win.dom.container.style.height=='auto' || win.dom.container.style.width=='auto') { /* if auto, keep auto */
+					    return;
+                                        }
 					var height = OAT.Dom.getWH(win.dom.content)[1];
 					while (OAT.Dom.getWH(win.dom.content)[1]+50 > OAT.Dom.getWH(win.dom.container)[1]) {
 						if (OAT.Dom.getWH(win.dom.container)[0] < 650)
@@ -147,7 +149,7 @@ OAT.Anchor = {
 			content:false, /* node or function to be inserted */
 			status:false, /* window status */
 			title:false, /* window title */
-			result_control:"grid", /* for url fetch */
+			result_control:false, /* for url fetch */
 			activation:"hover",
 			width:340,
 			height:false, /* false is 'auto' */
@@ -157,7 +159,8 @@ OAT.Anchor = {
 			type:OAT.WinData.TYPE_RECT,
 			visibleButtons:"cr",
 			enabledButtons:"cr",
-			template:false /* use with type:OAT.WinData.TYPE_TEMPLATE - see win component documentation */
+			template:false, /* use with type:OAT.WinData.TYPE_TEMPLATE - see win component documentation */
+			preload:false /* include the a++ node in the page DOM right at the assing time - do not use when large number of a++ windows on the page */
 		};
 		for (var p in paramsObj) { options[p] = paramsObj[p]; }
 
@@ -180,6 +183,7 @@ OAT.Anchor = {
 			if (!opts) { return; }
 			if (opts.activation == "hover") { opts.startClose(); }
 		}
+		OAT.Dom.addClass(win.dom.container,"oat_anchor");
 		OAT.Dom.attach(win.dom.container,"mouseover",checkOver);
 		OAT.Dom.attach(win.dom.container,"mouseout",checkOut);
 		var arrow = OAT.Dom.create("div",{});
@@ -195,7 +199,7 @@ OAT.Anchor = {
 		if (!options.href && 'href' in elm) { options.href = elm.href; } /* if no oat:href provided, then try the default one */
 		if (elm.tagName.toString().toLowerCase() == "a") { OAT.Dom.changeHref(elm,options.newHref); }
 
-		options.displayRef = function(event) {
+		options.displayRef = function(event,preload) {
 			OAT.Dom.prevent(event);
 			var win = options.window;
 			win.hide(); /* close existing window */
@@ -212,13 +216,25 @@ OAT.Anchor = {
 			} else { 
 				OAT.Anchor.appendContent(options);
 			}
+            
+			if (!preload) {
 			if (options.activation=="focus") {
 				pos = OAT.Dom.position(elm);
 			}
 			options.anchorTo(pos[0],pos[1]);
 			win.show();
-			options.anchorTo(pos[0],pos[1]); /* after adding arrows, window can be shifted a bit */
+			    window.setTimeout(function(){
+				options.anchorTo(pos[0],pos[1]);
+			    },60); /* after adding arrows, window can be shifted a bit */
 		}
+			
+		}
+        
+	        if (options.preload) {
+		    win.preload();
+		    options.displayRef(false, true);
+		}
+        
 		options.anchorTo = function(x_,y_) {
 			var win = options.window;
 			var fs = OAT.Dom.getFreeSpace(x_,y_); /* [left,top] */
@@ -283,7 +299,7 @@ OAT.Anchor = {
 	close:function(elem, recursive) {
 		elem = $(elem);
 		if (elem.tagName=='BODY' || elem.tagName=='HTML') return;
-		if (elem.className.match(/^oat_win.+_container$/)) {
+		if (elem.className.match(/oat_anchor/)) {
 			OAT.Dom.hide(elem);
 			if (recursive) this.close(elem.parentNode);
 		} else {
@@ -297,9 +313,11 @@ OAT.Anchor.closeOnBlur = function() {
 	OAT.Dom.attach(document.getElementsByTagName('html')[0], "click", function(event) {
 	if (!OAT.AnchorData.closeOnBlur) return;
 	var checkIfClickedOutside = function(elem) {
+		if (!elem)
+			return false;
 		if (elem.tagName=='BODY' || elem.tagName=='HTML' || !elem.className.match)
 			return true;
-		if (elem.className.match(/^oat_win.+_container$/)) {
+		if (elem.className.match(/oat_anchor/)) {
 			return false;
 		} else {
 			return checkIfClickedOutside(elem.parentNode);
@@ -307,7 +325,7 @@ OAT.Anchor.closeOnBlur = function() {
 	}
 	if ( !checkIfClickedOutside((OAT.Browser.isIE)?event.srcElement:event.target) )
 		return;
-	var opened = $$("oat_win_container");
+	var opened = $$("oat_anchor");
 	for (i in opened) {
 		if (!opened[i].tagName) continue;
 		OAT.Anchor.close(opened[i], true);
