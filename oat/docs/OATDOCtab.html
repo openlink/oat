@@ -3,23 +3,20 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1> OATDOCtab</h1>
+  <h1>tab.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
       <div class="wikitoc">
       <ul>
-        <li>
-            <a href="#OATDOCtab">OATDOCtab</a>
-          </li>
-
         <li>
             <label class="c1">_</label>
             <label class="c1">_</label>
@@ -113,163 +110,115 @@
     </div>
     </div>
 
-    
-
-    
-
-    
-
     <h2>
       <a name="tab.js" id="tab.js"> 
       </a> tab.js</h2>
 
-    <p>
-      <br/>
-    Provides tab functionality.</p>
+    <p>Provides tab functionality.</p>
 
     <h3>
       <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
-    
-
     <h4>
       <a name="OAT.Tab(element,options)"> 
-      </a>
-    OAT.Tab(element,options)</h4>
+      </a>OAT.Tab(element,options)</h4>
 
-    <p>
-      <br/>
-    Creates Tab object. The <tt>element</tt> specifies a container
-    where the tab contents will be placed. <tt>options</tt> may
-    contain:<br/>
-    </p>
+    <p>Creates Tab object. The <tt>element</tt> specifies a
+    container where the tab contents will be
+    placed.<tt>options</tt> may contain:</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>goCallback</tt>
-        </strong> - function to be
-      called when tab switching occurs. Two parameters will be
-      supplied: old index and new index.<br/>
-      </li>
+        <tt>
+          <b>goCallback</b>
+        </tt> - function to be called when
+      tab switching occurs. Two parameters will be supplied: old
+      index an new index.</li>
 
       <li>
-        <strong>
-          <tt>onUnDock</tt>
-        </strong> - function to be
-      called when tab undocks. One parameters will be supplied:
-      tab's index.<br/>
-      </li>
+        <tt>
+          <b>onUnDock</b>
+        </tt> - function to be called when tab
+      undocks. One parameters will be supplied: tab's index.</li>
 
       <li>
-        <strong>
-          <tt>onDock</tt>
-        </strong> - function to be called
-      when tab docks. One parameters will be supplied: tab's
-      index.<br/>
-      </li>
+        <tt>
+          <b>onDock</b>
+        </tt> - function to be called when tab
+      docks. One parameters will be supplied: tab's index.</li>
 
       <li>
-        <strong>
-          <tt>dockMode</tt>
-        </strong> - bool; can tabs can
-      be undocked into standalone windows? default <tt>true</tt> .
-      You need to include the 'windows' library.<br/>
-      </li>
+        <tt>
+          <b>dockMode</b>
+        </tt> - bool; can tabs can be undocked
+      into standalone windows? default <tt>true</tt>. You need to
+      include the 'windows' library.</li>
 
       <li>
-        <strong>
-          <tt>dockElement</tt>
-        </strong> - DOM node (or ID)
-      specifying parent node for tabs; only needed when
-      <tt>dockMode</tt>
-      </li>
-    </ul>
-
-    <p>true<br/>
-    </p>
-
-    <ul>
-      <li>
-        <strong>
-          <tt>dockWindowWidth</tt>
-        </strong> - Sets width of
-      dock window<br/>
-      </li>
+        <tt>
+          <b>dockElement</b>
+        </tt> - DOM node (or ID) specifying
+      parent node for tabs; only needed when <tt>dockMode</tt>
+      true</li>
 
       <li>
-        <strong>
-          <tt>dockWindowHeight</tt>
-        </strong> - Sets height
-      of dock window</li>
+        <tt>
+          <b>dockWindowWidth</b>
+        </tt> - Sets width of dock
+      window</li>
+
+      <li>
+        <tt>
+          <b>dockWindowHeight</b>
+        </tt> - Sets height of dock
+      window</li>
     </ul>
 
     <h3>
       <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    
-
     <h4>
       <a name="OAT.Tab.add(clicker, window)"> 
-      </a>
-    OAT.Tab.add(clicker, window)</h4>
+      </a>OAT.Tab.add(clicker,
+    window)</h4>
 
-    <p>
-      <br/>
-    Adds a new <tt>clicker</tt> - <tt>window</tt> pair, i.e., when
-    the user clicks <tt>clicker</tt> , <tt>window</tt> will be
-    shown.</p>
+    <p>Adds a new <tt>clicker-window</tt> pair, i.e., when the user
+    clicks <tt>clicker</tt>, <tt>window</tt> will be shown.</p>
 
     <h4>
       <a name="OAT.Tab.remove(clicker)"> 
-      </a>
-    OAT.Tab.remove(clicker)</h4>
+      </a>OAT.Tab.remove(clicker)</h4>
 
-    <p>
-      <br/>
-    Removes a <tt>clicker</tt> - <tt>window</tt> pair.</p>
+    <p>Removes a <tt>clicker-window</tt> pair.</p>
 
     <h4>
       <a name="OAT.Tab.go(index)"> 
       </a> OAT.Tab.go(index)</h4>
 
-    <p>
-      <br/>
-    Switches to tab, according to <tt>index</tt> .</p>
+    <p>Switches to tab, according to <tt>index</tt>.</p>
 
     <h3>
       <a name="CSS classes"> 
       </a> CSS classes</h3>
 
-    
-
     <h4>
       <a name=".tab"> 
       </a> .tab</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name=".tab_selected"> 
       </a> .tab_selected</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var t = new OAT.Tab("content");
 t.add("header_1","window_1");
@@ -279,12 +228,11 @@ t.go(0);
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

@@ -3,24 +3,20 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCsparqline</h1>
+  <h1>sparkline.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
       <div class="wikitoc">
       <ul>
-        <li>
-            <a href="#OATDOCsparqline">OATDOCsparqline</a>
-          </li>
-
         <li>
             <label class="c1">_</label>
             <label class="c1">_</label>
@@ -79,148 +75,112 @@
     </div>
     </div>
 
-    
-
-    
-
-    
-
     <h2>
       <a name="sparkline.js" id="sparkline.js"> 
-      </a>
-    sparkline.js</h2>
+      </a>sparkline.js</h2>
 
     <p>Library for drawing Sparklines using SVG.</p>
-
-    
 
     <h3>
       <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
-    
-
     <h4>
       <a name="OAT.Sparkline(div, options)"> 
-      </a>
-    OAT.Sparkline(div, options)</h4>
+      </a>OAT.Sparkline(div,
+    options)</h4>
 
-    <p>
-      <br/>
-    Creates a <tt>Sparkline</tt> inside <tt>div</tt> ;
-    <tt>options</tt> describes its properties. Its values are the
-    same as in <a href="OATDOClinechart.html">OAT.LineChart</a>. Options can be
-    following:<br/>
-    </p>
+    <p>Creates a <tt>Sparkline</tt> inside
+    <tt>div</tt>;<tt>options</tt> describes its properties. Its
+    values are the same as in <a href="OATDOClinechart.html">OAT.LineChart</a>. Options can be
+    following:</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>axes</tt>
-        </strong> - display axes? (bool,
-      default <tt>false</tt> )<br/>
-      </li>
+        <tt>
+          <b>axes</b>
+        </tt> - display axes? (bool, default
+      <tt>false</tt>)</li>
 
       <li>
-        <strong>
-          <tt>grid</tt>
-        </strong> - display grid? (bool,
-      default <tt>false</tt> )<br/>
-      </li>
+        <tt>
+          <b>grid</b>
+        </tt> - display grid? (bool, default
+      <tt>false</tt>)</li>
 
       <li>
-        <strong>
-          <tt>legend</tt>
-        </strong> - display legend? (bool,
-      default <tt>false</tt> )<br/>
-      </li>
+        <tt>
+          <b>legend</b>
+        </tt> - display legend? (bool, default
+      <tt>false</tt>)</li>
 
       <li>
-        <strong>
-          <tt>gridDesc</tt>
-        </strong> - display grid
-      description? (bool, default <tt>false</tt> )<br/>
-      </li>
+        <tt>
+          <b>gridDesc</b>
+        </tt> - display grid description?
+      (bool, default <tt>false</tt>)</li>
 
       <li>
-        <strong>
-          <tt>desc</tt>
-        </strong> - display description?
-      (bool, default <tt>false</tt> )<br/>
-      </li>
+        <tt>
+          <b>desc</b>
+        </tt> - display description? (bool,
+      default <tt>false</tt>)</li>
 
       <li>
-        <strong>
-          <tt>paddingLeft</tt>
-        </strong> - (default
-      <tt>2</tt> )<br/>
-      </li>
+        <tt>
+          <b>paddingLeft</b>
+        </tt> - (default 2)</li>
 
       <li>
-        <strong>
-          <tt>paddingTop</tt>
-        </strong> - (default
-      <tt>2</tt> )<br/>
-      </li>
+        <tt>
+          <b>paddingTop</b>
+        </tt> - (default 2)</li>
 
       <li>
-        <strong>
-          <tt>paddingRight</tt>
-        </strong> - (default
-      <tt>1</tt> )<br/>
-      </li>
+        <tt>
+          <b>paddingRight</b>
+        </tt> - (default 1)</li>
 
       <li>
-        <strong>
-          <tt>paddingBottom</tt>
-        </strong> - (default
-      <tt>2</tt> )<br/>
-      </li>
+        <tt>
+          <b>paddingBottom</b>
+        </tt> - (default 2)</li>
 
       <li>
-        <strong>
-          <tt>colors</tt>
-        </strong> - array of colors
-      (default <tt>["#888"]</tt> )<br/>
-      </li>
+        <tt>
+          <b>colors</b>
+        </tt> - array of colors (default
+      <tt>["#888"]</tt>)</li>
 
       <li>
-        <strong>
-          <tt>markers</tt>
-        </strong> - array of markers
-      (default <tt>[OAT.LineChartMarker.MARKER_NONE]</tt> ) (see
-      <a href="OATDOClinechart.html">OAT.LineChart</a> constants)</li>
+        <tt>
+          <b>markers</b>
+        </tt> - array of markers (default
+      <tt>[OAT.LineChartMarker.MARKER_NONE]</tt>) (see <tt>
+          <a href="OATDOClinechart.html">OAT.LineChart</a>
+        </tt> constants)</li>
     </ul>
 
     <h3>
       <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    
-
     <h4>
       <a name="OAT.Sparkline::attachData(dataArray)"> 
-      </a>
-    OAT.Sparkline::attachData(dataArray)</h4>
+      </a>OAT.Sparkline::attachData(dataArray)</h4>
 
-    <p>
-      <br/>
-    Adds <tt>dataArray</tt> to the Sparkline.</p>
+    <p>Adds <tt>dataArray</tt> to the Sparkline.</p>
 
     <h4>
       <a name="OAT.Sparkline::draw()"> 
-      </a>
-    OAT.Sparkline::draw()</h4>
+      </a>OAT.Sparkline::draw()</h4>
 
-    <p>
-      <br/>
-    Draws the Sparkline.</p>
+    <p>Draws the Sparkline.</p>
 
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var s = new OAT.Sparkline("myDiv",{});
 s.attachData([1,2,3,-5,2,3.7,5,4]);
@@ -229,12 +189,11 @@ s.draw();
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

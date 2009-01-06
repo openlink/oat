@@ -3,24 +3,20 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCtimeline</h1>
+  <h1>timeline.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
       <div class="wikitoc">
       <ul>
-        <li>
-            <a href="#OATDOCtimeline">OATDOCtimeline</a>
-          </li>
-
         <li>
             <label class="c1">_</label>
             <label class="c1">_</label>
@@ -126,103 +122,59 @@
     </div>
     </div>
 
-    
-
-    
-
-    
-
     <h2>
       <a name="timeline.js" id="timeline.js"> 
-      </a>
-    timeline.js</h2>
+      </a>timeline.js</h2>
 
-    <p>
-      <br/>
-    Draggable timeline.</p>
+    <p>Draggable timeline.</p>
 
     <h3>
       <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
-    
-
     <h4>
       <a name="OAT.Timeline(contentDiv, options)"> 
-      </a>
-    OAT.Timeline(contentDiv, options)</h4>
+      </a>OAT.Timeline(contentDiv,
+    options)</h4>
 
-    <p>
-      <br/>
-    Creates a Timeline inside <tt>contentDiv</tt> . The
-    <tt>options</tt> may include:<br/>
-    </p>
+    <p>Creates a Timeline inside <tt>contentDiv</tt>. The
+    <tt>options</tt> may include:</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>lineHeight</tt>
-        </strong> - int, height of one
-      record<br/>
-      </li>
+        <tt>lineHeight</tt> - int, height of one record</li>
 
       <li>
-        <strong>
-          <tt>bandHeight</tt>
-        </strong> - int, height of one
-      band's header<br/>
-      </li>
+        <tt>bandHeight</tt> - int, height of one band's
+      header</li>
 
       <li>
-        <strong>
-          <tt>margins</tt>
-        </strong> - int, (default
-      <tt>200</tt> )<br/>
-      </li>
+        <tt>margins</tt> - int, (default 200)</li>
 
       <li>
-        <strong>
-          <tt>resize</tt>
-        </strong> - bool (default
-      <tt>true</tt> )<br/>
-      </li>
+        <tt>resize</tt> - bool (default true)</li>
 
       <li>
-        <strong>
-          <tt>formatter</tt>
-        </strong> - bool (default
-      <tt>true</tt> )<br/>
-      </li>
+        <tt>formatter</tt> - bool (default true)</li>
 
       <li>
-        <strong>
-          <tt>sliderHeight</tt>
-        </strong> - int, height of
-      slider<br/>
-      </li>
+        <tt>sliderHeight</tt> - int, height of slider</li>
 
       <li>
-        <strong>
-          <tt>autoHeight</tt>
-        </strong> - bool, should
-      height be automatically adjusted? (default <tt>true</tt>
-      )</li>
+        <tt>autoHeight</tt> - bool, should height be
+      automatically adjusted? (default true)</li>
     </ul>
 
     <h3>
       <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    
-
     <h4>
       <a name="OAT.Timeline.addBand(name, color, label)"> 
-      </a>
-    OAT.Timeline.addBand(name, color, label)</h4>
+      </a>OAT.Timeline.addBand(name,
+    color, label)</h4>
 
-    <p>
-      <br/>
-    Adds a data band to chart. The band is identified by
+    <p>Adds a data band to chart. The band is identified by
     <tt>name</tt> , drawn in <tt>color</tt> , and labeled with
     <tt>label</tt> .</p>
 
@@ -231,81 +183,55 @@
       </a> OAT.Timeline.addEvent(bandName, startTime, endTime,
     content, color)</h4>
 
-    <p>
-      <br/>
-    Adds new event to Timeline, respective to its band
-    <tt>bandName</tt> . <tt>startTime</tt> and <tt>endTime</tt> are
-    data-time strings formatted as <tt>YYYY-MM-DDThh-mm-ss</tt> . (
-    <strong>
-        <div class="tdl">ToBeDone</div> - verify preceding sentence!</strong> )
-    <tt>endTime</tt> can be false, when the event has no duration.
-    <tt>content</tt> is a HTML element; <tt>color</tt> is a
+    <p>Adds new event to Timeline, respective to its <tt>bandb</tt>
+    and <tt>Name</tt>.<tt>startTime</tt> and <tt>endTime</tt> are
+    data-time strings formatted as <tt>YYYY-MM-DDThh-mm-ss</tt>.
+    (*ToBeDone? - verify preceding sentence!* )
+    <tt>endTime</tt> can be false, when the event has no
+    duration.<tt>content</tt> is a HTML element;<tt>color</tt>is a
     background color for time strip (only when <tt>endTime</tt> is
     not <tt>false</tt> ).</p>
 
     <h4>
       <a name="OAT.Timeline::draw()"> 
-      </a>
-    OAT.Timeline::draw()</h4>
+      </a>OAT.Timeline::draw()</h4>
 
-    <p>
-      <br/>
-    Draws the timeline.</p>
+    <p>Draws the timeline.</p>
 
     <h3>
       <a name="CSS Classes"> 
       </a> CSS Classes</h3>
 
-    
-
     <h4>
       <a name="OAT.Timeline.timeline" id="OAT.Timeline.timeline"> 
       </a> OAT.Timeline.timeline</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name="OAT.Timeline.timeline_port" id="OAT.Timeline.timeline_port"> 
-      </a>
-    OAT.Timeline.timeline_port</h4>
+      </a>OAT.Timeline.timeline_port</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name="OAT.Timeline.timeline_slider" id="OAT.Timeline.timeline_slider"> 
-      </a>
-    OAT.Timeline.timeline_slider</h4>
+      </a>OAT.Timeline.timeline_slider</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-      <br/>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

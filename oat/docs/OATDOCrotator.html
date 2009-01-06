@@ -3,24 +3,20 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCrotator</h1>
+  <h1>rotator.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
       <div class="wikitoc">
       <ul>
-        <li>
-            <a href="#OATDOCrotator">OATDOCrotator</a>
-          </li>
-
         <li>
             <label class="c1">_</label>
             <label class="c1">_</label>
@@ -112,12 +108,6 @@
     </div>
     </div>
 
-    
-
-    
-
-    
-
     <h2>
       <a name="rotator.js" id="rotator.js"> 
       </a> rotator.js</h2>
@@ -125,94 +115,71 @@
     <p>Creates a set of 'rotating' elements, which are cyclically
     displayed in an infinite fashion (1, 2, 3, 1, 2 ...).</p>
 
-    
-
     <h3>
       <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
-    
-
     <h4>
       <a name="OAT.Rotator(panelX, panelY, options, callback)"> 
-      </a>
-    OAT.Rotator(panelX, panelY, options, callback)</h4>
+      </a>OAT.Rotator(panelX,
+    panelY, options, callback)</h4>
 
-    <p>
-      <br/>
-    Creates the <tt>Rotator</tt> object. Its elements will have
-    width of <tt>panelX</tt> and height of <tt>panelY</tt> .
-    <tt>Callback</tt> will be executed every time rotation pauses.
-    Parameter <tt>options</tt> is an object of the following
-    properties:<br/>
-    </p>
+    <p>Creates the <tt>Rotator</tt> object. Its elements will have
+    width of <tt>panelX</tt> and height of
+    <tt>panelY</tt>.<tt>Callback</tt> will be executed every time
+    rotation pauses. Parameter <tt>options</tt> is an object of the
+    following properties:</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>delay</tt>
-        </strong> - rotation speed
-      (number)<br/>
-      </li>
+        <tt>
+          <b>delay</b>
+        </tt> - rotation speed (number)</li>
 
       <li>
-        <strong>
-          <tt>step</tt>
-        </strong> - animation smoothness
-      (number)<br/>
-      </li>
+        <tt>
+          <b>step</b>
+        </tt> - animation smoothness (number)</li>
 
       <li>
-        <strong>
-          <tt>numLeft</tt>
-        </strong> - how many elements
-      should be rotated before shifting the first one to the end
-      (number)<br/>
-      </li>
+        <tt>
+          <b>numLeft</b>
+        </tt> - how many elements should be
+      rotated before shifting the first one to the end
+      (number)</li>
 
       <li>
-        <strong>
-          <tt>pause</tt>
-        </strong> - delay after one
-      animation round (number)<br/>
-      </li>
+        <tt>
+          <b>pause</b>
+        </tt> - delay after one animation round
+      (number)</li>
 
       <li>
-        <strong>
-          <tt>type</tt>
-        </strong> -
-      <tt>OAT.RotatorData.TYPE_</tt> constant, specifies an
-      animation direction (see <a href="#Constants" class="c2">Constants</a> section)</li>
+        <tt>
+          <b>type</b>
+        </tt> - <tt>OAT.RotatorData.TYPE_</tt>
+      constant, specifies an animation direction (see <a href="#Constants" class="c2">Constants</a> section)</li>
     </ul>
 
     <h3>
       <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    
-
     <h4>
       <a name="OAT.Rotator.addPanel(element)"> 
-      </a>
-    OAT.Rotator.addPanel(element)</h4>
+      </a>OAT.Rotator.addPanel(element)</h4>
 
-    <p>
-      <br/>
-    Adds a new <tt>element</tt> to rotating set.</p>
+    <p>Adds a new <tt>element</tt> to rotating set.</p>
 
     <h4>
       <a name="OAT.Rotator.start()"> 
       </a> OAT.Rotator.start()</h4>
 
-    <p>
-      <br/>
-    Starts the rotation process.</p>
+    <p>Starts the rotation process.</p>
 
     <h3>
       <a name="Constants" id="Constants"> 
       </a> Constants</h3>
-
-    
 
     <h4>
       <a name="OAT.RotatorData.TYPE_" id="OAT.RotatorData.TYPE_"> 
@@ -220,62 +187,44 @@
 
     <ul>
       <li>
-        <strong>
-          <tt>OAT.RotatorData.TYPE_LEFT</tt>
-        </strong>
-        <div class="tdl"> -
-      ToBeDone</div>
-        <br/>
-      </li>
+        <tt>
+          <b>OAT.RotatorData.TYPE_LEFT</b>
+            </tt> -
+      ToBeDone</li>
 
       <li>
-        <strong>
-          <tt>OAT.RotatorData.TYPE_RIGHT</tt>
-        </strong>
-        <div class="tdl"> -
-      ToBeDone</div>
-        <br/>
-      </li>
+        <tt>
+          <b>OAT.RotatorData.TYPE_RIGHT</b>
+            </tt> -
+      ToBeDone</li>
 
       <li>
-        <strong>
-          <tt>OAT.RotatorData.TYPE_BOTTOM</tt>
-        </strong>
-        <div class="tdl"> -
-      ToBeDone</div>
-        <br/>
-      </li>
+        <tt>
+          <b>OAT.RotatorData.TYPE_BOTTOM</b>
+            </tt> -
+      ToBeDone</li>
 
       <li>
-        <strong>
-          <tt>OAT.RotatorData.TYPE_TOP</tt>
-        </strong>
-        <div class="tdl"> -
-      ToBeDone</div>
-      </li>
+        <tt>
+          <b>OAT.RotatorData.TYPE_TOP</b>
+            </tt> -
+      ToBeDone</li>
     </ul>
 
     <h3>
       <a name="CSS classes"> 
       </a> CSS classes</h3>
 
-    
-
     <h4>
       <a name=".rotator"> 
       </a> .rotator</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var r = new OAT.Rotator(200, 200, {type:OAT.Rotator.TYPE_RIGHT}, function(){});
 r.addPanel("div1");
@@ -286,12 +235,11 @@ r.start();
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

@@ -3,14 +3,14 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCevents</h1>
+  <h1>OATDOCevents</h1>
   <div class="topic-text">
     
 
@@ -67,10 +67,6 @@
 
     
 
-    
-
-    
-
     <h2>
       <a name="Event handling basics"> 
       </a> Event handling
@@ -79,26 +75,20 @@
     <p>Event handling is very simple in this toolkit. There are two
     routines that accomplish this:</p>
 
-    
-
     <h3>
       <a name="OAT.Event.attach(element, event, functionReference)"> 
-      </a>
-    OAT.Event.attach(element, event, functionReference)</h3>
-
-    <p>First argument specifies an <tt>element</tt> which should
-    detect the event. Second is the <tt>event</tt> (without the
-    'on' prefix). Last argument is a valid function reference,
-    i.e., the name of an existing function or Anonymous
-    function.</p>
-
+      </a>OAT.Event.attach(element,
+    event, functionReference)</h3>
     
+    <p>First argument specifies an element which should detect the
+    event. Second is the event (without the 'on' prefix). Last
+    argument is a valid function reference, i.e., the name of an
+    existing function or Anonymous function.</p>
 
     <h4>
       <a name="Examples" id="Examples"> 
       </a> Examples</h4>
-
-    
+    <br/>
     <pre>
 var div = OAT.Dom.create("div");
 OAT.Event.attach(div, "mouseover", function() { alert('Hi!'); });
@@ -106,44 +96,39 @@ OAT.Event.attach(div, "mouseover", function() { alert('Hi!'); });
 </pre>
 
     <p>or</p>
-
-    
+    <br/>
     <pre>
 OAT.Event.attach("some_id", "click", genericFunctionReference);
 
-</pre>
-
     
+</pre>
 
     <h3>
       <a name="OAT.Event.detach(element, event, functionReference)"> 
-      </a>
-    OAT.Event.detach(element, event, functionReference)</h3>
+      </a>OAT.Event.detach(element,
+    event, functionReference)</h3>
 
-    <p>
-      <br/>
-    Use the same syntax as in <tt>OAT.Event.attach()</tt> .: The
-    <tt>functionReference</tt> argument must exist in the current
-    scope, so it is not possible to remove an <tt>event</tt>
-    handled by anonymous function.</p>
+    <p>Use the same syntax as inOAT.Event.attach().:
+    ThefunctionReferenceargument must exist in the current scope, so it
+    is not possible to remove aneventhandled by anonymous
+    function.</p>
 
     <h4>
       <a name="Example" id="Example"> 
       </a> Example</h4>
-
-    
+    <br/>
     <pre>
 OAT.Event.detach(element, "click", functionReference);
 
+    
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

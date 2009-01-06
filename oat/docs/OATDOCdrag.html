@@ -3,114 +3,105 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1> OATDOCdrag</h1>
+  <h1>drag.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
-      <div class="wikitoc">
+          <div class="wikitoc">
       <ul>
         <li>
-            <a href="#OATDOCdrag">OATDOCdrag</a>
-          </li>
-
-        <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
         <a href="#drag.js">drag.js</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Functions">Functions</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Functions">Functions</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Drag.create(clicker,%20mover,%20optObj)">OAT.Drag.create(clicker,
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Drag.create(clicker,%20mover,%20optObj)">OAT.Drag.create(clicker,
         mover, optObj)</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Drag.remove(clicker,%20mover)">OAT.Drag.remove(clicker,
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Drag.remove(clicker,%20mover)">OAT.Drag.remove(clicker,
         mover)</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Drag.removeAll(clicker)">OAT.Drag.removeAll(clicker)</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Drag.removeAll(clicker)">OAT.Drag.removeAll(clicker)</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Constants">Constants</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Constants">Constants</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Drag.TYPE_X">OAT.Drag.TYPE_X</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Drag.TYPE_X">OAT.Drag.TYPE_X</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Drag.TYPE_Y">OAT.Drag.TYPE_Y</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Drag.TYPE_Y">OAT.Drag.TYPE_Y</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Drag.TYPE_XY">OAT.Drag.TYPE_XY</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Drag.TYPE_XY">OAT.Drag.TYPE_XY</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Example">Example</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Example">Example</a>
+              </li>
       </ul>
     </div>
-    </div>
-
-    
-
-    
-
-    
+        </div>
 
     <h2>
       <a name="drag.js" id="drag.js"> 
@@ -118,18 +109,14 @@
 
     <p>Provides dragging (moving) capability for any DOM node</p>
 
-    
-
     <h3>
       <a name="Functions" id="Functions"> 
       </a> Functions</h3>
 
-    
-
     <h4>
       <a name="OAT.Drag.create(clicker, mover, optObj)"> 
-      </a>
-    OAT.Drag.create(clicker, mover, optObj)</h4>
+      </a>OAT.Drag.create(clicker,
+    mover, optObj)</h4>
 
     <p>Modifies element <tt>mover</tt> such that clicking and
     moving on <tt>clicker</tt> will cause it to move. Additional
@@ -137,126 +124,97 @@
 
     <ul>
       <li>
-        <strong>
-          <tt>type</tt>
-        </strong> - one of the constants,
-      specifies direction in which element may be
-      dragged<br/>
-      </li>
+        <tt>
+          <b>type</b>
+        </tt> - one of the constants, specifies
+      direction in which element may be dragged</li>
 
       <li>
-        <strong>
-          <tt>restrictionFunction</tt>
-        </strong> - callback
-      which specifies movement restriction<br/>
-      </li>
+        <tt>
+          <b>restrictionFunction</b>
+        </tt> - callback which
+      specifies movement restriction</li>
 
       <li>
-        <strong>
-          <tt>endFunction</tt>
-        </strong> - callback to be
-      executed when dragging ends<br/>
-      </li>
+        <tt>
+          <b>endFunction</b>
+        </tt> - callback to be executed
+      when dragging ends</li>
 
       <li>
-        <strong>
-          <tt>magnetsH</tt>
-        </strong> - array of elements to
-      horizontally snap to<br/>
-      </li>
+        <tt>
+          <b>magnetsH</b>
+        </tt> - array of elements to
+      horizontally snap to</li>
 
       <li>
-        <strong>
-          <tt>magnetsV</tt>
-        </strong> - array of elements to
-      vertically snap to<br/>
-      </li>
+        <tt>
+          <b>magnetsV</b>
+        </tt> - array of elements to
+      vertically snap to</li>
 
       <li>
-        <strong>
-          <tt>cursor</tt>
-        </strong> - bool, automatically
-      adjust CSS cursor</li>
+        <tt>
+          <b>cursor</b>
+        </tt> - bool, automatically adjust CSS
+      cursor</li>
     </ul>
 
     <h4>
       <a name="OAT.Drag.remove(clicker, mover)"> 
-      </a>
-    OAT.Drag.remove(clicker, mover)</h4>
+      </a>OAT.Drag.remove(clicker,
+    mover)</h4>
 
-    <p>
-      <br/>
-    Removes dragging relation between <tt>clicker</tt> and
+    <p>Removes dragging relation between <tt>clicker</tt> and
     <tt>mover</tt> .</p>
 
     <h4>
       <a name="OAT.Drag.removeAll(clicker)"> 
-      </a>
-    OAT.Drag.removeAll(clicker)</h4>
+      </a>OAT.Drag.removeAll(clicker)</h4>
 
-    <p>
-      <br/>
-    Removes all dragging relations from <tt>clicker</tt> .</p>
+    <p>Removes all dragging relations from <tt>clicker</tt>.</p>
 
     <h3>
       <a name="Constants" id="Constants"> 
       </a> Constants</h3>
 
-    
-
     <h4>
       <a name="OAT.Drag.TYPE_X" id="OAT.Drag.TYPE_X"> 
-      </a>
-    OAT.Drag.TYPE_X</h4>
+      </a>OAT.Drag.TYPE_X</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name="OAT.Drag.TYPE_Y" id="OAT.Drag.TYPE_Y"> 
-      </a>
-    OAT.Drag.TYPE_Y</h4>
+      </a>OAT.Drag.TYPE_Y</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name="OAT.Drag.TYPE_XY" id="OAT.Drag.TYPE_XY"> 
-      </a>
-    OAT.Drag.TYPE_XY</h4>
+      </a>OAT.Drag.TYPE_XY</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var header = Dom.create("div");
 var body = Dom.create("div");
 body.appendChild(header);
 OAT.Drag.create(header, body, {type:TYPE_XY});
 
+    
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

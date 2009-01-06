@@ -3,174 +3,165 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1> OATDOCdock</h1>
+  <h1>dock.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
-      <div class="wikitoc">
+          <div class="wikitoc">
       <ul>
         <li>
-            <a href="#OATDOCdock">OATDOCdock</a>
-          </li>
-
-        <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
         <a href="#dock.js">dock.js</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Objects">Objects</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Objects">Objects</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Dock(div,%20numColumns)">OAT.Dock(div,
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Dock(div,%20numColumns)">OAT.Dock(div,
         numColumns)</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Methods">Methods</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Methods">Methods</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Dock.addObject(colIndex,%20content,%20options)">OAT.Dock.addObject(colIndex,
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Dock.addObject(colIndex,%20content,%20options)">OAT.Dock.addObject(colIndex,
         content, options)</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Messages">Messages</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Messages">Messages</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.MSG.DOCK_DRAG">OAT.MSG.DOCK_DRAG</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.MSG.DOCK_DRAG">OAT.MSG.DOCK_DRAG</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.MSG.DOCK_REMOVE">OAT.MSG.DOCK_REMOVE</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.MSG.DOCK_REMOVE">OAT.MSG.DOCK_REMOVE</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#CSS%20classes">CSS
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#CSS%20classes">CSS
         classes</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.dock">.dock</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.dock">.dock</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.dock_blank">.dock_blank</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.dock_blank">.dock_blank</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.dock_column">.dock_column</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.dock_column">.dock_column</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.dock_column_n">.dock_column_n</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.dock_column_n">.dock_column_n</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.dock_window">.dock_window</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.dock_window">.dock_window</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.dock_header">.dock_header</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.dock_header">.dock_header</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.dock_content">.dock_content</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.dock_content">.dock_content</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Example">Example</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Example">Example</a>
+              </li>
       </ul>
     </div>
-    </div>
-
-    
-
-    
-
-    
+        </div>
 
     <h2>
       <a name="dock.js" id="dock.js"> 
@@ -179,61 +170,46 @@
     <p>Creates a draggable system of docking elements, grouped into
     columns.</p>
 
-    
-
     <h3>
       <a name="Objects" id="Objects"> 
       </a> Objects</h3>
-
-    
 
     <h4>
       <a name="OAT.Dock(div, numColumns)"> 
       </a> OAT.Dock(div,
     numColumns)</h4>
 
-    <p>
-      <br/>
-    Creates a dock inside <tt>div</tt> with <tt>numColumns</tt>
+    <p>Creates a dock inside <tt>div</tt> with <tt>numColumns</tt>
     columns.</p>
 
     <h3>
       <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    
-
     <h4>
       <a name="OAT.Dock.addObject(colIndex, content, options)"> 
-      </a>
-    OAT.Dock.addObject(colIndex, content, options)</h4>
+      </a>OAT.Dock.addObject(colIndex,
+    content, options)</h4>
 
-    <p>
-      <br/>
-    Adds a new window to dock, to the column with index
+    <p>Adds a new window to dock, to the column with index
     <tt>colIndex</tt> . This window contains <tt>content</tt> .
-    Object <tt>options</tt> may contain:<br/>
-    </p>
+    Object <tt>options</tt> may contain:</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>color</tt>
-        </strong> - of border &amp;
-      header<br/>
-      </li>
+        <tt>
+          <b>color</b>
+        </tt> - of border &amp; header</li>
 
       <li>
-        <strong>
-          <tt>titleColor</tt>
-        </strong> - font color in
-      header<br/>
-      </li>
+        <tt>
+          <b>titleColor</b>
+        </tt> - font color in header</li>
 
       <li>
-        <strong>
-          <tt>title</tt>
-        </strong>
+        <tt>
+          <b>title</b>
+        </tt>
       </li>
     </ul>
 
@@ -241,112 +217,88 @@
       <a name="Messages" id="Messages"> 
       </a> Messages</h3>
 
-    
-
     <h4>
       <a name="OAT.MSG.DOCK_DRAG" id="OAT.MSG.DOCK_DRAG"> 
-      </a>
-    OAT.MSG.DOCK_DRAG</h4>
+      </a>OAT.MSG.DOCK_DRAG</h4>
 
-    <p>
-      <br/>
-    Sent after dock window is dragged to another position. Contains
-    object with old and new coordinates of the window
-    <tt>(oldX,oldY,newX,newY)</tt> .</p>
+    <p>Sent after dock window is dragged to another position.
+    Contains object with old and new coordinates of the
+    window(oldX,oldY,newX,newY).</p>
 
     <h4>
       <a name="OAT.MSG.DOCK_REMOVE" id="OAT.MSG.DOCK_REMOVE"> 
-      </a>
-    OAT.MSG.DOCK_REMOVE</h4>
+      </a>OAT.MSG.DOCK_REMOVE</h4>
 
-    <p>
-      <br/>
-    Sent after dock window is closed (removed). Contains the
+    <p>Sent after dock window is closed (removed). Contains the
     removed window object.</p>
 
     <h3>
       <a name="CSS classes"> 
       </a> CSS classes</h3>
 
-    
-
     <h4>
       <a name=".dock"> 
       </a> .dock</h4>
 
-    <p>
-      <br/>
-    CSS class of the whole dock div.</p>
+    <p>CSS class of the whole dock div.</p>
 
     <h4>
       <a name=".dock_blank"> 
       </a> .dock_blank</h4>
 
-    <p>
-      <br/>
-    CSS class of the blank space that appears below when dock
+    <p>CSS class of the blank space that appears below when dock
     window is being dragged to another place.</p>
 
     <h4>
       <a name=".dock_column"> 
       </a> .dock_column</h4>
 
-    <p>
-      <br/>
-    CSS class of all dock columns.</p>
+    <p>CSS class of all dock columns.</p>
 
     <h4>
       <a name=".dock_column_n"> 
       </a> .dock_column_n</h4>
 
-    <p>
-      <br/>
-    CSS class specific to nth dock column.</p>
+    <p>CSS class specific to nth dock column.</p>
 
     <h4>
       <a name=".dock_window"> 
       </a> .dock_window</h4>
 
-    <p>
-      <br/>
-    CSS class of the dock window div (single item in the dock)</p>
+    <p>CSS class of the dock window div (single item in the
+    dock)</p>
 
     <h4>
       <a name=".dock_header"> 
       </a> .dock_header</h4>
 
-    <p>
-      <br/>
-    CSS class of the dock window header div</p>
+    <p>CSS class of the dock window header div</p>
 
     <h4>
       <a name=".dock_content"> 
       </a> .dock_content</h4>
 
-    <p>
-      <br/>
-    CSS class of the dock window content div</p>
+    <p>CSS class of the dock window content div</p>
 
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var content = OAT.Dom.create("div");
 content.innerHTML = "lorem ipsum :)"
 var d = new OAT.Dock("parentDiv", 3);
 d.addObject(0, content, {title:"Sample window"});
 
+    
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

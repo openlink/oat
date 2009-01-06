@@ -3,14 +3,14 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCbarchart</h1>
+  <h1>OATDOCbarchart</h1>
   <div class="topic-text">
     
 
@@ -143,24 +143,15 @@
 
     
 
-    
-
-    
-
     <h2>
       <a name="barchart.js" id="barchart.js"> 
-      </a>
-    barchart.js</h2>
+      </a>barchart.js</h2>
 
     <p>Library for drawing bar charts, using HTML DOM.</p>
-
-    
 
     <h3>
       <a name="Objects" id="Objects"> 
       </a> Objects</h3>
-
-    
 
     <h4>
       <a name="OAT.BarChart(div, optObj)"> 
@@ -172,152 +163,116 @@
 
     <ul>
       <li>
-        <strong>
-          <tt>percentage</tt>
-        </strong> - bool; is it a
-      percentage plot?<br/>
+        <tt>
+          <b>percentage</b>
+        </tt> - bool; is it a percentage
+      plot?</li>
+
+      <li>
+        <tt>
+          <b>spacing</b>
+        </tt> - int; spacing between
+      columns</li>
+
+      <li>
+        <tt>
+          <b>paddingLeft</b>
+        </tt> , <b>paddingBottom</b> ,
+      <b>paddingTop</b>
       </li>
 
       <li>
-        <strong>
-          <tt>spacing</tt>
-        </strong> - int; spacing between
-      columns<br/>
-      </li>
+        <tt>
+          <b>width</b>
+        </tt> - int; width of one column</li>
 
       <li>
-        <strong>
-          <tt>paddingLeft</tt>
-        </strong> ,
-      <strong>
-          <tt>paddingBottom</tt>
-        </strong> ,
-      <strong>
-          <tt>paddingTop</tt>
-        </strong>
-        <br/>
-      </li>
+        <tt>
+          <b>colors</b>
+        </tt> - array of CSS colors, one for
+      each value set</li>
 
       <li>
-        <strong>
-          <tt>width</tt>
-        </strong> - int; width of one
-      column<br/>
-      </li>
+        <tt>
+          <b>border</b>
+        </tt> - bool; outline each column?</li>
 
       <li>
-        <strong>
-          <tt>colors</tt>
-        </strong> - array of CSS colors,
-      one for each value set<br/>
-      </li>
+        <tt>
+          <b>grid</b>
+        </tt> - bool; show horizontal grid
+      lines?</li>
 
       <li>
-        <strong>
-          <tt>border</tt>
-        </strong> - bool; outline each
-      column?<br/>
-      </li>
+        <tt>
+          <b>gridDesc</b>
+        </tt> - bool; show description of
+      lines?</li>
 
       <li>
-        <strong>
-          <tt>grid</tt>
-        </strong> - bool; show horizontal
-      grid lines?<br/>
-      </li>
+        <tt>
+          <b>gridNum</b>
+        </tt> - int; approximate number of
+      lines</li>
 
       <li>
-        <strong>
-          <tt>gridDesc</tt>
-        </strong> - bool; show
-      description of lines?<br/>
-      </li>
+        <tt>
+          <b>shadow</b>
+        </tt> - bool; draw shadow for
+      columns?</li>
 
       <li>
-        <strong>
-          <tt>gridNum</tt>
-        </strong> - int; approximate
-      number of lines<br/>
-      </li>
+        <tt>
+          <b>shadowColor</b>
+        </tt> - CSS color</li>
 
       <li>
-        <strong>
-          <tt>shadow</tt>
-        </strong> - bool; draw shadow for
-      columns?<br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>shadowColor</tt>
-        </strong> - CSS
-      color<br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>shadowOffset</tt>
-        </strong> - int; distance
-      between column and its shadow</li>
+        <tt>
+          <b>shadowOffset</b>
+        </tt> - int; distance between
+      column and its shadow</li>
     </ul>
 
     <h3>
       <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    
-
     <h4>
       <a name="OAT.BarChart::attachData(dataArray)"> 
-      </a>
-    OAT.BarChart::attachData(dataArray)</h4>
+      </a>OAT.BarChart::attachData(dataArray)</h4>
 
-    <p>
-      <br/>
-    Adds data to chart. Each value of <tt>dataArray</tt> describes
-    one column; each column may consist of multiple values. In such
-    case, <tt>dataArray</tt> is an array of arrays.</p>
+    <p>Adds data to chart. Each value of <tt>dataArray</tt>
+    describes one column; each column may consist of multiple
+    values. In such case, <tt>dataArray</tt> is an array of
+    arrays.</p>
 
     <h4>
       <a name="OAT.BarChart::attachTextX(textArray)"> 
-      </a>
-    OAT.BarChart::attachTextX(textArray)</h4>
+      </a>OAT.BarChart::attachTextX(textArray)</h4>
 
-    <p>
-      <br/>
-    Adds horizontal labels.</p>
+    <p>Adds horizontal labels.</p>
 
     <h4>
       <a name="OAT.BarChart::attachTextY(textArray)"> 
-      </a>
-    OAT.BarChart::attachTextY(textArray)</h4>
+      </a>OAT.BarChart::attachTextY(textArray)</h4>
 
-    <p>
-      <br/>
-    Adds vertical labels.</p>
+    <p>Adds vertical labels.</p>
 
     <h4>
       <a name="OAT.BarChart::draw()"> 
-      </a>
-    OAT.BarChart::draw()</h4>
+      </a>OAT.BarChart::draw()</h4>
 
-    <p>
-      <br/>
-    Draws the chart.</p>
+    <p>Draws the chart.</p>
 
     <h3>
       <a name="CSS classes"> 
       </a> CSS classes</h3>
-
-    
 
     <h4>
       <a name=".legend"> 
       </a> .legend</h4>
 
     <p>CSS class of legend div.</p>
-
-    
 
     <h4>
       <a name=".legend_box"> 
@@ -326,15 +281,11 @@
     <p>CSS class of boxes with bar color, positioned left from the
     value description text.</p>
 
-    
-
     <h4>
       <a name=".textX"> 
       </a> .textX</h4>
 
     <p>CSS class of X axis description.</p>
-
-    
 
     <h4>
       <a name=".textY"> 
@@ -342,28 +293,25 @@
 
     <p>CSS class of Y axis description.</p>
 
-    
-
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var chart = new OAT.BarChart("myDiv",{});
 chart.attachData([1,3,2]);
 chart.attachTextX(["a","b","c"]);
 chart.draw();
 
+    
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

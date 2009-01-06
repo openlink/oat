@@ -3,94 +3,84 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCfisheye</h1>
+  <h1>fisheye.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
-      <div class="wikitoc">
+          <div class="wikitoc">
       <ul>
         <li>
-            <a href="#OATDOCfisheye">OATDOCfisheye</a>
-          </li>
-
-        <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
         <a href="#fisheye.js">fisheye.js</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Objects">Objects</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Objects">Objects</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.FishEye(optionsObject)">OAT.FishEye(optionsObject)</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.FishEye(optionsObject)">OAT.FishEye(optionsObject)</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Methods">Methods</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Methods">Methods</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.FishEye::addImage(url)">OAT.FishEye::addImage(url)</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.FishEye::addImage(url)">OAT.FishEye::addImage(url)</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#CSS%20classes">CSS
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#CSS%20classes">CSS
         classes</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.fisheye">.fisheye</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.fisheye">.fisheye</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Example">Example</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Example">Example</a>
+              </li>
       </ul>
     </div>
-    </div>
-
-    
-
-    
-
-    
+        </div>
 
     <h2>
       <a name="fisheye.js" id="fisheye.js"> 
@@ -98,74 +88,55 @@
 
     <p>Creates Mac-like dock.</p>
 
-    
-
     <h3>
       <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
-    
-
     <h4>
       <a name="OAT.FishEye(optionsObject)"> 
-      </a>
-    OAT.FishEye(optionsObject)</h4>
+      </a>OAT.FishEye(optionsObject)</h4>
 
-    <p>
-      <br/>
-    The dock will be created using options specified in
-    <tt>optionsObject</tt> .<br/>
-    </p>
+    <p>The dock will be created using options specified in
+    <tt>optionsObject</tt>.</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>smallSize</tt>
-        </strong> - minimal (normal)
-      size of an image.<br/>
-      </li>
+        <tt>
+          <b>smallSize</b>
+        </tt> - minimal (normal) size of an
+      image.</li>
 
       <li>
-        <strong>
-          <tt>bigSize</tt>
-        </strong> - maximal size of an
-      active image.<br/>
-      </li>
+        <tt>
+          <b>bigSize</b>
+        </tt> - maximal size of an active
+      image.</li>
 
       <li>
-        <strong>
-          <tt>limit</tt>
-        </strong> - radius of the fisheye
-      effect.<br/>
-      </li>
+        <tt>
+          <b>limit</b>
+        </tt> - radius of the fisheye
+      effect.</li>
 
       <li>
-        <strong>
-          <tt>spacing</tt>
-        </strong> - space between
-      images.</li>
+        <tt>
+          <b>spacing</b>
+        </tt> - space between images.</li>
     </ul>
 
     <h3>
       <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    
-
     <h4>
       <a name="OAT.FishEye::addImage(url)"> 
-      </a>
-    OAT.FishEye::addImage(url)</h4>
+      </a>OAT.FishEye::addImage(url)</h4>
 
-    <p>
-      <br/>
-    Adds a new image found at <tt>url</tt> to the dock.</p>
+    <p>Adds a new image found aturlto the dock.</p>
 
     <h3>
       <a name="CSS classes"> 
       </a> CSS classes</h3>
-
-    
 
     <h4>
       <a name=".fisheye"> 
@@ -173,27 +144,24 @@
 
     <p>CSS class of the fisheye div.</p>
 
-    
-
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var f = new OAT.FishEye({smallSize:48, bigSize:64, limit:200, spacing:5});
 document.body.appendChild(f.div);
 f.addImage("image.png");
 
+    
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

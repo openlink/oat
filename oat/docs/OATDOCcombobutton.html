@@ -3,199 +3,173 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCcombobutton</h1>
+  <h1>combobutton.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
-      <div class="wikitoc">
+          <div class="wikitoc">
       <ul>
         <li>
-            <a href="#OATDOCcombobutton">OATDOCcombobutton</a>
-          </li>
-
-        <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
         <a href="#combobutton.js">combobutton.js</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Objects">Objects</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Objects">Objects</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Combobutton()">OAT.Combobutton()</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Combobutton()">OAT.Combobutton()</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Methods">Methods</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Methods">Methods</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Combobutton::addOption(imagePath,%20textValue,%20callback)">
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Combobutton::addOption(imagePath,%20textValue,%20callback)">
         OAT.Combobutton::addOption(imagePath, textValue,
         callback)</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Combobutton::removeOption(index)">OAT.Combobutton::removeOption(index)</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Combobutton::removeOption(index)">OAT.Combobutton::removeOption(index)</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#CSS%20classes">CSS
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#CSS%20classes">CSS
         classes</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.combo_button">.combo_button</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.combo_button">.combo_button</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.combo_image">.combo_image</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.combo_image">.combo_image</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.combo_button_option">.combo_button_option</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.combo_button_option">.combo_button_option</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.combo_button_text">.combo_button_text</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.combo_button_text">.combo_button_text</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.combo_button_down">.combo_button_down</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.combo_button_down">.combo_button_down</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Example">Example</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Example">Example</a>
+              </li>
       </ul>
     </div>
-    </div>
-
-    
-
-    
-
-    
+        </div>
 
     <h2>
       <a name="combobutton.js" id="combobutton.js"> 
-      </a>
-    combobutton.js</h2>
+      </a>combobutton.js</h2>
 
     <p>Creates a combobutton, which is a multi-functional button.
     It enables user to specify a callback action to be performed
     when it is clicked.</p>
 
-    
-
     <h3>
       <a name="Objects" id="Objects"> 
       </a> Objects</h3>
-
-    
 
     <h4>
       <a name="OAT.Combobutton()"> 
       </a> OAT.Combobutton()</h4>
 
-    <p>
-      <br/>
-    Creates a combobutton. Its main div is accessible as
+    <p>Creates a combobutton. Its main div is accessible as
     <tt>OAT.Combobutton::div</tt> .</p>
 
     <h3>
       <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    
-
     <h4>
       <a name="OAT.Combobutton::addOption(imagePath, textValue, callback)"> 
-      </a>
-    OAT.Combobutton::addOption(imagePath, textValue, callback)</h4>
+      </a>OAT.Combobutton::addOption(imagePath,
+    textValue, callback)</h4>
 
-    <p>
-      <br/>
-    Adds a new option, described as <tt>textValue</tt> with image
-    located at <tt>imagePath</tt> . When this option is clicked,
-    <tt>callback</tt> is called.</p>
+    <p>Adds a new option, described as <tt>textValue</tt> with
+    image located at <tt>imagePath</tt>. When this option is
+    clicked, <tt>callback</tt> is called.</p>
 
     <h4>
       <a name="OAT.Combobutton::removeOption(index)"> 
-      </a>
-    OAT.Combobutton::removeOption(index)</h4>
+      </a>OAT.Combobutton::removeOption(index)</h4>
 
-    <p>
-      <br/>
-    Removes <tt>index</tt> -th option.</p>
+    <p>Removes <tt>index-th</tt> option.</p>
 
     <h3>
       <a name="CSS classes"> 
       </a> CSS classes</h3>
-
-    
 
     <h4>
       <a name=".combo_button"> 
@@ -203,24 +177,17 @@
 
     <p>CSS class of the button options list.</p>
 
-    
-
     <h4>
       <a name=".combo_image"> 
       </a> .combo_image</h4>
 
     <p>CSS class of the dropdown clicker image.</p>
 
-    
-
     <h4>
       <a name=".combo_button_option"> 
-      </a>
-    .combo_button_option</h4>
+      </a>.combo_button_option</h4>
 
     <p>CSS class of the button option div.</p>
-
-    
 
     <h4>
       <a name=".combo_button_text"> 
@@ -229,8 +196,6 @@
     <p>CSS class of the div with textual description of the
     option.</p>
 
-    
-
     <h4>
       <a name=".combo_button_down"> 
       </a> .combo_button_down</h4>
@@ -238,13 +203,10 @@
     <p>CSS class that is added/removed to option whenever the
     button is clicked/released.</p>
 
-    
-
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var cb = new OAT.Combobutton();
 document.body.appendChild( cb.div );
@@ -252,15 +214,15 @@ cb.addOption("img1.gif", "option 1", function(){});
 cb.addOption("img2.gif", "option 2", function(){});
 cb.removeOption(0);
 
+    
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

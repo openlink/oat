@@ -3,24 +3,20 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCtoolbar</h1>
+  <h1>toolbar.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
       <div class="wikitoc">
       <ul>
-        <li>
-            <a href="#OATDOCtoolbar">OATDOCtoolbar</a>
-          </li>
-
         <li>
             <label class="c1">_</label>
             <label class="c1">_</label>
@@ -121,7 +117,8 @@
             <label class="c1">_</label>
             <label class="c1">_</label>
             <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Toolbar.toolbar">OAT.Toolbar.toolbar</a>
+            <label class="c1">_</label> <a href="#OAT.Toolbar.toolbar%20icon_down">OAT.Toolbar.toolbar
+        icon_down</a>
           </li>
 
         <li>
@@ -143,25 +140,15 @@
     </div>
     </div>
 
-    
-
-    
-
-    
-
     <h2>
       <a name="toolbar.js" id="toolbar.js"> 
       </a> toolbar.js</h2>
 
-    <p>
-      <br/>
-    Basic Toolbar control.</p>
+    <p>Basic Toolbar control.</p>
 
     <h3>
       <a name="Objects" id="Objects"> 
       </a> Objects</h3>
-
-    
 
     <h4>
       <a name="OAT.Toolbar(div, options)"> 
@@ -169,14 +156,14 @@
     options)</h4>
 
     <p>Creates a <tt>Toolbar</tt> . Its main <tt>div</tt> is
-    accessible as <tt>toolbar.div</tt> . You can use the following
+    accessible as toolbar. <tt>div</tt>. You can use the following
     <tt>options</tt> :</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>labels</tt>
-        </strong> - use labels (default
+        <tt>
+          <b>labels</b>
+        </tt> - use labels (default
       <tt>false</tt> )</li>
     </ul>
 
@@ -184,120 +171,83 @@
       <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    
-
     <h4>
       <a name="OAT.Toolbar.addIcon(twoStates, imagePath, tooltip, callback)"> 
-      </a>
-    OAT.Toolbar.addIcon(twoStates, imagePath, tooltip,
-    callback)</h4>
+      </a>OAT.Toolbar.addIcon(twoStates,
+    imagePath, tooltip, callback)</h4>
 
-    <p>
-      <br/>
-    Adds a new icon to Toolbar. If <tt>twoStates</tt> is
-    <tt>true</tt> , then this icon will have two states (otherwise
-    1). This icon will have image located at <tt>imagePath</tt> ;
-    <tt>onHover</tt> it will display <tt>tooltip</tt> ; and
-    clicking it will execute <tt>callback</tt> (with state #,
-    <tt>0</tt> or <tt>1</tt> , as an argument).</p>
+    <p>Adds a new icon to Toolbar. If <tt>twoStates</tt> is true,
+    then this icon will have two states (otherwise 1). This icon
+    will have image located at <tt>imagePath</tt>; onHoverit will
+    display <tt>tooltip</tt>; and clicking it will execute
+    <tt>callback</tt>(with state #,0or1, as an argument).</p>
 
     <h4>
       <a name="OAT.Toolbar.addSeparator()"> 
-      </a>
-    OAT.Toolbar.addSeparator()</h4>
+      </a>OAT.Toolbar.addSeparator()</h4>
 
-    <p>
-      <br/>
-    Adds a separator.</p>
+    <p>Adds a separator.</p>
 
     <h4>
       <a name="OAT.Toolbar.removeIcon(icon)"> 
-      </a>
-    OAT.Toolbar.removeIcon(icon)</h4>
+      </a>OAT.Toolbar.removeIcon(icon)</h4>
 
-    <p>
-      <br/>
-    Remove <tt>icon</tt> .</p>
+    <p>Remove <tt>icon</tt>.</p>
 
     <h4>
       <a name="OAT.Toolbar.removeSeparator(separator)"> 
-      </a>
-    OAT.Toolbar.removeSeparator(separator)</h4>
+      </a>OAT.Toolbar.removeSeparator(separator)</h4>
 
-    <p>
-      <br/>
-    Remove <tt>separator</tt> .</p>
+    <p>Remove <tt>separator</tt>.</p>
 
     <h3>
       <a name="CSS classes"> 
       </a> CSS classes</h3>
 
-    
-
     <h4>
       <a name="OAT.Toolbar.toolbar" id="OAT.Toolbar.toolbar"> 
-      </a>
-    OAT.Toolbar.toolbar</h4>
+      </a>OAT.Toolbar.toolbar</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name="OAT.Toolbar.toolbar_icon" id="OAT.Toolbar.toolbar_icon"> 
       </a> OAT.Toolbar.toolbar_icon</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
-      <a name="OAT.Toolbar.toolbar" id="OAT.Toolbar.toolbar"> 
-      </a>
-    OAT.Toolbar.toolbar <strong>icon_down</strong>
-    </h4>
+      <a name="OAT.Toolbar.toolbar icon_down"> 
+      </a>OAT.Toolbar.toolbar
+    icon_down</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name="OAT.Toolbar.toolbar_separator" id="OAT.Toolbar.toolbar_separator"> 
-      </a>
-    OAT.Toolbar.toolbar_separator</h4>
+      </a>OAT.Toolbar.toolbar_separator</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var callback = function(state) { alert(state); }
 var t = new OAT.Toolbar();
 t.addIcon(true, "", "some tooltip", callback);
 document.body.appendChild(t.div);
 
+    
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

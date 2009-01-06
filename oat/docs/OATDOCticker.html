@@ -3,24 +3,20 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCticker</h1>
+  <h1>ticker.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
       <div class="wikitoc">
       <ul>
-        <li>
-            <a href="#OATDOCticker">OATDOCticker</a>
-          </li>
-
         <li>
             <label class="c1">_</label>
             <label class="c1">_</label>
@@ -122,243 +118,192 @@
     </div>
     </div>
 
-    
-
-    
-
-    
-
     <h2>
       <a name="ticker.js" id="ticker.js"> 
       </a> ticker.js</h2>
 
-    <p>
-      <br/>
-    Ticker - slowly appearing and disappearing text.</p>
+    <p>Ticker - slowly appearing and disappearing text.</p>
 
     <h3>
       <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
-    
-
     <h4>
       <a name="OAT.Ticker(element, text, options)"> 
-      </a>
-    OAT.Ticker(element, text, options)</h4>
+      </a>OAT.Ticker(element,
+    text, options)</h4>
 
-    <p>
-      <br/>
-    Creates <tt>Ticker</tt> . It will show <tt>text</tt> in
+    <p>Creates <tt>Ticker</tt>. It will show <tt>text</tt> in
     <tt>element</tt> . Argument <tt>options</tt> is an object
-    containing the following:<br/>
-    </p>
+    containing the following:</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>loop</tt>
-        </strong> - an
-      <tt>OAT.TickerData.LOOP_</tt> constant (default
-      <tt>OAT.TickerData.LOOP_NONE</tt> )<br/>
-      </li>
+        <tt>
+          <b>loop</b>
+        </tt> - an <tt>OAT.TickerData.LOOP_</tt>
+      constant (default <tt>OAT.TickerData.LOOP_NONE</tt>)</li>
 
       <li>
-        <strong>
-          <tt>add</tt>
-        </strong> - an
-      <tt>OAT.TickerData.ADD_</tt> constant (default
-      <tt>OAT.TickerData.ADD_END</tt> )<br/>
-      </li>
+        <tt>
+          <b>add</b>
+        </tt> - an <tt>OAT.TickerData.ADD_</tt>
+      constant (default <tt>OAT.TickerData.ADD_END</tt>)</li>
 
       <li>
-        <strong>
-          <tt>clear</tt>
-        </strong> - an
-      <tt>OAT.TickerData.CLEAR_</tt> constant (default
-      <tt>OAT.TickerData.CLEAR_ALL</tt> )<br/>
-      </li>
+        <tt>
+          <b>clear</b>
+        </tt> - an <tt>OAT.TickerData.CLEAR_</tt>
+      constant (default <tt>OAT.TickerData.CLEAR_ALL</tt>)</li>
 
       <li>
-        <strong>
-          <tt>timing</tt>
-        </strong> - an
+        <tt>
+          <b>timing</b>
+        </tt> - an
       <tt>OAT.TickerData.TIMING_</tt> constant (default
-      <tt>OAT.TickerData.TIMING_GLOBAL</tt> )<br/>
-      </li>
+      <tt>OAT.TickerData.TIMING_GLOBAL</tt>)</li>
 
       <li>
-        <strong>
-          <tt>defDelay</tt>
-        </strong> - delay in msec
-      (default <tt>3000</tt> )<br/>
-      </li>
+        <tt>
+          <b>defDelay</b>
+        </tt> - delay in msec (default
+      <tt>3000</tt>)</li>
 
       <li>
-        <strong>
-          <tt>pause</tt>
-        </strong> - pause (in msec) when
-      all text is drawn (default <tt>1000</tt> )</li>
+        <tt>
+          <b>pause</b>
+        </tt> - pause (in msec) when all text is
+      drawn (default <tt>1000</tt>)</li>
     </ul>
 
     <h3>
       <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    
-
     <h4>
       <a name=".start()"> 
       </a> .start()</h4>
 
-    <p>
-      <br/>
-    Starts ticking.</p>
+    <p>Starts ticking.</p>
 
     <h4>
       <a name=".stop()"> 
       </a> .stop()</h4>
 
-    <p>
-      <br/>
-    Stops ticking.</p>
+    <p>Stops ticking.</p>
 
     <h3>
       <a name="Constants" id="Constants"> 
       </a> Constants</h3>
 
-    
-
     <h4>
       <a name="OAT.TickerData.ADD_" id="OAT.TickerData.ADD_"> 
-      </a>
-    OAT.TickerData.ADD_</h4>
+      </a>OAT.TickerData.ADD_</h4>
 
-    <p>
-      <br/>
-    Where to add characters to ticker<br/>
-    </p>
+    <p>Where to add characters to ticker</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>OAT.TickerData.ADD_START</tt>
-        </strong> - at
-      the beginning<br/>
-      </li>
+        <tt>
+          <b>OAT.TickerData.ADD_START</b>
+        </tt> - at the
+      beginning</li>
 
       <li>
-        <strong>
-          <tt>OAT.TickerData.ADD_END</tt>
-        </strong> - at the
-      end</li>
+        <tt>
+          <b>OAT.TickerData.ADD_END</b>
+        </tt> - at the end</li>
     </ul>
 
     <h4>
       <a name="OAT.TickerData.CLEAR_" id="OAT.TickerData.CLEAR_"> 
       </a> OAT.TickerData.CLEAR_</h4>
 
-    <p>
-      <br/>
-    How to remove characters<br/>
-    </p>
+    <p>How to remove characters</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>OAT.TickerData.CLEAR_ALL</tt>
-        </strong> - all
-      at once<br/>
-      </li>
+        <tt>
+          <b>OAT.TickerData.CLEAR_ALL</b>
+        </tt> - all at
+      once</li>
 
       <li>
-        <strong>
-          <tt>OAT.TickerData.CLEAR_START</tt>
-        </strong> -
-      one-by-one from beginning<br/>
-      </li>
+        <tt>
+          <b>OAT.TickerData.CLEAR_START</b>
+        </tt> - one-by-one
+      from beginning</li>
 
       <li>
-        <strong>
-          <tt>OAT.TickerData.CLEAR_END</tt>
-        </strong> -
-      one-by-one from end</li>
+        <tt>
+          <b>OAT.TickerData.CLEAR_END</b>
+        </tt> - one-by-one
+      from end</li>
     </ul>
 
     <h4>
       <a name="OAT.TickerData.TIMING_" id="OAT.TickerData.TIMING_"> 
       </a> OAT.TickerData.TIMING_</h4>
 
-    <p>
-      <br/>
-    How delay is specified<br/>
-    </p>
+    <p>How delay is specified</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>OAT.TickerData.TIMING_PERCHAR</tt>
-        </strong> -
-      per character<br/>
-      </li>
+        <tt>
+          <b>OAT.TickerData.TIMING_PERCHAR</b>
+        </tt> - per
+      character</li>
 
       <li>
-        <strong>
-          <tt>OAT.TickerData.TIMING_GLOBAL</tt>
-        </strong> -
-      per string</li>
+        <tt>
+          <b>OAT.TickerData.TIMING_GLOBAL</b>
+        </tt> - per
+      string</li>
     </ul>
 
     <h4>
       <a name="OAT.TickerData.LOOP_" id="OAT.TickerData.LOOP_"> 
       </a> OAT.TickerData.LOOP_</h4>
 
-    <p>
-      <br/>
-    What looping to use<br/>
-    </p>
+    <p>What looping to use</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>OAT.TickerData.LOOP_NONE</tt>
-        </strong> - no
-      loop<br/>
-      </li>
+        <tt>
+          <b>OAT.TickerData.LOOP_NONE</b>
+        </tt> - no loop</li>
 
       <li>
-        <strong>
-          <tt>OAT.TickerData.LOOP_BACK</tt>
-        </strong> - draw
-      text, hide it, and stop<br/>
-      </li>
+        <tt>
+          <b>OAT.TickerData.LOOP_BACK</b>
+        </tt> - draw text,
+      hide it, and stop</li>
 
       <li>
-        <strong>
-          <tt>OAT.TickerData.LOOP_FULL</tt>
-        </strong> -
-      continuous loop</li>
+        <tt>
+          <b>OAT.TickerData.LOOP_FULL</b>
+        </tt> - continuous
+      loop</li>
     </ul>
 
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var t = new OAT.Ticker(div, "Hello world!", 
                        {delay:30,timing:TickerData.TIMING_PERCHAR});
 t.start();
 
+    
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

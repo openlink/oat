@@ -3,172 +3,148 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCcombobox</h1>
+  <h1>combobox.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
-      <div class="wikitoc">
+          <div class="wikitoc">
       <ul>
         <li>
-            <a href="#OATDOCcombobox">OATDOCcombobox</a>
-          </li>
-
-        <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
         <a href="#combobox.js">combobox.js</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Objects">Objects</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Objects">Objects</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Combobox(defaultValue)">OAT.Combobox(defaultValue)</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Combobox(defaultValue)">OAT.Combobox(defaultValue)</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Methods">Methods</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Methods">Methods</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Combobox::addOption(element,%20textValue)">OAT.Combobox::addOption(element,
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Combobox::addOption(element,%20textValue)">OAT.Combobox::addOption(element,
         textValue)</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#CSS%20classes">CSS
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#CSS%20classes">CSS
         classes</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.combo_box">.combo_box</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.combo_box">.combo_box</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.combo_box_list">.combo_box_list</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.combo_box_list">.combo_box_list</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.combo_box_value">.combo_box_value</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.combo_box_value">.combo_box_value</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.combo_image">.combo_image</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.combo_image">.combo_image</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Example">Example</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Example">Example</a>
+              </li>
       </ul>
     </div>
-    </div>
-
-    
-
-    
-
-    
+        </div>
 
     <h2>
       <a name="combobox.js" id="combobox.js"> 
-      </a>
-    combobox.js</h2>
+      </a>combobox.js</h2>
 
     <p>Creates a combobox, an enhanced <tt>&lt;select&gt;</tt>
     which allows richer options.</p>
-
-    
 
     <h3>
       <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
-    
-
     <h4>
       <a name="OAT.Combobox(defaultValue)"> 
-      </a>
-    OAT.Combobox(defaultValue)</h4>
+      </a>OAT.Combobox(defaultValue)</h4>
 
-    <p>
-      <br/>
-    Creates a combobox with a value of <tt>defaultValue</tt> . Its
-    main div is accessible as <tt>OAT.Combobox::div</tt> . Onchange
-    callback may be set via <tt>OAT.Combobox::onchange</tt>
-    property.</p>
+    <p>Creates a combobox with a value of <tt>defaultValue</tt>.
+    Its main div is accessible as <tt>OAT.Combobox::div</tt>.
+    Onchange callback may be set via
+    <tt>OAT.Combobox::onchange</tt> property.</p>
 
     <h3>
       <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    
-
     <h4>
       <a name="OAT.Combobox::addOption(element, textValue)"> 
-      </a>
-    OAT.Combobox::addOption(element, textValue)</h4>
+      </a>OAT.Combobox::addOption(element,
+    textValue)</h4>
 
-    <p>
-      <br/>
-    Adds a new option, represented by <tt>element</tt> with a value
-    of <tt>textValue</tt> .</p>
+    <p>Adds a new option, represented by <tt>element</tt> with a
+    value of <tt>textValue</tt>.</p>
 
     <h3>
       <a name="CSS classes"> 
       </a> CSS classes</h3>
-
-    
 
     <h4>
       <a name=".combo_box"> 
@@ -176,15 +152,11 @@
 
     <p>CSS class of the main combo box div.</p>
 
-    
-
     <h4>
       <a name=".combo_box_list"> 
       </a> .combo_box_list</h4>
 
     <p>CSS class of options list div.</p>
-
-    
 
     <h4>
       <a name=".combo_box_value"> 
@@ -192,21 +164,16 @@
 
     <p>CSS class of the currently selected option.</p>
 
-    
-
     <h4>
       <a name=".combo_image"> 
       </a> .combo_image</h4>
 
     <p>CSS class of the dropdown clicker image.</p>
 
-    
-
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var cb = new OAT.Combobox("[choose here]");
 document.body.appendChild( cb.div );
@@ -216,12 +183,11 @@ cb.addOption(someOtherElement, "option 2");
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

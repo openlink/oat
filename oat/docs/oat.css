@@ -1,6 +1,10 @@
 body {
     font-family: sans-serif;
-    font-size: 10pt;
+    font-size: 9pt;
+    padding-left: 5em;
+    padding-right: 5em;
+    padding-top: 0.5em;
+    background-color: #eee9cc;
 }
 
 h1 {
@@ -11,31 +15,25 @@ h1 {
 }
 
 h2 {
-    font-size: 130%;
+    font-size: 135%;
     margin: none;
     margin-bottom: 10px;
     margin-top: 1.25em;
 }
 
 h3 {
-    font-size: 110%;
+    font-size: 125%;
     margin: none;
     margin-bottom: 10px;
     margin-top: 1.25em;
 }
 
 h4 {
-    font-size: 105%;
+    font-family: monospace;
+    font-size: 115%;
     margin: none;
     margin-bottom: 10px;
-    margin-top: 1.25em;
-}
-
-h5 {
-    font-size: 100%;
-    margin: none;
-    margin-bottom: 10px;
-    margin-top: 1.25em;
+    margin-top: 1.5em;
 }
 
 br {
@@ -46,8 +44,9 @@ br {
 #oatnav {
     background: silver;
     color: black;
-    margin-top: 2px; margin-bottom: 2px;
-    font-size: 115%;
+    margin-top: 2px; 
+    margin-bottom: 2px;
+    font-size: 110%;
     margin-bottom: 1em;
     padding-left: 0.5em;
     padding: 2px;
@@ -57,7 +56,6 @@ br {
     background: silver;
     color: black;
     margin-top: 2px; margin-bottom: 2px;
-    font-size: 120%;
     margin-top: 2em;
     padding: 2px;
     padding-left: 0.5em;
@@ -132,8 +130,8 @@ div.tdl {
 div.oatwikitoc {
     width: 100%;
     border: none;
-    border-bottom: solid 1px #F0F0F0;
-    border-top: solid 1px #F0F0F0;
+/*    border-bottom: solid 1px #F0F0F0;
+    border-top: solid 1px #F0F0F0; */
 }
 
 div.wikitoc ul {
@@ -146,4 +144,14 @@ div.wikitoc ul li {
 
 label.c2 {
     font-size: 50%;
+}
+
+div.topic-text {
+    background-color: white;
+    padding: 0.5em;
+}
+
+#page {
+    background-color: white;
+    padding: 0.5em;
 }

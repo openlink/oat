@@ -3,112 +3,102 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCdialog</h1>
+  <h1>dialog.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
-      <div class="wikitoc">
+          <div class="wikitoc">
       <ul>
         <li>
-            <a href="#OATDOCdialog">OATDOCdialog</a>
-          </li>
-
-        <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
         <a href="#dialog.js">dialog.js</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Objects">Objects</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Objects">Objects</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Dialog(title,%20contentDiv,%20optObj)">OAT.Dialog(title,
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Dialog(title,%20contentDiv,%20optObj)">OAT.Dialog(title,
         contentDiv, optObj)</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Methods">Methods</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Methods">Methods</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Dialog::show()">OAT.Dialog::show()</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Dialog::show()">OAT.Dialog::show()</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Dialog::hide()">OAT.Dialog::hide()</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Dialog::hide()">OAT.Dialog::hide()</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Properties">Properties</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Properties">Properties</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Dialog::ok">OAT.Dialog::ok</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Dialog::ok">OAT.Dialog::ok</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Dialog::cancel">OAT.Dialog::cancel</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Dialog::cancel">OAT.Dialog::cancel</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Example">Example</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Example">Example</a>
+              </li>
       </ul>
     </div>
-    </div>
-
-    
-
-    
-
-    
+        </div>
 
     <h2>
       <a name="dialog.js" id="dialog.js"> 
@@ -117,18 +107,14 @@
     <p>Simple wrapper for OK/Cancel dialog, that can contain any
     data.</p>
 
-    
-
     <h3>
       <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
-    
-
     <h4>
       <a name="OAT.Dialog(title, contentDiv, optObj)"> 
-      </a>
-    OAT.Dialog(title, contentDiv, optObj)</h4>
+      </a>OAT.Dialog(title,
+    contentDiv, optObj)</h4>
 
     <p>Creates a dialog window with title of <tt>title</tt> , puts
     <tt>contentDiv</tt> into it. Various options specify its
@@ -136,123 +122,94 @@
 
     <ul>
       <li>
-        <strong>
-          <tt>width</tt>
-        </strong> - in pixels, 0</li>
-    </ul>
-
-    <p>auto<br/>
-    </p>
-
-    <ul>
-      <li>
-        <strong>
-          <tt>height</tt>
-        </strong> - in pixels, 0</li>
-    </ul>
-
-    <p>auto<br/>
-    </p>
-
-    <ul>
-      <li>
-        <strong>
-          <tt>modal</tt>
-        </strong> - 1/0<br/>
-      </li>
+        <tt>
+          <b>width</b>
+        </tt> - in pixels,0 = auto</li>
 
       <li>
-        <strong>
-          <tt>zIndex</tt>
-        </strong> - default
-      1000<br/>
-      </li>
+        <tt>
+          <b>height</b>
+        </tt> - in pixels, 0 = auto</li>
 
       <li>
-        <strong>
-          <tt>onshow</tt>
-        </strong> - callback to be
-      performed when dialog is shown<br/>
-      </li>
+        <tt>
+          <b>modal</b>
+        </tt> - 1/0</li>
 
       <li>
-        <strong>
-          <tt>onhide</tt>
-        </strong> - callback to be
-      performed when dialog is hidden<br/>
-      </li>
+        <tt>
+          <b>zIndex</b>
+        </tt> - default 1000</li>
 
       <li>
-        <strong>
-          <tt>buttons</tt>
-        </strong> - 1/0, whether to show
-      OK/Cancel buttons</li>
+        <tt>
+          <b>onshow</b>
+        </tt> - callback to be performed when
+      dialog is shown</li>
+
+      <li>
+        <tt>
+          <b>onhide</b>
+        </tt> - callback to be performed when
+      dialog is hidden</li>
+
+      <li>
+        <tt>
+          <b>buttons</b>
+        </tt> - 1/0, whether to show OK/Cancel
+      buttons</li>
     </ul>
 
     <h3>
       <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    
-
     <h4>
       <a name="OAT.Dialog::show()"> 
       </a> OAT.Dialog::show()</h4>
 
-    <p>
-      <br/>
-    Shows the dialog.</p>
+    <p>Shows the dialog.</p>
 
     <h4>
       <a name="OAT.Dialog::hide()"> 
       </a> OAT.Dialog::hide()</h4>
 
-    <p>
-      <br/>
-    Hides the dialog.</p>
+    <p>Hides the dialog.</p>
 
     <h3>
       <a name="Properties" id="Properties"> 
       </a> Properties</h3>
 
-    
-
     <h4>
       <a name="OAT.Dialog::ok" id="OAT.Dialog::ok"> 
-      </a>
-    OAT.Dialog::ok</h4>
+      </a>OAT.Dialog::ok</h4>
 
-    <p>
-      <br/>
-    Callback to be performed when user clicks 'OK' button.</p>
+    <p>Callback to be performed when user clicks 'OK' button.</p>
 
     <h4>
       <a name="OAT.Dialog::cancel" id="OAT.Dialog::cancel"> 
-      </a>
-    OAT.Dialog::cancel</h4>
+      </a>OAT.Dialog::cancel</h4>
 
-    <p>
-      <br/>
-    Callback to be performed when user clicks 'Cancel' button.</p>
+    <p>Callback to be performed when user clicks 'Cancel'
+    button.</p>
 
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var d = new OAT.Dialog("dialog", div, {modal:1, buttons:1});
 d.show();
 
+    
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

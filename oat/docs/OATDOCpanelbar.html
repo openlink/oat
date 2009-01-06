@@ -3,14 +3,14 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCpanelbar</h1>
+  <h1>OATDOCpanelbar</h1>
   <div class="topic-text">
     
 
@@ -101,7 +101,8 @@
             <label class="c1">_</label>
             <label class="c1">_</label>
             <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.panelbar">.panelbar</a>
+            <label class="c1">_</label> <a href="#.panelbar%20option_selected">.panelbar
+        option_selected</a>
           </li>
 
         <li>
@@ -110,7 +111,7 @@
             <label class="c1">_</label>
             <label class="c1">_</label>
             <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.panelbar">.panelbar</a>
+            <label class="c1">_</label> <a href="#.panelbar%20option_upper">.panelbar option_upper</a>
           </li>
 
         <li>
@@ -119,7 +120,7 @@
             <label class="c1">_</label>
             <label class="c1">_</label>
             <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.panelbar">.panelbar</a>
+            <label class="c1">_</label> <a href="#.panelbar%20option_lower">.panelbar option_lower</a>
           </li>
 
         <li>
@@ -143,33 +144,21 @@
 
     
 
-    
-
-    
-
     <h2>
       <a name="panelbar.js" id="panelbar.js"> 
-      </a>
-    panelbar.js</h2>
+      </a>panelbar.js</h2>
 
     <p>Panelbar widget (like Mozilla sidebar).</p>
-
-    
 
     <h3>
       <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
-    
-
     <h4>
       <a name="OAT.Panelbar(fadeDelay)"> 
-      </a>
-    OAT.Panelbar(fadeDelay)</h4>
+      </a>OAT.Panelbar(fadeDelay)</h4>
 
-    <p>
-      <br/>
-    Creates a panelbar. Its main div is accessible as
+    <p>Creates a panelbar. Its main div is accessible as
     <tt>panelbar.div</tt> . Fading speed can be controlled via
     <tt>fadeDelay</tt> .</p>
 
@@ -177,104 +166,67 @@
       <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    
-
     <h4>
       <a name="OAT.Panelbar.addPanel(clicker, element)"> 
-      </a>
-    OAT.Panelbar.addPanel(clicker, element)</h4>
+      </a>OAT.Panelbar.addPanel(clicker,
+    element)</h4>
 
-    <p>
-      <br/>
-    Adds a new panel, contained in <tt>element</tt> . It will be
+    <p>Adds a new panel, contained in <tt>element</tt>. It will be
     shown after clicking on <tt>clicker</tt> .</p>
 
     <h4>
       <a name="OAT.Panelbar.go(index)"> 
-      </a>
-    OAT.Panelbar.go(index)</h4>
+      </a>OAT.Panelbar.go(index)</h4>
 
-    <p>
-      <br/>
-    Switches to appropriate panel based on <tt>index</tt> .</p>
+    <p>Switches to appropriate panel based on <tt>index</tt>.</p>
 
     <h3>
       <a name="CSS classes"> 
       </a> CSS classes</h3>
 
-    
-
     <h4>
       <a name=".panelbar"> 
       </a> .panelbar</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name=".panelbar_option"> 
       </a> .panelbar_option</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
-      <a name=".panelbar"> 
+      <a name=".panelbar option_selected"> 
       </a> .panelbar
-    <strong>option_selected</strong>
-    </h4>
+    option_selected</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
-      <a name=".panelbar"> 
+      <a name=".panelbar option_upper"> 
       </a> .panelbar
-    <strong>option_upper</strong>
-    </h4>
+    option_upper</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
-      <a name=".panelbar"> 
+      <a name=".panelbar option_lower"> 
       </a> .panelbar
-    <strong>option_lower</strong>
-    </h4>
+    option_lower</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name=".panelbar_content"> 
       </a> .panelbar_content</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var header = OAT.Dom.create("div");
 var body = OAT.Dom.create("div");
@@ -285,12 +237,11 @@ panelbar.go(0);
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

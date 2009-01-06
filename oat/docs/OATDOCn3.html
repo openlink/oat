@@ -3,23 +3,20 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1> OATDOCn3</h1>
+  <h1>n3.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
       <div class="wikitoc">
       <ul>
-        <li>
-            <a href="#OATDOCn3">OATDOCn3</a>
-          </li>
-
         <li>
             <label class="c1">_</label>
             <label class="c1">_</label>
@@ -52,42 +49,28 @@
     </div>
     </div>
 
-    
-
-    
-
-    
-
     <h2>
       <a name="n3.js" id="n3.js"> 
       </a> n3.js</h2>
 
     <p>N3/Turtle parser. (see also <a href="OATDOCrdf.html">RDF parser</a> )</p>
 
-    
-
     <h3>
       <a name="Functions" id="Functions"> 
       </a> Functions</h3>
 
-    
-
     <h4>
       <a name="OAT.N3.toTriples(string)"> 
-      </a>
-    OAT.N3.toTriples(string)</h4>
+      </a>OAT.N3.toTriples(string)</h4>
 
-    <p>
-      <br/>
-    Parses a N3/Turtle RDF document into a JavaScript array of triples which is then
+    <p>Parses a N3/Turtle RDF document into a JavaScript array of triples which is then
     returned. Input should be a <tt>string</tt> containing
     serialized RDF.</p>
 
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var callback = function(string) {
         var triples = OAT.RDF.toTriples(string);
@@ -98,12 +81,11 @@ OAT.AJAX.GET("myData.n3", false, callback, {type:OAT.AJAX.TYPE_TEXT});
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

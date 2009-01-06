@@ -3,229 +3,175 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCconnection</h1>
+  <h1>connection.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
-      <div class="wikitoc">
+          <div class="wikitoc">
       <ul>
         <li>
-            <a href="#OATDOCconnection">OATDOCconnection</a>
-          </li>
-
-        <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
         <a href="#connection.js">connection.js</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Objects">Objects</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Objects">Objects</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Connection(type,%20optionsObject)">OAT.Connection(type,
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Connection(type,%20optionsObject)">OAT.Connection(type,
         optionsObject)</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Constants">Constants</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Constants">Constants</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.ConnectionData.TYPE_XMLA">OAT.ConnectionData.TYPE_XMLA</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.ConnectionData.TYPE_XMLA">OAT.ConnectionData.TYPE_XMLA</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.ConnectionData.TYPE_REST">OAT.ConnectionData.TYPE_REST</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.ConnectionData.TYPE_REST">OAT.ConnectionData.TYPE_REST</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.ConnectionData.TYPE_WSDL">OAT.ConnectionData.TYPE_WSDL</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.ConnectionData.TYPE_WSDL">OAT.ConnectionData.TYPE_WSDL</a>
+              </li>
       </ul>
     </div>
-    </div>
-
-    
-
-    
-
-    
+        </div>
 
     <h2>
       <a name="connection.js" id="connection.js"> 
-      </a>
-    connection.js</h2>
+      </a>connection.js</h2>
 
     <p>Connection object for data access.</p>
-
-    
 
     <h3>
       <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
-    
-
     <h4>
       <a name="OAT.Connection(type, optionsObject)"> 
-      </a>
-    OAT.Connection(type, optionsObject)</h4>
+      </a>OAT.Connection(type,
+    optionsObject)</h4>
 
     <p>Creates a Connection. <tt>type</tt> is one of the
-    <tt>TYPE_</tt> constants (see below). Available options depend
+    <tt>TYPE_constants</tt> (see below). Available options depend
     on connection <tt>type</tt> :</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>TYPE_XMLA</tt>
-        </strong>
-        <br/>
+        <tt>
+          <b>TYPE_XMLA</b>
+        </tt>
       </li>
 
       <li>
-        <strong>
-          <tt>endpoint</tt>
-        </strong>
-        <div class="tdl"> - ToBeDone</div>
-        <br/>
+        <tt>
+          <b>endpoint</b>
+            </tt> - ToBeDone</li>
+
+      <li>
+        <tt>
+          <b>dsn</b>
+            </tt> - ToBeDone</li>
+
+      <li>
+        <tt>
+          <b>user</b>
+            </tt> - ToBeDone</li>
+
+      <li>
+        <tt>
+          <b>password</b>
+            </tt> - ToBeDone</li>
+
+      <li>
+        <tt>
+          <b>TYPE_REST</b>
+        </tt>
       </li>
 
       <li>
-        <strong>
-          <tt>dsn</tt>
-        </strong>
-        <div class="tdl"> - ToBeDone</div>
-        <br/>
+        <tt>
+          <b>url</b>
+            </tt> - ToBeDone</li>
+
+      <li>
+        <tt>
+          <b>TYPE_WSDL</b>
+        </tt>
       </li>
 
       <li>
-        <strong>
-          <tt>user</tt>
-        </strong>
-        <div class="tdl"> - ToBeDone</div>
-        <br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>password</tt>
-        </strong>
-        <div class="tdl"> - ToBeDone</div>
-        <br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>TYPE_REST</tt>
-        </strong>
-        <br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>url</tt>
-        </strong>
-        <div class="tdl"> - ToBeDone</div>
-        <br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>TYPE_WSDL</tt>
-        </strong>
-        <br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>url</tt>
-        </strong>
-        <div class="tdl"> - ToBeDone</div>
-      </li>
+        <tt>
+          <b>url</b>
+            </tt> - ToBeDone</li>
     </ul>
 
     <h3>
       <a name="Constants" id="Constants"> 
       </a> Constants</h3>
 
-    
-
     <h4>
       <a name="OAT.ConnectionData.TYPE_XMLA" id="OAT.ConnectionData.TYPE_XMLA"> 
-      </a>
-    OAT.ConnectionData.TYPE_XMLA</h4>
+      </a>OAT.ConnectionData.TYPE_XMLA</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name="OAT.ConnectionData.TYPE_REST" id="OAT.ConnectionData.TYPE_REST"> 
-      </a>
-    OAT.ConnectionData.TYPE_REST</h4>
+      </a>OAT.ConnectionData.TYPE_REST</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name="OAT.ConnectionData.TYPE_WSDL" id="OAT.ConnectionData.TYPE_WSDL"> 
-      </a>
-    OAT.ConnectionData.TYPE_WSDL</h4>
-
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-      <br/>
-    </p>
+      </a>OAT.ConnectionData.TYPE_WSDL</h4>
 
     
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

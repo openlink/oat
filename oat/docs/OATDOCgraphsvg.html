@@ -3,110 +3,90 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCgraphsvg</h1>
+  <h1>graphsvg.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
-      <div class="wikitoc">
+          <div class="wikitoc">
       <ul>
         <li>
-            <a href="#OATDOCgraphsvg">OATDOCgraphsvg</a>
-          </li>
-
-        <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
         <a href="#graphsvg.js">graphsvg.js</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Objects">Objects</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Objects">Objects</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.GraphSVG(div,%20vertices,%20edges,%20optionsObject)">OAT.GraphSVG(div,
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.GraphSVG(div,%20vertices,%20edges,%20optionsObject)">OAT.GraphSVG(div,
         vertices, edges, optionsObject)</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#CSS%20Classes">CSS
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#CSS%20Classes">CSS
         Classes</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.rdf_sidebar">.rdf_sidebar</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.rdf_sidebar">.rdf_sidebar</a>
+              </li>
       </ul>
     </div>
-    </div>
-
-    
-
-    
-
-    
+        </div>
 
     <h2>
       <a name="graphsvg.js" id="graphsvg.js"> 
-      </a>
-    graphsvg.js</h2>
+      </a>graphsvg.js</h2>
 
     <p>SVG-based RDF Graph viewer.</p>
-
-    
 
     <h3>
       <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
-    
-
     <h4>
       <a name="OAT.GraphSVG(div, vertices, edges, optionsObject)"> 
-      </a>
-    OAT.GraphSVG(div, vertices, edges, optionsObject)</h4>
+      </a>OAT.GraphSVG(div,
+    vertices, edges, optionsObject)</h4>
 
-    <p>
+    <p>Creates the Graph Viewer inside <tt>div</tt> .
+    <tt>vertices</tt> is an array of vertex objects:</p>
       <br/>
-    Creates the Graph Viewer inside <tt>div</tt> .
-    <tt>vertices</tt> is an array of vertex objects:<br/>
-    </p>
     <pre>
 { name: "node_label", type: 0/1 } // type: URI/non-URI; 
-
 </pre>
 
     <p>
+      <tt>edges</tt> is an array of edge objects:</p>
       <br/>
-    <tt>edges</tt> is an array of edge objects:<br/>
-    </p>
     <pre>
 { vertex1: vertex_object, vertex2: vertex_objects, name: "edge_label" }. 
-
 </pre>
 
     <p>
@@ -114,102 +94,85 @@
 
     <ul>
       <li>
-        <strong>
-          <tt>imagePath</tt>
-        </strong> - path with images
-      for tree in sidebar<br/>
-      </li>
+        <tt>
+          <b>imagePath</b>
+        </tt> - path with images for tree in
+      sidebar</li>
 
       <li>
-        <strong>
-          <tt>vertexColor</tt>
-        </strong> - string<br/>
-      </li>
+        <tt>
+          <b>vertexColor</b>
+        </tt> - string</li>
 
       <li>
-        <strong>
-          <tt>edgeColor</tt>
-        </strong> - string<br/>
-      </li>
+        <tt>
+          <b>edgeColor</b>
+        </tt> - string</li>
 
       <li>
-        <strong>
-          <tt>backgroundColor</tt>
-        </strong> -
-      string<br/>
-      </li>
+        <tt>
+          <b>backgroundColor</b>
+        </tt> - string</li>
 
       <li>
-        <strong>
-          <tt>vertexSize</tt>
-        </strong> - int<br/>
-      </li>
+        <tt>
+          <b>vertexSize</b>
+        </tt> - int</li>
 
       <li>
-        <strong>
-          <tt>vertexPadding</tt>
-        </strong> - int<br/>
-      </li>
+        <tt>
+          <b>vertexPadding</b>
+        </tt> - int</li>
 
       <li>
-        <strong>
-          <tt>padding</tt>
-        </strong> - int<br/>
-      </li>
+        <tt>
+          <b>padding</b>
+        </tt> - int</li>
 
       <li>
-        <strong>
-          <tt>edgeSize</tt>
-        </strong> - int<br/>
-      </li>
+        <tt>
+          <b>edgeSize</b>
+        </tt> - int</li>
 
       <li>
-        <strong>
-          <tt>type</tt>
-        </strong> - int; 0 - all nodes at
-      once, 1 - equal distances<br/>
-      </li>
+        <tt>
+          <b>type</b>
+        </tt> - int; 0 - all nodes at once, 1 -
+      equal distances</li>
 
       <li>
-        <strong>
-          <tt>placement</tt>
-        </strong> - int; 0 - random, 1
-      - circle<br/>
-      </li>
+        <tt>
+          <b>placement</b>
+        </tt> - int; 0 - random, 1 -
+      circle</li>
 
       <li>
-        <strong>
-          <tt>distance</tt>
-        </strong> - int; 0 - close, 1 -
-      medium, 2 - far<br/>
-      </li>
+        <tt>
+          <b>distance</b>
+        </tt> - int; 0 - close, 1 - medium, 2
+      - far</li>
 
       <li>
-        <strong>
-          <tt>projection</tt>
-        </strong> - int; 0 - planar, 1
-      - spherical<br/>
-      </li>
+        <tt>
+          <b>projection</b>
+        </tt> - int; 0 - planar, 1 -
+      spherical</li>
 
       <li>
-        <strong>
-          <tt>labels</tt>
-        </strong> - int; 0 - only element,
-      1-4 - distances<br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>show</tt>
-        </strong> - int; 0 - all, 1-4 -
+        <tt>
+          <b>labels</b>
+        </tt> - int; 0 - only element, 1-4 -
       distances</li>
+
+      <li>
+        <tt>
+          <b>show</b>
+        </tt> - int; 0 - all, 1-4 - distances</li>
     </ul>
 
     <h3>
       <a name="CSS Classes"> 
       </a> CSS Classes</h3>
-
-    
 
     <h4>
       <a name=".rdf_sidebar"> 
@@ -219,12 +182,11 @@
     resources, classes and predicates.</p>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

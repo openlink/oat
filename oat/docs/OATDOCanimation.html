@@ -3,14 +3,14 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCanimation</h1>
+  <h1>OATDOCanimation</h1>
   <div class="topic-text">
     
 
@@ -137,259 +137,194 @@
 
     
 
-    
-
-    
-
     <h2>
       <a name="animation.js" id="animation.js"> 
-      </a>
-    animation.js</h2>
+      </a>animation.js</h2>
 
     <p>Implements basic animation framework, as well as some
     pre-defined animation effects.</p>
-
-    
 
     <h3>
       <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
-    
-
     <h4>
       <a name="OAT.Animation(element, optionsObject)"> 
-      </a>
-    OAT.Animation(element, optionsObject)</h4>
+      </a>OAT.Animation(element,
+    optionsObject)</h4>
 
-    <p>
-      <br/>
-    Creates animation of <tt>element</tt> . All parameters are
+    <p>Creates animation of <tt>element</tt>. All parameters are
     specified in <tt>optionsObject</tt> ; for most use cases, it is
     more suitable to use some pre-defined <tt>Animation*</tt>
-    object. Properties of <tt>optionsObject</tt> :<br/>
-    </p>
+    object. Properties of <tt>optionsObject</tt>:</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>delay</tt>
-        </strong> - in msec<br/>
-      </li>
+        <tt>
+          <b>delay</b>
+        </tt> - in msec</li>
 
       <li>
-        <strong>
-          <tt>startFunction</tt>
-        </strong> - to be executed
-      when animation starts<br/>
-      </li>
+        <tt>
+          <b>startFunction</b>
+        </tt> - to be executed when
+      animation starts</li>
 
       <li>
-        <strong>
-          <tt>conditionFunction</tt>
-        </strong> - checked
-      every step<br/>
-      </li>
+        <tt>
+          <b>conditionFunction</b>
+        </tt> - checked every
+      step</li>
 
       <li>
-        <strong>
-          <tt>stepFunction</tt>
-        </strong> - executed every
-      step<br/>
-      </li>
+        <tt>
+          <b>stepFunction</b>
+        </tt> - executed every step</li>
 
       <li>
-        <strong>
-          <tt>stopFunction</tt>
-        </strong> - executed when
+        <tt>
+          <b>stopFunction</b>
+        </tt> - executed when
       <tt>conditionFunction</tt> returns true (and animation
       stops)</li>
     </ul>
 
     <h4>
       <a name="OAT.AnimationSize(element, optionsObject)"> 
-      </a>
-    OAT.AnimationSize(element, optionsObject)</h4>
+      </a>OAT.AnimationSize(element,
+    optionsObject)</h4>
 
-    <p>
-      <br/>
-    Animates <tt>element</tt> 's size. Properties of
-    <tt>optionsObject</tt> :<br/>
-    </p>
+    <p>Animates <tt>element</tt>'s size. Properties of
+    <tt>optionsObject</tt>:</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>delay</tt>
-        </strong> - in msec<br/>
-      </li>
+        <tt>
+          <b>delay</b>
+        </tt> - in msec</li>
 
       <li>
-        <strong>
-          <tt>width</tt>
-        </strong> - final width; -1 to
-      ignore<br/>
-      </li>
+        <tt>
+          <b>width</b>
+        </tt> - final width; -1 to ignore</li>
 
       <li>
-        <strong>
-          <tt>height</tt>
-        </strong> - final height; -1 to
-      ignore<br/>
-      </li>
+        <tt>
+          <b>height</b>
+        </tt> - final height; -1 to ignore</li>
 
       <li>
-        <strong>
-          <tt>speed</tt>
-        </strong> - speed of animation (in
+        <tt>
+          <b>speed</b>
+        </tt> - speed of animation (in
       pixels)</li>
     </ul>
 
     <h4>
       <a name="OAT.AnimationPosition(element, optionsObject)"> 
-      </a>
-    OAT.AnimationPosition(element, optionsObject)</h4>
-
-    <p>
-      <br/>
-    Animates <tt>element</tt> 's position. Properties of
-    <tt>optionsObject</tt> :<br/>
-    </p>
+      </a>OAT.AnimationPosition(element,
+    optionsObject)</h4>Animates <tt>element</tt>'s position.
+    Properties of <tt>optionsObject</tt>:
 
     <ul>
       <li>
-        <strong>
-          <tt>delay</tt>
-        </strong> - in msec<br/>
-      </li>
+        <tt>
+          <b>delay</b>
+        </tt> - in msec</li>
 
       <li>
-        <strong>
-          <tt>left</tt>
-        </strong> - final left coordinate;
-      -1 to ignore<br/>
-      </li>
+        <tt>
+          <b>left</b>
+        </tt> - final left coordinate; -1 to
+      ignore</li>
 
       <li>
-        <strong>
-          <tt>top</tt>
-        </strong> - final top coordinate; -1
-      to ignore<br/>
-      </li>
+        <tt>
+          <b>top</b>
+        </tt> - final top coordinate; -1 to
+      ignore</li>
 
       <li>
-        <strong>
-          <tt>speed</tt>
-        </strong> - speed of animation (in
+        <tt>
+          <b>speed</b>
+        </tt> - speed of animation (in
       pixels)</li>
     </ul>
 
     <h4>
       <a name="OAT.AnimationOpacity(element, optionsObject)"> 
-      </a>
-    OAT.AnimationOpacity(element, optionsObject)</h4>
-
-    <p>
-      <br/>
-    Animates <tt>element</tt> 's opacity. Properties of
-    <tt>optionsObject</tt> :<br/>
-    </p>
+      </a>OAT.AnimationOpacity(element,
+    optionsObject)</h4>Animates <tt>element</tt>'s opacity.
+    Properties of <tt>optionsObject</tt>:
 
     <ul>
       <li>
-        <strong>
-          <tt>delay</tt>
-        </strong> - in msec<br/>
-      </li>
+        <tt>
+          <b>delay</b>
+        </tt> - in msec</li>
 
       <li>
-        <strong>
-          <tt>opacity</tt>
-        </strong> - final opacity in
-      0..1<br/>
-      </li>
+        <tt>
+          <b>opacity</b>
+        </tt> - final opacity in 0..1</li>
 
       <li>
-        <strong>
-          <tt>speed</tt>
-        </strong> - speed of animation (in
-      opacity steps)</li>
+        <tt>
+          <b>speed</b>
+        </tt> - speed of animation (in opacity
+      steps)</li>
     </ul>
 
     <h4>
       <a name="OAT.AnimationCSS(element, optionsObject)"> 
-      </a>
-    OAT.AnimationCSS(element, optionsObject)</h4>
-
-    <p>
-      <br/>
-    Animates <tt>element</tt> 's CSS property. Properties of
-    <tt>optionsObject</tt> :<br/>
-    </p>
+      </a>OAT.AnimationCSS(element,
+    optionsObject)</h4>Animates <tt>element</tt>'s CSS property.
+    Properties of <tt>optionsObject</tt>:
 
     <ul>
       <li>
-        <strong>
-          <tt>delay</tt>
-        </strong> - in msec<br/>
-      </li>
+        <tt>
+          <b>delay</b>
+        </tt> - in msec</li>
 
       <li>
-        <strong>
-          <tt>property</tt>
-        </strong> - name of CSS
-      property<br/>
-      </li>
+        <tt>
+          <b>property</b>
+        </tt> - name of CSS property</li>
 
       <li>
-        <strong>
-          <tt>start</tt>
-        </strong> - initial
-      value<br/>
-      </li>
+        <tt>
+          <b>start</b>
+        </tt> - initial value</li>
 
       <li>
-        <strong>
-          <tt>step</tt>
-        </strong> - per-step
-      value<br/>
-      </li>
+        <tt>
+          <b>step</b>
+        </tt> - per-step value</li>
 
       <li>
-        <strong>
-          <tt>stop</tt>
-        </strong> - final value</li>
+        <tt>
+          <b>stop</b>
+        </tt> - final value</li>
     </ul>
 
     <h3>
       <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    
-
     <h4>
       <a name="OAT.Animation::start()"> 
-      </a>
-    OAT.Animation::start()</h4>
-
-    <p>
-      <br/>
-    Starts the animation.</p>
+      </a>OAT.Animation::start()</h4>Starts
+    the animation.
 
     <h4>
       <a name="OAT.Animation::stop()"> 
-      </a>
-    OAT.Animation::stop()</h4>
-
-    <p>
-      <br/>
-    Stops the animation.</p>
+      </a>OAT.Animation::stop()</h4>Stops the
+    animation.
 
     <h3>
       <a name="Messages" id="Messages"> 
       </a> Messages</h3>
-
-    
 
     <h4>
       <a name="OAT.MSG.ANIMATION_STOP" id="OAT.MSG.ANIMATION_STOP"> 
@@ -402,21 +337,16 @@
     <p>REMARK: When attaching message listeners to Animation*
     derivatives, attach them to the <tt>.animation</tt> property
     instead. Example:</p>
-
-    
+    <br/>
     <pre>
 var as = new OAT.AnimationSize("myDiv");
 OAT.MSG.attach(as.animation, OAT.MSG.ANIMATION_STOP, myCallback);
-
 </pre>
-
-    
 
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var div = Dom.create("div");
 var a = new OAT.AnimationOpacity(div, {opacity:0.5, delay:50, speed: 0.02});
@@ -425,12 +355,11 @@ a.start(); // will slowly make &lt;div&gt; element 50% transparent
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

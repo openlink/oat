@@ -3,24 +3,20 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCvalidation</h1>
+  <h1>validation.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
       <div class="wikitoc">
       <ul>
-        <li>
-            <a href="#OATDOCvalidation">OATDOCvalidation</a>
-          </li>
-
         <li>
             <label class="c1">_</label>
             <label class="c1">_</label>
@@ -70,31 +66,20 @@
     </div>
     </div>
 
-    
-
-    
-
-    
-
     <h2>
       <a name="validation.js" id="validation.js"> 
-      </a>
-    validation.js</h2>
+      </a>validation.js</h2>
 
-    <p>
-      <br/>
-    Creates restricted input controls.</p>
+    <p>Creates restricted input controls.</p>
 
     <h3>
       <a name="Functions" id="Functions"> 
       </a> Functions</h3>
 
-    
-
     <h4>
       <a name="OAT.Validation.create(element, type, options)"> 
-      </a>
-    OAT.Validation.create(element, type, options)</h4>
+      </a>OAT.Validation.create(element,
+    type, options)</h4>
 
     <p>Restricts input <tt>element</tt> . Restriction <tt>type</tt>
     is an <tt>OAT.Validation.TYPE_</tt> constant. <tt>Options</tt>
@@ -102,70 +87,61 @@
 
     <ul>
       <li>
-        <strong>
-          <tt>min</tt>
-        </strong> - minimum number of chars
-      (for <tt>OAT.Validation.TYPE_NUMERIC</tt> and
-      <tt>OAT.Validation.TYPE_LETTERS</tt> ) (default <tt>0</tt>
-      )<br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>max</tt>
-        </strong> - maximum number of chars
-      (for <tt>OAT.Validation.TYPE_NUMERIC</tt> and
-      <tt>OAT.Validation.TYPE_LETTERS</tt> ) (default <tt>50</tt>
-      )<br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>def</tt>
-        </strong> - default character (for
+        <tt>
+          <b>min</b>
+        </tt> - minimum number of chars (for
       <tt>OAT.Validation.TYPE_NUMERIC</tt> and
-      <tt>OAT.Validation.TYPE_LETTERS</tt> ) (default <tt>"_"</tt>
-      )<br/>
-      </li>
+      <tt>OAT.Validation.TYPE_LETTERS</tt>) (default
+      <tt>0</tt>)</li>
 
       <li>
-        <strong>
-          <tt>defDate</tt>
-        </strong> - default date (default
-      <tt>[today.getFullYear(),today.getMonth()+1,today.getDate()]</tt>
-      )<br/>
-      </li>
+        <tt>
+          <b>max</b>
+        </tt> - maximum number of chars (for
+      <tt>OAT.Validation.TYPE_NUMERIC</tt> and
+      <tt>OAT.Validation.TYPE_LETTERS</tt>) (default
+      <tt>50</tt>)</li>
 
       <li>
-        <strong>
-          <tt>minDate</tt>
-        </strong> - minimum allowed date
-      (for <tt>OAT.Validation.TYPE_DATE</tt> ), in form of
-      <tt>[year, month, day]</tt> , all indexed from 1 (default
-      <tt>[1900,1,1]</tt> )<br/>
-      </li>
+        <tt>
+          <b>def</b>
+        </tt> - default character (for
+      <tt>OAT.Validation.TYPE_NUMERIC</tt> and
+      <tt>OAT.Validation.TYPE_LETTERS</tt>) (default
+      <tt>"_"</tt>)</li>
 
       <li>
-        <strong>
-          <tt>maxDate</tt>
-        </strong> - maximum allowed date
-      (for <tt>OAT.Validation.TYPE_DATE</tt> ), in form of
-      <tt>[year, month, day]</tt> , all indexed from 1 (default
-      <tt>[2010,12,31]</tt> )<br/>
-      </li>
+        <tt>
+          <b>defDate</b>
+        </tt> - default date (default
+      <tt>[today.getFullYear(),today.getMonth()+1,today.getDate()]</tt>)</li>
 
       <li>
-        <strong>
-          <tt>regexp</tt>
-        </strong> - regular expression
-      (default <tt>""</tt> )</li>
+        <tt>
+          <b>minDate</b>
+        </tt> - minimum allowed date (for
+      <tt>OAT.Validation.TYPE_DATE</tt>), in form of <tt>[year,
+      month, day]</tt>, all indexed from 1 (default
+      <tt>[1900,1,1]</tt>)</li>
+
+      <li>
+        <tt>
+          <b>maxDate</b>
+        </tt> - maximum allowed date (for
+      <tt>OAT.Validation.TYPE_DATE</tt>), in form of <tt>[year,
+      month, day]</tt>, all indexed from 1 (default
+      <tt>[2010,12,31]</tt>)</li>
+
+      <li>
+        <tt>
+          <b>regexp</b>
+        </tt> - regular expression (default
+      <tt>""</tt>)</li>
     </ul>
 
     <h3>
       <a name="Constants" id="Constants"> 
       </a> Constants</h3>
-
-    
 
     <h4>
       <a name="OAT.Validation.TYPE_" id="OAT.Validation.TYPE_"> 
@@ -173,46 +149,34 @@
 
     <ul>
       <li>
-        <strong>
-          <tt>OAT.Validation.TYPE_NUMERIC</tt>
-        </strong>
-        <div class="tdl"> -
-      ToBeDone</div>
-        <br/>
-      </li>
+        <tt>
+          <b>OAT.Validation.TYPE_NUMERIC</b>
+            </tt> -
+      ToBeDone</li>
 
       <li>
-        <strong>
-          <tt>OAT.Validation.TYPE_LETTERS</tt>
-        </strong>
-        <div class="tdl"> -
-      ToBeDone</div>
-        <br/>
-      </li>
+        <tt>
+          <b>OAT.Validation.TYPE_LETTERS</b>
+            </tt> -
+      ToBeDone</li>
 
       <li>
-        <strong>
-          <tt>OAT.Validation.TYPE_DATE</tt>
-        </strong>
-        <div class="tdl"> -
-      ToBeDone</div>
-        <br/>
-      </li>
+        <tt>
+          <b>OAT.Validation.TYPE_DATE</b>
+            </tt> -
+      ToBeDone</li>
 
       <li>
-        <strong>
-          <tt>OAT.Validation.TYPE_REGEXP</tt>
-        </strong>
-        <div class="tdl"> -
-      ToBeDone</div>
-      </li>
+        <tt>
+          <b>OAT.Validation.TYPE_REGEXP</b>
+            </tt> -
+      ToBeDone</li>
     </ul>
 
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var i = OAT.Dom.create("input");
 OAT.Validation.create(i, OAT.Validation.TYPE_LETTERS,   // 3-10 chars, 
@@ -221,12 +185,11 @@ OAT.Validation.create(i, OAT.Validation.TYPE_LETTERS,   // 3-10 chars,
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

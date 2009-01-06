@@ -3,171 +3,161 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCcombolist</h1>
+  <h1>combolist.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
-      <div class="wikitoc">
+          <div class="wikitoc">
       <ul>
         <li>
-            <a href="#OATDOCcombolist">OATDOCcombolist</a>
-          </li>
-
-        <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
         <a href="#combolist.js">combolist.js</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Objects">Objects</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Objects">Objects</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Combolist(optList,%20defaultValue,%20optionsObject)">OAT.Combolist(optList,
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Combolist(optList,%20defaultValue,%20optionsObject)">OAT.Combolist(optList,
         defaultValue, optionsObject)</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Methods">Methods</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Methods">Methods</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Combolist::addOption(label,%20value)">OAT.Combolist::addOption(label,
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Combolist::addOption(label,%20value)">OAT.Combolist::addOption(label,
         value)</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Combolist::clearOpts()">OAT.Combolist::clearOpts()</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Combolist::clearOpts()">OAT.Combolist::clearOpts()</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#CSS%20classes">CSS
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#CSS%20classes">CSS
         classes</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.combo_list">.combo_list</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.combo_list">.combo_list</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.combo_list_input">.combo_list_input</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.combo_list_input">.combo_list_input</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.combo_list_option">.combo_list_option</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.combo_list_option">.combo_list_option</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.combo_list_list">.combo_list_list</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#.combo_list_list">.combo_list_list</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Example">Example</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Example">Example</a>
+              </li>
       </ul>
     </div>
-    </div>
-
-    
-
-    
-
-    
+        </div>
 
     <h2>
       <a name="combolist.js" id="combolist.js"> 
-      </a>
-    combolist.js</h2>
+      </a>combolist.js</h2>
 
     <p>Creates a combolist, &lt;select&gt; with additional
     possibility of direct user input.</p>
-
-    
 
     <h3>
       <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
-    
-
     <h4>
       <a name="OAT.Combolist(optList, defaultValue, optionsObject)"> 
-      </a>
-    OAT.Combolist(optList, defaultValue, optionsObject)</h4>
+      </a>OAT.Combolist(optList,
+    defaultValue, optionsObject)</h4>
 
-    <p>Creates a combolist containing values from<br/>
-    <tt>optList</tt> array, with a value of
-    <tt>defaultValue</tt>.<br/>
-    Its main div is accessible as <tt>OAT.Combolist::div</tt>
-    .<br/>
-    Onchange callback may be set via
-    <tt>OAT.Combolist::onchange</tt> property.
-    <tt>optionsObject</tt> may contain:</p>
+    <p>Creates a combolist containing values from
+    <tt>optListarray</tt>, with a value of
+    <tt>defaultValue</tt>.</p>
+
+    <p>Its main div is accessible as
+    <tt>OAT.Combolist::div</tt>.</p>
+
+    <p>Onchange callback may be set via
+    <tt>OAT.Combolist::onchange</tt>
+    property.<tt>optionsObject</tt> may contain:</p>
 
     <ul>
       <li>
-        <tt>name</tt> - html name attribute for relevant input
-      tag<br/>
-      </li>
+        <tt>
+          <b>name</b>
+        </tt> - html name attribute for relevant
+      input tag</li>
 
       <li>
-        <tt>imagePath</tt>
+        <tt>
+          <b>imagePath</b>
+        </tt>
       </li>
     </ul>
 
@@ -175,33 +165,24 @@
       <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    
-
     <h4>
       <a name="OAT.Combolist::addOption(label, value)"> 
-      </a>
-    OAT.Combolist::addOption(label, value)</h4>
+      </a>OAT.Combolist::addOption(label,
+    value)</h4>
 
-    <p>
-      <br/>
-    Adds a new option labeled <tt>label</tt> with value of
+    <p>Adds a new option labeled <tt>label</tt> with value of
     <tt>value</tt> . If <tt>value</tt> is not specified,
     <tt>label</tt> is used instead.</p>
 
     <h4>
       <a name="OAT.Combolist::clearOpts()"> 
-      </a>
-    OAT.Combolist::clearOpts()</h4>
+      </a>OAT.Combolist::clearOpts()</h4>
 
-    <p>
-      <br/>
-    Clears all options.</p>
+    <p>Clears all options.</p>
 
     <h3>
       <a name="CSS classes"> 
       </a> CSS classes</h3>
-
-    
 
     <h4>
       <a name=".combo_list"> 
@@ -209,15 +190,11 @@
 
     <p>CSS class of the combolist div.</p>
 
-    
-
     <h4>
       <a name=".combo_list_input"> 
       </a> .combo_list_input</h4>
 
     <p>CSS class of the text input field option.</p>
-
-    
 
     <h4>
       <a name=".combo_list_option"> 
@@ -225,36 +202,31 @@
 
     <p>CSS class of the regular option.</p>
 
-    
-
     <h4>
       <a name=".combo_list_list"> 
       </a> .combo_list_list</h4>
 
     <p>CSS class of the option list.</p>
 
-    
-
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
  var cl = new OAT.Combolist([],"default",{name:"myName"});
 document.body.appendChild( cl.div );
 cl.addOption("option 1");
 cl.addOption("option 2","value 2");
 
+    
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

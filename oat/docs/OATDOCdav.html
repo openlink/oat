@@ -3,7 +3,8 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
@@ -72,193 +73,118 @@
 
     
 
-    
-
-    
-
     <h2>
       <a name="dav.js" id="dav.js"> 
       </a> dav.js</h2>
 
-    <p>Displays a WebDav Browser window for file
-    picking/opening/saving. Optionally prompts for auth
-    credentials.</p>
-
-    
+    <p>Displays a WebDavBrowser window for file picking/opening/saving.
+    Optionally prompts for auth credentials.</p>
 
     <h3>
       <a name="Functions" id="Functions"> 
       </a> Functions</h3>
 
-    
-
     <h4>
       <a name="OAT.WebDav.init(options)"> 
-      </a>
-    OAT.WebDav.init(options)</h4>
+      </a>OAT.WebDav.init(options)</h4>
 
     <p>Creates WebDAV Browser window and sets various
-    configuration <tt>options</tt> , if needed. All possible
+    configurationoptions, if needed. All possible options:</p>
+
+    <ul>
+      <li>
+        <b>user</b> - username</li>
+
+      <li>
+        <b>pass</b> - username</li>
+
+      <li>
+        <b>path</b> - path which should be opened</li>
+
+      <li>
+        <b>file</b> - default preselected file name</li>
+
+      <li>
+        <b>silentStart</b> - do not display connection setup
+      dialog on WebDAVinitialization</li>
+
+      <li>
+        <b>extension</b> - ID of default file type extension to
+      be selected</li>
+
+      <li>
+        <b>pathFallback</b> - this is a failsafe path which will
+      be offered when HTTP errors prohibit changing to requested
+      path</li>
+
+      <li>
+        <b>imagePath</b> - path to images, with trailing
+      slash</li>
+
+      <li>
+        <b>imageExt</b> - image files extension</li>
+
+      <li>
+        <b>isDav</b> - whether the server is DAV. For non-DAV
+      HTTP servers, a minimal 'prompt' will be used instead of full
+      Browser When no user/pass is passed in options or silent
+      Setupis set to false, user will be prompted for credentials
+      through connection settings dialog.</li>
+    </ul>
+
+    <h4>
+      <a name="OAT.WebDav.openDialog(options)"> 
+      </a>OAT.WebDav.openDialog(options)</h4>
+
+    <p>Opens the Browser in file browse mode. User can select a
+    file, which will be passed back to application. All options
+    passed to OAT.WebDav.init can be used here. Additional specific
     options:</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>user</tt>
-        </strong> - username<br/>
-      </li>
+        <b>callback</b> - function to be executed when user
+      selects a file. This will be called with 3
+      arguments:path,file name and contents.</li>
 
       <li>
-        <strong>
-          <tt>pass</tt>
-        </strong> - username<br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>path</tt>
-        </strong> - path which should be
-      opened<br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>file</tt>
-        </strong> - default preselected file
-      name<br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>silentStart</tt>
-        </strong> - do not display
-      connection setup dialog on WebDAV initialization<br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>extension</tt>
-        </strong> - ID of default file
-      type extension to be selected<br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>pathFallback</tt>
-        </strong> - this is a
-      failsafe path which will be offered when HTTP errors prohibit
-      changing to requested path<br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>imagePath</tt>
-        </strong> - path to images,
-      with trailing slash<br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>imageExt</tt>
-        </strong> - image files
-      extension<br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>isDav</tt>
-        </strong> - whether the server is
-      DAV. For non-DAV HTTP servers, a minimal 'prompt' will be
-      used instead of full Browser<br/>
-      When no user/pass is passed in <tt>options</tt> or
-      <tt>silentSetup</tt> is set to false, user will be prompted
-      for credentials through connection settings dialog.</li>
-    </ul>
-
-    
-
-    <h4>
-      <a name="OAT.WebDav.openDialog(options)"> 
-      </a>
-    OAT.WebDav.openDialog(options)</h4>
-
-    <p>Opens the Browser in file browse mode. User can select a
-    file, which will be passed back to application. All
-    <tt>options</tt> passed to <tt>OAT.WebDav.init</tt> can be used
-    here. Additional specific options:</p>
-
-    <ul>
-      <li>
-        <strong>
-          <tt>callback</tt>
-        </strong> - function to be
-      executed when user selects a file. This will be called with 3
-      arguments: <tt>path</tt> , <tt>filename</tt> and
-      <tt>contents</tt> .<br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>extensionFilters</tt>
-        </strong> - array of
-      file type extensions. Each item consists of 4 values:
-      <tt>arbitrary unique ID</tt> , <tt>extension</tt> ,
-      <tt>description</tt> , and optional <tt>content
-      type</tt>
-      </li>
+        <b>extensionFilters</b> - array of file type extensions.
+      Each item consists of 4 values:arbitrary unique
+      ID,extension,description, and optional content type</li>
     </ul>
 
     <h4>
       <a name="OAT.WebDav.saveDialog(options)"> 
-      </a>
-    OAT.WebDav.saveDialog(options)</h4>
+      </a>OAT.WebDav.saveDialog(options)</h4>
 
     <p>Opens the Browser in file save mode. User can select a
     new/existing file, the Browser will then save specified data to
-    that file. All <tt>options</tt> passed to
-    <tt>OAT.WebDav.init</tt> can be used here. Additional specific
-    options:</p>
+    that file. All options passed to OAT.WebDav.init can be used
+    here. Additional specific options:</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>callback</tt>
-        </strong> - same as in
-      <tt>OAT.WebDav.openDialog</tt>
-        <br/>
-      </li>
+        <b>callback</b> - same as inOAT.WebDav.openDialog</li>
 
       <li>
-        <strong>
-          <tt>extensionFilters</tt>
-        </strong> - same as in
-      <tt>OAT.WebDav.openDialog</tt>
-        <br/>
-      </li>
+        <b>extensionFilters</b> - same as
+      inOAT.WebDav.openDialog</li>
 
       <li>
-        <strong>
-          <tt>confirmOverwrite</tt>
-        </strong> - bool, should
-      we ask for a confirmation when overwriting existing
-      file?<br/>
-      </li>
+        <b>confirmOverwrite</b> - bool, should we ask for a
+      confirmation when overwriting existing file?</li>
 
       <li>
-        <strong>
-          <tt>dataCallback</tt>
-        </strong> - function which
-      provides data to be saved. Will be executed with two
-      arguments: <tt>selected file name</tt> and <tt>used extension
-      ID</tt> . If set to <tt>false</tt> , nothing will be
+        <b>dataCallback</b> - function which provides data to be
+      saved. Will be executed with two arguments:selected file name
+      and used extension ID. If set to false, nothing will be
       saved.</li>
     </ul>
 
     <h3>
       <a name="Examples" id="Examples"> 
       </a> Examples</h3>
-
-    
+    <br/>
     <pre>
 var options = {
         user:"demo",
@@ -280,15 +206,15 @@ function showContents(path, file, data) {
 
 OAT.WebDav.openDialog({callback:showContents});
 
+    
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

@@ -3,87 +3,77 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCfresnel</h1>
+  <h1>fresnel.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
-      <div class="wikitoc">
+          <div class="wikitoc">
       <ul>
         <li>
-            <a href="#OATDOCfresnel">OATDOCfresnel</a>
-          </li>
-
-        <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
         <a href="#fresnel.js">fresnel.js</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Objects">Objects</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Objects">Objects</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Fresnel()">OAT.Fresnel()</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Fresnel()">OAT.Fresnel()</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Methods">Methods</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Methods">Methods</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Fresnel::addURL(url,%20callback)">OAT.Fresnel::addURL(url,
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Fresnel::addURL(url,%20callback)">OAT.Fresnel::addURL(url,
         callback)</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Fresnel::format(dataObject)">OAT.Fresnel::format(dataObject)</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Fresnel::format(dataObject)">OAT.Fresnel::format(dataObject)</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Example">Example</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Example">Example</a>
+              </li>
       </ul>
     </div>
-    </div>
-
-    
-
-    
-
-    
+        </div>
 
     <h2>
       <a name="fresnel.js" id="fresnel.js"> 
@@ -91,57 +81,42 @@
 
     <p>Fresnel Lens RDF Processor.</p>
 
-    
-
     <h3>
       <a name="Objects" id="Objects"> 
       </a> Objects</h3>
-
-    
 
     <h4>
       <a name="OAT.Fresnel()"> 
       </a> OAT.Fresnel()</h4>
 
-    <p>
-      <br/>
-    Creates the Fresnel Processor object.</p>
+    <p>Creates the Fresnel Processor object.</p>
 
     <h3>
       <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    
-
     <h4>
       <a name="OAT.Fresnel::addURL(url, callback)"> 
-      </a>
-    OAT.Fresnel::addURL(url, callback)</h4>
+      </a>OAT.Fresnel::addURL(url,
+    callback)</h4>
 
-    <p>
-      <br/>
-    Loads a Fresnel RDF template, located at <tt>url</tt> . After
-    loading and parsing is complete, <tt>callback</tt> (without
-    arguments) is executed.</p>
+    <p>Loads a Fresnel RDF template, located at <tt>url</tt>. After
+    loading and parsing is complete,callback(without arguments) is
+    executed.</p>
 
     <h4>
       <a name="OAT.Fresnel::format(dataObject)"> 
-      </a>
-    OAT.Fresnel::format(dataObject)</h4>
+      </a>OAT.Fresnel::format(dataObject)</h4>
 
-    <p>
-      <br/>
-    Formats an RDF data set using loaded template. The
+    <p>Formats an RDF data set using loaded template. The
     <tt>dataObject</tt> is an OAT RDF structure, usually a
     <tt>store.data.all</tt> property. This function returns an
-    array with two values:<br/>
-    </p>
+    array with two values:</p>
+
+    <p>* [0] - an XML document, containing the transformed
+    document,</p>
 
     <ul>
-      <li>[0] - an XML document, containing the transformed
-      document,<br/>
-      </li>
-
       <li>[1] - array of CSS stylesheets, referenced in Fresnel
       template.</li>
     </ul>
@@ -149,8 +124,7 @@
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var fresnel = new OAT.Fresnel();
 var rdf = new OAT.RDFStore(); /* don't forget to load some RDF into the store... */
@@ -160,15 +134,15 @@ var loadedCallback = function() {
 }
 fresnel.addURL("myFresnelTemplate.n3");
 
+    
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

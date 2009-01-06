@@ -3,88 +3,78 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCbezier</h1>
+  <h1>bezier.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
-      <div class="wikitoc">
+          <div class="wikitoc">
       <ul>
         <li>
-            <a href="#OATDOCbezier">OATDOCbezier</a>
-          </li>
-
-        <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
         <a href="#bezier.js">bezier.js</a>
-          </li>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Functions">Functions</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Functions">Functions</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Bezier.setPointList(pointList)">OAT.Bezier.setPointList(pointList)</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Bezier.setPointList(pointList)">OAT.Bezier.setPointList(pointList)</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Bezier.initFactorial(max)">OAT.Bezier.initFactorial(max)</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Bezier.initFactorial(max)">OAT.Bezier.initFactorial(max)</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Bezier.create()">OAT.Bezier.create()</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Bezier.create()">OAT.Bezier.create()</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#OAT.Bezier.create2()">OAT.Bezier.create2()</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#OAT.Bezier.create2()">OAT.Bezier.create2()</a>
+              </li>
 
         <li>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#Example">Example</a>
-          </li>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label>
+                <label class="c1">_</label> <a href="#Example">Example</a>
+              </li>
       </ul>
     </div>
-    </div>
-
-    
-
-    
-
-    
+        </div>
 
     <h2>
       <a name="bezier.js" id="bezier.js"> 
@@ -93,28 +83,20 @@
     <p>Provides two mathematical functions for drawing Bezier
     curves.</p>
 
-    
-
     <h3>
       <a name="Functions" id="Functions"> 
       </a> Functions</h3>
 
-    
-
     <h4>
       <a name="OAT.Bezier.setPointList(pointList)"> 
-      </a>
-    OAT.Bezier.setPointList(pointList)</h4>
+      </a>OAT.Bezier.setPointList(pointList)</h4>
 
     <p>Marks an array of 2D points as a base for a Bezier
     curve.</p>
 
-    
-
     <h4>
       <a name="OAT.Bezier.initFactorial(max)"> 
-      </a>
-    OAT.Bezier.initFactorial(max)</h4>
+      </a>OAT.Bezier.initFactorial(max)</h4>
 
     <p>Pre-computes factorials of <tt>1..max</tt> for later
     execution. Call this function once, in the initialization part
@@ -122,38 +104,30 @@
     <tt>OAT.Bezier.create2()</tt> function. Set the max argument to
     the number of points.</p>
 
-    
-
     <h4>
       <a name="OAT.Bezier.create()"> 
       </a> OAT.Bezier.create()</h4>
 
-    <p>Returns a Bezier function <tt>f: [0,1] -&gt; R^2</tt> which
+    <p>Returns a Bezier functionf: <tt>[0,1] -&gt; R^2</tt> which
     describes parametric Bezier curve, based on points set by
     <tt>OAT.Bezier.setPointList()</tt> .</p>
 
     <p>Uses slow but precise recursive <a href="http://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm" class="absuri">de Casteljau's algorithm</a> .</p>
 
-    
-
     <h4>
       <a name="OAT.Bezier.create2()"> 
-      </a>
-    OAT.Bezier.create2()</h4>
+      </a>OAT.Bezier.create2()</h4>
 
-    <p>Returns a Bezier function <tt>f: [0,1] -&gt; R^2</tt> which
+    <p>Returns a Bezier functionf: <tt>[0,1] -&gt; R^2</tt> which
     describes parametric Bezier curve, based on points set by
     <tt>OAT.Bezier.setPointList()</tt> .</p>
 
     <p>Uses faster factorial algorithm based directly on <a href="http://en.wikipedia.org/wiki/Bernstein_polynomial" class="absuri">Bernstein polynomials</a> .</p>
 
-    
-
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var points = [];
 points.push([0,0]);
@@ -166,12 +140,11 @@ alert(f(0.5)); // [x, y] where x in [0,1], y in [0,1]
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

@@ -3,23 +3,20 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1> OATDOCws</h1>
+  <h1>ws.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
       <div class="wikitoc">
       <ul>
-        <li>
-            <a href="#OATDOCws">OATDOCws</a>
-          </li>
-
         <li>
             <label class="c1">_</label>
             <label class="c1">_</label>
@@ -83,92 +80,72 @@
     </div>
     </div>
 
-    
-
-    
-
-    
-
     <h2>
       <a name="ws.js" id="ws.js"> 
       </a> ws.js</h2>
 
-    <p>
-      <br/>
-    Web Services (WSDL) interface.</p>
+    <p>Web Services (WSDL) interface.</p>
 
     <h3>
       <a name="Functions" id="Functions"> 
       </a> Functions</h3>
 
-    
-
     <h4>
       <a name="OAT.WS.getEndpoint(wsdlURL, callback)"> 
-      </a>
-    OAT.WS.getEndpoint(wsdlURL, callback)</h4>
+      </a>OAT.WS.getEndpoint(wsdlURL,
+    callback)</h4>
 
-    <p>
-      <br/>
-    Asynchronously retrieve the endpoint URL for a given
+    <p>Asynchronously retrieve the endpoint URL for a given
     <tt>wsdlURL</tt> . Will <tt>callback(url)</tt> when
     retrieved.</p>
 
     <h4>
       <a name="OAT.WS.listServices(wsdlURL, callback)"> 
-      </a>
-    OAT.WS.listServices(wsdlURL, callback)</h4>
+      </a>OAT.WS.listServices(wsdlURL,
+    callback)</h4>
 
-    <p>
-      <br/>
-    Asynchronously retrieve a list of valid services for a given
+    <p>Asynchronously retrieve a list of valid services for a given
     <tt>wsdlURL</tt> . Will <tt>callback(servicesArray)</tt> when
     retrieved.</p>
 
     <h4>
       <a name="OAT.WS.listParameters(wsdlURL, service, callback)"> 
-      </a>
-    OAT.WS.listParameters(wsdlURL, service, callback)</h4>
+      </a>OAT.WS.listParameters(wsdlURL,
+    service, callback)</h4>
 
-    <p>
-      <br/>
-    Asynchronously retrieve input and output values for given
+    <p>Asynchronously retrieve input and output values for given
     <tt>wsdlURL</tt> and service. Will <tt>callback(inputObject,
     outputObject)</tt> when retrieved.</p>
 
     <h4>
       <a name="OAT.WS.invoke(wsdlURL, service, callback, options)"> 
-      </a>
-    OAT.WS.invoke(wsdlURL, service, callback, options)</h4>
+      </a>OAT.WS.invoke(wsdlURL,
+    service, callback, options)</h4>
 
-    <p>
-      <br/>
-    Invokes a web <tt>service</tt> , with WSDL file located at
+    <p>Invokes a web <tt>service</tt>, with WSDL file located at
     <tt>wsdlURL</tt> . Input values are specified in
     <tt>options</tt> ; will <tt>callback(outputObject)</tt> when
-    finished. Options:<br/>
-    </p>
+    finished. Options:</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>type</tt>
-        </strong> <tt>- (default
-      {{{OAT.AJAX.TYPE_XML</tt> ) }}}<br/>
+        <tt>
+          <b>type</b> <tt>- (default
+      <tt>OAT.AJAX.TYPE_XML</tt>)</tt>
+        </tt>
       </li>
 
       <li>
-        <strong>
-          <tt>headers</tt>
-        </strong> - (default
+        <tt>
+          <b>headers</b>
+        </tt> - (default
       <tt>{"SOAPAction":service}</tt> )</li>
     </ul>
 
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 /* Sample code for google search */
 var wsdl = "/google/services.wsdl";
@@ -194,15 +171,15 @@ function callback(outputObject) {
 
 OAT.WS.invoke(wsdl, callback, serviceName, inputObject);
 
+    
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

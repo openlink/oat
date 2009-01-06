@@ -3,23 +3,20 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1> OATDOCrdf</h1>
+  <h1>rdf.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
       <div class="wikitoc">
       <ul>
-        <li>
-            <a href="#OATDOCrdf">OATDOCrdf</a>
-          </li>
-
         <li>
             <label class="c1">_</label>
             <label class="c1">_</label>
@@ -96,91 +93,59 @@
     </div>
     </div>
 
-    
-
-    
-
-    
-
     <h2>
       <a name="rdf.js" id="rdf.js"> 
       </a> rdf.js</h2>
 
     <p>RDF/XML parser. (see also <a href="OATDOCn3.html">N3/Turtle parser</a> )</p>
 
-    
-
     <h3>
       <a name="Functions" id="Functions"> 
       </a> Functions</h3>
 
-    
-
     <h4>
       <a name="OAT.RDF.toTriples(xmlDoc, url)"> 
-      </a>
-    OAT.RDF.toTriples(xmlDoc, url)</h4>
+      </a>OAT.RDF.toTriples(xmlDoc,
+    url)</h4>
 
-    <p>
-      <br/>
-    Parses an RDF/XML document, <tt>xmlDoc</tt> into an array of
+    <p>Parses an RDF/XML document, <tt>xmlDoc</tt> into an array of
     triples which is then returned. Input should be in xmlDocument
     format, e.g., created with <a href="OATDOCxml.html">OAT.Xml.createXmlDoc()</a>or as a result of
-    <a href="OATDOCajax2.html">AJAX call of type XML</a> . <tt>Url</tt> is to
-    use for prefix and is optional.</p>
+    <a href="OATDOCajax2.html">AJAX call of type XML</a>. Urlis to use for
+    prefix and is optional.</p>
 
     <h3>
       <a name="Constants" id="Constants"> 
       </a> Constants</h3>
 
-    
-
     <h4>
       <a name="OAT.RDFData.DISABLE_HTML" id="OAT.RDFData.DISABLE_HTML"> 
       </a> OAT.RDFData.DISABLE_HTML</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name="OAT.RDFData.DEREFERENCE" id="OAT.RDFData.DEREFERENCE"> 
       </a> OAT.RDFData.DEREFERENCE</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name="OAT.RDFData.BOOKMARK" id="OAT.RDFData.BOOKMARK"> 
       </a> OAT.RDFData.BOOKMARK</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name="OAT.RDFData.FILTER" id="OAT.RDFData.FILTER"> 
-      </a>
-    OAT.RDFData.FILTER</h4>
+      </a>OAT.RDFData.FILTER</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var callback = function(xmlDoc) {
         var triples = OAT.RDF.toTriples(xmlDoc);
@@ -188,15 +153,15 @@ var callback = function(xmlDoc) {
 }
 OAT.AJAX2.GET("myData.rdf", false, callback,{type:OAT.AJAX.TYPE_XML});
 
+    
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

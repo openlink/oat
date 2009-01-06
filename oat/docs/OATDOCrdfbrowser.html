@@ -3,24 +3,20 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCrdfbrowser</h1>
+  <h1>rdfbrowser.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
       <div class="wikitoc">
       <ul>
-        <li>
-            <a href="#OATDOCrdfbrowser">OATDOCrdfbrowser</a>
-          </li>
-
         <li>
             <label class="c1">_</label>
             <label class="c1">_</label>
@@ -125,173 +121,122 @@
     </div>
     </div>
 
-    
-
-    
-
-    
-
     <h2>
       <a name="rdfbrowser.js" id="rdfbrowser.js"> 
-      </a>
-    rdfbrowser.js</h2>
+      </a>rdfbrowser.js</h2>
 
     <p>Multi-purpose RDF Browser.</p>
-
-    
 
     <h3>
       <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
-    
-
     <h4>
       <a name="OAT.RDFBrowser(div,options)"> 
-      </a>
-    OAT.RDFBrowser(div,options)</h4>
+      </a>OAT.RDFBrowser(div,options)</h4>
 
-    <p>
-      <br/>
-    Creates an RDF Browser object. Contents will be displayed
+    <p>Creates an RDF Browser object. Contents will be displayed
     inside <tt>div</tt> . You don't need to specify div if you have
     previously created (and appended) all elements with CSS IDs
-    mentioned before. <tt>options</tt> may contain:<br/>
-    </p>
+    mentioned before. <tt>options</tt> may contain:</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>maxLength</tt>
-        </strong> - maximum length of
-      tree node label (default <tt>30</tt> )<br/>
-      </li>
+        <tt>
+          <b>maxLength</b>
+        </tt> - maximum length of tree node
+      label (defaul t30)</li>
 
       <li>
-        <strong>
-          <tt>maxURILength</tt>
-        </strong> - maximum length
-      of displayed URI (default <tt>60</tt> )<br/>
-      </li>
+        <tt>
+          <b>maxURILength</b>
+        </tt> - maximum length of
+      displayed URI (default 60)</li>
 
       <li>
-        <strong>
-          <tt>maxDistinctValues</tt>
-        </strong> - maximum
-      number of leaves in one tree node (default <tt>100</tt>
-      )<br/>
-      </li>
+        <tt>
+          <b>maxDistinctValues</b>
+        </tt> - maximum number of
+      leaves in one tree node (default 100)</li>
 
       <li>
-        <strong>
-          <tt>imagePath</tt>
-        </strong> - include trailing
-      slash (default <tt>OAT.Preferences.imagePath</tt>
-      )<br/>
-      </li>
+        <tt>
+          <b>imagePath</b>
+        </tt> - include trailing slash
+      (default <tt>OAT.Preferences.imagePath</tt>)</li>
 
       <li>
-        <strong>
-          <tt>defaultURL</tt>
-        </strong> - to be shown in
-      input area (default <tt>""</tt> )<br/>
-      </li>
+        <tt>
+          <b>defaultURL</b>
+        </tt> - to be shown in input area
+      (default <tt>""</tt>)</li>
 
       <li>
-        <strong>
-          <tt>endpoint</tt>
-        </strong> - SPARQL query
-      endpoint (default <tt>"/sparql?query="</tt> )</li>
+        <tt>
+          <b>endpoint</b>
+        </tt> - SPARQL query endpoint (default
+      <tt>"/sparql?query="</tt>)</li>
     </ul>
 
     <h3>
       <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    
-
     <h4>
       <a name="OAT.RDFBrowser::store.addURL(url)"> 
-      </a>
-    OAT.RDFBrowser::store.addURL(url)</h4>
+      </a>OAT.RDFBrowser::store.addURL(url)</h4>
 
-    <p>
-      <br/>
-    Adds data from <tt>url</tt> to the Browser.</p>
+    <p>Adds data from <tt>ur</tt> lto the Browser.</p>
 
     <h4>
       <a name="OAT.RDFBrowser::store.addTriples(triples, label, href)"> 
-      </a>
-    OAT.RDFBrowser::store.addTriples(triples, label, href)</h4>
+      </a>OAT.RDFBrowser::store.addTriples(triples,
+    label, href)</h4>
 
-    <p>
-      <br/>
-    Adds a set of <tt>triples</tt> to the Browser. One should
-    specify a <tt>label</tt> and originating URI as <tt>href</tt>
-    .</p>
+    <p>Adds a set of <tt>triples</tt> to the Browser. One should
+    specify a <tt>label</tt> and originating URI as
+    <tt>href</tt>.</p>
 
     <h3>
       <a name="CSS IDs"> 
       </a> CSS IDs</h3>
 
-    
-
     <h4>
       <a name="#rdf_side"> 
       </a> #rdf_side</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name="#rdf_cache"> 
       </a> #rdf_cache</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name="#rdf_tabs"> 
       </a> #rdf_tabs</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name="#rdf_filter"> 
       </a> #rdf_filter</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name="#rdf_content"> 
       </a> #rdf_content</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-      <br/>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

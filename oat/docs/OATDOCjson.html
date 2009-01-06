@@ -3,23 +3,25 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1> OATDOCjson</h1>
+  <h1>json.js</h1>
   <div class="topic-text">
+    <h2>
+      <a name="json.js" id="json.js"> 
+      </a>json.js</h2>
     
+    <p>Implements two crucial JSON functions - <tt>parse</tt> and
+    <tt>stringify</tt>.</p>
 
     <div class="oatwikitoc">
       <div class="wikitoc">
       <ul>
-        <li>
-            <a href="#OATDOCjson">OATDOCjson</a>
-          </li>
-
         <li>
             <label class="c1">_</label>
             <label class="c1">_</label>
@@ -58,63 +60,36 @@
     </div>
     </div>
 
-    
-
-    
-
-    
-
-    <h2>
-      <a name="json.js" id="json.js"> 
-      </a> json.js</h2>
-
-    <p>Implements two crucial JSON functions - <tt>parse</tt> and
-    <tt>stringify</tt> .</p>
-
-    
-
     <h3>
       <a name="Functions" id="Functions"> 
       </a> Functions</h3>
 
-    
-
     <h3>
       <a name="OAT.JSON.parse(string)"> 
-      </a>
-    OAT.JSON.parse(string)</h3>
+      </a>OAT.JSON.parse(string)</h3>
 
-    <p>
-      <br/>
-    Parses JSON <tt>string</tt> .<br/>
-    <strong>To prevent JavaScript hijacking attacks, web
-    application authors are encouraged to use some of OAT's
-    <a href="OATDOCsecurity.html">built-in countermeasures</a> .</strong>
-    </p>
-
+    <p>Parses JSON <tt>string</tt>.</p>
     
+    <p class="c2">To prevent JavaScript hijacking attacks, web
+    application authors are encouraged to use some of OAT's
+    built-in countermeasures .</p>
 
     <h3>
       <a name="OAT.JSON.stringify(variable, [maxDepth])"> 
-      </a>
-    OAT.JSON.stringify(variable, [maxDepth])</h3>
+      </a>OAT.JSON.stringify(variable,
+    [maxDepth])</h3>
 
-    <p>
-      <br/>
-    Returns JSON representation of <tt>variable</tt> . The
+    <p>Returns JSON representation of <tt>variable</tt>. The
     <tt>maxDepth</tt> argument specifies maximum depth for
-    recursive structures; <tt>-1</tt> signifies no depth
-    limit.<br/>
-    Cyclic structures are detected and safely interrupted, but
-    could not be further restored.</p>
-
+    recursive structures;-1signifies no depth limit.</p>
     
+    <p>Cyclic structures are detected and safely interrupted, but
+    could not be further restored.</p>
 
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var a = {x:"y", number:123};
 var b = OAT.JSON.stringify(a,-1);
@@ -123,12 +98,11 @@ var c = OAT.JSON.parse(b); // c now equals
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

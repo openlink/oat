@@ -3,23 +3,20 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1> OATDOCsoap</h1>
+  <h1>soap.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
       <div class="wikitoc">
       <ul>
-        <li>
-            <a href="#OATDOCsoap">OATDOCsoap</a>
-          </li>
-
         <li>
             <label class="c1">_</label>
             <label class="c1">_</label>
@@ -47,12 +44,6 @@
     </div>
     </div>
 
-    
-
-    
-
-    
-
     <h2>
       <a name="soap.js" id="soap.js"> 
       </a> soap.js</h2>
@@ -60,43 +51,30 @@
     <p>Provides basic asynchronous XML call (AJAX) routines for use
     with SOAP requests.</p>
 
-    
-
     <h3>
       <a name="Functions" id="Functions"> 
       </a> Functions</h3>
 
-    
-
     <h4>
       <a name="OAT.Soap.command(url, data, callback, customHeaders)"> 
-      </a>
-    OAT.Soap.command(url, data, callback, customHeaders)</h4>
+      </a>OAT.Soap.command(url,
+    data, callback, customHeaders)</h4>
 
-    <p>
-      <br/>
-    Sends an HTTP request to a page <tt>url</tt> . Data to be
+    <p>Sends an HTTP request to a page <tt>url</tt>. Data to be
     contained in request are specified in <tt>data</tt> . When
     response arrives, <tt>callback(response)</tt> will be executed.
-    You may specify the following <tt>customHeaders</tt>
-    --<br/>
-    </p>
+    You may specify the following <tt>customHeaders</tt>:</p>
 
-    <ul>
-      <li>
-        <div class="tdl">ToBeDone</div>
-        <br/>
-      This function is similar to its <a href="OATDOCajax2.html">OAT.AJAX.*</a>counterpart, except that you
-      don't have to specify method (HTTP <tt>GET</tt> with SOAP
+    <p>This function is similar to its <tt>
+        <a href="OATDOCajax2.html">OAT.AJAX.*</a>
+      </tt> counterpart, except that
+    you don't have to specify method (HTTP <tt>GET</tt> with SOAP
       headers is always used) and sent data are automatically put
-      into the SOAP envelope.</li>
-    </ul>
-
-    <p>Using this call replaces this --</p>
-
+    into the SOAP envelope.</p>
     
+    <p>Using this call replaces this:</p>
+    <br/>
     <pre>
-      <div class="tdl">
 var options = {
     type:OAT.AJAX.TYPE_XML,
     auth:OAT.AJAX.AUTH_BASIC,
@@ -112,38 +90,31 @@ var options = {
 var callback = function(data) { alert(data); };
 OAT.AJAX.SOAP("/myfile.xml", false, callback, options);
 
-</div>
+
     </pre>
 
     <p>-- with this --</p>
-
-    
+    <br/>
     <pre>
-      <div class="tdl">
 var customHeaders = ToBeDone -- put some headers in! ; 
 var callback = function(data) { alert(data); };
 OAT.Soap.command("/myfile.xml", false, callback, customHeaders);
-
-</div>
     </pre>
 
-    <p>
-      <br/>
-    <strong>
-        <div class="tdl">ToBeDone</div> - correct the code snippets above to
-    reflect the actual effective replacement...</strong>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div> - add Constants, Messages, Properties,
-    <tt>OAT.Soap.abortAll()</tt> , borrowing from <a href="OATDOCajax2.html">OAT.AJAX.*</a>as relevant</p>
+    <div class="tdl">ToBeDone - correct the code snippets above to
+    reflect the actual effective replacement...</div>
+    
+    <div class="tdl">ToBeDone - add Constants, Messages, Properties,
+    <tt>OAT.Soap.abortAll()</tt>, borrowing from <tt>
+        <a href="OATDOCajax2.html">OAT.AJAX.*</a>
+          </tt> as relevant</div>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

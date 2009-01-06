@@ -3,24 +3,20 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCrdftabs</h1>
+  <h1>rdftabs.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
       <div class="wikitoc">
       <ul>
-        <li>
-            <a href="#OATDOCrdftabs">OATDOCrdftabs</a>
-          </li>
-
         <li>
             <label class="c1">_</label>
             <label class="c1">_</label>
@@ -193,7 +189,7 @@
             <label class="c1">_</label>
             <label class="c1">_</label>
             <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.rdf_tl_port">.rdf_tl_port</a>
+            <label class="c1">_</label> <a href="#.rdf">.rdf</a>
           </li>
 
         <li>
@@ -202,7 +198,7 @@
             <label class="c1">_</label>
             <label class="c1">_</label>
             <label class="c1">_</label>
-            <label class="c1">_</label> <a href="#.rdf_tl_slider">.rdf_tl_slider</a>
+            <label class="c1">_</label> <a href="#.rdf">.rdf</a>
           </li>
 
         <li>
@@ -314,67 +310,46 @@
     </div>
     </div>
 
-    
-
-    
-
-    
-
     <h2>
       <a name="rdftabs.js" id="rdftabs.js"> 
       </a> rdftabs.js</h2>
 
     <p>Tabs API for OAT RDF applications. (see <a href="OATDOCrdfbrowser.html">RDF Browser</a> )</p>
 
-    
-
     <h3>
       <a name="Must implement"> 
       </a> Must implement</h3>
 
-    
-
     <h4>
       <a name="[constructor](parent, optionsObject)"> 
-      </a>
-    [constructor](parent, optionsObject)</h4>
-
-    <p>
-      <br/>
-    <tt>parent</tt> is a reference to owner object (such as
-    <a href="OATDOCrdfbrowser.html">RDF Browser</a>)</p>
+      </a>[constructor](parent,
+    optionsObject)</h4>
+    <tt>parent</tt> is a reference to owner
+    object (such as <a href="OATDOCrdfbrowser.html">RDF Browser</a>)
 
     <h4>
       <a name=".elm"> 
       </a> .elm</h4>
 
-    <p>
-      <br/>
-    DOM node</p>
+    <p>DOM node</p>
 
     <h4>
       <a name=".description"> 
       </a> .description</h4>
 
-    <p>
-      <br/>
-    textual</p>
+    <p>textual</p>
 
     <h4>
       <a name=".redraw()"> 
       </a> .redraw()</h4>
 
-    <p>
-      <br/>
-    redraw contents</p>
+    <p>redraw contents</p>
 
     <h4>
       <a name=".reset(hard)"> 
       </a> .reset(hard)</h4>
 
-    <p>
-      <br/>
-    called by parent when triple store changes. <tt>hard</tt> is
+    <p>called by parent when triple store changes.<tt>hard</tt> is
     bool; false when the change is initiated by applying filters;
     true when the change is initiated by adding/removing URL.</p>
 
@@ -382,431 +357,324 @@
       <a name="Can use"> 
       </a> Can use</h3>
 
-    
-
     <h4>
       <a name="parent.data" id="parent.data"> 
-      </a>
-    parent.data</h4>
-
-    
+      </a>parent.data</h4>
+    <br/>
     <pre>
 {
    triples:[] // array of triples
    all:{} // object
    structured:{} // object with applied filters
 }
-
 </pre>
-
-    
 
     <h4>
       <a name="parent.store" id="parent.store"> 
-      </a>
-    parent.store</h4>
+      </a>parent.store</h4>
 
-    <p>
-      <br/>
-    Instance of <tt>OAT.RDFStore</tt>
+    <p>Instance of <tt>OAT.RDFStore</tt>
     </p>
 
     <h4>
       <a name="parent.getContentType(string)"> 
-      </a>
-    parent.getContentType(string)</h4>
+      </a>parent.getContentType(string)</h4>
 
-    <p>
-      <br/>
-    Returns:<br/>
-    </p>
+    <p>Returns:</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>1</tt>
-        </strong> - link<br/>
+        <tt>
+          <b>1</b>
+        </tt> - link</li>
+
+      <li>
+        <tt>
+          <b>2</b>
+        </tt> - mail</li>
+
+      <li>
+        <tt>
+          <b>3</b> <tt>- image</tt>
+        </tt>
       </li>
 
       <li>
-        <strong>
-          <tt>2</tt>
-        </strong> - mail<br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>3</tt>
-        </strong> - image<br/>
-      </li>
-
-      <li>
-        <strong>
-          <tt>0</tt>
-        </strong> - others</li>
+        <tt>
+          <b>0</b>
+        </tt> - others</li>
     </ul>
 
     <h4>
       <a name="parent.getTitle(dataItem)"> 
-      </a>
-    parent.getTitle(dataItem)</h4>
+      </a>parent.getTitle(dataItem)</h4>
 
-    <p>
-      <br/>
-    Returns title string for <tt>dataItem</tt>
+    <p>Returns title string for <tt>dataItem</tt>
     </p>
 
     <h4>
       <a name="parent.getURI(dataItem)"> 
-      </a>
-    parent.getURI(dataItem)</h4>
+      </a>parent.getURI(dataItem)</h4>
 
-    <p>
-      <br/>
-    Returns URI for <tt>dataItem</tt>
+    <p>Returns URI for <tt>dataItem</tt>
     </p>
 
     <h4>
       <a name="parent.processLink(domNode, href, disabledActions)"> 
-      </a>
-    parent.processLink(domNode, href, disabledActions)</h4>
+      </a>parent.processLink(domNode,
+    href, disabledActions)</h4>
 
-    <p>
-      <br/>
-    Attach external handlers to a link.<br/>
-    </p>
+    <p>Attach external handlers to a link.</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>domNode</tt>
-        </strong>
-        <div class="tdl"> - ToBeDone</div>
-        <br/>
-      </li>
+        <tt>
+          <b>domNode</b>
+            </tt> - ToBeDone</li>
 
       <li>
-        <strong>
-          <tt>href</tt>
-        </strong>
-        <div class="tdl"> - ToBeDone</div>
-        <br/>
-      </li>
+        <tt>
+          <b>href</b>
+            </tt> - ToBeDone</li>
 
       <li>
-        <strong>
-          <tt>disabledActions</tt>
-        </strong>
-        <div class="tdl"> -
-      ToBeDone</div>
-      </li>
+        <tt>
+          <b>disabledActions</b>
+            </tt> - ToBeDone</li>
     </ul>
 
     <h3>
       <a name="CSS classes"> 
       </a> CSS classes</h3>
 
-    
-
     <h4>
       <a name=".rdf_sort"> 
       </a> .rdf_sort</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name=".rdf_group"> 
       </a> .rdf_group</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name=".rdf_clear"> 
       </a> .rdf_clear</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name=".rdf_data"> 
       </a> .rdf_data</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
-      <a name=".rdf_tl_port"> 
-      </a> .rdf_tl_port</h4>
+      <a name=".rdf"> 
+      </a>.rdf <u>tl_port</u>
+    </h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
-      <a name=".rdf_tl_slider"> 
-      </a> .rdf_tl_slider</h4>
+      <a name=".rdf"> 
+      </a>.rdf <u>tl_slider</u>
+    </h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h4>
       <a name=".rdf_tagcloud"> 
       </a> .rdf_tagcloud</h4>
 
-    <p>
-      <br/>
-      <div class="tdl">
-    ToBeDone</div>
-    </p>
+      <div class="tdl">ToBeDone</div>
 
     <h3>
       <a name="Available tabs"> 
       </a> Available tabs</h3>
 
-    
-
     <h4>
       <a name="OAT.RDFTabs.browser(parent, options)"> 
-      </a>
-    OAT.RDFTabs.browser(parent, options)</h4>
+      </a>OAT.RDFTabs.browser(parent,
+    options)</h4>
 
-    <p>
-      <br/>
-    Used for viewing all filtered data, structured into resource
-    items. <tt>options</tt> are:<br/>
-    </p>
+    <p>Used for viewing all filtered data, structured into resource
+    items.<tt>options</tt> are:</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>pageSize</tt>
-        </strong> - default
-      <tt>20</tt>
-        <br/>
+        <tt>
+          <b>pageSize</b>
+        </tt> - default <tt>20</tt>
       </li>
 
       <li>
-        <strong>
-          <tt>removeNS</tt>
-        </strong> - default
-      <tt>true</tt>
+        <tt>
+          <b>removeNS</b>
+        </tt> - default <tt>true</tt>
       </li>
     </ul>
 
     <h4>
       <a name="OAT.RDFTabs.navigator(parent, options)"> 
-      </a>
-    OAT.RDFTabs.navigator(parent, options)</h4>
+      </a>OAT.RDFTabs.navigator(parent,
+    options)</h4>
 
-    <p>
-      <br/>
-    Used for navigating through all locally cached data, one
+    <p>Used for navigating through all locally cached data, one
     resource at a time. Note that filters don't apply here; all
-    data is displayed. <tt>option</tt> is<br/>
-    </p>
+    data is displayed.<tt>option</tt> is</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>limit</tt>
-        </strong> - default <tt>5</tt>
+        <tt>
+          <b>limit</b>
+        </tt> - default <tt>5</tt>
       </li>
     </ul>
 
     <h4>
       <a name="OAT.RDFTabs.triples(parent, options)"> 
-      </a>
-    OAT.RDFTabs.triples(parent, options)</h4>
+      </a>OAT.RDFTabs.triples(parent,
+    options)</h4>
 
-    <p>
-      <br/>
-    Displays all filtered triples. <tt>options</tt> are:<br/>
-    </p>
+    <p>Displays all filtered triples.<tt>options</tt> are:</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>pageSize</tt>
-        </strong> - default
-      <tt>20</tt>
-        <br/>
+        <tt>
+          <b>pageSize</b>
+        </tt> - default <tt>20</tt>
       </li>
 
       <li>
-        <strong>
-          <tt>removeNS</tt>
-        </strong> - default
-      <tt>true</tt>
+        <tt>
+          <b>removeNS</b>
+        </tt> - default <tt>true</tt>
       </li>
     </ul>
 
     <h4>
       <a name="OAT.RDFTabs.svg(parent, options)"> 
-      </a>
-    OAT.RDFTabs.svg(parent, options)</h4>
+      </a>OAT.RDFTabs.svg(parent,
+    options)</h4>
 
-    <p>
-      <br/>
-    Displays filtered data as SVG Graph. For performance reasons,
-    the number of used triples is limited by the only option
-    --<br/>
-    </p>
+    <p>Displays filtered data as SVG Graph. For performance
+    reasons, the number of used triples is limited by the only
+    option --</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>limit</tt>
-        </strong> - default
-      <tt>100</tt>
+        <tt>
+          <b>limit</b>
+        </tt> - default <tt>100</tt>
       </li>
     </ul>
 
     <h4>
       <a name="OAT.RDFTabs.map(parent, options)"> 
-      </a>
-    OAT.RDFTabs.map(parent, options)</h4>
+      </a>OAT.RDFTabs.map(parent,
+    options)</h4>
 
-    <p>
-      <br/>
-    Plots all geodata found in filtered resources onto a map.
-    <tt>options</tt> are:<br/>
-    </p>
+    <p>Plots all geodata found in filtered resources onto a
+    map.<tt>options</tt> are:</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>provider</tt>
-        </strong> - default
+        <tt>
+          <b>provider</b>
+        </tt> - default
       <tt>OAT.MapData.TYPE_G</tt>
-        <br/>
       </li>
 
       <li>
-        <strong>
-          <tt>fix</tt>
-        </strong> - default
+        <tt>
+          <b>fix</b>
+        </tt> - default
       <tt>OAT.MapData.FIX_ROUND1</tt>
       </li>
     </ul>
 
     <h4>
       <a name="OAT.RDFTabs.timeline(parent, options)"> 
-      </a>
-    OAT.RDFTabs.timeline(parent, options)</h4>
+      </a>OAT.RDFTabs.timeline(parent,
+    options)</h4>
 
-    <p>
-      <br/>
-    Displays all date/time containing resources on an interactive
-    time line. <tt>options</tt> are:<br/>
-    </p>
+    <p>Displays all date/time containing resources on an
+    interactive time line.<tt>options</tt> are:</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>imagePath</tt>
-        </strong> - default
+        <tt>
+          <b>imagePath</b>
+        </tt> - default
       <tt>Oat.Preferences.imagePath</tt>
       </li>
     </ul>
 
     <h4>
       <a name="OAT.RDFTabs.images(parent, options)"> 
-      </a>
-    OAT.RDFTabs.images(parent, options)</h4>
+      </a>OAT.RDFTabs.images(parent,
+    options)</h4>
 
-    <p>
-      <br/>
-    Displays all images found in filtered data set.
-    <tt>options</tt> are:<br/>
-    </p>
+    <p>Displays all images found in filtered data
+    set.optionsare:</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>columns</tt>
-        </strong> - default
-      <tt>4</tt>
-        <br/>
+        <tt>
+          <b>columns</b>
+        </tt> - default <tt>4</tt>
       </li>
 
       <li>
-        <strong>
-          <tt>thumbSize</tt>
-        </strong> - default
-      <tt>150</tt>
-        <br/>
+        <tt>
+          <b>thumbSize</b>
+        </tt> - default <tt>150</tt>
       </li>
 
       <li>
-        <strong>
-          <tt>size</tt>
-        </strong> - default
-      <tt>600</tt>
+        <tt>
+          <b>size</b>
+        </tt> - default <tt>600</tt>
       </li>
     </ul>
 
     <h4>
       <a name="OAT.RDFTabs.tagcloud(parent)"> 
-      </a>
-    OAT.RDFTabs.tagcloud(parent)</h4>
+      </a>OAT.RDFTabs.tagcloud(parent)</h4>
 
-    <p>
-      <br/>
-    Displays all links found in filtered data set.</p>
+    <p>Displays all links found in filtered data set.</p>
 
     <h4>
       <a name="OAT.RDFTabs.fresnel(parent, options)"> 
-      </a>
-    OAT.RDFTabs.fresnel(parent, options)</h4>
+      </a>OAT.RDFTabs.fresnel(parent,
+    options)</h4>
 
-    <p>
-      <br/>
-    Applies Fresnel RDF Vocabularies to all dereferenced data.
-    <tt>options</tt> are:<br/>
-    </p>
+    <p>Applies Fresnel RDF Vocabularies to all dereferenced
+    data.<tt>options</tt> are:</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>defaultURL</tt>
-        </strong> - default
-      <tt>""</tt>
-        <br/>
+        <tt>
+          <b>defaultURL</b>
+        </tt> - default <tt>""</tt>
       </li>
 
       <li>
-        <strong>
-          <tt>autoload</tt>
-        </strong> - default
-      <tt>false</tt>
-        <br/>
+        <tt>
+          <b>autoload</b>
+        </tt> - default <tt>false</tt>
       </li>
     </ul>
 
     
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

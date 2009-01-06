@@ -3,7 +3,8 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
@@ -40,10 +41,6 @@
 
     
 
-    
-
-    
-
     <h3>
       <a name="Basic operation"> 
       </a> Basic operation</h3>
@@ -51,61 +48,56 @@
     <p>This short document describes what you need to do to include
     OAT's features into your web pages.</p>
 
-    <ol>
-      <li>Download the latest release of OAT from <a href="http://sourceforge.net/projects/oat" class="absuri">Sourceforge</a> .<br/>
-      </li>
+    <ul>
+      <li>Download the latest release of OAT from <a href="http://sourceforge.net/projects/oat" class="absuri">Sourceforge</a>.</li>
 
       <li>Unpack the archive to some directory. There are many
       files and directories included in the distribution. Most of
       them are applications and/or demos, which are usually not
-      needed<br/>
-      </li>
+      needed</li>
 
       <li>The only important directory is oat; copy it to your
-      project<br/>
-      </li>
+      project</li>
 
-      <li>Now you need to include OAT within your page:<br/>
-      </li>
+      <li>Now you need to include OAT within your page:</li>
 
       <li>Specify which features you want to load:</li>
-    </ol>
+    </ul>
     <br/>
     <pre>
 &lt;script type="text/javascript"&gt;
 var featureList = ["grid","pivot",barchart"];
 &lt;script&gt;
 
+
 </pre>
 
-    <ol>
+    <ul>
       <li>Include loader.js file:</li>
-    </ol>
+    </ul>
     <br/>
     <pre>
 &lt;script type="text/javascript" src="oat/loader.js"&gt;&lt;/script&gt;
 
+
 </pre>
 
-    <ol>
+    <ul>
       <li>OAT will take care of internal dependencies and include
-      all needed files.<br/>
-      </li>
+      all needed files.</li>
 
-      <li>Don't put anything into the <tt>&lt;body onload=...</tt>
-      handler; specify a function called <tt>init</tt> instead - it
-      will be called automatically when OAT finishes loading.</li>
-    </ol>
+      <li>Don't put anything into the&lt;body onload=...handler;
+      specify a function calledinitinstead - it will be called
+      automatically when OAT finishes loading.</li>
+    </ul>
 
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
 
-    <p>
+    <p>The following example shows how to use OAT to display a date
+    picker.</p>
       <br/>
-    The following example shows how to use OAT to display a date
-    picker.<br/>
-    </p>
     <pre>
 &lt;html&gt;
 &lt;head&gt;
@@ -166,15 +158,15 @@ var featureList = ["grid","pivot",barchart"];
 &lt;/body&gt;
 &lt;/html&gt;
 
+    
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

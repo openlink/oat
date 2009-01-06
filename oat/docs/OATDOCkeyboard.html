@@ -3,24 +3,20 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1>
-    OATDOCkeyboard</h1>
+  <h1>keyboard.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
       <div class="wikitoc">
       <ul>
-        <li>
-            <a href="#OATDOCkeyboard">OATDOCkeyboard</a>
-          </li>
-
         <li>
             <label class="c1">_</label>
             <label class="c1">_</label>
@@ -73,65 +69,45 @@
     </div>
     </div>
 
-    
-
-    
-
-    
-
     <h2>
       <a name="keyboard.js" id="keyboard.js"> 
-      </a>
-    keyboard.js</h2>
+      </a>keyboard.js</h2>
 
     <p>Keyboard events and shortcut handling.</p>
-
-    
 
     <h3>
       <a name="Functions" id="Functions"> 
       </a> Functions</h3>
-
-    
 
     <h4>
       <a name="OAT.Keyboard.add(key, downCallback, upCallback, group, id, obj)"> 
       </a> OAT.Keyboard.add(key, downCallback, upCallback, group, id,
     obj)</h4>
 
-    <p>
-      <br/>
-    Listens for pressing a given <tt>key</tt> .
-    <tt>downCallback</tt> and <tt>upCallback</tt> are executed
-    during onkeydown and onkeyup events. <tt>obj</tt> is the
-    element which should handle these events; defaults to document.
-    <tt>group</tt> is a arbitrary string - one can then
+    <p>Listens for pressing a given
+    <tt>key</tt>.<tt>downCallback</tt> and <tt>upCallback</tt> are
+    executed during onkeydown and onkeyup events.<tt>obji</tt> is
+    the element which should handle these events; defaults to
+    document.<tt>group</tt> is a arbitrary string - one can then
     enable/disable groups of keyboard shortcuts. <tt>id</tt> is not
     used yet.</p>
 
     <h4>
       <a name="OAT.Keyboard.disable(group)"> 
-      </a>
-    OAT.Keyboard.disable(group)</h4>
+      </a>OAT.Keyboard.disable(group)</h4>
 
-    <p>
-      <br/>
-    Disables all shortcuts contained in <tt>group</tt> .</p>
+    <p>Disables all shortcuts contained in <tt>group</tt>.</p>
 
     <h4>
       <a name="OAT.Keyboard.enable(group)"> 
-      </a>
-    OAT.Keyboard.enable(group)</h4>
+      </a>OAT.Keyboard.enable(group)</h4>
 
-    <p>
-      <br/>
-    Enables all shortcuts contained in <tt>group</tt> .</p>
+    <p>Enables all shortcuts contained in <tt>group</tt>.</p>
 
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var key = "ctrl-alt-7";
 var callback = function() { alert('Pressed!'); }
@@ -140,12 +116,11 @@ OAT.Keyboard.add(key, callback, false, "mygroup", false, false);
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

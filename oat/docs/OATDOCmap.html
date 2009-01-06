@@ -3,23 +3,20 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
       <a href="http://www.openlinksw.com/" target="_new">OpenLink Software</a>
   </div>
-  <h1> OATDOCmap</h1>
+  <h1>map.js</h1>
   <div class="topic-text">
     
 
     <div class="oatwikitoc">
       <div class="wikitoc">
       <ul>
-        <li>
-            <a href="#OATDOCmap">OATDOCmap</a>
-          </li>
-
         <li>
             <label class="c1">_</label>
             <label class="c1">_</label>
@@ -217,322 +214,246 @@
     </div>
     </div>
 
-    
-
-    
-
-    
-
     <h2>
       <a name="map.js" id="map.js"> 
       </a> map.js</h2>
 
     <p>Abstract API atop various mapping providers.</p>
 
-    
-
     <h3>
       <a name="Objects" id="Objects"> 
       </a> Objects</h3>
 
-    
-
     <h4>
       <a name="OAT.Map(something, provider, optionsObject, specificOptions)"> 
-      </a>
-    OAT.Map(something, provider, optionsObject,
-    specificOptions)</h4>
+      </a>OAT.Map(something,
+    provider, optionsObject, specificOptions)</h4>
 
-    <p>Creates a <tt>map</tt> as a child of <tt>something</tt> .
-    <tt>provider</tt> is one of <tt>TYPE_</tt> constants.
-    <tt>optionsObject</tt> may contain:</p>
+    <p>Creates a <tt>map</tt> as a child of
+    <tt>something</tt>.<tt>provider</tt> is one of <tt>TYPE_</tt>
+    constants. <tt>optionsObject</tt> may contain:</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>fix</tt>
-        </strong> - one of <tt>FIX_</tt>
-      constants, used when markers are too close to each
-      other<br/>
-      </li>
+        <tt>
+          <b>fix</b>
+        </tt> - one of <tt>FIX_</tt> constants,
+      used when markers are too close to each other</li>
 
       <li>
-        <strong>
-          <tt>fixDistance</tt>
-        </strong> - distance for
-      shifting markers<br/>
-      </li>
+        <tt>
+          <b>fixDistance</b>
+        </tt> - distance for shifting
+      markers</li>
 
       <li>
-        <strong>
-          <tt>fixEpsilon</tt>
-        </strong> - euclidean distance
-      limit of markers to be taken as identical (in degrees)<br/>
-      The <tt>specificOptions</tt> object may contain any
-      engine-specific options, such as <tt>{draggableCursor:
-      crosshair}</tt> for Google Maps.</li>
+        <tt>
+          <b>fixEpsilon</b>
+        </tt> - euclidean distance limit of
+      markers to be taken as identical (in degrees). The
+      <tt>specificOptions</tt> object may contain any
+      engine-specific options, such as
+      <tt>{draggableCursor:crosshair}</tt> for Google Maps.</li>
     </ul>
-
-    
 
     <h3>
       <a name="Methods" id="Methods"> 
       </a> Methods</h3>
 
-    
-
     <h4>
       <a name="OAT.Map::addTypeControl()"> 
-      </a>
-    OAT.Map::addTypeControl()</h4>
+      </a>OAT.Map::addTypeControl()</h4>
 
-    <p>
-      <br/>
-    Adds a 'map type' control to the map.</p>
+    <p>Adds a 'map type' control to the map.</p>
 
     <h4>
       <a name="OAT.Map::addMapControl()"> 
-      </a>
-    OAT.Map::addMapControl()</h4>
+      </a>OAT.Map::addMapControl()</h4>
 
-    <p>
-      <br/>
-    Adds a 'map navigation' control to the map.</p>
+    <p>Adds a 'map navigation' control to the map.</p>
 
     <h4>
       <a name="OAT.Map::setMapType(type)"> 
-      </a>
-    OAT.Map::setMapType(type)</h4>
+      </a>OAT.Map::setMapType(type)</h4>
 
-    <p>
-      <br/>
-    Sets map <tt>type</tt> to one of <tt>MAP_</tt> constants.</p>
+    <p>Sets map <tt>type</tt> to one of <tt>MAP_</tt>
+    constants.</p>
 
     <h4>
       <a name="OAT.Map::centerAndZoom(lat, long, zoom)"> 
-      </a>
-    OAT.Map::centerAndZoom(lat, long, zoom)</h4>
+      </a>OAT.Map::centerAndZoom(lat,
+    long, zoom)</h4>
 
-    <p>
-      <br/>
-    Pans the map to given <tt>lat</tt> and <tt>long</tt>
+    <p>Pans the map to given <tt>lat</tt> and <tt>long</tt>
     coordinates and zooms. <tt>zoom</tt> ranges from 0 (far) to 16
     (close).</p>
 
     <h4>
       <a name="OAT.Map::setZoom(zoom)"> 
-      </a>
-    OAT.Map::setZoom(zoom)</h4>
+      </a>OAT.Map::setZoom(zoom)</h4>
 
-    <p>
-      <br/>
-    Changes current <tt>zoom</tt> level.</p>
+    <p>Changes current <tt>zoom</tt> level.</p>
 
     <h4>
       <a name="OAT.Map::getZoom()"> 
       </a> OAT.Map::getZoom()</h4>
 
-    <p>
-      <br/>
-    Returns current <tt>zoom</tt> level.</p>
+    <p>Returns current <tt>zoom</tt> level.</p>
 
     <h4>
       <a name="OAT.Map::addMarker(group, lat, long, file, w, h, callback)"> 
-      </a>
-    OAT.Map::addMarker(group, lat, long, file, w, h, callback)</h4>
+      </a>OAT.Map::addMarker(group,
+    lat, long, file, w, h, callback)</h4>
 
-    <p>
-      <br/>
-    Adds a <tt>marker</tt> to the map. Marker belongs to marker
-    group <tt>group</tt> (any internal value) and is located at
-    coordinates specified in <tt>lat</tt> and <tt>long</tt> .
-    <tt>file</tt> specifies an image file name ( <tt>w</tt> and
-    <tt>h</tt> are its dimensions), false when default image should
-    be used. Finally, <tt>callback</tt> is a function to be
-    executed when user clicks marker.</p>
+    <p>Adds a <tt>marker</tt> to the map. Marker belongs to marker
+    <tt>group</tt> group(any internal value) and is located at
+    coordinates specified in <tt>lat</tt> and
+    <tt>long</tt>.<tt>file</tt> specifies an image file name
+    (wandhare its dimensions), false when default image should be
+    used. Finally, <tt>callback</tt> is a function to be executed
+    when user clicks marker.</p>
 
     <h4>
       <a name="OAT.Map::removeMarker(marker)"> 
-      </a>
-    OAT.Map::removeMarker(marker)</h4>
+      </a>OAT.Map::removeMarker(marker)</h4>
 
-    <p>
-      <br/>
-    Removes existing <tt>marker</tt> .</p>
+    <p>Removes existing <tt>marker</tt>.</p>
 
     <h4>
       <a name="OAT.Map::removeMarkers(group)"> 
-      </a>
-    OAT.Map::removeMarkers(group)</h4>
+      </a>OAT.Map::removeMarkers(group)</h4>
 
-    <p>
-      <br/>
-    Removes all markers which belong to <tt>group</tt> .</p>
+    <p>Removes all markers which belong to <tt>group</tt>.</p>
 
     <h4>
       <a name="OAT.Map::openWindow(marker, something)"> 
-      </a>
-    OAT.Map::openWindow(marker, something)</h4>
+      </a>OAT.Map::openWindow(marker,
+    something)</h4>
 
-    <p>
-      <br/>
-    Opens window, anchored to <tt>marker</tt> . <tt>something</tt>
+    <p>Opens window, anchored to <tt>marker</tt>.<tt>something</tt>
     is a DOM node to be appended into window.</p>
 
     <h4>
       <a name="OAT.Map::closeWindow()"> 
-      </a>
-    OAT.Map::closeWindow()</h4>
+      </a>OAT.Map::closeWindow()</h4>
 
-    <p>
-      <br/>
-    Closes opened window.</p>
+    <p>Closes opened window.</p>
 
     <h4>
       <a name="OAT.Map::optimalPosition(pointArray)"> 
-      </a>
-    OAT.Map::optimalPosition(pointArray)</h4>
+      </a>OAT.Map::optimalPosition(pointArray)</h4>
 
-    <p>
-      <br/>
-    Zooms map so all points specified in <tt>pointArray</tt> (array
-    of 2-element arrays) can be visible simultaneously.</p>
+    <p>Zooms map so all points specified in <tt>pointArray</tt>
+    (array of 2-element arrays) can be visible simultaneously.</p>
 
     <h4>
       <a name="OAT.Map::geoCode(address, callback)"> 
-      </a>
-    OAT.Map::geoCode(address, callback)</h4>
-
-    <p>Performs a geocoding lookup of <tt>address</tt> . When
-    result is returned, <tt>callback</tt> is executed. Its only
-    argument is false when no result was found, or an array of
-    <tt>[lat,long]</tt> .</p>
-
+      </a>OAT.Map::geoCode(address,
+    callback)</h4>
     
+    <p>Performs a geocoding lookup of <tt>address</tt>. When result
+    is returned, <tt>callback</tt> is executed. Its only argument
+    is false when no result was found, or an array
+    of[lat,long].</p>
 
     <h3>
       <a name="Constants" id="Constants"> 
       </a> Constants</h3>
 
-    
-
     <h4>
       <a name="OAT.MapData.TYPE_" id="OAT.MapData.TYPE_"> 
-      </a>
-    OAT.MapData.TYPE_</h4>
+      </a>OAT.MapData.TYPE_</h4>
 
-    <p>
-      <br/>
-    Constants specifying maps provider<br/>
-    </p>
+    <p>Constants specifying maps provider</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>OAT.MapData.TYPE_G</tt>
-        </strong> - specifies
-      Google Maps<br/>
-      </li>
+        <tt>
+          <b>OAT.MapData.TYPE_G</b>
+        </tt> - specifies Google
+      Maps</li>
 
       <li>
-        <strong>
-          <tt>OAT.MapData.TYPE_Y</tt>
-        </strong> - specifies
-      Yahoo! Maps<br/>
-      </li>
+        <tt>
+          <b>OAT.MapData.TYPE_Y</b>
+        </tt> - specifies Yahoo!
+      Maps</li>
 
       <li>
-        <strong>
-          <tt>OAT.MapData.TYPE_MS</tt>
-        </strong> - specifies
-      Microsoft Virtual Earth Maps<br/>
-      </li>
+        <tt>
+          <b>OAT.MapData.TYPE_MS</b>
+        </tt> - specifies Microsoft
+      Virtual Earth Maps</li>
 
       <li>
-        <strong>
-          <tt>OAT.MapData.TYPE_OL</tt>
-        </strong> - specifies
+        <tt>
+          <b>OAT.MapData.TYPE_OL</b>
+        </tt> - specifies
       OpenLayers Maps</li>
     </ul>
 
     <h4>
       <a name="OAT.MapData.MAP_" id="OAT.MapData.MAP_"> 
-      </a>
-    OAT.MapData.MAP_</h4>
+      </a>OAT.MapData.MAP_</h4>
 
-    <p>
-      <br/>
-    Constants specifying map types.<br/>
-    </p>
+    <p>Constants specifying map types.</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>OAT.MapData.MAP_MAP</tt>
-        </strong> - specifies
-      normal<br/>
-      </li>
+        <tt>
+          <b>OAT.MapData.MAP_MAP</b>
+        </tt> - specifies
+      normal</li>
 
       <li>
-        <strong>
-          <tt>OAT.MapData.MAP_ORTO</tt>
-        </strong> -
-      specifies orthographic<br/>
-      </li>
+        <tt>
+          <b>OAT.MapData.MAP_ORTO</b>
+        </tt> - specifies
+      orthographic</li>
 
       <li>
-        <strong>
-          <tt>OAT.MapData.MAP_HYB</tt>
-        </strong> - specifies
+        <tt>
+          <b>OAT.MapData.MAP_HYB</b>
+        </tt> - specifies
       hybrid</li>
     </ul>
 
     <h4>
       <a name="OAT.MapData.FIX_" id="OAT.MapData.FIX_"> 
-      </a>
-    OAT.MapData.FIX_</h4>
+      </a>OAT.MapData.FIX_</h4>
 
-    <p>
-      <br/>
-    Constants specifying how markers that are too close to each
-    other will be handled.<br/>
-    </p>
+    <p>Constants specifying how markers that are too close to each
+    other will be handled.</p>
 
     <ul>
       <li>
-        <strong>
-          <tt>OAT.MapData.FIX_NONE</tt>
-        </strong> -
-      unhandled<br/>
-      </li>
+        <tt>
+          <b>OAT.MapData.FIX_NONE</b>
+        </tt> - unhandled</li>
 
       <li>
-        <strong>
-          <tt>OAT.MapData.FIX_ROUND1</tt>
-        </strong> -
-      specifies arranged into a circle, with one marker in the
-      middle<br/>
-      </li>
+        <tt>
+          <b>OAT.MapData.FIX_ROUND1</b>
+        </tt> - specifies
+      arranged into a circle, with one marker in the middle</li>
 
       <li>
-        <strong>
-          <tt>OAT.MapData.FIX_ROUND2</tt>
-        </strong> -
-      specifies arranged into a circle<br/>
-      </li>
+        <tt>
+          <b>OAT.MapData.FIX_ROUND2</b>
+        </tt> - specifies
+      arranged into a circle</li>
 
       <li>
-        <strong>
-          <tt>OAT.MapData.FIX_STACK</tt>
-        </strong> -
-      specifies stacked</li>
+        <tt>
+          <b>OAT.MapData.FIX_STACK</b>
+        </tt> - specifies
+      stacked</li>
     </ul>
 
     <h3>
       <a name="Example" id="Example"> 
       </a> Example</h3>
-
-    
+    <br/>
     <pre>
 var obj = {
         fix:OAT.MapData.FIX_ROUND1,
@@ -548,12 +469,11 @@ map.setMapType(OAT.MapData.MAP_ORTO); /* aerial */
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>

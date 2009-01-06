@@ -3,7 +3,8 @@
     <title>OpenLink AJAX Toolkit</title>
     <link rel="STYLESHEET" type="text/css" href="oat.css"/>
   </head>
-
+<body>
+  <div id="page">
 <div id="oatnav">
     <a href="index.html">Index</a> | 
       <a href="http://oat.openlinksw.com/" target="_new">OAT homepage</a> | 
@@ -167,41 +168,29 @@
 
     
 
-    
-
-    
-
     <h2>
       <a name="xml.js" id="xml.js"> 
       </a> xml.js</h2>
 
-    <p>
-      <br/>
-    Useful function for XML access and manipulation.</p>
+    <p>Useful function for XML access and manipulation.</p>
 
     <h3>
       <a name="Functions" id="Functions"> 
       </a> Functions</h3>
 
-    
-
     <h4>
       <a name="OAT.Xml.createXmlDoc(string)"> 
-      </a>
-    OAT.Xml.createXmlDoc(string)</h4>
+      </a>OAT.Xml.createXmlDoc(string)</h4>
 
-    <p>
-      <br/>
-    Parses a string of XML data and returns a document object.</p>
+    <p>Parses a string of XML data and returns a document
+    object.</p>
 
     <h4>
       <a name="OAT.Xml.transformXSLT(xmlDoc, xslDoc[, paramsArray])"> 
-      </a>
-    OAT.Xml.transformXSLT(xmlDoc, xslDoc[, paramsArray])</h4>
+      </a>OAT.Xml.transformXSLT(xmlDoc,
+    xslDoc[, paramsArray])</h4>
 
-    <p>
-      <br/>
-    Applies a XSLT template. <tt>xslDoc</tt> is a template to be
+    <p>Applies a XSLT template.<tt>xslDoc</tt> is a template to be
     applied to <tt>xmlDoc</tt> . Both arguments must be valid XML
     documents (not strings). The third (optional) argument is an
     array of XSLT parameters. Each parameter is a triple (array),
@@ -210,74 +199,56 @@
 
     <h4>
       <a name="OAT.Xml.textValue(node)"> 
-      </a>
-    OAT.Xml.textValue(node)</h4>
+      </a>OAT.Xml.textValue(node)</h4>
 
-    <p>
+    <p>Returns a text value of <tt>node</tt>. So, for this markup
+    --</p>
       <br/>
-    Returns a text value of <tt>node</tt> . So, for this markup
-    --<br/>
-    </p>
     <pre>
 &lt;tag&gt;content&lt;/tag&gt;
 
+
 </pre>
 
-    <p>
-      <br/>
-    -- the <tt>textValue</tt> of <tt>tag</tt> is <tt>content</tt>
-    .</p>
+    <p>-- the <tt>textValue</tt>of tag is <tt>content</tt>.</p>
 
     <h4>
       <a name="OAT.Xml.localName(node)"> 
-      </a>
-    OAT.Xml.localName(node)</h4>
+      </a>OAT.Xml.localName(node)</h4>
 
-    <p>
-      <br/>
-    Returns <tt>node</tt> 's local name - the part without
-    namespace prefix. <tt>&lt;xsl:template&gt;</tt> has a
-    <tt>localName</tt> template.</p>
+    <p>Returns <tt>node</tt>'s local name - the part without
+    namespace prefix.&lt;xsl:template&gt; has a <tt>localName</tt>
+    template.</p>
 
     <h4>
       <a name="OAT.Xml.childElements(node)"> 
-      </a>
-    OAT.Xml.childElements(node)</h4>
+      </a>OAT.Xml.childElements(node)</h4>
 
-    <p>
-      <br/>
-    Returns all child nodes which are ordinary elements (i.e., no
-    <tt>#text</tt> nodes, etc.).</p>
+    <p>Returns all child nodes which are ordinary elements (i.e.,
+    no#textnodes, etc.).</p>
 
     <h4>
       <a name="OAT.Xml.getElementsByLocalName(node, localName)"> 
-      </a>
-    OAT.Xml.getElementsByLocalName(node, localName)</h4>
+      </a>OAT.Xml.getElementsByLocalName(node,
+    localName)</h4>
 
-    <p>
-      <br/>
-    Identical to <tt>getElementsByTagName</tt> , but looks only
+    <p>Identical to <tt>getElementsByTagName</tt>, but looks only
     into non-namespace part of tag name.</p>
 
     <h4>
       <a name="OAT.Xml.getLocalAttribute(node, attributeName)"> 
-      </a>
-    OAT.Xml.getLocalAttribute(node, attributeName)</h4>
+      </a>OAT.Xml.getLocalAttribute(node,
+    attributeName)</h4>
 
-    <p>
-      <br/>
-    Returns a value of attribute whose non-prefixed name is
+    <p>Returns a value of attribute whose non-prefixed name is
     <tt>attributeName</tt>
     </p>
 
     <h4>
       <a name="OAT.Xml.removeDefaultNamespace(string)"> 
-      </a>
-    OAT.Xml.removeDefaultNamespace(string)</h4>
+      </a>OAT.Xml.removeDefaultNamespace(string)</h4>
 
-    <p>
-      <br/>
-    Takes an XML document in <tt>string</tt> form and removes
+    <p>Takes an XML document in <tt>string</tt> form and removes
     default namespace. This is useful when we want to use XPath
     queries against such a document, since these cannot be executed
     against documents with default namespaces. Returns XML
@@ -285,43 +256,32 @@
 
     <h4>
       <a name="OAT.Xml.xpath(xmlDoc, xPathQuery, nsObject)"> 
-      </a>
-    OAT.Xml.xpath(xmlDoc, xPathQuery, nsObject)</h4>
+      </a>OAT.Xml.xpath(xmlDoc,
+    xPathQuery, nsObject)</h4>
 
-    <p>
-      <br/>
-    Runs an XPath query ( <tt>xPathQuery</tt> ) against
-    <tt>xmlDoc</tt> . Namespaces are resolved as properties of
-    <tt>nsObject</tt> .</p>
+    <p>Runs an XPath query (xPathQuery) against <tt>xmlDoc</tt>.
+    Namespaces are resolved as properties of <tt>nsObject</tt>.</p>
 
     <h4>
       <a name="OAT.Xml.escape(xml)"> 
       </a> OAT.Xml.escape(xml)</h4>
 
-    <p>
-      <br/>
-    Returns escaped.</p>
+    <p>Returns escaped.</p>
 
     <h4>
       <a name="OAT.Xml.unescape(txt)"> 
-      </a>
-    OAT.Xml.unescape(txt)</h4>
+      </a>OAT.Xml.unescape(txt)</h4>
 
-    <p>
-      <br/>
-    Returns unescaped.</p>
+    <p>Returns unescaped.</p>
 
     <h3>
       <a name="Examples" id="Examples"> 
       </a> Examples</h3>
 
-    
-
     <h4>
       <a name="Example 1"> 
       </a> Example 1</h4>
-
-    
+    <br/>
     <pre>
 var xmlDoc, xslDoc; // somehow fill these with data
 var params = [
@@ -329,16 +289,12 @@ var params = [
         ["myNS","myparam2","myvalue2"]
 ]
 var result = OAT.Xml.transformXSLT(xmlDoc, xslDoc, params);
-
 </pre>
-
-    
 
     <h4>
       <a name="Example 2"> 
       </a> Example 2</h4>
-
-    
+    <br/>
     <pre>
 var xmlString = '&lt;?xml version="1.0" ?&gt;&lt;document&gt;&lt;node&gt;value&lt;/node&gt;&lt;node /&gt;&lt;/document&gt;';
 var xmlDoc = OAT.Xml.createXmlDoc(xmlString);
@@ -348,12 +304,11 @@ alert(nodeArray.length); // 2
 </pre>
 
     
-
-    
-    <hr/>
   </div>
 <div id="oatcopy">
-      Copyright (C) 2005-2008
+            Copyright (C) 2005-2009
       <a href="http://www.openlinksw.com/">OpenLink Software</a>
   </div>
+  </div>
+</body>
 </html>
