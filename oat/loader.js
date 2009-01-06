@@ -37,10 +37,41 @@ OAT.Preferences = {
 	imagePath:"../images/",
 	stylePath:"../styles/",
 	endpointXmla:"/XMLA",
-	version:"11.05.2008",
+	version:"2.8",
+	build:"$Date$",
 	httpError:1, /* show http errors */
 	allowDefaultResize:1,
 	allowDefaultDrag:1
+}
+
+OAT.ApiKeys = {
+	services: {
+		gmapapi: {
+			/* key domain : key */
+		}
+	},
+
+	addKey:function(service,url,key) {
+		if (service in this.services) { 
+			this.services[service][url] = key;
+		} else {
+			var entry = { url : key };
+			this.services[service] = entry 
+		}
+	},
+
+	getKey:function(service) {
+		var services = OAT.ApiKeys.services;
+		var href = window.location.href;
+
+		if (!service in services) { return false; }
+
+		for (var url in services[service]) {
+				var key = services[service][url];
+				if(href.match(url)) { return key; }
+		}
+		return false;
+	}
 }
 
 function $(something) {

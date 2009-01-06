@@ -871,13 +871,16 @@ OAT.RDFTabs.map = function(parent,optObj) {
 	
 	this.options = {
 		provider:OAT.MapData.TYPE_G,
-		fix:OAT.MapData.FIX_ROUND1
+		fix:OAT.MapData.FIX_ROUND1,
+		description:"This module plots all geodata found in filtered resources onto a map.",
+		desc:"Plots all geodata onto a map"
 	}
 	for (var p in optObj) { self.options[p] = optObj[p]; }
 	
 	this.map = false;
 	this.parent = parent;
-	this.description = "This module plots all geodata found in filtered resources onto a map.";
+	this.description = self.options.description;
+	this.desc = self.options.desc;
 	this.elm.style.position = "relative";
 	this.elm.style.height = "600px";
 	
@@ -995,7 +998,7 @@ OAT.RDFTabs.map = function(parent,optObj) {
 		self.markerIndex = 0;
 		self.markerMapping = {};
 
-		self.map = new OAT.Map(self.elm,self.options.provider,{fix:self.options.fix});
+		var cb = function() {
 		self.map.centerAndZoom(0,0,0);
 		self.map.addTypeControl();
 		self.map.addMapControl();
@@ -1010,6 +1013,10 @@ OAT.RDFTabs.map = function(parent,optObj) {
 			var item = self.parent.data.structured[i];
 			self.trySimple(item);
 		}
+		}
+
+		self.map = new OAT.Map(self.elm,self.options.provider,{fix:self.options.fix});
+		self.map.loadApi(self.options.provider,cb);
 		
 		OAT.Resize.createDefault(self.elm);
 
