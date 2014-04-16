@@ -59,7 +59,7 @@ OAT.Loader.Dependencies = { /* dependency tree */
 	tree:"ghostdrag",
 	rdfbrowser:["rdfstore","tree","anchor","rdftabs","tab","dav","notify"],
 	rdfmini:["rdfstore","rdftabs","notify"],
-	rdfstore:["rdf","dereference","n3"],
+	rdfstore:["rdf","dereference","n3", "json"],
 	dereference:"ajax2",
 	graphsidebar:"tree",
 	form:["ajax2","dialog","datasource","formobject","crypto"],
