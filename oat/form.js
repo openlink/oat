@@ -158,13 +158,13 @@ OAT.Form = function(targetElm,optObj) {
 
 	this.attachNav = function(nav) {
 		var ds = nav.datasources[0].ds;
-		OAT.Dom.attach(nav.first,"click",function() { ds.advanceRecord(0); }); 
-		OAT.Dom.attach(nav.prevp,"click",function() { ds.advanceRecord(ds.recordIndex - ds.pageSize); });
-		OAT.Dom.attach(nav.prev,"click",function() { ds.advanceRecord("-1"); });
-		OAT.Dom.attach(nav.next,"click",function() { ds.advanceRecord("+1"); });
-		OAT.Dom.attach(nav.nextp,"click",function() { ds.advanceRecord(ds.recordIndex + ds.pageSize); });
-//					OAT.Dom.attach(nav.last,"click",function() { ds.advanceRecord(parseInt(nav.total.innerHTML)-1); });
-		OAT.Dom.attach(nav.current,"keyup",function(event) { 
+		OAT.Event.attach(nav.first,"click",function() { ds.advanceRecord(0); }); 
+		OAT.Event.attach(nav.prevp,"click",function() { ds.advanceRecord(ds.recordIndex - ds.pageSize); });
+		OAT.Event.attach(nav.prev,"click",function() { ds.advanceRecord("-1"); });
+		OAT.Event.attach(nav.next,"click",function() { ds.advanceRecord("+1"); });
+		OAT.Event.attach(nav.nextp,"click",function() { ds.advanceRecord(ds.recordIndex + ds.pageSize); });
+//					OAT.Event.attach(nav.last,"click",function() { ds.advanceRecord(parseInt(nav.total.innerHTML)-1); });
+		OAT.Event.attach(nav.current,"keyup",function(event) { 
 			if (event.keyCode != 13) { return; }
 			var value = parseInt($v(nav.current));
 			ds.advanceRecord(value-1); 
@@ -219,6 +219,7 @@ OAT.Form = function(targetElm,optObj) {
 						index++;
 					} /* if column is used */
 				} /* for all used columns */
+				if (!q.length) { alert("OAT.Form.recomputeFields:\nThere are no used data fields in the form."); }
 				ds.options.query = "SELECT "+q.join(", ")+" FROM "+OAT.SqlQueryData.qualifyMulti(ds.options.table);
 			} else {
 				for (var j=0;j<ds.usedFields.length;j++) {
@@ -352,6 +353,19 @@ OAT.Form = function(targetElm,optObj) {
 		self.div.style.color = area.getAttribute("fgcolor");
 		self.div.style.fontSize = area.getAttribute("size");
 	
+		var counter = -1;
+		var ready = false;
+
+		/* listen for loading apis */
+		OAT.MSG.attach("*","API_LOADING",function() {
+			counter = (counter == -1)? 1 : counter+1;	
+		});
+
+		OAT.MSG.attach("*","API_LOADED",function() {
+			counter--;
+			if (!counter && ready) { self.initialData(); }
+		});
+	
 		/* read datasources from xmlDoc */
 		var dselms = xmlDoc.getElementsByTagName("ds");
 		for (var i=0;i<dselms.length;i++) {
@@ -379,7 +393,12 @@ OAT.Form = function(targetElm,optObj) {
 			self.recomputeFields();
 			self.draw();
 			self.options.onDone();
-			self.initialData();
+			ready = true;
+			/* -1 -> no apis needed to be loaded, 
+			   >0 -> api loading in progress,
+			   =0 -> api loading finished
+			 */
+			if (counter == -1 || counter == 0) { self.initialData(); }
 		}
 		
 		var qualifiersCallback = function() { /* what to do when qualifiers are ready */
@@ -410,7 +429,7 @@ OAT.Form = function(targetElm,optObj) {
 			var ref = function() {
 				ds.fieldBinding.masterFields[index] = $v(input);
 			}
-			OAT.Dom.attach(input,"keyup",ref);
+			OAT.Event.attach(input,"keyup",ref);
 		}
 
 		for (var i=0;i<p.length;i++) {
@@ -431,9 +450,9 @@ OAT.Form = function(targetElm,optObj) {
 		}
 
 		var params = new OAT.Dialog("Parameters",self.paramsDiv,{width:400,modal:1,zIndex:1000});
-		params.ok = function() { params.hide(); cb(); }
+		OAT.MSG.attach(params, "DIALOG_OK", cb);
 		OAT.Dom.unlink(params.cancelBtn);
-		params.show();
+		params.open();
 
 	}
 	
@@ -472,16 +491,15 @@ OAT.Form = function(targetElm,optObj) {
 		
 		/* display credentials dialog */
 		var d = new OAT.Dialog("Credentials",self.credsDiv,{modal:1,width:300});
-		d.show();
+		d.open();
 		var ref = function() {
 			self.options.user = $v("cred_user");
 			self.options.password = $v("cred_password");
 			applyCreds();
-			d.hide();
 			cb();
 		}
-		d.ok = ref;
-		d.cancel = d.hide;
+		OAT.MSG.attach(d, "DIALOG_OK", ref);
+		OAT.MSG.attach(d, "DIALOG_CANCEL", ref);
  	}
 	
 	this.references = function() { /* do various references */
@@ -579,7 +597,7 @@ OAT.Form = function(targetElm,optObj) {
 		var callback = function() {
 			self.materialize(xmlDoc);
 		}
-		OAT.Loader.loadFeatures(needed,callback);
+		OAT.Loader.load(needed,callback);
 	}
 	
 	this.createFromURL = function(url) { /* create form from url */
@@ -589,5 +607,3 @@ OAT.Form = function(targetElm,optObj) {
 		OAT.AJAX.GET(url,false,createRef,{type:OAT.AJAX.TYPE_XML});
 	}
 }
-
-OAT.Loader.featureLoaded("form");
