@@ -118,6 +118,9 @@ OAT.RDFMini = function(div,optObj) {
 		self.content.appendChild(self.tabs[index].elm);
 		self.content.appendChild(OAT.Dom.create("div",{clear:"both"}));
 		self.tabs[index].redraw();
+	    var et = {};
+	    et.tabIndex = index;
+	    OAT.MSG.send (self,OAT.MSG.RDFMINI_VIEW_CHANGED,et);
 	}
 	
 	this.open = function(url) { /* open url */
