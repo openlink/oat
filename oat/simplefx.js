@@ -271,7 +271,7 @@ OAT.SimpleFX = {
 				var a1 = OAT.AnimationOpacity(elm,{opacity:0,delay:5});
 				var a2 = OAT.AnimationSize(elm,{width:0,height:0,speed:10,delay:2});
 				var sf = function() {OAT.Dom.hide(elm);}
-				OAT.MSG.attach(a2.animation,OAT.MSG.ANIMATION_STOP,sf);
+				OAT.MSG.attach(a2.animation,"ANIMATION_STOP",sf);
 			} else {
 				var orig_w = elm.__origW;
 				var orig_h = elm.__origH;
@@ -280,7 +280,7 @@ OAT.SimpleFX = {
 				var a1 = OAT.AnimationOpacity(elm,{opacity:1,delay:5});
 				var a2 = OAT.AnimationSize(elm,{width:orig_w,height:orig_h,speed:10,delay:2});
 				var sf = function() {elm.style.width = elm.__origW+"px"; elm.style.height = elm.__origH+"px"; OAT.Dom.show(elm); }
-				OAT.MSG.attach(a2.animation,OAT.MSG.ANIMATION_STOP,sf);
+				OAT.MSG.attach(a2.animation,"ANIMATION_STOP",sf);
 			}
 			elm.__shaderState++;
 			if (elm.__shaderState == 2) { elm.__shaderState = 0; }

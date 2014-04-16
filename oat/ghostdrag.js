@@ -45,17 +45,17 @@ OAT.GhostDragData = {
 		if (ok) { 
 			/* mouseup at correct place - remove element */
 			OAT.Dom.unlink(elm);
-			OAT.MSG.send(obj,OAT.MSG.GD_END,elm);
+			OAT.MSG.send(obj,"GD_END",elm);
 		} else {
 			/* mouseup at wrong place - let's animate it back */
-			OAT.MSG.send(obj,OAT.MSG.GD_ABORT,elm);
+			OAT.MSG.send(obj,"GD_ABORT",elm);
 			obj.onFail();
 			var coords = OAT.Dom.position(obj.originalElement);
 			var x = coords[0];
 			var y = coords[1];
 			var sf = function() { OAT.Dom.unlink(elm); }
 			var anim = new OAT.AnimationPosition(elm,{speed:10,delay:10,left:x,top:y});
-			OAT.MSG.attach(anim.animation,OAT.MSG.ANIMATION_STOP,sf);
+			OAT.MSG.attach(anim.animation,"ANIMATION_STOP",sf);
 			anim.start();
 		}
 	}, /* OAT.GhostDragData.up() */
@@ -71,7 +71,7 @@ OAT.GhostDragData = {
 			elm.style.zIndex = 2000;
 			if (obj.process) { obj.process(elm); }
 			obj.pending = 0;
-			OAT.MSG.send(obj,OAT.MSG.GD_START,elm);
+			OAT.MSG.send(obj,"GD_START",elm);
 		}
 		/*
 			selection sukz. detect it and remove!

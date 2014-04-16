@@ -120,7 +120,7 @@ OAT.RDFMini = function(div,optObj) {
 		self.tabs[index].redraw();
 	    var et = {};
 	    et.tabIndex = index;
-	    OAT.MSG.send (self,OAT.MSG.RDFMINI_VIEW_CHANGED,et);
+	    OAT.MSG.send (self,"RDFMINI_VIEW_CHANGED",et);
 	}
 	
 	this.open = function(url) { /* open url */

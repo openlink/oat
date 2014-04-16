@@ -142,7 +142,7 @@ OAT.Map = function(something, provider, optionsObject, specificOptions) {
 		div.appendChild(txt);
 		self.elm.appendChild(div);
 
-		OAT.MSG.send(this,OAT.MSG.API_LOADING,{});
+		OAT.MSG.send(this,"API_LOADING",{});
 		var cb = function() {
 			try {
 				self.init(provider);
@@ -152,7 +152,7 @@ OAT.Map = function(something, provider, optionsObject, specificOptions) {
 				self.elm.innerHTML = "Map service currently disabled or not available.";
 				self.provider = OAT.MapData.TYPE_NONE;
 			}
-			OAT.MSG.send(this,OAT.MSG.API_LOADED,{});
+			OAT.MSG.send(this,"API_LOADED",{});
 		}
 		switch (provider) {
 			case OAT.MapData.TYPE_G:

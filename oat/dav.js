@@ -800,7 +800,7 @@ OAT.WebDav = {
 			OAT.WebDav.redraw();
 		});
 		
-		OAT.MSG.attach(this.tree,OAT.MSG.TREE_EXPAND,function(tree,msg,node) {
+		OAT.MSG.attach(this.tree,"TREE_EXPAND",function(tree,msg,node) {
 			var path = node.path;
 			OAT.WebDav.openDirectory(path,true,node);
 		});

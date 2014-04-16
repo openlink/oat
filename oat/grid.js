@@ -658,7 +658,7 @@ OAT.GridRow = function(grid,number) {
 				} /* all rows */
 			} /* below */
 		} /* if shift */
-		OAT.MSG.send(this,OAT.MSG.GRID_ROWCLICK,this);
+		OAT.MSG.send(this,"GRID_ROWCLICK",this);
 		self.selected ? self.deselect() : self.select();
 	}
 	
@@ -688,7 +688,7 @@ OAT.GridRowCell = function(params_,number) {
 	OAT.Dom.append([self.html,self.container],[self.container,self.value]);
 	
  	OAT.Event.attach(this.html, "click", function() {
- 		OAT.MSG.send(this,OAT.MSG.GRID_CELLCLICK,this);
+ 		OAT.MSG.send(this,"GRID_CELLCLICK",this);
  	});
 
 	switch (self.options.align) {

@@ -232,12 +232,12 @@ OAT.DataSource = function(type) {
 		if (newIndex == -1 || newIndex == self.recordIndex) { return false; } /* do nothing if is not correct or the present one */
 		var newPageIndex = (self.pageSize ? Math.floor(newIndex / self.pageSize) : 0) * self.pageSize;
 		/* sometimes we also have to change page */
-		OAT.MSG.send(self,OAT.MSG.DS_RECORD_PREADVANCE,newIndex);
+		OAT.MSG.send(self,"DS_RECORD_PREADVANCE",newIndex);
 		var callback = function() {
 			self.recordIndex = newIndex;
 			/* populate objects based on current index */
 			var data = self.dataRows[self.recordIndex];
-			OAT.MSG.send(self,OAT.MSG.DS_RECORD_ADVANCE,[data,self.recordIndex]);
+			OAT.MSG.send(self,"DS_RECORD_ADVANCE",[data,self.recordIndex]);
 			for (var i=0;i<self.boundRecords.length;i++) {
 				/* notify all receiving objects */
 				self.boundRecords[i](data,self.recordIndex);
@@ -251,7 +251,7 @@ OAT.DataSource = function(type) {
 	}
 	
 	this.advancePage = function(newIndex,command) { /* go to page #, not to be directly called! */
-		OAT.MSG.send(self,OAT.MSG.DS_PAGE_PREADVANCE,newIndex);
+		OAT.MSG.send(self,"DS_PAGE_PREADVANCE",newIndex);
 		/* get the page we want */
 		var callback = function() {
 			var data = [];
@@ -260,7 +260,7 @@ OAT.DataSource = function(type) {
 			for (var j=self.pageIndex;j<l;j++) {
 				data.push(self.dataRows[j]);
 			}
-			OAT.MSG.send(self,OAT.MSG.DS_PAGE_ADVANCE,[data,self.pageIndex]);
+			OAT.MSG.send(self,"DS_PAGE_ADVANCE",[data,self.pageIndex]);
 			for (var i=0;i<self.boundPages.length;i++) {
 				self.boundPages[i](data,self.pageIndex);
 			} /* all page requesting objects */

@@ -26,7 +26,7 @@
 
 	requires OAT.AnimationSize
 	
-	Messages: OAT.MSG.SLB_OPENED, OAT.MSG.SLB_CLOSED
+	Messages: "SLB_OPENED", "SLB_CLOSED"
 	
 	The widget creates a new container div.slb_content and moves the original DIVs contents to it.	
 	
@@ -88,7 +88,7 @@ OAT.Slidebar = function (div, optionsObj) {
 		OAT.Event.attach (self.handle_div, "click", self.close);
 		OAT.Style.apply (self.content_div, {overflow : "auto"});
 		self.handle_close();
-		OAT.MSG.send (self, OAT.MSG.SLB_OPENED, self)
+		OAT.MSG.send (self, "SLB_OPENED", self);
 	}
 
 	this.closed = function (source, message, event) {
@@ -102,7 +102,7 @@ OAT.Slidebar = function (div, optionsObj) {
 		
 		OAT.Event.attach (self.handle_div, "click", self.open);
 		self.handle_open();
-		OAT.MSG.send (self, OAT.MSG.SLB_OPENED, self)
+		OAT.MSG.send(self, "SLB_CLOSED", self);
 	}
 
 	this.center_handle_img = function () {
@@ -166,8 +166,8 @@ OAT.Slidebar = function (div, optionsObj) {
 
 	OAT.Event.attach (this.handle_div, "click", this.open);
 	
-	OAT.MSG.attach (this.a_open.animation, OAT.MSG.ANIMATION_STOP, this.opened);
-	OAT.MSG.attach (this.a_close.animation, OAT.MSG.ANIMATION_STOP, this.closed);
+	OAT.MSG.attach (this.a_open.animation, "ANIMATION_STOP", this.opened);
+	OAT.MSG.attach (this.a_close.animation, "ANIMATION_STOP", this.closed);
 
 	this.center_handle_img ();
 

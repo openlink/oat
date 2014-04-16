@@ -142,7 +142,7 @@ OAT.AJAX = {
 	},
 	
 	init:function(url,callback,options) { /* common initialization for all methods */
-		OAT.MSG.send(OAT.AJAX,OAT.MSG.AJAX_START,url);
+		OAT.MSG.send(OAT.AJAX,"AJAX_START",url);
 		
 		var xhr = new OAT.AJAX.XMLHTTP(options,callback);
 
@@ -205,7 +205,7 @@ OAT.AJAX = {
 					xhr.callback(xmlDoc,headers);
 				}
 			} else { /* not success */
-				OAT.MSG.send(OAT.AJAX,OAT.MSG.AJAX_ERROR,xhr);
+				OAT.MSG.send(OAT.AJAX,"AJAX_ERROR",xhr);
 				if (xhr.options.onerror) { 
 					xhr.options.onerror(xhr);
 				} else if (OAT.AJAX.httpError) {
@@ -293,7 +293,7 @@ OAT.AJAX = {
 		
 		this.setTimeout = function(msec) {
 			var cb = function() {
-			   OAT.MSG.send(OAT.AJAX,OAT.MSG.AJAX_TIMEOUT,self);
+			   OAT.MSG.send(OAT.AJAX,"AJAX_TIMEOUT",self);
 			   self.timeout = false;
 			   self.abort();
 			}

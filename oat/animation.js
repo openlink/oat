@@ -35,7 +35,7 @@ OAT.Animation = function(element, optionsObject) { /* periodic executer */
 			if (self.options.conditionFunction(self)) {
 				self.running = 0;
 				self.options.stopFunction(self);
-				OAT.MSG.send(self,OAT.MSG.ANIMATION_STOP,self);
+				OAT.MSG.send(self,"ANIMATION_STOP",self);
 			} else {
 				self.options.stepFunction(self);
 				self.step(self);

@@ -829,7 +829,7 @@ OAT.FormObject = {
 			self.markers = [];
 			for (var i=0;i<self.datasources.length;i++) {
 				self.markers.push([]);
-				OAT.MSG.attach(self.datasources[i].ds,OAT.MSG.DS_RECORD_PREADVANCE,self.closeWindow);
+				OAT.MSG.attach(self.datasources[i].ds,"DS_RECORD_PREADVANCE",self.closeWindow);
 			}
 		}
 		

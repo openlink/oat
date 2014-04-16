@@ -383,7 +383,7 @@ OAT.TreeNode = function(li,ul,parent,root) {
 		}
 		self.state = 1;
 		self.updateStyle();
-		if (!silent) { OAT.MSG.send(self.root,OAT.MSG.TREE_EXPAND,self); }
+		if (!silent) { OAT.MSG.send(self.root,"TREE_EXPAND",self); }
 	}
 	
 	this.collapse = function() {
@@ -396,7 +396,7 @@ OAT.TreeNode = function(li,ul,parent,root) {
 		}
 		self.state = 0;
 		self.updateStyle();
-		OAT.MSG.send(self.root,OAT.MSG.TREE_COLLAPSE,self);
+		OAT.MSG.send(self.root,"TREE_COLLAPSE",self);
 	}
 	
 	this.testForSelected = function() {
@@ -643,9 +643,9 @@ OAT.Tree = function(optObj) {
 		ul.style.listStyleType = "none";
 		
 		if (self.options.allowDrag) { 
-			OAT.MSG.attach(self.gd,OAT.MSG.GD_START,self.gdStart);
-			OAT.MSG.attach(self.gd,OAT.MSG.GD_END,self.gdEnd);
-			OAT.MSG.attach(self.gd,OAT.MSG.GD_ABORT,self.gdEnd);
+			OAT.MSG.attach(self.gd,"GD_START",self.gdStart);
+			OAT.MSG.attach(self.gd,"GD_END",self.gdEnd);
+			OAT.MSG.attach(self.gd,"GD_ABORT",self.gdEnd);
 			OAT.Event.attach(document,"mousemove",self.gdMove);
 		}
 		

@@ -111,9 +111,9 @@ OAT.Dock = function(div,numColumns) {
 		OAT.Dom.hide(self.ghost);
 		for (var i=0;i<self.columns.length;i++) { OAT.Dom.unlink(self.dummies[i]); }
 	}
-	OAT.MSG.attach(self.gd,OAT.MSG.GD_END,self.endDrag);
-	OAT.MSG.attach(self.gd,OAT.MSG.GD_ABORT,self.endDrag);
-	OAT.MSG.attach(self.gd,OAT.MSG.GD_START,self.startDrag);
+	OAT.MSG.attach(self.gd,"GD_END",self.endDrag);
+	OAT.MSG.attach(self.gd,"GD_ABORT",self.endDrag);
+	OAT.MSG.attach(self.gd,"GD_START",self.startDrag);
 	
 	this.move = function(mover,target) { /* finally moving the panel 'mover' to place 'target' */
 		if (mover == target) { return; }
@@ -137,7 +137,7 @@ OAT.Dock = function(div,numColumns) {
 		mover.parentNode.insertBefore(blank,mover);
 		var sf = function(){OAT.Dom.unlink(blank);}
 		var a = new OAT.AnimationSize(blank,{speed:dims[1]/30,delay:5,height:0,stopFunction:sf});
-		OAT.MSG.attach(a.animation,OAT.MSG.ANIMATION_STOP,sf);
+		OAT.MSG.attach(a.animation,"ANIMATION_STOP",sf);
 		a.start();
 
 
@@ -150,7 +150,7 @@ OAT.Dock = function(div,numColumns) {
 			newX:newX,
 			newY:newY
 		}
-		OAT.MSG.send(self,OAT.MSG.DOCK_DRAG,o);
+		OAT.MSG.send(self,"DOCK_DRAG",o);
 	}
 	
 	this.getOverElm = function(event) {
@@ -218,7 +218,7 @@ OAT.Dock = function(div,numColumns) {
 	}
 	
 	this.removeObject = function(win) {
-		OAT.MSG.send(self,OAT.MSG.DOCK_REMOVE,win);
+		OAT.MSG.send(self,"DOCK_REMOVE",win);
 		var index = self.windows.find(win);
 		self.windows.splice(index,1);
 		

@@ -853,61 +853,95 @@ OAT.Loader = { /* first part of loader object */
 	}
 }
 
-OAT.MSG = { /* messages */
-	DEBUG:0,
-	OAT_DEBUG:0,
-	OAT_LOAD:1,
-	ANIMATION_STOP:2,
-	TREE_EXPAND:3,
-	TREE_COLLAPSE:4,
-	DS_RECORD_PREADVANCE:5,
-	DS_RECORD_ADVANCE:6,
-	DS_PAGE_PREADVANCE:7,
-	DS_PAGE_ADVANCE:8,
-	AJAX_START:9,
-	AJAX_ERROR:10,
-	AJAX_TIMEOUT:11,
-	GD_START:12,
-	GD_ABORT:13,
-	GD_END:14,
-	DOCK_DRAG:15,
-	DOCK_REMOVE:16,
-	SLB_OPENED:17,
-	SLB_CLOSED:18,
-	GRID_CELLCLICK:19,
-	GRID_ROWCLICK:20,
-	registry:[],
-	attach:function(sender,msg,callback) {
-		if (!sender) { return; }
-		OAT.MSG.registry.push([sender,msg,callback]);
-	},
-	detach:function(sender,msg,callback) {
-		if (!sender) { return; }
-		var index = -1;
-		for (var i=0;i<OAT.MSG.registry.length;i++) {
-			var rec = OAT.MSG.registry[i];
-			if (rec[0] == sender && rec[1] == msg && rec[2] == callback) { index = i; }
-		}
-		if (index != -1) { OAT.MSG.registry.splice(index,1); }
-	},
-	send:function(sender,msg,event) {
-		for (var i=0;i<OAT.MSG.registry.length;i++) {
-			var record = OAT.MSG.registry[i];
-			var senderOK = (sender == record[0] || record[0] == "*");
-			if (!senderOK) { continue; }
-			var msgOK = (msg == record[1] || record[1] == "*");
-			if (!msgOK && record[1].toString().match(/\*/)) { /* try regexp match */
-				var re = new RegExp(record[1]);
-				var str = "";
-				for (var p in OAT.MSG) {
-					var v = OAT.MSG[p];
-					if (v == msg) { str = p; }
-				}
-				if (str.match(re)) { msgOK = true; }
-			} /* regexp */
-			if (msgOK) { record[2](sender,msg,event); }
-		} /* for all listeners */
-	} /* send message */
+
+/**
+ * @namespace Messages
+ */
+
+OAT.MSG = {
+    DEBUG:"DEBUG",
+    OAT_DEBUG:"OAT_DEBUG",
+    OAT_LOAD:"OAT_LOAD",
+    ANIMATION_STOP:"ANIMATION_STOP",
+    TREE_EXPAND:"TREE_EXPAND",
+    TREE_COLLAPSE:"TREE_COLLAPSE",
+    DS_RECORD_PREADVANCE:"DS_RECORD_PREADVANCE",
+    DS_RECORD_ADVANCE:"DS_RECORD_ADVANCE",
+    DS_PAGE_PREADVANCE:"DS_PAGE_PREADVANCE",
+    DS_PAGE_ADVANCE:"DS_PAGE_ADVANCE",
+    AJAX_START:"AJAX_START",
+    AJAX_ERROR:"AJAX_ERROR",
+    AJAX_TIMEOUT:"AJAX_TIMEOUT",
+    GD_START:"GD_START",
+    GD_ABORT:"GD_ABORT",
+    GD_END:"GD_END",
+    DOCK_DRAG:"DOCK_DRAG",
+    DOCK_REMOVE:"DOCK_REMOVE",
+    SLB_OPENED:"SLB_OPENED",
+    SLB_CLOSED:"SLB_CLOSED",
+    GRID_CELLCLICK:"GRID_CELLCLICK",
+    GRID_ROWCLICK:"GRID_ROWCLICK",
+    API_LOADING:"API_LOADING",
+    API_LOADED:"API_LOADED",
+    STORE_LOADING:"STORE_LOADING",
+    STORE_LOADED:"STORE_LOADED",
+    STORE_LOAD_FAILED:"STORE_LOAD_FAILED",
+    STORE_ENABLED:"STORE_ENABLED",
+    STORE_DISABLED:"STORE_DISABLED",
+    STORE_CLEARED:"STORE_CLEARED",
+    STORE_REMOVED:"STORE_REMOVED",
+    RDFMINI_VIEW_CHANGED:"RDFMINI_VIEW_CHANGED",
+    registry:[],
+
+    /**
+     * adds new listener to registry
+     * @param {string || object} sender listen to messages from this sender, "*" for everyone
+     * @param {string} msg listen to this message, "*" for any
+     * @param {function} callback callback to execute upon message retrieval
+     */
+
+    attach:function(sender, msg, callback) {
+	if (!sender) { return; }
+	if (!callback || typeof callback == "undefined") {
+	    throw (new Error ("OAT.MSG.attach requires callback function."));
+	}
+
+	OAT.MSG.registry.push([sender, msg, callback]);
+    },
+
+    /**
+     * removes listener from registry
+     * @param {string || object} sender message's sender or "*"
+     * @param {string} msg message
+     * @param {function} callback callback to execute upon message retrieval
+     */
+
+    detach:function(sender, msg, callback) {
+	if (!sender) { return; }
+	var index = -1;
+	for (var i=0;i<OAT.MSG.registry.length;i++) {
+	    var rec = OAT.MSG.registry[i];
+	    if (rec[0] == sender && rec[1] == msg && rec[2] == callback) { index = i; }
+	}
+	if (index != -1) { OAT.MSG.registry.splice(index,1); }
+    },
+
+    /**
+     * dispatches new message
+     * @param {object} sender message sender
+     * @param {message code} msg message string or numeric code
+     * @param {event} event message event
+     */
+
+    send:function(sender, msg, event) {
+	for (var i=0;i<OAT.MSG.registry.length;i++) {
+	    var record = OAT.MSG.registry[i];
+	    var senderOK = (sender == record[0] || record[0] == "*");
+	    if (!senderOK) { continue; }
+	    var msgOK = (msg == record[1] || record[1] == "*");
+	    if (msgOK) { record[2](sender, msg, event); }
+	} /* for all listeners */
+    } /* send message */
 }
 
 OAT.Debug = {

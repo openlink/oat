@@ -108,9 +108,9 @@ OAT.Notify = function(parentDiv,optObj) {
 		var aAppear = new OAT.AnimationOpacity(div,{opacity:options.opacity,speed:0.1,delay:options.delayIn});
 		var aDisappear = new OAT.AnimationOpacity(div,{opacity:0,speed:0.1,delay:options.delayOut});
 		var aRemove = new OAT.AnimationSize(div,{height:0,speed:10,delay:options.delayOut});
-		OAT.MSG.attach(aRemove.animation,OAT.MSG.ANIMATION_STOP,function(){	OAT.Dom.unlink(div); });
-		OAT.MSG.attach(aAppear.animation,OAT.MSG.ANIMATION_STOP,afterAppear);
-		OAT.MSG.attach(aDisappear.animation,OAT.MSG.ANIMATION_STOP,aRemove.start);
+		OAT.MSG.attach(aRemove.animation,"ANIMATION_STOP",function(){	OAT.Dom.unlink(div); });
+		OAT.MSG.attach(aAppear.animation,"ANIMATION_STOP",afterAppear);
+		OAT.MSG.attach(aDisappear.animation,"ANIMATION_STOP",aRemove.start);
 		
 		
 		OAT.Event.attach(div,"click",function() {
