@@ -51,12 +51,14 @@ OAT.Dereference = {
 		endpoint = this.options.endpoint;
 
 		/* now the settings */
+
 		if (optObj) {
 			this.copy(optObj.ajaxOpts,ajaxOpts);
 			this.copy(optObj.endpointOpts,endpointOpts);
 			this.copy(optObj.pragmas,pragmas);
 		        if (optObj.endpoint) endpoint = optObj.endpoint;
 		}
+
 		if (!optObj.direct) {
 		    if (url.match(/^http/i) && endpointOpts.virtuoso) { /* Virtuoso proxy: */
 			if (endpointOpts.proxyVersion == 1) {
@@ -101,7 +103,8 @@ OAT.Dereference = {
 	} else { /* Dereference using supplied endpoint and options. Direct SPARQL queries, etc */
 		    encoded = endpoint + url;
 		}
-		OAT.AJAX.GET(encoded,false,callback,ajaxOpts); 
+	var xhr = OAT.AJAX.GET(encoded,false,callback,ajaxOpts); 
+	return xhr;
 	}
 }
 OAT.Loader.featureLoaded("dereference");
