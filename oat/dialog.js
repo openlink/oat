@@ -66,14 +66,14 @@ OAT.Dialog = function(title,contentDiv,optObj) {
 	this.cancel = function(){};
 	this.okBtn = ok;
 	this.cancelBtn = cancel;
-	OAT.Dom.attach(ok,"click",function(){self.ok();});
-	OAT.Dom.attach(cancel,"click",function(){self.cancel();});
+	OAT.Event.attach(ok,"click",function(){self.ok();});
+	OAT.Event.attach(cancel,"click",function(){self.cancel();});
 	
 	var keyPress = function(event) {
 		if (self.okBtn.getAttribute("disabled") == "disabled") { return; }
 		if (event.keyCode == 13) { self.ok(); }
 		if (event.keyCode == 27) { self.cancel(); }
 	}
-	if (options.autoEnter) { OAT.Dom.attach(win.div,"keypress",keyPress); }
+	if (options.autoEnter) { OAT.Event.attach(win.div,"keypress",keyPress); }
 }
 OAT.Loader.featureLoaded("dialog");
