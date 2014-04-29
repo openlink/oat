@@ -202,7 +202,7 @@ OAT.Anchor = {
 		options.displayRef = function(event,preload) {
 			OAT.Event.prevent(event);
 			var win = options.window;
-			win.hide(); /* close existing window */
+			win.close(); /* close existing window */
 			OAT.AnchorData.active = options;
 			var pos = OAT.Event.position(event);
 			OAT.AnchorData.window = win; /* assign last opened window */
@@ -222,7 +222,7 @@ OAT.Anchor = {
 				pos = OAT.Dom.position(elm);
 			}
 			options.anchorTo(pos[0],pos[1]);
-			win.show();
+			    win.open();
 			    window.setTimeout(function(){
 				options.anchorTo(pos[0],pos[1]);
 			    },60); /* after adding arrows, window can be shifted a bit */
@@ -231,7 +231,6 @@ OAT.Anchor = {
 		}
         
 	        if (options.preload) {
-		    win.preload();
 		    options.displayRef(false, true);
 		}
         
@@ -264,11 +263,11 @@ OAT.Anchor = {
 		}
 		options.closeRef = function() {
 			if (options.closeFlag) {
-				options.window.hide();
+				options.window.close();
 				OAT.AnchorData.active = false;
 			}
 		}
-		options.close = function() { options.window.hide(); }
+		options.close = function() { options.window.close(); }
 		options.startClose = function() {
 			options.closeFlag = 1;
 			setTimeout(options.closeRef,1000);

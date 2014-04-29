@@ -113,7 +113,7 @@ OAT.WebDav = {
 		if (this.mode == 0) { /* open */
 			if (OAT.WebDav.options.foldersOnly) {
 				if (OAT.WebDav.options.callback) {
-					OAT.WebDav.window.hide();
+					OAT.WebDav.window.close();
 					OAT.WebDav.options.callback(p,'');
 				}
 			} else {
@@ -130,7 +130,7 @@ OAT.WebDav = {
 			}
 			OAT.WebDav.updateOptions(o);
 			var response = function(data) {
-					OAT.WebDav.window.hide();
+					OAT.WebDav.window.close();
 				if (OAT.WebDav.options.callback) { OAT.WebDav.options.callback(p,f,data); }
 			}
 			OAT.AJAX.GET(url,false,response,o);
@@ -154,7 +154,7 @@ OAT.WebDav = {
 			
 			/* ready to save */
 			if (!this.options.dataCallback) {
-				OAT.WebDav.window.hide();
+				OAT.WebDav.window.close();
 				if (OAT.WebDav.options.callback) { OAT.WebDav.options.callback(p,f); }
 				return; 
 			}
@@ -180,7 +180,7 @@ OAT.WebDav = {
 			
 			var response = function() {
 				if (OAT.WebDav.options.isDav) { OAT.WebDav.updatePermissions(p+f); }
-				OAT.WebDav.window.hide();
+				OAT.WebDav.window.close();
 				if (OAT.WebDav.options.callback) { OAT.WebDav.options.callback(p,f); }
 			}
 
@@ -788,7 +788,7 @@ OAT.WebDav = {
 		});
 		OAT.Event.attach(this.dom.ok,"click",useRef);
 		OAT.Event.attach(this.dom.cancel,"click",function(event) {
-			OAT.WebDav.window.hide();
+			OAT.WebDav.window.close();
 		});
 		OAT.Event.attach(this.dom.ext,"change",function(event) {
 			var ext = OAT.WebDav.options.extensionFilters[OAT.WebDav.dom.ext.selectedIndex];
@@ -891,7 +891,7 @@ OAT.WebDav = {
 			return;
 		}
 		
-		this.window.show();
+		this.window.open();
 		OAT.Dom.center(this.window.dom.container,1,1);
 		OAT.Dom.show("dav_permissions");
 		this.dom.file.value = this.options.file; /* preselected file name */

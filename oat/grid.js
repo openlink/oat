@@ -201,7 +201,7 @@ OAT.Grid = function(element,optObj,allowHiding /* OBSOLETE! */) {
 							content:self.propPage,
 							result_control:false,
 							activation:"click",
-							type:OAT.WinData.TYPE_RECT,
+							type:OAT.Win.Rect,
 							width:75
 				} );
 			var refresh = function() { self.propPage._Instant_hide(); }
