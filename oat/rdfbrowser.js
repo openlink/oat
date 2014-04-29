@@ -134,7 +134,7 @@ OAT.RDFBrowser = function(div,optObj) {
 		self.redraw(); /* redraw global elements */
 	}
 	
-	this.store = new OAT.RDFStore(self.reset,{ajaxEnd:self.ajaxEnd});
+	this.store = new OAT.RDFStore(self.reset,{onend:self.ajaxEnd});
 	this.store.div = OAT.Dom.create("div");
 	this.data = self.store.data;
 	
@@ -221,7 +221,7 @@ OAT.RDFBrowser = function(div,optObj) {
 	}
 
 	this.store.loadFromInput = function() {
-		self.store.addURL($v(self.store.url),self.btnStart);
+		self.store.addURL($v(self.store.url),{ajaxOpts:{onstart:self.btnStart}});
 	}
 
 	this.store.init = function() {
@@ -330,7 +330,7 @@ OAT.RDFBrowser = function(div,optObj) {
 					self.store.clear();
 					start2();
 				}
-				self.store.addURL(href,ref);
+				self.store.addURL(href,{ajaxOpts:{onstart:ref}});
 			});
 			list.push(a);
 		}
@@ -389,7 +389,7 @@ OAT.RDFBrowser = function(div,optObj) {
 			var start = self.throbberReplace(img1,true);
 			OAT.Event.attach(img1,"click",function() {
 				/* dereference link - add */
-				self.store.addURL(href,start);
+				self.store.addURL(href,{ajaxOpts:{onstart:start}});
 			});
 			list.push(img1);
 		}
