@@ -18,35 +18,41 @@ OAT.Layers = function(baseOffset) {
 	var self = this;
 	this.baseOffset = baseOffset;
 	this.layers = [];
-	this.currentIndex = 0;
 	
 	this.raise = function(elm) {
-		var index = self.layers.indexOf(elm);
-		if (index == -1) { return; }
-		var curr = elm.style.zIndex;
-		for (var i=0;i<self.layers.length;i++) {
-			var e = self.layers[i];
-			if (e.style.zIndex > curr) { e.style.zIndex--; }
+		var currZ = elm.style.zIndex;
+		var maxZ = currZ;
+		var arr = [];
+		for (var i=0;i<this.layers.length;i++) {
+			var l = this.layers[i];
+			var z = l.style.zIndex;
+			if (z > currZ) { arr.push(l); } /* greater than current layer */
+			if (z > maxZ) { maxZ = z; } /* largest z-index */
 		}
-		elm.style.zIndex = self.currentIndex;
+		
+		arr.sort(function(a,b) { return a.style.zIndex - b.style.zIndex; }); /* sort those which were above */
+		arr.unshift(elm);
+		
+		for (var i=1;i<arr.length;i++) { /* decrease all */
+			arr[i].style.zIndex = arr[i-1].style.zIndex;
+		}
+		elm.style.zIndex = maxZ; /* raise layer */
 	}
 
 	this.addLayer = function(something,activationEvent) {
 		var elm = $(something);
-		if (!elm) { return; }
-		self.currentIndex++;
-		elm.style.zIndex = self.currentIndex;
-		self.layers.push(elm);
-		var event = (activationEvent ? activationEvent : "mousedown");
+		if (!elm) { throw new Error("Cannot find '"+something+"'"); }
+
+		var event = activationEvent || "mousedown";
+		elm.style.zIndex = self.baseOffset + this.layers.length;
+		this.layers.push(elm);
 		OAT.Event.attach(elm,event,function(){self.raise(elm);});
 	}
 	
 	this.removeLayer = function(something) {
 		var elm = $(something);
 		var index = self.layers.indexOf(elm);
-		if (index == -1) { return; }
+		if (index == -1) { throw new Error("Cannot find '"+something+"'"); }
 		self.layers.splice(index,1);
 	}
-	
-	self.currentIndex = self.baseOffset;
 }
