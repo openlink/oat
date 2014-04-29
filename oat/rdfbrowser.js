@@ -313,7 +313,7 @@ OAT.RDFBrowser = function(div,optObj) {
 			OAT.Event.attach(a,"click",function(event) {
 				/* dereference link - add */
 				OAT.Event.prevent(event);
-				self.store.addURL(href,start1);
+				self.store.addURL(href,{ajaxOpts:{onstart:start1}});
 			});
 			list.push(a);
 		}
