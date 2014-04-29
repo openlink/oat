@@ -681,6 +681,7 @@ OAT.GridRowCell = function(params_,number,row) {
 	
 	this.options = {
 		value:"",
+		valueType: 0,  // 1 - HTTP link  2 - HTTP sparql link
 		align:OAT.GridData.ALIGN_LEFT
 	}
 	
@@ -690,9 +691,34 @@ OAT.GridRowCell = function(params_,number,row) {
 	this.html = OAT.Dom.create("td");
 	this.value = OAT.Dom.create("div",{overflow:"hidden"});
 	OAT.Dom.addClass(self.value,"row_value");
-	this.value.innerHTML = self.options.value;
-	this.html.setAttribute("title",self.options.value);
-	OAT.Dom.append([self.html,self.value]);
+
+	if (self.options.valueType==0) {
+
+	  this.value.innerHTML = self.options.value;
+	  this.html.setAttribute("title",self.options.value);
+	  OAT.Dom.append([self.html,self.value]);
+
+	} else {
+
+          // used only for XMLA execute, create LinkOut refs
+	  this.html.setAttribute("title",self.options.value);
+
+	  var r = OAT.Dom.create("a");
+	  r.target = "_blank";
+	  r.href = self.options.value;
+	  if (self.options.valueType == 2) { //SPARQL
+             r.href = window.location.origin+
+                "/sparql?default-graph-uri=&query=describe+<"+self.options.value+
+                 "> LIMIT 100 &should-sponge=&format=text/html&timeout=0&debug=on";
+	     //r.href = window.location.origin+
+	     //   "/isparql/view/?query=describe+<"+self.options.value+
+	     //   "> &endpoint=/sparql&resultview=triples&maxrows=50&timeout=&view=1&amode=0";
+	  }
+
+	  r.innerHTML = self.options.value;
+          self.value.appendChild(r);
+	  OAT.Dom.append([self.html,self.value]);
+	}
 	
  	OAT.Event.attach(this.html, "click", function() {
  		OAT.MSG.send(row.grid, "GRID_CELLCLICK", self);

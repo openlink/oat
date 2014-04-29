@@ -180,6 +180,32 @@ OAT.Xmla = {
 	
 	var cBack = function(data) {
 	    var result = OAT.Xmla.execute_array(data);
+	    if (OAT.Xmla.connection.options.useDereference && result.length > 1 && result[1].length >0)
+	    {
+	       var isSparql = function isSPARQL(query) {
+                   var sQuery = query.replace(/\n/g, ' ').replace(/\r/g, '');
+                   var query_type = sQuery.split(/\s+/)[0];
+                   if (query_type.toUpperCase() != 'SPARQL')
+                     return false;
+                   else
+                     return true;
+               };
+	      
+	      var data = result[1];
+	      for(var i =0; i < data.length; i++) {
+	        var row = data[i];
+	        for(var j=0; j < row.length; j++) {
+	          var col_val = row[j];
+	          if (col_val.indexOf("http://")==0 || col_val.indexOf("https://")==0)
+	          {
+	            row[j] = {value:col_val, 
+	                      valueType:isSparql(OAT.Xmla.query)?2:1
+	                     };
+
+	          }
+	        }
+	      }
+	    }
 	    callback(result);
 	}
 	

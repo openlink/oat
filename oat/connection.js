@@ -30,7 +30,8 @@ OAT.Connection = function(type,optObj) {
 				endpoint:OAT.Preferences.endpointXmla,
 				dsn:"",
 				user:"",
-				password:""
+				password:"",
+				useDereference:false
 			};
 		break;
 		case OAT.ConnectionData.TYPE_WSDL:
