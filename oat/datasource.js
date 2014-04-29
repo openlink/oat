@@ -369,17 +369,17 @@ OAT.DataSource = function(type) {
 					callback();
 				}
 				var servicesRef = function(arr) {
-					dialogs.services.show();
+					dialogs.services.open();
 					OAT.Dom.clear("services_select");
 					for (var i=0;i<arr.length;i++) {
 						OAT.Dom.option(arr[i],arr[i],"services_select");
 					}
-					dialogs.services.ok = selectRef;
+					OAT.MSG.attach(dialogs.services, "DIALOG_OK", selectRef);
 				}
 				var selectRef = function() {
 					var s = $v("services_select");
 					self.options.service = s;
-					dialogs.services.hide();
+					dialogs.services.close();
 					OAT.WS.listParameters(wsdl,s,paramsRef)
 				}
 				if (do_links) {
