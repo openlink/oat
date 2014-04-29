@@ -13,20 +13,20 @@
 	cb.addOption(imagepath,textvalue,callback)
 	cb.removeOption(index)
 	
-	CSS: combo_button, combo_button_image, combo_button_text, combo_button_option, combo_button_option_down
+	CSS: oat_combo_button, oat_combo_button_image, oat_combo_button_text, oat_combo_button_option, oat_combo_button_option_down
 */
 
 OAT.ComboButton = function() {
 	var self = this;
+
 	this.div = OAT.Dom.create("div"); /* THE element */
-	this.options = [];
-	this.optList = OAT.Dom.create("div",{position:"absolute",left:"0px",top:"0px"},"combo_button"); /* list of other options; hidden most of the time */
-	this.image = OAT.Dom.create("img",{cursor:"pointer"},"combo_button_image"); /* dropdown clicker */
+	this.optList = OAT.Dom.create("div",{position:"absolute",left:"0px",top:"0px",className:"oat_combo_button"}); /* list of other options; hidden most of the time */
+
+	this.image = OAT.Dom.create("img",{cursor:"pointer",className:"oat_combo_button_image"}); /* dropdown clicker */
 	this.image.src = OAT.Preferences.imagePath+"Combobutton_select.gif";
 	this.selected = OAT.Dom.create("div",{cssFloat:"left",styleFloat:"left"}); /* currently selected option */
 	
-	self.instant = new OAT.Instant(this.optList);
-	OAT.Dom.append([this.div,this.selected,this.image],[document.body,self.optList]);
+	this.options = [];
 	
 	this.select = function(index,do_callback) { /* select one option, call for action */
 		if (self.selected.firstChild) { self.optList.appendChild(self.selected.firstChild); } /* remove old option, if any */
@@ -35,21 +35,20 @@ OAT.ComboButton = function() {
 		if (do_callback) { self.options[index][1](); } /* if not selected automatically, action */
 	}
 	
-	self.instant.options.showCallback = function() { /* open listbox */
+	this._showList = function() { /* open listbox */
 		var coords = OAT.Dom.position(self.div); /* calculate the place */
 		var dims = OAT.Dom.getWH(self.div); /* calculate the place */
 		self.optList.style.left = coords[0]+"px";
 		self.optList.style.top = (coords[1]+dims[1])+"px";
 	}
-	self.instant.createHandle(self.image); /* show listbox */
 	
 	this.addOption = function(imagePath,textValue,callback) {
-		var opt = OAT.Dom.create("div",{},"combo_button_option");
+		var opt = OAT.Dom.create("div",{className:"oat_combo_button_option"});
 		OAT.Event.attach(opt,"mousedown",function(){
-			OAT.Dom.addClass(opt,"combo_button_option_down");
+			OAT.Dom.addClass(opt,"oat_combo_button_option_down");
 		});
 		OAT.Event.attach(opt,"mouseup",function(){
-			OAT.Dom.removeClass(opt,"combo_button_option_down");
+			OAT.Dom.removeClass(opt,"oat_combo_button_option_down");
 		});
 		if (imagePath) { /* if image specified, add it to option */
 			var img = OAT.Dom.create("img",{cssFloat:"left",styleFloat:"left"});
@@ -57,7 +56,7 @@ OAT.ComboButton = function() {
 			opt.appendChild(img);
 		}
 		var text = OAT.Dom.create("div"); /* text */
-		text.className = "combo_button_text";
+		text.className = "oat_combo_button_text";
 		text.innerHTML = textValue;
 		opt.appendChild(text);
 		self.options.push([opt,callback]); /* put to global registry */
@@ -76,4 +75,14 @@ OAT.ComboButton = function() {
 		self.options.splice(index,1);
 		if (was_active && self.options.length) { self.select(0,false); } /* then select the first available */
 	}
+	
+	this._init = function() {
+		self.instant = new OAT.Instant(this.optList);
+		self.instant.createHandle(self.image);
+
+		OAT.MSG.attach(self.instant,"INSTANT_SHOW",self._showList);
+		OAT.Dom.append([this.div,this.selected,this.image],[document.body,self.optList]);
+	}
+
+	self._init();
 }

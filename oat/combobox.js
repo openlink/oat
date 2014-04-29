@@ -14,18 +14,18 @@
 	
 	cb.addOption(element,textValue)
 	
-	CSS: combo_box, combo_box_value, combo_box_list, combo_image
+	CSS: oat_combo_box, oat_combo_box_value, oat_combo_box_list, oat_combo_box_image
 */
 
 OAT.ComboBox = function(defaultValue) {
 	var self = this;
 	this.onchange = function() {};
-	this.div = OAT.Dom.create("div",{},"combo_box"); /* THE element */
+	this.div = OAT.Dom.create("div",{className:"oat_combo_box"}); /* THE element */
 	this.options = [];
-	this.optList = OAT.Dom.create("div",{position:"absolute",left:"0px",top:"0px"},"combo_box_list"); /* list of other options; hidden most of the time */
-	this.image = OAT.Dom.create("img",{cursor:"pointer"},"combo_image"); /* dropdown clicker */
+	this.optList = OAT.Dom.create("div",{position:"absolute",left:"0px",top:"0px",className:"oat_combo_box_list"}); /* list of other options; hidden most of the time */
+	this.image = OAT.Dom.create("img",{cursor:"pointer",className:"oat_combo_box_image"}); /* dropdown clicker */
 	this.image.src = OAT.Preferences.imagePath+"Combobox_select.gif";
-	this.selected = OAT.Dom.create("div",{},"combo_box_value");
+	this.selected = OAT.Dom.create("div",{className:"oat_combo_box_value"});
 	this.value = defaultValue;
 	this.selected.innerHTML = this.value;
 	
@@ -39,12 +39,14 @@ OAT.ComboBox = function(defaultValue) {
 		self.instant.hide();
 	}
 	
-	self.instant.options.showCallback = function() { /* open listbox */
+	this._showList = function() {	
 		var coords = OAT.Dom.position(self.div); /* calculate the place */
 		var dims = OAT.Dom.getWH(self.div); /* calculate the place */
 		self.optList.style.left = coords[0]+"px";
 		self.optList.style.top = (coords[1]+dims[1])+"px";
 	}
+	
+	OAT.MSG.attach(self.instant,"INSTANT_SHOW",self._showList);
 	
 	this.addOption = function(element,textValue) {
 		var elm = $(element);
