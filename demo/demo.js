@@ -115,8 +115,8 @@ DEMO.pivot = {
 			if (pivot.options.agg == i) { $("pivot_agg").selectedIndex = i; }
 			if (pivot.options.aggTotals == i) { $("pivot_agg_totals").selectedIndex = i; }
 		}
-		OAT.Dom.attach("pivot_agg","change",aggRef);
-		OAT.Dom.attach("pivot_agg_totals","change",aggRefTotals);
+		OAT.Event.attach("pivot_agg","change",aggRef);
+		OAT.Event.attach("pivot_agg_totals","change",aggRefTotals);
 	}
 }
 
@@ -135,7 +135,7 @@ DEMO.date = {
 			var coords = OAT.Dom.position("calendar_value");
 			c.show(coords[0],coords[1]+30,callback);
 		}
-		OAT.Dom.attach("calendar_btn","click",openRef);
+		OAT.Event.attach("calendar_btn","click",openRef);
 	}
 }
 
@@ -151,7 +151,7 @@ DEMO.color = {
 			var coords = OAT.Dom.position("color_content");
 			c.pick(coords[0],coords[1],callback);
 		}
-		OAT.Dom.attach("color_content","click",colorRef);
+		OAT.Event.attach("color_content","click",colorRef);
 	}
 }
 
@@ -173,12 +173,17 @@ DEMO.json = {
 	needs:["json"],
 	cb:function() {
 		var jsonRef = function(event) {
-			var data = OAT.JSON.stringify(OAT.JSON,-1);
+			var o = {	
+				no:123,
+				str:"hello, world!",
+				nothing:null
+			};
+			var data = OAT.JSON.serialize(o);
 			data = data.replace(/\n/g,"<br/>");
 			data = data.replace(/ /g,"&nbsp;");
 			$("json_content").innerHTML = data;
 		}
-		OAT.Dom.attach("json_btn","click",jsonRef);
+		OAT.Event.attach("json_btn","click",jsonRef);
 	}
 }
 
@@ -195,7 +200,7 @@ DEMO.upload = {
 		$("upload_content").appendChild(u.div);
 		u.submitBtn.value = "Upload files";
 		u.form.setAttribute("onsubmit","return false;");
-		OAT.Dom.attach(u.submitBtn,"click",function(){alert("In real application, clicking this button would upload files to server.");});
+		OAT.Event.attach(u.submitBtn,"click",function(){alert("In real application, clicking this button would upload files to server.");});
 	}
 }
 
@@ -268,7 +273,7 @@ DEMO.dock = {
 			ds.reset();
 			ds.advanceRecord(0);
 		}
-		OAT.Dom.attach("dock_search","click",searchRef);
+		OAT.Event.attach("dock_search","click",searchRef);
 	}
 }
 
@@ -305,8 +310,8 @@ DEMO.ticker = {
 			tickerArr.push(new OAT.Ticker("ticker_content",textArr[i],opts));
 			var startRef = getStartRef(i);
 			var stopRef = getStopRef(i);
-			OAT.Dom.attach("ticker_"+i,"mouseover",startRef);
-			OAT.Dom.attach("ticker_"+i,"mouseout",stopRef);
+			OAT.Event.attach("ticker_"+i,"mouseover",startRef);
+			OAT.Event.attach("ticker_"+i,"mouseout",stopRef);
 		}
 	}
 }
@@ -318,8 +323,8 @@ DEMO.dimmer = {
 	needs:["dimmer"],
 	cb:function() {
 		OAT.Dom.hide("dimmer_content");
-		OAT.Dom.attach("dimmer_btn","click",function(){OAT.Dimmer.show("dimmer_content");OAT.Dom.center("dimmer_content",1,1);});
-		OAT.Dom.attach("dimmer_close","click",function(){OAT.Dimmer.hide();});
+		OAT.Event.attach("dimmer_btn","click",function(){OAT.Dimmer.show("dimmer_content");OAT.Dom.center("dimmer_content",1,1);});
+		OAT.Event.attach("dimmer_close","click",function(){OAT.Dimmer.hide();});
 	}
 }
 
@@ -336,7 +341,7 @@ DEMO.crypto = {
 			$("crypto_sha").innerHTML = OAT.Crypto.sha(text);
 
 		}
-		OAT.Dom.attach("crypto_input","keyup",cryptoRef);
+		OAT.Event.attach("crypto_input","keyup",cryptoRef);
 	}
 }
 
@@ -364,7 +369,7 @@ DEMO.stats = {
 				$("stats_content").appendChild(div);
 			}
 		}
-		OAT.Dom.attach("stats_btn","click",statsRef);
+		OAT.Event.attach("stats_btn","click",statsRef);
 		statsRef();
 	}
 }
@@ -375,11 +380,11 @@ DEMO.quickedit = {
 	div:"quickedit",
 	needs:["quickedit"],
 	cb:function() {
-		OAT.QuickEdit.assign("qe_1",OAT.QuickEdit.SELECT,["sir","madam"]);
-		OAT.QuickEdit.assign("qe_2",OAT.QuickEdit.STRING,[]);
-		OAT.QuickEdit.assign("qe_3",OAT.QuickEdit.SELECT,["information","money","monkey"]);
-		OAT.QuickEdit.assign("qe_4",OAT.QuickEdit.STRING,[]);
-		OAT.QuickEdit.assign("qe_5",OAT.QuickEdit.STRING,[]);
+		var c1 = new OAT.QuickEdit("qe_1",{type:OAT.QuickEdit.SELECT,options:["sir","madam"]});
+		var c2 = new OAT.QuickEdit("qe_2",{type:OAT.QuickEdit.STRING});
+		var c3 = new OAT.QuickEdit("qe_3",{type:OAT.QuickEdit.SELECT,options:["information","money","monkey"]});
+		var c4 = new OAT.QuickEdit("qe_4",{type:OAT.QuickEdit.STRING});
+		var c5 = new OAT.QuickEdit("qe_5",{type:OAT.QuickEdit.STRING});
 	}
 }
 
@@ -389,7 +394,7 @@ DEMO.combolist = {
 	div:"combolist",
 	needs:["combolist"],
 	cb:function() {
-		var cl = new OAT.Combolist(["red","green","blue"],"pick your color");
+		var cl = new OAT.Combolist(["red","green","blue","orange","black","brown","gray"],"pick your color",{keynav:true,suggest:true,hilight:true});
 		cl.addOption("your own?","custom");
 		$("combolist_content").appendChild(cl.div)
 	}
@@ -428,7 +433,7 @@ DEMO.ajax = {
 	panel:3,
 	tab:22,
 	div:"ajax",
-	needs:["ajax2"],
+	needs:["ajax"],
 	cb:function() {
 		OAT.AJAX.startRef = function(){$("ajax_input").style.backgroundImage = "url(images/progress.gif)";}
 		OAT.AJAX.endRef = function(){$("ajax_input").style.backgroundImage = "none";}
@@ -441,7 +446,7 @@ DEMO.ajax = {
 			if (value.length < 5) { return; }
 			OAT.AJAX.GET("ajax.php?q="+value,false,ajaxBack);
 		}
-		OAT.Dom.attach("ajax_input","keyup",ajaxRef);
+		OAT.Event.attach("ajax_input","keyup",ajaxRef);
 	}
 }
 
@@ -451,7 +456,7 @@ DEMO.fisheye = {
 	div:"fisheye",
 	needs:["fisheye"],
 	cb:function() {
-		var fe = new OAT.FishEye("fisheye_content",{bigSize:70,limit:100});
+		var fe = new OAT.FishEye("fisheye_content", {smallSize:48, bigSize:96});
 		fe.addImage("images/fe_img1.png");
 		fe.addImage("images/fe_img2.png");
 		fe.addImage("images/fe_img3.png");
@@ -494,7 +499,7 @@ DEMO.ghostdrag = {
 			var elm = $("cart_"+ids[i]);
 			gd.addSource(elm,function(){},getGDref(i));
 		}
-		OAT.Dom.attach("gd_clear","click",function(){contents=[0,0,0,0];gdRefresh();});
+		OAT.Event.attach("gd_clear","click",function(){contents=[0,0,0,0];gdRefresh();});
 	}
 }
 
@@ -504,13 +509,16 @@ DEMO.window = {
 	div:"window",
 	needs:["window"],
 	cb:function() {
-		window.win = new OAT.Window({close:1,min:0,max:0,width:300,height:0,title:"Demo window"},OAT.WindowData.TYPE_AUTO);
-		window.win.content.appendChild($("window_content"));
-		window.win.div.style.zIndex = 1000;
-		document.body.appendChild(window.win.div);
-		OAT.Dom.hide(window.win.div);
-		window.win.onclose = function() { OAT.Dom.hide(window.win.div); OAT.Dom.show("window_launch"); }
-		OAT.Dom.attach("window_launch","click",function(){ OAT.Dom.show(window.win.div); OAT.Dom.center(win.div,1,1); OAT.Dom.hide("window_launch");});
+		var win = new OAT.Win({outerWidth:300,title:"Demo window"});
+		win.dom.content.appendChild($("window_content"));
+		OAT.MSG.attach(win, "WINDOW_CLOSE", function() { 
+			OAT.Dom.show("window_launch"); 
+		});
+		OAT.Event.attach("window_launch","click",function(){ 
+			win.open();
+			OAT.Dom.center(win.dom.container,1,1); 
+			OAT.Dom.hide("window_launch");
+		});
 	}
 }
 
@@ -562,7 +570,7 @@ DEMO.dav = {
 				["txt","txt","Text documents"],
 			]
 		}
-		OAT.Dom.attach("dav_btn","click",function(){
+		OAT.Event.attach("dav_btn","click",function(){
 			OAT.WebDav.openDialog(opts);
 		});
 		OAT.WebDav.init(opts);
@@ -605,7 +613,7 @@ DEMO.timeline = {
 	panel:1,
 	tab:34,
 	div:"timeline",
-	needs:["timeline","ajax2","xml"],
+	needs:["timeline","ajax","xml"],
 	cb:function() {
 		var tl = new OAT.Timeline("timeline_content",{});
 		tl.addBand("JFK","rgb(255,204,153)");
@@ -631,7 +639,7 @@ DEMO.timeline = {
 			tl.slider.slideTo(0,1);
 		}
 		OAT.AJAX.GET("jfk.xml",false,callback,{type:OAT.AJAX.TYPE_XML});
-		OAT.Dom.attach(window,"resize",tl.sync);
+		OAT.Event.attach(window,"resize",tl.sync);
 	}
 }
 
@@ -653,7 +661,7 @@ DEMO.rdf = {
 	panel:1,
 	tab:36,
 	div:"rdf",
-	needs:["rdf","graphsvg","ajax2","slider"],
+	needs:["rdf","graphsvg","ajax","slider"],
 	cb:function() {
 		function rdf_zoom(val) {
 			var z = Math.pow(2,val/100);
@@ -683,8 +691,8 @@ DEMO.rdf = {
 		var rdf_s = new OAT.Slider("rdf_slider",{minValue:-150,maxValue:100,initValue:0});
 		rdf_s.slideTo(0);
 		rdf_s.onchange = rdf_zoom;
-		OAT.Dom.attach("rdf_load","click",rdf_load);
-		OAT.Dom.attach("rdf_preset","change",rdf_preset);
+		OAT.Event.attach("rdf_load","click",rdf_load);
+		OAT.Event.attach("rdf_preset","change",rdf_preset);
 	}
 }
 
@@ -746,7 +754,7 @@ DEMO.anchor = {
 	panel:1,
 	tab:39,
 	div:"anchor",
-	needs:["anchor","datasource","timeline","ajax2","grid","xmla","sparql","form"],
+	needs:["anchor","datasource","timeline","ajax","grid","xmla","sparql","form"],
 	cb:function(){
 		var ds_form = new OAT.DataSource(OAT.DataSourceData.TYPE_REST);
 
@@ -796,17 +804,20 @@ DEMO.anchor = {
 }
 
 DEMO.rss = {
-	panel:1,
+	panel:2,
 	tab:40,
 	div:"rss",
-	needs:["rssreader","ajax2"],
+	needs:["rssreader","ajax"],
 	cb:function() {
 		var rss1 = new OAT.RSSReader("rss_content_rss");
 		var rss2 = new OAT.RSSReader("rss_content_rdf");
+		var rss3 = new OAT.RSSReader("rss_content_atom");
 		var ref1 = function(xmlText) { rss1.display(xmlText); }
 		var ref2 = function(xmlText) { rss2.display(xmlText); }
+		var ref3 = function(xmlText) { rss3.display(xmlText); }
 		OAT.AJAX.GET("feed_rss.xml",false,ref1);
 		OAT.AJAX.GET("feed_rdf.xml",false,ref2);
+		OAT.AJAX.GET("feed_atom.xml",false,ref3);
 	}
 }
 
@@ -839,17 +850,23 @@ DEMO.isparql = {
 	needs:[],
 	cb:false
 }
-DEMO.rdfbrowser = {
+DEMO.ode = {
 	panel:5,
 	tab:45,
-	div:"app_rdfbrowser",
+	div:"app_ode",
 	needs:[],
 	cb:false
 }
-
+DEMO.rdfbrowser = { /* alias */
+	panel:5,
+	tab:46,
+	div:"app_ode",
+	needs:[],
+	cb:false
+}
 DEMO.tagcloud = {
 	panel:2,
-	tab:46,
+	tab:47,
 	div:"tagcloud",
 	needs:["tagcloud"],
 	cb:function() {
@@ -878,7 +895,7 @@ DEMO.tagcloud = {
 
 DEMO.notify = {
 	panel:3,
-	tab:47,
+	tab:48,
 	div:"notify",
 	needs:["notify"],
 	cb:function() {
@@ -891,14 +908,14 @@ DEMO.notify = {
 		});
 		OAT.Event.attach("notify_3","click",function() {
 			notify.send("I am shown and hidden instantly. Click me to see it :)",
-				{opacity:0.5,timeout:0,delay:0,style:{fontFamily:"courier new"},color:"#00a",background:"#8c8",image:OAT.Preferences.imagePath+"Dav_throbber.gif"});
+				{opacity:0.5,timeout:0,delayOut:0,delayIn:0,style:{fontFamily:"courier new"},color:"#00a",background:"#8c8",image:OAT.Preferences.imagePath+"Dav_throbber.gif"});
 		});
       }
 }
 
 DEMO.slidebar = {
 	panel:1,
-	tab:48,
+	tab:49,
 	div:"slidebar_content",
 	needs:["slidebar"],
 	cb:function() { 
@@ -911,6 +928,7 @@ function init() {
 	var c = $("throbber_content");
 	while (c.firstChild) { document.body.appendChild(c.firstChild); }
 	OAT.Dom.unlink(c);
+	$("version").innerHTML = "Version: " + OAT.Preferences.version + " Build: " + OAT.Preferences.build;
 
 	function view_source() {
 		OAT.Dimmer.hide();
@@ -941,16 +959,15 @@ function init() {
 		var b = txt.replace(/([\(\)\[\]])/g,"<span style='color: #a00'>$1</span>"); /* braces */
 		var c = b.replace(/([{}])/g,"<span style='color: #00a'>$1</span>"); /* curly */
 		var f = c.replace(/(for|var|function|return|new)([ \(])/g,"<span style='color: #0a0'>$1$2</span>"); 
-		source.show();
+		source.open();
 		$("source_content").innerHTML = f;
 	}
 
 	/* source */
 	var source = new OAT.Dialog ("Source", "source", {modal:1,width:700,height:400});
 	OAT.Dom.unlink (source.cancelBtn);
-	source.hide ();
-	source.ok = source.hide;
-	OAT.Dom.attach ("source_btn","click",view_source);
+	source.close();
+	OAT.Event.attach ("source_btn","click",view_source);
 
 	/* tabs */
 	var tab = new OAT.Tab ("content");
@@ -960,7 +977,7 @@ function init() {
 	}
 
 	/* panelbar_content */
-	var pb = new OAT.Panelbar("panelbar",20);
+	var pb = new OAT.Panelbar("panelbar",{delay:20});
 	pb.addPanel("pb_1","pb_11");
 	pb.addPanel("pb_2","pb_22");
 	pb.addPanel("pb_3","pb_33");
@@ -975,7 +992,9 @@ function init() {
 	OAT.Dom.hide(dimmerElm);
 	
 	for (var p in DEMO) { DEMO[p].drawn = false; }
-	tab.options.goCallback = function(oldIndex,newIndex) {
+	var goCallback = function(sender,msg,event) {
+		var oldIndex = event[0];
+		var newIndex = event[1];
 		var oldName, newName;
 		for (var p in DEMO) {
 			var v = DEMO[p];
@@ -989,7 +1008,7 @@ function init() {
 			* include dependencies
 			* do it
 		*/
-		if (oldName == "window" && newName != "window") { win.onclose(); }
+		if (oldName == "window" && newName != "window") { win.close(); }
 		if (oldName == "color" && newName != "color") { if (OAT.Color.div) { OAT.Dom.hide(OAT.Color.div);}  }
 		if (oldName == "date" && newName != "date") { if (window.cal)  { OAT.Dom.hide(window.cal.div); } }
 		$("permalink").href = "index.html?"+newName;
@@ -1004,10 +1023,13 @@ function init() {
 					obj.cb();
 					obj.drawn = true;
 				}
-				OAT.Loader.loadFeatures(obj.needs,ref);
+				OAT.Loader.load(obj.needs,ref);
 			} else { obj.drawn = true; }
 		} /* if not yet included & drawn */
 	}
+
+	OAT.MSG.attach(tab,"TAB_CHANGE",goCallback);
+
 	pb.go(0);
 	tab.go(0);
 

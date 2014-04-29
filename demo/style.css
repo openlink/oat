@@ -64,13 +64,13 @@ div.tab:hover, div.tab.hover {
 
 /*-------------- panelbar -----------------*/ 
 
-.panelbar {
+.oat_panelbar {
 	float: left;
 	width: 250px;
 	border: 1px solid #000;
 }
 
-.panelbar_option {
+.oat_panelbar_option {
 	padding: 4px 1em; 
 	height: 20px;
 	background-color: #a2bbdc;
@@ -81,19 +81,19 @@ div.panelbar_option:hover {
 	background-color: #bce;
 }
 
-.panelbar_option_selected {
+.oat_panelbar_option_selected {
 	font-weight: bold;
 }
 
-.panelbar_option_upper {
+.oat_panelbar_option_above {
 	border-bottom: 1px solid #000;
 }
 
-.panelbar_option_lower {
+.oat_panelbar_option_below {
 	border-top: 1px solid #000;
 }
 
-.panelbar_content {
+.oat_panelbar_content {
 	height: 350px;
 	background-color: #eee;
 	overflow: hidden;
@@ -225,29 +225,29 @@ td.calendar_selected {
 }
 
 /* dock */
-.dock {
+.oat_dock {
 	height: 1000px;
 }
 
-.dock_column_0 {
+.oat_dock_column_0 {
 	float: left;
 	width: 200px;
 	padding: 0.5em;
 }
 
-.dock_column_1 {
+.oat_dock_column_1 {
 	float: left;
 	width: 200px;
 	padding: 0.5em;
 }
 
-.dock_column_2 {
+.oat_dock_column_2 {
 	float: left;
 	width: 150px;
 	padding: 0.5em;
 }
 
-.dock_blank {
+.oat_dock_blank {
 	border: none !important;
 	background-color: #ccc;
 }
@@ -278,38 +278,36 @@ td.calendar_selected {
 }
 
 /* combolist */
-.combo_list_option {
+.oat_combo_list_option {
 	padding: 1px;
 	cursor: pointer;
-	behavior: url("hover.htc");
 	width: 150px;
 }
 
-.combo_list_list {
+.oat_combo_list_list {
 	background-color: #fff;
 	border: 1px solid #000;
 }
 
-div.combo_list_option:hover, .combo_list_option.hover {
-	background-color: #aaa;
+.oat_combo_list_option_selected {
+	background: #aaa;
 }
-
 
 /* combobox */
 
-.combo_box {
+.oat_combo_box {
 	position: relative;
 	width: 150px;
 }
 
-.combo_image {
+.oat_combo_box_image {
 	position: absolute;
 	right: 0px;
 	top: 0px;
 	cursor: pointer;
 }
 
-.combo_box_list {
+.oat_combo_box_list {
 	background-color: #fff;
 	width: 150px;
 	height: 100px;
@@ -317,7 +315,7 @@ div.combo_list_option:hover, .combo_list_option.hover {
 	cursor: pointer;
 }
 
-.combo_box_value {
+.oat_combo_box_value {
 	font-weight: bold;
 	display: block;
 	border: 1px solid #000;
@@ -326,12 +324,12 @@ div.combo_list_option:hover, .combo_list_option.hover {
 }
 
 /* combobutton */
-.combo_button {
+.oat_combo_button {
 	position:relative;
 	width: 120px;
 }
 
-.combo_button_image {
+.oat_combo_button_image {
 	border-width: 0px 0px 0px 0px;
 	border-style: solid;
 	border-color: #000;
@@ -339,7 +337,7 @@ div.combo_list_option:hover, .combo_list_option.hover {
 	_left: -3px; 
 }
 
-.combo_button_option {
+.oat_combo_button_option {
 	background-color: #555;
 	font-family: verdana;
 	width: 100px;
@@ -348,33 +346,38 @@ div.combo_list_option:hover, .combo_list_option.hover {
 	cursor: pointer;
 }
 
-.combo_button_option_down {
+.oat_combo_button_option_down {
 	background-color: #222 !important;
 }
 
-div.combo_button_option:hover {
+div.oat_combo_button_option:hover {
 	background-color: #777;
 }
 
-.combo_button_text {
+.oat_combo_button_text {
 	font-weight: bold;
 	color: #eee;
 	font-size: 90%;
 }
 
+#fisheye {
+	position: relative;
+	padding-bottom: 8em;
+}
+
 /* fisheye */
 #fisheye_container {
-	position: relative;
-	height: 80px;
-}
-
-.fisheye {
-	background-color: #aaf;
 	position: absolute;
-	height: 52px;
+	text-align: center;
+	width:100%;
+	bottom: 0px;
 }
 
-.fisheye img {
+.oat_fisheye {
+	background-color: #aaf;
+}
+
+.oat_fisheye img {
 	bottom: 2px;
 }
 

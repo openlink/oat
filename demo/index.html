@@ -28,14 +28,14 @@
 	<script type="text/javascript" >
 		var featureList=["tab","panelbar","dimmer","dialog"];
 	</script>
-	<script type="text/javascript" src="../oat/loader.js"></script>
+	<script type="text/javascript" src="/DAV/JS/oat/loader.js"></script>
 	<script type="text/javascript" src="demo.js"></script>
-	<link rel="stylesheet" type="text/css" href="../demo/style.css" />
-	<link rel="meta" title="DOAP" href="../DOAP-OAT.rdf" type="application/rdf+xml" />
+	<link rel="stylesheet" type="text/css" href="/DAV/JS/demo/style.css" />
+	<link rel="meta" title="DOAP" href="/DAV/JS/DOAP-OAT.rdf" type="application/rdf+xml" />
 	<title>OAT Framework</title>
 </head>
 <body>
-	<div id="throbber"><img src="../images/throbber.gif" /></div>
+	<div id="throbber"><img src="/DAV/JS/images/throbber.gif" /></div>
 	<div id="throbber_content">
 	<div id="source">
 		Click <a id="source_permalink" href="">here</a> for the URI (Permalink) of this source
@@ -44,6 +44,7 @@
 
 
 	<h2>OAT Framework</h2>
+	<h3 id="version"></h3>
 	<p>Click <a id="source_btn" href="#">here</a> to see JS source used for currently selected demonstration.</p>
 	<p>Click <a id="permalink" href="">here</a> for the URI (Permalink) of this Demo</p>
 	<div id="panelbar">
@@ -120,7 +121,7 @@
 			<div id="tab_app_designer">Database Designer</div>
 			<div id="tab_app_formdesigner">Web Forms Designer</div>
 			<div id="tab_app_isparql">Interactive SPARQL Query Builder</div>
-			<div id="tab_app_rdfbrowser">OAT RDF Browser</div>
+			<div id="tab_app_ode">OpenLink Data Explorer</div>
 		</div>
 		
 	</div>
@@ -263,7 +264,7 @@ June 1991.<br />
 	</div>
 	<div id="json">
 		<h3>JSON - JavaScript Object Notation</h3>
-		<p>Click the button to display the whole JSON library in appropriate notation in the space below...</p>
+		<p>Click the button to display some sample data in appropriate notation in the space below...</p>
 		<input type="button" id="json_btn" value="Go!" />
 		<div id="json_content"></div>
 	</div>
@@ -381,8 +382,8 @@ June 1991.<br />
 	</div>
 	<div id="fisheye">
 		<h3>Fish Eye</h3>
-		Pure eye-candy, well known from Apple systems. Also known as 'dock'. Please note that images are not displayed correctly in IE because of its known PNG support issues.<br/><br/><br/>
-		<div id="fisheye_container"><div id="fisheye_content"></div></div>
+		Pure eye-candy, well known from Apple systems. Also known as 'dock'. Please note that images are not displayed correctly in IE because of its known PNG support issues.
+		<div id="fisheye_container"><span id="fisheye_content"></span></div>
 	</div>
 	<div id="gd">
 		<h3><em>Ghost</em> Drag</h3>
@@ -448,8 +449,10 @@ June 1991.<br />
 		<h3>RSS Reader</h3>
 		<p>Can display <a href="feed_rss.xml">RSS feeds</a>...</p>
 		<div id="rss_content_rss"></div>
-		<p>...as well as <a href="feed_rdf.xml">RDF feeds</a>.</p>
+		<p>...as well as <a href="feed_rdf.xml">RDF feeds</a>...</p>
 		<div id="rss_content_rdf"></div>
+		<p>...and also <a href="feed_atom.xml">ATOM feeds</a>!</p>
+		<div id="rss_content_atom"></div>
 	</div>
 
 	<div id="notify">
@@ -503,7 +506,7 @@ June 1991.<br />
 	
 	<div id="docs">
 		<h3>Documentation</h3>
-		The documentation project aims to describe all crucial objects and methods of OAT. It is available <a href="../oat/docs/index.html">here</a>.
+		The documentation project aims to describe all crucial objects and methods of OAT. It is available <a href="/DAV/JS/oat/docs/index.html">here</a>.
 	</div>
 	<div id="compat">
 		<h3>Compatibility Matrix</h3>
@@ -824,8 +827,8 @@ June 1991.<br />
 		<a href="../isparql/index.html">link</a>
 	</div>
 
-	<div id="app_rdfbrowser">
-		<h3>OAT RDF Browser</h3>
+	<div id="app_ode">
+		<h3>OpenLink Data Explorer</h3>
 		<p>Explore the world of RDF! Take advantage of Virtuso's RDF sponging feature, view and traverse RDF graphs, visualize in many ways.</p>
 		<a href="../rdfbrowser2/index.html">link</a>
 	</div>
