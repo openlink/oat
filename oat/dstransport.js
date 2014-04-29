@@ -50,9 +50,18 @@ OAT.DSTransport.SQL = {
                   keys = [];
 	        
 	          var cBack = function(rs) {
+	            if (_cat==="" || _sch==="") {
+	              var rows = OAT.Xmla.tables2((_cat===""?"%":_cat), 
+	                                          (_sch===""?"%":_sch),
+	                                           _tbl, null, null, true);
+	              if (rows.length > 0) {
+	                _cat = rows[0].catalog;
+	                _sch = rows[0].schema;
+	              }  
+	            }
 
-                    var pkeyBack = function(data) {
-                      for(var i=0; i<data.length; i++)
+	            var data = OAT.Xmla.primaryKeys((_cat===""?"%":_cat),(_sch===""?"%":_sch),_tbl, null, null, true);
+                    for(var i=0; i<data.length; i++)
                       {
                         keys.push({
                           ind: "p",
@@ -65,54 +74,46 @@ OAT.DSTransport.SQL = {
                          fseq: i });
                       }
 
-                      var fkeyBack = function(data) {
-                        for(var i=0; i<data.length; i++)
-                        {
-                          row = data[i];
-                          keys.push({
-                            ind: "f",
-                            cat: row[0].catalog,
-                            sch: row[0].schema,
-                           ptbl: row[0].table,
-                           pcol: row[0].column,
-                           ftbl: row[1].table,
-                           fcol: row[1].column,
-                           fseq: i });
-                        }
+                    data = OAT.Xmla.foreignKeys((_cat===""?"%":_cat),(_sch===""?"%":_sch),_tbl, null, null, true);
+                    for(var i=0; i<data.length; i++)
+                      {
+                        row = data[i];
+                        keys.push({
+                          ind: "f",
+                          cat: row[0].catalog,
+                          sch: row[0].schema,
+                         ptbl: row[0].table,
+                         pcol: row[0].column,
+                         ftbl: row[1].table,
+                         fcol: row[1].column,
+                         fseq: i });
+                      }
 
-
-                        var rkeyBack = function(data) {
-                          for(var i=0; i<data.length; i++)
-                          {
-                            row = data[i];
-                            keys.push({
-                              ind: "r",
-                              cat: row[0].catalog,
-                              sch: row[0].schema,
-                             ptbl: row[1].table,
-                             pcol: row[1].column,
-                             ftbl: row[0].table,
-                             fcol: row[0].column,
-                             fseq: i });
-                          }
-                          options._keys = keys;
-                          options._cat = _cat;
-                          options._sch = _sch;
-                          options._tbl = _tbl;
-                          callback(rs);
-                        };
-
-                        OAT.Xmla.referenceKeys(_cat,_sch,_tbl, rkeyBack);
-                      };
-
-                      OAT.Xmla.foreignKeys(_cat,_sch,_tbl, fkeyBack);
-                    };
-
-	            OAT.Xmla.primaryKeys(_cat,_sch,_tbl,pkeyBack);
+                    data = OAT.Xmla.referenceKeys((_cat===""?"%":_cat),(_sch===""?"%":_sch),_tbl, null, null, true);
+                    for(var i=0; i<data.length; i++)
+                      {
+                        row = data[i];
+                        keys.push({
+                          ind: "r",
+                          cat: row[0].catalog,
+                          sch: row[0].schema,
+                         ptbl: row[1].table,
+                         pcol: row[1].column,
+                         ftbl: row[0].table,
+                         fcol: row[0].column,
+                         fseq: i });
+                      }
+                    options._keys = keys;
+                    options._cat = _cat;
+                    options._sch = _sch;
+                    options._tbl = _tbl;
+                    callback(rs);
 	          };
 		
 		  OAT.Xmla.execute(cBack,{limit:l,offset:index});
+
 		} else {
+
 		  OAT.Xmla.execute(callback,{limit:l,offset:index});
                 }
 	},

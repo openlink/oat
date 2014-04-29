@@ -332,6 +332,50 @@ OAT.Xmla = {
 	}
     },
     
+    tables2:function(catalog,schema, table, callback, ajaxOpts, sync) {
+	var o = {}
+	if (ajaxOpts) 
+	    for (p in ajaxOpts) { o[p] = ajaxOpts[p]; }
+
+	var cBack = function(data) {
+	    var result = OAT.Xmla.tables2_array(data);
+	    callback(catalog,result);
+	}
+	
+	var data = '<Discover env:encodingStyle="http://www.w3.org/2003/05/soap-encoding"'+
+	    ' xmlns="urn:schemas-microsoft-com:xml-analysis" >'+
+	    '<RequestType xsi:type="xsd:string">DBSCHEMA_TABLES</RequestType>'+
+	    '<Restrictions><RestrictionList>';
+	if (catalog != "")
+	    data += '<TABLE_CATALOG>'+catalog+'</TABLE_CATALOG>';
+	if (schema != "")
+	    data += '<TABLE_SCHEMA>'+schema+'</TABLE_SCHEMA>';
+	if (table != "")
+	    data += '<TABLE_NAME>'+table+'</TABLE_NAME>';
+
+	data += '</RestrictionList></Restrictions>'+
+	    '<Properties><PropertyList>'+
+	    '<DataSourceInfo>'+OAT.Xmla.connection.options.dsn+'</DataSourceInfo>';
+	if (OAT.Xmla.connection.options.user) {
+	    data += '<UserName>'+OAT.Xmla.connection.options.user+'</UserName>'+
+		'<Password>'+OAT.Xmla.connection.options.password+'</Password>';
+	}
+	data +=	'</PropertyList></Properties></Discover>';
+	
+	o.headers = OAT.Xmla.discoverHeader;
+	o.type    = OAT.AJAX.TYPE_XML;
+
+	if (sync) {
+	  var data = OAT.Soap.command_sync(OAT.Xmla.connection.options.endpoint, data, o);
+	  if (data!=null)
+	    return OAT.Xmla.tables2_array(data);
+	  else
+	    return null;
+	} else {
+	  OAT.Soap.command(OAT.Xmla.connection.options.endpoint, data, cBack, o);
+	}
+    },
+    
     columns:function(catalog, schema, table, callback, ajaxOpts, sync) {
 	var o = {};
 	if (ajaxOpts) 
@@ -650,6 +694,28 @@ OAT.Xmla = {
 	    }
 	}
 	return [names,schema_names];
+    },
+    
+    tables2_array:function(data) {
+	/* list of tables */
+	var names=[];
+	var parsed = OAT.Xmla.parseResponse(data);
+	if (!parsed[1].length) return [names,schema_names];
+	var nameIndex = parsed[0].indexOf("TABLE_NAME");
+	var schemaIndex = parsed[0].indexOf("TABLE_SCHEMA");
+	var catalogIndex = parsed[0].indexOf("TABLE_CATALOG");
+	var typeIndex = parsed[0].indexOf("TABLE_TYPE");
+	for (var i=0;i<parsed[1].length;i++) {
+	    var tmpobj = {};
+	    tmpobj.table = parsed[1][i][nameIndex];
+	    tmpobj.schema = parsed[1][i][schemaIndex];
+	    tmpobj.catalog = parsed[1][i][catalogIndex];
+	    var type = parsed[1][i][typeIndex];
+	    if (type == "TABLE" || type == "VIEW") { 
+		names.push(tmpobj);
+	    }
+	}
+	return names;
     },
     
     tables2_array:function(data) {
