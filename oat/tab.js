@@ -218,7 +218,7 @@ OAT.Tab = function(elm,optObj) {
 	for (var p in optObj) { self.options[p] = optObj[p]; }
 	self.options.dockElement = $(self.options.dockElement);
 	/* cannot use dock mode when dock element is not set, or windowing not available */
-	if (!self.options.dockElement || OAT.Loader.loadedLibs.find("window") == -1) { self.options.dockMode = false; } 
+	if (!self.options.dockElement || OAT.Loader.isLoaded("window") == -1) { self.options.dockMode = false; }
 
 	this.tabs = [];
 	this.element = $(elm);

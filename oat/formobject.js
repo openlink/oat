@@ -1423,7 +1423,7 @@ OAT.FormObject = {
 				self.elm.src = value;
 				return; 
 			}
-			if (OAT.Dom.isIE()) { return; } /* IE doesn't support data: URLs */
+			if (OAT.Browser.isIE) { return; } /* IE doesn't support data: URLs */
 			self.elm.src = OAT.Dom.decodeImage(value);
 		}
 		self.bindRecordCallback = function(dataRow,currentIndex) {
@@ -1465,7 +1465,7 @@ OAT.FormObject = {
 		}
 		self.setValue = function(value) {
 			self.clear();
-			if (OAT.Dom.isIE()) { return; }
+			if (OAT.Browser.isIE) { return; }
 			var limit = parseInt(self.properties[0].value);
 			var tr = OAT.Dom.create("tr");
 			
