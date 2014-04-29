@@ -5,7 +5,7 @@
 }
 
 .oat_winods_content {
-	padding: 2px;
+	margin: 2px;
 	font-size: 90%;
 	position: relative;
 	margin-bottom: 16px;
@@ -41,7 +41,7 @@
 	color: #444444;
 }
 
-.oat_winods_close_b, .oat_winods_min_b, .oat_winods_max_b {
+.oat_winods_close_b, .oat_winods_shade_b, .oat_winods_max_b {
 	float: right;
 	width: 15px;
 	height: 14px;
@@ -70,8 +70,8 @@
 	_background-repeat: repeat-x;
 }
 
-.oat_winods_min_b {
-	background-image: url("../images/WinODS_minimize.gif");
+.oat_winods_shade_b {
+	background-image: url("../images/WinODS_shade.gif");
 }
 
 .oat_winods_max_b {

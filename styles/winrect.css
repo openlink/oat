@@ -4,7 +4,7 @@
 }
 
 .oat_winrect_content {
-	padding: 2px;
+	margin: 2px;
 	position: relative;
 	margin-bottom: 16px;
 }
@@ -28,7 +28,6 @@
 	bottom: 0px;
 	left: 2px;
 	position: absolute;
-	width: 100%;
 	font-size: 0.8em;
 }
 

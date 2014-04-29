@@ -74,3 +74,9 @@ table.grid {
 .grid .row_value {
 	padding: 2px 3px;
 }
+
+.grid .linkInt {
+	color: #0B7300;
+	text-decoration:underline;
+	cursor: pointer;
+}

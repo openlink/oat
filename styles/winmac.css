@@ -3,12 +3,12 @@
 	border-width: 1px;
 	border-style: solid;
 	border-color: #aaaaaa;
-	background-color: #fff;
+	background-color: #ededed;
 }
 
 .oat_winmac_content {
 	top: -8px;
-	padding: 2px;
+	margin: 2px;
 	position: relative;
 	margin-bottom: 8px;
 	overflow: hidden;
@@ -43,7 +43,7 @@
 	font-size: 0.8em;
 }
 
-.oat_winmac_close_b, .oat_winmac_min_b, .oat_winmac_max_b {
+.oat_winmac_close_b, .oat_winmac_shade_b, .oat_winmac_max_b {
 	float: left;
 	width: 13px;
 	height: 13px;
@@ -93,8 +93,8 @@
 	background-image: url("../images/MacWin_close.gif");
 }
 
-.oat_winmac_min_b {
-	background-image: url("../images/MacWin_minimize.gif");
+.oat_winmac_shade_b {
+	background-image: url("../images/MacWin_shade.gif");
 }
 
 .oat_winmac_max_b {
@@ -106,8 +106,8 @@
 	background-image: url("../images/MacWin_close_hover.gif");
 }
 
-.oat_winmac_min_b:hover {
-	background-image: url("../images/MacWin_minimize_hover.gif");
+.oat_winmac_shade_b:hover {
+	background-image: url("../images/MacWin_shade_hover.gif");
 }
 
 .oat_winmac_max_b:hover {
