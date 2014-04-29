@@ -75,4 +75,9 @@ OAT.JSON = {
 		}
 		return null;
 	}
+
 }
+
+//  Backward compatibility
+OAT.JSON.stringify = OAT.JSON.serialize;
+OAT.JSON.parse     = OAT.JSON.deserialize;
