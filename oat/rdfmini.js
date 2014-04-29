@@ -36,7 +36,7 @@ OAT.RDFMini = function(div,optObj) {
 	for (var p in optObj) { this.options[p] = optObj[p]; }
 	
 	this.parent = $(div);
-	this.content = OAT.Dom.create("div",{},"rdf_mini");
+	this.content = OAT.Dom.create("div",{class:"rdf_mini"});
 	this.tabs = [];
 	this.select = false;
 	

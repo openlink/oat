@@ -48,13 +48,13 @@ OAT.RSSReader = function(div,options) {
 
 		OAT.Dom.clear(self.div);
 		if (self.options.showTitle) { 
-			var title = OAT.Dom.create("h3",{"class":"oat_rss_header"});
+			var title = OAT.Dom.create("h3",{class:"oat_rss_header"});
 			var link = OAT.Dom.create("a");
 			link.href = data.link;
 			link.innerHTML = data.title;
 			OAT.Dom.append([title,link],[self.div,title]);
 		}
-		var body = OAT.Dom.create("ul",{"class":"oat_rss_body"});
+		var body = OAT.Dom.create("ul",{class:"oat_rss_body"});
 		var max = Math.min(data.items.length,self.options.limit);
 		for (var i=0;i<max;i++) {
 			var li = OAT.Dom.create("li");

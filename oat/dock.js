@@ -26,9 +26,9 @@ OAT.DockWindow = function(content,options,dock) {
 	for (var p in options) { self.options[p] = options[p]; }
 	this.state = 1;
 	
-	this.div = OAT.Dom.create("div",{marginBottom:"3px", border:"1px solid "+self.options.color,backgroundColor:"#fff"},"dock_window");
+	this.div = OAT.Dom.create("div",{marginBottom:"3px", border:"1px solid "+self.options.color,backgroundColor:"#fff",class:"oat_dock_window"});
 	
-	this.header = OAT.Dom.create("div",{fontWeight:"bold",padding:"1px",color:self.options.titleColor,backgroundColor:self.options.color},"dock_header");
+	this.header = OAT.Dom.create("div",{fontWeight:"bold",padding:"1px",color:self.options.titleColor,backgroundColor:self.options.color, class:"oat_dock_header"});
 
 	this.toggle = OAT.Dom.create("div",{styleFloat:"left",cssFloat:"left",width:"16px"});
 	this.headerContent = OAT.Dom.create("span");
@@ -38,7 +38,7 @@ OAT.DockWindow = function(content,options,dock) {
 	this.close.innerHTML = "X";
 	OAT.Event.attach(self.close,"click",function(){self.dock.removeObject(self);});
 	
-	this.content = OAT.Dom.create("div",{padding:"3px"},"dock_content");
+	this.content = OAT.Dom.create("div",{padding:"3px",class:"oat_dock_content"});
 	this.content.appendChild($(content));
 
 	OAT.Dom.append([self.header,self.toggle,self.close,self.headerContent],[self.div,self.header,self.content]);
@@ -67,7 +67,7 @@ OAT.DockWindow = function(content,options,dock) {
 OAT.Dock = function(div,numColumns) {
 	var self = this;
 	this.div = $(div);
-	OAT.Dom.addClass(this.div,"dock");
+	OAT.Dom.addClass(this.div,"oat_dock");
 	this.columns = [];
 	this.windows = [];
 	this.dummies = [];
@@ -77,7 +77,7 @@ OAT.Dock = function(div,numColumns) {
 	document.body.appendChild(this.ghost);
 	this.lock = 0;
 	for (var i=0;i<numColumns;i++) {
-		var col = OAT.Dom.create("div",{position:"relative"},"dock_column dock_column_"+i);
+		var col = OAT.Dom.create("div",{position:"relative",class:"oat_dock_column oat_dock_column_"+i});
 		this.columns.push(col);
 		this.div.appendChild(col);
 		var dummie = OAT.Dom.create("div",{border:"none",margin:"0px",padding:"0px",backgroundColor:"transparent"});
