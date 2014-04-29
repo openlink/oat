@@ -60,11 +60,11 @@ OAT.DataSource = function(type) {
 	this.pageSize = 0; /* if 0 then fetch all */
 	
 	switch (self.type) {
-		case OAT.DataSourceData.TYPE_SQL: self.transport = OAT.DSTransport.SQL; break;
-		case OAT.DataSourceData.TYPE_SOAP: self.transport = OAT.DSTransport.WSDL; break;
-		case OAT.DataSourceData.TYPE_REST: self.transport = OAT.DSTransport.REST; break;
-		case OAT.DataSourceData.TYPE_SPARQL: self.transport = OAT.DSTransport.SPARQL; break;
-		case OAT.DataSourceData.TYPE_GDATA:	self.transport = OAT.DSTransport.REST; break;
+		case OAT.DataSourceData.TYPE_SQL:    self.transport = OAT.DSTransport.SQL; break;
+		case OAT.DataSourceData.TYPE_SOAP:   self.transport = OAT.DSTransport.WSDL; break;
+		case OAT.DataSourceData.TYPE_REST:   self.transport = OAT.DSTransport.REST; break;
+		case OAT.DataSourceData.TYPE_SPARQL: self.transport = OAT.DSTransport.REST; break;
+		case OAT.DataSourceData.TYPE_GDATA:  self.transport = OAT.DSTransport.REST; break;
 	}
 	for (var p in self.transport.options) { self.options[p] = self.transport.options[p]; } /* read options */
 	switch (self.type) {

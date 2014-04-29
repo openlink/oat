@@ -333,7 +333,7 @@ OAT.WebDav = {
 		}
 
 		/* connection dialog */
-		var connectDiv = OAT.Dom.create("div");
+	        var connectDiv = OAT.Dom.create("div",{className:"oat_dav_conn_dlg"});
 		var ct = OAT.Dom.create("table");
 		var ctbody = OAT.Dom.create("tbody");
 
