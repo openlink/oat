@@ -343,7 +343,7 @@ OAT.FormObject = {
 			xml += '\t\t\t<css ';
 			for (var i=0;i<fo.css.length;i++) {
 				var css = fo.css[i];
-				xml += ' '+css.property+'="'+OAT.Dom.style(e,css.property)+'" ';
+				xml += ' '+css.property+'="'+OAT.Style.get(e,css.property)+'" ';
 			}
 			xml += '></css>\n';
 			xml += '\t\t</style>\n';

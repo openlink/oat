@@ -138,7 +138,7 @@ OAT.GridData = {
 			if (!grid.tmp_drag) { /* just moved - create ghost */
 				var container = grid.header.cells[OAT.GridData.index].container;
 				grid.tmp_drag = OAT.Dom.create("div",{position:"absolute",left:"0px",top:"0px",backgroundColor:"#888"});
-				OAT.Style.opacity(grid.tmp_drag,0.5);
+				OAT.Style.set(grid.tmp_drag,{opacity:0.5});
 				grid.tmp_drag.appendChild(container.cloneNode(true));
 				var dims = OAT.Dom.getWH(grid.header.cells[OAT.GridData.index].html);
 				grid.tmp_drag.firstChild.style.width = dims[0]+"px";

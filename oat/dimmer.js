@@ -67,7 +67,7 @@ OAT.Dimmer = {
 		} 
 
 		OAT.Dimmer.root.style.backgroundColor = options.color;
-		OAT.Style.opacity(OAT.Dimmer.root,0);
+		OAT.Style.set(OAT.Dimmer.root,{opacity:0});
 		OAT.Dimmer.root.appendChild(elm);
 		document.body.appendChild(OAT.Dimmer.root);
 		elm.style.position = 'absolute';
@@ -79,7 +79,7 @@ OAT.Dimmer = {
 			var a = new OAT.AnimationOpacity(OAT.Dimmer.root,{opacity:options.opacity,delay:options.delay,speed:0.1});
 			a.start();
 		} else { 
-			OAT.Style.opacity(OAT.Dimmer.root,options.opacity);
+			OAT.Style.set(OAT.Dimmer.root,{opacity:options.opacity});
 		}
 	},
 	

@@ -42,7 +42,7 @@ OAT.Panelbar = function(div, delay, height, noanim) {
 					a.start();
 					b.start();
 				} else {
-					OAT.Style.opacity(self.panels[i][1], 1);
+					OAT.Style.set(self.panels[i][1], {opacity:1});
 					self.panels[i][1].style.height = self.height+'px';
 				}
 			} else { /* hide others */
@@ -56,7 +56,7 @@ OAT.Panelbar = function(div, delay, height, noanim) {
 					a.start();
 					b.start();
 				} else {
-					OAT.Style.opacity(self.panels[i][1], 1);
+					OAT.Style.set(self.panels[i][1], {opacity:1});
 					self.panels[i][1].style.height = '0px';
 				}
 			}
