@@ -89,7 +89,7 @@ OAT.DSTransport.REST = {
 			xmlDoc = OAT.Xml.createXmlDoc(t);
 			obj = OAT.JSObj.createFromXmlNode(xmlDoc.documentElement);
 		} else { /* json */
-			obj = OAT.JSON.parse(text);
+			obj = OAT.JSON.deserialize(text);
 		}
 		
 		var allValues = {};
