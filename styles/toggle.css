@@ -1,0 +1,7 @@
+/* OAT Toggler default style */
+
+.oat_toggle_container { font-size: inherit; cursor:pointer }
+.oat_toggle_container:hover {color: #666;}
+.oat_toggle_title { display: inline; font-size: inherit; color: #666 }
+.oat_toggle_title:hover { text-decoration: underline }
+.oat_toggle_indicator_ctr { }
