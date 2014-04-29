@@ -34,7 +34,7 @@ OAT.Toolbar = function(div,optObj) {
 	this.separators = [];
 	
 	this.addIcon = function(twoStates,imagePath,tooltip,callback) {
-		var div = OAT.Dom.create("div",{class:"toolbar_icon"});
+		var div = OAT.Dom.create("div",{className:"toolbar_icon"});
 		div.title = tooltip;
 		div.state = 0;
 		
@@ -70,7 +70,7 @@ OAT.Toolbar = function(div,optObj) {
 	}
 	
 	this.addSeparator = function() {
-	var div = OAT.Dom.create("div",{class: "toolbar_separator"});
+	var div = OAT.Dom.create("div",{className: "toolbar_separator"});
 		self.div.appendChild(div);
 		self.separators.push(div);
 		return div;
