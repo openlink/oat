@@ -85,6 +85,7 @@ OAT.FormObjectNames = {
 	"imagelist":"Image list",
 	"twostate":"Tabular/Columnar Combo",
 	"nav":"Navigation",
+    "nav_back":"Navigation with Back",
 	"url":"URL",
 	"date":"Date",
 	"timeline":"Time line",
@@ -93,9 +94,9 @@ OAT.FormObjectNames = {
 	"gem1":"Syndication gem",
 	"uinput":"User input",
 	"tab":"Tab control",
-	"container":"Lookup container"
+    "container":"Lookup container",
+    "geolocator":"Geolocator"
 }
-
 
 OAT.FormObject = {
 	init:function(fo) { /* basic default properties */
@@ -510,6 +511,68 @@ OAT.FormObject = {
 		OAT.FormObject.abstractParent(self,x,y);
 	},
 
+/*    geolocator:function(x,y,designMode) {
+	var self=this;
+	OAT.FormObject.init(self);
+	self.name="geolocator";
+	self.resizable=true;
+	self.userSet=true;
+
+	self.elm =    OAT.Dom.create("div");
+
+	self.lat_l =  OAT.Dom.create("label",{"for":"oat_geolocator_lat"}); 
+	self.lat_l.innerHtml = "Latitude"
+	self.lat =    OAT.Dom.create("input",{id:"oat_geolocator_lat","type":"text"});
+
+	self.lon_l =  OAT.Dom.create("label",{"for":"oat_geolocator_lon"});
+	self.lon_l.innerHtml = "Longitude"
+	self.lon =    OAT.Dom.create("input",{id:"oat_geolocator_lon","type":"text"});
+
+	self.alt_l =  OAT.Dom.create("label",{"for":"oat_geolocator_alt"});
+	self.alt_l.innerHtml = "Altitude"
+	self.alt =   OAT.Dom.create("input",{id:"oat_geolocator_alt","type":"text"});
+
+	self.prec_l =  OAT.Dom.create("label",{"for":"oat_geolocator_prec"});
+	self.prec_l.innerHtml = "Precision"
+	self.prec =   OAT.Dom.create("input",{id:"oat_geolocator_prec","type":"text"});
+
+	self.button = OAT.Dom.create("input");
+	self.button.type = "button";
+	self.button.value = "Refresh";
+
+	OAT.Dom.append([self.elm,self.lat_l,self.lat,self.lon_l,self.lon,self.alt_l,self.alt,self.prec_l,self.prec,self.button]);
+
+	self.changeCallback = function() {}
+
+	self.getLatitude = function () { return self.lat.value }
+	self.getLongitude = function () { return self.lat.value }
+	self.getLatitude = function () { return self.lat.value }
+	self.getLatitude = function () { return self.lat.value }
+
+
+	if (!designMode) {
+	    OAT.Event.attach(self.button,"click",function(){self.changeCallback();});
+	    OAT.Event.attach(self.input,"keyup",function(event) {
+		if (event.keyCode == 13) { self.changeCallback(); }
+	    });
+	}
+
+	self.datasources = [
+	    {ds:false,fieldSets:[
+		{name:"Latitude",  variable:false, columnIndexes:[-1],names:[],realIndexes:[]},
+		{name:"Longitude", variable:false, columnIndexes:[-1],names:[],realIndexes:[]},
+		{name:"Altitude",  variable:false, columnIndexes:[-1],names:[],realIndexes:[]},
+		{name:"Precision", variable:false, columnIndexes:[-1],names:[],realIndexes:[]},
+	    ]}
+	];
+
+	self.properties = [
+	    {name:"Name",type:"string",value:"GeoLocator"},
+	    {name:"High precision",type:"bool",value:"0"},
+	]
+	OAT.FormObject.abstractParent(self,x,y);
+    },
+*/    
 	textarea:function(x,y,designMode) {
 		var self = this;
 		OAT.FormObject.init(self);
@@ -612,10 +675,12 @@ OAT.FormObject = {
 		OAT.FormObject.init(self);
 		self.name="tab";
 		self.resizable = true;
-		self.elm = OAT.Dom.create("div",{width:"200px",height:"200px",border:"2px solid #000",backgroundColor:"#888"});
+	self.elm = OAT.Dom.create("div",
+				  {width:"200px",height:"200px",border:"2px solid #000",backgroundColor:"#888"});
 		self.tab = new OAT.Tab(self.elm);
 
-		self.tabElm = OAT.Dom.create("div",{width:"100%",height:"28px",position:"absolute",top:"-28px",left:"0px"});
+	self.tabElm = OAT.Dom.create("div",
+				     {width:"100%",height:"28px",position:"absolute",top:"-28px",left:"0px"});
 		self.tabUL = OAT.Dom.create("ul");
 		self.tabUL.className = "tab";
 		self.elm.appendChild(self.tabElm);
@@ -681,7 +746,12 @@ OAT.FormObject = {
 		}
 		
 		self.properties = [
-			{name:"Tabs",type:"string",variable:true,onchange:self.changeCallback,oncountchange:self.countChangeCallback,value:[]}
+	    {name:"Tabs",
+	     type:"string",
+	     variable:true,
+	     onchange:self.changeCallback,
+	     oncountchange:self.countChangeCallback,
+	     value:[]}
 		]
 		if (designMode && !loading) {
 			self.countChangeCallback(0,3);
@@ -696,11 +766,21 @@ OAT.FormObject = {
 	map:function(x,y,designMode) {
 		var self = this;
 		OAT.FormObject.init(self);
+
+	self.map_loaded = false;
 		self.name="map";
 		self.resizable = true;
-		self.elm = OAT.Dom.create("div",{border:"1px solid #00f",backgroundColor:"#ddf",width:"100px",height:"100px",overflow:"hidden"});
+
+	self.elm = OAT.Dom.create("div",
+				  {border:"1px solid #00f",
+				   backgroundColor:"#ddf",
+				   width:"100px",
+				   height:"100px",
+				   overflow:"hidden"});
+
 		self.windowWasOpened = false;
 		self.allowMultipleDatasources = true;
+
 		self.datasources = [
 			{ds:false,fieldSets:[
 				{name:"Latitude",variable:false,columnIndexes:[-1],names:[],realIndexes:[]},
@@ -711,8 +791,15 @@ OAT.FormObject = {
 		];
 		self.properties = [
 /*0*/		{name:"Key",type:"string",value:""},
-/*1*/		{name:"Zoom level",type:"select",value:"2",options:[["0 - Far","0"],"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",["16 - Near","16"]]},
-/*2*/		{name:"Provider",type:"select",value:OAT.Map.TYPE_G3,options:[
+	    /*1*/		{name:"Zoom level",
+				 type:"select",
+				 value:"2",
+				 options:[["0 - Far","0"],
+					  "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+					  ["16 - Near","16"]]},
+	    /*2*/		{name:"Provider",
+				 type:"select",
+				 value:OAT.Map.TYPE_G3,options:[
 				["Google v3",OAT.Map.TYPE_G3],
 				["Google",OAT.Map.TYPE_G],
 				["Yahoo!",OAT.Map.TYPE_Y],
@@ -720,14 +807,22 @@ OAT.FormObject = {
 				["OpenLayers",OAT.Map.TYPE_OL]
 			]},
 /*3*/		{name:"All markers at once?",type:"bool",value:"0"},
-/*4*/		{name:"Map type",type:"select",value:"Map",options:["Map","Satellite","Hybrid"]},
-/*5*/		{name:"Marker overlap correction",type:"select",value:OAT.Map.FIX_ROUND1,options:[
+	    /*4*/		{name:"Map type",
+				 type:"select",
+				 value:"Map",
+				 options:["Map","Satellite","Hybrid"]},
+	    /*5*/		{name:"Marker overlap correction",
+				 type:"select",
+				 value:OAT.Map.FIX_ROUND1,options:[
 				["None",OAT.Map.FIX_NONE],
 				["Circle, center",OAT.Map.FIX_ROUND1],
 				["Circle, no center",OAT.Map.FIX_ROUND2],
 				["Vertical stack",OAT.Map.FIX_STACK]
 			]},
-/*6*/		{name:"Marker image",type:"select",value:"",options:[["Normal",""],["People","p"]]},
+	    /*6*/		{name:"Marker image",
+				 type:"select",
+				 value:"",
+				 options:[["Normal",""],["People","p"]]},
 /*7*/		{name:"Marker width",type:"string",value:"18"},
 /*8*/		{name:"Marker height",type:"string",value:"41"},
 /*9*/		{name:"Lookup container",type:"container",value:false}
@@ -749,17 +844,32 @@ OAT.FormObject = {
 			}
 		}
 
-		self.clickRef = function(dsIndex,index) {
-			return function(marker,event) {
+	self.pointQ = [];
+	
+	self.markerClickHandler = function (sender, msg, marker) {
 				self.windowWasOpened = true;
-				/* call for data */
+	    var dsIndex = marker.__dsIndex;
+	    var index = marker.__index;
 				var result = self.datasources[dsIndex].ds.advanceRecord(index);
 				if (!result) { self.openWindow(dsIndex,index); } /* no advancement made, since we already have the data */
- 			} /* marker click reference */
 		}
 
-		self.setValue = function(value,dsIndex) { /* lat,lon,index,image */
-			self.map.removeMarkers(dsIndex);
+	self.refresh = function () {
+	    if (!self.map_loaded) {
+		// new interval for refresh
+		if (self.refresh_to) {
+		    clearTimeout (self.refresh_to);
+		}
+		self.refresh_to = setTimeout (self.refresh,500);
+		return;
+	    }
+	    while (self.pointQ.length) {
+		var pointsO = self.pointQ.pop();
+		var value = pointsO[0];
+		var dsIndex = pointsO[1];
+		
+		self.map.removeMarkers(dsIndex.toString());
+
 			if (self.multi) {
 				var pointArr = [];
 				for (var i=0;i<value.length;i++) { 
@@ -767,26 +877,48 @@ OAT.FormObject = {
 					var lon = value[i][1];
 					var index = value[i][2];
 					pointArr.push([lat,lon]); 
-					var ref = self.clickRef(dsIndex,index);
-					var m = self.map.addMarker(dsIndex,lat,lon,value[i][3],self.markerWidth,self.markerHeight,ref);
+			
+			var m = self.map.addMarker(lat, 
+						   lon, 
+						   dsIndex.toString(), 
+						   { image: value[i][3], 
+						     imageSize: [self.markerWidth, self.markerHeight], 
+						     custData: {__dsIndex: dsIndex, __index: index } });
 					self.markers[dsIndex][index] = m;
 				}
 				self.map.optimalPosition(pointArr);
+		    
 				var az = self.map.getZoom();
 				if (self.zoom > az) { self.zoom = az; }
 				self.map.setZoom(self.zoom);
+		    
 			} else {
 				var lat = value[0][0];
 				var lon = value[0][1];
 				var index = value[0][2];
 				var ref = self.clickRef(dsIndex,index);
-				var m = self.map.addMarker(dsIndex,lat,lon,value[0][3],self.markerWidth,self.markerHeight,ref);
+		    
+		    var m = self.map.addMarker(lat, 
+					       lon, 
+					       dsIndex.toString(), 
+					       { image: value[0][3], 
+						 imageSize: [self.markerWidth, self.markerHeight], 
+						 custData: {__dsIndex: dsIndex, __index: index } });
 				self.markers[dsIndex][index] = m;
-				self.zoom = self.map.getZoom();
-				self.map.centerAndZoom(lat,lon,self.zoom);
+		    //		self.zoom = self.map.getZoom();
+		    //		self.map.centerAndZoom(lat,lon,self.zoom);
 			}
+		self.map.showMarkers(false);
 		}
+	}
+	
+	self.setValue = function(value,dsIndex) { /* lat,lon,index,image */
+	    self.pointQ.push ([value,dsIndex]);
+	    self.refresh();
+	}
+
 		self.getValue = function() { return false; }
+
 		self.init = function() {
 			self.zoom = parseInt(self.properties[1].value);
 			switch (parseInt(self.properties[2].value)) {
@@ -812,29 +944,35 @@ OAT.FormObject = {
 			self.markerMapping = {};
 
 			var cb = function() {
+		self.map_loaded = true;
+		self.map.init(self.provider);
 			self.map.centerAndZoom(0,0,self.zoom);
-			self.map.addTypeControl();
-			self.map.addTrafficControl();
-			self.map.addMapControl();
+//		self.map.addTypeControl();
+//		self.map.addTrafficControl();
+//		self.map.addMapControl();
 			switch (self.properties[4].value) {
 					case "Map": self.map.setMapType(OAT.Map.MAP_MAP); break;
 					case "Satellite": self.map.setMapType(OAT.Map.MAP_ORTO); break;
 					case "Hybrid": self.map.setMapType(OAT.Map.MAP_HYB); break;
 			}
+		OAT.MSG.attach("*", "MAP_MARKER_CLICK", self.markerClickHandler);
 			}
 
+	    if (!self.map_loaded) {
 			self.map = new OAT.Map(self.elm,self.provider,self.fixObj);
-			self.map.loadApi(self.provider,cb);
+		OAT.Map.loadApi(self.provider,{callback: cb});
+	    }
 
 			self.form = false;
 			if (self.properties[9].value) { self.form = self.properties[9].value; }
 
-			
 			self.markers = [];
+
 			for (var i=0;i<self.datasources.length;i++) {
 				self.markers.push([]);
 				OAT.MSG.attach(self.datasources[i].ds,"DS_RECORD_PREADVANCE",self.closeWindow);
 			}
+	    
 		}
 		
 		self.bindRecordCallback = function(dataRow,currentIndex,dsIndex) {
@@ -1911,6 +2049,71 @@ OAT.FormObject = {
 		OAT.FormObject.abstractParent(self,x,y);
 	},
 
+    nav_back:function(x,y,designMode) {
+	var self = this;
+	OAT.FormObject.init(self);
+	self.name="nav_back";
+	self.elm = OAT.Dom.create("div");
+	self.first = OAT.Dom.create("input");
+	self.prevp = OAT.Dom.create("input");
+	self.prev = OAT.Dom.create("input");
+	self.next = OAT.Dom.create("input");
+	self.nextp = OAT.Dom.create("input");
+	self.last = OAT.Dom.create("input");
+	self.back = OAT.Dom.create("input");
+	self.throbber = OAT.Dom.create("img");
+
+	self.first.setAttribute("type","button");
+	self.prevp.setAttribute("type","button");
+	self.prev.setAttribute("type","button");
+	self.next.setAttribute("type","button");
+	self.nextp.setAttribute("type","button");
+	self.last.setAttribute("type","button");
+	self.back.setAttribute("type","button");
+	self.first.value = "|<<";
+	self.prevp.value = "<<";
+	self.prev.value = "<";
+	self.next.value = ">";
+	self.nextp.value = ">>";
+	self.last.value = ">>|";
+	self.back.value = "Back";
+	self.back.disabled = true;
+	self.throbber.src = OAT.Preferences.imagePath + "Dav_throbber.gif";
+	OAT.Dom.hide(self.throbber);
+	
+	self.current = OAT.Dom.create("input");
+	self.current.setAttribute("type","text");
+	self.current.setAttribute("size","2");
+	self.total = OAT.Dom.create("span");
+	self.elm.appendChild(self.first);
+	self.elm.appendChild(self.prevp);
+	self.elm.appendChild(self.prev);
+	self.elm.appendChild(self.current);
+	//		self.elm.appendChild(self.total);
+	self.elm.appendChild(self.next);
+	self.elm.appendChild(self.nextp);
+	//		self.elm.appendChild(self.last);
+	self.elm.appendChild(self.back);
+	self.elm.appendChild(self.throbber);
+	
+	self.datasources = [
+	    {ds:false,fieldSets:[
+		{name:"Datasource",variable:false,names:[],columnIndexes:[],realIndexes:[]}
+	    ]}
+	];
+	
+	self.clear = function() {
+	    //			self.total.innerHTML = "";
+	    self.current.value = "";
+	}
+	
+	self.bindRecordCallback = function(dataRow,currentIndex) {
+	    self.current.value = currentIndex+1;
+	    //			self.total.innerHTML = totalCount;
+	}
+	OAT.FormObject.abstractParent(self,x,y);
+    },
+    
 	url:function(x,y,designMode) {
 		var self = this;
 		OAT.FormObject.init(self);
