@@ -7,73 +7,69 @@
  *
  *  See LICENSE file for details.
  */
-/*
-	var i = new OAT.Instant(element,callback)
-	i.show()
-	i.hide()
 	
-	i.createHandle(handleID)
-	i.removeHandle(handleID)
-*/
-
-OAT.Instant = function(element, optObj) {
+OAT.Instant = function(element) {
 	var self = this;
-	this.options = {
-		showCallback:false,
-		hideCallback:false
-	}
 	
-	for (var p in optObj) { self.options[p] = optObj[p]; }
-	this.state = 1;
+	this.visible = 1;
 	this.elm = $(element);
 	this.handles = [];
 	
 	this.hide = function() {
-		self.state = 0;
+		if (!self.visible) { return; }
+		self.visible = 0;
 		OAT.Dom.hide(self.elm);
+		OAT.MSG.send(self,"INSTANT_HIDE",self.elm);
 	}
 	
 	this.show = function() {
-		if (self.options.showCallback) { self.options.showCallback(); }
+		if (self.visible) { return; }
+		self.visible = 1;
 		OAT.Dom.show(self.elm);
-		self.state = 1;
+		OAT.MSG.send(self,"INSTANT_SHOW",self.elm);
 	}
 	
-	this.check = function(event) {
-		/* element shown, checking where user clicked */
-		if (!self.state) { return; }
-		var node = OAT.Event.source(event);
-		if (node == self.elm || OAT.Dom.isChild(node,self.elm)) { return; } /* clicked in element -> not hiding */
+	this.toggle = function() {
+		self.visible? self.hide() : self.show();
+	}
 
-		if (self.options.hideCallback) { self.options.hideCallback(); }
-		self.hide();
+	this._toggle = function(event) {
+		var src = OAT.Event.source(event);
+		
+		/* noone but registered handle may show via event */
+		if (!self.visible && self.handles.indexOf(src) == -1) { return; }
+
+		/* cancel event propagation, so we dont trigger document listener */ 
+		OAT.Event.cancel(event); 
+		self.toggle();
 	}
 	
 	this.createHandle = function(elm) {
 		var e = $(elm);
 		self.handles.push(e);
-		OAT.Event.attach(e,"mousedown",function(event) {
-			if (self.handles.find(e) == -1) { return; }
-			if (!self.state) { 
-				OAT.Event.cancel(event);
-				self.show(); 
-			}
-		});
+		OAT.Event.attach(e,"mousedown",self._toggle);
 	}
 	
 	this.removeHandle = function(elm) {
 		var e = $(elm);
-		var i = self.handles.find(e);
-		if (i != -1) { self.handles.splice(i,1); }
+		var i = self.handles.indexOf(e);
+
+		if (i != -1) { 
+			self.handles.splice(i,1);
+			OAT.Event.detach(e,"mousedown",self._toggle);	
+		}
 	}
 	
-	self.elm._Instant_show = self.show;
-	self.elm._Instant_hide = self.hide;
-	self.hide();
-	OAT.Event.attach(document,"mousedown",self.check);
+	this._init = function() {	
+		/* clicking on element doesnt hide */
+		OAT.Event.attach(self.elm,"mousedown",OAT.Event.cancel);
+
+		/* if anywhere outside is clicked, toggle (close) */
+		OAT.Event.attach(document,"mousedown",self._toggle);
 	
+		/* hide by default */
+		self.hide();
 }
 
-OAT.Instant.assign = function(something, callback) { /* backward compatibility */
-	var obj = new OAT.Instant(something, {hideCallback:callback});
+	self._init();
 }
