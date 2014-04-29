@@ -237,4 +237,3 @@ OAT.LineChart = function(div,optObj) {
 	this.attachTextY = function(arr) { self.textY = arr; }
 	
 } /* OAT.LineChart() */
-OAT.Loader.featureLoaded("linechart");

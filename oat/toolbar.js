@@ -87,4 +87,3 @@ OAT.Toolbar = function(div,optObj) {
 	}
 	
 }
-OAT.Loader.featureLoaded("toolbar");

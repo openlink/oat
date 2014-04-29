@@ -241,5 +241,3 @@ OAT.AnimationCSS = function(element, optionsObject) {
 	this.start = self.animation.start;
 	this.stop = self.animation.stop;
 }
-
-OAT.Loader.featureLoaded("animation");

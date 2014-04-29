@@ -295,4 +295,3 @@ OAT.SimpleFX = {
 		});
 	}
 }
-OAT.Loader.featureLoaded("simplefx");

@@ -381,4 +381,3 @@ OAT.WinManager = { /* stacking management */
 		l.removeLayer(container);
 	}
 }
-OAT.Loader.featureLoaded("win");

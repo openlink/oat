@@ -106,4 +106,3 @@ if (OAT.Browser.isIE6) {
 	OAT.Event.attach(window,'resize',OAT.Dimmer.update); 
 	OAT.Event.attach(window,'scroll',OAT.Dimmer.update); 
 }
-OAT.Loader.featureLoaded("dimmer");

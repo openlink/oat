@@ -338,5 +338,3 @@ if (OAT.Browser.isIE) {
 } else {
 	OAT.Anchor.closeOnBlur();
 }
-
-OAT.Loader.featureLoaded("anchor");

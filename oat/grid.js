@@ -714,4 +714,3 @@ OAT.GridRowCell = function(params_,number) {
 
 OAT.Event.attach(document,"mouseup",OAT.GridData.up);
 OAT.Event.attach(document,"mousemove",OAT.GridData.move);
-OAT.Loader.featureLoaded("grid");

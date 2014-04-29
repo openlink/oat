@@ -477,4 +477,3 @@ OAT.Timeline = function(contentElm,paramsObj) {
 }
 OAT.Event.attach(document,"mouseup",OAT.TimelineData.up);
 OAT.Event.attach(document,"mousemove",OAT.TimelineData.move);
-OAT.Loader.featureLoaded("timeline");

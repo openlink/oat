@@ -139,4 +139,3 @@ OAT.Notify = function(parentDiv,optObj) {
 
 		
 }
-OAT.Loader.featureLoaded("notify");

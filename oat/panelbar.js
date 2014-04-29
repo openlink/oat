@@ -87,4 +87,3 @@ OAT.Panelbar = function(div, delay, height, noanim) {
 	
 	
 }
-OAT.Loader.featureLoaded("panelbar");

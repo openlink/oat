@@ -107,4 +107,3 @@ OAT.Dereference = {
 	return xhr;
 	}
 }
-OAT.Loader.featureLoaded("dereference");

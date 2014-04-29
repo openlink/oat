@@ -203,4 +203,3 @@ OAT.WindowParent = function(obj,options) { /* abstract parent for all window imp
 		obj.resizeTo(false,y + 6 + obj.options.moveHeight + obj.options.statusHeight);
 	}
 }
-OAT.Loader.featureLoaded("window");

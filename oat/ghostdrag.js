@@ -189,4 +189,3 @@ OAT.GhostDrag = function() {
 
 OAT.Event.attach(document,"mousemove",OAT.GhostDragData.move);
 OAT.Event.attach(document,"mouseup",OAT.GhostDragData.up);
-OAT.Loader.featureLoaded("ghostdrag");

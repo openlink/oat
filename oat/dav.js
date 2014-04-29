@@ -1074,5 +1074,3 @@ OAT.Dav = { /* legacy backwards compatibility! */
 		return prompt("Choose a file name",str);
 	}
 }
-
-OAT.Loader.featureLoaded("dav");

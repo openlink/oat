@@ -122,4 +122,3 @@ OAT.Menu = function() {
 	}
 	
 }
-OAT.Loader.featureLoaded("menu");

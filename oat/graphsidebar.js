@@ -395,4 +395,3 @@ OAT.GraphSidebar = function(graph) {
 		}
 	}
 }
-OAT.Loader.featureLoaded("graphsidebar");

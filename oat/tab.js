@@ -287,4 +287,3 @@ OAT.Tab = function(elm,optObj) {
 		OAT.Event.attach(document,"mouseup",OAT.TabData.checkWin);
 	}
 }
-OAT.Loader.featureLoaded("tab");

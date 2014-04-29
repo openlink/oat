@@ -76,4 +76,3 @@ OAT.Dialog = function(title,contentDiv,optObj) {
 	}
 	if (options.autoEnter) { OAT.Event.attach(win.div,"keypress",keyPress); }
 }
-OAT.Loader.featureLoaded("dialog");
