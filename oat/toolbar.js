@@ -21,8 +21,71 @@
 	CSS: .toolbar .toolbar_icon .toolbar_icon_down .toolbar_separator
 */
 
+
+OAT.ToolbarButtonState = {
+    UP: 0,
+    DOWN: 1,
+    DISABLED: 2
+};
+
+OAT.ToolbarButtonType = {
+    TOGGLE: 0,
+    BUTTON: 1
+};
+
+OAT.ToolbarButton = function (container, opts) {
+    var self = this;
+
+    this._iconUrls = [];
+    this._tooltips = [];
+    this._classes = ["toolbar_btn_up", "toolbar_btn_down", "toolbar_btn_disabled"];
+    this._container = {};
+    this._state = OAT.ToolbarButtonState.UP;
+    this._btnType = OAT.ToolbarButtonType.BUTTON;
+    this._size = [16,16];
+    this._callbacks = {};
+
+    this.setIcon = function (state, icon) {
+	self.iconUrls[state]=icon;
+    };
+
+    this.getIcon = function (state) {
+	return self.icons[state];
+    };
+
+    this.toggle = function () {
+    };
+
+    this.enable = function () {
+
+    };
+
+    this.setContainer = function (ctr) {
+	this._container = ctr;
+    };
+
+    this.setState = function (state) {
+	self._state = state;
+	self._img.href = self.icons(state);
+    };
+
+    this.clickHandler = function () {
+	if (self._btnType == TOGGLE) {
+	    self.toggle ();
+	}
+	OAT.Msg.send (self, "TOOLBAR_BUTTON_CLICK", self);
+    };
+
+    this.overHandler = function () {
+	OAT.Msg.send (self, "TOOLBAR_BUTTON_CLICK", self);
+    };
+
+    self.setContainer (container);
+};
+
 OAT.Toolbar = function(div,optObj) {
 	var self = this;
+
 	this.options = {
 		labels:false
 	}

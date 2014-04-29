@@ -224,8 +224,7 @@ OAT.WebDav = {
 
 		/* create window */
 		var wopts = {
-                        visibleButtons:"cr",
-			enabledButtons:"cr",
+			buttons:"cr",
 			outerWidth:this.options.width,
 			outerHeight:this.options.height,
 			imagePath:this.options.imagePath,
@@ -237,7 +236,6 @@ OAT.WebDav = {
 		var content = OAT.Dom.create("div",{paddingLeft:"2px",paddingRight:"5px"});
 		
 		this.window.dom.content.appendChild(content);
-		div.style.zIndex = 1001;
 		div.id = "dav_browser";
 
 		/* create toolbar */
@@ -308,8 +306,8 @@ OAT.WebDav = {
 		var bottom = OAT.Dom.create('div');
 		bottom.id = "dav_bottom";
 
-		this.dom.ok = OAT.Dom.button('OK');
-		this.dom.cancel = OAT.Dom.button('Cancel');
+		this.dom.ok = OAT.Dom.create("input",{type:"button",value:'OK'});
+		this.dom.cancel = OAT.Dom.create("input",{type:"button",value:'Cancel'});
 		
 		this.dom.file = OAT.Dom.create("input");
 		this.dom.file.type = "text";
@@ -392,19 +390,14 @@ OAT.WebDav = {
 		OAT.Dom.append([ctd_conntype,conntype]);
 
 		var cdialog = new OAT.Dialog("Connection Setup",connectDiv,{width:400,modal:1,buttons:1});
-		cdialog.ok = function() {
+		OAT.MSG.attach(cdialog, "DIALOG_OK", function() {
 			with(OAT.WebDav.options) {
 				user = $v("dav_user");
 				pass = $v("dav_pass");
 				isDav = ($v("dav_login_put_type") == "1");
 				path = pathHome + user + "/";
 			}
-			cdialog.hide();
-		}
-		
-		cdialog.cancel = function() {
-			cdialog.hide();
-		}
+		});
 
 		this.connectDialog = cdialog;
 
@@ -424,7 +417,7 @@ OAT.WebDav = {
 
 		with(this.options) {
 			if(user !== false) { path = pathHome + user + "/"; }
-			if(!silentStart || (user === false && pass === false)) { this.connectDialog.show(); }
+			if(!silentStart || (user === false && pass === false)) { this.connectDialog.open(); }
 		}
 		
 		if (this.options.hiddenPrefixes)
@@ -620,7 +613,7 @@ OAT.WebDav = {
 				var src = this.options.imagePath+"Dav_"+ico_type+"."+this.options.imageExt;
 				var srcB = this.options.imagePath+"Blank.gif";
 				var ico = OAT.Dom.image(src,srcB,32,32);
-				var cube = OAT.Dom.create('div',{},"dav_item");
+					var cube = OAT.Dom.create('div',{"class":"dav_item"});
 				OAT.Dom.append([cube,ico,OAT.Dom.create("br"),OAT.Dom.text(item.name)],[content,cube]);
 				content.appendChild(cube);
 				attachClick(cube,item,cubez);
@@ -1043,7 +1036,7 @@ OAT.WebDav = {
 
 	updateOptions:function(o) {
 		if (!o.headers.Authorization)	{
-			o.auth = OAT.AJAX.AUTH_BASIC;
+//			o.auth = OAT.AJAX.AUTH_BASIC;
 			o.user = OAT.WebDav.options.user;
 			o.password = OAT.WebDav.options.pass;
 		}

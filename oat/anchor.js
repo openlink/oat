@@ -156,10 +156,9 @@ OAT.Anchor = {
 			elm:elm, /* anchor node */
 			window:false, /* what should be displayed */
 			arrow:false, /* what should be displayed */
-			type:OAT.WinData.TYPE_RECT,
-			visibleButtons:"cr",
-			enabledButtons:"cr",
-			template:false, /* use with type:OAT.WinData.TYPE_TEMPLATE - see win component documentation */
+			type:OAT.Win.Rect,
+			buttons:"cr",
+			template:false, /* use with type:false - see win component documentation */
 			preload:false /* include the a++ node in the page DOM right at the assing time - do not use when large number of a++ windows on the page */
 		};
 		for (var p in paramsObj) { options[p] = paramsObj[p]; }
@@ -170,8 +169,7 @@ OAT.Anchor = {
 			title:"Loading...",
 			type:options.type,
 			status:options.status,
-			visibleButtons:options.visibleButtons,
-			enabledButtons:options.enabledButtons,
+			buttons:options.buttons,
 			template:options.template	} );
 		function checkOver() {
 			var opts = OAT.AnchorData.active;
