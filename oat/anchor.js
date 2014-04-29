@@ -124,7 +124,7 @@ OAT.Anchor = {
 						if (OAT.Dom.getWH(win.dom.container)[0] < 650)
 							win.dom.container.style.width = (OAT.Dom.getWH(win.dom.container)[0]+100)+'px';
 						if (height == OAT.Dom.getWH(win.dom.content)[1]) {
-							win.dom.container.style.width = (OAT.Dom.getWH(win.dom.container)[0]-100)+'px';
+							if (OAT.Dom.getWH(win.dom.container)[1] > 100) win.dom.container.style.width = (OAT.Dom.getWH(win.dom.container)[0]-100)+'px';
 							/* now adding scrollbar when too large window */
 							if (OAT.Dom.getWH(win.dom.content)[1] > 300) {
 								win.dom.content.style.height = '300px';
@@ -195,7 +195,7 @@ OAT.Anchor = {
 
 		options.stat = 0; /* not initialized */
 		if (!options.href && 'href' in elm) { options.href = elm.href; } /* if no oat:href provided, then try the default one */
-		if (elm.tagName.toString().toLowerCase() == "a") { OAT.Dom.changeHref(elm,options.newHref); }
+		if (elm.tagName.toString().toLowerCase() == "a") { /*OAT.Dom.changeHref(elm,options.newHref);*/ }
 
 		options.displayRef = function(event,preload) {
 			OAT.Event.prevent(event);
