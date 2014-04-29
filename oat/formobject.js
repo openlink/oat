@@ -712,20 +712,20 @@ OAT.FormObject = {
 		self.properties = [
 /*0*/		{name:"Key",type:"string",value:""},
 /*1*/		{name:"Zoom level",type:"select",value:"2",options:[["0 - Far","0"],"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",["16 - Near","16"]]},
-/*2*/		{name:"Provider",type:"select",value:OAT.MapData.TYPE_G3,options:[
-				["Google v3",OAT.MapData.TYPE_G3],
-				["Google",OAT.MapData.TYPE_G],
-				["Yahoo!",OAT.MapData.TYPE_Y],
-				["MS Virtual Earth",OAT.MapData.TYPE_MS],
-				["OpenLayers",OAT.MapData.TYPE_OL]
+/*2*/		{name:"Provider",type:"select",value:OAT.Map.TYPE_G3,options:[
+				["Google v3",OAT.Map.TYPE_G3],
+				["Google",OAT.Map.TYPE_G],
+				["Yahoo!",OAT.Map.TYPE_Y],
+				["MS Virtual Earth",OAT.Map.TYPE_MS],
+				["OpenLayers",OAT.Map.TYPE_OL]
 			]},
 /*3*/		{name:"All markers at once?",type:"bool",value:"0"},
 /*4*/		{name:"Map type",type:"select",value:"Map",options:["Map","Satellite","Hybrid"]},
-/*5*/		{name:"Marker overlap correction",type:"select",value:OAT.MapData.FIX_ROUND1,options:[
-				["None",OAT.MapData.FIX_NONE],
-				["Circle, center",OAT.MapData.FIX_ROUND1],
-				["Circle, no center",OAT.MapData.FIX_ROUND2],
-				["Vertical stack",OAT.MapData.FIX_STACK]
+/*5*/		{name:"Marker overlap correction",type:"select",value:OAT.Map.FIX_ROUND1,options:[
+				["None",OAT.Map.FIX_NONE],
+				["Circle, center",OAT.Map.FIX_ROUND1],
+				["Circle, no center",OAT.Map.FIX_ROUND2],
+				["Vertical stack",OAT.Map.FIX_STACK]
 			]},
 /*6*/		{name:"Marker image",type:"select",value:"",options:[["Normal",""],["People","p"]]},
 /*7*/		{name:"Marker width",type:"string",value:"18"},
@@ -790,11 +790,11 @@ OAT.FormObject = {
 		self.init = function() {
 			self.zoom = parseInt(self.properties[1].value);
 			switch (parseInt(self.properties[2].value)) {
-				case OAT.MapData.TYPE_G3: self.provider = OAT.MapData.TYPE_G3; break;
-				case OAT.MapData.TYPE_G: self.provider = OAT.MapData.TYPE_G; break;
-				case OAT.MapData.TYPE_Y: self.provider = OAT.MapData.TYPE_Y; break;
-				case OAT.MapData.TYPE_MS: self.provider = OAT.MapData.TYPE_MS; break;
-				case OAT.MapData.TYPE_OL: self.provider = OAT.MapData.TYPE_OL; break;
+				case OAT.Map.TYPE_G3: self.provider = OAT.Map.TYPE_G3; break;
+				case OAT.Map.TYPE_G: self.provider = OAT.Map.TYPE_G; break;
+				case OAT.Map.TYPE_Y: self.provider = OAT.Map.TYPE_Y; break;
+				case OAT.Map.TYPE_MS: self.provider = OAT.Map.TYPE_MS; break;
+				case OAT.Map.TYPE_OL: self.provider = OAT.Map.TYPE_OL; break;
 			}
 			self.prefix = self.properties[6].value;
 			self.multi = (self.properties[3].value == "1" ? 1 : 0);
@@ -817,9 +817,9 @@ OAT.FormObject = {
 			self.map.addTrafficControl();
 			self.map.addMapControl();
 			switch (self.properties[4].value) {
-				case "Map": self.map.setMapType(OAT.MapData.MAP_MAP); break;
-				case "Satellite": self.map.setMapType(OAT.MapData.MAP_ORTO); break;
-				case "Hybrid": self.map.setMapType(OAT.MapData.MAP_HYB); break;
+					case "Map": self.map.setMapType(OAT.Map.MAP_MAP); break;
+					case "Satellite": self.map.setMapType(OAT.Map.MAP_ORTO); break;
+					case "Hybrid": self.map.setMapType(OAT.Map.MAP_HYB); break;
 			}
 			}
 
