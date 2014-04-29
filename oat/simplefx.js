@@ -16,6 +16,17 @@
 */ 
  
 OAT.SimpleFX = {
+	
+	_background:function(element,src) {
+		var elm = $(element);
+		var png = !!src.toLowerCase().match(/png$/);
+		if (png && OAT.Browser.isIE) {
+			elm.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+src+"', sizingMethod='crop')";
+		} else {
+			elm.style.backgroundImage="url("+src+")";
+		}
+	},
+
 	roundImg:function(something, optObj) {
 		var options = {
 			corners:[1,1,1,1], /* CW from LT */
@@ -215,21 +226,21 @@ OAT.SimpleFX = {
 		b.style.right = (-options.offsetX)+"px";
 		b.style.height = options.bottomSize+"px";
 		b.style.bottom = (-options.bottomSize-options.offsetY)+"px";
-		OAT.Style.background(b,options.imagePath+options.bottomImage);
+		this._background(b,options.imagePath+options.bottomImage);
 		
 		var r = OAT.Dom.create("div",{position:"absolute",fontSize:"1px"});
 		r.style.bottom = (-options.offsetY)+"px";
 		r.style.width = options.rightSize+"px";
 		r.style.right = (-options.rightSize-options.offsetX)+"px";
 		r.style.height = "100%";
-		OAT.Style.background(r,options.imagePath+options.rightImage);
+		this._background(r,options.imagePath+options.rightImage);
 		
 		var c = OAT.Dom.create("div",{position:"absolute",fontSize:"1px"});
 		c.style.bottom = (-options.bottomSize-options.offsetY)+"px";
 		c.style.right = (-options.rightSize-options.offsetX)+"px";
 		c.style.width = options.rightSize+"px";
 		c.style.height = options.bottomSize+"px";
-		OAT.Style.background(c,options.imagePath+options.cornerImage);
+		this._background(c,options.imagePath+options.cornerImage);
 
 		elm.appendChild(b);
 		elm.appendChild(r);
