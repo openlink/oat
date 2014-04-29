@@ -256,7 +256,7 @@ OAT.Pivot = function(div,chartDiv,filterDiv,headerRow,dataRows,headerRowIndexes,
 	this.init = function() {
 		self.propPage = OAT.Dom.create("div",{position:"absolute",border:"2px solid #000",padding:"2px",backgroundColor:"#fff"});
 		document.body.appendChild(self.propPage);
-		OAT.Instant.assign(self.propPage);
+		self.instant = new OAT.Instant(self.propPage);
 	
 		self.conditions = [];
 		for (var i=0;i<self.headerRow.length;i++) { 
@@ -332,7 +332,7 @@ OAT.Pivot = function(div,chartDiv,filterDiv,headerRow,dataRows,headerRowIndexes,
 	
 	this.getClickReference = function(cond) {
 		var refresh = function() {
-			self.propPage._Instant_hide();
+			self.instant.hide();
 			self.go();
 		}
 		return function(event) {
@@ -381,7 +381,7 @@ OAT.Pivot = function(div,chartDiv,filterDiv,headerRow,dataRows,headerRowIndexes,
 			OAT.Dom.append([self.propPage,close,asc,alabel,OAT.Dom.create("br"),desc,dlabel,hr1,subtotals,hr2,distinct]);
 			self.distinctDivs(cond,distinct);
 
-			self.propPage._Instant_show();
+			self.instant.show();
 			
 			/* this needs to be here because of IE :/ */
 			asc.checked = cond.sort == 1;
@@ -718,7 +718,7 @@ OAT.Pivot = function(div,chartDiv,filterDiv,headerRow,dataRows,headerRowIndexes,
 		self.propPage.style.top = coords[1] + "px";
 		OAT.Dom.clear(self.propPage);
 		var refresh = function() {
-			self.propPage._Instant_hide();
+			self.instant.hide();
 			self.go();
 		}
 		/* contents */
@@ -747,7 +747,7 @@ OAT.Pivot = function(div,chartDiv,filterDiv,headerRow,dataRows,headerRowIndexes,
 		OAT.Event.attach(ch,"click",function(){self.options.showEmpty = ch.checked;refresh();});
 		
 		OAT.Dom.append([self.propPage,select,showNulls]);
-		self.propPage._Instant_show();
+		self.instant.show();
 	}
 	
 	this._drawGTotal = function(tr) {
