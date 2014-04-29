@@ -180,32 +180,6 @@ OAT.Xmla = {
 	
 	var cBack = function(data) {
 	    var result = OAT.Xmla.execute_array(data);
-	    if (OAT.Xmla.connection.options.useDereference && result.length > 1 && result[1].length >0)
-	    {
-	       var isSparql = function isSPARQL(query) {
-                   var sQuery = query.replace(/\n/g, ' ').replace(/\r/g, '');
-                   var query_type = sQuery.split(/\s+/)[0];
-                   if (query_type.toUpperCase() != 'SPARQL')
-                     return false;
-                   else
-                     return true;
-               };
-	      
-	      var data = result[1];
-	      for(var i =0; i < data.length; i++) {
-	        var row = data[i];
-	        for(var j=0; j < row.length; j++) {
-	          var col_val = row[j];
-	          if (col_val.indexOf("http://")==0 || col_val.indexOf("https://")==0)
-	          {
-	            row[j] = {value:col_val, 
-	                      valueType:isSparql(OAT.Xmla.query)?2:1
-	                     };
-
-	          }
-	        }
-	      }
-	    }
 	    callback(result);
 	}
 	
@@ -228,6 +202,7 @@ OAT.Xmla = {
 	OAT.Soap.command(OAT.Xmla.connection.options.endpoint, data, cBack, o);
     },
     
+
     discover:function(callback, ajaxOpts) {
 	var o = {}
 	if (ajaxOpts) 
@@ -302,7 +277,15 @@ OAT.Xmla = {
 	o.headers = OAT.Xmla.discoverHeader;
 	o.type    = OAT.AJAX.TYPE_XML;
 
-	OAT.Soap.command(OAT.Xmla.connection.options.endpoint, data, cBack, o);
+	if (sync) {
+	  var data = OAT.Soap.command_sync(OAT.Xmla.connection.options.endpoint, data, o);
+	  if (data!=null)
+	    return OAT.Xmla.columns_array(data);
+	  else
+	    return null;
+	} else {
+	  OAT.Soap.command(OAT.Xmla.connection.options.endpoint, data, cBack, o);
+	}
     },
     
     tables2:function(catalog,schema, table, callback, ajaxOpts, sync) {
@@ -410,7 +393,57 @@ OAT.Xmla = {
 	o.headers = OAT.Xmla.discoverHeader;
 	o.type    = OAT.AJAX.TYPE_XML;
 
-	OAT.Soap.command(OAT.Xmla.connection.options.endpoint, data, cBack, o);
+	if (sync) {
+	  var data = OAT.Soap.command_sync(OAT.Xmla.connection.options.endpoint, data, o);
+	  if (data!=null)
+	    return OAT.Xmla.foreignKeys_array(catalog,schema,table,data);
+	  else
+	    return null;
+	} else {
+	  OAT.Soap.command(OAT.Xmla.connection.options.endpoint, data, cBack, o);
+	}
+    },
+    
+    referenceKeys:function(catalog,schema,table,callback,ajaxOpts,sync) {
+	var o = {};
+	if (ajaxOpts) 
+	    for (p in ajaxOpts) { o[p] = ajaxOpts[p]; }
+
+	var cBack = function(data) {
+	    var result = OAT.Xmla.foreignKeys_array(catalog,schema,table,data);
+	    callback(result);
+	}
+	
+	var data = '<Discover  env:encodingStyle="http://www.w3.org/2003/05/soap-encoding"'+
+	    ' xmlns="urn:schemas-microsoft-com:xml-analysis" >'+
+	    '<RequestType>DBSCHEMA_FOREIGN_KEYS</RequestType>'+
+	    '<Restrictions><RestrictionList>';
+	if (catalog != "") {
+	    data += '<FK_TABLE_CATALOG>'+catalog+'</FK_TABLE_CATALOG>';
+	}
+	if (schema != "") {
+	    data += '<FK_TABLE_SCHEMA>'+schema+'</FK_TABLE_SCHEMA>';
+	}
+	data += '<FK_TABLE_NAME>'+table+'</FK_TABLE_NAME>';
+	data += '</RestrictionList></Restrictions>'+ 
+	    '<Properties><PropertyList>'+
+	    '<DataSourceInfo>'+OAT.Xmla.connection.options.dsn+'</DataSourceInfo>'+
+	    '<UserName>'+OAT.Xmla.connection.options.user+'</UserName>'+
+	    '<Password>'+OAT.Xmla.connection.options.password+'</Password>'+
+	    '</PropertyList></Properties></Discover>';
+	
+	o.headers = OAT.Xmla.discoverHeader;
+	o.type    = OAT.AJAX.TYPE_XML;
+
+	if (sync) {
+	  var data = OAT.Soap.command_sync(OAT.Xmla.connection.options.endpoint, data, o);
+	  if (data!=null)
+	    return OAT.Xmla.foreignKeys_array(catalog,schema,table,data);
+	  else
+	    return null;
+	} else {
+	  OAT.Soap.command(OAT.Xmla.connection.options.endpoint, data, cBack, o);
+	}
     },
     
     providerTypes:function(callback,ajaxOpts) {
@@ -737,4 +770,5 @@ OAT.Xmla = {
 	}
 	return keys;
     }
+
 }

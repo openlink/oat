@@ -681,7 +681,7 @@ OAT.GridRowCell = function(params_,number,row) {
 	
 	this.options = {
 		value:"",
-		valueType: 0,  // 1 - HTTP link  2 - HTTP sparql link
+		valueType: 0,  // 1 - HTTP link  2 - HTTP sparql link  3 - greenLink
 		align:OAT.GridData.ALIGN_LEFT
 	}
 	
@@ -697,6 +697,26 @@ OAT.GridRowCell = function(params_,number,row) {
 	  this.value.innerHTML = self.options.value;
 	  this.html.setAttribute("title",self.options.value);
 	  OAT.Dom.append([self.html,self.value]);
+        } else if (self.options.valueType == 3) {//greenLink
+
+	  this.value.innerHTML = self.options.value;
+	  this.html.setAttribute("title",self.options.value);
+	  OAT.Dom.append([self.html,self.value]);
+          if (typeof(self.options.valueHandle)!="undefined")
+            this.value.onclick = self.options.valueHandle;
+	  this.value.setAttribute("id",escape(self.options.colName)+":"+escape(self.options.value));
+	  this.value.setAttribute("class","linkInt");
+
+        } else if (self.options.valueType == 4) {//greenLinkQuad
+
+	  this.value.innerHTML = self.options.value;
+	  this.html.setAttribute("title",self.options.value);
+	  OAT.Dom.append([self.html,self.value]);
+          if (typeof(self.options.valueHandle)!="undefined")
+            this.value.onclick = self.options.valueHandle;
+	  this.value.setAttribute("id",self.options.colName);
+	  this.value.setAttribute("class","linkInt");
+
 
 	} else {
 
@@ -707,9 +727,6 @@ OAT.GridRowCell = function(params_,number,row) {
 	  r.target = "_blank";
 	  r.href = self.options.value;
 	  if (self.options.valueType == 2) { //SPARQL
-//             r.href = window.location.origin+
-//                "/sparql?default-graph-uri=&query=describe+<"+self.options.value+
-//                 "> LIMIT 100 &should-sponge=&format=text/html&timeout=0&debug=on";
                r.href = self.options.value;
                if (typeof(self.options.valueHandle)!="undefined")
                  r.onclick = self.options.valueHandle;

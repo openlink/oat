@@ -36,5 +36,9 @@ OAT.Soap = {
 	command:function(target, data, callback, optObj, wsdlFormat) {
 		var data_ = OAT.Soap.generate(data,wsdlFormat);
 		OAT.AJAX.SOAP(target, data_, callback, optObj);
+	},
+	command_sync:function(target, data, optObj, wsdlFormat) {
+		var data_ = OAT.Soap.generate(data,wsdlFormat);
+		return OAT.AJAX.SOAP_SYNC(target, data_, optObj);
 	}
 }
