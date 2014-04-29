@@ -133,11 +133,14 @@ OAT.DSTransport.SQL = {
 	          for(var i=0; i < rows.length; i++) {
 	            var data= rows[i];
 	            var q= {};
-	            q.tbl = data[0].split("#")[0];
+                    var obj_id = data[0].split("#");
+                    q.obj_id_tbl = obj_id[0];
+                    q.obj_id_key = obj_id[1];
+	            q.tbl = obj_id[0];
 	            q.cname = data[1];
 	            q.cval = data[2];
 	            q.k_type = data[3];
-	            q.main_tbl = data[4];
+	            q.rel_tbl = data[4];
 	            q.k_size = data[5];
 	            var j=6;
 	            q.key = [];
@@ -168,18 +171,27 @@ OAT.DSTransport.SQL = {
 	              // 3 - greenLink
 	              // 4 - greenLinkQuad
 
-	            var objid = {value:q.tbl+"."+key_val+"#this", valueType:4, colName:id+"#0"};
-	            var attr  = {value:q.cname, valueType:4, colName:id+"#1"};
+	            var objid = {value:"urn:"+q.obj_id_tbl+":"+q.obj_id_key+":this", valueType:4, colName:id+"#0"};
+	            
+	            var attr;
+	            if (q.k_type!=0) {
+	              attr  = {value:"urn:"+((q.k_type&8)?"rev_via:":"")+q.cname, valueType:4, colName:id+"#1"};
+	            } else {
+	              attr  = q.cname;
+	            }
+
 	            var value;
                     if (q.k_type != 0) {
-                      if (q.k_type & 8)
-                        value = {value:q.main_tbl+"."+q.cval+"#this", valueType:4, colName:id+"#2"};
-                      else if (q.k_type & 4)
-                        value = {value:q.tbl+"."+key_val+"#self", valueType:4, colName:id+"#2"};
+                      if (q.k_type & 8) {
+                        var rel = q.rel_tbl.split("#");
+                        value = {value:rel[0]+":"+rel[1]+":"+q.cval, valueType:4, colName:id+"#2"};
+                      } else if (q.k_type & 4)
+                        value = {value:q.tbl+":"+key_val+":self", valueType:4, colName:id+"#2"};
                       else if (q.k_type & 1)
-                        value = {value:q.tbl+"."+key_val+"#"+q.cval, valueType:4, colName:id+"#2"};
+                        value = {value:q.tbl+":"+key_val+":"+q.cval, valueType:4, colName:id+"#2"};
                       else
-                        value = {value:q.tbl+"."+q.cname+"#"+q.cval, valueType:4, colName:id+"#2"};
+                        value = {value:q.tbl+":"+q.cname+":"+q.cval, valueType:4, colName:id+"#2"};
+                        value.value = "urn:"+value.value;
                     } else {
                        var v=q.cval;
 	               if (v.indexOf("http://")==0 || v.indexOf("https://")==0)
@@ -187,7 +199,14 @@ OAT.DSTransport.SQL = {
 	               else
                          value = v;
                     }
-                    var table = {value:q.tbl, valueType:4, colName:id+"#3"};
+
+                    var table;
+                    if (q.k_type & 8)
+                      table = {value:q.rel_tbl.split("#")[0], valueType:4, colName:id+"#3"};
+                    else
+                      table = {value:q.tbl, valueType:4, colName:id+"#3"};
+
+                    table.value = "urn:"+table.value;
 
 	            outData.push([
 	            	objid,
@@ -204,14 +223,11 @@ OAT.DSTransport.SQL = {
 	          var fkey=[];
 		  var colNames = fetchedData[0];
 		  for(var i=0; i < colNames.length; i++) {
-		    fkey[i]=false;
+		    fkey[i]=0;
 		    var colname = colNames[i];
 		    for(var j=0; j<this.keys.length; j++)
 		      if (colname == this.keys[j].pcol)
-		      {
-		        fkey[i]=true;
-		        break;  
-		      }
+		        fkey[i]|=(this.keys[j].ind=="p")?1:2;
 		  }
 
 		  var rows = fetchedData[1];
@@ -222,8 +238,8 @@ OAT.DSTransport.SQL = {
 	              // 2 - HTTP sparql link  
 	              // 3 - greenLink
 	              // 4 - greenLinkQuad
-		      if (fkey[j])
-		        cols[j] = {value:cols[j], valueType:3, colName:colNames[j]};
+		      if (fkey[j]!=0)
+		        cols[j] = {value:cols[j], valueType:3, colName:colNames[j], key_type:fkey[j]};
 		    }
 		  }
 

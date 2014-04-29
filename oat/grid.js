@@ -704,7 +704,7 @@ OAT.GridRowCell = function(params_,number,row) {
 	  OAT.Dom.append([self.html,self.value]);
           if (typeof(self.options.valueHandle)!="undefined")
             this.value.onclick = self.options.valueHandle;
-	  this.value.setAttribute("id",escape(self.options.colName)+":"+escape(self.options.value));
+	  this.value.setAttribute("id",self.options.key_type+":"+escape(self.options.colName)+":"+escape(self.options.value));
 	  this.value.setAttribute("class","linkInt");
 
         } else if (self.options.valueType == 4) {//greenLinkQuad
