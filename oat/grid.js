@@ -188,10 +188,10 @@ OAT.Grid = function(element,optObj,allowHiding /* OBSOLETE! */) {
 	if (allowHiding) { self.options.allowHiding = true; }
 	
 	this.div = $(element);
-//	OAT.Dom.clear(self.div);
 	
-	this.init = function() {
-		if (self.options.allowHiding) { /* column hiding */
+	this._init = function() {
+		/* column hiding */
+		if (self.options.allowHiding) {
 			var hide = OAT.Dom.create("a");
 			hide.href = "#";
 			hide.innerHTML = "visible columns";
@@ -254,7 +254,7 @@ OAT.Grid = function(element,optObj,allowHiding /* OBSOLETE! */) {
 		OAT.Dom.clear(self.rowBlock);
 	}
 	
-	this.appendHeader = function(paramsObj,index) { /* append one header */
+	this.appendHeader = function(paramsObj,index) {
 		var i = (!index ? self.header.cells.length : index);
 		var cell = self.header.addCell(paramsObj,i);
 		for (var i=0;i<self.header.cells.length;i++) {
@@ -263,7 +263,18 @@ OAT.Grid = function(element,optObj,allowHiding /* OBSOLETE! */) {
 		return cell;
 	}
 	
-	this.ieFix = function() { /* xxx */
+	this.redraw = function() {
+		/* redo dom, odd & even */
+		for (var i=0;i<self.rows.length;i++) {
+			self.rowBlock.appendChild(self.rows[i].html);
+			var h = self.rows[i].html;
+			OAT.Dom.removeClass(h,"even");
+			OAT.Dom.removeClass(h,"odd");
+			OAT.Dom.addClass(self.rows[i].html,( i & 1 ? "odd" : "even" ));
+		}
+	}
+
+	this._ieFix = function() {
 		for (var i=0;i<self.header.cells.length;i++) {
 			var html = self.header.cells[i].html;
 			OAT.Dom.addClass(html,"hover");
@@ -273,7 +284,7 @@ OAT.Grid = function(element,optObj,allowHiding /* OBSOLETE! */) {
 		}
 	}
 
-	this.createHeader = function(paramsList) { /* add new header */
+	this.createHeader = function(paramsList) {
 		self.header.clear();
 		if (self.options.autoNumber) {
 			var cell = self.header.addCell({value:"&nbsp;#&nbsp;",align:OAT.GridData.ALIGN_CENTER,type:OAT.GridData.TYPE_NUMERIC,draggable:0,sortable:0});
@@ -283,10 +294,10 @@ OAT.Grid = function(element,optObj,allowHiding /* OBSOLETE! */) {
 		for (var i=0;i<paramsList.length;i++) {
 			self.appendHeader(paramsList[i]);
 		}
-		if (OAT.Browser.isIE) { self.ieFix(); }
-	} /* Grid::createHeader */
+		if (OAT.Browser.isIE) { self._ieFix(); }
+	}
 	
-	this.createRow = function(paramsList, index) { /* add new row */
+	this.createRow = function(paramsList, index) {
 		var number = (!index ? self.rows.length : index);
 		var row = new OAT.GridRow(self,number);
 		if (index == number || number == self.rows.length) { 
@@ -302,8 +313,16 @@ OAT.Grid = function(element,optObj,allowHiding /* OBSOLETE! */) {
 		for (var i=0;i<paramsList.length;i++) {	row.addCell(paramsList[i]);	}
 		self.rows.splice(number,0,row);
 		return row.html;
-	} /* Grid::createRow() */
+	}
 	
+	this.removeRow = function(index) {
+		var number = (arguments.length? arguments[0] : self.rows.length-1);
+		var row = self.rows.splice(number,1)[0];
+		/* clear rows cell objects & nodes */
+		row.clear();
+		OAT.Dom.unlink(row.html);
+	}
+
 	this.removeColumn = function(index) {
 		self.header.removeColumn(index);
 		for (var i=0;i<self.rows.length;i++) { self.rows[i].removeColumn(index); }
@@ -350,16 +369,8 @@ OAT.Grid = function(element,optObj,allowHiding /* OBSOLETE! */) {
 			case OAT.GridData.TYPE_AUTO: cmp = (testValue == parseFloat(testValue) ? numCmp : strCmp); break;
 		}
 		self.rows.sort(cmp);
-		
-		/* redo dom, odd & even */
-		for (var i=0;i<self.rows.length;i++) {
-			self.rowBlock.appendChild(self.rows[i].html);
-			var h = self.rows[i].html;
-			OAT.Dom.removeClass(h,"even");
-			OAT.Dom.removeClass(h,"odd");
-			OAT.Dom.addClass(self.rows[i].html,( i % 2 ? "even" : "odd" ));
+		self.redraw();
 		}
-	} /* Grid::sort() */
 
 	this.fromTable = function(something) {
 		/* backwards compatibility fix */
@@ -399,7 +410,7 @@ OAT.Grid = function(element,optObj,allowHiding /* OBSOLETE! */) {
 		return xhtml;
 	}
 	
-	self.init();
+	self._init();
 } /* Grid */
 
 OAT.GridHeader = function(grid) {
@@ -467,11 +478,9 @@ OAT.GridHeaderCell = function(grid,params_,number) {
 			self.value.style.width = "";
 			return;
 		}
-		if (!self.value.style.width || self.value.style.width == "auto") {
+
 			w -= parseInt(OAT.Style.get(self.value,"paddingLeft"));
 			w -= parseInt(OAT.Style.get(self.value,"paddingRight"));
-		}
-		
 		self.value.style.width = w + "px";
 	}
 	
@@ -528,12 +537,11 @@ OAT.GridHeaderCell = function(grid,params_,number) {
 			var pos = OAT.Event.position(event);
 			var dims_grid = OAT.Dom.getWH(self.grid.html);
 			var dims_container = OAT.Dom.getWH(self.container);
-			var dims_value = OAT.Dom.getWH(self.value);
 
 			OAT.GridData.resizing = self.grid;
 			OAT.GridData.index = self.number;
 			OAT.GridData.mouseX = pos[0];
-			OAT.GridData.w = dims_value[0]; /* total width to be changed */
+			OAT.GridData.w = dims_container[0]; /* total width to be changed */
 			var left1 = -2;
 			var left2 = dims_container[0];
 			if (OAT.Browser.isIE6 && !self.value.style.width) {
@@ -595,7 +603,7 @@ OAT.GridRow = function(grid,number) {
 
 	this.addCell = function(params,index) {
 		var i = (!index ? self.cells.length : index);
-		var cell = new OAT.GridRowCell(params,i);
+		var cell = new OAT.GridRowCell(params,i,this);
 		var tds = self.html.childNodes;
 		if (tds.length && i != tds.length) {
 			self.html.insertBefore(cell.html,tds[i]);
@@ -658,7 +666,7 @@ OAT.GridRow = function(grid,number) {
 				} /* all rows */
 			} /* below */
 		} /* if shift */
-		OAT.MSG.send(this,"GRID_ROWCLICK",this);
+		OAT.MSG.send(grid, "GRID_ROWCLICK", self);
 		self.selected ? self.deselect() : self.select();
 	}
 	
@@ -668,7 +676,7 @@ OAT.GridRow = function(grid,number) {
 	
 } /* GridRow */
 
-OAT.GridRowCell = function(params_,number) {
+OAT.GridRowCell = function(params_,number,row) {
 	var self = this;
 	
 	this.options = {
@@ -680,15 +688,14 @@ OAT.GridRowCell = function(params_,number) {
 	for (p in params) { self.options[p] = params[p]; }
 	
 	this.html = OAT.Dom.create("td");
-	this.container = OAT.Dom.create("div");
 	this.value = OAT.Dom.create("div",{overflow:"hidden"});
 	OAT.Dom.addClass(self.value,"row_value");
 	this.value.innerHTML = self.options.value;
 	this.html.setAttribute("title",self.options.value);
-	OAT.Dom.append([self.html,self.container],[self.container,self.value]);
+	OAT.Dom.append([self.html,self.value]);
 	
  	OAT.Event.attach(this.html, "click", function() {
- 		OAT.MSG.send(this,"GRID_CELLCLICK",this);
+ 		OAT.MSG.send(row.grid, "GRID_CELLCLICK", self);
  	});
 
 	switch (self.options.align) {
@@ -703,10 +710,9 @@ OAT.GridRowCell = function(params_,number) {
 			self.value.style.width = "";
 			return;
 		}
-		if (!self.value.style.width || self.value.style.width == "auto") {
+
 			w -= parseInt(OAT.Style.get(self.value,"paddingLeft"));
 			w -= parseInt(OAT.Style.get(self.value,"paddingRight"));
-		}
 		self.value.style.width = w + "px";
 	}
 	
