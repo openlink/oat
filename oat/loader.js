@@ -1259,10 +1259,6 @@ OAT.Dom = {
         }
     }
 }
-/**
-* @deprecated Use OAT.Style.set
-*/
-OAT.Dom.applyStyle = OAT.Style.set;	
 
 /**
  * @namespace Style helper
