@@ -25,8 +25,7 @@ OAT.Notify = function(parentDiv,optObj) {
 	this.cx = 0;
 	this.cy = 0;
 
-	
-	this.update = function() {
+	this._update = function() {
 		var scroll = OAT.Dom.getScroll();
 		var dims = OAT.Dom.getViewport();
 		with (self.container.style) {
@@ -35,7 +34,7 @@ OAT.Notify = function(parentDiv,optObj) {
 		}
 	}
 	
-	this.createContainer = function(width,height) {
+	this._createContainer = function(width,height) {
 		var pos = OAT.Dom.getLT(self.parentDiv);
 		var dim = OAT.Dom.getWH(self.parentDiv);
 
@@ -58,9 +57,9 @@ OAT.Notify = function(parentDiv,optObj) {
 
 		if (OAT.Browser.isIE6) { 
 			c.style.position = "absolute"; 
-			OAT.Event.attach(window,'resize',self.update); 
-			OAT.Event.attach(window,'scroll',self.update); 
-			self.update();
+			OAT.Event.attach(window,'resize',self._update); 
+			OAT.Event.attach(window,'scroll',self._update); 
+			self._update();
 		} 
 		} 
 
@@ -80,23 +79,48 @@ OAT.Notify = function(parentDiv,optObj) {
 		}
 		for (var p in optObj) { options[p] = optObj[p]; }
 		
-		if (!self.container) { self.createContainer(options.width,options.height); }
+		/* create container for all notifications if necessary */
+		if (!self.container) { self._createContainer(options.width,options.height); }
+
+		/* this notification's container */
+		var div = OAT.Dom.create("div",{width:options.width+"px",height:options.height+"px",cursor:"pointer",overflow:"hidden",marginBottom:"2px",padding:options.padding,backgroundColor:options.background,color:options.color});
 		
+		/* create the messages text box and style it */		
 		var c = $(content);
 		if (!c) { 
-			c = OAT.Dom.create("div");
-			c.innerHTML = content; 
+			c = OAT.Dom.create("div",{innerHTML:content}); 
 		}
-		if (options.style) { OAT.Style.apply(c,options.style); }
+		if (options.style) { OAT.Style.set(c,options.style); }
+		div.appendChild(c);
 
-		var div = OAT.Dom.create("div",{width:options.width+"px",height:options.height+"px",cursor:"pointer",overflow:"hidden",marginBottom:"2px",padding:options.padding,backgroundColor:options.background,color:options.color});
-		if (options.image) { /* image */
+		/* image or throbber */
+		if (options.image) {
 			var img = OAT.Dom.create("img",{cssFloat:"left",styleFloat:"left",marginRight:"2px"});
 			img.src = options.image;
 			div.appendChild(img); 
 		}
-		div.appendChild(c);
+
+		/* set initial opacity to zero */
 		OAT.Style.set(div,{opacity:0});
+
+		/* callbacks */
+		var start = function() {
+			self.container.appendChild(div);
+			if (options.delayIn) { 
+				aAppear.start(); 
+			} else { 
+				OAT.Style.set(div,{opacity:options.opacity}); 
+				afterAppear();
+			}
+		}
+
+		var end = function() {
+			aAppear.stop();
+		}
+
+		var afterRemove = function() {
+			OAT.Dom.unlink(div);
+		}
 
 		var afterAppear = function() {
 			if (!options.timeout) { return; }
@@ -105,14 +129,17 @@ OAT.Notify = function(parentDiv,optObj) {
 			},options.timeout);
 		}
 		
+		/* appear/disappear/when notification is removed animations */
 		var aAppear = new OAT.AnimationOpacity(div,{opacity:options.opacity,speed:0.1,delay:options.delayIn});
 		var aDisappear = new OAT.AnimationOpacity(div,{opacity:0,speed:0.1,delay:options.delayOut});
 		var aRemove = new OAT.AnimationSize(div,{height:0,speed:10,delay:options.delayOut});
-		OAT.MSG.attach(aRemove.animation,"ANIMATION_STOP",function(){	OAT.Dom.unlink(div); });
+
+		/* listen for messages triggering correct animation sequencing */
+		OAT.MSG.attach(aRemove.animation, "ANIMATION_STOP", afterRemove);
 		OAT.MSG.attach(aAppear.animation,"ANIMATION_STOP",afterAppear);
 		OAT.MSG.attach(aDisappear.animation,"ANIMATION_STOP",aRemove.start);
 		
-		
+		/* attach removal on click */
 		OAT.Event.attach(div,"click",function() {
 			if (options.delayOut) {
 				aRemove.start();
@@ -121,21 +148,7 @@ OAT.Notify = function(parentDiv,optObj) {
 			}
 		});
 		
-		var start = function() {
-			self.container.appendChild(div);
-			if (options.delayIn) { 
-				aAppear.start(); 
-			} else { 
-				OAT.Style.set(div,{opacity:options.opacity});
-				afterAppear();
-			}
-		}
-		var end = function() {
-			aAppear.stop();
-		}
-		
+		/* and show notification */
 		start();
 	}
-
-		
 }
