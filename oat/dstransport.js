@@ -192,15 +192,15 @@ OAT.DSTransport.SQL = {
 	          options._quadData = this.quadData;
 	          return [outCols, outData];
 
-	        } else if (keys!=null) {
+	        } else if (!this._isSparql && this.keys!=null && this.keys.length > 0) {
 
 	          var fkey=[];
 		  var colNames = fetchedData[0];
 		  for(var i=0; i < colNames.length; i++) {
 		    fkey[i]=false;
 		    var colname = colNames[i];
-		    for(var j=0; j<keys.length; j++)
-		      if (colname == keys[j].pcol)
+		    for(var j=0; j<this.keys.length; j++)
+		      if (colname == this.keys[j].pcol)
 		      {
 		        fkey[i]=true;
 		        break;  
