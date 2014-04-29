@@ -707,12 +707,12 @@ OAT.GridRowCell = function(params_,number,row) {
 	  r.target = "_blank";
 	  r.href = self.options.value;
 	  if (self.options.valueType == 2) { //SPARQL
-             r.href = window.location.origin+
-                "/sparql?default-graph-uri=&query=describe+<"+self.options.value+
-                 "> LIMIT 100 &should-sponge=&format=text/html&timeout=0&debug=on";
-	     //r.href = window.location.origin+
-	     //   "/isparql/view/?query=describe+<"+self.options.value+
-	     //   "> &endpoint=/sparql&resultview=triples&maxrows=50&timeout=&view=1&amode=0";
+//             r.href = window.location.origin+
+//                "/sparql?default-graph-uri=&query=describe+<"+self.options.value+
+//                 "> LIMIT 100 &should-sponge=&format=text/html&timeout=0&debug=on";
+               r.href = self.options.value;
+               if (typeof(self.options.valueHandle)!="undefined")
+                 r.onclick = self.options.valueHandle;
 	  }
 
 	  r.innerHTML = self.options.value;
