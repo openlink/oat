@@ -1389,6 +1389,20 @@ OAT.FormObject = {
 		OAT.FormObject.abstractParent(self,x,y);
 	},
 	
+	decodeImage:function(data) {
+		var decoded = OAT.Crypto.base64d(data);
+		var mime = "image/";
+		switch (decoded.charAt(1)) {
+			case "I": mime += "gif"; break;
+			case "P": mime += "png"; break;
+			case "M": mime += "bmp"; break;
+			default: mime += "jpeg"; break;
+			
+		}
+		var src="data:"+mime+";base64,"+data;
+		return src;
+	},
+	
 	image:function(x,y,designMode) {
 		var self = this;
 		OAT.FormObject.init(self);
@@ -1424,7 +1438,7 @@ OAT.FormObject = {
 				return; 
 			}
 			if (OAT.Browser.isIE) { return; } /* IE doesn't support data: URLs */
-			self.elm.src = OAT.Dom.decodeImage(value);
+			self.elm.src = OAT.FormObject.decodeImage(value);
 		}
 		self.bindRecordCallback = function(dataRow,currentIndex) {
 			if (!dataRow) { return; }
@@ -2096,15 +2110,9 @@ OAT.FormObject = {
 		}
 
 		self.openWindow = function(x,y,event) {
-			OAT.Dom.show(self.window.div);
+			self.window.open();
 			var pos = OAT.Event.position(event);
-			self.window.anchorTo(pos[0],pos[1]);
-			self.window.div.style.left = x+"px";
-			self.window.div.style.top = y+"px";
-		}
-		
-		self.closeWindow = function() {
-			OAT.Dom.hide(self.window.div);
+			self.window.moveTo(pos[0],pos[1]);
 		}
 		
 		self.clickRef = function(dsIndex,index) {
@@ -2193,10 +2201,9 @@ OAT.FormObject = {
 			self.form = false;
 			if (self.properties[0].value) { self.form = self.properties[0].value; }
 
-			self.window = new OAT.Window({close:1,max:0,min:0,width:0,height:0,x:0,y:0,title:"Lookup window",resize:0},OAT.Window.TYPE_RECT);
-			document.body.appendChild(self.window.div);
-			self.window.onclose = self.closeWindow;
-			self.closeWindow(); 
+			self.window = new OAT.Win({buttons:"c",title:"Lookup window",type:OAT.Win.Rect});
+			document.body.appendChild(self.window.dom.container);
+			self.window.close();
 		}
 		
 		self.bindPageCallback = function(dataRows,currentPageIndex,dsIndex) {
