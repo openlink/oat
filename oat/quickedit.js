@@ -7,67 +7,88 @@
  *
  *  See LICENSE file for details.
  */
-/*
-	OAT.QuickEdit.assign(something,type,options)
-	OAT.QuickEdit.STRING
-	OAT.QuickEdit.SELECT
-*/
 
+OAT.QuickEdit = function(elm,optObj) {
+	var self = this;
 
-OAT.QuickEdit = {
-	STRING:1,
-	SELECT:2,
+	this.options = {
+		type:false,
+		options:false
+	};
 
-	assign:function(something,type,options) {
-		var elm = $(something);
-		elm._QuickEdit_edit_type = type;
-		if (options) { elm._QuickEdit_edit_options = options; }
-		var ref = function() {
-			OAT.QuickEdit.edit(elm);
-		}
-		OAT.Event.attach(elm,"click",ref);
-	},
+	this.state = 0;
+	this.elm = $(elm);
+	this.newelm = false;
+	this.instant = false;
+
+	for (var p in optObj) { this.options[p] = optObj[p]; }
+
+	this._create = function() {
+		var content = self.elm.innerHTML;
 	
-	edit:function(elm) {
-		switch (elm._QuickEdit_edit_type) {
+		switch (self.options.type) {
+			/* plain text input */
 			case OAT.QuickEdit.STRING:
-				/* create inputbox */
-				var newelm = OAT.Dom.create("input");
-				newelm.setAttribute("type","text");
-				var content = elm.innerHTML;
-				newelm.setAttribute("size",content.length+1);
-				newelm.value = content;
+				self.newelm = OAT.Dom.create("input",{type:"text"});
+				self.newelm.setAttribute("size",content.length+1);
+				self.newelm.value = content;
 			break;
+
+			/* a select box */
 			case OAT.QuickEdit.SELECT:
-				/* create select */
-				var newelm = OAT.Dom.create("select");
-				var options = [];
-				if (elm._QuickEdit_edit_options) { options = elm._QuickEdit_edit_options; }
-				var content = elm.innerHTML;
-				var index = -1;
-				for (var i=0;i<options.length;i++) {
-					OAT.Dom.option(options[i],options[i],newelm);
-					if (content == options[i]) { index = i; }
+				var ind = -1;
+				self.newelm = OAT.Dom.create("select");
+
+				/* push options in */
+				for (var i=0;i<self.options.options.length;i++) {
+					var opt = self.options.options[i];
+					var newopt = OAT.Dom.create("option",{name:opt,value:opt,innerHTML:opt});
+					OAT.Dom.append([self.newelm,newopt]);
+					if (content == opt) { ind = i };
 				}
-				if (index == -1) {
-					OAT.Dom.option(content,content,newelm);
-					newelm.selectedIndex = i;
-				} else { newelm.selectedIndex = index;	}
+				
+				/* new content appeared, add it as option */
+				if (ind == -1) {
+					var newopt = OAT.Dom.create("option",{name:content,value:content,innerHTML:content});
+					OAT.Dom.append([self.newelm,newopt]);
+					self.newelm.selectedIndex = i;
+				/* previous content matches one of the options, select it */
+				} else {
+					self.newelm.selectedIndex = ind;
+				}
 			break;
-		} /* switch */
-		
-		/* insert into hierarchy */
-		elm.parentNode.replaceChild(newelm,elm);
-		var callback = function() {
-			OAT.QuickEdit.revert(newelm,elm);
 		}
-		OAT.Instant.assign(newelm,callback);
-		newelm._Instant_show();
-		newelm.focus();
-	},
-	
-	revert:function(elm,oldelm) {
-		oldelm.innerHTML = elm.value;
-		elm.parentNode.replaceChild(oldelm,elm);
+	}
+		
+	this._toggle = function() {
+		/* input hidden, show and focus it */
+		if (self.state == 0) {
+			self.elm.parentNode.replaceChild(self.newelm,self.elm);
+			self.instant.show();
+			self.newelm.focus();
+			self.state = 1;
+		/* input shown, copy option value and hide */
+		} else {
+			self.elm.innerHTML = self.newelm.value;
+			self.newelm.parentNode.replaceChild(self.elm,self.newelm);
+			self.state = 0;
 	}
 }
+
+	this._init = function() {
+		self._create();
+
+		self.instant = new OAT.Instant(self.newelm);
+		
+		OAT.Event.attach(self.elm,"click",self._toggle);
+		OAT.MSG.attach(self.instant,"INSTANT_HIDE",self._toggle);
+	}
+
+	this._init();
+}
+
+OAT.QuickEdit.STRING = 1;
+
+OAT.QuickEdit.SELECT = 2;
+
+
