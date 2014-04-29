@@ -11,88 +11,94 @@
 	f = new OAT.FishEye(div,optObj);
 	var i = f.addImage(url);
 	
-	CSS: .fisheye
+	CSS: .oat_fisheye
 */
 
 OAT.FishEye = function(div,optObj) {
-	var options = {
-		smallSize:48,
+	this.options = {
+		smallSize: 32,
 		bigSize:64,
-		limit:200,
-		spacing:5
+		limit: 2
 	}
-	for (var p in optObj) { options[p] = optObj[p]; }
-	var images = [];
+	
+	for (var p in optObj) { this.options[p] = optObj[p]; }
+	
+	this.images = [];
+	this.sizes = [];
+	this.div = $(div);
+	OAT.Dom.addClass(this.div, "oat_fisheye");
+	
 	var self = this;
-	self.div = $(div);
-	OAT.Dom.addClass(self.div,"fisheye");
+	OAT.Event.attach(this.div, "mouseover", function(e) { self._event(e); });
+	OAT.Event.attach(this.div, "mousemove", function(e) { self._event(e); });
+	OAT.Event.attach(this.div, "mouseout", function(e) { self._reset(); });
+}
 	
-	self.addImage = function(url) {
-		var i = OAT.Dom.create("img",{position:"absolute"});
-		i.setAttribute("src",url);
-		images.push(i);
-		self.div.appendChild(i);
-		recount(-1);
-		return i;
+OAT.FishEye.prototype.addImage = function(url) {
+	var i = OAT.Dom.create("img");
+	i.src = url;
+	this.images.push(i);
+	this.sizes.push(this.options.smallSize);
+	this.div.appendChild(i);
+	this._reset();
+	return i;
+}
+	
+OAT.FishEye.prototype._getCoef = function(dist) {
+	var M = this.options.bigSize  / this.options.smallSize;
+	return Math.max(1, M - dist/this.options.limit);
+}
+	
+OAT.FishEye.prototype._reset = function() {
+	for (var i=0;i<this.sizes.length;i++) { this.sizes[i] = this.options.smallSize; }
+	this._redraw();
+}
+
+OAT.FishEye.prototype._redraw = function() {
+	for (var i=0;i<this.images.length;i++) {
+		var size = this.sizes[i];
+		this.images[i].style.width = size+"px";
+		this.images[i].style.height = size+"px";
 	}
-	
-	var sizeFunction = function(dist) {
-		if (dist >= options.limit) { return options.smallSize; }
-//		return Math.round(options.bigSize + dist*(options.smallSize-options.bigSize)/options.limit);
-		return Math.round(Math.cos((dist*Math.PI)/(options.limit*2))*(options.bigSize-options.smallSize)+options.smallSize);
-	}
-	
-	
-	var recount = function(event_x) {
-		var sizes = [];
-		var dists = [];
-/*		if (event_x != -1 && self.lock) { return; }
-		if (event_x != -1) {
-			self.lock = 1;
-			setTimeout(function(){self.lock=0;},200);
-		} */
-		for (var i=0;i<images.length;i++) {
-			var img = images[i];
-			if (event_x == -1) {
-				var size = options.smallSize;
-			} else {
-				var idims = OAT.Dom.getWH(img);
-				var ipos = OAT.Dom.position(img);
-				var center = Math.round(ipos[0] + idims[0]/2);
-				var dist = Math.abs(event_x - center);
-				dists.push(dist);
-				var size = sizeFunction(dist);
-			}
-			sizes.push(size);
-		}
-		var total = options.spacing;
-		for (var i=0;i<images.length;i++) {
-			var img = images[i];
-			var size = sizes[i];
-			img.style.width = size + "px";
-			img.style.height = size + "px";
-			img.style.left = total+"px";
-			total += size;
-		}
-		self.div.style.width = (total+options.spacing)+"px";
+}
 		
-	}
-	self.recount = recount;
-	
-	var move = function(event) {
-		var pos = OAT.Event.position(event);
-		recount(pos[0]);
-	}
-	
-	var over = function(event) {
-		move(event);
-	}
-	
-	var out = function(event) {
-		recount(-1);
+OAT.FishEye.prototype._recount = function(event_x) {
+	var left = 0;
+	var index = -1;
+	var ratio = 0;
+	for (var i=0;i<this.sizes.length;i++) {
+		var s = this.sizes[i];
+		if (left <= event_x && left+s > event_x) { 
+			index = i; 
+			ratio = (event_x-left) / s;
+		}
+		left += s;
 	}
 	
-	OAT.Event.attach(self.div,"mouseover",over);
-	OAT.Event.attach(self.div,"mouseout",out);
-	OAT.Event.attach(self.div,"mousemove",move);
+	for (var i=0;i<this.sizes.length;i++) {
+		var s = this.sizes[i];
+		var dist = 0;
+		if (i < index) {
+			dist += 0.5;
+			for (var j=i+1; j<index; j++) { dist++; }
+			dist += ratio;
+		} else if (i == index) {
+			dist = Math.abs(ratio - 0.5);
+		} else {
+			dist += 1-ratio;
+			for (var j=index+1; j<i; j++) { dist++; }
+			dist += 0.5;
+		}
+		var coef = this._getCoef(dist);
+		s = Math.round(this.options.smallSize * coef);
+		this.sizes[i] = s;
+	}
+	
+	this._redraw();
+}
+	
+OAT.FishEye.prototype._event = function(event) {
+	var pos = OAT.Event.position(event)[0];
+	var p2 = OAT.Dom.position(this.div)[0];
+	this._recount(pos-p2);
 }
