@@ -29,7 +29,6 @@ OAT.DSTransport.SQL = {
 		if (options.query.indexOf("!~!",0)==0) {
 		  OAT.Xmla.query = options.query.substr(3);
 		  this._isQuadData = true;
-		  _isQuadData = true;
 		} else {
 		  OAT.Xmla.query = options.query;
 		}
@@ -38,47 +37,52 @@ OAT.DSTransport.SQL = {
 
 		var l = (options.cursortype == 1 ? options.limit : 0);
 		var tblLst = null;
+	        var self = this;
 		
 		if (conn.options.useDereference)
 		  tblLst = this.parseSQL(OAT.Xmla.query);
 		
 		if (tblLst != null && tblLst.length==1) {
 	          var tbl = tblLst[0].split(".");
-	          _cat = (tbl.length>2?tbl[tbl.length-3]:""); 
-                  _sch = (tbl.length>1?tbl[tbl.length-2]:""); 
-                  _tbl = tbl[tbl.length-1];
-                  keys = [];
-	        
+	          this._cat = (tbl.length>2?tbl[tbl.length-3]:""); 
+                  this._sch = (tbl.length>1?tbl[tbl.length-2]:""); 
+                  this._tbl = tbl[tbl.length-1];
+                  this.keys = [];
+
 	          var cBack = function(rs) {
-	            if (_cat==="" || _sch==="") {
-	              var rows = OAT.Xmla.tables2((_cat===""?"%":_cat), 
-	                                          (_sch===""?"%":_sch),
-	                                           _tbl, null, null, true);
+	            if (self._cat==="" || self._sch==="") {
+	              var rows = OAT.Xmla.tables2((self._cat===""?"%":self._cat), 
+	                                          (self._sch===""?"%":self._sch),
+	                                           self._tbl, null, null, true);
 	              if (rows.length > 0) {
-	                _cat = rows[0].catalog;
-	                _sch = rows[0].schema;
+	                self._cat = rows[0].catalog;
+	                self._sch = rows[0].schema;
 	              }  
 	            }
 
-	            var data = OAT.Xmla.primaryKeys((_cat===""?"%":_cat),(_sch===""?"%":_sch),_tbl, null, null, true);
+	            var data = OAT.Xmla.primaryKeys((self._cat===""?"%":self._cat),
+	                                            (self._sch===""?"%":self._sch),
+	                                            self._tbl, null, null, true);
                     for(var i=0; i<data.length; i++)
                       {
-                        keys.push({
+                        self.keys.push({
                           ind: "p",
-                          cat: _cat,
-                          sch: _sch,
-                         ptbl: _tbl,
+                          cat: self._cat,
+                          sch: self._sch,
+                         ptbl: self._tbl,
                          pcol: data[i],
                          ftbl: "",
                          fcol: "",
                          fseq: i });
                       }
 
-                    data = OAT.Xmla.foreignKeys((_cat===""?"%":_cat),(_sch===""?"%":_sch),_tbl, null, null, true);
+                    data = OAT.Xmla.foreignKeys((self._cat===""?"%":self._cat),
+                                                (self._sch===""?"%":self._sch),
+                                                self._tbl, null, null, true);
                     for(var i=0; i<data.length; i++)
                       {
                         row = data[i];
-                        keys.push({
+                        self.keys.push({
                           ind: "f",
                           cat: row[0].catalog,
                           sch: row[0].schema,
@@ -89,11 +93,13 @@ OAT.DSTransport.SQL = {
                          fseq: i });
                       }
 
-                    data = OAT.Xmla.referenceKeys((_cat===""?"%":_cat),(_sch===""?"%":_sch),_tbl, null, null, true);
+                    data = OAT.Xmla.referenceKeys((self._cat===""?"%":self._cat),
+                                                  (self._sch===""?"%":self._sch),
+                                                  self._tbl, null, null, true);
                     for(var i=0; i<data.length; i++)
                       {
                         row = data[i];
-                        keys.push({
+                        self.keys.push({
                           ind: "r",
                           cat: row[0].catalog,
                           sch: row[0].schema,
@@ -103,10 +109,10 @@ OAT.DSTransport.SQL = {
                          fcol: row[0].column,
                          fseq: i });
                       }
-                    options._keys = keys;
-                    options._cat = _cat;
-                    options._sch = _sch;
-                    options._tbl = _tbl;
+                    options._keys = self.keys;
+                    options._cat = self._cat;
+                    options._sch = self._sch;
+                    options._tbl = self._tbl;
                     callback(rs);
 	          };
 		
