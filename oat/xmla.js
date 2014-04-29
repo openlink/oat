@@ -30,6 +30,113 @@
 	
 */
 
+OAT.XMLAErrorCode = {
+    INVALID_PARMS:0
+};
+
+OAT.XMLAAuthType = {
+    ENVELOPE:0,
+    BROWSER:1
+}
+
+OAT.XMLACatalog = {
+    name: "",
+    o: [] // ["QUAL" ["TABLE0", "TABLE1", "TABLE..n"]]
+}
+
+OAT.XMLAService = function (endpoint,opts_o) {
+    var self=this;
+
+    var o = {
+	endpoint: "/XMLA",
+	connect_strs: false,
+	auto_discover: false
+    };
+
+    for (p in opts_o) {
+	o[p] = opts_o[p];
+    }
+
+    this.getConnection = function (connect_s_i, opts_o) {
+	var o = {
+	    success_cb: false,
+	    fail_cb: false,
+	    get_catalogs: false
+	};
+	
+	for (p in opts_o) {
+	    o[p] = opts_o[p];
+	}
+
+	if (!connect_strs || connect_s_i > connect_strs.length-1 || connect_s_i < 0)
+	    throw (new Error ("Invalid connect string index"));
+
+	var conn = new (OAT.XMLAConnection (o));
+    }
+    
+    this.getConnectString = function (c_s_i) {
+	if (!connect_strs || connect_s_i > connect_strs.length-1 || connect_s_i < 0)
+	    throw (new Error ("Invalid connect string index"));
+
+	return self.connect_strs[c_s_i];
+    }
+
+    this.getConnectStrings = function () {
+	return connect_strs;
+    }
+
+    this.discover = function (o) {
+	var opts_o = {
+	    success_cb: false,
+	    fail_cb: false
+	}
+
+	for (p in o) {
+	    opts_o[p] = o[p];
+	}
+
+	var cb = function(data) {
+	    var result = OAT.Xmla.discover_array(data);
+	    self.o.connect_strs = result;
+	}
+	
+	var data = '<Discover  env:encodingStyle="http://www.w3.org/2003/05/soap-encoding"'+
+	    ' xmlns="urn:schemas-microsoft-com:xml-analysis" >'+
+	    '<RequestType>DISCOVER_DATASOURCES</RequestType>'+
+	    '<Restrictions xsi:nil="1" ></Restrictions>'+
+	    '<Properties></Properties></Discover>';
+	
+	var ajax_opts = {
+	    headers:OAT.Xmla.discoverHeader,
+	    type:OAT.AJAX.TYPE_XML,
+	    onerror: fail_cb
+	}
+
+	OAT.Soap.command(OAT.Xmla.connection.options.endpoint, data, cBack, ajax_opts);
+	OAT.MSG.send (self,"OAT_XMLA_DS_DISCOVERY",self.o.connect_strs);
+    }
+    
+    if (this.o.auto_discover) {
+    }
+}
+
+OAT.XMLAConnection = function (connect_s) {
+    var self=this;
+    var o = {
+	service: "",
+	connectStrings: [],
+	credentials: {user: "",pwd:""},
+	cache: []
+    }
+    this.prepareStmt = function () {}
+}
+
+/*OAT.XMLAResult = function () {
+}
+
+OAT.XMLAStmt = function () {
+}*/
+
 OAT.Xmla = {
     connection:false,
     executeHeader:{'Content-Type':'application/soap+xml; action="urn:schemas-microsoft-com:xml-analysis:Execute"'},
@@ -172,7 +279,51 @@ OAT.Xmla = {
 	OAT.Soap.command(OAT.Xmla.connection.options.endpoint, data, cBack, o);
     },
     
-    columns:function(catalog, schema, table, callback, ajaxOpts) {
+    tables2:function(catalog,schema, table, callback, ajaxOpts, sync) {
+	var o = {}
+	if (ajaxOpts) 
+	    for (p in ajaxOpts) { o[p] = ajaxOpts[p]; }
+
+	var cBack = function(data) {
+	    var result = OAT.Xmla.tables2_array(data);
+	    callback(catalog,result);
+	}
+	
+	var data = '<Discover env:encodingStyle="http://www.w3.org/2003/05/soap-encoding"'+
+	    ' xmlns="urn:schemas-microsoft-com:xml-analysis" >'+
+	    '<RequestType xsi:type="xsd:string">DBSCHEMA_TABLES</RequestType>'+
+	    '<Restrictions><RestrictionList>';
+	if (catalog != "")
+	    data += '<TABLE_CATALOG>'+catalog+'</TABLE_CATALOG>';
+	if (schema != "")
+	    data += '<TABLE_SCHEMA>'+schema+'</TABLE_SCHEMA>';
+	if (table != "")
+	    data += '<TABLE_NAME>'+table+'</TABLE_NAME>';
+
+	data += '</RestrictionList></Restrictions>'+
+	    '<Properties><PropertyList>'+
+	    '<DataSourceInfo>'+OAT.Xmla.connection.options.dsn+'</DataSourceInfo>';
+	if (OAT.Xmla.connection.options.user) {
+	    data += '<UserName>'+OAT.Xmla.connection.options.user+'</UserName>'+
+		'<Password>'+OAT.Xmla.connection.options.password+'</Password>';
+	}
+	data +=	'</PropertyList></Properties></Discover>';
+	
+	o.headers = OAT.Xmla.discoverHeader;
+	o.type    = OAT.AJAX.TYPE_XML;
+
+	if (sync) {
+	  var data = OAT.Soap.command_sync(OAT.Xmla.connection.options.endpoint, data, o);
+	  if (data!=null)
+	    return OAT.Xmla.tables2_array(data);
+	  else
+	    return null;
+	} else {
+	  OAT.Soap.command(OAT.Xmla.connection.options.endpoint, data, cBack, o);
+	}
+    },
+    
+    columns:function(catalog, schema, table, callback, ajaxOpts, sync) {
 	var o = {};
 	if (ajaxOpts) 
 	    for (p in ajaxOpts) { o[p] = ajaxOpts[p]; }
@@ -200,7 +351,15 @@ OAT.Xmla = {
 	o.headers = OAT.Xmla.discoverHeader;
 	o.type    = OAT.AJAX.TYPE_XML;
 
+	if (sync) {
+	  var data = OAT.Soap.command_sync(OAT.Xmla.connection.options.endpoint, data, o);
+	  if (data!=null)
+	    return OAT.Xmla.columns_array(data);
+	  else
+	    return null;
+	} else {
 	OAT.Soap.command(OAT.Xmla.connection.options.endpoint, data, cBack, o);
+	}
     },
     
     qualifiers:function(callback,ajaxOpts) {
@@ -253,7 +412,7 @@ OAT.Xmla = {
 	OAT.Soap.command(OAT.Xmla.connection.options.endpoint, data, cBack, o);
     },
     
-    primaryKeys:function(catalog,schema,table,callback,ajaxOpts) {
+    primaryKeys:function(catalog,schema,table,callback,ajaxOpts,sync) {
 	var o = {};
 	if (ajaxOpts) 
 	    for (p in ajaxOpts) { o[p] = ajaxOpts[p]; }
@@ -283,10 +442,18 @@ OAT.Xmla = {
 	o.headers = OAT.Xmla.discoverHeader;
 	o.type    = OAT.AJAX.TYPE_XML;
 
+	if (sync) {
+	  var data = OAT.Soap.command_sync(OAT.Xmla.connection.options.endpoint, data, o);
+	  if (data!=null)
+	    return OAT.Xmla.primaryKeys_array(catalog,schema,table,data);
+	  else
+	    return null;
+	} else {
 	OAT.Soap.command(OAT.Xmla.connection.options.endpoint, data, cBack, o);
+	}
     },
     
-    foreignKeys:function(catalog,schema,table,callback,ajaxOpts) {
+    foreignKeys:function(catalog,schema,table,callback,ajaxOpts,sync) {
 	var o = {};
 	if (ajaxOpts) 
 	    for (p in ajaxOpts) { o[p] = ajaxOpts[p]; }
@@ -317,7 +484,57 @@ OAT.Xmla = {
 	o.headers = OAT.Xmla.discoverHeader;
 	o.type    = OAT.AJAX.TYPE_XML;
 
+	if (sync) {
+	  var data = OAT.Soap.command_sync(OAT.Xmla.connection.options.endpoint, data, o);
+	  if (data!=null)
+	    return OAT.Xmla.foreignKeys_array(catalog,schema,table,data);
+	  else
+	    return null;
+	} else {
 	OAT.Soap.command(OAT.Xmla.connection.options.endpoint, data, cBack, o);
+	}
+    },
+    
+    referenceKeys:function(catalog,schema,table,callback,ajaxOpts,sync) {
+	var o = {};
+	if (ajaxOpts) 
+	    for (p in ajaxOpts) { o[p] = ajaxOpts[p]; }
+
+	var cBack = function(data) {
+	    var result = OAT.Xmla.foreignKeys_array(catalog,schema,table,data);
+	    callback(result);
+	}
+	
+	var data = '<Discover  env:encodingStyle="http://www.w3.org/2003/05/soap-encoding"'+
+	    ' xmlns="urn:schemas-microsoft-com:xml-analysis" >'+
+	    '<RequestType>DBSCHEMA_FOREIGN_KEYS</RequestType>'+
+	    '<Restrictions><RestrictionList>';
+	if (catalog != "") {
+	    data += '<FK_TABLE_CATALOG>'+catalog+'</FK_TABLE_CATALOG>';
+	}
+	if (schema != "") {
+	    data += '<FK_TABLE_SCHEMA>'+schema+'</FK_TABLE_SCHEMA>';
+	}
+	data += '<FK_TABLE_NAME>'+table+'</FK_TABLE_NAME>';
+	data += '</RestrictionList></Restrictions>'+ 
+	    '<Properties><PropertyList>'+
+	    '<DataSourceInfo>'+OAT.Xmla.connection.options.dsn+'</DataSourceInfo>'+
+	    '<UserName>'+OAT.Xmla.connection.options.user+'</UserName>'+
+	    '<Password>'+OAT.Xmla.connection.options.password+'</Password>'+
+	    '</PropertyList></Properties></Discover>';
+	
+	o.headers = OAT.Xmla.discoverHeader;
+	o.type    = OAT.AJAX.TYPE_XML;
+
+	if (sync) {
+	  var data = OAT.Soap.command_sync(OAT.Xmla.connection.options.endpoint, data, o);
+	  if (data!=null)
+	    return OAT.Xmla.foreignKeys_array(catalog,schema,table,data);
+	  else
+	    return null;
+	} else {
+	  OAT.Soap.command(OAT.Xmla.connection.options.endpoint, data, cBack, o);
+	}
     },
     
     /* --------------------------- */	
@@ -376,11 +593,34 @@ OAT.Xmla = {
 	return [names,schema_names];
     },
     
+    tables2_array:function(data) {
+	/* list of tables */
+	var names=[];
+	var parsed = OAT.Xmla.parseResponse(data);
+	if (!parsed[1].length) return [names,schema_names];
+	var nameIndex = parsed[0].indexOf("TABLE_NAME");
+	var schemaIndex = parsed[0].indexOf("TABLE_SCHEMA");
+	var catalogIndex = parsed[0].indexOf("TABLE_CATALOG");
+	var typeIndex = parsed[0].indexOf("TABLE_TYPE");
+	for (var i=0;i<parsed[1].length;i++) {
+	    var tmpobj = {};
+	    tmpobj.table = parsed[1][i][nameIndex];
+	    tmpobj.schema = parsed[1][i][schemaIndex];
+	    tmpobj.catalog = parsed[1][i][catalogIndex];
+	    var type = parsed[1][i][typeIndex];
+	    if (type == "TABLE" || type == "VIEW") { 
+		names.push(tmpobj);
+	    }
+	}
+	return names;
+    },
+    
     columns_array:function(data) {
 	/* list of columns */
 	var columns=[];
 	var parsed = OAT.Xmla.parseResponse(data);
 	if (!parsed[1].length) { return columns; }
+	var flagIndex = parsed[0].indexOf("COLUMN_FLAGS");
 	var nameIndex = parsed[0].indexOf("COLUMN_NAME");
 	var defIndex = parsed[0].indexOf("COLUMN_DEFAULT");
 	var typeIndex = parsed[0].indexOf("DATA_TYPE");
@@ -389,6 +629,7 @@ OAT.Xmla = {
 	for (var i=0;i<parsed[1].length;i++) {
 	    var tmpobj = {};
 	    tmpobj.name = parsed[1][i][nameIndex];
+	    tmpobj.flags = parsed[1][i][flagIndex];
 	    tmpobj.def = parsed[1][i][defIndex];
 	    tmpobj.type = parsed[1][i][typeIndex];
 	    tmpobj.nn = parsed[1][i][nnIndex];
