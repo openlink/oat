@@ -129,6 +129,7 @@ OAT.FormObject = {
 			fo.empty = (node.getAttribute("empty")=="1" ? 1 : 0);
 			
 			if (fo.userSet) { fo.setValue(node.getAttribute("value")); }
+
 			/* css */
 			tmp = node.getElementsByTagName("style")[0];
 
@@ -192,6 +193,7 @@ OAT.FormObject = {
 					}
 				}
 			}
+
 			/* datasources */
 			tmp = node.getElementsByTagName("datasource");
 			for (var i=0;i<tmp.length;i++) {
@@ -762,7 +764,7 @@ OAT.FormObject = {
 		
 		OAT.FormObject.abstractParent(self,x,y);
 	},
-	
+
 	map:function(x,y,designMode) {
 		var self = this;
 		OAT.FormObject.init(self);

@@ -389,14 +389,14 @@ OAT.WebDav = {
 		OAT.Dom.append([ctrow_conntype,ctd_conntype_label,ctd_conntype]);
 		OAT.Dom.append([ctd_conntype,conntype]);
 
-		var cdialog = new OAT.Dialog("Connection Setup",connectDiv,{width:400,modal:1,buttons:1});
+		var cdialog = new OAT.Dialog("WebDAV Login",connectDiv,{width:400,modal:1,buttons:1});
 		OAT.MSG.attach(cdialog, "DIALOG_OK", function() {
-			with(OAT.WebDav.options) {
-				user = $v("dav_user");
-				pass = $v("dav_pass");
-				isDav = ($v("dav_login_put_type") == "1");
-				path = pathHome + user + "/";
-			}
+		    with(OAT.WebDav.options) {
+			user = $v("dav_user");
+			pass = $v("dav_pass");
+			isDav = ($v("dav_login_put_type") == "1");
+			path = pathHome + user + "/";
+		    }
 		});
 
 		this.connectDialog = cdialog;
@@ -1035,11 +1035,11 @@ OAT.WebDav = {
 	},
 
 	updateOptions:function(o) {
-		if (!o.headers.Authorization)	{
-//			o.auth = OAT.AJAX.AUTH_BASIC;
-			o.user = OAT.WebDav.options.user;
-			o.password = OAT.WebDav.options.pass;
-		}
+	    if (!o.headers.Authorization) {
+		o.auth = OAT.AJAX.AUTH_DEFAULT;
+		o.user = OAT.WebDav.options.user;
+		o.password = OAT.WebDav.options.pass;
+	    }
 	},
 
 	hiddenCheck:function(name) {
