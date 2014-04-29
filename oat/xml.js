@@ -44,7 +44,7 @@ OAT.Xml = {
 		} else if (window.ActiveXObject) {
 			return elem.text;
 		} else {
-			alert("Ooops - no XML parser available");
+		        alert("OAT.Xml.textValue:\nNo XML parser available");
 			return false;
 		}
 	},
@@ -65,7 +65,7 @@ OAT.Xml = {
 			try {
 				var xml = parser.parseFromString(string, "text/xml");
 			} catch(e) { 
-				alert('XML parsing error. Either the XML file is not well-formed or your browser sucks.');
+				alert('OAT.Xml.createXmlDoc:\nXML parse error.');
 			}
 			return xml;
 		} else if (window.ActiveXObject) {
@@ -73,12 +73,12 @@ OAT.Xml = {
 			if (!string) { return xml; }
 			xml.loadXML(string);
 			if (xml.parseError.errorCode) {
-				alert('IE XML ERROR: '+xml.parseError.reason+' ('+xml.parseError.errorCode+')');
+			        alert('OAT.Xml.createXmlDoc:\nIE XML ERROR: '+xml.parseError.reason+' ('+xml.parseError.errorCode+')');
 				return false;
 			}
 			return xml;
 		} else {
-			alert("Ooops - no XML parser available");
+			alert("OAT.Xml.createXmlDoc:\nNo XML parser available");
 			return false;
 		}
 		return false;
@@ -92,7 +92,7 @@ OAT.Xml = {
 			var xml = new ActiveXObject("Microsoft.XMLDOM")
 			return xml;
 		} else {
-			alert("Ooops - no XML parser available");
+			alert("OAT.Xml.newXmlDox:\nNo XML parser available");
 			return false;
 		}
 		return false;
@@ -101,15 +101,17 @@ OAT.Xml = {
 	serializeXmlDoc:function(xmlDoc) {
 		if (document.implementation && document.implementation.createDocument) {				
 			var ser = new XMLSerializer();
+	    try {
 			var s = ser.serializeToString(xmlDoc);
-//			s = '<?xml version="1.0" ?>\n'+s;
 			return s;
+	    } catch (e) {
+		return false;
+	    }
 		} else if (window.ActiveXObject) {
 			var s = xmlDoc.xml;
-//			s = '<?xml version="1.0" ?>\n'+s;
 			return s;
 		} else {
-			alert("Ooops - no XML parser available");
+			alert("OAT.Xml.serializeXmlDoc:\nNo XML parser available");
 			return false;
 		}
 		return false;
@@ -142,7 +144,7 @@ OAT.Xml = {
 			var rDoc = OAT.Xml.createXmlDoc(result);
 			return rDoc;
 		} else {
-			alert("Ooops - no XSL parser available");
+			alert("OAT.Xml.transformXslt:\nNo XSL parser available");
 			return false;
 		}
 	},
@@ -208,7 +210,7 @@ OAT.Xml = {
 			for (var i=0;i<tmp.length;i++) { result.push(tmp[i]); }
 			return result;
 		} else {
-			alert("Ooops - no XML parser available");
+		        alert("OAT.Xml.xpath:\nNo XML parser available");
 			return false;
 		}
 	},
