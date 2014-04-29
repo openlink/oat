@@ -133,7 +133,7 @@ OAT.Toolbar = function(div,optObj) {
 	}
 	
 	this.addSeparator = function() {
-		var div = OAT.Dom.create("div",{},"toolbar_separator");
+	var div = OAT.Dom.create("div",{"class": "toolbar_separator"});
 		self.div.appendChild(div);
 		self.separators.push(div);
 		return div;
