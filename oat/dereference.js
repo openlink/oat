@@ -68,8 +68,13 @@ OAT.Dereference = {
 			    encoded = this.addParam(endpoint + encoded, "force", "rdf");
 
 			    if (user) { encoded = this.addParam(encoded, "login", encodeURIComponent(user)); }
-			    if (url.match(/\.n3$/)) { encoded = this.addParam(encoded, "output-format", "n3"); }
-			    if (url.match(/\.ttl$/)) { encoded = this.addParam(encoded, "output-format", "ttl"); }
+		    if (url.match(/\.n3$/)) { 
+		    	encoded = this.addParam(encoded, "output-format", "n3"); 
+		    } else if (url.match(/\.ttl$/)) { 
+		    	encoded = this.addParam(encoded, "output-format", "ttl"); 
+		    } else {
+		      encoded = this.addParam(encoded, "output-format", "rdf%2bxml");
+		    }
 			    for (var p in pragmas) { encoded = this.addParam(encoded, p, pragmas[p]); }
 			} else {
 			    var r = url.match(/^(http[s]?:\/\/)([^@\/]+@)?(.*)/);
@@ -84,8 +89,13 @@ OAT.Dereference = {
 			if (endpointOpts.proxyVersion == 1) {
 			var encoded = encodeURIComponent(url);
 			    encoded = this.addParam(endpoint + encoded, "force", "rdf");
-			    if (url.match(/\.n3$/)) { encoded = this.addParam(encoded, "output-format", "n3"); }
-			    if (url.match(/\.ttl$/)) { encoded = this.addParam(encoded, "output-format", "ttl"); }
+		    if (url.match(/\.n3$/)) { 
+		    	encoded = this.addParam(encoded, "output-format", "n3"); 
+		    } else if (url.match(/\.ttl$/)) { 
+		    	encoded = this.addParam(encoded, "output-format", "ttl"); 
+		    } else {
+		      encoded = this.addParam(encoded, "output-format", "rdf%2bxml");
+		    }
 			    for (var p in pragmas) { encoded = this.addParam(encoded, p, pragmas[p]); }
 			} else {
 			    var encoded = endpoint + url;
