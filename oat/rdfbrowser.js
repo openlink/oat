@@ -231,7 +231,7 @@ OAT.RDFBrowser = function(div,optObj) {
 		url.value = self.options.defaultURL;
 		self.store.url = url;
 		
-		var btn1 = OAT.Dom.button("Query");
+		var btn1 = OAT.Dom.create("input", {type:"button",value:"Query"});
 		self.btnStart = self.throbberReplace(self.store.div,false);
 		
 		var h = OAT.Dom.create("h3");
