@@ -38,6 +38,7 @@ OAT.DSTransport.SQL = {
 		var l = (options.cursortype == 1 ? options.limit : 0);
 		var tblLst = null;
 	        var self = this;
+	        var ajaxOptions = (typeof(options.timeout)!="undefined" && options.timeout)?{timeout:options.timeout}:null;
 		
 		if (conn.options.useDereference)
 		  tblLst = this.parseSQL(OAT.Xmla.query);
@@ -116,11 +117,11 @@ OAT.DSTransport.SQL = {
                     callback(rs);
 	          };
 		
-		  OAT.Xmla.execute(cBack,{limit:l,offset:index});
+		  OAT.Xmla.execute(cBack,{limit:l,offset:index},ajaxOptions);
 
 		} else {
 
-		  OAT.Xmla.execute(callback,{limit:l,offset:index});
+		  OAT.Xmla.execute(callback,{limit:l,offset:index},ajaxOptions);
                 }
 	},
 	parse:function(fetchedData,options,outputFields) {

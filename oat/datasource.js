@@ -46,6 +46,7 @@ OAT.DataSource = function(type) {
     
     this.connection = false; /* connection object */
     this.transport = false; /* transport object */
+    this.throbber = null;
     
     /* bindings */
     this.boundRecords = [];
@@ -205,16 +206,20 @@ OAT.DataSource = function(type) {
     }
     
     this.fetchPage = function(index,callback) { /* retrieve one page; either from cache or db */
+
 	if (self.checkAvailability(index,true)) { callback(); return; }
 	var ref = function(data) {
 	    for (var i=0;i<self.boundFiles.length;i++) { self.boundFiles[i](data); }
 	    var parsed = self.transport.parse(data,self.options,self.outputFields);
 	    self.processData(parsed,index);
 	    if (self.checkAvailability(index,false)) { callback(); }
+	    if (self.throbber!=null)  { OAT.Dom.hide(self.throbber); }
 	}
 	
 	var options = self.options;
 	if ("limit" in options) { options.limit = self.pageSize; }
+
+	if (self.throbber!=null) { OAT.Dom.show(self.throbber); }
 	
 	self.transport.fetch(self.connection,options,index,ref);
     }
