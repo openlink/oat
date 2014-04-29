@@ -99,7 +99,7 @@ OAT.Geometry = {
 			for (var i=1;i<subset.length;i++) { toDelete.push(polygon[subset[i]]); }
 			polygon.splice(subset[0]+1,0,point);
 			for (var i=0;i<toDelete.length;i++) {
-				var index = polygon.find(toDelete[i]);
+				var index = polygon.indexOf(toDelete[i]);
 				polygon.splice(index,1);
 			}
 		}

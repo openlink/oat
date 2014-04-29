@@ -201,12 +201,12 @@ OAT.Pivot = function(div,chartDiv,filterDiv,headerRow,dataRows,headerRowIndexes,
 		for (var i=0;i<self.rowConditions.length;i++) { /* row blacklist */
 			var value = row[self.rowConditions[i]];
 			var cond = self.conditions[self.rowConditions[i]];
-			if (cond.blackList.find(value) != -1) { return false; }
+			if (cond.blackList.indexOf(value) != -1) { return false; }
 		}
 		for (var i=0;i<self.colConditions.length;i++) { /* column blacklist */
 			var value = row[self.colConditions[i]];
 			var cond = self.conditions[self.colConditions[i]];
-			if (cond.blackList.find(value) != -1) { return false; }
+			if (cond.blackList.indexOf(value) != -1) { return false; }
 		}
 		return true;
 	}
@@ -224,14 +224,14 @@ OAT.Pivot = function(div,chartDiv,filterDiv,headerRow,dataRows,headerRowIndexes,
 			return coef*(a > b ? 1 : -1);
 		}
 		var dateSort = function(a,b) {
-			var ia = months.find(a.toLowerCase());
-			var ib = months.find(b.toLowerCase());
+			var ia = months.indexOf(a.toLowerCase());
+			var ib = months.indexOf(b.toLowerCase());
 			return numSort(ia,ib);
 		}
 		/* get data type, trial & error... */
 		var testValue = cond.distinctValues[0];
 		if (testValue == parseInt(testValue)) { sortFunc = numSort; } else { sortFunc = dictSort; }
-		if (months.find(testValue.toString().toLowerCase()) != -1) { sortFunc = dateSort; }
+		if (months.indexOf(testValue.toString().toLowerCase()) != -1) { sortFunc = dateSort; }
 		
 		cond.distinctValues.sort(sortFunc);
 	} /* sort */
@@ -246,7 +246,7 @@ OAT.Pivot = function(div,chartDiv,filterDiv,headerRow,dataRows,headerRowIndexes,
 		self.conditions.push(cond);
 		for (var i=0;i<self.allData.length;i++) {
 			var value = self.allData[i][index];
-			if (cond.distinctValues.find(value) == -1) { /* not yet present */
+			if (cond.distinctValues.indexOf(value) == -1) { /* not yet present */
 				cond.distinctValues.push(value); 
 			} /* if new value */
 		} /* for all rows */
@@ -393,7 +393,7 @@ OAT.Pivot = function(div,chartDiv,filterDiv,headerRow,dataRows,headerRowIndexes,
 	
 	this.getDelFilterReference = function(index) {
 		return function() {
-			var idx = self.filterIndexes.find(index);
+			var idx = self.filterIndexes.indexOf(index);
 			self.filterIndexes.splice(idx,1);
 			self.rowConditions.push(index); /* add to rows */
 			self.go();
@@ -417,7 +417,7 @@ OAT.Pivot = function(div,chartDiv,filterDiv,headerRow,dataRows,headerRowIndexes,
 		var getRef = function(ch,value) {
 			return function() {
 				if (ch.checked) {
-					var index = cond.blackList.find(value);
+					var index = cond.blackList.indexOf(value);
 					cond.blackList.splice(index,1);
 				} else {
 					cond.blackList.push(value);
@@ -443,7 +443,7 @@ OAT.Pivot = function(div,chartDiv,filterDiv,headerRow,dataRows,headerRowIndexes,
 			var newBL = [];
 			for (var i=0;i<cond.distinctValues.length;i++) { 
 				var val = cond.distinctValues[i];
-				if (cond.blackList.find(val) == -1) { newBL.push(val); } 
+				if (cond.blackList.indexOf(val) == -1) { newBL.push(val); } 
 			}
 			cond.blackList = newBL;
 			self.go();
@@ -467,7 +467,7 @@ OAT.Pivot = function(div,chartDiv,filterDiv,headerRow,dataRows,headerRowIndexes,
 			var value = cond.distinctValues[i];
 			var pair = getPair(value,"pivot_distinct_"+i);
 			div.appendChild(pair[0]);
-			pair[1].checked = (cond.blackList.find(value) == -1);
+			pair[1].checked = (cond.blackList.indexOf(value) == -1);
 			pair[1].__checked = (pair[1].checked ? "1" : "0");
 			OAT.Event.attach(pair[1],"change",getRef(pair[1],value));
 			OAT.Event.attach(pair[1],"click",getRef(pair[1],value));
@@ -872,12 +872,12 @@ OAT.Pivot = function(div,chartDiv,filterDiv,headerRow,dataRows,headerRowIndexes,
 		var yCounter = 1;
 		if (self.colConditions.length > 1) {
 			var colItem = self.colPointers[self.colConditions.length-1][j].parent;
-			var index = colItem.parent.items.find(colItem);
+			var index = colItem.parent.items.indexOf(colItem);
 			xCounter = (index % 2 ? 1 : -1);
 		}
 		if (self.rowConditions.length > 1) {
 			var rowItem = self.rowPointers[self.rowConditions.length-1][i].parent;
-			var index = rowItem.parent.items.find(rowItem);
+			var index = rowItem.parent.items.indexOf(rowItem);
 			yCounter = (index % 2 ? 1 : -1);
 		}
 		if (xCounter * yCounter == 1) { return "odd"; } else { return "even"; }
@@ -1115,7 +1115,7 @@ OAT.Pivot = function(div,chartDiv,filterDiv,headerRow,dataRows,headerRowIndexes,
 					var items = [];
 					for (var k=0;k<cond.distinctValues.length;k++) { /* for all currently distinct values */
 						var value = cond.distinctValues[k];
-						if (cond.blackList.find(value) == -1) {
+						if (cond.blackList.indexOf(value) == -1) {
 							var o = {value:cond.distinctValues[k],parent:stack[j],used:false,items:false,depth:i};
 							items.push(o);
 							newstack.push(o);

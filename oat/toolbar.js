@@ -140,12 +140,12 @@ OAT.Toolbar = function(div,optObj) {
 	}
 	
 	this.removeIcon = function(div) {
-		var index = self.icons.find(div);
+		var index = self.icons.indexOf(div);
 		self.icons.splice(index,1);
 	}
 
 	this.removeSeparator = function(div) {
-		var index = self.separators.find(div);
+		var index = self.separators.indexOf(div);
 		this.separators.splice(index,1);
 	}
 	

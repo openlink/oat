@@ -119,7 +119,7 @@ OAT.GhostDrag = function() {
 		var cica = true;
 		var ref = function(event) {
 			OAT.Event.prevent(event);
-			var index = self.sources.find(elm);
+			var index = self.sources.indexOf(elm);
 			if (index == -1) return;
 			var x = event.clientX;
 			var y = event.clientY;
@@ -130,7 +130,7 @@ OAT.GhostDrag = function() {
 	
 	this.delSource = function(node) {
 		var elm = $(node);
-		var index = self.sources.find(elm);
+		var index = self.sources.indexOf(elm);
 		if (index == -1) { return; }
 		self.sources.splice(index,1);
 		self.processes.splice(index,1);

@@ -119,8 +119,8 @@ OAT.Dock = function(div,numColumns) {
 		if (mover == target) { return; }
 		
 		/* coords */
-		var oldX = self.columns.find(mover.parentNode);
-		var newX = self.columns.find(target.parentNode);
+		var oldX = self.columns.indexOf(mover.parentNode);
+		var newX = self.columns.indexOf(target.parentNode);
 		var oldY = -1;
 		var newY = -1;
 		var oldList = self.columns[oldX].childNodes;
@@ -219,7 +219,7 @@ OAT.Dock = function(div,numColumns) {
 	
 	this.removeObject = function(win) {
 		OAT.MSG.send(self,"DOCK_REMOVE",win);
-		var index = self.windows.find(win);
+		var index = self.windows.indexOf(win);
 		self.windows.splice(index,1);
 		
 		OAT.Dom.unlink(win.div);

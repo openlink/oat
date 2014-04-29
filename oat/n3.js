@@ -55,9 +55,9 @@
 						item = "";
 						var stopArr = [" ",";",".",","];
 						if (i+2 < str.length && str.charAt(i+1) == "^" && str.charAt(i+2) == "^") { /* skip type declaration, if present */
-							while (i+2 < str.length && stopArr.find(str.charAt(i+1)) == -1) { i++; }
+							while (i+2 < str.length && stopArr.indexOf(str.charAt(i+1)) == -1) { i++; }
 						} else if (i+1 < str.length && str.charAt(i+1) == "@") { /* skip lang declaration */
-							while (i+2 < str.length && stopArr.find(str.charAt(i+1)) == -1) { i++; }
+							while (i+2 < str.length && stopArr.indexOf(str.charAt(i+1)) == -1) { i++; }
 						}						
 					} else {
 						item += ch;

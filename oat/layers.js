@@ -21,7 +21,7 @@ OAT.Layers = function(baseOffset) {
 	this.currentIndex = 0;
 	
 	this.raise = function(elm) {
-		var index = self.layers.find(elm);
+		var index = self.layers.indexOf(elm);
 		if (index == -1) { return; }
 		var curr = elm.style.zIndex;
 		for (var i=0;i<self.layers.length;i++) {
@@ -43,7 +43,7 @@ OAT.Layers = function(baseOffset) {
 	
 	this.removeLayer = function(something) {
 		var elm = $(something);
-		var index = self.layers.find(elm);
+		var index = self.layers.indexOf(elm);
 		if (index == -1) { return; }
 		self.layers.splice(index,1);
 	}

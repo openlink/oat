@@ -174,7 +174,7 @@ OAT.TreeNode = function(li,ul,parent,root) {
 	
 	this.deselect = function() {
 		self.selected = 0;
-		var index = self.root.selectedNodes.find(self);
+		var index = self.root.selectedNodes.indexOf(self);
 		self.root.selectedNodes.splice(index,1);
 		OAT.Dom.removeClass(self.li,"tree_li_selected");
 		if (self.ul) { OAT.Dom.removeClass(self.ul,"tree_ul_selected"); }
@@ -306,7 +306,7 @@ OAT.TreeNode = function(li,ul,parent,root) {
 			var mode = node.gdMode;
 
 			function isLast(n) {
-				return (n.parent.children.find(n) == n.parent.children.length-1);
+				return (n.parent.children.indexOf(n) == n.parent.children.length-1);
 			}
 			
 			if (mode == 1) {
@@ -314,7 +314,7 @@ OAT.TreeNode = function(li,ul,parent,root) {
 				while (node.parent && node.parent.parent && isLast(node)) { node = node.parent; }
 			
 				/* reposition after target */
-				var index = node.parent.children.find(node)+1;
+				var index = node.parent.children.indexOf(node)+1;
 				node.parent.appendChild(self,index);
 			} else {
 				/* append */
@@ -487,7 +487,7 @@ OAT.TreeNode = function(li,ul,parent,root) {
 		/* insert before node at position [index] */
 		var idx = ( (index || index == 0) ? index : self.children.length);
 		var oldParent = oldNode.parent;
-		if (!ignoreOldParent) { var oldIdx = oldParent.children.find(oldNode); }
+		if (!ignoreOldParent) { var oldIdx = oldParent.children.indexOf(oldNode); }
 		/* basic check */
 		if (!self.ul) {
 			self.ul = OAT.Dom.create("ul",{margin:"0px",padding:"0px"});
@@ -516,7 +516,7 @@ OAT.TreeNode = function(li,ul,parent,root) {
 	}
 	
 	this.deleteChild = function(oldNode) {
-		var index = self.children.find(oldNode);
+		var index = self.children.indexOf(oldNode);
 		if (index == -1) { return; }
 		self.children.splice(index,1);
 		OAT.Dom.unlink(oldNode.li);
