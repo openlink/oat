@@ -49,7 +49,52 @@ ul, li {
 
 /* tabs */
 
-#tabs {
+ul#tabs {
+    margin-top: 30px;
+    list-style-type: none;
+    position: relative;
+    left: 8px;
+}
+
+ul#tabs li {
+    display: block;
+    padding: 2px 3px;
+    margin-right: 0.5em;
+    cursor: pointer;
+    height:20px;
+    _height:20px;
+    float:left;
+    background-color: #aaa;
+    padding: 3px 3px 4px;
+}
+
+ul#tabs li.tab_selected {
+    background-color:#ededed;
+    border-color:#333333 #333333 #ededed;
+    border-left:1px solid #333333;
+    border-style:solid solid none;
+    border-width:1px 1px medium;
+    color:#000000;
+    padding:1px 3px 6px;
+    position:relative;
+    top:1px;}
+
+ul#tabs li.tab {
+  border: 1px 1px 0px 1px;
+  border-color: #666;
+}
+
+ul#tabs li.tab:hover {
+    background-color: #ccc;
+    text-decoration: underline;
+}
+
+ul#tabs li.tab_selected:hover {
+    background-color: #ededed;
+    text-decoration: none;
+}
+
+/* #tabs {
 	margin-top: 30px;
 	list-style-type: none;
 	text-align: center;
@@ -71,7 +116,7 @@ ul, li {
 li.tab:hover {
 	background-color: #ccc;
 }
-
+*/
 /* webclip */
 
 #webclip {
@@ -89,8 +134,9 @@ li.tab:hover {
 }
 
 #content {
-	border-top: 2px solid #000;
-	background-color: #eef;
+    border-top: 1px solid #666;
+    background-color: #ededed;
+    clear: both;
 }
 
 #setup, #results, #query, #pivot_misc, #pivot_page {
@@ -102,6 +148,7 @@ li.tab:hover {
 #design {
 	width: 100%; /* ie sux */
 	position: relative;
+	background-color: #ededed;
 }
 
 #design_area {
@@ -109,15 +156,28 @@ li.tab:hover {
 	width: 100%;
 	height: 450px;
 	overflow: auto;
-	background-color: #ddd;
+	background-color: #ededed;
 }
 
 #design_columns {
 	overflow: auto;
 	height: 250px;
-	background-color: #fff;
+	background-color: #999;
 	padding: 1em;
 	border: 1px solid #000;
+}
+
+#about {
+	border: 1px solid #000;
+	background-color: #ddd;
+	float:left;
+	width: 100%;
+}
+
+p.about {
+	font-size: 8pt;
+	text-align: right;
+	margin-right: 10px
 }
 
 #resizer_area  {
@@ -142,8 +202,7 @@ li.tab:hover {
 }
 
 #tablelist {
-	font-size: 120%;
-	width: 500px;
+  width: 100%;
 	padding: 0px;
 	margin: 0px;
 }
@@ -207,30 +266,31 @@ li.tab:hover {
 
 /* combolist */
 
-.combo_list {
+.oat_combo_list {
 	display: inline;
 }
 
-.combo_list_input {
+.oat_combo_list_input {
 	font: menu;
 	width: 85%;
 }
 
-.combo_list_list {
+.oat_combo_list_list {
 	overflow: auto;
 	border: 1px solid #000;
 	background-color: #fff;
 	max-height: 200px;
 }
 
-.combo_list_option {
+.oat_combo_list_option {
 	font: menu;
 	padding: 1px;
 	width: 200px;
 }
 
-div.combo_list_option:hover {
+div.oat_combo_list_option:hover {
 	background-color: #dde;
+	cursor:pointer
 }
 
 /* nav */

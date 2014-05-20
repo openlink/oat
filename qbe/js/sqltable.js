@@ -104,18 +104,20 @@ function SqlRow(table,name) {
 			add_relation(obj,target.row,c1,c2);
 		}
 	}
+    
 	var processRef = function(elm) {
 		elm.style.padding = "2px";
 		elm.style.backgroundColor = "#888";
 		elm.style.border = "1px dotted #000";
 		if (obj.selected) { elm.firstChild.innerHTML = '[selected columns]'; }
 	}
+    
 	gd2.addSource(text,processRef,dropRef);
 	gd2.addTarget(text);
 	
-	OAT.Dom.attach(this.btn_pk,"click",obj.mark); /* mark PK */
-	OAT.Dom.attach(text,"dblclick",obj.addToQuery); /* add to query */
-	OAT.Dom.attach(this.div,"click",clickRef); /* select */
+    OAT.Event.attach(this.btn_pk,"click",obj.mark); /* mark PK */
+    OAT.Event.attach(text,"dblclick",obj.addToQuery); /* add to query */
+    OAT.Event.attach(this.div,"click",clickRef); /* select */
 
 	this.div.appendChild(this.btn_pk);
 	this.div.appendChild(text);
@@ -125,15 +127,13 @@ function SqlRow(table,name) {
 function SqlTable(name,data,x,y) {
 	var obj = this;
 	var h = 0;
-	this.obj = new OAT.Window({title:name, close:1, min:0, max:0, height:0, width:160, x:x, y:y});
-	this.obj.move._Drag_movers[0][1].restrictionFunction = function(l,t) {
-		return l < 0 || t < 0;
-	}
-	layerObj.addLayer(this.obj.div);
-
-	this.obj.div.className = "table";
-	this.obj.div.style.backgroundColor = "#aaa";
-	this.obj.content.style.backgroundColor = "#aaa";
+    
+    this.obj = new OAT.Win({title:name, buttons:"c", width:160, x:x, y:y});
+    layerObj.addLayer(this.obj.dom.container);
+    
+    this.obj.dom.container.className = "table";
+    this.obj.dom.container.style.backgroundColor = "#aaa";
+    this.obj.dom.content.style.backgroundColor = "#aaa";
 	this.name = name;
 	this.rows = [];
 	
@@ -141,7 +141,7 @@ function SqlTable(name,data,x,y) {
 		/* select all rows */
 		for (var i=1;i<obj.rows.length;i++) { obj.rows[i].select(); }
 	}
-	OAT.Dom.attach(this.obj.move,"dblclick",moveRef);
+    OAT.Event.attach(this.obj.dom.title,"dblclick",moveRef);
 
 	/* first row with star */
 	var starRow = {};
@@ -154,22 +154,25 @@ function SqlTable(name,data,x,y) {
 	var text = OAT.Dom.create("div");
 	text.innerHTML = rowname;
 	text.style.cursor = "pointer";
+    
 	var processRef = function(obj) { 
 		obj.style.padding = "2px";
 		obj.style.backgroundColor = "#888";
 		obj.style.border = "1px dotted #000";
 		obj.firstChild.innerHTML = '[all columns]'; 
 	}
+    
 	var dropRef = function(target,x,y) {
 		if (target.id != "design_columns") { return; }
 		for (var i=1;i<obj.rows.length;i++) { obj.rows[i].addToQuery(x,y);}
 	}
+    
 	gd2.addSource(text,processRef,dropRef);
 	text.row = starRow;
 	starRow.div = div;
 	div.appendChild(text);
 	this.rows.push(starRow);
-	this.obj.content.appendChild(div);	
+    this.obj.dom.content.appendChild(div);	
 	
 	var starRef = function(event) {
 		/* add all rows */
@@ -177,13 +180,13 @@ function SqlTable(name,data,x,y) {
 			obj.rows[i].addToQuery();
 		}
 	}
-	OAT.Dom.attach(text,"dblclick",starRef);
+    OAT.Event.attach(text,"dblclick",starRef);
 
 	/* other rows */
 	for (var i=0;i<data.length;i++) {
 		var row = new SqlRow(this,data[i].name);
 		this.rows.push(row);
-		this.obj.content.appendChild(row.div);
+	this.obj.dom.content.appendChild(row.div);
 	} /* for all rows */
 	
 	var hideRef = function() {
@@ -203,14 +206,15 @@ function SqlTable(name,data,x,y) {
 			}
 		}
 	}
-	OAT.Dom.attach(this.obj.move,"mousedown",hideRef);
-	OAT.Dom.attach(this.obj.move,"mouseup",showRef);
+    OAT.Event.attach(this.obj.dom.title,"mousedown",hideRef);
+    OAT.Event.attach(this.obj.dom.title,"mouseup",showRef);
 	
 	var deselectRef = function(event) {
 		for (var i=1;i<obj.rows.length;i++) { obj.rows[i].deselect(); }
 	}
-	OAT.Dom.attach(this.obj.move,"click",deselectRef);
-	OAT.Dom.attach(starRow.div,"click",deselectRef);
+    OAT.Event.attach(this.obj.dom.title,"click",deselectRef);
+    OAT.Event.attach(starRow.div,"click",deselectRef);
+    this.obj.open();
 }
 
 
@@ -239,16 +243,17 @@ function Relation_update() {
 
 	var left_table, right_table, left_row, right_row, left_1, left_2, right_1, right_2, width_1, width_2;
 	var top_table_1, top_table_2, top_row_1, top_row_2;
-	if (parseInt(this.parent_1.obj.div.style.left) < parseInt(this.parent_2.obj.div.style.left)) {
-		left_table = this.parent_1.obj.div;
-		right_table = this.parent_2.obj.div;
+
+    if (parseInt(this.parent_1.obj.dom.container.style.left) < parseInt(this.parent_2.obj.dom.container.style.left)) {
+	left_table = this.parent_1.obj.dom.container;
+	right_table = this.parent_2.obj.dom.container;
 		left_row = this.row_1.div;
 		right_row = this.row_2.div;
 		this.elem_card_left.innerHTML = this.card_1;
 		this.elem_card_right.innerHTML = this.card_2;
 	} else {
-		right_table = this.parent_1.obj.div;
-		left_table = this.parent_2.obj.div;
+	right_table = this.parent_1.obj.dom.container;
+	left_table = this.parent_2.obj.dom.container;
 		right_row = this.row_1.div;
 		left_row = this.row_2.div;
 		this.elem_card_left.innerHTML = this.card_2;
@@ -411,8 +416,9 @@ function Relation(row_1, row_2, card_1, card_2) {
 		$("rel_1").innerHTML = (tmp.parent_1.catalog ? tmp.parent_1.catalog+"."+tmp.parent_1.name : tmp.parent_1.name);
 		$("rel_2").innerHTML = (tmp.parent_2.catalog ? tmp.parent_2.catalog+"."+tmp.parent_2.name : tmp.parent_2.name);
 		$("rel_type").selectedIndex = props.object.type;
-		props.show();
+	props.open();
 	}
-	OAT.Dom.attach(this.div,"click",ref);
+
+    OAT.Event.attach(this.div,"click",ref);
 }
 

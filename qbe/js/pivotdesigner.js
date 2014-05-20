@@ -127,7 +127,7 @@ function pivot_create() {
 		alert('You must select at least one data column');
 		return;
 	}
-	dialogs.pivot_design.hide();
+	dialogs.pivot_design.close();
 	if (OAT.AJAX.startRef) { OAT.AJAX.startRef(); }
 	pivot = new OAT.Pivot("pivot_content","pivot_chart","pivot_page",pivot_data.headerRow,pivot_data.dataRows,
 						pivot_data.headerRowIndexes,pivot_data.headerColIndexes,

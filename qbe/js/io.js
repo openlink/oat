@@ -31,7 +31,7 @@ var IO = {
 			return;
 		}
 			var options = {
-			extensionFilters:[ ["xml","xml","Pivot Design"] ],
+	    extensionFilters:[ ["xml","xml","Pivot Design", "text/xml"] ],
 			dataCallback:function() { return xml;}
 			};
 		OAT.WebDav.saveDialog(options);
@@ -39,7 +39,7 @@ var IO = {
 
 	save_q:function() {
 		if (IO.lastQName == "") {
-			dialogs.save.show();
+	    dialogs.save.open();
 			return;
 		}
 		var query = "";

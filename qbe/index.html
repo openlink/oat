@@ -26,7 +26,7 @@
 <head>
 
 	<script type="text/javascript">
-		var featureList = ["soap","xmla","ajax2","dialog","drag","tab","connection",
+		var featureList = ["soap","xmla","ajax","dialog","drag","tab","connection",
 		"tree","ghostdrag","instant","animation","grid","combolist","pivot","layers",
 		"menu","dav","sqlquery","xml","webclip","window","datasource","formobject"];
 	</script>
@@ -88,7 +88,10 @@
 	<ul id="tabs">
 		<li id="tab_design" class="tab">Design</li>
 		<li id="tab_query" class="tab">Query</li>
-		<li id="tab_results" class="tab">Results Grid</li>
+		<li id="tab_results" class="tab">Results Grid
+                  <img id="executing_throbber" src="../images/Dav_throbber.gif" style="display:none;" />
+                  <img id="oat_ajax_throbber" src="../images/Dav_throbber.gif" style="display:none;" />
+		</li>
 		<li id="tab_pivot" class="tab">Results Pivot</li>
 	</ul>
 
@@ -117,6 +120,10 @@
 		</div>
 		<div id="design_columns">
 			<div id="grid_in"></div>
+		</div>
+		<div id="about">
+			<p class="about" id="about_oat"> 
+			</p>
 		</div>
 
 
@@ -162,6 +169,9 @@
 	</div>
 
 	<div id="options">
+		<input type="checkbox" id="options_usetimeout" /> Use query execution timeout
+		<input size="6" type="text" value="30000" name="timeout" id="options_timeout" /> ms
+		<hr/>
 		<input type="checkbox" id="options_dolimit" checked="checked" /> Divide results into pages of
 		<input size="6" type="text" value="50" name="limit" id="options_limit" /> rows
 		<hr/>

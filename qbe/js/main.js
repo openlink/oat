@@ -18,6 +18,8 @@ var global_data = {pending:false,x:10,y:10,conds_1_count:1,conds_2_count:1,conds
 var pivot_gd = false;
 var pivot_data = {headerRow:[],dataRows:[],headerRowIndexes:[],headerColIndexes:[],dataColumnIndex:-1,filterIndexes:[],query:""};
 var lastQuery = false;
+var prevState = [];
+var throbber = {};
 var total_catalog_count = 0;
 var datasource = false; 
 var layerObj = false;
@@ -168,6 +170,7 @@ var Connection = {
 		connection.options.password = $v("password");
 		connection.options.dsn = $v("dsn");
 		connection.options.endpoint = $v("endpoint");
+	connection.options.useDereference = true;
 	},
 	
 	discover_dsn:function() {
@@ -194,8 +197,8 @@ var Connection = {
 		/* if not virtuoso, hide its save formats */
 		var cBack = function(data) {
 			var result = OAT.Xmla.parseResponse(data);
-			var index = result[0].find("ProviderName");
-			var _index = result[0].find("DataSourceInfo");
+	    var index = result[0].indexOf("ProviderName");
+	    var _index = result[0].indexOf("DataSourceInfo");
 			for (var i=0;i<result[1].length;i++) {
 				if (result[1][i][_index] == connection.options.dsn && !result[1][i][index].match(/virtuoso/i)) {
 					/* delete! */
@@ -225,8 +228,9 @@ var Connection = {
 			/* list of catalogs */
 			OAT.Dom.clear(dialogs.tablelist.list);
 			Filter.init();
+
 			ask_for_catalogs(pole,1);
-			dialogs.connection.hide();
+	    dialogs.connection.close();
 			tab.go(0);
 			if (whatToDo) { whatToDo(); }
 		} /* callback */
@@ -240,20 +244,9 @@ var Connection = {
 	}
 } /* Connection */
 
-function ask_for_catalogs(pole,firstTime) {
-	/* 
-		this is tricky - virtuoso sometimes requires name/pwd for 
-		table detection. this is why we first send only one request
-		and if it succeeds, we ask for remaining catalogs
-	*/
-	if (firstTime && pole.length) {
-		/* first, testing catalog */
-		var name = pole[0];
-		var callback = function() { ask_for_catalogs(pole,0); }
-		OAT.Xmla.tables(name,callback);
-	} else {
-		/* ok, first request was successfully returned - go for it for real */
+function ask_for_catalogs(pole) {
 		total_catalog_count = pole.length;
+
 		for (var i=0;i<pole.length;i++) {
 			var name = pole[i];
 			var callback = function(catalog_name,a) {
@@ -270,7 +263,6 @@ function ask_for_catalogs(pole,firstTime) {
 			OAT.Xmla.tables("",callback);
 		}
 	}
-}
 
 function try_relation(pk,card1,fk,card2) {
 	/* 
@@ -343,12 +335,14 @@ function read_tables(catalog_name,pole) {
 	
 	item.appendChild(label);
 	item.appendChild(group);
+    
 	var getRef = function(span) { /* to be called when drag succeeds */
 		return function(target,x,y) {
-			/* fuck off when dragged onto tablelist */
-			var coords = OAT.Dom.position(dialogs.tablelist.div);
-			var w = dialogs.tablelist.div.offsetWidth;
-			var h = dialogs.tablelist.div.offsetHeight;
+	    
+	    /* duck off when dragged onto tablelist */
+	    var coords = OAT.Dom.position(dialogs.tablelist.dom.container);
+	    var w = dialogs.tablelist.dom.container.offsetWidth;
+	    var h = dialogs.tablelist.dom.container.offsetHeight;
 			if (x > coords[0] && x < coords[0]+w && y > coords[1] && y < coords[1] + h) return;
 			
 			var coords = OAT.Dom.position("design_area");
@@ -374,23 +368,27 @@ function read_tables(catalog_name,pole) {
 		lbl.innerHTML = pole[0][i];
 		Filter.addValue(lbl.schema);
 		opt.appendChild(lbl);
+
 		group.appendChild(opt);
+
 		var ref=function(event) {
-			var elm = OAT.Dom.source(event).parentNode.getElementsByTagName("span")[0];
+	    var elm = OAT.Event.source(event).parentNode.getElementsByTagName("span")[0].firstChild;
 			/* no position -> autoplace */
 			Tables.add(elm.innerHTML,elm.schema,elm.catalog,0,0,1);
 		}
-		OAT.Dom.attach(opt,"dblclick",ref);
+
+	OAT.Event.attach(opt,"dblclick",ref);
 	}
 	
 	dialogs.tablelist.list.appendChild(item);
 	total_catalog_count--;
 	
 	if (!total_catalog_count) { /* create tree after last catalog arrived */
-		var t = new OAT.Tree({imagePath:"../images/"});
+	var t = new OAT.Tree({imagePath:OAT.Preferences.imagePath});
 		t.assign(dialogs.tablelist.list,1);
 		/* also fix grid in ie here */
-		grid_in.ieFix();
+	grid_in._ieFix();
+	dialogs.tablelist.open();
 	}
 }
 
@@ -402,6 +400,8 @@ function query(q) {
 	datasource.options.query = q;
 	var s = ($("options_dolimit").checked ? parseInt($v("options_limit")) : 0);
 	datasource.pageSize = s;
+	if ($("options_usetimeout").checked)
+		datasource.options.timeout = parseInt($v("options_timeout"));
 	datasource.reset();
 	datasource.advanceRecord(0);
 }
@@ -482,10 +482,12 @@ var Tables = {
 			tmp.catalog = catalog; /* inherit catalog name */
 			tmp.schema = schema; /* inherit schema name */
 			table_array.push(tmp); /* put into global array */
+
 			tmp.closeFunc = function() { Tables.remove(tmp);	}
-//			OAT.Dom.attach(tmp.obj.close,"click",tmp.closeFunc);
-			tmp.obj.onclose = tmp.closeFunc;
-			$("design_area").appendChild(tmp.obj.div);
+	    //			OAT.Event.attach(tmp.obj.close,"click",tmp.closeFunc);
+	    OAT.MSG.attach(tmp.obj, "WINDOW_CLOSE", tmp.closeFunc);
+
+	    $("design_area").appendChild(tmp.obj.dom.container);
 			ask_for_keys(tmp); /* get pk and fk info */
 			Columns.updateCombos(); /* actualize combos */
 		} /* callback */
@@ -513,7 +515,7 @@ var Tables = {
 			}
 		}
 		/* remove from dom tree */
-		OAT.Dom.unlink(object.obj.div);
+	OAT.Dom.unlink(object.obj.dom.container);
 		/* from global array */
 		for (var i=0;i<table_array.length;i++) {
 			if (table_array[i] == object) { table_array.splice(i,1); }
@@ -605,7 +607,7 @@ var Columns = {
 			
 			var input_value = OAT.Dom.create("input",{font:"menu",border:"none",textAlign:"center",display:"block"});
 			var keyUpRef = Columns.getKeyUpRef(type,div_array[i],input_value);
-			OAT.Dom.attach(input_value,"keyup",keyUpRef);
+	    OAT.Event.attach(input_value,"keyup",keyUpRef);
 			input_value.setAttribute("type","text");
 			input_value.setAttribute("size","20");
 			input_value.value = value;
@@ -665,14 +667,16 @@ var Columns = {
 			if (colNames[colNames.length-1] != div_name) { return; }
 			Columns.blank();
 		}
-		combo_name.onchange = addRef;
+
+	OAT.MSG.attach (combo_name,"COMBO_LIST_CHANGE",addRef);
 		
 		/* remove link */
 		var a_remove = OAT.Dom.create("a");
 		a_remove.setAttribute("href","#");
 		a_remove.innerHTML = "remove";
+
 		var removeRef = function(event) { 
-			var elm = OAT.Dom.source(event);
+	    var elm = OAT.Event.source(event);
 			var str = elm.parentNode.innerHTML;
 			var index = -1;
 			for (var i=0;i<grid_in.header.cells.length;i++) {
@@ -680,7 +684,8 @@ var Columns = {
 			}
 			grid_in.removeColumn(index); 
 		}
-		OAT.Dom.attach(a_remove,"click",removeRef);
+
+	OAT.Event.attach(a_remove,"click",removeRef);
 		cell.value.appendChild(a_remove);
 
 		var div_alias = grid_in.rows[1].addCell({align:OAT.GridData.ALIGN_CENTER},ni);
@@ -733,7 +738,7 @@ var Columns = {
 		var a = OAT.Dom.create("a");
 		a.setAttribute("href","#");
 		a.innerHTML = "clear";
-		OAT.Dom.attach(a,"click",function(){Columns.init(1,1);});
+	OAT.Event.attach(a,"click",function(){Columns.init(1,1);});
 		grid_in.header.cells[0].value.appendChild(a);
 		grid_in.createRow(["Column"]);
 		grid_in.createRow(["Alias"]);
@@ -748,6 +753,454 @@ var Columns = {
 	}
 }
 
+
+function escapeODBCval(col_val, col_type)
+{
+  if (col_type==null)
+     return "{fn CONVERT('"+col_val+"', SQL_VARCHAR)}";
+  else
+  switch(col_type.type)
+  {
+    case 14: //DB_DECIMAL  3: //SQL_DECIMAL
+       return "{fn CONVERT('"+col_val+"', SQL_DECIMAL)}";
+    case 3: //DBTYPE_I4   4: //SQL_INTEGER
+       return "{fn CONVERT('"+col_val+"', SQL_INTEGER)}";
+    case 2: // DBTYPE_I2  5: //SQL_SMALLINT
+       return "{fn CONVERT('"+col_val+"', SQL_SMALLINT)}";
+    case 4: //DBTYPE_R4  7: //SQL_REAL
+       return "{fn CONVERT('"+col_val+"', SQL_REAL)}";
+    case 5: //DBTYPE_R8  8: //SQL_DOUBLE
+       return "{fn CONVERT('"+col_val+"', SQL_DOUBLE)}";
+    case 133: //DBTYPE_DBDATE  91: //SQL_TYPE_DATE
+       return "{fn CONVERT('"+col_val+"', SQL_DATE)}";
+    case 134: //DBTYPE_DBTIME  92: //SQL_TYPE_TIME
+       return "{fn CONVERT('"+col_val+"', SQL_TIME)}";
+    case 135: //DBTYPE_DBTIMESTAMP93: //SQL_TYPE_TIMESTAMP
+       return "{fn CONVERT('"+col_val+"', SQL_TIMESTAMP)}";
+
+    case 128: //DBTYPE_BYTES -3: //SQL_VARBINARY
+       if (col_type.isLong)
+         return "{fn CONVERT('"+col_val+"', SQL_LONGVARBINARY)}";
+       else
+         return "{fn CONVERT('"+col_val+"', SQL_VARBINARY)}";
+    case 16:  //DBTYPE_I1  -6: //SQL_TINYINT
+       return "{fn CONVERT('"+col_val+"', SQL_TINYINT)}";
+    case 11: //DBTYPE_BOOL   -7: //SQL_BIT
+       return "{fn CONVERT('"+col_val+"', SQL_BIT)}";
+//    case -11: //SQL_GUID
+//       return "{fn CONVERT('"+col_val+"', SQL_GUID)}";
+
+    case 130: //DBTYPE_WSTR  -9: //SQL_WVARCHAR
+       if (col_type.isLong)
+         return "{fn CONVERT('"+col_val+"', SQL_WLONGVARCHAR)}";
+       else
+         return "{fn CONVERT('"+col_val+"', SQL_WVARCHAR)}";
+
+    default:
+       if (col_type.isLong)
+         return "{fn CONVERT('"+col_val+"', SQL_LONGVARCHAR)}";
+       else
+         return "{fn CONVERT('"+col_val+"', SQL_VARCHAR)}";
+  }
+}
+
+
+function getColType(cat, sch, tbl, col)
+{
+    var rows = OAT.Xmla.columns(cat, sch, tbl, null, null, true);
+    for(var i=0; i < rows.length; i++) {
+      if (rows[i].name == col)
+        return {type: rows[i].type, isLong: ((rows[i].flags & 0x80)?true:false)};
+    }
+    return {type:129, isLong:false};
+}
+
+
+function getTblColsKeys(cat, sch, tbl)
+{
+    var pkey = []
+    var tcol = [];
+
+    var rows = OAT.Xmla.columns(cat, sch, tbl, null, null, true);
+
+    for(var i=0; i < rows.length; i++) {
+        tcol[i] = {
+              col_type: rows[i].type,
+                isLong: ((rows[i].flags & 0x80)?true:false),
+             	  name: rows[i].name,
+             	   key: 0
+             	  };
+    }
+
+    var fkeys = getFkeyList({cat:cat, sch:sch, tbl:tbl});
+
+    rows = OAT.Xmla.primaryKeys(cat, sch, tbl, null, null, true);
+
+    for(var i=0; i < rows.length; i++) {
+      pkey[i] = { name: rows[i], col_type: null };
+      for(var j = 0; j < tcol.length; j++) {
+        if (pkey[i].name == tcol[j].name) {
+            tcol[j].key = 1;
+            pkey[i].col_type = tcol[j].col_type;
+        }
+      }
+    }
+            
+    for(var i=0; i < fkeys.length; i++) {
+      for(var j=0; j < tcol.length; j++) {
+        if (tcol[j].name == fkeys[i].pcol && tcol[j].key==0) {
+          tcol[j].key |= (fkeys[i].ind=="r")?2:8;
+        }
+      }
+    }
+
+    return { pkey: pkey, col: tcol };
+}
+
+
+
+function fixPkeys(cat, sch, tbl, pcols)
+{
+//??todo optimizeme
+  var pkeys = [];
+  for(var i=0; i < pcols.length; i++)
+   pkeys[i] = { name: pcols[i], col_type: getColType(cat, sch, tbl, pcols[i])}; 
+  return pkeys;
+}
+
+function getFkeyList(tbl_id, add_pkey)
+{
+    var id = [];
+    var _cat = tbl_id.cat;
+    var _sch = tbl_id.sch;
+    var _tbl = tbl_id.tbl;
+
+    var rows = OAT.Xmla.foreignKeys(_cat, _sch, _tbl, null, null, true);
+    var id_pos=0;
+
+    if (rows.length > 0) {
+      for(var i=0; i < rows.length; i++) {
+        var row = rows[i];
+        id[id_pos++] = {
+                 ind: "f",
+                 cat: _cat,
+                 sch: _sch,
+                ptbl: row[0].table,
+                pcol: row[0].column,
+                ftbl: row[1].table,
+                fcol: row[1].column,
+               	fseq: i};
+      }
+    }
+
+    rows = OAT.Xmla.referenceKeys(_cat, _sch, _tbl, null, null, true);
+    if (rows.length > 0) {
+      for(var i=0; i < rows.length; i++) {
+        var row = rows[i];
+        id[id_pos++] = {
+                 ind: "r",
+                 cat: _cat,
+                 sch: _sch,
+                ptbl: row[1].table,
+                pcol: row[1].column,
+                ftbl: row[0].table,
+                fcol: row[0].column,
+                fseq: i};
+      }
+    }
+
+    if (add_pkey == true) {
+      rows = OAT.Xmla.primaryKeys(_cat, _sch, _tbl, null, null, true);
+      if (rows.length > 0) {
+        for(var i=0; i < rows.length; i++) {
+          var row = rows[i];
+          id.push({
+                 ind: "p",
+                 cat: _cat,
+                 sch: _sch,
+                ptbl: _tbl,
+                pcol: row[i],
+                ftbl: "",
+                fcol: "",
+                fseq: i});
+        }
+      }
+    }
+    return id;
+
+}
+
+
+
+function loadGreenLinks(tbl_id, col, col_val, tkey_list, add_pkey, id_keys, 
+	id_vals, relation)
+{
+  var sql = "";
+  var err = false;
+
+/****
+  tbl, col_name, col_val, key_type, key_size, key1, key2, key_val1, key_val2
+****/
+
+  try {
+
+    var r_from = null;
+	  var r_where = null;
+
+    if (relation != null) {
+      var r_from = ", \""+relation.cat+"\".\""+relation.sch+"\".\""+relation.r_tbl+"\" r ";
+      var r_where = " AND p.\""+col+"\"=r.\""+relation.r_col+"\" ";
+    }
+
+    var col_type = null;
+    if (col.length > 0 && col_val.length >0)
+      col_type = getColType(tbl_id.cat, tbl_id.sch, tbl_id.tbl, col);
+	  
+    if (id_keys != null)
+      id_keys = fixPkeys(tbl_id.cat, tbl_id.sch, tbl_id.tbl, id_keys);
+
+    OAT.Dom.show(throbber);
+
+    if (tkey_list == null) {
+      if (add_pkey==true)
+        tkey_list = getFkeyList(tbl_id, true);
+      else
+        tkey_list = getFkeyList(tbl_id, false);
+    }
+	  
+    var _query=[];
+    var q = null;
+
+    OAT.Dom.show(throbber);
+    var p_col_lst = getTblColsKeys(tbl_id.cat, tbl_id.sch, tbl_id.tbl);
+    var obj_id_key = "";
+    var pkey_id = ""
+    var pkval_id = "";
+    var pkey_size = p_col_lst.pkey.length;
+    var c_id = 6; //6 - is last columns
+	  
+    for(var i=0; i < p_col_lst.pkey.length; i++, c_id++) {
+      var id = c_id;
+      pkey_id += ", '"+p_col_lst.pkey[i].name+"' as c"+id;
+
+      id += p_col_lst.pkey.length;
+      pkval_id += ", {fn CONVERT(p.\""+p_col_lst.pkey[i].name+"\", SQL_VARCHAR)} as c"+id;
+
+      if (i>0) 
+        obj_id_key += "||'&'||";
+      obj_id_key += "{fn CONVERT(p.\""+p_col_lst.pkey[i].name+"\", SQL_VARCHAR)}";
+    }
+    
+    var obj_id = "'"+tbl_id.cat+":"+tbl_id.sch+":"+tbl_id.tbl+"#'||"+obj_id_key;
+	  
+    for(var x = 0; x < tkey_list.length; x++)
+    {
+      var tkey = tkey_list[x];
+
+      if (tkey.ind == "r")  // don't include references
+        continue;
+
+      var qu_ftbl = "\""+tbl_id.cat+"\".\""+tbl_id.sch+"\".\""+tkey.ftbl+"\"";
+      var qu_ptbl = "\""+tbl_id.cat+"\".\""+tbl_id.sch+"\".\""+tkey.ptbl+"\"";
+      var rel_tbl;
+      var col_lst;
+
+      if (tkey.ind == "p") {
+        col_lst = p_col_lst;
+	rel_tbl = "";
+      } else {
+        OAT.Dom.show(throbber);
+    	col_lst = getTblColsKeys(tbl_id.cat, tbl_id.sch, tkey.ftbl);
+	rel_tbl = tbl_id.cat+":"+tbl_id.sch+":"+tkey.ftbl;
+      }
+
+      for(var i=0; i < col_lst.col.length; i++) 
+      {
+        var icol = col_lst.col[i];
+
+        if (icol.isLong)
+          continue;
+
+        if (tkey.ind != "p" && icol.name!=tkey.fcol)  //add only rows with foreign relations
+          continue;
+
+        if (icol.key==8 && tkey.ind=="p")   //mark col as simply if it uses only for foreigns
+          icol.key=0;
+ 
+        var  attr_col = (tkey.ind == "p") ? icol.name : tkey.pcol;
+
+        q = {};
+        q.s1 = "select distinct  "+obj_id+" as c0,'"+attr_col+"' as c1, {fn CONVERT(p.\""+attr_col+"\", SQL_VARCHAR)} as c2,";
+
+// relations  table           8    
+// onekey primary key         4
+// multi primary key          1
+// foreign key                2
+// value                      0
+
+        if (icol.key!=0 && tkey.ind == "f" && tkey.fcol == icol.name) 
+	  icol.key |= 8;     //ref from foreign to main object
+
+        if (col_lst.pkey.length == 1 && col_lst.pkey[0].name==icol.name && icol.key&1)
+          icol.key |= 4;
+
+        if (tkey.ind == "p") {
+          var _rel_tbl = rel_tbl;
+          if (icol.key&2) {  // col foreign key
+            for(var j=0; j < tkey_list.length; j++) {
+              if (tkey_list[j].ind==="r" && tkey_list[j].pcol == icol.name) {
+                _rel_tbl = tkey_list[j].cat+":"
+                          +tkey_list[j].sch+":"
+                          +tkey_list[j].ftbl+"#"
+                          +tkey_list[j].fcol;
+                break;
+              }
+            }
+          }
+          q.s1 += "'"+icol.key+"' as c3,'"+_rel_tbl+"' as c4, "+pkey_size+" as c5";
+        } else {
+          q.s1 += "'"+icol.key+"' as c3,'"+rel_tbl+"#"+tkey.fcol+"' as c4, "+pkey_size+" as c5";
+        }
+
+        q.pkey_id = pkey_id;
+        q.pkval_id = pkval_id;
+
+        if (tkey.ind == "p") {
+          q.from = " from "+qu_ptbl+" p";
+          q.where =" where 1=1 " ;
+        } else {
+          q.from  = " from "+qu_ftbl+" f, "+qu_ptbl+" p ";
+          q.where = " where f.\""+tkey.fcol+"\"=p.\""+tkey.pcol+"\"" ;
+        }
+
+        if (id_keys != null && id_vals != null) {
+          for(var j=0; j < id_keys.length; j++)
+            q.where += " AND p.\""+id_keys[j].name+"\"="+escapeODBCval(id_vals[j], id_keys[j].col_type);
+        }
+
+        if (col.length >0 && col_val.length >0) 
+          q.where += " AND p.\""+col+"\"="+escapeODBCval(col_val, col_type);
+              
+        _query.push(q);
+      }
+    }
+
+    for(var i=0; i < _query.length; i++) {
+      q = _query[i];
+      if (sql.length > 0)
+        sql += "\n UNION \n ";
+
+      sql += q.s1 + q.pkey_id + q.pkval_id + q.from;
+
+      if (relation)
+        sql += r_from;
+
+      sql += q.where;
+
+      if (relation)
+        sql += r_where;
+    }
+
+    if (sql.length > 0)
+      sql += " order by 1"
+
+  } catch (e) {
+    alert(e);
+    err = true;
+  }
+
+  if (!err && sql.length > 0)  {
+    OAT.Dom.show(throbber);
+    query("!~!"+sql);
+  }
+
+//    $("q").value = sql;
+}
+
+
+function greenLinkCall(id, isQuadVal) {
+  if (isQuadVal) {
+
+    id = id.split("#");
+    var opts = datasource.options;
+    var q = opts._quadData["r"+id[0]];
+    var mode = id[1];
+
+    var path = q.tbl.split(":");
+    var tbl_id = {cat:path[0], sch:path[1], tbl:path[2]};
+
+    var add_pkey = (q.k_type==4||q.k_type==1?true:false);
+
+    if (mode == 0) {//ObjectID
+      loadGreenLinks(tbl_id,        "",     "", null, true,     q.key, q.k_val, null);
+    }
+    else if (mode == 1) {//Attribute
+      var add_pkey = (q.k_type&8)?false:true;
+      loadGreenLinks(tbl_id,   q.cname,     "", null, add_pkey, q.key, q.k_val, null);
+    }
+    else if (mode == 2) //Value
+    {
+      if (q.k_type&4) {
+        loadGreenLinks(tbl_id,      "",     "", null, true, q.key, q.k_val, null);
+      }
+      else if (q.k_type&8) {
+        var rel = q.rel_tbl.split("#");
+
+        path = rel[0].split(":");
+        rel_id = {cat:path[0], sch:path[1], tbl:path[2]};
+
+        loadGreenLinks(rel_id, rel[1], q.cval, null, true, null, null, null);
+
+      } else if (q.k_type&2) {
+        var rel = q.rel_tbl.split("#");
+
+        path = rel[0].split(":");
+        rel_id = {cat:path[0], sch:path[1], tbl:path[2]};
+
+        loadGreenLinks(rel_id, rel[1], q.cval, null, true, null, null, null);
+      }
+      else {
+        loadGreenLinks(tbl_id, q.cname, q.cval, null, add_pkey, q.key, q.k_val, null);
+      }
+    }
+    else if (mode == 3) //TableName
+      if (q.k_type&8) {
+        var rel = q.rel_tbl.split("#");
+
+        path = rel[0].split(":");
+        rel_id = {cat:path[0], sch:path[1], tbl:path[2]};
+
+        loadGreenLinks(rel_id,     "",     "", null, true, null, null, null);
+      } else
+
+        loadGreenLinks(tbl_id,     "",     "", null, true, null,  null, null);
+
+    } else {
+
+      id = id.split(":");
+      var key_type = unescape(id[0]);
+      var col_name = unescape(id[1]);
+      var col_val =  unescape(id[2]);
+      var opts = datasource.options;
+
+      var tbl_id = {cat:opts._cat, sch:opts._sch, tbl:opts._tbl};
+
+      if (key_type&1) {
+        loadGreenLinks(tbl_id, col_name, col_val, opts._keys, true, null, null, null);
+      } else {
+        for(var i=0; i < opts._keys.length; i++) {
+           fkey = opts._keys[i];
+           if (col_name == fkey.pcol && fkey.ind!="p") {
+             tbl_id.tbl =  fkey.ftbl;
+             loadGreenLinks(tbl_id, fkey.fcol, col_val, null, true, null, null, null);
+             break;
+           }
+        }
+      }
+  }
+}
+
+
 function init() {
 	/* datasource */
 	datasource = new OAT.DataSource(OAT.DataSourceData.TYPE_SQL);
@@ -756,6 +1209,14 @@ function init() {
 	/* layers */
 	layerObj = new OAT.Layers(100);
 
+	throbber = OAT.Dom.create("img");
+	throbber.src = OAT.Preferences.imagePath + "Dav_throbber.gif";
+	OAT.Dom.hide(throbber);
+
+	/* build info */
+	$("about_oat").innerHTML = "OAT version: " + OAT.Preferences.version + ' build ' + OAT.Preferences.build;
+	
+
 	/* xslt path */
 	$("options_xslt").value = OAT.Preferences.xsltPath;
 	$("endpoint").value = OAT.Preferences.endpointXmla;
@@ -763,35 +1224,39 @@ function init() {
 	/* ajax http errors */
 	$("options_http").checked = (OAT.Preferences.httpError == 1 ? true : false);
 	OAT.AJAX.httpError = OAT.Preferences.httpError;
-	OAT.Dom.attach("options_http","change",function(){OAT.AJAX.httpError = ($("options_http").checked ? 1 : 0);});
+	OAT.Event.attach("options_http","change",function(){OAT.AJAX.httpError = ($("options_http").checked ? 1 : 0);});
 	
 	/* connection */
 	dialogs.connection = new OAT.Dialog("XMLA Data Provider Connection Setup","connection",{width:500,modal:1,buttons:1});
-	OAT.Dom.attach("endpoint","blur",Connection.discover_dsn);
-	OAT.Dom.attach("endpoint","keyup",function(e) { if (e.keyCode == 13) { Connection.discover_dsn(); }});
-	OAT.Dom.attach("dsn","click",function(){if ($("dsn").childNodes.length == 0) { Connection.discover_dsn(); }});
-	dialogs.connection.ok = function(){ 
+
+	OAT.Event.attach("endpoint","blur",Connection.discover_dsn);
+	OAT.Event.attach("endpoint","keyup",function(e) { if (e.keyCode == 13) { Connection.discover_dsn(); }});
+	OAT.Event.attach("dsn","click",function(){if ($("dsn").childNodes.length == 0) { Connection.discover_dsn(); }});
+
+	OAT.MSG.attach(dialogs.connection, "DIALOG_OK", function(){ 
 		Connection.use_dsn(1);
 		var options = {
-			imagePath:'../images/',
+			imagePath:'/DAV/JS/images/',
 			imageExt:'png',
 			user:$v("user"),
 			pass:$v("password"),	
 			isDav:($v("login_put_type") == "dav")
 		};
 		OAT.WebDav.init(options);
-	};
-	dialogs.connection.cancel = function() { 
+		OAT.Preferences.showAjax = OAT.AJAX.SHOW_THROBBER;
+	});
+
+	OAT.MSG.attach(dialogs.connection, "DIALOG_CANCEL", function() { 
 		var options = {
-			imagePath:'../images/',
+			imagePath:'/DAV/JS/images/',
 			imageExt:'png',
 			user:$v("user"),
 			pass:$v("password"),	
 			isDav:($v("login_put_type") == "dav")
 		};
 		OAT.WebDav.init(options);
-		dialogs.connection.hide(); 
-	};
+	});
+
 	dialogs.connection.okBtn.setAttribute("disabled","disabled");
 
 	/* columns grid */
@@ -804,38 +1269,31 @@ function init() {
 		dialogs.rel_props.object.remove();
 		dialogs.rel_props.hide()
 	}
-	dialogs.rel_props.ok = dialogs.rel_props.hide;
-	dialogs.rel_props.cancel = dialogs.rel_props.hide;
-	OAT.Dom.attach("rel_type","change",rel_change);
-	OAT.Dom.attach("rel_remove","click",rel_remove);
+
+	OAT.Event.attach("rel_type","change",rel_change);
+	OAT.Event.attach("rel_remove","click",rel_remove);
 
 	/* save */
 	dialogs.save = new OAT.Dialog("Save","save",{width:400,modal:1});
-	dialogs.save.ok = function() {
+	OAT.MSG.attach(dialogs.save, "DIALOG_OK", function() {
 		IO.lastQName = $v("save_name");
 		IO.save_type = $v("options_savetype");
-		dialogs.save.hide();
 		IO.save_q();
-	}
-	dialogs.save.cancel = dialogs.save.hide;
+	});
+
 	/* options */
 	dialogs.options = new OAT.Dialog("Options","options",{width:400,modal:1});
-	dialogs.options.ok = dialogs.options.hide;
-	dialogs.options.cancel = dialogs.options.hide;
+
 	/* pivot design */
 	dialogs.pivot_design = new OAT.Dialog("Pivot table design","pivot_design",{width:600,height:0,modal:1});
-	dialogs.pivot_design.ok = pivot_create;
-	dialogs.pivot_design.cancel = dialogs.pivot_design.hide;
+	OAT.MSG.attach(dialogs.pivot_design, "DIALOG_OK", pivot_create);
+
 	/* tree tablelist */
-	dialogs.tablelist = new OAT.Window({title:"Tables", close:0, min:0, max:0, width:200, height:320, x:-20,y:10});
-	dialogs.tablelist.move._Drag_movers[0][1].restrictionFunction = function(l,t) {
-		return l < 0 || t < 0;
-	}
-	$("design_area").appendChild(dialogs.tablelist.div);
-	dialogs.tablelist.content.appendChild($("tablefilter"));
-	dialogs.tablelist.content.appendChild($("tablelist"));
+	dialogs.tablelist = new OAT.Win({title:"Tables", buttons:"", innerWidth:200, innerHeight:320, x:-20,y:10});
+	$("design_area").appendChild(dialogs.tablelist.dom.container);
+	dialogs.tablelist.dom.content.appendChild($("tablefilter"));
+	dialogs.tablelist.dom.content.appendChild($("tablelist"));
 	dialogs.tablelist.list = $("tablelist");
-	
 	
 	/* drag'n'drop */
 	gd = new OAT.GhostDrag(); /* tables -> design */
@@ -853,19 +1311,19 @@ function init() {
 	var m = new OAT.Menu();
 	m.noCloseFilter = "noclose";
 	m.createFromUL("menu");
-	OAT.Dom.attach("menu_about","click",function(){alert('Assembly date: '+OAT.Preferences.version);});
-	OAT.Dom.attach("menu_savep","click",function(){IO.save_p(pivot,false);});
-	OAT.Dom.attach("menu_saveasp","click",function(){IO.save_p(pivot,true);});
-	OAT.Dom.attach("menu_saveq","click",IO.save_q);
-	OAT.Dom.attach("menu_saveasq","click",dialogs.save.show);
-	OAT.Dom.attach("menu_loadq","click",IO.load_q);
-	OAT.Dom.attach("menu_loadp","click",IO.load_p);
-	OAT.Dom.attach("menu_pivot","click",function(){	pivot_design_prepare(); dialogs.pivot_design.show();});
-	OAT.Dom.attach("menu_pivot_refresh","click",pivot_refresh);
-	OAT.Dom.attach("menu_options","click",dialogs.options.show);
-	OAT.Dom.attach("menu_clear","click",function(){Tables.clear(); Columns.init(1,1);});
-	OAT.Dom.attach("menu_create","click",function(){Query.create(OAT.SqlQueryData.TYPE_SQL); tab.go(1); });
-	OAT.Dom.attach("menu_addcol","click",function() {tab.go(0); Columns.blank();});
+	OAT.Event.attach("menu_about","click",function(){alert('OAT version: ' + OAT.Preferences.version + ' build: '+OAT.Preferences.build);});
+	OAT.Event.attach("menu_savep","click",function(){IO.save_p(pivot,false);});
+	OAT.Event.attach("menu_saveasp","click",function(){IO.save_p(pivot,true);});
+	OAT.Event.attach("menu_saveq","click",IO.save_q);
+	OAT.Event.attach("menu_saveasq","click",dialogs.save.open);
+	OAT.Event.attach("menu_loadq","click",IO.load_q);
+	OAT.Event.attach("menu_loadp","click",IO.load_p);
+	OAT.Event.attach("menu_pivot","click",function(){	pivot_design_prepare(); dialogs.pivot_design.open();});
+	OAT.Event.attach("menu_pivot_refresh","click",pivot_refresh);
+	OAT.Event.attach("menu_options","click",dialogs.options.open);
+	OAT.Event.attach("menu_clear","click",function(){Tables.clear(); Columns.init(1,1);});
+	OAT.Event.attach("menu_create","click",function(){Query.create(OAT.SqlQueryData.TYPE_SQL); tab.go(1); });
+	OAT.Event.attach("menu_addcol","click",function() {tab.go(0); Columns.blank();});
 	
 	var execRef = function(){ 
 		/* post-process by adding TOP (when selected), but only when SQL Passthrough is not active */
@@ -881,6 +1339,7 @@ function init() {
 				q = "SELECT TOP "+$v("options_limit")+" "+part;
 			}
 		}
+		prevState = [];
 		query(q); 
 	}
 	
@@ -888,14 +1347,14 @@ function init() {
 		var data = $v("q");
 		IO.loadProcess(data);
 	}
-	OAT.Dom.attach("menu_exec","click",execRef);
-	OAT.Dom.attach("btn_exec","click",execRef);
-	OAT.Dom.attach("btn_vis","click",visRef);
+	OAT.Event.attach("menu_exec","click",execRef);
+	OAT.Event.attach("btn_exec","click",execRef);
+	OAT.Event.attach("btn_vis","click",visRef);
 
 	/* grid & nav */
 	var g = new OAT.FormObject["grid"](0,0,0); 
 	g.showAll = true;
-	var n = new OAT.FormObject["nav"](0,0,0);
+	var n = new OAT.FormObject["nav_back"](0,0,0);
 	$("grid_out").appendChild(g.elm);
 	$("nav").appendChild(n.elm);
 	g.elm.style.width = "100%";
@@ -903,7 +1362,66 @@ function init() {
 	n.init();
 	datasource.bindRecord(n.bindRecordCallback);
 	datasource.bindRecord(g.bindRecordCallback);
+
+	var sparqlHandle = function(e) {
+                e.target.appendChild(throbber);
+                OAT.Dom.show(throbber);
+
+                setTimeout(function(){
+                    prevState.push({ query:datasource.options.query, 
+                                       pos:datasource.recordIndex,
+                                      keys:datasource.options._keys});
+//		    query("select * from Demo.demo.Countries");
+		    query("sparql describe <"+e.target.href+"> LIMIT 100");
+		    n.back.disabled = false;
+                }, 800);
+		return false;
+	}
+	var greenLinkHandle = function(e) {
+                e.target.appendChild(throbber);
+                OAT.Dom.show(throbber);
+
+                setTimeout(function(){
+                    prevState.push({ query:datasource.options.query, 
+                                       pos:datasource.recordIndex,
+                                      keys:datasource.options._keys});
+                    greenLinkCall(e.target.id, false);
+		    n.back.disabled = false;
+                }, 800);
+		return false;
+	}
+
+	var greenLinkQuadHandle = function(e) {
+                e.target.appendChild(throbber);
+                OAT.Dom.show(throbber);
+
+                setTimeout(function(){
+                    prevState.push({ query:datasource.options.query, 
+                                       pos:datasource.recordIndex,
+                                      keys:datasource.options._keys});
+                    greenLinkCall(e.target.id, true);
+		    n.back.disabled = false;
+                }, 800);
+		return false;
+	}
+
 	var ref2 = function(data,index) {
+                if (typeof(data) == "object") {
+                  for(var i=0; i < data.length; i++) {
+                    var row = data[i];
+                    for(var j=0; j < row.length; j++) {
+                      var col = row[j];
+                      if (typeof(col) == "object") {
+                        if (col.valueType == 2)  // HTTP sparql link
+                          col.valueHandle = sparqlHandle;
+                        else if (col.valueType == 3) // GreenLink
+                          col.valueHandle = greenLinkHandle;
+                        else if (col.valueType == 4) // GreenLink
+                          col.valueHandle = greenLinkQuadHandle;
+                      } 
+                    }
+                  }
+                }
 		pivot_data.dataRows = data;
 		g.bindPageCallback(data,index);
 	}
@@ -913,17 +1431,45 @@ function init() {
 	}
 	datasource.bindHeader(ref1);
 	datasource.bindPage(ref2);
-	OAT.Dom.attach(n.first,"click",function() { datasource.advanceRecord(0); });
-	OAT.Dom.attach(n.prevp,"click",function() { datasource.advanceRecord(datasource.recordIndex - datasource.pageSize); });
-	OAT.Dom.attach(n.prev,"click",function() { datasource.advanceRecord("-1"); });
-	OAT.Dom.attach(n.next,"click",function() { datasource.advanceRecord("+1"); });
-	OAT.Dom.attach(n.nextp,"click",function() { datasource.advanceRecord(datasource.recordIndex + datasource.pageSize); });
-//	OAT.Dom.attach(n.last,"click",function() { datasource.advanceRecord(parseInt(n.total.innerHTML)-1); });
-	OAT.Dom.attach(n.current,"keyup",function(event) { 
+	OAT.Event.attach(n.first,"click",function() { datasource.advanceRecord(0); });
+	OAT.Event.attach(n.prevp,"click",function() { datasource.advanceRecord(datasource.recordIndex - datasource.pageSize); });
+	OAT.Event.attach(n.prev,"click",function() { datasource.advanceRecord("-1"); });
+	OAT.Event.attach(n.next,"click",function() { datasource.advanceRecord("+1"); });
+	OAT.Event.attach(n.nextp,"click",function() { datasource.advanceRecord(datasource.recordIndex + datasource.pageSize); });
+//	OAT.Event.attach(n.last,"click",function() { datasource.advanceRecord(parseInt(n.total.innerHTML)-1); });
+	OAT.Event.attach(n.back,"click",function() {
+	       OAT.Dom.show(n.throbber);
+	       setTimeout(function(){
+	           var state=prevState.pop();
+	           if (prevState.length == 0)
+	             n.back.disabled = true;
+	           if (state != null) {
+	             query(state.query);
+	             datasource.advanceRecord(state.pos);
+	           }
+	           OAT.Dom.hide(n.throbber);
+	       }, 800);
+	   });
+	OAT.Event.attach(n.current,"keyup",function(event) { 
 		if (event.keyCode != 13) { return; }
 		var value = parseInt($v(n.current));
 		datasource.advanceRecord(value-1); 
 	});
+	
+	OAT.MSG.attach(OAT.AJAX, "AJAX_ERROR", function(){
+	      if (prevState.length == 0)
+	        n.back.disabled = true;
+	      OAT.Dom.hide(throbber);
+	      OAT.Dom.hide(n.throbber);
+	  });
+
+	OAT.MSG.attach(OAT.AJAX, "AJAX_DONE", function(){
+	      if (prevState.length == 0)
+	        n.back.disabled = true;
+	      OAT.Dom.hide(throbber);
+	      OAT.Dom.hide(n.throbber);
+	  });
+	
 	
 	/* pivot aggregation */
 	var aggRef = function() {
@@ -937,7 +1483,7 @@ function init() {
 		OAT.Dom.option(item.shortDesc,i,"pivot_agg");
 	}
 	$("pivot_agg").selectedIndex = 1;
-	OAT.Dom.attach("pivot_agg","change",aggRef);
+	OAT.Event.attach("pivot_agg","change",aggRef);
 	
 	/* resizing */
 	OAT.Resize.create("resizer_area","design_area",OAT.Resize.TYPE_Y);
@@ -954,7 +1500,7 @@ function init() {
 			};
 		OAT.WebDav.openDialog(options);
 	}
-	OAT.Dom.attach("btn_browse","click",fileRef);
+	OAT.Event.attach("btn_browse","click",fileRef);
 	
 	/* tabs */
 	tab = new OAT.Tab("content");
@@ -973,7 +1519,10 @@ function init() {
 			OAT.Dom.hide("webclip");
 		}
 	}
-	tab.options.goCallback = tabChangeRef;
+	
+	OAT.MSG.attach(tab, "TAB_CHANGE", function(sender, message, event) {
+		tabChangeRef(event[0], event[1]);
+	});
 	OAT.Dom.hide("webclip");
 
 	/* MS Live clipboard */
@@ -1019,7 +1568,7 @@ function init() {
 		window.__inherited.callback($v("q"));
 		window.close();
 	}
-	OAT.Dom.attach("btn_return","click",returnRef);
+	OAT.Event.attach("btn_return","click",returnRef);
 	
 	if (window.__inherited) {
 		connection.options.user = window.__inherited.user;
@@ -1034,6 +1583,6 @@ function init() {
 		Connection.use_dsn(0,cb);
 	} else {
 		OAT.Dom.hide("btn_return");
-		dialogs.connection.show();
+		dialogs.connection.open();
 	}
 }
