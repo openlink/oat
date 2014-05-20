@@ -167,7 +167,7 @@ function init() {
 	dock = new OAT.Dock("dock_content",3);
 	notify = new OAT.Notify();
 
-	OAT.MSG.attach(dock,OAT.MSG.DOCK_REMOVE,function(source,message,win){
+	OAT.MSG.attach(dock,"DOCK_REMOVE",function(source,message,win){
 		var victim = false;
 		for (var p in urls) {
 			var obj = urls[p];
