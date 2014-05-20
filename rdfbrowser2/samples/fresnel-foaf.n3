@@ -16,6 +16,7 @@
 									foaf:depiction
 									foaf:img
 									foaf:name 
+					foaf:homepage 
                                     foaf:mbox
 									foaf:office
                                     [ rdf:type fresnel:PropertyDescription ;
@@ -32,7 +33,6 @@
                                                 foaf:mbox 
 									) .
 
-			                      
 # -----------------------------------------------
 # 2. Resource formats
 # -----------------------------------------------
@@ -45,7 +45,7 @@
               fresnel:propertyFormatDomain foaf:img ;
               fresnel:label fresnel:none ;
               fresnel:value fresnel:image ;
-              fresnel:valueStyle "float: right; border:1px solid #434664; margin:1em;"; 
+              fresnel:valueStyle "float: left; border:1px solid #434664; margin:1em;"; 
               fresnel:group :foafGroup ;
               fresnel:group :knowsGroup .
 
@@ -75,7 +75,7 @@
         fresnel:group :knowsGroup ;
         fresnel:group :foafGroup ;
 		fresnel:propertyFormatDomain foaf:knows ;
-		fresnel:valueFormat [ fresnel:contentLast "<div style='clear:both;'> </div>"^^xsd:string ] ;
+		fresnel:valueFormat [ fresnel:contentLast "<div style='clear:both;'></div>"^^xsd:string; ] ;
 		fresnel:valueStyle "margin: 1em; height: 70px; width:200px; display:block; float: left; text-align: center; overflow:hidden" ;
 		fresnel:label "Knows" ;
 		fresnel:labelStyle "clear:both; font-size: 110%; margin: 1em 0px; display:block;" .
