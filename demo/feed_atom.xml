@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0">
+    <title>O'Reilly News: XML</title>
+    <link rel="alternate" type="text/html" href="http://oreilly.com/xml/" />
+    <id>tag:news.oreilly.com,2008-08-01://44</id>
+    <updated>
+
+2009-06-15T17:52:06Z</updated>
+    <subtitle>XML news and articles from O'Reilly Media</subtitle>
+
+    <generator uri="http://www.sixapart.com/movabletype/">Movable Type Pro 4.21-en</generator>
+
+<link rel="self" href="http://feeds2.feedburner.com/oreilly/xml" type="application/atom+xml" /><entry>
+    <title>Groklaw is on-message</title>
+    <link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/oreilly/xml/~3/qz7D0Eun9jM/groklaw-is-on-message.html" />
+    <id>tag:broadcast.oreilly.com,2009://53.37186</id>
+
+    <published>2009-06-14T15:32:32Z</published>
+
+    <updated>2009-06-15T17:52:06Z</updated>
+
+    <summary>Waiting  on this wintery Sydney day for my flatmate's Chinese roast pork knuckle with bamboo to cook, I thought I'd check up on a suspicion that had formed in my mind: had Growlaw ever published anything on OOXML/ODF recently that was not just Big Blue's message of the week?</summary>
+    <author>
+        <name>Rick Jelliffe</name>
+        
+    </author>
+    
+    <category term="odf" label="odf" scheme="http://www.sixapart.com/ns/types#tag" />
+    <category term="ooxml" label="ooxml" scheme="http://www.sixapart.com/ns/types#tag" />
+
+    <category term="xml" label="xml" scheme="http://www.sixapart.com/ns/types#tag" />
+    
+    <content type="html" xml:lang="en" xml:base="http://broadcast.oreilly.com/">
+        Waiting  on this wintery Sydney day for my flatmate's Chinese roast pork knuckle with bamboo to cook, I thought I'd check up on a suspicion that had formed in my mind: had Growlaw ever published anything on OOXML/ODF recently that was not just Big Blue's message of the week?
+     &lt;img src="http://feeds2.feedburner.com/~r/oreilly/xml/~4/qz7D0Eun9jM" height="1" width="1"/&gt;</content>
+<feedburner:origLink>http://broadcast.oreilly.com/2009/06/groklaw-is-on-message.html</feedburner:origLink></entry>
+
+<entry>
+    <title>Open Standards are no silver bullet</title>
+    <link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/oreilly/xml/~3/U8F1jHmEpPM/open-standards-are-no-silver-b.html" />
+
+    <id>tag:broadcast.oreilly.com,2009://53.37184</id>
+
+    <published>2009-06-14T10:33:20Z</published>
+    <updated>2009-06-15T17:51:35Z</updated>
+
+    <summary>A new academic paper looking at running code and open standard says "A running code requirement would have led Massachusetts to defer adopting ODF"</summary>
+    <author>
+        <name>Rick Jelliffe</name>
+
+        
+    </author>
+    
+    <category term="odf" label="odf" scheme="http://www.sixapart.com/ns/types#tag" />
+    <category term="xml" label="xml" scheme="http://www.sixapart.com/ns/types#tag" />
+    
+    <content type="html" xml:lang="en" xml:base="http://broadcast.oreilly.com/">
+        A new academic paper looking at running code and open standard says "A running code requirement would have led Massachusetts to defer adopting ODF"
+     &lt;img src="http://feeds2.feedburner.com/~r/oreilly/xml/~4/U8F1jHmEpPM" height="1" width="1"/&gt;</content>
+<feedburner:origLink>http://broadcast.oreilly.com/2009/06/open-standards-are-no-silver-b.html</feedburner:origLink></entry>
+
+<entry>
+    <title>The conspiracy to save ODF from being so crappy</title>
+
+    <link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/oreilly/xml/~3/KXXezs3b9KM/the-conspiracy-to-save-odf-fro.html" />
+    <id>tag:broadcast.oreilly.com,2009://53.37169</id>
+
+    <published>2009-06-11T09:50:46Z</published>
+    <updated>2009-06-12T05:11:26Z</updated>
+
+    <summary>To see Alex and my comments as part of some denial of service attack on ODF is laughable; indeed to see the volume of what we write as a sign that there must be some large team behind us (or even that we are in some way co-ordinated) is I suppose something we should take as a compliment. </summary>
+    <author>
+
+        <name>Rick Jelliffe</name>
+        
+    </author>
+    
+    <category term="odf" label="odf" scheme="http://www.sixapart.com/ns/types#tag" />
+    <category term="xml" label="xml" scheme="http://www.sixapart.com/ns/types#tag" />
+    
+    <content type="html" xml:lang="en" xml:base="http://broadcast.oreilly.com/">
+        To see Alex and my comments as part of some denial of service attack on ODF is laughable; indeed to see the volume of what we write as a sign that there must be some large team behind us (or even that we are in some way co-ordinated) is I suppose something we should take as a compliment. 
+     &lt;img src="http://feeds2.feedburner.com/~r/oreilly/xml/~4/KXXezs3b9KM" height="1" width="1"/&gt;</content>
+<feedburner:origLink>http://broadcast.oreilly.com/2009/06/the-conspiracy-to-save-odf-fro.html</feedburner:origLink></entry>
+
+</feed>
