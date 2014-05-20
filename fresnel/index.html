@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>OpenLink Fresnel processor tests</title>
 	<script type="text/javascript" >
-		var featureList=["rdfstore","fresnel","xml","ajax2","json","resize"];
+		var featureList=["rdfstore","fresnel","xml","ajax","json","resize"];
 		var rdf = false;
 		var fresnel = false;
 		var xsl = false;
@@ -28,7 +28,7 @@
 			$("out_xml").value = OAT.Xml.serializeXmlDoc(xmlDoc);
 			var out = OAT.Xml.transformXSLT(xmlDoc,xsl);
 			OAT.Dom.clear("out_html");
-			$("out_html").innerHTML = OAT.Xml.serializeXmlDoc(out);
+			$("out_html").innerHTML = OAT.Xml.unescape(OAT.Xml.serializeXmlDoc(out));
 		}
 		
 		function load() {
