@@ -286,7 +286,7 @@ function Row(title,type) {
 		var callback = function() { row_admin.manageRow(self); }
 		setTimeout(callback,50);
 	}
-	OAT.Dom.attach(self._div,"mousedown",downRef);
+	OAT.Event.attach(self._div,"mousedown",downRef);
 	
 }
 
@@ -457,7 +457,7 @@ function Relation(row_1, card_1, row_2, card_2) {
 	var tmp = this;
 	var ref=function(event) {
 		/* show relation's properties */
-		var coords = OAT.Dom.eventPos(event);
+		var coords = OAT.Event.position(event);
 		var x = coords[0];
 		var y = coords[1];
 		var props = dialogs.rel_props;
@@ -465,9 +465,9 @@ function Relation(row_1, card_1, row_2, card_2) {
 		$("rel_1").innerHTML = tmp.parent_1._title.innerHTML;
 		$("rel_2").innerHTML = tmp.parent_2._title.innerHTML;
 		$("rel_type").selectedIndex = props.object.cardinality;
-		props.show();
+		props.open();
 	}
-	OAT.Dom.attach(this._div,"click",ref);
+	OAT.Event.attach(this._div,"click",ref);
 	this._div.style.cursor = "crosshair";
 
 }
@@ -533,7 +533,7 @@ function Table_removeRow(row) {
 		remove_relation(list[i]);
 	}
 	var self = this;
-	var index = self.rows.find(row);
+	var index = self.rows.indexOf(row);
 	row.destroy(); 
 	self.rows.splice(index,1);
 	self.updateMini();
@@ -665,10 +665,10 @@ function Table(x,y,title) {
 			obj.rows[i].showRelations();
 		}
 	} /* callback */
-	OAT.Dom.attach(this._title,"mousedown",ref1);
-	OAT.Dom.attach(this._title,"mouseup",ref2);
+	OAT.Event.attach(this._title,"mousedown",ref1);
+	OAT.Event.attach(this._title,"mouseup",ref2);
 	
-	OAT.Dom.attach(this._div,"mousedown",function(){raise_table(self);});
+	OAT.Event.attach(this._div,"mousedown",function(){raise_table(self);});
 }
 
 
@@ -732,11 +732,11 @@ function TableAdmin() {
 	this._div = $("table_admin"); /* cela cast baru pro tabulky */
 	this._input = $("table_name");
 	
-	OAT.Dom.attach("menu_tableadd","click",getLateFunc(this,"addTable"));
-	OAT.Dom.attach("menu_tabledel","click",getLateFunc(this,"delTable"));
-	OAT.Dom.attach(this._input,"keyup",getLateFunc(this,"changeName"));
-	OAT.Dom.attach("menu_align","click",reposition_tables);
-	OAT.Dom.attach("menu_clear","click",clear_tables);
+	OAT.Event.attach("menu_tableadd","click",getLateFunc(this,"addTable"));
+	OAT.Event.attach("menu_tabledel","click",getLateFunc(this,"delTable"));
+	OAT.Event.attach(this._input,"keyup",getLateFunc(this,"changeName"));
+	OAT.Event.attach("menu_align","click",reposition_tables);
+	OAT.Event.attach("menu_clear","click",clear_tables);
 
 	this.loseTable();
 }
@@ -757,7 +757,7 @@ function RowAdmin_upRow() {
 	var prev = div.previousSibling;
 	if (prev) {
 		root.insertBefore(div,prev);
-		var index_upper = this.table_ref.rows.find(this.row_ref)-1;
+		var index_upper = this.table_ref.rows.indexOf(this.row_ref)-1;
 		var upperRow = this.table_ref.rows[index_upper];
 		this.table_ref.rows.splice(index_upper,1);
 		this.table_ref.rows.splice(index_upper+1,0,upperRow);
@@ -772,7 +772,7 @@ function RowAdmin_downRow() {
 	var next = div.nextSibling;
 	if (next) {
 		root.insertBefore(next,div);
-		var index = this.table_ref.rows.find(this.row_ref);
+		var index = this.table_ref.rows.indexOf(this.row_ref);
 		this.table_ref.rows.splice(index,1);
 		var lowerRow = this.table_ref.rows[index];
 		this.table_ref.rows.splice(index+1,0,this.row_ref);
@@ -967,17 +967,17 @@ function RowAdmin() {
 	this._type = $("row_type");
 	this._spec = $("row_spec");
 	
-	OAT.Dom.attach("menu_rowadd","click",getLateFunc(this,"addRow"));
-	OAT.Dom.attach("menu_rowdel","click",getLateFunc(this,"delRow"));
-	OAT.Dom.attach("menu_rowup","click",getLateFunc(this,"upRow"));
-	OAT.Dom.attach("menu_rowdown","click",getLateFunc(this,"downRow"));
-	OAT.Dom.attach(this._input,"keyup",getLateFunc(this,"changeName"));
-	OAT.Dom.attach(this._def,"keyup",getLateFunc(this,"changeDef"));
-	OAT.Dom.attach(this._spec,"keyup",getLateFunc(this,"changeSpec"));
-	OAT.Dom.attach(this._pk,"change",getLateFunc(this,"togglePK"));
-	OAT.Dom.attach(this._type,"change",getLateFunc(this,"changeType"));
-	OAT.Dom.attach(this._index,"click",getLateFunc(this,"changeIndex"));
-	OAT.Dom.attach(this._nn,"click",getLateFunc(this,"changeNN"));
+	OAT.Event.attach("menu_rowadd","click",getLateFunc(this,"addRow"));
+	OAT.Event.attach("menu_rowdel","click",getLateFunc(this,"delRow"));
+	OAT.Event.attach("menu_rowup","click",getLateFunc(this,"upRow"));
+	OAT.Event.attach("menu_rowdown","click",getLateFunc(this,"downRow"));
+	OAT.Event.attach(this._input,"keyup",getLateFunc(this,"changeName"));
+	OAT.Event.attach(this._def,"keyup",getLateFunc(this,"changeDef"));
+	OAT.Event.attach(this._spec,"keyup",getLateFunc(this,"changeSpec"));
+	OAT.Event.attach(this._pk,"change",getLateFunc(this,"togglePK"));
+	OAT.Event.attach(this._type,"change",getLateFunc(this,"changeType"));
+	OAT.Event.attach(this._index,"click",getLateFunc(this,"changeIndex"));
+	OAT.Event.attach(this._nn,"click",getLateFunc(this,"changeNN"));
 
 	this.loseRow();
 }
@@ -996,7 +996,7 @@ function apply_xslt(data, xslt, callback) {
 
 function IOAdmin_save() {
 	if (IO.filename == "") {
-		dialogs.save.show();
+		dialogs.save.open();
 		return;
 	}
 	
@@ -1039,16 +1039,16 @@ function IOAdmin() {
 	IO.filename = "";
 	IO.savetype = "";
 
-	OAT.Dom.attach("menu_markall","click",function(){for (var i=0;i<table_array.length;i++) if (table_array[i]) table_array[i].markbox.checked = true; });
-	OAT.Dom.attach("menu_marknone","click",function(){for (var i=0;i<table_array.length;i++) if (table_array[i]) table_array[i].markbox.checked = false; });
-	OAT.Dom.attach("menu_import","click",dialogs.xmla.show);
-	OAT.Dom.attach("menu_save","click",self.save);
-	OAT.Dom.attach("menu_saveas","click",dialogs.save.show);
-	OAT.Dom.attach("menu_load","click",self.load);
-	dialogs.save.ok = function() {
+	OAT.Event.attach("menu_markall","click",function(){for (var i=0;i<table_array.length;i++) if (table_array[i]) table_array[i].markbox.checked = true; });
+	OAT.Event.attach("menu_marknone","click",function(){for (var i=0;i<table_array.length;i++) if (table_array[i]) table_array[i].markbox.checked = false; });
+	OAT.Event.attach("menu_import","click",dialogs.xmla.open);
+	OAT.Event.attach("menu_save","click",self.save);
+	OAT.Event.attach("menu_saveas","click",dialogs.save.open);
+	OAT.Event.attach("menu_load","click",self.load);
+	
+	OAT.MSG.attach(dialogs.save, "DIALOG_OK", function() {
 		IO.filename = $v("save_name");
 		IO.savetype = $v("options_savetype");
-		dialogs.save.hide();
 		self.save();
-	}
+	});
 }

@@ -95,7 +95,7 @@ function add_table(x,y,title) {
 }
 
 function remove_table(table) {
-	var index = table_array.find(table);
+	var index = table_array.indexOf(table);
 	while (table.rows.length) { table.removeRow(table.rows[0]);	}
 	gd.delTarget(table._div);
 	layerObj.removeLayer(table._div);
@@ -118,7 +118,7 @@ function add_relation(row_1, card1, row_2, card2) {
 function remove_relation(rel) {
 	var row_2 = rel.row_2;
 	row_2.loseFK();
-	var index = relation_array.find(rel);
+	var index = relation_array.indexOf(rel);
 	rel.destroy(); /* odpojit z DOM */
 	relation_array.splice(index,1); /* zrusit z globalni tabulky */
 }
@@ -224,7 +224,7 @@ function init() {
 	
 	/* events */
 	var rootDown = function(event) {
-		if (OAT.Dom.source(event) != $("root")) { return; }
+		if (OAT.Event.source(event) != $("root")) { return; }
 		table_admin.loseTable();
 		row_admin.loseTable();
 		for (var i=0;i<table_array.length;i++) {
@@ -240,7 +240,7 @@ function init() {
 			/* new table placement */
 			Locks.newTable = 0;
 			document.body.style.cursor = "default";
-			var tmp = OAT.Dom.eventPos(event);
+			var tmp = OAT.Event.position(event);
 			var table = add_table(tmp[0],tmp[1],new_table_name);
 			var row = table.addRow("id",SQL_DATA_TYPES[0].types[0].type);
 			table.selectedRow = row;
@@ -250,11 +250,11 @@ function init() {
 			row.setPK();
 		}
 	}
-	OAT.Dom.attach("root","mousedown",rootDown);
-	OAT.Dom.attach(window,"keydown",global_event_scroll); /* kvuli mape */
-	OAT.Dom.attach(window,"resize",global_event_resize); /* kvuli mape */
-	OAT.Dom.attach(window,"scroll",global_event_scroll); /* kvuli mape */
-	OAT.Dom.attach(window,"DOMMouseScroll",global_event_scroll); /* kvuli mape */	
+	OAT.Event.attach("root","mousedown",rootDown);
+	OAT.Event.attach(window,"keydown",global_event_scroll); /* kvuli mape */
+	OAT.Event.attach(window,"resize",global_event_resize); /* kvuli mape */
+	OAT.Event.attach(window,"scroll",global_event_scroll); /* kvuli mape */
+	OAT.Event.attach(window,"DOMMouseScroll",global_event_scroll); /* kvuli mape */	
 	var elm = $("root");
 	elm.style.width = DESK_SIZE + "px";
 	elm.style.height = DESK_SIZE + "px";
@@ -267,19 +267,17 @@ function init() {
 	/* ajax http errors */
 	$("options_http").checked = (OAT.Preferences.httpError == 1 ? true : false);
 	OAT.AJAX.httpError = OAT.Preferences.httpError;
-	OAT.Dom.attach("options_http","change",function(){OAT.AJAX.httpError = ($("options_http").checked ? 1 : 0);});
+	OAT.Event.attach("options_http","change",function(){OAT.AJAX.httpError = ($("options_http").checked ? 1 : 0);});
 
 	/* options */
 	dialogs.options = new OAT.Dialog("Options","options",{width:400,modal:1});
-	dialogs.options.ok = dialogs.options.hide;
-	dialogs.options.cancel = dialogs.options.hide;
 
 	/* connection */
 	dialogs.connection = new OAT.Dialog("XMLA Data Provider Connection Setup","connection",{width:500,modal:1,buttons:1});
-	OAT.Dom.attach("xmla_endpoint","blur",xmla_discover);
-	OAT.Dom.attach("xmla_dsn","click",function(){if ($("xmla_dsn").childNodes.length == 0) { xmla_discover(); }});
-	OAT.Dom.attach("xmla_endpoint","keyup",function(e) { if (e.keyCode == 13) { xmla_discover(); }});
-	dialogs.connection.ok = function() {
+	OAT.Event.attach("xmla_endpoint","blur",xmla_discover);
+	OAT.Event.attach("xmla_dsn","click",function(){if ($("xmla_dsn").childNodes.length == 0) { xmla_discover(); }});
+	OAT.Event.attach("xmla_endpoint","keyup",function(e) { if (e.keyCode == 13) { xmla_discover(); }});
+	OAT.MSG.attach(dialogs.connection, "DIALOG_OK", function() {
 		xmla_dbschema();
 		var options = {
 			imagePath:'../images/',
@@ -289,24 +287,22 @@ function init() {
 			isDav:($v("login_put_type") == "dav")
 		};
 		OAT.WebDav.init(options);
-	}
-	dialogs.connection.cancel = function() {
-		dialogs.connection.hide();
+	});
+	OAT.MSG.attach(dialogs.connection, "DIALOG_CANCEL", function() {
 		var options = {
 			imagePath:'../images/',
 			imageExt:'png',
 			user:$v("user"),
 			pass:$v("password"),
 			isDav:($v("login_put_type") == "dav")
-		};
-		OAT.WebDav.init(options);
 	}
-	dialogs.connection.okBtn.setAttribute("disabled","disabled");
-	dialogs.connection.show();
+		OAT.WebDav.init(options);
+	});
+	dialogs.connection.okBtn.disabled = true;
+	dialogs.connection.open();
 
 	/* save */
 	dialogs.save = new OAT.Dialog("Save","save",{width:400,modal:1});
-	dialogs.save.cancel = dialogs.save.hide;
 
 	/* objects */
 	table_admin = new TableAdmin();
@@ -317,8 +313,8 @@ function init() {
 	var m = new OAT.Menu();
 	m.noCloseFilter = "noclose";
 	m.createFromUL("menu");
-	OAT.Dom.attach("menu_about","click",function(){alert('Assembly date: '+OAT.Preferences.version);});
-	OAT.Dom.attach("menu_options","click",dialogs.options.show);
+	OAT.Event.attach("menu_about","click",function(){alert('OAT version: ' + OAT.Preferences.version + ' build: '+OAT.Preferences.build);});
+	OAT.Event.attach("menu_options","click",dialogs.options.open);
 
 	/* bar */
 	elm = $("bar");
@@ -337,18 +333,18 @@ function init() {
 		Locks.map = 1;
 		document.body.style.cursor = "move"; 
 	}
-	OAT.Dom.attach("map","mousedown",mapDown);
+	OAT.Event.attach("map","mousedown",mapDown);
 	var mapUp = function(event) {
 		Locks.map = 0;
 		document.body.style.cursor = "default";
 	}
-	OAT.Dom.attach("map","mouseup",mapUp);
+	OAT.Event.attach("map","mouseup",mapUp);
 	var mapMove = function(event) {
 		var coef = DESK_SIZE / MAP_SIZE;
 		var pos = OAT.Dom.getLT("map_");
 		window.scrollTo(coef * pos[0], coef * pos[1]);
 	}
-	OAT.Dom.attach("map","mousemove",mapMove);
+	OAT.Event.attach("map","mousemove",mapMove);
 	var restrict = function(l,t) {
 		var dims = OAT.Dom.getWH("map_");
 		return (l<0 || t < 0 || l >= MAP_SIZE - dims[0] || t >= MAP_SIZE - dims[1]);
@@ -361,9 +357,7 @@ function init() {
 	/* relation props */
 	dialogs.rel_props = new OAT.Dialog("Relation properties","rel_props",{modal:1,resize:0,width:300});
 	var rel_change = function() { dialogs.rel_props.object.cardinality = $("rel_type").selectedIndex; }
-	dialogs.rel_props.ok = dialogs.rel_props.hide;
-	dialogs.rel_props.cancel = dialogs.rel_props.hide;
-	OAT.Dom.attach("rel_type","change",rel_change);
+	OAT.Event.attach("rel_type","change",rel_change);
 
 	/* file name for saving */ 
 	var fileRef = function() {
@@ -379,7 +373,7 @@ function init() {
 			};
 		OAT.WebDav.saveDialog(options);
 	}
-	OAT.Dom.attach("btn_browse","click",fileRef);
+	OAT.Event.attach("btn_browse","click",fileRef);
 	
 	/* load */
 	var name = document.location.toString().match(/\?load=(.+)/);
@@ -409,7 +403,7 @@ function init() {
 	/* MS Live clipboard */
 	var onRef = function() {}
 	var outRef = function() {}
-	var genRef = function() { return export_xml("",false,true); }
+	var genRef = function() { return export_xml(false, true); }
 	var pasteRef = function(xmlStr){ import_xml(xmlStr); }
 	var typeRef = function(){ return "ol_design"; }
 	OAT.WebClipBindings.bind("webclip", typeRef, genRef, pasteRef, onRef, outRef);

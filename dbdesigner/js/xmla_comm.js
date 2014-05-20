@@ -9,9 +9,8 @@
  */
 function xmla_init() {
 	dialogs.xmla = new OAT.Dialog("Table import","xmla",{width:700,modal:1});
-	dialogs.xmla.ok = xmla_tables;
-	dialogs.xmla.cancel = dialogs.xmla.hide;
-	OAT.Dom.attach("xmla_usecatalog","click",xmla_catalogs);
+	OAT.MSG.attach(dialogs.xmla, "DIALOG_OK", xmla_tables);
+	OAT.Event.attach("xmla_usecatalog","click",xmla_catalogs);
 
 	var resize = OAT.Dom.create("div",{width:"10px",height:"10px",position:"absolute",right:"-5px",bottom:"-5px",cursor:"nw-resize"});
 	OAT.Resize.create(resize,"xmla_table_container",OAT.Resize.TYPE_X);
@@ -30,7 +29,7 @@ function xmla_init() {
 			OAT.Dom.show("xmla_details");
 		}
 	}
-	OAT.Dom.attach("xmla_detailsbtn","click",toggleRef);
+	OAT.Event.attach("xmla_detailsbtn","click",toggleRef);
 	toggleRef();
 }
 
@@ -137,7 +136,7 @@ function xmla_one_table(table_name,schema_name,catalog_name) {
 
 function xmla_tables() {
 	/* add all tables to design */
-	dialogs.xmla.hide();
+	dialogs.xmla.close();
 	var tables = [];
 	var opts = $("xmla_table").getElementsByTagName("option");
 	for (var i=0;i<opts.length;i++) { /* get all marked catalogs */
@@ -186,7 +185,7 @@ function xmla_catalogs() {
 	
 	
 function xmla_dbschema() {
-	dialogs.connection.hide();
+	dialogs.connection.close();
 	xmla_settings();
 	var ref = function(pole) {
 		/* list of catalogs */
