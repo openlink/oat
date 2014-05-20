@@ -35,40 +35,42 @@ var FormDesigner = function(parent) {
 	var l = new OAT.Layers(100);
 	/* columns */
 	this.columns = new Columns(self);
-	this.parent.appendChild(this.columns.win.div);
-	l.addLayer(this.columns.win.div);
+        l.addLayer(this.columns.win.dom.container);
 	
 	/* palette */
 	this.palette = new Palette(self);
-	this.parent.appendChild(this.palette.win.div);
-	l.addLayer(this.palette.win.div);
+	l.addLayer(this.palette.win.dom.content);
 	
 	/* toolbox */
 	this.toolbox = new Toolbox(self);
-	this.parent.appendChild(this.toolbox.win.div);
-	l.addLayer(this.toolbox.win.div);
+	l.addLayer(this.toolbox.win.dom.content);
 	
 	/* --------- available objects ----------- */ 
 	this.palette.addObject("Basic controls",false,0);
+        this.palette.addObject("Inputs","Basic controls",0);
+        this.palette.addObject("Visualization","Basic controls",0);
+
 	this.palette.addObject("Advanced controls",false,0);
+        this.palette.addObject("Geodata","Advanced controls",0);
 	this.palette.addObject("RDF controls","Advanced controls",0);
 	this.palette.addObject("Navigation controls","Advanced controls",0);
 
 	this.palette.addObject("label","Basic controls",1);
-	this.palette.addObject("input","Basic controls",1);
-	this.palette.addObject("textarea","Basic controls",1);
-	this.palette.addObject("checkbox","Basic controls",1);
+	this.palette.addObject("input","Inputs",1);
+	this.palette.addObject("textarea","Inputs",1);
+	this.palette.addObject("checkbox","Inputs",1);
 	this.palette.addObject("line","Basic controls",1);
-	this.palette.addObject("url","Basic controls",1);
-	this.palette.addObject("map","Advanced controls",1);
-	this.palette.addObject("grid","Advanced controls",1);
-	this.palette.addObject("barchart","Basic controls",1);
-	this.palette.addObject("piechart","Basic controls",1);
-	this.palette.addObject("linechart","Basic controls",1);
-	this.palette.addObject("sparkline","Basic controls",1);
-	this.palette.addObject("pivot","Advanced controls",1);
 	this.palette.addObject("flash","Basic controls",1);
 	this.palette.addObject("image","Basic controls",1);
+	this.palette.addObject("url","Basic controls",1);
+	this.palette.addObject("map","Geodata",1);
+	this.palette.addObject("geolocator","Geodata",1);
+	this.palette.addObject("grid","Advanced controls",1);
+	this.palette.addObject("barchart","Visualization",1);
+	this.palette.addObject("piechart","Visualization",1);
+	this.palette.addObject("linechart","Visualization",1);
+	this.palette.addObject("sparkline","Visualization",1);
+	this.palette.addObject("pivot","Advanced controls",1);
 	this.palette.addObject("imagelist","Advanced controls",1);
 	this.palette.addObject("twostate","Advanced controls",1);
 	this.palette.addObject("timeline","Advanced controls",1);
@@ -79,7 +81,7 @@ var FormDesigner = function(parent) {
 	this.palette.addObject("uinput","Basic controls",1);
 	this.palette.addObject("tab","Advanced controls",1);
 	this.palette.addObject("container","Advanced controls",1);
-	this.palette.win.accomodate(false,true);
+
 	/* --------------------------------------- */
 	/* methods */
 	
@@ -129,18 +131,18 @@ var FormDesigner = function(parent) {
 			self.layers.push(l); 
 			self.base.appendChild(l);
 		}
-		OAT.Dom.attach(this.base,"mousedown",self.startCapture);
-		OAT.Dom.attach(this.base,"mouseup",self.stopCapture);
-		OAT.Dom.attach(this.base,"mousemove",self.processCapture);
+		OAT.Event.attach(this.base,"mousedown",self.startCapture);
+		OAT.Event.attach(this.base,"mouseup",self.stopCapture);
+		OAT.Event.attach(this.base,"mousemove",self.processCapture);
 		var pos = OAT.Dom.position(self.base);
 		var dim = OAT.Dom.getWH(self.base);
 		self.selectForm();
 		var callback = function(event) {
-			var src = OAT.Dom.source(event);
+			var src = OAT.Event.source(event);
 			if (src != self.base) { return; } /* only when form is directly clicked */
 			self.selectForm();
 		}
-		OAT.Dom.attach(self.base,"click",callback);
+		OAT.Event.attach(self.base,"click",callback);
 		self.x = 20;
 		self.y = 0;
 	}
@@ -168,15 +170,15 @@ var FormDesigner = function(parent) {
 	}
 	
 	this.startCapture = function(event) { /* selecting multiple objects */
-		var src = OAT.Dom.source(event);
+		var src = OAT.Event.source(event);
 		if (src != self.base) { return; }
 		self.capture = OAT.Dom.create("div",{position:"absolute",border:"2px solid #ff0",width:"0px",height:"0px",zIndex:10});
-		OAT.Dom.attach(self.capture,"mouseup",self.stopCapture);
-		OAT.Dom.attach(self.capture,"mousemove",self.processCapture);
+		OAT.Event.attach(self.capture,"mouseup",self.stopCapture);
+		OAT.Event.attach(self.capture,"mousemove",self.processCapture);
 		self.base.appendChild(self.capture);
 		var coords = OAT.Dom.position(self.base);
 		self.capture.parentCoords = coords;
-		var exact = OAT.Dom.eventPos(event);
+		var exact = OAT.Event.position(event);
 		var x = exact[0] - coords[0];
 		var y = exact[1] - coords[1];
 		self.capture.style.left = x + "px";
@@ -187,7 +189,7 @@ var FormDesigner = function(parent) {
 	
 	this.processCapture = function(event) {
 		if (!self.capture) { return; }
-		var exact = OAT.Dom.eventPos(event);
+		var exact = OAT.Event.position(event);
 		var end_x = exact[0] - self.capture.parentCoords[0];
 		var end_y = exact[1] - self.capture.parentCoords[1];
 		var dx = end_x - self.capture.origX;
@@ -275,7 +277,7 @@ var FormDesigner = function(parent) {
 			var t = tabsArr[i];
 			for (var j=0;j<t.objects.length;j++) {
 				var p = t.objects[j];
-				var index = p.find(object);
+				var index = p.indexOf(object);
 				if (index != -1 && (ignoreActive || t.tab.selectedIndex == j)) { return t; }
 			} /* for all pages */
 		} /* for all tabs */
@@ -366,8 +368,8 @@ var FormDesigner = function(parent) {
 		self.selectObject(formObj);
 		var cancelRef = function(event) { event.cancelBubble = true; }
 		
-		OAT.Dom.attach(formObj.elm,"click",function(event){
-			var src = OAT.Dom.source(event);
+		OAT.Event.attach(formObj.elm,"click",function(event){
+			var src = OAT.Event.source(event);
 			/* climb up and find first available control */
 			do {
 				var hope = 0;
@@ -376,7 +378,7 @@ var FormDesigner = function(parent) {
 			} while (!hope);
 			self.selectObject(hope,event);
 		});
-		OAT.Dom.attach(formObj.elm,"mousedown",cancelRef);
+		OAT.Event.attach(formObj.elm,"mousedown",cancelRef);
 		
 		if (!loading) { self.checkTabPlacement(); }
 		return formObj;
@@ -487,7 +489,9 @@ var FormDesigner = function(parent) {
 			}
 			for (var j=0;j<self.objects[i].properties.length;j++) {
 				var p = self.objects[i].properties[j];
-				if (p.type == "container") { p.value = (parseInt(p.value) == -1 ? false : self.objects[parseInt(p.value)]); }
+				if (p.type == "container") { 
+				    p.value = (parseInt(p.value) == -1 ? false : self.objects[parseInt(p.value)]); 
+				}
 			}
 		}
 		
@@ -506,9 +510,9 @@ var FormDesigner = function(parent) {
 			xml += self.datasources[i].toXML(uid,self.datasources,self.objects,$("options_nocred").checked)+'\n'; 
 		}
 		var d = self.base;
-		var bg = OAT.Dom.style(d,"backgroundColor");
-		var fg = OAT.Dom.style(d,"color");
-		var size = OAT.Dom.style(d,"fontSize");
+		var bg = OAT.Style.get(d,"backgroundColor");
+		var fg = OAT.Style.get(d,"color");
+		var size = OAT.Style.get(d,"fontSize");
 		var coords = OAT.Dom.getLT(d);
 		var dims = OAT.Dom.getWH(d);
 		xml += '\t<area bgcolor="'+bg+'" fgcolor="'+fg+'" size="'+size+'" '+
@@ -520,7 +524,7 @@ var FormDesigner = function(parent) {
 			var o = self.objects[i];
 			var t = self.alreadyOnTab(o,tabs,1);
 			if (t) { 
-				for (var j=0;j<t.objects.length;j++) if (t.objects[j].find(o) != -1) { 
+				for (var j=0;j<t.objects.length;j++) if (t.objects[j].indexOf(o) != -1) { 
 					t.tab.go(j); 
 				} /* activate its tab */
 			} /* if on a tab */

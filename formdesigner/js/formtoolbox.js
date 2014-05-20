@@ -23,31 +23,28 @@ function Toolbox(obj) {
 		OAT.WebDav.openDialog(options);
 	}
 
-	this.win = new OAT.Window({min:0,max:0,close:1,height:0,width:240,x:-15,y:140,title:"Control Properties"});
-	var d = OAT.Dom.create("div",{padding:"3px"},"toolbox");
-	this.win.hide = function() {OAT.Dom.hide(self.win.div);};
-	this.win.show = function() {OAT.Dom.show(self.win.div);};
-	this.win.onclose = function() {
-		self.win.hide();
-		tbar.icons[1].toggle();
-	}
-	this.win.content.appendChild(d);
+	this.win = new OAT.Win({buttons:"cr",outerHeight:0,outerWidth:240,x:-15,y:180,title:"Control Properties"});
+	var d = OAT.Dom.create("div",{padding:"3px",className:"toolbox"});
+	OAT.MSG.attach(this.win, "WINDOW_CLOSE", function() {
+		tbar.icons[1].toggleState(0, true);
+	});
+	this.win.dom.content.appendChild(d);
 	this.name = OAT.Dom.create("span");
-	var tmp = OAT.Dom.create("div");
+        var tmp = OAT.Dom.create("div",{className: "toolbox_scope"});
 	tmp.innerHTML = "Selected: ";
 	tmp.appendChild(this.name);
 	d.appendChild(tmp);
 	var ul = OAT.Dom.create("ul");
 	d.appendChild(ul);
 	
-	this.content = OAT.Dom.create("div",{marginTop:"20px",border:"2px solid #000"});
+	this.content = OAT.Dom.create("div",{className:"toolbox_ctr"});
 	d.appendChild(this.content);
 	
 	this.lastTabIndex = 0;
-	this.tab = new OAT.Tab(this.content,{
-		goCallback:function(a,b) {
-			self.lastTabIndex = b;
-		}
+	this.tab = new OAT.Tab(this.content);
+	
+	OAT.MSG.attach(this.tab, "TAB_CHANGE", function(sender, message, event) {
+		self.lastTabIndex = event[1];
 	});
 	
 	this.lis = [];
@@ -72,7 +69,6 @@ function Toolbox(obj) {
 	this.clear = function() {
 		var last = self.lastTabIndex;
 		for (var i=0;i<self.tables.length;i++) { OAT.Dom.clear(self.tables[i]); }
-//		self.win.accomodate();
 		self.tab.go(0);
 		self.lastTabIndex = last;
 	}
@@ -106,27 +102,27 @@ function Toolbox(obj) {
 		self.addTable(t);
 		var elm = self.obj.base;
 		var text = OAT.Dom.text("BG color");
-		var color = OAT.Dom.style(elm,"backgroundColor");
+		var color = OAT.Style.get(elm,"backgroundColor");
 		var c1 = OAT.Dom.create("div",{cssFloat:"right",styleFloat:"right",width:"16px",height:"8px",margin:"3px",backgroundColor:color,border:"1px solid #000",cursor:"pointer",overflow:"hidden"});
 		self.addTable(text,c1);
 		OAT.Bindings.bindColor(c1,elm.style,"backgroundColor");
 		
 		var text = OAT.Dom.text("FG color");
-		var color = OAT.Dom.style(elm,"color");
+		var color = OAT.Style.get(elm,"color");
 		var c2 = OAT.Dom.create("div",{cssFloat:"right",styleFloat:"right",width:"16px",height:"8px",margin:"3px",backgroundColor:color,border:"1px solid #000",cursor:"pointer",overflow:"hidden"});
 		self.addTable(text,c2);
 		OAT.Bindings.bindColor(c2,elm.style,"color");
 		
 		var text = OAT.Dom.text("Font size");
-		var font = new OAT.Combolist(["60%","80%","100%","120%","140%"],OAT.Dom.style(elm,"fontSize"));
+		var font = new OAT.Combolist(["60%","80%","100%","120%","140%"],OAT.Style.get(elm,"fontSize"));
 		font.input.setAttribute("size","6");
 		self.addTable(text,font.div);
 		OAT.Bindings.bindCombo(font,elm.style,"fontSize");
 
 		/* if needed, resize property window */
 		var tableW = OAT.Dom.getWH(self.tables[self.tableIndex])[0];
-		var divW = parseInt(self.win.content.style.width);
-		if (tableW > divW) { self.win.content.style.width = tableW + "px"; }
+		var divW = self.win.dom.container.offsetWidth;
+		if (tableW > divW) { self.win.dom.container.style.width = tableW + "px"; }
 	}
 	
 	this.container = function(o,label,targetO,targetP) {
@@ -142,7 +138,7 @@ function Toolbox(obj) {
 			}
 			if (cont == targetO[targetP]) { cont_select.selectedIndex = cont_select.childNodes.length-1; }
 		}
-		OAT.Dom.attach(cont_select,"change",function(){
+		OAT.Event.attach(cont_select,"change",function(){
 			targetO[targetP] = cont_select.childNodes[cont_select.selectedIndex].cont;
 		});
 		self.addTable(t,cont_select);
@@ -167,7 +163,7 @@ function Toolbox(obj) {
 			inp.setAttribute("type","text");
 			inp.setAttribute("size","14");
 			inp.value = o.getValue();
-			OAT.Dom.attach(inp,"keyup",function() {o.setValue(inp.value);} )
+			OAT.Event.attach(inp,"keyup",function() {o.setValue(inp.value);} )
 			self.addTable(text,inp);
 		}
 		/* container */
@@ -197,7 +193,7 @@ function Toolbox(obj) {
 						var cnt = OAT.Dom.create("select");
 						for (var j=1;j<11;j++) { OAT.Dom.option(j,j,cnt); }
 						cnt.selectedIndex = p.value.length-1;
-						OAT.Dom.attach(cnt,"change",function(){ 
+						OAT.Event.attach(cnt,"change",function(){ 
 							var newc = parseInt($v(cnt));
 							var oldc = p.value.length;
 							if (newc != oldc) { 
@@ -216,7 +212,7 @@ function Toolbox(obj) {
 							input.value = p.value[j];
 							OAT.Bindings.bindString(input,p.value,j);
 							var ref = gen(j,input);
-							OAT.Dom.attach(input,"keyup",ref);
+							OAT.Event.attach(input,"keyup",ref);
 							var text = OAT.Dom.text("#"+(j+1));
 							self.addTable(text,input);
 						}
@@ -286,7 +282,7 @@ function Toolbox(obj) {
 					input.appendChild(input2);
 					
 					var browseRef = self.browseRef(input1,p);
-					OAT.Dom.attach(input2,"click",browseRef);
+					OAT.Event.attach(input2,"click",browseRef);
 					self.addTable(text,input);
 				break;
 				
@@ -313,7 +309,7 @@ function Toolbox(obj) {
 				dssel.selectedIndex = o.datasources.length-1;
 			}
 			self.addTable(text,dssel);
-			OAT.Dom.attach(dssel,"change",function(){
+			OAT.Event.attach(dssel,"change",function(){
 				var c = $v(dssel);
 				if (c < o.datasources.length) {
 					/* easy - remove redundant datasources */
@@ -358,7 +354,7 @@ function Toolbox(obj) {
 			var s = self.obj.createDSOnlySelect(ds.ds);
 			self.addTable(text,s);
 			var ref = getDSref(s,ds);
-			OAT.Dom.attach(s,"change",ref);
+			OAT.Event.attach(s,"change",ref);
 			
 			var fieldSets = ds.fieldSets;
 			for (var ii=0;ii<fieldSets.length;ii++) {
@@ -375,7 +371,7 @@ function Toolbox(obj) {
 					self.addTable(t,cnt_select);
 					/* count change reference */
 					var fsCountRef = self.fsCountRef(cnt_select,fs,o);
-					OAT.Dom.attach(cnt_select,"change",fsCountRef);
+					OAT.Event.attach(cnt_select,"change",fsCountRef);
 					
 					/* actual values */
 					for (var j=0;j<fs.names.length;j++) {
@@ -422,7 +418,7 @@ function Toolbox(obj) {
 		for (var i=0;i<o.css.length;i++) {
 			var css = o.css[i];
 			var text = OAT.Dom.text(css.name);
-			var value = OAT.Dom.style(o.elm,css.property);
+			var value = OAT.Style.get(o.elm,css.property);
 			switch (css.type) {
 				case "string":
 					var input = OAT.Dom.create("input");
@@ -466,7 +462,7 @@ function Toolbox(obj) {
 			o.deselect();
 			obj.layersObj.removeLayer(o.elm);
 			OAT.Dom.unlink(o.elm);
-			var index = obj.objects.find(o);
+			var index = obj.objects.indexOf(o);
 			obj.objects.splice(index,1);
 			/* object may be referenced as parent control or user input... */
 			for (var i=0;i<obj.objects.length;i++) {
@@ -483,7 +479,7 @@ function Toolbox(obj) {
 			} /* all ds */
 			self.showForm(); /* show form */
 		}
-		OAT.Dom.attach(del,"click",delRef);
+		OAT.Event.attach(del,"click",delRef);
 		self.addTable(del);
 		
 		/* if specified, switch to tab index */
@@ -502,19 +498,19 @@ function Toolbox(obj) {
 		var alignTop = OAT.Dom.create("a",{display:"block"});
 		alignTop.setAttribute("href","#");	alignTop.innerHTML = "align to top";
 		self.addTable(alignTop);
-		OAT.Dom.attach(alignTop,"click",function(){obj.alignSelected("top");});
+		OAT.Event.attach(alignTop,"click",function(){obj.alignSelected("top");});
 		var alignBottom = OAT.Dom.create("a",{display:"block"});
 		alignBottom.setAttribute("href","#"); alignBottom.innerHTML = "align to bottom";
 		self.addTable(alignBottom);
-		OAT.Dom.attach(alignBottom,"click",function(){obj.alignSelected("bottom");});
+		OAT.Event.attach(alignBottom,"click",function(){obj.alignSelected("bottom");});
 		var alignLeft = OAT.Dom.create("a",{display:"block"});
 		alignLeft.setAttribute("href","#");	alignLeft.innerHTML = "align to left";
 		self.addTable(alignLeft);
-		OAT.Dom.attach(alignLeft,"click",function(){obj.alignSelected("left");});
+		OAT.Event.attach(alignLeft,"click",function(){obj.alignSelected("left");});
 		var alignRight = OAT.Dom.create("a",{display:"block"});
 		alignRight.setAttribute("href","#");	alignRight.innerHTML = "align to right";
 		self.addTable(alignRight);
-		OAT.Dom.attach(alignRight,"click",function(){obj.alignSelected("right");});
+		OAT.Event.attach(alignRight,"click",function(){obj.alignSelected("right");});
 		var del = OAT.Dom.create("a",{marginTop:"3px"});
 		del.setAttribute("href","#");
 		del.innerHTML = "remove";
@@ -529,7 +525,7 @@ function Toolbox(obj) {
 			}
 			self.showForm(); /* show form */
 		}
-		OAT.Dom.attach(del,"click",delRef);
+		OAT.Event.attach(del,"click",delRef);
 		self.addTable(del);
 	}
 	

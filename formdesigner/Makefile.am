@@ -20,5 +20,6 @@
 EXTRA_DIST = \
 	$(srcdir)/*.html \
 	$(srcdir)/images/*.gif \
+	$(srcdir)/images/*.png \
 	$(srcdir)/js/*.js \
 	$(srcdir)/styles/*.css

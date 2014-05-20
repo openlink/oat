@@ -9,16 +9,15 @@
  */
 function Palette(obj) {
 	var self = this;
-	this.win = new OAT.Window({min:0,max:0,close:1,width:180,height:0,x:-15,y:20,title:"Controls Palette"});
-	this.win.hide = function() {OAT.Dom.hide(self.win.div);};
-	this.win.show = function() {OAT.Dom.show(self.win.div);};
-	this.win.onclose = function() {
-		self.win.hide();
-		tbar.icons[0].toggle();
-	}
+	this.win = new OAT.Win({buttons:"cr",outerHeight:0,outerWidth:240,x:-15,y:60,title:"Controls Palette"});
+
+	OAT.MSG.attach(this.win, "WINDOW_CLOSE", function() {
+		tbar.icons[0].toggleState(0, true);
+	});
+
 	this.items = [];
 	var ul = OAT.Dom.create("ul");
-	self.win.content.appendChild(ul);
+	self.win.dom.content.appendChild(ul);
 	
 	this.tree = new OAT.Tree({onClick:"toggle",onDblClick:"toggle"});
 	self.tree.assign(ul,true);

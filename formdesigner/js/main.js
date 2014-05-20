@@ -21,6 +21,70 @@ function set_filename(name) {
 	IO.filename = name;
 }
 
+function get_v_errors (xmlDoc) { 
+    var err_obj = {};
+    err_obj.err_code = xmlDoc.getElementsByTagName('Error')[0].getAttribute('ErrorCode');
+    err_obj.err_descr = xmlDoc.getElementsByTagName('Error')[0].getAttribute('Description');
+    return err_obj;
+}
+
+function show_xhr_error (xhr) {
+    // handle error responses
+
+    var err_ctr = OAT.Dom.create('div',{className: "error_dlg"});
+    var err_title = OAT.Dom.create('h2');
+    var err_expln = OAT.Dom.create ('div', {className:"err_expln"});
+    var err_toggle_elm = OAT.Dom.create ('div', {className: "toggle"});
+    var toggle = new OAT.Toggle(err_toggle_elm,{title: "Details"});
+    var err_descr = OAT.Dom.create('div', {className: "err_descr_ctr"});
+
+    OAT.Dom.hide (err_descr);
+    OAT.MSG.attach (toggle,
+		    "OAT_TOGGLER_STATE_CHANGE",
+		    function (s,m,o) { 
+			if (o == 0) OAT.Dom.hide(err_descr);
+			else OAT.Dom.show(err_descr);
+		    });
+
+    if (xhr.obj.status == 500) {
+	var e_o = get_v_errors (xhr.obj.responseXML);
+	var err_code = e_o.err_code;
+	switch (err_code) {
+	case "22023": 
+	    err_title.innerHTML = "Invalid Credentials";
+	    err_expln.innerHTML = "The server did not accept the username or password presented.";
+	    break;
+	default:
+	    err_title.innerHTML = "Error " + e_o.err_code;
+	    err_expln.innerHTML = "The server responded with an error."
+	    break;
+	}
+	err_descr.innerHTML = e_o.err_descr;
+    }
+    else {
+	err_code = xhr.obj.status;
+	err_title.innerHTML = "HTTP Error " + xhr.obj.status;
+	err_expln.innerHTML = 'Server responded with an error.';
+	var err_expln = OAT.Dom.create('div',{className: "err_expln"});
+    }
+
+    var err_btn_2 = OAT.Dom.create("input",{type:'button',className:'err_dlg_cont_b'});
+    err_btn_2.value = "Continue";
+
+    OAT.Dom.append ([err_ctr,err_title,err_expln,err_toggle_elm,err_descr,err_btn_2]);
+
+    var err_dlg = new OAT.Dialog ("Error " + err_code, err_ctr, 
+				  { width:400, modal:0, zIndex:1001, resize:0,buttons: false});
+
+    err_btn_2.onclick = function() { OAT.AJAX.endNotify(OAT.Preferences.showAjax); err_dlg.close();}
+
+    err_dlg.show();
+}
+
+var xmla_ajax_o = {
+    onerror: show_xhr_error
+}
+
 var Connection = {
 	get_settings:function() {
 		/* read relevant settings from inputboxes */
@@ -42,8 +106,10 @@ var Connection = {
 			var select = $("bind_sql_dsn");
 			OAT.Dom.clear(select);
 			for (var i=0;i<pole.length;i++) { OAT.Dom.option(pole[i],pole[i],select); } /* for all rows */
+	    OAT.MSG.send (self,"FORMDESIGNER_DSN_DISCOVERED",pole.length);
 		} /* callback */
-		OAT.Xmla.discover(ref);
+
+	OAT.Xmla.discover(ref,xmla_ajax_o);
 	},
 
 	use_dsn:function() {
@@ -52,45 +118,40 @@ var Connection = {
 		var ref=function(pole) {
 			ask_for_catalogs(pole,1);
 		} /* callback */
-		OAT.Xmla.dbschema(ref);
+
+	OAT.Xmla.dbschema(ref,xmla_ajax_o);
 
 		var qRef = function(q) {
 			OAT.SqlQueryData.columnQualifierPre = q[0];
 			OAT.SqlQueryData.columnQualifierPost = q[1];
 		}
-		OAT.Xmla.qualifiers(qRef);
+	OAT.Xmla.qualifiers(qRef,xmla_ajax_o);
 	}
 } /* Connection */
 
-function ask_for_catalogs(pole,firstTime) {
-	/*
-		this is tricky - virtuoso sometimes requires name/pwd for
-		table detection. this is why we first send only one request
-		and if it succeeds, we ask for remaining catalogs
-	*/
-	if (firstTime && pole.length) {
-		/* first, testing catalog */
-		var name = pole[0];
-		var callback = function() { ask_for_catalogs(pole,0); }
-		OAT.Xmla.tables(name,callback);
-	} else {
-		/* ok, first request was successfully returned - go for it for real */
+function ask_for_catalogs(pole) {
 		Filter.clear();
-		if (pole.length) { var lastCatalog = pole[pole.length-1]; }
+    var n = pole.length;
+
+    var handle_error = function (xhr) {
+	n = 0;
+	OAT.AJAX.abortAll();
+	OAT.MSG.send (this,"FORMDESIGNER_CATALOG_CALL_FAIL",xhr);
+	show_xhr_error(xhr);
+    }
+
+    var o = {onerror: handle_error};
+
 		for (var i=0;i<pole.length;i++) {
 			var name = pole[i];
-			var callback = function(catalog_name,arr) {
-				read_tables(catalog_name,arr,lastCatalog);
-			}
-			OAT.Xmla.tables(name,callback);
-		} /* for each catalog */
-		/* no catalogs present? */
-		if (!pole.length) {
-			var callback = function(catalog,arr) {
-				read_tables("",arr,"");
-			}
-			OAT.Xmla.tables("",callback);
+
+	var tbl_cb = function(catalog_name,arr) {
+	    read_tables(catalog_name,arr);
+	    n--;
+	    if (!n) Filter.create();
 		}
+
+	OAT.Xmla.tables(name,tbl_cb,o);
 	}
 }
 
@@ -101,7 +162,6 @@ function read_tables(catalog_name,pole,lastCatalog) {
 		var table = pole[0][i];
 		Filter.addTable(catalog_name,schema,table);
 	}
-	if (catalog_name == lastCatalog) { Filter.create(); }
 }
 
 var Filter = {
@@ -171,9 +231,10 @@ var IO = {
 		var recv_ref = function(data) { alert('Saved.'); }
 		set_filename(name);
 		var o = {
-			auth:OAT.AJAX.AUTH_BASIC,
+	    auth:OAT.AJAX.AUTH_DEFAULT,
 			user:OAT.WebDav.options.user,
-			password:OAT.WebDav.options.pass
+	    password:OAT.WebDav.options.pass,
+	    headers:{"Content-Type": "text/xml"}
 		}
 		OAT.AJAX.PUT(name,xml,recv_ref,o);
 	},
@@ -227,7 +288,8 @@ var DS = { /* datasources / bindings */
 			td.appendChild(n);
 			td.appendChild(inp);
 			tr.appendChild(td);
-			OAT.Dom.attach(inp,"click",function(){DS.readBinding(index);});
+	    OAT.Event.attach(inp,"click",function(){DS.readBinding(index);});
+
 			/* dependencies */
 			var td = OAT.Dom.create("td");
 			var inp = OAT.Dom.create("input");
@@ -235,7 +297,8 @@ var DS = { /* datasources / bindings */
 			inp.value = "View & Edit";
 			td.appendChild(inp);
 			tr.appendChild(td);
-			OAT.Dom.attach(inp,"click",function(){DS.showDependencies(index);});
+	    OAT.Event.attach(inp,"click",function(){DS.showDependencies(index);});
+
 			/* remove */
 			var td = OAT.Dom.create("td");
 			var inp = OAT.Dom.create("input");
@@ -243,7 +306,7 @@ var DS = { /* datasources / bindings */
 			inp.value = "Remove";
 			td.appendChild(inp);
 			tr.appendChild(td);
-			OAT.Dom.attach(inp,"click",function(){
+	    OAT.Event.attach(inp,"click",function(){
 				fd.datasources.splice(index,1);
 				/* now fix all controls bound to this datasource */
 				for (var i=0;i<fd.objects.length;i++) {
@@ -263,7 +326,7 @@ var DS = { /* datasources / bindings */
 		for (var i=0;i<fd.datasources.length;i++) {
 			create_row(i);
 		}
-		dialogs.dslist.show();
+	dialogs.dslist.open();
 	},
 
 	applyBinding:function() {
@@ -310,14 +373,13 @@ var DS = { /* datasources / bindings */
 				ds.pageSize = ds.options.limit
 				var opts = ds.connection.options;
 				
-				if ($("bind_sql_query").checked) {
+	    if ($("bind_sql_qry_or_table").value == '0') {
 					ds.options.table = "";
 					ds.options.query = $v("bind_sql_query_text");
-				}
-				
-				if ($("bind_sql_table").checked) {
+	    } else {
 					ds.options.table = $("bind_sql_table_text").innerHTML;
 				}
+
 			break;
 			case OAT.DataSourceData.TYPE_SOAP:	ds.connection.options.url = $v("bind_soap_wsdl"); break;
 			case OAT.DataSourceData.TYPE_REST:	
@@ -358,7 +420,7 @@ var DS = { /* datasources / bindings */
 		$("bind_sql_file").checked = false;
 		$("bind_sql_table").checked = false;
 		
-		OAT.Dom.hide("bind_sql","bind_sparql","bind_gdata","bind_rest","bind_soap");
+	OAT.Dom.hide("bind_sql","bind_sparql","bind_gdata",/*"bind_geoloc",*/"bind_rest","bind_soap");
 
 		$("bind_rest_in").value = "";
 		$("bind_rest_out").value = "";
@@ -370,7 +432,7 @@ var DS = { /* datasources / bindings */
 				ds_tab.go(0);
 				var opts = ds.connection.options;
 				OAT.Dom.show("bind_sql");
-				$("bind_gq_type").selectedIndex = 0;
+	    $("bind_generic_type").selectedIndex = 0;
 				$("bind_sql_type").selectedIndex = ds.options.cursortype;
 				$("bind_sql_limit").value = ds.options.limit;
 				$("bind_sql_user").value = opts.user;
@@ -408,33 +470,49 @@ var DS = { /* datasources / bindings */
 				OAT.Dom.show("bind_sparql");
 				$("bind_sparql_query").value = ds.options.query;
 				$("bind_sparql_url").value = ds.connection.options.url;
-				$("bind_gq_type").selectedIndex = 1;
+	    $("bind_generic_type").selectedIndex = 1;
 			break;
 			case OAT.DataSourceData.TYPE_GDATA:
 				ds_tab.go(0);
 				OAT.Dom.show("bind_gdata");
 				$("bind_gdata_query").value = ds.options.query;
 				$("bind_gdata_url").value = ds.connection.options.url;
-				$("bind_gq_type").selectedIndex = 2;
+	    $("bind_generic_type").selectedIndex = 2;
 			break;
+/*	case OAT.DataSourceData.TYPE_GEOLOC:
+	    ds_tab.go(0);
+	    OAT.Dom.show("bind_geoloc");
+	    $("bind_geoloc_timeout").value = ds.options.timeout;
+	    if (ds.options.high_accuracy) $("bind_geoloc_highacc").checked=true;
+	    if (ds.options.track) $("bind_geoloc_track").checked=true;
+	    break; */
 		} /* switch */
 
-		if (ds.type == OAT.DataSourceData.TYPE_SOAP || ds.type == OAT.DataSourceData.TYPE_RES || ds.type == OAT.DataSourceData.TYPE_NONE) {
+	switch (ds.type) {
+	case OAT.DataSourceData.TYPE_SOAP:
+	case OAT.DataSourceData.TYPE_RES:
+        case OAT.DataSourceData.TYPE_NONE:
 			$("bind_generic_type").selectedIndex = 0;
 			OAT.Dom.show("bind_sql");
+	    break
+	case OAT.DataSourceData.SPARQL:
+	    $("bind_generic_type").selectedIndex = 1;
+	    OAT.Dom.show("bind_sparql");
+	    break;
 		}
 
 		if (ds.type != OAT.DataSourceData.TYPE_SOAP && ds.type != OAT.DataSourceData.TYPE_REST) {
 			$("bind_ws_type").selectedIndex = 0;
 			OAT.Dom.show("bind_rest");
 		}
-		dialogs.bind.show();
+
+	dialogs.bind.open();
 	},
 	
 	showDependencies:function(dsIndex) {
 		var ds = fd.datasources[dsIndex];
 		DS.selectedDSindex = dsIndex;
-		dialogs.dsdepends.show();
+	dialogs.dsdepends.open();
 		OAT.Dom.clear("depends_tbody");
 		OAT.Dom.clear("depends_count");
 		
@@ -455,7 +533,7 @@ var DS = { /* datasources / bindings */
 				OAT.Dom.option(ds.inputFields[i],i,s);
 				if (fb.selfFields[index] == i) { s.selectedIndex = i; }
 			}
-			OAT.Dom.attach(s,"change",function(){fb.selfFields[index] = parseInt($v(s));});
+	    OAT.Event.attach(s,"change",function(){fb.selfFields[index] = parseInt($v(s));});
 			
 			/* second part - list of available other fields, direct input or parametrized values */
 			var div = OAT.Dom.create("div");
@@ -474,11 +552,11 @@ var DS = { /* datasources / bindings */
 				r1.checked = true;
 				inp.value = fb.masterFields[index]; 
 			}
-			OAT.Dom.attach(inp,"keyup",function(){
+	    OAT.Event.attach(inp,"keyup",function(){
 				if (!r1.checked) { return; }
 				fb.masterFields[index] = inp.__value ? inp.__value : $v(inp);
 			});
-			OAT.Dom.attach(r1,"change",function(){
+	    OAT.Event.attach(r1,"change",function(){
 				fb.masterDSs[index] = false;
 				fb.masterFields[index] = inp.__value ? inp.__value : $v(inp);
 				fb.types[index] = 0;
@@ -486,16 +564,15 @@ var DS = { /* datasources / bindings */
 			var enl = OAT.Dom.create("a");
 			enl.innerHTML = "enlarge input box";
 			enl.href = "#";
-			OAT.Dom.attach(enl,"click",function(){
-				dialogs.enl.ok = function() { 
+	    OAT.Event.attach(enl,"click",function(){
+		OAT.MSG.attach(dialogs.enl, "DIALOG_OK", function() { 
 					inp.value = $v("enl_textarea"); 
 					inp.__value = $v("enl_textarea");
-					dialogs.enl.hide(); 
 					if (!r1.checked) { return; }
 					fb.masterFields[index] = inp.__value;
-				}
+		});
 				$("enl_textarea").value = inp.__value ? inp.__value : $v(inp);
-				dialogs.enl.show();
+		dialogs.enl.open();
 			});
 			
 			d1.appendChild(r1);
@@ -526,8 +603,8 @@ var DS = { /* datasources / bindings */
 				fb.masterFields[index] = o.masterField;
 				fb.types[index] = 1;
 			}
-			OAT.Dom.attach(r2,"change",changeRef);
-			OAT.Dom.attach(sel2,"change",changeRef);
+	    OAT.Event.attach(r2,"change",changeRef);
+	    OAT.Event.attach(sel2,"change",changeRef);
 			d2.appendChild(r2);
 			d2.appendChild(l);
 			d2.appendChild(sel2);
@@ -542,7 +619,7 @@ var DS = { /* datasources / bindings */
 			if (fb.types[index] == 2) { 
 				r3.checked = true;
 			}
-			OAT.Dom.attach(r3,"change",function(){
+	    OAT.Event.attach(r3,"change",function(){
 				fb.masterDSs[index] = false;
 				fb.masterFields[index] = -1;
 				fb.types[index] = 2;
@@ -575,8 +652,8 @@ var DS = { /* datasources / bindings */
 				fb.masterFields[index] = -1;
 				fb.types[index] = 3;
 			}
-			OAT.Dom.attach(r4,"change",changeRef);
-			OAT.Dom.attach(sel4,"change",changeRef);
+	    OAT.Event.attach(r4,"change",changeRef);
+	    OAT.Event.attach(sel4,"change",changeRef);
 			d4.appendChild(r4);
 			d4.appendChild(text);
 			d4.appendChild(sel4);
@@ -640,7 +717,7 @@ var DS = { /* datasources / bindings */
 		var xslStr = '<?xml-stylesheet type="text/xsl" href="'+$v("options_xslt")+'formview.xsl"?>';
 		var xml = fd.toXML(xslStr);
 			var options = {
-			extensionFilters:[ ["xml","xml", "Form Design"] ],
+	    extensionFilters:[ ["xml","xml", "Form Design", "text/xml"] ],
  			dataCallback:function() { 
 					return xml;
 				},
@@ -658,27 +735,60 @@ function init() {
 	$("options_xslt").value = OAT.Preferences.xsltPath;
 	$("bind_sql_endpoint").value = OAT.Preferences.endpointXmla;
 
+    /* version info */
+    $("about_oat").innerHTML = "OAT version: " + OAT.Preferences.version + ' build ' + OAT.Preferences.build;
+    
 	/* ajax http errors */
 	$("options_http").checked = (OAT.Preferences.httpError == 1 ? true : false);
-	OAT.AJAX.httpError = OAT.Preferences.httpError;
-	OAT.Dom.attach("options_http","change",function(){OAT.AJAX.httpError = ($("options_http").checked ? 1 : 0);});
+
+    OAT.AJAX.httpError = false;
+
+    OAT.Event.attach("options_http","change",function(){OAT.AJAX.httpError = ($("options_http").checked ? 1 : 0);});
 
 	/* connection */
-	OAT.Dom.attach("bind_sql_endpoint","blur",Connection.discover_dsn);
-	OAT.Dom.attach("bind_sql_xmla","click",function() {
-		if ($("bind_sql_dsn").childNodes.length) {
+
+    OAT.MSG.attach ("*","FORMDESIGNER_DSN_DISCOVERED",function (obj,msg,val) { 
+	if (val > 0) {
+	    OAT.Dom.show ("bind_sql_dsn");
+	}
+	else {
+	    OAT.Dom.hide ("bind_sql_dsn");
+	}
+    });
+
+
+    OAT.Event.attach("bind_sql_endpoint","blur",Connection.discover_dsn);
+    OAT.Event.attach("bind_sql_xmla","click",Connection.discover_dsn);
+
+    OAT.Event.attach("bind_sql_dsn","click",function(){if ($("bind_sql_dsn").childNodes.length == 0) { Connection.discover_dsn(); }});
+    OAT.Event.attach("bind_sql_endpoint","keyup",function(e) { if (e.keyCode == 13) { Connection.discover_dsn(); }});
+
+    OAT.Event.attach("bind_sql_user","blur",Connection.get_settings);
+    OAT.Event.attach("bind_sql_password","blur",Connection.get_settings);
+
+    OAT.Event.attach("bind_sql_qry_or_table","change",
+		     function() { 
+			 if ($('bind_sql_qry_or_table').value=="1") {
 			Connection.use_dsn();
-		} else {
-			Connection.discover_dsn();
+			     OAT.Dom.hide ('bind_sql_query_ctr');
+			     OAT.Dom.show ('bind_tables_ctr');
+			 }
+			 else {
+			     OAT.Dom.hide ('bind_tables_ctr');
+			     OAT.Dom.show ('bind_sql_query_ctr');
 		}
 	});
-	OAT.Dom.attach("bind_sql_dsn","click",function(){if ($("bind_sql_dsn").childNodes.length == 0) { Connection.discover_dsn(); }});
-	OAT.Dom.attach("bind_sql_endpoint","keyup",function(e) { if (e.keyCode == 13) { Connection.discover_dsn(); }});
+
+    OAT.MSG.attach ("*","FORMDESIGNER_CATALOG_CALL_FAIL",
+		    function () { 
+			$('bind_sql_qry_or_table').selectedIndex = 0; 
+			OAT.Dom.hide ('bind_tables_ctr');
+			OAT.Dom.show ('bind_sql_query_ctr')});
+
+    OAT.MSG.attach ("*","FORMDESIGNER_CATALOG_RECEIVED",function () { });
 
 	/* options */
 	dialogs.options = new OAT.Dialog("Options","options",{width:400,modal:1});
-	dialogs.options.ok = dialogs.options.hide;
-	dialogs.options.cancel = dialogs.options.hide;
 
 	/* form designer */
 	fd = new FormDesigner("form");
@@ -686,36 +796,28 @@ function init() {
 
 	/* data bindings */
 	dialogs.dslist = new OAT.Dialog("List of datasources","dslist",{width:600,modal:0});
-	dialogs.dslist.ok = dialogs.dslist.hide;
-	dialogs.dslist.cancel = dialogs.dslist.hide;
 //	OAT.Dom.unlink(dialogs.dslist.cancelBtn);
 
 	/* ds type */
 	dialogs.bind = new OAT.Dialog("Datasource type","bind",{width:600,height:0,modal:0,autoEnter:0});
 	$("bind").style.overflow = "auto";
-	dialogs.bind.ok = function() { DS.applyBinding(); dialogs.bind.hide(); }
-	dialogs.bind.cancel = dialogs.bind.hide;
+    OAT.MSG.attach(dialogs.bind, "DIALOG_OK", DS.applyBinding);
 	ds_tab = new OAT.Tab("bind_content");
-	$("bind_content").style.marginTop = "20px";
-	$("bind_content").style.border = "2px solid #000";
-	$("bind_content").style.padding = "5px";
 
 	ds_tab.add("bind_tab_generic","bind_content_generic");
 	ds_tab.add("bind_tab_ws","bind_content_ws");
 
 	/* data dependencies */
 	dialogs.dsdepends = new OAT.Dialog("Datasource dependencies","dsdepends",{width:700,modal:0});
-	dialogs.dsdepends.ok = dialogs.dsdepends.hide;
-	dialogs.dsdepends.cancel = dialogs.dsdepends.hide;
 //	OAT.Dom.unlink(dialogs.dsdepends.cancelBtn);
 	
 	/* enlarged input */
 	dialogs.enl = new OAT.Dialog("Enter value","enl",{modal:1,width:700,autoEnter:0});
-	dialogs.enl.cancel = dialogs.enl.hide;
 
 	/* table list */
 	dialogs.tables = new OAT.Dialog("Pick a table","tables",{width:400,modal:0});
-	dialogs.tables.ok = function() {
+
+    OAT.MSG.attach(dialogs.tables, "DIALOG_OK", function() {
 		var index = $("ds_tables").selectedIndex;
 		if (index == -1) {
 			alert("You need to select a table!");
@@ -729,35 +831,33 @@ function init() {
 		$("bind_sql_table_text").innerHTML = fq;
 		$("bind_sql_table").checked = true;
 		$("bind_sql").checked = true;
-		dialogs.tables.hide();
-	}
-	dialogs.tables.cancel = dialogs.tables.hide;
+    });
 
 	/* services */
 	dialogs.services = new OAT.Dialog("Available services","services",{width:400,modal:0});
 //	OAT.Dom.unlink(dialogs.services.cancelBtn);
-	dialogs.services.hide();
+    dialogs.services.close();
 	
 	/* table selection */
-	OAT.Dom.attach("ds_catalogs","change",Filter.apply);
-	OAT.Dom.attach("ds_schemas","change",Filter.apply);
+    OAT.Event.attach("ds_catalogs","change",Filter.apply);
+    OAT.Event.attach("ds_schemas","change",Filter.apply);
 
 	/* menu */
 	var m = new OAT.Menu();
 	m.noCloseFilter = "noclose";
 	m.createFromUL("menu");
-	OAT.Dom.attach("menu_new","click",function(){fd.clear({addNav:true});fd.columns.clear();IO.filename="";});
-	OAT.Dom.attach("menu_clear","click",function(){fd.clear({addNav:true});});
-	OAT.Dom.attach("menu_load","click",IO.load);
-	OAT.Dom.attach("menu_save","click",DS.save);
-	OAT.Dom.attach("menu_saveas","click",DS.save_as);
-	OAT.Dom.attach("menu_preview","click",IO.preview);
-	OAT.Dom.attach("menu_options","click",dialogs.options.show);
-	OAT.Dom.attach("menu_about","click",function(){alert('Assembly date: '+OAT.Preferences.version);});
-	OAT.Dom.attach("menu_ds","click",DS.showList);
+    OAT.Event.attach("menu_new","click",function(){fd.clear({addNav:true});fd.columns.clear();IO.filename="";});
+    OAT.Event.attach("menu_clear","click",function(){fd.clear({addNav:true});});
+    OAT.Event.attach("menu_load","click",IO.load);
+    OAT.Event.attach("menu_save","click",DS.save);
+    OAT.Event.attach("menu_saveas","click",DS.save_as);
+    OAT.Event.attach("menu_preview","click",IO.preview);
+    OAT.Event.attach("menu_options","click",dialogs.options.open);
+    OAT.Event.attach("menu_about","click",function() { alert('OAT version: ' + OAT.Preferences.version + ' build: '+OAT.Preferences.build);});
+    OAT.Event.attach("menu_ds","click",DS.showList);
 	
 	/* dependency count */
-	OAT.Dom.attach("depends_count","change",function() {
+    OAT.Event.attach("depends_count","change",function() {
 		var fb = fd.datasources[DS.selectedDSindex].fieldBinding;
 		var oldLen = fb.selfFields.length;
 		var newLen = parseInt($v("depends_count"));
@@ -776,17 +876,23 @@ function init() {
 		DS.showDependencies(DS.selectedDSindex);
 	});
 
+    
 	/* new datasource */
-	OAT.Dom.attach("ds_new","click",function() {
-		n = prompt("Please input a short name for this new datasource:","new datasource","FormDesigner");
+    
+    
+    function new_ds () {
 		var ds = new OAT.DataSource(0);
-		ds.name = n;
+	ds.name = 'new datasource';
 		fd.datasources.push(ds);
 		DS.showList();
-	});
+    }
+    
+    
+    OAT.Event.attach("ds_new","click",new_ds);
+    OAT.MSG.attach ("*","FORMDESIGNER_NEW_DS", new_ds);
 
 	/* switch generic query services */
-	OAT.Dom.attach("bind_generic_type","change",function() {
+    OAT.Event.attach("bind_generic_type","change",function() {
 		OAT.Dom.hide("bind_sql","bind_sparql","bind_gdata");
 		var v = parseInt($v("bind_generic_type"));
 		if (v == 0) { OAT.Dom.show("bind_sql"); }
@@ -795,7 +901,7 @@ function init() {
 	});
 	
 	/* switch web services */
-	OAT.Dom.attach("bind_ws_type","change",function() {
+    OAT.Event.attach("bind_ws_type","change",function() {
 		OAT.Dom.hide("bind_rest","bind_soap");
 		var v = parseInt($v("bind_ws_type"));
 		if (v == 0) { OAT.Dom.show("bind_rest"); }
@@ -803,9 +909,11 @@ function init() {
 	});
 
 	/* binding buttons */
-	OAT.Dom.attach("bind_sql_query_btn","click",function() {
+    OAT.Event.attach("bind_sql_query_btn","click",function() {
 		var conn = fd.datasources[DS.selectedDSindex].connection;
-		if (!conn) { conn = OAT.Xmla.connection; }
+	if (!conn) { 
+	    conn = OAT.Xmla.connection; 
+	}
 		var obj = {};
 		obj.user = conn.options.user;
 		obj.password = conn.options.password;
@@ -821,7 +929,7 @@ function init() {
 		w.__inherited = obj;
 	});
 
-	OAT.Dom.attach("bind_sparql_query_btn","click",function() {
+    OAT.Event.attach("bind_sparql_query_btn","click",function() {
 		var obj = {};
 		obj.username = http_cred.user;
 		obj.password = http_cred.password;
@@ -835,9 +943,9 @@ function init() {
 		w.__inherited = obj;
 	});
 
-	OAT.Dom.attach("bind_sql_table_btn","click",dialogs.tables.show);
-	OAT.Dom.attach("bind_sql_file_btn","click",function(){DS.load(OAT.DataSourceData.TYPE_SQL);});
-	OAT.Dom.attach("bind_sparql_file_btn","click",function(){DS.load(OAT.DataSourceData.TYPE_SPARQL);});
+    OAT.Event.attach("bind_sql_table_btn","click",dialogs.tables.open);
+    OAT.Event.attach("bind_sql_file_btn","click",function(){DS.load(OAT.DataSourceData.TYPE_SQL);});
+    OAT.Event.attach("bind_sparql_file_btn","click",function(){DS.load(OAT.DataSourceData.TYPE_SPARQL);});
 	
 	/* MS Live clipboard */
 	var onRef = function() {}
@@ -848,23 +956,41 @@ function init() {
 	OAT.WebClipBindings.bind("webclip", typeRef, genRef, pasteRef, onRef, outRef);
 
 	/* toolbar */
+    
 	tbar = new OAT.Toolbar("tbar");
-	tbar.addIcon(1,"images/palette.gif","Control Palette",function(state){if(state){fd.palette.win.show()} else {fd.palette.win.hide();}});
-	tbar.addIcon(1,"images/toolbox.gif","Control Properties",function(state){if(state){fd.toolbox.win.show()} else {fd.toolbox.win.hide();}});
-	tbar.addIcon(1,"images/columns.gif","Form Columns",function(state){if(state){fd.columns.win.show()} else {fd.columns.win.hide();}});
+    tbar.addIcon(1,"images/colorize.png","Control Palette",
+		 function (state) {
+		     if(state){fd.palette.win.open();OAT.Dom.show ("check_0");} 
+		     else {fd.palette.win.close();OAT.Dom.hide("check_0");}
+		 });
+    tbar.addIcon(1,"images/view_detailed.png","Inspector",
+		 function(state){
+		     if(state){fd.toolbox.win.open();OAT.Dom.show ("check_1");} 
+		     else {fd.toolbox.win.close();OAT.Dom.hide("check_1");}
+		 });
+    tbar.addIcon(1,"images/raid.png","Datasource",
+		 function(state){
+		     if(state){fd.columns.win.open();OAT.Dom.show ("check_2");} 
+		     else {fd.columns.win.close();OAT.Dom.hide("check_2");}
+		 });
 	for (var i=0;i<3;i++) { tbar.icons[i].toggle(); }
 
+    OAT.Event.attach("menu_view_palette","click",function (){tbar.icons[0].toggle();});
+    OAT.Event.attach("menu_view_inspector","click",function (){tbar.icons[1].toggle();});
+    OAT.Event.attach("menu_view_datasources","click",function (){tbar.icons[2].toggle();});
+    
 	/* DAV Browser init */
 	var options = {
-		imagePath:'../images/',
-		imageExt:'png'
+	imagePath:OAT.Preferences.imagePath,
+	imageExt:'png',
+	silentStart: false
 	};
 	OAT.WebDav.init(options);
 
-	OAT.Resize.createDefault($("bind_sparql_query_container"));
-	OAT.Resize.createDefault($("bind_sql_query_container"));
+//    OAT.Resize.createDefault($("bind_sparql_query_container"));
+//    OAT.Resize.createDefault($("bind_sql_query_container"));
 	
-	OAT.Dom.attach("bind_sql_query_text","keyup",function(){
+    OAT.Event.attach("bind_sql_query_text","keyup",function(){
 		$("bind_sql_query").checked = true;
 		$("bind_gq").checked = true;
 	});

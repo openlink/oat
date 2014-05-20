@@ -23,7 +23,6 @@ ul.tab {
 
 li.tab {
 	display: block;
-	border: 2px solid #000;
 	padding: 2px 3px;
 	margin-right: 0.5em;
 	cursor: pointer;
@@ -31,20 +30,31 @@ li.tab {
 	_height:28px;
 	float:left;
 	background-color: #aaa;
+	padding: 3px 3px 4px;
 }
 
 li.tab_selected {
-	background-color: #888;
-	border-bottom-color: #888;
-}
+	background-color:#ededed;
+	border-color:#333333 #333333 #ededed;
+	border-left:1px solid #333333;
+	border-style:solid solid none;
+	border-width:1px 1px medium;
+	color:#000000;
+	padding:1px 3px 6px;
+	position:relative;
+	top:1px;}
 
 li.tab:hover {
 	background-color: #ccc;
+	text-decoration: underline;
 }
 
 li.tab_selected:hover {
-	background-color: #888;
+	background-color: #ededed;
+	text-decoration: none;
 }
+
+
 
 /**/
 
@@ -52,6 +62,7 @@ li.tab_selected:hover {
 	position:relative;
 	width: 500px;
 	height: 60px;
+	margin-bottom: 8px;
 }
 
 .right {
@@ -140,20 +151,30 @@ input, select {
 	background-color: #ccc;
 }
 
-.combo_list {
+.toolbox_ctr {
+	min-height: 50px;
+	border: 1px solid #333;	
+}
+
+.toolbox_ctr table {
+	border: 0;
+	width: 100%;
+}
+
+.oat_combo_list {
 	display: inline;
 }
 
-.combo_list_input {
+.oat_combo_list_input {
 	font: menu;
 }
 
-.combo_list_list {
+.oat_combo_list_list {
 	border: 1px solid #000;
 	background-color: #fff;
 }
 
-.combo_list_option {
+.oat_combo_list_option {
 	font: menu;
 	padding: 1px;
 	width: 100px;
@@ -167,34 +188,53 @@ div.combo_list_option:hover {
 	width: 300px;
 }
 
-#tbar {
+#tbar_ctr {
 	margin-top: 24px;
 	_margin-top: 0px;
-	height: 26px;
+	height: 32px;
+	
+/*	background-color: #bbb;
+	border-bottom: 1px solid #000;*/
+}
+
+.toolbar {
+  float:left;
+  clear: both;
+  width: 100%;
+  height: 32px;
 	background-color: #bbb;
-	border-bottom: 1px solid #000;
+background: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.38, rgb(125,119,171)),
+    color-stop(0.71, rgb(193,192,219))
+);
+background: -moz-linear-gradient(
+    center bottom,
+    rgb(125,119,171) 38%,
+    rgb(193,192,219) 71%
+);
+/*  background: -moz-linear-gradient(center bottom,rgb(203,203,214) 81%,rgb(167,167,194) 41%);
+  background: -webkit-gradient(linear,left bottom,left top,color-stop(0.81,rgb(203,203,214)),color-stop(0.41, rgb(167,167,194)));*/
+  border-bottom: 1px solid #ddd;
 }
 
 .toolbar_icon {
 	float: left;
-	height: 20px;
 	margin: 1px 3px;
 	padding: 1px;
 	cursor: pointer;
 }
 
 .toolbar_icon img {
-	border: 1px solid #bbb;
 	display: block;
 	margin: auto;
-}
-
-.toolbar_icon:hover img {
-	border:1px dotted #555;
+	padding: 2px;
 }
 
 .toolbar_icon_down img {
-	border:1px solid #555;
+	border:1px inset #555;
 }
 
 #form {
@@ -208,6 +248,23 @@ div.combo_list_option:hover {
 	width: 100%;
 	height: 600px;
 	position: relative;
+}
+
+#footer {
+	float:left;
+	clear:both;
+	background-color: #aaa;
+	width: 100%;
+	font-size: 8pt;
+	text-align: right;
+}
+
+#about_dlg { display: none; }
+
+p.about {
+	font-size: 8pt;
+	text-align: right;
+	margin-right: 10px
 }
 
 .form {
@@ -224,6 +281,45 @@ div.combo_list_option:hover {
 	padding-left: 2em;
 }
 
+#bind_content label { float: left;clear:left;width: 14.5em;display: block;}
+#bind_content input { margin-left: 0em }
+#bind_content select { margin-left: 0em }
+#bind_content input.ckb { display: block;float:left; clear:left; margin-left: 5px;}
+#bind_content input.radio { display:block;float:left; clear:left; margin-left: 5px;}
+#bind_content label.ckb {clear: none;display:inline;margin-left: 5px;}
+#bind_content fieldset { clear: left;}
+
+.tab_content { clear: left; border: 1px solid #333; margin-right: 6px;}
+
+.tab_content_inner {margin:5px}
+
 .toolbox li, #bind li {
 	height: 14px;
 }
+
+.toolbox_ctr {
+	background-color: #ededed;
+	clear:both;
+	width: 100%;
+}
+
+.toolbox_scope {
+	color: #666;	
+	margin-bottom: 2px;
+}
+
+p.copyright { margin-right: 8px }
+
+.toolbox_scope span { color: #000; }
+
+.ds_cols_hd { font-size: 10pt; margin: 5px 0px 2px 2px;}
+
+.oat_dav_conn_dlg table { border: 0; }
+.oat_dav_conn_dlg table td { border:0; }
+
+span.formhelp {font-size: 8pt; color: blue;vertical-align: super;margin-left:3px}
+span.formhelp:hover {color:green;cursor:pointer}
+
+.err_dlg_cont_b { margin-top: 8px;}
+.err_descr_ctr { font-style: monospace; font-size: smaller; color: #555}
+.err_expln { margin-bottom: 8px; }

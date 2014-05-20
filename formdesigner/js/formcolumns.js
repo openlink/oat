@@ -12,14 +12,12 @@ function Columns(obj) {
 	this.obj = obj;
 	this.columns = [];
 	this.elm = OAT.Dom.create("div",{padding:"3px"});
-	this.win = new OAT.Window({min:0,max:0,close:1,height:0,width:180,x:-15,y:350,title:"Available fields"});
-	this.win.content.appendChild(this.elm);
-	this.win.hide = function() {OAT.Dom.hide(self.win.div);};
-	this.win.show = function() {OAT.Dom.show(self.win.div);};
-	this.win.onclose = function() {
-		self.win.hide();
-		tbar.icons[2].toggle();
-	}
+	this.win = new OAT.Win({buttons:"cr",outerHeight:0,outerWidth:240,x:-15,y:390,title:"Data Columns"});
+        this.win.dom.content.appendChild(this.elm);
+
+	OAT.MSG.attach(this.win, "WINDOW_CLOSE", function() {
+		tbar.icons[2].toggleState(0, true);
+	});
 
 	this.clear = function() {
 		OAT.Dom.clear(self.elm);
@@ -40,15 +38,27 @@ function Columns(obj) {
 	
 	this.createColumns = function() {
 		self.clear();
+	    if (self.obj.datasources.length) {
+		self.DSlabel = OAT.Dom.create("label");
+		self.DSlabel.innerHTML="Datasource:";
 		self.DSSelect = OAT.Dom.create("select");
+		self.DSColsHD = OAT.Dom.create("h3",{className:"ds_cols_hd"});
+		self.DSColsHD.innerHTML = "Available Columns:";
 		for (var i=0;i<self.obj.datasources.length;i++) {
 			var o = OAT.Dom.option(self.obj.datasources[i].name,i,self.DSSelect);
 		}
-		OAT.Dom.attach(self.DSSelect,"change",function() { self.addColumns(self.DSSelect.selectedIndex); });
-		self.elm.appendChild(self.DSSelect);
-		self.div = OAT.Dom.create("div");
+		OAT.Event.attach(self.DSSelect,"change",function() { self.addColumns(self.DSSelect.selectedIndex); });
+		OAT.Dom.append([self.elm,self.DSlabel,self.DSSelect,self.DSColsHD]);
+		self.div = OAT.Dom.create("div",{className: "ds_cols_ctr"});
 		self.elm.appendChild(self.div);
-		if (self.obj.datasources.length) { self.addColumns(0); }
+		self.addColumns(0);
+	    }
+	    else {
+		var DSDefBtn = OAT.Dom.create ("button", {className: "ds_def_btn"});
+		DSDefBtn.innerHTML = "New datasource&hellip;";
+		OAT.Event.attach (DSDefBtn, "click", function () {OAT.MSG.send (self,"FORMDESIGNER_NEW_DS",{});});
+		self.elm.appendChild(DSDefBtn);
+	    }
 	}
 	
 	this.addColumns = function(index) {
@@ -85,7 +95,7 @@ function Columns(obj) {
 				}
 			}
 		}
-		OAT.Dom.attach(div,"click",clickRef);
+		OAT.Event.attach(div,"click",clickRef);
 
 		var process = function(elm) {
 			elm.style.zIndex = 10;
@@ -94,8 +104,8 @@ function Columns(obj) {
 		}
 		
 		var addRef = function(target,x,y) {
-			var coords = OAT.Dom.position(self.win.div);
-			var dims = OAT.Dom.getWH(self.win.div);
+			var coords = OAT.Dom.position(self.win.dom.container);
+			var dims = OAT.Dom.getWH(self.win.dom.container);
 			if (x >= coords[0] && x <= coords[0]+dims[0] && y >= coords[1] && y <= coords[1]+dims[1]) { return; }
 			var hack = 0;
 			if (!div.selected) {
@@ -130,6 +140,6 @@ function Columns(obj) {
 			addRef(false,coords[0],coords[1]);
 		}
 
-		OAT.Dom.attach(div,"dblclick",dblClickRef); /* add to form */
+		OAT.Event.attach(div,"dblclick",dblClickRef); /* add to form */
 	} /* Columns::addColumn() */
 }

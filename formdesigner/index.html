@@ -24,209 +24,257 @@
 
 -->
 <head>
-	<title>Form Designer</title>
-	<script type="text/javascript">
-		var featureList = ["formobject","xmla","soap","ajax2","drag","resize","dom","window",
-							"ghostdrag","color","combolist","bindings","toolbar","map","ws",
-							"menu","dimmer","dav","sqlquery","xml","webclip","dialog","layers",
-							"datasource","sparql","layers","tab","tree","crypto"];
-	</script>
-	<script type="text/javascript" src="../oat/loader.js"></script>
-	<script type="text/javascript" src="js/formcolumns.js"></script>
-	<script type="text/javascript" src="js/formtoolbox.js"></script>
-	<script type="text/javascript" src="js/formpalette.js"></script>
-	<script type="text/javascript" src="js/formdesigner.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
-	<link rel="meta" title="DOAP" href="../DOAP-OAT.rdf" type="application/rdf+xml" />
-	<link rel="stylesheet" href="../formdesigner/styles/style.css" type="text/css" />
+  <title>Form Designer</title>
+  <script type="text/javascript">
+
+var featureList = ["formobject","xmla","soap","ajax","drag","resize","window",
+                   "ghostdrag","color","combolist","bindings","toolbar","map","ws",
+                   "menu","dimmer","dav","sqlquery","xml","webclip","dialog","layers",
+                   "datasource","sparql","layers","tab","tree","crypto","win","toggle"];
+  </script>
+  <script type="text/javascript" src="../oat/loader.js"></script>
+  <script type="text/javascript" src="js/bindings.js"></script>
+  <script type="text/javascript" src="js/formcolumns.js"></script>
+  <script type="text/javascript" src="js/formtoolbox.js"></script>
+  <script type="text/javascript" src="js/formpalette.js"></script>
+  <script type="text/javascript" src="js/formdesigner.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+  <link rel="meta" title="DOAP" href="../DOAP-OAT.rdf" type="application/rdf+xml" />
+  <link rel="stylesheet" href="../formdesigner/styles/style.css" type="text/css" />
 </head>
 <body>
-	<div id="throbber" style="text-align: center"><img src="../images/throbber.gif"/></div>
-	
-	<div id="hidden" style="visibility:hidden">
+  <div id="throbber" style="text-align: center"><img src="../images/throbber.gif"/></div>
+  <div id="hidden" style="visibility:hidden">
+    <ul id="menu">
+      <li id="menu_pgm">Formdesigner
+        <ul>
+          <li id="menu_about">About Formdesigner</li>
+		  <li id="menu_options">Preferences&hellip;</li>
+        </ul>
+      </li>
 
-		<ul id="menu">
-			<li>Design
-				<ul>
-					<li id="menu_new">New</li>
-					<li id="menu_saveas">Save As</li>
-					<li id="menu_save">Save</li>
-					<li id="menu_load">Open</li>
-					<hr class="noclose" />
-					<li id="menu_preview">Preview</li>
-					<hr class="noclose" />
-					<li id="menu_clear">Clear</li>
-				</ul>
-			</li>
+      <li>Design
+        <ul>
+		  <li id="menu_new">New</li>
+		  <li id="menu_saveas">Save As&hellip;</li>
+		  <li id="menu_save">Save</li>
+		  <li id="menu_load">Open&hellip;</li>
+		  <hr class="noclose" />
+		  <li id="menu_preview">Preview</li>
+		  <hr class="noclose" />
+		  <li id="menu_clear">Clear</li>
+        </ul>
+      </li>
 			
-			<li>Datasources
-				<ul>
-					<li id="menu_ds">View & Edit</li>
-				</ul>
-			</li>
-			
-			<li>Setup
-				<ul>
-					<li id="menu_options">Options</li>
-				</ul>
-			</li>
-			
-			<li>Help
-				<ul>
-					<li id="menu_about">About</li>
-				</ul>
-			</li>
+	  <li>View
+	    <ul>
+		  <li id="menu_view_palette"><span id="check_0">&#10003;</span>Controls palette</li>
+		  <li id="menu_view_inspector"><span id="check_1">&#10003;</span>Control Properties</li>
+		  <li id="menu_view_datasources"><span id="check_2">&#10003;</span>Available Columns</li>
 		</ul>
-		
-		<div id="corner"></div>
-		<div id="webclip"></div>
+	  </li>
 
-		<div style="_height:24px;"></div> <!-- dummy ie fix -->
-		
-		<div id="tbar">
-		</div>
+	  <li>Tools
+	    <ul>
+		  <li id="menu_ds">Edit Datasources</li>
+		</ul>
+	  </li>
 
-		<div id="form">
-			<div id="formbase"></div>
-		</div>
+	  <li>Help
+        <ul>
+	      <!--li id="menu_help_search">Search <input id="t_help_search" type="text"/></li-->
+		  <li id="menu_help_formdesigner">Formdesigner help</li>
+		</ul>
+      </li>
+    </ul>
+	
+    <div id="corner"></div>
+    <div id="webclip"></div>
+    <div style="_height:24px;"></div> <!-- dummy ie fix -->
 		
-		<div id="dslist">
-			<h3>List of datasources</h3>
-			<table>
-				<thead><tr>
-					<td>Name</td>
-					<td>Type</td>
-					<td>Dependencies</td>
-					<td>Remove</td>
-				</tr></thead>
-				<tbody id="dslist_tbody">
-				</tbody>
-			</table>
-			<br/>
-			<input type="button" id="ds_new" value="Add new datasource" />
-		</div>
-		
-		<div id="dsdepends">
-			<h3>Datasource dependencies</h3>
-			For datasource: <span id="depends_name"></span><br/>
-			Key fields: <select id="depends_count"></select>
-			<table>
-				<tbody id="depends_tbody">
-				</tbody>
-			</table>
-		</div>
-		
-		
-		<div id="bind">
-			<ul>
-				<li id="bind_tab_generic">Generic Query Services</li>
-				<li id="bind_tab_ws">Web Services</li>
-			</ul>
-			<div id="bind_content"></div>
-			<div id="bind_content_generic">
-				Type: <select id="bind_generic_type">
-					<option value="0">SQL</option>
-					<option value="1">SPARQL</option>
-					<option value="2">GData</option>
-				</select>
-				<div id="bind_sql">
-					<fieldset><legend>XML/A Binding</legend>
-						XML/A Endpoint: <input type="text" id="bind_sql_endpoint" value="" /><br/>
-						Connection String: <select id="bind_sql_dsn"></select><br/>
-						Username: <input type="text" id="bind_sql_user" name="bind_sql_user" value="demo" /><br/>
-						Password: <input type="password" id="bind_sql_password" value="demo" /><br/>
-						<input type="button" value="Connect" id="bind_sql_xmla" />
-					</fieldset>
-					Cursor type: <select id="bind_sql_type">
-						<option value="0">Snapshot</option>
-						<option value="1">Dynaset</option>
-					</select><br/>
-					Page size: <input type="text" id="bind_sql_limit" size="4" value="30" /><br/>
-					<input type="radio" name="bind_sql_r" id="bind_sql_query" /> 
-					<label for="bind_sql_query"><strong>Query</strong></label><br/>
-					<div class="bind">
-						<div id="bind_sql_query_container">
-							<textarea id="bind_sql_query_text" style="width:100%; height:100%;"></textarea>
-						</div>
-						<input type="button" id="bind_sql_query_btn" value="Edit in QBE" />
-						<input type="button" id="bind_sql_file_btn" value="Load from file" />
-					</div>
-					<hr/>
-					
-					<input type="radio" name="bind_sql_r" id="bind_sql_table" /> 
-					<label for="bind_sql_table"><strong>Table</strong></label><br/>
-					<div class="bind">
-						<input type="button" id="bind_sql_table_btn" value="Attach to table" />
-						<span id="bind_sql_table_text"></span>
-					</div>
-				</div>
-				<div id="bind_sparql">
-					Endpoint URL: <input type="text" id="bind_sparql_url" size="80" /><br/>
-					Query: <br/>
-					<div id="bind_sparql_query_container">
-						<textarea id="bind_sparql_query" style="width:100%; height:100%;"></textarea>
-					</div>
-					<hr/>
-					<strong>Saved query</strong><br/>
-					<input type="button" id="bind_sparql_query_btn" value="Edit in iSPARQL" />
-					<input type="button" id="bind_sparql_file_btn" value="Load from file" />
-				</div>
-				<div id="bind_gdata">
-					Endpoint URL: <input type="text" id="bind_gdata_url" /><br/>
-					Query (optional): <input type="text" id="bind_gdata_query" /><br/>
-				</div>
-			</div>
+    <div id="tbar_ctr">
+	  <div id="tbar"></div> <!-- #tbar -->
+	</div><!-- #tbar_ctr -->
 
-			<div id="bind_content_ws">
-				Type: <select id="bind_ws_type">
-					<option value="0">REST</option>
-					<option value="1">SOAP</option>
-				</select>
-				<div id="bind_rest">
-					URL: <input type="text" id="bind_rest_url" /><br/>
-					Input parameters (separate by comma): <input type="text" size="40" id="bind_rest_in" /><br/>
-					Output values (separate by comma): <input type="text" size="40" id="bind_rest_out" /><br/>
-					Output values specified as: <select id="bind_rest_xpath">
-						<option value="0">Node names</option>
-						<option value="1">XPath expressions</option>
-					</select><br/>
-					Output type: <select id="bind_rest_type">
-						<option value="0">XML</option>
-						<option value="1">JSON</option>
-					</select>
-				</div>
-				<div id="bind_soap">
-					WSDL location: <input type="text" id="bind_soap_wsdl" /><br/>
-				</div>
-			</div>
-		</div>
+    <div id="form">
+      <div id="formbase"></div>
+    </div>
 		
-		<div id="links"></div>
+	<div id="footer">
+	  <p class="copyright">Copyright &copy; 2005-2014 OpenLink Software</p>
+    </div>
+
+    <div id="about_dlg">
+	  <h2>Formdesigner</h2>
+	  <p>This software is part of the OpenLink Ajax Toolkit, or OAT.</p>
+	  <p>For more information about usage, etc. please visit <a href="http://oat.openlinksw.com">OAT site</a></p>
+      <p class="about" id="about_oat"></p>
+	  <p class="copyright">Copyright &copy; 2005-2014 OpenLink Software</p>
+    </div>
 		
-		<div id="tables">
-			Catalog: <select id="ds_catalogs"></select><br/>
-			Owner: <select id="ds_schemas"></select><br/>
-			Table: <select id="ds_tables" size="6"></select>
-		</div>
+    <div id="dslist">
+      <h3>List of datasources</h3>
+      <table>
+        <thead>
+          <tr>
+		    <td>Name</td>
+            <td>Type</td>
+            <td>Dependencies</td>
+            <td>Remove</td>
+		  </tr>
+        </thead>
+        <tbody id="dslist_tbody"></tbody>
+      </table>
+      <br/>
+      <input type="button" id="ds_new" value="Add new datasource" />
+    </div> <!-- #dslist -->
 		
-		<div id="services">
-			Pick a service: <select id="services_select"></select>
-		</div>
+    <div id="dsdepends">
+      <h3>Datasource dependencies</h3>
+      <label for="depends_name">For datasource:</label> <span id="depends_name"></span><br/>
+      <label for="depends_count">Key fields:</label> <select id="depends_count"></select>
+      <table>
+        <tbody id="depends_tbody"></tbody>
+      </table>
+    </div> <!-- #dsdepends -->
+		
+    <div id="bind">
+      <ul>
+        <li id="bind_tab_generic" class="tab">Generic Query Services</li>
+        <li id="bind_tab_ws" class="tab">Web Services</li>
+      </ul>
 
-		<div id="enl">
-			<textarea cols="80" rows="20" id="enl_textarea"></textarea>
-		</div>
+      <div id="bind_content" class="tab_content"></div>
 
-		<div id="options">
-			XSLT stylesheet path: <input type="text" name="xslt" id="options_xslt" value="" /><br/>
-			<input type="checkbox" id="options_ajax" checked="checked" /> Show pending AJAX calls (FormDesigner)<br/>
-			<input type="checkbox" id="options_showajax" checked="checked" /> Show pending AJAX calls (resulting Form)<br/>
-			<input type="checkbox" id="options_http" checked="checked" /> Show HTTP errors
-			<hr/>
-			<input type="checkbox" id="options_uid" /> Store credentials in saved files<br/>
-			<input type="checkbox" id="options_nocred" /> Disable login prompt (if credentials are not saved)<br/>
-		</div>
-	</div>
+      <div id="bind_content_generic" class="tab_content_inner">
+        <label for="bind_generic_type">Type:</label> 
+        <select id="bind_generic_type">
+          <option value="0">SQL</option>
+	  <option value="1">SPARQL</option>
+	  <option value="2">GData</option>
+	  <!--option value="3">GeoLocator</option-->
+        </select>
 
-	</body>
+        <div id="bind_sql">
+	  <fieldset>
+            <legend>XML/A Binding</legend>
+	    <p><label for="bind_sql_endpoint">XML/A Endpoint:</label> <input type="text" id="bind_sql_endpoint" value="" /></p>
+            <p><label for="bind_sql_dsn">Connection String:</label> <select id="bind_sql_dsn" style="display:none"></select><input type="button" value="Discover" id="bind_sql_xmla" /></p>
+	    <p><label for="bind_sql_user">Username:</label> <input type="text" id="bind_sql_user" name="bind_sql_user" value="demo" /></p>
+	    <p><label for="bind_sql_password">Password:</label> <input type="password" id="bind_sql_password" value="demo" /></p>
+	  </fieldset>
+
+	  <p><label for="bind_sql_query_or_table">Binding type:</label>
+	     <select id="bind_sql_qry_or_table">
+	       <option value="0">Query</option>
+	       <option value="1">Table</option>
+	     </select></p>
+
+	  <div id="binding_ctr">
+	    <div id="bind_sql_query_ctr">
+	      <textarea id="bind_sql_query_text" style="width:100%; height:100%;">SQL query text</textarea>
+              <input type="button" id="bind_sql_query_btn" value="Edit in QBE" />
+              <input type="button" id="bind_sql_file_btn" value="Load from file" />
+            </div>
+	    <div id="bind_tables_ctr" style="display:none">
+	      <input type="button" id="bind_sql_table_btn" value="Select table" />
+	      <span id="bind_sql_table_text"></span>
+	    </div>
+	  </div>
+	  <fieldset>
+	    <legend>Options</legend>
+	    <p><label for="bins_sql_type">Cursor type:</label> 
+	    <select id="bind_sql_type">
+	      <option value="0">Snapshot</option>
+	      <option value="1">Dynaset</option>
+	    </select></p>
+	    <p><label for="bind_sql_limit">Page size:</label> <input type="text" id="bind_sql_limit" size="4" value="30" /></p>
+	  </fieldset>
+        </div> <!-- #bind_sql -->
+
+        <div id="bind_sparql">
+          <label for="bind_sparql_url">Endpoint URL:</label> <input type="text" id="bind_sparql_url" size="60"/><br/>
+	  <label for="bind_sparql_query">Query:</label> <br/>
+	  <div id="bind_sparql_query_container">
+            <textarea id="bind_sparql_query" style="width:100%; height:100%;">SPARQL query</textarea>
+          </div>
+          <hr/>
+          <strong>Saved query</strong><br/>
+          <input type="button" id="bind_sparql_query_btn" value="Edit in iSPARQL" />
+          <input type="button" id="bind_sparql_file_btn" value="Load from file" />
+        </div> <!-- #bind_sparql -->
+
+        <div id="bind_gdata">
+          <p><label for="bind_gdata_url">Endpoint URL:</label> <input type="text" id="bind_gdata_url" /></p>
+          <p><label for="bind_gdata_query">Query (optional):</label> <input type="text" id="bind_gdata_query" /></p>
+        </div>
+	
+	<!-- div id="bind_geoloc">
+	  <label for="bind_geoloc_timeout">Timeout:</label><input type="text" id="bind_geoloc_timeout" class="num"/>
+	  <input type="checkbox" class="ckb" id="bind_geoloc_track"/><label for="bind_geoloc_track">Constant tracking</label>
+	  <input type="checkbox" class="ckb" id="bind_geoloc_highacc"/><label for="bind_geoloc_prec" class="ckb">High Accuracy</label>
+	</div --> <!-- #bind_geoloc -->
+
+      </div> <!-- #bind_content_generic -->
+
+      <div id="bind_content_ws" class="tab_content_inner">
+        <p><label for="bind_ws_type">Type:</label> 
+        <select id="bind_ws_type">
+          <option value="0">REST</option>
+          <option value="1">SOAP</option>
+        </select></p>
+        <div id="bind_rest">
+          <p><label for="bind_rest_url">URL:</label> <input type="text" id="bind_rest_url" /></p>
+	  <p><label for="bind_rest_in">Input parameters:</label> 
+	     <input type="text" size="40" id="bind_rest_in" />
+             <span class="formhelp" title="These parameters should be comma-separated.">?</span></p>
+	  <p><label for="bind_rest_out">Output values:</label> 
+             <input type="text" size="40" id="bind_rest_out" />
+             <span class="formhelp" title="These values should be comma-separated.">?</span></p>
+          <p><label for="bind_rest_xpath">Output values specified as:</label> 
+	  <select id="bind_rest_xpath">
+            <option value="0">Node names</option>
+            <option value="1">XPath expressions</option>
+          </select></p>
+          <p><label for="bind_rest_type">Output type:</label> 
+          <select id="bind_rest_type">
+            <option value="0">XML</option>
+            <option value="1">JSON</option>
+          </select></p>
+        </div> <!-- #bind_rest -->
+
+        <div id="bind_soap">
+          <label for="bind_soap_wsdl">WSDL location:</label> <input type="text" id="bind_soap_wsdl" /><br/>
+        </div> <!-- #bind_soap -->
+      </div> <!-- #bind_content_ws -->
+    </div> <!-- #bind -->
+		
+    <div id="links"></div> <!-- #links -->
+		
+    <div id="tables">
+      <label for="ds_catalogs">Catalog:</label> <select id="ds_catalogs"></select><br/>
+      <label for="ds_schemas">Owner:</label> <select id="ds_schemas"></select><br/>
+      <label for="ds_tables">Table:</label> <select id="ds_tables" size="6"></select>
+    </div> <!-- #tables -->
+		
+    <div id="services">
+      <label for="services_select">Pick a service:</label> <select id="services_select"></select>
+    </div> <!-- #services -->
+
+    <div id="enl">
+      <textarea cols="80" rows="20" id="enl_textarea"></textarea>
+    </div>
+
+    <div id="options">
+      <label for="options_xslt">XSLT stylesheet path:</label> <input type="text" name="xslt" id="options_xslt" value="" /><br/>
+      <input type="checkbox" id="options_ajax" checked="checked" /> <label for="options_ajax" class="ckb">Show pending AJAX calls (FormDesigner)</label><br/>
+      <input type="checkbox" id="options_showajax" checked="checked" /> <label for="options_showajax" class="ckb">Show pending AJAX calls (resulting Form)</label><br/>
+      <input type="checkbox" id="options_http" checked="checked" /> <label for="options_http" class="ckb">Show HTTP errors</label>
+      <hr/>
+      <input type="checkbox" id="options_uid" /> <label for="options_uid" class="ckb">Store credentials in saved files</label><br/>
+      <input type="checkbox" id="options_nocred" /> <label for="options_nocred" class="ckb">Disable login prompt (if credentials are not saved)</label><br/>
+    </div> <!-- #options -->
+  </div>
+
+</body>
 </html>

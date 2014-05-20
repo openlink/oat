@@ -9,7 +9,7 @@
  */
 #menu {
 	font: menu;
-	background-color: #aaa;
+	background-color: #fff;
 	list-style-type: none;
 	height: 23px;
 	border-bottom: 1px solid #000;
@@ -27,20 +27,22 @@
 	float: left;
 	position: relative;
 	padding: 5px 8px;
+	color: #000;
 }
 
 #menu li:hover, #menu li.hover {
-	background-color: #ccc;
+	background-color: #00f;
+	color: #fff
 }
 
 #menu ul {
 	position: absolute;
-	background-color: #aaa;
+	background-color: #fff;
 	left: 0px;
 	top: 23px;
 	_top: 22px;
 	border: 1px solid #000;
-	width: 100px;
+	width: 150px;
 	padding: 2px;
 	z-index: 999;
 }
@@ -56,3 +58,6 @@
 	margin: 0px;
 	padding: 0px;
 }
+
+#menu_pgm { font-weight: bold }
+#menu_pgm ul { font-weight: normal }
