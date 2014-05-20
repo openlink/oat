@@ -1236,7 +1236,7 @@ function init() {
 	OAT.MSG.attach(dialogs.connection, "DIALOG_OK", function(){ 
 		Connection.use_dsn(1);
 		var options = {
-			imagePath:'/DAV/JS/images/',
+			imagePath:'../images/',
 			imageExt:'png',
 			user:$v("user"),
 			pass:$v("password"),	
@@ -1248,7 +1248,7 @@ function init() {
 
 	OAT.MSG.attach(dialogs.connection, "DIALOG_CANCEL", function() { 
 		var options = {
-			imagePath:'/DAV/JS/images/',
+			imagePath:'../images/',
 			imageExt:'png',
 			user:$v("user"),
 			pass:$v("password"),	
