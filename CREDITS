@@ -32,13 +32,6 @@ incorporation of code from the following projects:
 	https://wiki.debian.org/DFSGLicenses
 
 
-* oat/custom.maps2.48.api.js
-
-  Copyright 2005-2006 Google. 
-  To use maps on your own site, visit:
-	 http://www.google.com/apis/maps/
-
-
 * oat/OpenLayers.js
 
   Copyright 2005-2006 MetaCarta, Inc., released under the BSD License.
